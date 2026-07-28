@@ -29,6 +29,7 @@ on Cloudflare Pages' build image, GitHub Actions, or your laptop.
 import argparse
 import json
 import shutil
+import sys
 from datetime import datetime, timedelta
 from html import escape
 from pathlib import Path
@@ -37,12 +38,22 @@ from pathlib import Path
 # Configuration — edit these for your deployment
 # ---------------------------------------------------------------------------
 
-SITE_URL = "https://machinespeed.example.com"   # no trailing slash; set to your real domain
+SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
                     "cyber capability and the defense & policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent get the "New" badge / 48h strip
+STRIP_MAX = 6         # spec caps the "New in the last 48 hours" strip at six
+
+# Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
+# can never silently drop the domain setting.
+CNAME = SITE_URL.split("//", 1)[1]
+
+# Substack. Set SUBSTACK_URL to the publication home (no trailing slash) to turn
+# on the subscribe links; leave it empty and every Substack element disappears.
+SUBSTACK_URL = ""                       # e.g. "https://machinespeed.substack.com"
+SUBSTACK_CTA = "Get the board in your inbox"
 
 LANES = {
     "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
@@ -90,6 +101,86 @@ def days_ago(item_date: str, as_of: str) -> int:
     return (now - d).days
 
 
+REQUIRED_ITEM_FIELDS = ["id", "lane", "date", "headline", "core", "confidence", "outlet", "url"]
+
+
+def validate(d: dict):
+    """Structural checks run before anything is written.
+
+    A failed check aborts the build with a non-zero exit, so a bad data.json
+    fails the GitHub Action instead of publishing a broken board — the live
+    site simply keeps serving the last good deploy.
+    """
+    errors, warnings = [], []
+
+    for key in ("updatedISO", "updatedDisplay", "judgmentNote", "internalNote",
+                "items", "watchlist", "archives"):
+        if not d.get(key):
+            errors.append(f"missing or empty top-level key: {key}")
+    if errors:
+        return errors, warnings
+
+    try:
+        run_day = datetime.strptime(d["updatedISO"][:10], "%Y-%m-%d").date()
+    except ValueError:
+        return [f"updatedISO is not a valid ISO timestamp: {d['updatedISO']!r}"], warnings
+
+    seen = set()
+    for n, it in enumerate(d["items"]):
+        where = f"item[{n}] {it.get('id', '<no id>')}"
+        for f in REQUIRED_ITEM_FIELDS:
+            if not it.get(f):
+                errors.append(f"{where}: missing field '{f}'")
+        if it.get("id") in seen:
+            errors.append(f"{where}: duplicate id")
+        seen.add(it.get("id"))
+        if it.get("lane") not in LANES:
+            errors.append(f"{where}: lane must be one of {', '.join(LANES)}")
+        if it.get("confidence") not in CONF:
+            errors.append(f"{where}: confidence must be one of {', '.join(CONF)}")
+        if not str(it.get("url", "")).startswith("https://"):
+            errors.append(f"{where}: url must be an https:// link")
+        try:
+            age = days_ago(it["date"], d["updatedISO"])
+            if age < 0:
+                errors.append(f"{where}: dated in the future ({it['date']})")
+            elif age > 7:
+                warnings.append(f"{where}: {age} days old — outside the rolling 7-day "
+                                f"window (keep only if judgmentNote explains why)")
+        except (KeyError, ValueError):
+            errors.append(f"{where}: date must be YYYY-MM-DD")
+
+    for w in d["watchlist"]:
+        if not w.get("thread") or not w.get("status"):
+            errors.append(f"watchlist entry missing thread or status: {w!r}")
+
+    root = Path(__file__).parent
+    for a in d["archives"]:
+        if not a.get("date") or not a.get("file"):
+            errors.append(f"archive entry missing date or file: {a!r}")
+        # Today's snapshot is written by this build, so it is allowed not to exist yet.
+        elif a["date"] != run_day.isoformat() and not (root / a["file"]).exists():
+            errors.append(f"archives[] points at {a['file']}, which is not in the repo "
+                          f"— that link would 404")
+    if not any(a.get("date") == run_day.isoformat() for a in d["archives"]):
+        errors.append(f"archives[] has no entry for today ({run_day}) — add one before building")
+
+    strip = [i for i in d["items"]
+             if i.get("isNew") is True
+             or (i.get("isNew") is not False and days_ago(i["date"], d["updatedISO"]) <= NEW_WINDOW_DAYS)]
+    if not strip:
+        warnings.append("nothing qualifies for the 48-hour strip — the board will say so "
+                        "plainly, which is the correct outcome on a quiet day")
+    elif len(strip) > STRIP_MAX:
+        warnings.append(f"{len(strip)} items qualify for the 48-hour strip; "
+                        f"only the newest {STRIP_MAX} will show")
+
+    if datetime.now().date() != run_day:
+        warnings.append(f"updatedISO date ({run_day}) is not today ({datetime.now().date()})")
+
+    return errors, warnings
+
+
 class Site:
     def __init__(self, data: dict):
         self.d = data
@@ -102,11 +193,19 @@ class Site:
         return sorted(items, key=lambda i: i["date"], reverse=True)
 
     def fresh_items(self):
-        fresh = [i for i in self.d["items"]
-                 if days_ago(i["date"], self.as_of) <= NEW_WINDOW_DAYS]
-        return sorted(fresh, key=lambda i: i["date"], reverse=True)
+        fresh = [i for i in self.d["items"] if self.is_new(i)]
+        fresh.sort(key=lambda i: i["date"], reverse=True)
+        return fresh[:STRIP_MAX]
 
     def is_new(self, item) -> bool:
+        """A run can override the date rule with isNew.
+
+        `isNew: true` forces an item into the 48-hour strip — used when a story
+        is new to the board but a few days old in the world. `isNew: false`
+        keeps a genuinely recent item out. Omit the field for the date rule.
+        """
+        if "isNew" in item:
+            return bool(item["isNew"])
         return days_ago(item["date"], self.as_of) <= NEW_WINDOW_DAYS
 
     # -- shared fragments ---------------------------------------------------
@@ -123,6 +222,9 @@ class Site:
             aria = ' aria-current="page"' if href == active else ""
             out.append(f'<a class="{cls}" href="{self.prefix}{href}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
+        if SUBSTACK_URL:
+            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}" '
+                       f'target="_blank" rel="noopener">Subscribe</a>')
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
@@ -169,6 +271,24 @@ class Site:
                 '<table><thead><tr><th scope="col">Thread</th><th scope="col">Current status</th>'
                 '<th scope="col">Last changed</th></tr></thead><tbody>'
                 + "\n".join(rows) + "</tbody></table></section>")
+
+    def subscribe_block(self) -> str:
+        """Substack call-to-action. Renders nothing at all if SUBSTACK_URL is unset.
+
+        A plain link rather than Substack's iframe embed: it keeps the site
+        dependency-free and loads no third-party tracking, and it works
+        identically on the archived snapshots.
+        """
+        if not SUBSTACK_URL:
+            return ""
+        return (f'<section class="block subscribe">'
+                f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
+                f'<p>The board updates daily on the web. The newsletter is the same '
+                f'reporting, written up and sent to your inbox — same sourcing rules, '
+                f'same corrections policy.</p>'
+                f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}" '
+                f'target="_blank" rel="noopener">Subscribe on Substack ↗</a></p>'
+                f'</section>')
 
     def footer(self) -> str:
         legend = "".join(
@@ -328,6 +448,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   {self.sources_block()}
 
+  {self.subscribe_block()}
+
   {self.footer()}"""
 
     def home_jsonld(self) -> str:
@@ -398,6 +520,56 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   {self.footer()}"""
 
+    # -- newsletter draft ---------------------------------------------------
+    def newsletter_draft(self) -> str:
+        """A paste-ready Substack post built from the same data as the board.
+
+        This is a DRAFT and nothing more. Nothing here is posted, scheduled or
+        sent — the file is written to newsletter/ for a human to read, edit and
+        publish by hand.
+        """
+        day = fmt_date(self.as_of[:10])
+        out = [f"# Machine Speed — {day}", ""]
+        out.append(f"*{SITE_DESCRIPTION}* "
+                   f"[Live board]({SITE_URL}/) · [RSS]({SITE_URL}/feed.xml)")
+        out += ["", "---", ""]
+
+        fresh = self.fresh_items()
+        if fresh:
+            out.append("## New in the last 48 hours")
+            out.append("")
+            for it in fresh:
+                out.append(f"- **{LANES[it['lane']]['name']}** — {it['headline']}. "
+                           f"[{it['outlet']}]({it['url']})")
+            out.append("")
+        else:
+            out += ["## New in the last 48 hours", "",
+                    "Nothing new to report since the last run. A fresh sweep across all four "
+                    "lanes surfaced no verified, in-window items that weren't already shown. "
+                    "No items were invented to fill this space.", ""]
+
+        for key, lane in LANES.items():
+            items = self.lane_items(key)
+            if not items:
+                continue
+            out += [f"## {lane['name']}", ""]
+            for it in items:
+                out.append(f"**{it['headline']}**  ")
+                out.append(f"{it['core']}  ")
+                out.append(f"*{CONF.get(it['confidence'], it['confidence'])} — "
+                           f"[{it['outlet']}]({it['url']}), {fmt_date(it['date'])}*")
+                out.append("")
+
+        out += ["## Still watching", ""]
+        for w in self.d["watchlist"]:
+            changed = f" *(last changed {fmt_date(w['changed'])})*" if w.get("changed") else ""
+            out.append(f"- **{w['thread']}** — {w['status']}{changed}")
+        out += ["", "---", "",
+                "### Editorial note", "", self.d.get("judgmentNote", ""), "",
+                f"Every link above was opened and confirmed before publication. "
+                f"The rolling board lives at [{CNAME}]({SITE_URL}/).", ""]
+        return "\n".join(out)
+
     # -- RSS ----------------------------------------------------------------
     def feed(self) -> str:
         items_xml = []
@@ -434,6 +606,17 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 def build(out_dir: Path):
     root = Path(__file__).parent
     data = json.loads((root / "data.json").read_text(encoding="utf-8"))
+
+    errors, warnings = validate(data)
+    for w in warnings:
+        print(f"  warning: {w}")
+    if errors:
+        for e in errors:
+            print(f"  error:   {e}", file=sys.stderr)
+        print(f"\nBUILD FAILED: {len(errors)} validation error(s) — nothing was written.",
+              file=sys.stderr)
+        sys.exit(1)
+
     site = Site(data)
 
     if out_dir.exists():
@@ -483,6 +666,10 @@ def build(out_dir: Path):
     # RSS
     write("feed.xml", site.feed())
 
+    # Custom domain. Emitted every build so an Actions deploy can never drop it.
+    if CNAME:
+        write("CNAME", CNAME + "\n")
+
     # dated snapshot of today's board (self-contained page in /archive)
     snap_date = (site.as_of or "")[:10]
     if snap_date:
@@ -502,7 +689,24 @@ def build(out_dir: Path):
         # also save into the source archive so it gets committed and survives rebuilds
         (src_archive / Path(snap_name).name).write_text(snap_html, encoding="utf-8")
 
+    # Newsletter draft — written into the repo (not dist/) for a human to publish.
+    if snap_date:
+        news_dir = root / "newsletter"
+        news_dir.mkdir(exist_ok=True)
+        draft = news_dir / f"machine-speed-{snap_date}.md"
+        draft.write_text(site.newsletter_draft(), encoding="utf-8")
+        print(f"  wrote newsletter/{draft.name}  (draft only — nothing is sent)")
+
+    counts = " · ".join(f"{v['name'].lower()} {len(site.lane_items(k))}"
+                        for k, v in LANES.items())
     print(f"\nBuild complete → {out_dir}")
+    print(f"  {len(data['items'])} items ({counts}), "
+          f"{len(site.fresh_items())} in the 48h strip, "
+          f"{len(data['watchlist'])} watchlist threads")
+    print(f"  site: {SITE_URL}")
+    if not SUBSTACK_URL:
+        print("  note: SUBSTACK_URL is unset — subscribe links are hidden. "
+              "Set it at the top of build.py to turn them on.")
 
 
 if __name__ == "__main__":

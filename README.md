@@ -13,66 +13,91 @@ the light/dark theme toggle.
 
 ```
 machine-speed-site/
-├── data.json          ← single source of truth; the daily run edits ONLY this
-├── build.py           ← generator (Python 3 stdlib only, no pip installs)
+├── data.json            ← single source of truth; the daily run edits ONLY this
+├── build.py             ← generator (Python 3 stdlib only, no pip installs)
+├── SCHEMA.md            ← every field of data.json, explained
+├── RUNBOOK.md           ← the daily procedure
+├── dashboard-memory.md  ← cross-run dedup + watchlist state; commit it or the next run repeats itself
 ├── assets/
-│   ├── style.css      ← shared stylesheet, cached across all pages
-│   └── theme.js       ← theme toggle (progressive enhancement)
-├── archive/           ← dated board snapshots, committed to the repo
-└── dist/              ← build output (generated; don't edit, don't commit)
+│   ├── style.css        ← shared stylesheet, cached across all pages
+│   └── theme.js         ← theme toggle (progressive enhancement)
+├── archive/             ← dated board snapshots, committed to the repo
+├── newsletter/          ← paste-ready Substack drafts, committed to the repo
+└── dist/                ← build output (generated; don't edit, don't commit)
 ```
+
+Live at **https://machinespeed.techpointe.org**.
 
 ## Build locally
 
 ```bash
-python3 build.py        # writes ./dist
+python3 build.py        # validates data.json, then writes ./dist
 ```
 
 Preview: `python3 -m http.server -d dist 8000` → http://localhost:8000
 
-Before deploying, set `SITE_URL` at the top of `build.py` to your real domain
-(it's used for canonical URLs, Open Graph tags, JSON-LD, and the RSS feed).
+The build validates before it writes anything and exits non-zero on a structural
+error, so a broken `data.json` fails the deploy instead of publishing a bad board —
+the live site simply keeps serving the last good version. `RUNBOOK.md` lists exactly
+what is an error and what is only a warning.
 
-## Deploy: GitHub + Cloudflare Pages (recommended)
+Configuration lives at the top of `build.py`: `SITE_URL` (drives canonical URLs, Open
+Graph, JSON-LD, RSS and `dist/CNAME`) and `SUBSTACK_URL` (empty by default; set it to
+the publication home to turn on the Subscribe links).
 
-1. **Push this folder to a GitHub repo** (public or private).
-2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages →
-   Connect to Git**, pick the repo.
-3. Build settings:
-   - **Build command:** `python3 build.py`
-   - **Build output directory:** `dist`
-   - Framework preset: None. No environment variables needed.
-4. Deploy. Every future `git push` rebuilds and publishes automatically,
-   usually in under a minute.
+## Deploy — GitHub Pages (how this repo is set up)
 
-You get a free `*.pages.dev` URL immediately; add a custom domain under the
-project's **Custom domains** tab.
+`.github/workflows/deploy.yml` runs on every push to `main`: it builds the site,
+commits today's archive snapshot and newsletter draft back into the repo, and
+publishes `dist/` to GitHub Pages. Nothing to run by hand.
 
-**GitHub Pages alternative:** also works — add a GitHub Action that runs
-`python3 build.py` and publishes `dist` with `actions/deploy-pages`.
-Cloudflare Pages is less setup and gives you preview deploys per commit.
+Two settings make it work, both one-time:
 
-**Squarespace note:** Squarespace can't host this (it doesn't serve custom
-static builds or run build steps). If your domain is registered there, keep
-it and just point DNS at Cloudflare Pages: add the custom domain in
-Cloudflare, then create the CNAME record Squarespace's DNS panel asks for.
+- **Settings → Pages → Source: GitHub Actions** (not "Deploy from a branch").
+- **DNS on `techpointe.org`:** a `CNAME` record, host `machinespeed`, pointing at
+  `YOUR-USERNAME.github.io`. A subdomain needs only that one record — the four
+  `185.199.x.x` A records are for bare apex domains and are not needed here.
+
+`build.py` writes `dist/CNAME` on every build, so the custom domain is reasserted
+by each deploy rather than living only in a settings field that can be cleared.
+Tick **Enforce HTTPS** in Settings → Pages once the domain check goes green.
+
+Full click-by-click walkthrough: `SETUP_GUIDE.md`.
+
+**Cloudflare Pages** also works unchanged if you ever want per-commit previews:
+build command `python3 build.py`, output directory `dist`, framework preset None.
+
+## The Substack newsletter
+
+Every build writes `newsletter/machine-speed-YYYY-MM-DD.md` — the same board as a
+paste-ready Markdown post. It is a **draft only**: nothing is posted, scheduled or
+emailed by any automated step. A human opens it, reads it, and publishes it.
+
+Setting `SUBSTACK_URL` at the top of `build.py` adds a Subscribe link to the nav on
+every page and a subscribe block on the board. It's a plain link, not Substack's
+iframe embed, so the site stays dependency-free and loads no third-party tracking.
 
 ## The daily publishing run (Cowork)
 
 Each day, the job should:
 
-1. **Edit `data.json` only** — update `updatedISO` / `updatedDisplay`,
+1. **Read `dashboard-memory.md` first** — anything already listed there is not
+   "new today". Update it at the end of the run.
+2. **Edit `data.json` only** — update `updatedISO` / `updatedDisplay`,
    `judgmentNote`, `internalNote`; add/remove `items` (7-day window);
    update `watchlist`; append today's entry to `archives`, e.g.
-   `{"date": "2026-07-24", "file": "archive/machine-speed-2026-07-24.html", "items": 9, "note": "…"}`.
-2. **Run `python3 build.py`** — this validates the JSON renders cleanly and
-   writes today's snapshot into `archive/` (source-controlled, so past days
-   survive every rebuild).
-3. **Commit and push** `data.json` + `archive/` (and nothing in `dist/`).
-   Cloudflare Pages rebuilds and deploys on push.
+   `{"date": "2026-07-28", "file": "archive/machine-speed-2026-07-28.html", "items": 9, "note": "…"}`.
+3. **Run `python3 build.py`** — validates first, then writes today's snapshot into
+   `archive/` and the newsletter draft into `newsletter/` (both source-controlled,
+   so they survive every rebuild).
+4. **Commit and push** `data.json`, `archive/`, `newsletter/` and
+   `dashboard-memory.md` — and nothing in `dist/`. The Action rebuilds and deploys.
 
 That preserves the original design's property — one file drives the whole
 site — while everything the reader sees is real, indexable HTML.
+
+The sourcing rules that no script can enforce are in `RUNBOOK.md`; the field-level
+reference is in `SCHEMA.md`.
 
 ## Data format quick reference
 

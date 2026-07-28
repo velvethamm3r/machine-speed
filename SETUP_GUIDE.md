@@ -58,8 +58,7 @@ GitHub is.
 **On GitHub:**
 
 1. **Settings → Pages → Custom domain**: type your domain, e.g.
-   `www.machinespeed.com` (using the `www.` version is the easiest and most
-   reliable choice). Click **Save**.
+   `machinespeed.techpointe.org`. Click **Save**.
 2. Once the domain check passes (may take a few minutes to a few hours),
    tick **Enforce HTTPS**.
 
@@ -67,29 +66,22 @@ GitHub is.
 the same everywhere; the menu is usually called "DNS", "DNS settings", or
 "Manage DNS". On Squarespace it's **Domains → your domain → DNS**):
 
-3. Add a **CNAME** record:
-   - Host/Name: `www`
+3. Add a single **CNAME** record on `techpointe.org`:
+   - Host/Name: `machinespeed`
    - Value/Target: `YOUR-USERNAME.github.io` (your GitHub username, then
-     `.github.io` — nothing else)
-4. So the bare domain (without www) works too, add four **A** records, each
-   with Host/Name `@`, pointing to these four values:
-   - `185.199.108.153`
-   - `185.199.109.153`
-   - `185.199.110.153`
-   - `185.199.111.153`
+     `.github.io` — nothing else, no `https://`, no path)
+
+   Because this is a subdomain, that one CNAME record is all you need. The four
+   `185.199.x.x` A records are only for a bare apex domain like `example.com`
+   — you do not need them here.
 
 DNS changes usually take effect within an hour but can take up to 24.
 
 **Last step — tell the site its own address:**
 
-5. In your repo, open `build.py`, click the pencil icon (Edit), and change
-   the line near the top:
-   ```
-   SITE_URL = "https://machinespeed.example.com"
-   ```
-   to your real address, e.g. `https://www.machinespeed.com` (no trailing
-   slash). Click **Commit changes**. This is what makes the RSS feed and
-   search-engine links point at your real domain.
+5. Already done — `SITE_URL` at the top of `build.py` is set to
+   `https://machinespeed.techpointe.org`, and every build writes that domain
+   into `dist/CNAME` so a deploy can never silently drop it.
 
 That's it. The site rebuilds itself and you're live.
 
