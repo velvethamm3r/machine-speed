@@ -175,8 +175,14 @@ def validate(d: dict):
         warnings.append(f"{len(strip)} items qualify for the 48-hour strip; "
                         f"only the newest {STRIP_MAX} will show")
 
-    if datetime.now().date() != run_day:
-        warnings.append(f"updatedISO date ({run_day}) is not today ({datetime.now().date()})")
+    # Compare against "today" in the run's own timezone (parsed from updatedISO),
+    # not the build machine's clock — GitHub's runners are on UTC.
+    try:
+        today_local = datetime.now(datetime.fromisoformat(d["updatedISO"]).tzinfo).date()
+    except ValueError:
+        today_local = datetime.now().date()
+    if today_local != run_day:
+        warnings.append(f"updatedISO date ({run_day}) is not today ({today_local})")
 
     return errors, warnings
 

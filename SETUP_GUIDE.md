@@ -62,6 +62,15 @@ GitHub is.
 2. Once the domain check passes (may take a few minutes to a few hours),
    tick **Enforce HTTPS**.
 
+> **Your exact setup (machinespeed.techpointe.org on Squarespace):** because the
+> site lives on a *subdomain*, you only need ONE DNS record — no A records.
+> In Squarespace: **Domains → techpointe.org → DNS (or "DNS settings") → Add record**:
+> Type **CNAME**, Host/Name **machinespeed**, Data/Target **velvethamm3r.github.io**.
+> Save, then on GitHub set **Settings → Pages → Custom domain** to
+> `machinespeed.techpointe.org`, wait for the green check, and tick **Enforce HTTPS**.
+> The four A records below are only needed if you ever serve a bare domain like
+> `techpointe.org` itself.
+
 **At your domain registrar** (wherever you bought the domain — the steps are
 the same everywhere; the menu is usually called "DNS", "DNS settings", or
 "Manage DNS". On Squarespace it's **Domains → your domain → DNS**):

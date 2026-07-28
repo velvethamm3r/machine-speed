@@ -13,6 +13,12 @@ GitHub Actions does the rest. Live at **https://machinespeed.techpointe.org**.
 6. Append this run to `dashboard-memory.md` and update the watchlist there.
 7. Commit and push `data.json`, `archive/`, `newsletter/` and `dashboard-memory.md`. The site rebuilds and deploys in about a minute.
 
+Prefer a human checkpoint? Push the run to a branch and open a pull request instead of
+committing to `main`. The workflow builds and validates the PR automatically (green check =
+data is well-formed; no deploy happens). Review the diff — headlines, notes, the newsletter
+draft — then merge, and only the merge publishes. This is the recommended shape for the
+morning review: the run prepares everything overnight, a human approves with one tap.
+
 Preview before committing: `python3 -m http.server -d dist 8000` → http://localhost:8000
 
 ## What build.py produces
