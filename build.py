@@ -364,6 +364,7 @@ class Site:
         self.d = data
         self.as_of = data.get("updatedISO", "")
         self.prefix = ""  # set to "../" while rendering pages inside /archive
+        self.home_url = self.prefix if self.prefix else "/"
         self.cov_start, self.cov_end = coverage_span(data)
         self.coverage = fmt_span(self.cov_start, self.cov_end)
         self.coverage_days = (
@@ -438,7 +439,7 @@ class Site:
             links.append(("threads.html", "Threads"))
         links += [("archive.html", "Archive"), ("about.html", "About")]
         out = ['<nav class="nav" aria-label="Site">',
-               f'<a class="logo" href="{self.prefix}index.html"><b>Machine&nbsp;Speed</b>'
+               f'<a class="logo" href="{self.home_url}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
         for href, label in links:
             cls = "link active" if href == active else "link"
@@ -607,7 +608,9 @@ class Site:
         rel = "" if path == "index.html" else path
         if rel.endswith("/index.html"):
             rel = rel[: -len("index.html")]
-        canonical = f"{SITE_URL}/{rel}"
+        # Ensure the home page doesn't get a trailing slash if rel is empty, 
+        # but subdirectories do keep their slashes if needed.
+        canonical = SITE_URL if rel == "" else f"{SITE_URL}/{rel}"
         return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -696,7 +699,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
                    'grouped by lane and by week.')
 
-        return f"""{self.nav("index.html")}
+        return f"""{self.nav("self.home_url")}
 
   <header class="pagehead">
     <h1>The capability-vs-defense gap, tracked daily</h1>
@@ -825,7 +828,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       {"lane" if len(lanes_html) == 1 else "lanes"}, from the week of
       {escape(fmt_date(w["monday"]))}. Part of the {escape(self.coverage)} board.</div>
     <div class="stamprow">
-      <div class="stamp"><a href="{self.prefix}index.html">← Back to the live board</a></div>
+      <div class="stamp"><a href="{self.home_url}">← Back to the live board</a></div>
       <div class="stamp cov">Week of <time datetime="{w["monday"]}">{escape(fmt_date(w["monday"]))}</time></div>
     </div>
   </header>
