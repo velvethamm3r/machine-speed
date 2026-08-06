@@ -652,11 +652,8 @@
     }
   ],
   "about": [
-    "Machine Speed is a source-verified intelligence board tracking frontier AI cyber capability and the defense and policy response around it.",
-    "Every item is filed in one of five lanes — Capability, Policy, Defense, Attacks and Markets — and carries a confidence label. The label describes the kind of claim being made rather than the identity of whoever made it: confirmed, where the organisation affected says it happened to them; claimed, where an attacker says so and nobody has stood behind it; researchers, where security researchers reported it and the victim has not confirmed; press, where established reporting is the only account available; on the record, for statements a body has formally put in its own name, where the statement itself is the event; and self-reported, for testable claims where the party doing the measuring is the party being measured. The last two were called official and vendor until 6 August 2026, when both were retired for describing the speaker instead of the claim.",
-    "Some stories are not a single item. A brief lays one incident out in dated stages, each stage carrying its own sources and its own confidence label, so what an organisation confirmed on day one stays distinguishable from what was reconstructed a week later. Where a brief runs long, its stages are grouped into numbered panels — but a panel carries no facts of its own, only the stages and board items already sourced beneath it.",
-    "The board covers a stated period rather than a rolling window; the period it currently covers is shown at the top of every page, and the archive keeps each week on its own page so a link goes on meaning what it meant the day it was made.",
-    "Every link is opened and confirmed before publication. Nothing on this board is invented to fill space: when a lane is quiet, the board says so. Where sources disagree on a number, the disagreement is shown rather than resolved silently."
+    "Machine Speed is a source-verified intelligence board tracking frontier AI cyber capability and the defense and policy response around it, curated by Daria Bahrami. Bahrami is a cyber and AI policy strategist who served as the lead technical advisor to DARPA's AI Cyber Challenge, worked in threat intelligence in the private sector, and now focuses on AI-enabled cybersecurity policy in Washington.",
+    "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter.",
   ],
   "coverageStart": "2026-07-01",
   "coverageEnd": "2026-08-05",
