@@ -166,6 +166,12 @@ section.block{margin-bottom:30px}
 .conf{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:2px 7px; border-radius:5px}
 .c-confirmed{background:var(--cap-soft); color:var(--cap)} .c-claimed{background:var(--atk-soft); color:var(--atk)}
 .c-researchers{background:var(--def-soft); color:var(--def)} .c-press{background:var(--def-soft); color:var(--def)}
+.c-on-record{background:var(--pol-soft); color:var(--pol)}
+.c-self-reported{background:var(--atk-soft); color:var(--atk)}
+/* Retired 2026-08-06, deliberately still here: the frozen archive snapshots from
+   before the rename carry .c-official / .c-vendor in their markup and load this
+   same stylesheet. Deleting these two rules would silently strip the colour off
+   every confidence pill in the back catalogue. */
 .c-official{background:var(--pol-soft); color:var(--pol)}
 .c-vendor{background:var(--atk-soft); color:var(--atk)}
 .badge-new{font-size:9.5px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--new); border:1px solid var(--new); border-radius:5px; padding:1px 6px}
@@ -230,14 +236,6 @@ footer{margin-top:34px; border-top:1px solid var(--line); padding-top:16px; font
 .subbtn:hover{text-decoration:none; filter:brightness(1.08)}
 :root[data-theme="light"] .subbtn{color:#fff}
 .nav a.link.sub-link{color:var(--accent); font-weight:600}
-.subhead{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
-  color:var(--ink-2); margin:18px 0 8px}
-.subposts{list-style:none; margin:0 0 16px; padding:0; max-width:62ch}
-.subposts li{display:flex; align-items:baseline; justify-content:space-between; gap:16px;
-  padding:8px 0; border-bottom:1px solid var(--line)}
-.subposts li:last-child{border-bottom:0}
-.subposts a{font-weight:600; line-height:1.45}
-.subdate{flex:none; font-size:12.5px; color:var(--ink-2); white-space:nowrap}
 
 /* ---------------------------------------------------------------------------
    Week headings inside a lane. The board covers a stated period rather than a
@@ -361,7 +359,7 @@ footer + .pager{margin:0}
    flag rather than a silent choice between two numbers.
    --------------------------------------------------------------------------- */
 
-/* Index of dossiers */
+/* Index of briefs */
 .dgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
 .dcard{
   display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px;
@@ -409,12 +407,81 @@ footer + .pager{margin:0}
 }
 .flag b{color:var(--ink); font-weight:650}
 
-/* Dossier page head */
+/* Brief page head */
 .dhead .sub{max-width:74ch}
 .dmeta{display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--ink-3); margin-top:10px}
 .dmeta b{color:var(--ink-2); font-weight:600}
+
+/* ---- Act panels ---------------------------------------------------------
+   The alternative reading of a brief: instead of one undifferentiated
+   timeline, a stack of numbered panels, each answering one question, with a
+   downward arrow between them. Two acts can share a row when they are two
+   answers to the same question — two companies' positions, say — and the
+   split row is what makes that comparison legible. Below 860px the split
+   collapses to one column, because two 300px panels of prose is worse than
+   reading them in sequence.
+
+   Nothing here carries content: the panels are built from the same stages the
+   timeline renders, so this file can be edited freely without a fact moving. */
+.actrow{position:relative; display:grid; grid-template-columns:1fr; gap:16px; margin-bottom:34px}
+.actrow.split{grid-template-columns:1fr 1fr}
+.actrow:last-child{margin-bottom:0}
+/* The arrow between rows. On the row itself rather than between them, so it
+   cannot end up orphaned under the final panel. */
+.actrow:not(:last-child)::after{
+  content:"↓"; position:absolute; left:0; right:0; bottom:-26px; text-align:center;
+  font-size:15px; line-height:1; color:var(--ink-3);
+}
+.act{
+  background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  border-left:3px solid var(--ln); padding:16px 20px 6px; box-shadow:var(--shadow);
+}
+.acthead{display:flex; align-items:baseline; gap:9px; margin-bottom:7px}
+.actnum{
+  flex:none; font-size:11px; font-weight:800; letter-spacing:.4px; color:var(--ln);
+}
+.actkind{
+  flex:1 1 auto; font-size:10.5px; font-weight:750; text-transform:uppercase;
+  letter-spacing:1px; color:var(--ln);
+}
+.actwhen{flex:none; font-size:11.5px; color:var(--ink-3); white-space:nowrap}
+.act > h3{
+  margin:0 0 12px; font-size:17px; line-height:1.35; letter-spacing:-.3px; color:var(--ink);
+}
+.act .actnote{margin:0 0 12px}
+.pts{margin:0; padding:0; list-style:none}
+.pts > li{
+  position:relative; padding:0 0 13px 15px; margin-bottom:13px;
+  border-bottom:1px solid var(--line); font-size:13.5px; line-height:1.55; color:var(--ink-2);
+}
+.pts > li:last-child{border-bottom:0}
+.pts > li::before{
+  content:""; position:absolute; left:0; top:7px; width:6px; height:6px;
+  border-radius:50%; background:var(--ln);
+}
+/* A folded-in board item: the same fact, filed elsewhere, shown hollow so the
+   distinction between "this brief reported it" and "the board already had it"
+   survives the layout. */
+.pts > li.fold::before{background:transparent; border:1.5px solid var(--ln)}
+.pts .pwhen{
+  display:block; font-size:11px; font-weight:700; letter-spacing:.7px;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:2px;
+}
+.pts b{color:var(--ink); font-weight:650}
+.pts .meta{display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+           font-size:11.5px; margin-top:6px}
+.pts .meta .src a{color:var(--ink-3)}
+.pts .meta .src a:hover{color:var(--accent)}
+.pts .flag{font-size:12px}
+
+@media(max-width:860px){
+  .actrow.split{grid-template-columns:1fr}
+}
 @media(max-width:600px){
   .tl{padding-left:22px}
   .tl > li::before{left:-22px; width:12px; height:12px}
   .dgrid{grid-template-columns:1fr}
+  .act{padding:14px 16px 4px}
+  .acthead{flex-wrap:wrap; gap:6px}
+  .actwhen{width:100%}
 }
