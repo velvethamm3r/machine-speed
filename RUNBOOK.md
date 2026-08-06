@@ -24,7 +24,7 @@ Preview before committing: `python3 -m http.server -d dist 8000` → http://loca
 | `dist/sitemap.xml`, `dist/robots.txt` | Crawl hints. The sitemap lists the board, the lanes, About and every week page; dated snapshots are deliberately left out so crawlers aren't pointed at copies of the board. |
 | `dist/CNAME` | The custom domain, written on every build so a deploy can't silently drop it. |
 | `archive/machine-speed-YYYY-MM-DD.html` | Today's snapshot, written back into the repo so history survives rebuilds. **Commit this.** |
-| `newsletter/machine-speed-YYYY-MM-DD.md` | Paste-ready Substack draft of the same board. **Commit this.** Nothing is ever sent automatically. |
+| `newsletter/machine-speed-YYYY-MM-DD.md` | Paste-ready Substack draft of the same board, with the run's working notes below a marked CUT HERE line. Delete that block before posting. **Commit this.** Nothing is ever sent automatically. |
 | `dist/feed.xml` | RSS 2.0, one entry per item, absolute URLs from `SITE_URL`. |
 
 `build.py` exits non-zero on a validation error and writes nothing. A bad `data.json`
@@ -76,7 +76,8 @@ All at the top of `build.py`:
 | `SUBSTACK_CTA` | Heading text on the subscribe block. |
 | `NEW_WINDOW_DAYS` / `STRIP_MAX` | 48-hour rule and the six-item cap on the strip. |
 | `COVERAGE_SLACK_DAYS` | How far outside `coverageStart` / `coverageEnd` an item may fall before `validate()` warns. `0` means the stated period must contain every item exactly. |
-| `NOTE_PLACEMENT` | Where the editorial note prints on the board: `"footer"` (a collapsed disclosure below the sources), `"header"` (under the hero, the old position), or `"none"`. The note still goes into `data.json`, the archive snapshot and the newsletter draft either way — this only controls the board. |
+| `NOTE_PLACEMENT` | Where the editorial note prints on the board: `"none"` (the default — off), `"footer"` (a collapsed disclosure below the sources), or `"header"` (under the hero, the old position). The dated snapshot copies the board and follows this setting; `data.json` and the newsletter draft always keep the note, so the record survives either way. |
+| `FOOTER_NOTE` | Optional tagline in the footer between the site name and the copyright. Empty by default, which leaves the footer as just the site name and the year. |
 | `SHOW_INTERNAL_NOTE` | Whether `internalNote` prints in the site footer. `False` by default — it is a working note, so it stays in `data.json` and git history rather than on the page. |
 | `GROUP_BY_WEEK` | Week headings inside each lane. `False` gives one flat newest-first list per lane. Headings only appear once a lane holds six or more items. |
 | `FRONT_WEEKS` | How many recent weeks the board prints as full cards. Older weeks stay on the page as a one-line-per-item index linking into their own week pages. Raise it to push more onto the front page, lower it to keep the front page short. |
@@ -120,10 +121,16 @@ The newsletter is a **draft-only** pipeline by design: the build writes
 `newsletter/machine-speed-YYYY-MM-DD.md`, and a human opens it, reads it, and publishes it.
 Nothing is posted, scheduled or emailed by any automated step.
 
-To publish a day: open the draft, copy it, and paste into a new Substack post
-(Substack's editor accepts pasted Markdown and keeps the links). The draft leads with the
-48-hour strip, then each lane with confidence labels and source links, then the watchlist and
-the editorial note.
+To publish a day: open the draft, copy everything **above** the `CUT HERE` line, and paste
+into a new Substack post (Substack's editor accepts pasted Markdown and keeps the links).
+The publishable part leads with the 48-hour strip, then each lane with confidence labels and
+source links, then the watchlist.
+
+Below the cut are the run's working notes — the calls it made, what it de-duplicated, what it
+left off and why, and what changed since the previous run. That is the generator's account of
+its own decisions, not the editor's judgment, so it is deliberately kept off the site, off the
+dated snapshot and out of the published post. Read it, rewrite in your own words anything
+worth keeping, and delete the block before posting.
 
 For the other direction — a Subscribe link on the site — set `SUBSTACK_URL` and rebuild.
 
