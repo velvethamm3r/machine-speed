@@ -20,8 +20,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Action versions are pinned to a major tag, which is what picks up the
+      # Node runtime the action runs on. GitHub retired Node 20 from its runners
+      # and every one of these had to move to a major that targets Node 24;
+      # checkout v4 and upload-pages-artifact v3 were the two that had not. If a
+      # deprecation warning about a Node version appears in the Actions log
+      # again, this block of three lines is the whole fix.
       - name: Get the site files
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Build the site
         run: python3 build.py
@@ -37,7 +43,7 @@ jobs:
           fi
 
       - name: Upload the built site
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -50,4 +56,4 @@ jobs:
     steps:
       - name: Publish to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
