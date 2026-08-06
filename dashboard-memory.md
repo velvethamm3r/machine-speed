@@ -108,6 +108,17 @@ _Prune note: nothing aged past the ~5-week floor this run (oldest shown-item ent
 - `SUBSTACK_URL` set to https://velvethamm3r.substack.com — nav link and footer subscribe block are live, treated as outbound. No feed is pulled in; nothing is posted or sent.
 - Two dead links in the frozen 2026-08-05 snapshot (../threads.html, ../thread/<slug>/) were repaired so that page still works after the rename. A full crawl of all 22 built pages reports 0 dead internal links and 0 hrefs containing index.html.
 
+### Run 2026-08-06 (third pass — presentation only, no research)
+- No new items, no lane researched, `coverageEnd` unchanged at 2026-08-05. Nothing in `items[]`, `watchlist[]` or `briefs[]` moved.
+- Archive: `SHOW_RUN_SNAPSHOTS` added and set False, so the page is the week index alone. Snapshots are still built, still committed to `archive/`, and `validate()` still requires an entry for today pointing at a file that exists — they are just no longer linked from the site.
+- `fmt_span()` now prints a range inside one month as "Aug 3 – 5, 2026" instead of "Aug 3 – Aug 5, 2026". Repeating the month was what made the column of week labels look like two different formats. Cross-month and cross-year ranges are unchanged.
+- Text measure widened on the page introductions (78ch → 96/104ch), the ledes and the notes; About's paragraphs now run in two columns above 1120px rather than sitting in a 74ch strip down the left of a 1560px page.
+- Brief page: `.actrow` capped at 860px and the panel type lifted a step. A solo act had no width cap at all, so its bullets ran to ~155 characters against ~90 in the reference design — that mismatch, not the split rows, was the thing that looked broken.
+- `SITE_MARK` added, set to "™" — the unregistered common-law symbol, which needs no filing. Not "®": that one is only lawful once the mark is registered.
+- About text corrected. It still said "one of four lanes" (Markets was missing) and still named the retired `official` / `vendor` tiers. Both had been contradicted by the rest of the site since the rename earlier today. Two paragraphs added covering briefs and the archive. Its parenthetical dashes were plain hyphens where the rest of the site uses em dashes; fixed.
+- `.actnum::after` draws the "1 · THE INCIDENT" separator in CSS rather than writing it into the markup, so the panel number stays a bare number for a screen reader.
+- Verified after the rebuild: 22 pages crawled, 497 internal links, 0 dead, 0 `index.html`, both themes.
+
 ## Watchlist (thread · current status · last-changed)
 
 _Synced with data.json as of the 2026-08-05 run._

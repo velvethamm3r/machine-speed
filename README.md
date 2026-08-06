@@ -32,7 +32,7 @@ light/dark theme toggle. Nothing loads from a CDN.
     ├── week/YYYY-MM-DD/    one page per week
     ├── briefs.html         brief index
     ├── brief/<slug>/       one brief, in dated stages
-    ├── archive.html        week index + dated snapshots
+    ├── archive.html        week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
     └── feed.xml            RSS 2.0
 ```
 

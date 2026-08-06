@@ -160,6 +160,8 @@ All at the top of `build.py`:
 | `COVERAGE_SLACK_DAYS` | How far outside `coverageStart` / `coverageEnd` an item may fall before `validate()` warns. `0` means the stated period must contain every item exactly. |
 | `NOTE_PLACEMENT` | Where the editorial note prints on the board: `"none"` (the default — off), `"footer"` (a collapsed disclosure below the sources), or `"header"` (under the hero, the old position). The dated snapshot copies the board and follows this setting; `data.json` and the newsletter draft always keep the note, so the record survives either way. |
 | `FOOTER_NOTE` | Optional tagline in the footer between the site name and the copyright. Empty by default, which leaves the footer as just the site name and the year. |
+| `SITE_MARK` | The symbol printed straight after the site name in the footer. `"™"` by default: it asserts an unregistered common-law claim to the name and needs no filing. `"®"` is only lawful once the mark is actually registered, which is why it is a deliberate edit here rather than something a build could switch on. Empty prints neither. |
+| `SHOW_RUN_SNAPSHOTS` | Whether the Archive page lists the frozen per-run snapshots alongside the week pages. `False` by default — the weeks are the living board and the thing worth linking. The snapshots are still built, still committed to `archive/`, and `validate()` still refuses an `archives[]` entry pointing at a missing file; they simply stop appearing in the site's own navigation. Set it `True` to publish the record as well as keep it. |
 | `SHOW_INTERNAL_NOTE` | Whether `internalNote` prints in the site footer. `False` by default — it is a working note, so it stays in `data.json` and git history rather than on the page. |
 | `GROUP_BY_WEEK` | Week headings inside each lane. `False` gives one flat newest-first list per lane. Headings only appear once a lane holds six or more items. |
 | `FRONT_WEEKS` | How many recent weeks the board prints as full cards. Older weeks stay on the page as a one-line-per-item index linking into their own week pages. Raise it to push more onto the front page, lower it to keep the front page short. |
@@ -190,14 +192,21 @@ scrolls off, but the front page stops growing without limit. Each **week page**
 lane that has items that week, with previous/next links. The **lane pages** are unchanged:
 each still holds the whole period for its lane, week-headed. **Briefs** (`/briefs.html`)
 indexes them, each at its own `/brief/<slug>/`; those sit outside the period
-entirely, since a brief's whole purpose is to reach back past it. The **archive** leads
-with the week index and keeps the dated run snapshots below it.
+entirely, since a brief's whole purpose is to reach back past it. The **archive** is the
+week index; whether it also lists the dated run snapshots is `SHOW_RUN_SNAPSHOTS`, and
+since 2026-08-06 it does not.
 
 Week pages are regenerated from `data.json` on every build, so an item corrected today
 is corrected on its week page too. The dated snapshots in `archive/` are the opposite
-by design — frozen, never rewritten. That is the distinction the archive page explains
-to readers, and it is worth keeping straight: weeks are the living board, snapshots are
-the record of what it said on a given day.
+by design — frozen, never rewritten. That distinction still holds and is still worth
+keeping straight: weeks are the living board, snapshots are the record of what it said
+on a given day. What changed is only who the record is for. Two indexes of the same
+material asked every reader to choose between them, and almost none of them wanted the
+frozen copy; the snapshots are a provenance trail, so they are still written, still
+committed, and still reachable by anyone who has a link or the repository — they are
+simply no longer offered as a second front door. Nothing about the guarantee weakened:
+`validate()` still fails the build if `archives[]` has no entry for today or points at
+a file that is not there.
 
 ## The Substack side
 

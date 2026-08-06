@@ -96,6 +96,20 @@ SHOW_INTERNAL_NOTE = False
 # project, it does not govern how a run behaves.
 FOOTER_NOTE = ""
 
+# Symbol printed immediately after the site name in the footer. "™" asserts an
+# unregistered common-law claim to the name and needs no filing; "®" is only
+# lawful once the mark is actually registered, so it stays a deliberate edit
+# rather than something a build could turn on by accident. Empty prints neither.
+SITE_MARK = "™"
+
+# The Archive page has always offered two ways in: by week (living pages that
+# keep their links) and by run (the frozen snapshot taken each time the board
+# published). Set this False to show only the weeks. The snapshots are still
+# written to archive/ and still committed — validate() will not let an entry in
+# archives[] point at a missing file either way — they simply stop being linked
+# from the site, so the record survives even when the index for it does not.
+SHOW_RUN_SNAPSHOTS = False
+
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
 # can never silently drop the domain setting.
 CNAME = SITE_URL.split("//", 1)[1]
@@ -194,14 +208,30 @@ def days_ago(item_date: str, as_of: str) -> int:
 
 
 def fmt_span(start: str, end: str) -> str:
-    """2026-07-01, 2026-08-05 -> 'Jul 1 – Aug 5, 2026' (year shown once when shared)."""
+    """A date range, with every part that both ends share printed only once.
+
+    2026-07-01, 2026-08-05 -> 'Jul 1 – Aug 5, 2026'   (shared year)
+    2026-08-03, 2026-08-09 -> 'Aug 3 – 9, 2026'       (shared year and month)
+    2025-12-29, 2026-01-04 -> 'Dec 29, 2025 – Jan 4, 2026'
+
+    Repeating the month inside one month is the thing that made a column of
+    week labels look inconsistent — 'Aug 3 – Aug 5' next to 'Jul 27 – Aug 2'
+    reads as two different formats rather than one range that happens not to
+    cross a boundary.
+    """
     if not start or not end:
         return ""
     sy, sm, sd = start.split("-")
     ey, em, ed = end.split("-")
-    left = f"{MONTHS[int(sm) - 1]} {int(sd)}" + ("" if sy == ey else f", {sy}")
-    right = f"{MONTHS[int(em) - 1]} {int(ed)}, {ey}"
-    return left + " – " + right
+    same_year = sy == ey
+    same_month = same_year and sm == em
+    if same_month:
+        left = f"{MONTHS[int(sm) - 1]} {int(sd)}"
+    else:
+        left = f"{MONTHS[int(sm) - 1]} {int(sd)}" + ("" if same_year else f", {sy}")
+    right = (f"{int(ed)}" if same_month
+             else f"{MONTHS[int(em) - 1]} {int(ed)}")
+    return f"{left} – {right}, {ey}"
 
 
 def note_paras(text: str) -> str:
@@ -678,8 +708,9 @@ class Site:
         note = (f'<p style="margin-top:12px">{internal}</p>'
                 if SHOW_INTERNAL_NOTE and internal else "")
         tag = f" · {escape(FOOTER_NOTE)}" if FOOTER_NOTE else ""
+        mark = f'<span class="tm">{escape(SITE_MARK)}</span>' if SITE_MARK else ""
         return (f'<footer><div class="legend">{legend}</div>{note}'
-                f'<p style="margin-top:8px">{SITE_NAME}{tag} · © {year}</p></footer>')
+                f'<p style="margin-top:8px">{SITE_NAME}{mark}{tag} · © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
     def chart_lane(self) -> str:
@@ -1000,30 +1031,42 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             weeks.append(
                 f'<a href="{self.prefix}week/{w["monday"]}/"><span class="d">{escape(w["label"])}</span>'
                 f'<span class="m">{len(w["items"])} items — {escape(mix)}</span></a>')
-        snaps = "".join(
-            f'<a href="{escape(a["file"], quote=True)}"><span class="d">{fmt_date(a["date"])}</span>'
-            f'<span class="m">{a.get("items", "")} items — {escape(a.get("note", ""))}</span></a>'
-            for a in sorted(self.d.get("archives", []), key=lambda a: a["date"], reverse=True))
-        return f"""{self.nav("archive.html")}
-
-  <header class="pagehead">
-    <h1>Archive</h1>
-    <div class="sub">Two ways in. <strong>By week</strong> is the board itself, split into
-      Monday-to-Sunday pages that stay live and keep their links. <strong>By run</strong> is the
-      frozen snapshot taken each time the board was published — the record of what it said that
-      day, corrections and all.</div>
-  </header>
-
-  <section class="block"><h2 class="blockhead">By week — {len(self.weeks)} weeks,
-    {len(self.d["items"])} items</h2>
-    <div class="arch">{"".join(weeks)}</div>
-  </section>
+        if SHOW_RUN_SNAPSHOTS:
+            snaps = "".join(
+                f'<a href="{escape(a["file"], quote=True)}">'
+                f'<span class="d">{fmt_date(a["date"])}</span>'
+                f'<span class="m">{a.get("items", "")} items — '
+                f'{escape(a.get("note", ""))}</span></a>'
+                for a in sorted(self.d.get("archives", []),
+                                key=lambda a: a["date"], reverse=True))
+            intro = ('Two ways in. <strong>By week</strong> is the board itself, split into '
+                     'Monday-to-Sunday pages that stay live and keep their links. '
+                     '<strong>By run</strong> is the frozen snapshot taken each time the board '
+                     'was published — the record of what it said that day, corrections and all.')
+            runs = f"""
 
   <section class="block"><h2 class="blockhead">By run — dated snapshots</h2>
     <p class="lede">Each is a self-contained copy of the whole board as it stood that day.
       Snapshots are never edited after the fact.</p>
     <div class="arch">{snaps}</div>
-  </section>
+  </section>"""
+        else:
+            intro = ('The board, split into Monday-to-Sunday pages. Each week keeps its own '
+                     'URL and its own sourcing, so a link to a week goes on meaning what it '
+                     'meant the day it was made. Weeks at either end of the covered period are '
+                     'trimmed to the days actually covered rather than padded out to seven.')
+            runs = ""
+        return f"""{self.nav("archive.html")}
+
+  <header class="pagehead">
+    <h1>Archive</h1>
+    <div class="sub">{intro}</div>
+  </header>
+
+  <section class="block"><h2 class="blockhead">By week — {len(self.weeks)} weeks,
+    {len(self.d["items"])} items</h2>
+    <div class="arch">{"".join(weeks)}</div>
+  </section>{runs}
 
   {self.footer()}"""
 
