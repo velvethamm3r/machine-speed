@@ -259,9 +259,9 @@ A report from AIUC, an MGA that sells AI insurance, argues that more than 90% of
 - **Gated model access** — Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and CISA is reportedly running Anthropic's Mythos over federal agency code. Both eval-containment failures this period involved models with High cyber designations under their own developers' frameworks. *(last changed Aug 5, 2026)*
 - **Cyber insurance and AI liability** — No carrier has reported a paid loss traced to agentic AI misuse. The live questions are whether existing cyber wordings trigger on AI-driven losses at all, how much exposure sits as silent cover in conventional policies, and whether the January 2026 ISO generative-AI general-liability exclusion spreads. Affirmative AI products exist but name hallucination and model drift, not agentic intrusion. *(last changed Jul 30, 2026)*
 
-## Threads
+## Briefs
 
-- **The OpenAI – Hugging Face evaluation-harness intrusion** — An agentic intrusion that reached Hugging Face production through a public code-evaluation harness, and the disclosure, forensics and industry response that followed over the next three weeks. [Full timeline](https://machinespeed.techpointe.org/thread/openai-hugging-face-eval-breach/)
+- **The OpenAI – Hugging Face evaluation-harness intrusion** — An agentic intrusion that reached Hugging Face production through a public code-evaluation harness, and the disclosure, forensics and industry response that followed over the next three weeks. [Full timeline](https://machinespeed.techpointe.org/brief/openai-hugging-face-eval-breach/)
 
 
 ---

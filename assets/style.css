@@ -230,6 +230,14 @@ footer{margin-top:34px; border-top:1px solid var(--line); padding-top:16px; font
 .subbtn:hover{text-decoration:none; filter:brightness(1.08)}
 :root[data-theme="light"] .subbtn{color:#fff}
 .nav a.link.sub-link{color:var(--accent); font-weight:600}
+.subhead{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-2); margin:18px 0 8px}
+.subposts{list-style:none; margin:0 0 16px; padding:0; max-width:62ch}
+.subposts li{display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+  padding:8px 0; border-bottom:1px solid var(--line)}
+.subposts li:last-child{border-bottom:0}
+.subposts a{font-weight:600; line-height:1.45}
+.subdate{flex:none; font-size:12.5px; color:var(--ink-2); white-space:nowrap}
 
 /* ---------------------------------------------------------------------------
    Week headings inside a lane. The board covers a stated period rather than a

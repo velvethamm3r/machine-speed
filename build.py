@@ -12,8 +12,8 @@ writes a fully pre-rendered site into dist/:
       defense.html
       attacks.html
       markets.html
-      threads.html          dossier index (only when data.json has dossiers)
-      thread/<slug>/        one dossier, laid out in dated stages
+      briefs.html           dossier index (only when data.json has dossiers)
+      brief/<slug>/         one dossier, laid out in dated stages
       archive.html          archive index
       archive/…​.html        dated snapshot of today's board
       about.html
@@ -96,8 +96,78 @@ CNAME = SITE_URL.split("//", 1)[1]
 
 # Substack. Set SUBSTACK_URL to the publication home (no trailing slash) to turn
 # on the subscribe links; leave it empty and every Substack element disappears.
-SUBSTACK_URL = ""                       # e.g. "https://machinespeed.substack.com"
+# Point it at a subdomain of this site (newsletter.techpointe.org) rather than
+# *.substack.com and the nav link stops behaving like an outbound one — see
+# same_site() below.
+SUBSTACK_URL = "https://velvethamm3r.substack.com"
 SUBSTACK_CTA = "Get the board in your inbox"
+SUBSTACK_NAV = "Subscribe"              # the nav label. "Newsletter" reads as part of the site.
+
+# How many recent Substack posts to show on the board. The list is fetched from
+# the publication's RSS feed once per build; a failed or slow fetch skips the
+# list (the subscribe button still renders) rather than failing the build —
+# the newsletter rail is decoration, the board is the product.
+SUBSTACK_POSTS = 3
+SUBSTACK_FETCH_TIMEOUT = 10             # seconds
+
+
+def same_site(url: str) -> bool:
+    """True when url sits under the same registrable domain as SITE_URL.
+
+    A link to newsletter.techpointe.org from machinespeed.techpointe.org is a
+    move within one property, not a departure from it, so it should not get
+    the new-tab-and-arrow treatment reserved for leaving the site. Compares the
+    last two host labels, which is right for .org/.com and wrong for the
+    multi-part suffixes (.co.uk); this site is on a .org and the failure mode
+    is a link opening in a new tab, so the simple rule earns its keep.
+    """
+    def reg(u: str) -> str:
+        host = u.split("//", 1)[-1].split("/", 1)[0].split(":", 1)[0].lower()
+        return ".".join(host.split(".")[-2:])
+    return bool(url) and reg(url) == reg(SITE_URL)
+
+
+def fetch_substack_posts(limit: int = SUBSTACK_POSTS) -> list:
+    """Latest posts from the Substack publication's RSS feed, or [].
+
+    One network call per build, stdlib only, and deliberately unable to break
+    anything: any failure — DNS, timeout, HTTP error, malformed XML — returns
+    an empty list and the site simply builds without the posts rail, exactly
+    as it did before this feature existed. The build stays deterministic in
+    what it validates (data.json); this is presentation-only garnish.
+    """
+    if not SUBSTACK_URL or not limit:
+        return []
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    try:
+        req = urllib.request.Request(
+            SUBSTACK_URL.rstrip("/") + "/feed",
+            headers={"User-Agent": f"{SITE_NAME} static build ({SITE_URL})"})
+        with urllib.request.urlopen(req, timeout=SUBSTACK_FETCH_TIMEOUT) as r:
+            root = ET.fromstring(r.read())
+        posts = []
+        for item in root.iter("item"):
+            title = (item.findtext("title") or "").strip()
+            link = (item.findtext("link") or "").strip()
+            if not title or not link:
+                continue
+            date = ""
+            raw = (item.findtext("pubDate") or "").strip()
+            if raw:
+                try:
+                    date = parsedate_to_datetime(raw).strftime("%b %d, %Y").replace(" 0", " ")
+                except (TypeError, ValueError):
+                    pass
+            posts.append({"title": title, "link": link, "date": date})
+            if len(posts) >= limit:
+                break
+        return posts
+    except Exception as e:  # noqa: BLE001 — any failure means "no rail", never a broken build
+        print(f"  note: Substack feed unavailable ({e.__class__.__name__}) — "
+              "building without the latest-posts list.")
+        return []
 
 LANES = {
     "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
@@ -363,6 +433,9 @@ class Site:
     def __init__(self, data: dict):
         self.d = data
         self.as_of = data.get("updatedISO", "")
+        # Latest newsletter posts, filled in by build() after validation. Kept
+        # off the constructor so tests and snapshots never trigger a fetch.
+        self.substack_posts = []
         self.prefix = ""  # set to "../" while rendering pages inside /archive
         self.cov_start, self.cov_end = coverage_span(data)
         self.coverage = fmt_span(self.cov_start, self.cov_end)
@@ -424,30 +497,52 @@ class Site:
         return days_ago(item["date"], self.as_of) <= NEW_WINDOW_DAYS
 
     # -- shared fragments ---------------------------------------------------
+    @property
+    def home(self) -> str:
+        """The board's href, as a directory rather than a filename.
+
+        The server serves the same bytes for `/` and `/index.html`, but they
+        are two URLs: they get shared, linked and indexed separately, and the
+        filename version is the ugly one. `<canonical>`, the sitemap and the
+        feed have always pointed at `/`; this is what makes the site's own
+        links agree with them, so clicking Board from anywhere lands on the
+        bare domain and the address bar never grows an `index.html`.
+
+        `./` rather than `/` on purpose — a root-absolute link would break the
+        moment the site is served from a subpath, which is exactly what the
+        `username.github.io/<repo>/` fallback URL is.
+        """
+        return self.prefix or "./"
+
     def nav(self, active: str) -> str:
         """Two rows: the places, then the lanes.
 
         The single row worked at four lanes and would not at five — Board,
-        five lanes, Threads, Archive, About, RSS and the theme button is
+        five lanes, Briefs, Archive, About, RSS and the theme button is
         eleven controls, which wraps into an unreadable block on a laptop and
         a wall on a phone. So the site nav keeps the destinations and the lane
         bar below it carries the taxonomy, each lane in its own colour.
         """
         links = [("index.html", "Board")]
         if self.dossiers:
-            links.append(("threads.html", "Threads"))
+            links.append(("briefs.html", "Briefs"))
         links += [("archive.html", "Archive"), ("about.html", "About")]
         out = ['<nav class="nav" aria-label="Site">',
-               f'<a class="logo" href="{self.prefix}index.html"><b>Machine&nbsp;Speed</b>'
+               f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
         for href, label in links:
             cls = "link active" if href == active else "link"
             aria = ' aria-current="page"' if href == active else ""
-            out.append(f'<a class="{cls}" href="{self.prefix}{href}"{aria}>{label}</a>')
+            # "index.html" stays the key that marks the tab active — it is the
+            # page's identity everywhere else in the build — but it is not what
+            # gets written into the link.
+            url = self.home if href == "index.html" else self.prefix + href
+            out.append(f'<a class="{cls}" href="{url}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
         if SUBSTACK_URL:
-            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}" '
-                       f'target="_blank" rel="noopener">Subscribe</a>')
+            tab = "" if same_site(SUBSTACK_URL) else ' target="_blank" rel="noopener"'
+            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}"'
+                       f'{tab}>{escape(SUBSTACK_NAV)}</a>')
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
@@ -535,13 +630,25 @@ class Site:
         """
         if not SUBSTACK_URL:
             return ""
+        own = same_site(SUBSTACK_URL)
+        tab = "" if own else ' target="_blank" rel="noopener"'
+        label = "Subscribe" if own else "Subscribe on Substack ↗"
+        posts = ""
+        if self.substack_posts:
+            lis = "".join(
+                f'<li><a href="{escape(p["link"], quote=True)}"{tab}>{escape(p["title"])}</a>'
+                + (f'<span class="subdate">{escape(p["date"])}</span>' if p["date"] else "")
+                + '</li>'
+                for p in self.substack_posts)
+            posts = f'<h3 class="subhead">Latest from the newsletter</h3><ul class="subposts">{lis}</ul>'
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
                 f'reporting, written up and sent to your inbox — same sourcing rules, '
                 f'same corrections policy.</p>'
-                f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}" '
-                f'target="_blank" rel="noopener">Subscribe on Substack ↗</a></p>'
+                f'{posts}'
+                f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"'
+                f'{tab}>{label}</a></p>'
                 f'</section>')
 
     def footer(self) -> str:
@@ -825,7 +932,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       {"lane" if len(lanes_html) == 1 else "lanes"}, from the week of
       {escape(fmt_date(w["monday"]))}. Part of the {escape(self.coverage)} board.</div>
     <div class="stamprow">
-      <div class="stamp"><a href="{self.prefix}index.html">← Back to the live board</a></div>
+      <div class="stamp"><a href="{self.home}">← Back to the live board</a></div>
       <div class="stamp cov">Week of <time datetime="{w["monday"]}">{escape(fmt_date(w["monday"]))}</time></div>
     </div>
   </header>
@@ -912,7 +1019,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         stat = f'<span class="dstatus{open_cls}">{status}</span>' if status else ""
         span = fmt_span(dos.get("opened", ""), dos.get("updated", ""))
         return (f'<a class="dcard" style="{style}" '
-                f'href="{self.prefix}thread/{escape(dos["slug"], quote=True)}/">'
+                f'href="{self.prefix}brief/{escape(dos["slug"], quote=True)}/">'
                 f'<span class="top">{pill}{stat}</span>'
                 f'<h3>{escape(dos["title"])}</h3>'
                 f'<p>{escape(dos["summary"])}</p>'
@@ -925,28 +1032,29 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             return ""
         cards = "".join(self.dossier_card(x) for x in self.dossiers[:3])
         more = ('<p class="lede" style="margin-top:12px">'
-                f'<a href="{self.prefix}threads.html">All {len(self.dossiers)} threads ↗</a></p>'
+                f'<a href="{self.prefix}briefs.html">All {len(self.dossiers)} briefs ↗</a></p>'
                 if len(self.dossiers) > 3 else "")
-        return ('<section class="block"><h2 class="blockhead">Threads — incidents in stages</h2>'
-                '<p class="lede">Some stories are not a single item. A thread lays one out in '
+        return ('<section class="block"><h2 class="blockhead">Briefs — incidents in stages</h2>'
+                '<p class="lede">Some stories are not a single item. A brief lays one out in '
                 'dated stages, each stage carrying its own sources and its own confidence label, '
                 'so what an organisation confirmed on day one stays distinguishable from what was '
                 'reconstructed afterwards.</p>'
                 f'<div class="dgrid">{cards}</div>{more}</section>')
 
-    def threads_body(self) -> str:
+    def briefs_body(self) -> str:
         cards = "".join(self.dossier_card(x) for x in self.dossiers)
-        return f"""{self.nav("threads.html")}
+        return f"""{self.nav("briefs.html")}
 
   <header class="pagehead">
-    <h1>Threads</h1>
-    <div class="sub">An incident rarely lands as one item. A thread is the same
+    <h1>Briefs</h1>
+    <div class="sub">An incident rarely lands as one item. A brief is the same
       source-verified material laid out as a sequence of dated stages — what happened,
       when it was disclosed, who confirmed what, and which figures are still contested.
       Every stage carries its own sources and its own confidence label.</div>
   </header>
 
-  <section class="block"><h2 class="blockhead">{len(self.dossiers)} threads</h2>
+  <section class="block"><h2 class="blockhead">{len(self.dossiers)} brief{
+      "" if len(self.dossiers) == 1 else "s"}</h2>
     <div class="dgrid">{cards}</div>
   </section>
 
@@ -988,7 +1096,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 for s in stages for src in s.get("sources", [])]
         status = escape(dos.get("status", ""))
         stat = f'<span class="dstatus">{status}</span>' if status else ""
-        return f"""{self.nav("threads.html")}
+        return f"""{self.nav("briefs.html")}
 
   <header class="pagehead dhead">
     <h1>{escape(dos["title"])}<span class="lanerule" style="background:var({v["var"]})"></span></h1>
@@ -999,14 +1107,14 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       <span><b>Span:</b> {escape(fmt_span(dos.get("opened", ""), dos.get("updated", "")))}</span>
       {stat}
     </div>
-    <div class="stamp"><a href="{self.prefix}threads.html">← All threads</a></div>
+    <div class="stamp"><a href="{self.prefix}briefs.html">← All briefs</a></div>
   </header>
 
   <section class="block"><h2 class="blockhead">Timeline</h2>
     <ol class="tl">{"".join(rows)}</ol>
   </section>
 
-  {self.sources_block(pool, "Sources cited in this thread")}
+  {self.sources_block(pool, "Sources cited in this brief")}
 
   {self.footer()}"""
 
@@ -1066,10 +1174,10 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             changed = f" *(last changed {fmt_date(w['changed'])})*" if w.get("changed") else ""
             out.append(f"- **{w['thread']}** — {w['status']}{changed}")
         if self.dossiers:
-            out += ["", "## Threads", ""]
+            out += ["", "## Briefs", ""]
             for x in self.dossiers:
                 out.append(f"- **{x['title']}** — {x['summary']} "
-                           f"[Full timeline]({SITE_URL}/thread/{x['slug']}/)")
+                           f"[Full timeline]({SITE_URL}/brief/{x['slug']}/)")
             out.append("")
 
         out += ["", "---", "",
@@ -1108,8 +1216,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
         if self.dossiers:
-            urls.append(("threads.html", "weekly", "0.7"))
-            urls += [(f'thread/{x["slug"]}/', "weekly", "0.7") for x in self.dossiers]
+            urls.append(("briefs.html", "weekly", "0.7"))
+            urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.dossiers]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
         for loc, freq, pri in urls:
@@ -1167,6 +1275,7 @@ def build(out_dir: Path):
         sys.exit(1)
 
     site = Site(data)
+    site.substack_posts = fetch_substack_posts()
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -1223,18 +1332,18 @@ def build(out_dir: Path):
             asset_prefix="../../"))
     site.prefix = ""
 
-    # threads — the index sits at the root, each dossier two levels down under
-    # /thread/<slug>/, so the prefixes follow the same pattern as the weeks.
+    # briefs — the index sits at the root, each dossier two levels down under
+    # /brief/<slug>/, so the prefixes follow the same pattern as the weeks.
     if site.dossiers:
-        write("threads.html", site.page(
-            path="threads.html", title=f"Threads — {SITE_NAME}",
-            description=("Incident threads: each one laid out in dated stages, "
+        write("briefs.html", site.page(
+            path="briefs.html", title=f"Briefs — {SITE_NAME}",
+            description=("Incident briefs: each one laid out in dated stages, "
                          "every stage separately sourced."),
-            body=site.threads_body()))
+            body=site.briefs_body()))
         site.prefix = "../../"
         for dos in site.dossiers:
-            write(f'thread/{dos["slug"]}/index.html', site.page(
-                path=f'thread/{dos["slug"]}/index.html',
+            write(f'brief/{dos["slug"]}/index.html', site.page(
+                path=f'brief/{dos["slug"]}/index.html',
                 title=f'{dos["title"]} — {SITE_NAME}',
                 description=dos["summary"][:180],
                 body=site.dossier_body(dos),
@@ -1264,7 +1373,7 @@ def build(out_dir: Path):
     if snap_date:
         snap_name = f"archive/machine-speed-{snap_date}.html"
         banner = (f'<div class="note" style="margin-bottom:16px">Archived snapshot of the board as of '
-                  f'{fmt_date(snap_date)}. <a href="../index.html">Back to the live board ↗</a></div>')
+                  f'{fmt_date(snap_date)}. <a href="../">Back to the live board ↗</a></div>')
         site.prefix = "../"
         snap_body = banner + site.home_body()
         site.prefix = ""

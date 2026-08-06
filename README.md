@@ -5,7 +5,7 @@ capability against the defense and policy lag.
 
 Live at **https://machinespeed.techpointe.org**.
 
-Five lanes — capability, policy, defense, attacks and markets — plus *threads*:
+Five lanes — capability, policy, defense, attacks and markets — plus *briefs*:
 dossiers that lay a single incident out in dated stages, each stage separately
 sourced, so what an organisation confirmed on day one stays visibly distinct
 from what the press reconstructed a week later.
@@ -29,8 +29,8 @@ light/dark theme toggle. Nothing loads from a CDN.
     ├── index.html          the board
     ├── <lane>.html         one page per lane, holding the whole period
     ├── week/YYYY-MM-DD/    one page per week
-    ├── threads.html        dossier index
-    ├── thread/<slug>/      one dossier, in dated stages
+    ├── briefs.html         dossier index
+    ├── brief/<slug>/       one dossier, in dated stages
     ├── archive.html        week index + dated snapshots
     └── feed.xml            RSS 2.0
 ```
