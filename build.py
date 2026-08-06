@@ -455,8 +455,7 @@ class Site:
         internal = escape(self.d.get("internalNote", ""))
         return (f'<footer><div class="legend">{legend}</div>'
                 f'<p style="margin-top:12px">{internal}</p>'
-                f'<p style="margin-top:8px">{SITE_NAME} · Research and display only — nothing here '
-                f'is published or sent on anyone\'s behalf. © {year}</p></footer>')
+                f'<p style="margin-top:8px">{SITE_NAME} · © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
     def chart_lane(self) -> str:
