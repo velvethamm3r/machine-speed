@@ -77,6 +77,7 @@ All at the top of `build.py`:
 | `NEW_WINDOW_DAYS` / `STRIP_MAX` | 48-hour rule and the six-item cap on the strip. |
 | `COVERAGE_SLACK_DAYS` | How far outside `coverageStart` / `coverageEnd` an item may fall before `validate()` warns. `0` means the stated period must contain every item exactly. |
 | `NOTE_PLACEMENT` | Where the editorial note prints on the board: `"footer"` (a collapsed disclosure below the sources), `"header"` (under the hero, the old position), or `"none"`. The note still goes into `data.json`, the archive snapshot and the newsletter draft either way — this only controls the board. |
+| `SHOW_INTERNAL_NOTE` | Whether `internalNote` prints in the site footer. `False` by default — it is a working note, so it stays in `data.json` and git history rather than on the page. |
 | `GROUP_BY_WEEK` | Week headings inside each lane. `False` gives one flat newest-first list per lane. Headings only appear once a lane holds six or more items. |
 | `FRONT_WEEKS` | How many recent weeks the board prints as full cards. Older weeks stay on the page as a one-line-per-item index linking into their own week pages. Raise it to push more onto the front page, lower it to keep the front page short. |
 

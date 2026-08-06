@@ -42,7 +42,7 @@ SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
-                    "cyber capability and the defense and policy lag around it.")
+                    "cyber capability and the defense & policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent get the "New" badge / 48h strip
 STRIP_MAX = 6         # spec caps the "New in the last 48 hours" strip at six
 
@@ -71,6 +71,13 @@ FRONT_WEEKS = 2
 # The note is written to the archive snapshot and the newsletter draft either way,
 # so the record survives whichever placement is chosen.
 NOTE_PLACEMENT = "footer"
+
+# data.json's "internalNote" is the one-sentence record of what changed since the
+# previous run. It is a working note, not reader-facing, so by default it stays
+# off every generated page — board, weeks, lanes and the archive snapshot alike.
+# validate() still requires it, so the run-to-run record lives on in data.json and
+# in git history. Set to True to print it in the footer as it used to be.
+SHOW_INTERNAL_NOTE = False
 
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
 # can never silently drop the domain setting.
@@ -453,9 +460,11 @@ class Site:
             for v in LANES.values())
         year = (self.as_of or "2026")[:4]
         internal = escape(self.d.get("internalNote", ""))
-        return (f'<footer><div class="legend">{legend}</div>'
-                f'<p style="margin-top:12px">{internal}</p>'
-                f'<p style="margin-top:8px">{SITE_NAME} · © {year}</p></footer>')
+        note = (f'<p style="margin-top:12px">{internal}</p>'
+                if SHOW_INTERNAL_NOTE and internal else "")
+        return (f'<footer><div class="legend">{legend}</div>{note}'
+                f'<p style="margin-top:8px">{SITE_NAME} · Research and display only — nothing here '
+                f'is published or sent on anyone\'s behalf. © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
     def chart_lane(self) -> str:
@@ -583,7 +592,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
         if self.front_cutoff:
             shown = fmt_span(self.front_cutoff, self.cov_end)
-            sub = (f'Frontier AI cyber capability against the defense and policy lag.)
+            sub = (f'Frontier AI cyber capability against the defense &amp; policy lag. '
+                   f'The last two weeks in full — <strong>{escape(shown)}</strong> — then every '
+                   f'earlier item from {escape(self.coverage)} indexed by week below.')
         else:
             sub = ('Frontier AI cyber capability against the defense &amp; policy lag — '
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
