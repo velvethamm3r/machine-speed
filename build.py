@@ -946,7 +946,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       Every stage carries its own sources and its own confidence label.</div>
   </header>
 
-  <section class="block"><h2 class="blockhead">{len(self.dossiers)} threads</h2>
+  <section class="block"><h2 class="blockhead">{len(self.dossiers)} thread{
+      "" if len(self.dossiers) == 1 else "s"}</h2>
     <div class="dgrid">{cards}</div>
   </section>
 
