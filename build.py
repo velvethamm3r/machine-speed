@@ -42,7 +42,7 @@ SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
-                    "cyber capability and the defense & policy lag around it.")
+                    "cyber capability and the defense and policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent get the "New" badge / 48h strip
 STRIP_MAX = 6         # spec caps the "New in the last 48 hours" strip at six
 
@@ -584,9 +584,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
         if self.front_cutoff:
             shown = fmt_span(self.front_cutoff, self.cov_end)
-            sub = (f'Frontier AI cyber capability against the defense &amp; policy lag. '
-                   f'The last two weeks in full — <strong>{escape(shown)}</strong> — then every '
-                   f'earlier item from {escape(self.coverage)} indexed by week below.')
+            sub = (f'Frontier AI cyber capability against the defense and policy lag.)
         else:
             sub = ('Frontier AI cyber capability against the defense &amp; policy lag — '
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
