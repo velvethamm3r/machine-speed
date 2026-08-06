@@ -1,13 +1,15 @@
 name: Build and deploy site
 
+# Runs automatically every time data.json (or anything else) is pushed,
+# and can also be run manually from the Actions tab.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
+  contents: write   # lets the workflow commit archive snapshots back
+  pages: write      # lets it publish to GitHub Pages
   id-token: write
 
 concurrency:
@@ -24,13 +26,13 @@ jobs:
       - name: Build the site
         run: python3 build.py
 
-      - name: Save today's archive snapshot into the repo
+      - name: Save today's archive snapshot and newsletter draft into the repo
         run: |
           git config user.name "machine-speed-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add archive/
+          git add archive/ newsletter/
           if ! git diff --cached --quiet; then
-            git commit -m "Save archive snapshot [skip ci]"
+            git commit -m "Save archive snapshot + newsletter draft [skip ci]"
             git push
           fi
 
