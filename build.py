@@ -11,12 +11,16 @@ writes a fully pre-rendered site into dist/:
       policy.html
       defense.html
       attacks.html
+      markets.html
+      threads.html          dossier index (only when data.json has dossiers)
+      thread/<slug>/        one dossier, laid out in dated stages
       archive.html          archive index
       archive/…​.html        dated snapshot of today's board
       about.html
       feed.xml              RSS 2.0
       style.css             shared stylesheet (cached across pages)
       theme.js              theme toggle only (site works fine without it)
+      icon.svg              favicon
 
 Usage:
     python3 build.py            # build into ./dist
@@ -104,7 +108,20 @@ LANES = {
             "desc": "Defensive tooling, patching and mitigation."},
     "atk": {"name": "Attacks", "var": "--atk", "pill": "lp-atk", "page": "attacks.html",
             "desc": "Real-world incidents and offensive use."},
+    "mkt": {"name": "Markets", "var": "--mkt", "pill": "lp-mkt", "page": "markets.html",
+            "desc": "How the money prices the risk — cyber insurance, underwriting, "
+                    "liability and the capital response."},
 }
+
+# Lanes are a closed taxonomy, but the page furniture that counts them is not:
+# headings, empty-state copy and the newsletter all said "four lanes" when there
+# were four. Deriving the word means a sixth lane never leaves a stale number in
+# prose that no test would catch.
+NUMWORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight"]
+
+
+def numword(n: int) -> str:
+    return NUMWORDS[n] if n < len(NUMWORDS) else str(n)
 
 CONF = {
     "confirmed": "Confirmed by org", "claimed": "Claimed by attacker",
@@ -272,6 +289,44 @@ def validate(d: dict):
         if not w.get("thread") or not w.get("status"):
             errors.append(f"watchlist entry missing thread or status: {w!r}")
 
+    # dossiers[] is optional — a data.json without one builds exactly as before.
+    # When present it is held to the same rule as items[]: every claim carries a
+    # source you opened, and nothing is dated into the future.
+    slugs = set()
+    for n, dos in enumerate(d.get("dossiers", [])):
+        where = f"dossier[{n}] {dos.get('slug', '<no slug>')}"
+        for f in ("slug", "title", "summary", "stages"):
+            if not dos.get(f):
+                errors.append(f"{where}: missing field '{f}'")
+        slug = dos.get("slug", "")
+        if slug in slugs:
+            errors.append(f"{where}: duplicate slug")
+        slugs.add(slug)
+        if slug and not all(c.isalnum() or c == "-" for c in slug):
+            errors.append(f"{where}: slug must be kebab-case (letters, digits, hyphens)")
+        if dos.get("lane") and dos["lane"] not in LANES:
+            errors.append(f"{where}: lane must be one of {', '.join(LANES)}")
+        for m, s in enumerate(dos.get("stages", [])):
+            sw = f"{where} stage[{m}]"
+            for f in ("date", "label", "what"):
+                if not s.get(f):
+                    errors.append(f"{sw}: missing field '{f}'")
+            if not s.get("sources"):
+                errors.append(f"{sw}: no sources — every stage needs at least one "
+                              f"link you opened")
+            for src in s.get("sources", []):
+                if not str(src.get("url", "")).startswith("https://"):
+                    errors.append(f"{sw}: source url must be an https:// link")
+                if not src.get("outlet"):
+                    errors.append(f"{sw}: source missing 'outlet'")
+            if s.get("confidence") and s["confidence"] not in CONF:
+                errors.append(f"{sw}: confidence must be one of {', '.join(CONF)}")
+            try:
+                if days_ago(s["date"], d["updatedISO"]) < 0:
+                    errors.append(f"{sw}: dated in the future ({s['date']})")
+            except (KeyError, ValueError):
+                errors.append(f"{sw}: date must be YYYY-MM-DD")
+
     root = Path(__file__).parent
     for a in d["archives"]:
         if not a.get("date") or not a.get("file"):
@@ -321,6 +376,11 @@ class Site:
         # is short enough that the whole period fits on the front page.
         self.front_cutoff = (self.weeks[FRONT_WEEKS - 1]["monday"]
                              if len(self.weeks) > FRONT_WEEKS else "")
+        # Dossiers are optional. With none in data.json the Threads link, the
+        # index page and the board's dossier rail all disappear, so a data file
+        # written before this feature existed still builds unchanged.
+        self.dossiers = sorted(data.get("dossiers", []),
+                               key=lambda x: x.get("updated", ""), reverse=True)
 
     def lane_sections(self, key: str, items=None, group=None) -> str:
         """Item cards for a lane, optionally split under week headings."""
@@ -365,10 +425,18 @@ class Site:
 
     # -- shared fragments ---------------------------------------------------
     def nav(self, active: str) -> str:
-        links = [("index.html", "Board"), ("capability.html", "Capability"),
-                 ("policy.html", "Policy"), ("defense.html", "Defense"),
-                 ("attacks.html", "Attacks"), ("archive.html", "Archive"),
-                 ("about.html", "About")]
+        """Two rows: the places, then the lanes.
+
+        The single row worked at four lanes and would not at five — Board,
+        five lanes, Threads, Archive, About, RSS and the theme button is
+        eleven controls, which wraps into an unreadable block on a laptop and
+        a wall on a phone. So the site nav keeps the destinations and the lane
+        bar below it carries the taxonomy, each lane in its own colour.
+        """
+        links = [("index.html", "Board")]
+        if self.dossiers:
+            links.append(("threads.html", "Threads"))
+        links += [("archive.html", "Archive"), ("about.html", "About")]
         out = ['<nav class="nav" aria-label="Site">',
                f'<a class="logo" href="{self.prefix}index.html"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
@@ -383,6 +451,21 @@ class Site:
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
+        out.append('</nav>')
+        out.append(self.lanebar(active))
+        return "\n    ".join(out)
+
+    def lanebar(self, active: str) -> str:
+        """The lane taxonomy as its own row, under the site nav."""
+        out = ['<nav class="lanebar" aria-label="Lanes">', '<span class="lbl">Lanes</span>']
+        for k, v in LANES.items():
+            on = v["page"] == active
+            cls = "active" if on else ""
+            aria = ' aria-current="page"' if on else ""
+            style = f'--ln:var({v["var"]});--ln-soft:var({v["var"]}-soft)'
+            n = len(self.lane_items(k))
+            out.append(f'<a class="{cls}" style="{style}" href="{self.prefix}{v["page"]}"{aria}>'
+                       f'<i></i>{v["name"]} <span style="color:var(--ink-3)">{n}</span></a>')
         out.append('</nav>')
         return "\n    ".join(out)
 
@@ -547,6 +630,7 @@ if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
 document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 </script>
 <link rel="stylesheet" href="{asset_prefix}style.css">
+<link rel="icon" href="{asset_prefix}icon.svg" type="image/svg+xml">
 {extra_head}</head>
 <body>
 <div class="wrap">
@@ -576,9 +660,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             strip_inner = "<ul>" + "".join(lis) + "</ul>"
         else:
             strip_inner = ('<p class="empty"><strong style="color:var(--ink)">Nothing new to report '
-                           'since the last run.</strong> A fresh sweep across all four lanes surfaced '
-                           "no verified, in-window items that weren't already shown. No items were "
-                           'invented to fill this space.</p>')
+                           f'since the last run.</strong> A fresh sweep across all {numword(len(LANES))} '
+                           "lanes surfaced no verified, in-window items that weren't already shown. "
+                           'No items were invented to fill this space.</p>')
 
         stats = "".join(
             f'<div class="stat"><div class="n">{len(self.lane_items(k))}</div>'
@@ -590,6 +674,11 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         for k, v in LANES.items():
             items = self.front_items(k)
             total = len(self.lane_items(k))
+            # A lane with nothing in it prints no box. A new lane is empty on the
+            # day it is added, and an empty labelled box reads as a gap in the
+            # reporting rather than as a lane waiting for its first verified item.
+            if not total:
+                continue
             count = f"{len(items)} of {total} items" if self.front_cutoff else f"{total} items"
             lanes_html.append(
                 f'<section class="lane"><h3><span class="barv" style="background:var({v["var"]})"></span>'
@@ -638,6 +727,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
   </div>
 
   {self.older_index()}
+
+  {self.dossier_rail()}
 
   {self.watchlist_block()}
 
@@ -701,7 +792,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
     # -- week pages ---------------------------------------------------------
     def week_body(self, idx: int) -> str:
-        """One Monday-to-Sunday week, all four lanes, at its own URL."""
+        """One Monday-to-Sunday week, every lane it touched, at its own URL."""
         w = self.weeks[idx]
         newer = self.weeks[idx - 1] if idx > 0 else None
         older = self.weeks[idx + 1] if idx + 1 < len(self.weeks) else None
@@ -730,7 +821,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   <header class="pagehead">
     <h1>{escape(w["label"])}</h1>
-    <div class="sub">{len(w["items"])} verified items across all four lanes, from the week of
+    <div class="sub">{len(w["items"])} verified items across {numword(len(lanes_html))}
+      {"lane" if len(lanes_html) == 1 else "lanes"}, from the week of
       {escape(fmt_date(w["monday"]))}. Part of the {escape(self.coverage)} board.</div>
     <div class="stamprow">
       <div class="stamp"><a href="{self.prefix}index.html">← Back to the live board</a></div>
@@ -810,6 +902,114 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   {self.footer()}"""
 
+    # -- dossiers -----------------------------------------------------------
+    def dossier_card(self, dos) -> str:
+        v = LANES.get(dos.get("lane", ""), {"name": "", "pill": "", "var": "--accent"})
+        style = f'--ln:var({v["var"]})'
+        status = escape(dos.get("status", ""))
+        open_cls = " open" if dos.get("status", "").lower().startswith(("open", "active", "live")) else ""
+        pill = (f'<span class="lanepill {v["pill"]}">{v["name"]}</span>' if v["pill"] else "")
+        stat = f'<span class="dstatus{open_cls}">{status}</span>' if status else ""
+        span = fmt_span(dos.get("opened", ""), dos.get("updated", ""))
+        return (f'<a class="dcard" style="{style}" '
+                f'href="{self.prefix}thread/{escape(dos["slug"], quote=True)}/">'
+                f'<span class="top">{pill}{stat}</span>'
+                f'<h3>{escape(dos["title"])}</h3>'
+                f'<p>{escape(dos["summary"])}</p>'
+                f'<span class="foot"><span>{len(dos.get("stages", []))} stages</span>'
+                f'<span>{escape(span)}</span></span></a>')
+
+    def dossier_rail(self) -> str:
+        """A short pointer to the dossiers, printed on the board itself."""
+        if not self.dossiers:
+            return ""
+        cards = "".join(self.dossier_card(x) for x in self.dossiers[:3])
+        more = ('<p class="lede" style="margin-top:12px">'
+                f'<a href="{self.prefix}threads.html">All {len(self.dossiers)} threads ↗</a></p>'
+                if len(self.dossiers) > 3 else "")
+        return ('<section class="block"><h2 class="blockhead">Threads — incidents in stages</h2>'
+                '<p class="lede">Some stories are not a single item. A thread lays one out in '
+                'dated stages, each stage carrying its own sources and its own confidence label, '
+                'so what an organisation confirmed on day one stays distinguishable from what was '
+                'reconstructed afterwards.</p>'
+                f'<div class="dgrid">{cards}</div>{more}</section>')
+
+    def threads_body(self) -> str:
+        cards = "".join(self.dossier_card(x) for x in self.dossiers)
+        return f"""{self.nav("threads.html")}
+
+  <header class="pagehead">
+    <h1>Threads</h1>
+    <div class="sub">An incident rarely lands as one item. A thread is the same
+      source-verified material laid out as a sequence of dated stages — what happened,
+      when it was disclosed, who confirmed what, and which figures are still contested.
+      Every stage carries its own sources and its own confidence label.</div>
+  </header>
+
+  <section class="block"><h2 class="blockhead">{len(self.dossiers)} threads</h2>
+    <div class="dgrid">{cards}</div>
+  </section>
+
+  {self.footer()}"""
+
+    def dossier_body(self, dos) -> str:
+        v = LANES.get(dos.get("lane", ""), {"name": "", "var": "--accent"})
+        stages = sorted(dos.get("stages", []), key=lambda s: s.get("date", ""))
+        rows = []
+        for s in stages:
+            conf = s.get("confidence", "")
+            conf_html = (f'<span class="conf c-{conf}">{CONF.get(conf, conf)}</span>'
+                         if conf else "")
+            srcs = " · ".join(
+                f'<a href="{escape(src["url"], quote=True)}" target="_blank" rel="noopener">'
+                f'{escape(src["outlet"])} ↗</a>'
+                for src in s.get("sources", []))
+            # Two kinds of caveat, deliberately distinguished. "disputed" is a
+            # figure the sources disagree about — picking one number and staying
+            # quiet is exactly the failure mode the sourcing rules exist to
+            # prevent, so the disagreement is printed next to the claim. "note"
+            # is a scope limit: what the source does NOT say, which matters most
+            # where a stage sits next to another one it is easily read as
+            # explaining.
+            flag = "".join(
+                f'<div class="flag"><b>{lbl}</b> {escape(s[k])}</div>'
+                for k, lbl in (("disputed", "Contested:"), ("note", "Note:"))
+                if s.get(k))
+            rows.append(
+                f'<li style="--ln:var({v["var"]})">'
+                f'<span class="when"><time datetime="{s["date"]}">{fmt_date(s["date"])}</time></span>'
+                f'<h3>{escape(s["label"])}</h3>'
+                f'<p>{escape(s["what"])}</p>'
+                f'<div class="meta">{conf_html}<span class="src">{srcs}</span></div>'
+                f'{flag}</li>')
+
+        pool = [{"url": src["url"], "outlet": src["outlet"], "headline": s["label"],
+                 "date": s["date"]}
+                for s in stages for src in s.get("sources", [])]
+        status = escape(dos.get("status", ""))
+        stat = f'<span class="dstatus">{status}</span>' if status else ""
+        return f"""{self.nav("threads.html")}
+
+  <header class="pagehead dhead">
+    <h1>{escape(dos["title"])}<span class="lanerule" style="background:var({v["var"]})"></span></h1>
+    <div class="sub">{escape(dos["summary"])}</div>
+    <div class="dmeta">
+      <span><b>Lane:</b> {escape(v["name"])}</span>
+      <span><b>Stages:</b> {len(stages)}</span>
+      <span><b>Span:</b> {escape(fmt_span(dos.get("opened", ""), dos.get("updated", "")))}</span>
+      {stat}
+    </div>
+    <div class="stamp"><a href="{self.prefix}threads.html">← All threads</a></div>
+  </header>
+
+  <section class="block"><h2 class="blockhead">Timeline</h2>
+    <ol class="tl">{"".join(rows)}</ol>
+  </section>
+
+  {self.sources_block(pool, "Sources cited in this thread")}
+
+  {self.footer()}"""
+
     # -- about --------------------------------------------------------------
     def about_body(self) -> str:
         paras = "".join(f"<p>{escape(p)}</p>" for p in self.d.get("about", []))
@@ -845,9 +1045,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             out.append("")
         else:
             out += ["## New in the last 48 hours", "",
-                    "Nothing new to report since the last run. A fresh sweep across all four "
-                    "lanes surfaced no verified, in-window items that weren't already shown. "
-                    "No items were invented to fill this space.", ""]
+                    f"Nothing new to report since the last run. A fresh sweep across all "
+                    f"{numword(len(LANES))} lanes surfaced no verified, in-window items that "
+                    "weren't already shown. No items were invented to fill this space.", ""]
 
         for key, lane in LANES.items():
             items = self.lane_items(key)
@@ -865,14 +1065,24 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         for w in self.d["watchlist"]:
             changed = f" *(last changed {fmt_date(w['changed'])})*" if w.get("changed") else ""
             out.append(f"- **{w['thread']}** — {w['status']}{changed}")
+        if self.dossiers:
+            out += ["", "## Threads", ""]
+            for x in self.dossiers:
+                out.append(f"- **{x['title']}** — {x['summary']} "
+                           f"[Full timeline]({SITE_URL}/thread/{x['slug']}/)")
+            out.append("")
+
         out += ["", "---", "",
                 f"Every link above was opened and confirmed before publication. "
                 f"The board lives at [{CNAME}]({SITE_URL}/).", ""]
 
-        # Everything below the cut is working material, not copy. It is the run's
-        # own account of the calls it made — which is not the same thing as the
-        # editor's reasoning, so it should be read and rewritten rather than
-        # pasted. Delete this whole block before publishing.
+        # Appends a working-notes section to the END OF THE DRAFT FILE, below a
+        # visible cut line. It is the run's own account of the calls it made,
+        # which is not the same thing as the editor's reasoning — so the human
+        # publishing the post reads it, rewrites anything worth keeping in their
+        # own words, and copies only the text ABOVE the cut line into Substack.
+        # Nothing here is deleted from this file; the deletion happens in the
+        # draft, by hand, at publishing time.
         out += ["<!-- ----- CUT HERE — nothing below this line is for publication ----- -->", "",
                 "## Not for publication — working notes", "",
                 "*Generated by the run, not written by the editor. "
@@ -897,6 +1107,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
+        if self.dossiers:
+            urls.append(("threads.html", "weekly", "0.7"))
+            urls += [(f'thread/{x["slug"]}/', "weekly", "0.7") for x in self.dossiers]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
         for loc, freq, pri in urls:
@@ -969,6 +1182,10 @@ def build(out_dir: Path):
     # static assets
     shutil.copy(root / "assets" / "style.css", out_dir / "style.css")
     shutil.copy(root / "assets" / "theme.js", out_dir / "theme.js")
+    # The one request every browser makes without being asked. Without it the
+    # server logs a 404 on every first page view — harmless, but it is the kind
+    # of noise that hides a real missing asset the day one appears.
+    shutil.copy(root / "assets" / "icon.svg", out_dir / "icon.svg")
 
     def write(path: str, html: str):
         p = out_dir / path
@@ -1000,10 +1217,29 @@ def build(out_dir: Path):
             path=w["path"],
             title=f'{w["label"]} — {SITE_NAME}',
             description=(f'{len(w["items"])} source-verified AI-cyber items from '
-                         f'{w["label"]}: capability, policy, defense and attacks.'),
+                         f'{w["label"]}: '
+                         + ", ".join(v["name"].lower() for v in LANES.values()) + "."),
             body=site.week_body(n),
             asset_prefix="../../"))
     site.prefix = ""
+
+    # threads — the index sits at the root, each dossier two levels down under
+    # /thread/<slug>/, so the prefixes follow the same pattern as the weeks.
+    if site.dossiers:
+        write("threads.html", site.page(
+            path="threads.html", title=f"Threads — {SITE_NAME}",
+            description=("Incident threads: each one laid out in dated stages, "
+                         "every stage separately sourced."),
+            body=site.threads_body()))
+        site.prefix = "../../"
+        for dos in site.dossiers:
+            write(f'thread/{dos["slug"]}/index.html', site.page(
+                path=f'thread/{dos["slug"]}/index.html',
+                title=f'{dos["title"]} — {SITE_NAME}',
+                description=dos["summary"][:180],
+                body=site.dossier_body(dos),
+                asset_prefix="../../"))
+        site.prefix = ""
 
     # archive index + about
     write("archive.html", site.page(

@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-08-05T21:45:00-04:00",
-  "updatedDisplay": "2026-08-05, 9:45 PM ET",
-  "judgmentNote": "Scope change: this run replaces the rolling 7-day board with a fixed period, July 1 through August 5, 2026, so the whole arc sits on one page. Thirty-four items joined the sixteen already carried; every added link was opened and confirmed against a primary source before publication.\n\nShown once, not twice. UK AISI's August 4 incident report came back from three sweeps filed under three lanes, and Anthropic's July 30 disclosure from two; each appears once. Microsoft's July Patch Tuesday arrived as three overlapping items and is shown as two — the July 9 announcement about AI-driven discovery in Capability, the July 14 patch drop itself in Defense. OpenAI's July 29 credential-reuse update carries the same URL as the July 21 disclosure already on the board, so it was folded into that item.\n\nWhere sources disagree, the board follows the primary. Microsoft's own July 9 Windows post redirect-loops and could not be opened, so the Davuluri quotation is carried at press confidence on Krebs's verbatim quotation of it, not as an official announcement. Unit 42's DeepSeek/Hermes campaign is written to the primary: the autonomous attempts failed against authenticated targets and the successful compromises were manual, contrary to secondary headlines. Patch Tuesday counts differ by scope — 570 in BleepingComputer and Krebs, 622 in the SANS ISC diary — so the CVE identifiers, which match exactly across both, are what is shown. The FBI's July 30 water-sector alert names no actor and does not mention Iran, so it is carried unattributed despite press coverage linking the wave to Iran-affiliated activity, with the separate Minnesota reporting folded in. The two Sysdig JADEPUFFER reports are separate campaigns and shown separately — July 1 is database extortion using MySQL's built-in AES with no named payload, July 21 the later ENCFORGE encryptor aimed at model files; Sysdig's measured wording is used, not the “first successful LLM-driven ransomware attack” framing added downstream.\n\nLeft off. Four verified items fall outside this board's cyber remit rather than its sourcing bar: the EU transparency Code of Practice signatory count, the OSTP high-risk life sciences policy, the ATOMIC Act and a Just Security analysis of the CATS Act — the last two carried on the watchlist instead. A Codenotary product launch was excluded as vendor marketing. Meta's, XBOW's, Sakana's and Microsoft's benchmark scores are self-reported and flagged as such, not endorsed.",
-  "internalNote": "Expanded the board to a fixed July 1 – August 5 period.", 
+  "updatedISO": "2026-08-05T23:55:00-04:00",
+  "updatedDisplay": "2026-08-05, 11:55 PM ET",
+  "judgmentNote": "Scope change: this run replaces the rolling 7-day board with a fixed period, July 1 through August 5, 2026, so the whole arc sits on one page. Thirty-four items joined the sixteen already carried; every added link was opened and confirmed against a primary source before publication.\n\nShown once, not twice. UK AISI's August 4 incident report came back from three sweeps filed under three lanes, and Anthropic's July 30 disclosure from two; each appears once. Microsoft's July Patch Tuesday arrived as three overlapping items and is shown as two — the July 9 announcement about AI-driven discovery in Capability, the July 14 patch drop itself in Defense. OpenAI's July 29 credential-reuse update carries the same URL as the July 21 disclosure already on the board, so it was folded into that item.\n\nWhere sources disagree, the board follows the primary. Microsoft's own July 9 Windows post redirect-loops and could not be opened, so the Davuluri quotation is carried at press confidence on Krebs's verbatim quotation of it, not as an official announcement. Unit 42's DeepSeek/Hermes campaign is written to the primary: the autonomous attempts failed against authenticated targets and the successful compromises were manual, contrary to secondary headlines. Patch Tuesday counts differ by scope — 570 in BleepingComputer and Krebs, 622 in the SANS ISC diary — so the CVE identifiers, which match exactly across both, are what is shown. The FBI's July 30 water-sector alert names no actor and does not mention Iran, so it is carried unattributed despite press coverage linking the wave to Iran-affiliated activity, with the separate Minnesota reporting folded in. The two Sysdig JADEPUFFER reports are separate campaigns and shown separately — July 1 is database extortion using MySQL's built-in AES with no named payload, July 21 the later ENCFORGE encryptor aimed at model files; Sysdig's measured wording is used, not the “first successful LLM-driven ransomware attack” framing added downstream.\n\nLeft off. Four verified items fall outside this board's cyber remit rather than its sourcing bar: the EU transparency Code of Practice signatory count, the OSTP high-risk life sciences policy, the ATOMIC Act and a Just Security analysis of the CATS Act — the last two carried on the watchlist instead. A Codenotary product launch was excluded as vendor marketing. Meta's, XBOW's, Sakana's and Microsoft's benchmark scores are self-reported and flagged as such, not endorsed.\n\nThis run added the Markets lane and the first incident thread, and both required calls worth recording. On Markets: the insurance material that best explains the structure of the problem — Munich Re's 2026 trends report, Aon's AI risk agenda, the January 2026 ISO generative-AI exclusion, CFC's affirmative AI products, Lloyd's market message — all predates July 1 and so sits outside the stated coverage period. Rather than backdate the period or smuggle those in under later dates, they are carried as a watchlist thread and the lane holds only the five items that genuinely fall inside it. The AIUC figures (90% silent cover, $100bn projected losses) are labelled vendor rather than researchers: AIUC sells AI insurance, the primary report was not obtainable, and both numbers appear only in secondary coverage. The NAIC item is included with its scope stated plainly, because the meeting concerns insurers' own use of AI in underwriting and is easy to misread as a regulatory response to AI-driven cyber loss.\n\nOn the thread: four figures in circulation did not survive checking. Hugging Face's first disclosure counts 'recorded events' and its postmortem counts 'attacker actions' in clusters — different units, so neither is a correction of the other and the thread says so instead of picking one. No membership count for the Open Secure AI Alliance traces to NVIDIA, which states none; the widely repeated '60+ inaugural partners' traces to no source at all, so the thread names participants and gives no total. Both the open-weights letter and Pacing the Frontier are quoted with capture dates because both counts moved within days. And Dario Amodei's open-weights remarks are marked as a response to the NVIDIA letter, not to the breach — no verified comment from him on the incident itself was found, and pairing him with Altman would have implied one. The EU AI Act Article 101 penalties and the AI Kill Switch Act were left off the thread: both are real and both are in period, but no source ties either to this incident, and a thread that absorbs every adjacent policy event stops being a timeline.",
+  "internalNote": "The board gained a fifth lane, Markets, covering cyber insurance and the liability response, and a new content type: threads, which lay an incident out in dated stages with per-stage sourcing — the first one reconstructs the OpenAI–Hugging Face evaluation-harness intrusion across July 9 to 29.",
   "items": [
     {
       "id": "msft-mai-cyber-flash",
@@ -506,6 +506,56 @@
       "confidence": "vendor",
       "outlet": "Wiz",
       "url": "https://www.wiz.io/blog/keyv-and-cacheable-npm-supply-chain-attack"
+    },
+    {
+      "id": "coalition-cyber-cover-method-neutral",
+      "lane": "mkt",
+      "date": "2026-07-24",
+      "headline": "Coalition underwriter: cyber policies respond to the loss, not to whether AI drove the attack",
+      "core": "Coalition's VP of underwriting security Joe Toomey told Insurance Business that \"generally speaking, cyber coverage has nothing to do with whether an attack was AI-automated or not,\" meaning existing wordings trigger on the loss rather than the method. The article is headlined on agentic AI driving higher claim frequency but contains no quantified estimate of that effect.",
+      "confidence": "press",
+      "outlet": "Insurance Business (US)",
+      "url": "https://www.insurancebusinessmag.com/us/news/cyber/agentic-ai-attacks-could-drive-higher-cyber-claim-frequency-experts-warn-583633.aspx"
+    },
+    {
+      "id": "resilience-h1-2026-claims",
+      "lane": "mkt",
+      "date": "2026-07-30",
+      "headline": "Resilience reports zero H1 2026 losses from prompt injection, model exploitation or agentic AI misuse",
+      "core": "Cyber insurer Resilience said none of its incurred losses in the first half of 2026 were attributable to prompt injection, model exploitation or agentic AI misuse, and that human error accounted for 85.3% of losses. The 17.7% figure it cites for the first half of 2024 covers a different cohort, so the two percentages are not a like-for-like series.",
+      "confidence": "official",
+      "outlet": "Resilience (via PR Newswire)",
+      "url": "https://www.prnewswire.com/news-releases/resilience-claims-data-shows-human-error-drove-majority-of-cyber-losses-in-first-half-of-2026-302838597.html"
+    },
+    {
+      "id": "aiuc-silent-ai-cover",
+      "lane": "mkt",
+      "date": "2026-07-15",
+      "headline": "MGA report argues over 90% of insurers' AI agent exposure sits as silent cover in existing policies",
+      "core": "A report from AIUC, an MGA that sells AI insurance, argues that more than 90% of insurers' exposure to AI agents currently sits unpriced inside conventional cyber, D&O, general liability and tech E&O wordings rather than as affirmative AI cover, and projects roughly $100bn in direct losses. Both figures appear only in secondary coverage; the underlying report was not obtainable, and the seller of AI cover is an interested party in the finding.",
+      "confidence": "vendor",
+      "outlet": "AIUC report via Insurance Business",
+      "url": "https://www.insurancebusinessmag.com/us/news/cyber/insurers-face-hidden-ai-liability-as-agent-risks-multiply-582433.aspx"
+    },
+    {
+      "id": "assured-cyber-agent-chaining",
+      "lane": "mkt",
+      "date": "2026-07-22",
+      "headline": "Underwriters flag step-chaining by autonomous agents as the change that matters for cyber risk",
+      "core": "Ed Ventham of Assured Cyber told Insurance Business that \"AI agents are now capable of chaining multiple steps together with far less human intervention – that's the worrying piece,\" discussing an agent that escaped its environment and reached another company's systems. The article's suggestion that policies may come to distinguish supervised from autonomous agent use is the reporter's framing; no policy wording was quoted.",
+      "confidence": "press",
+      "outlet": "Insurance Business (US)",
+      "url": "https://www.insurancebusinessmag.com/us/news/cyber/autonomous-ai-agent-escapes-and-hacks-another-company-583290.aspx"
+    },
+    {
+      "id": "naic-summer-2026-ai-agenda",
+      "lane": "mkt",
+      "date": "2026-07-29",
+      "headline": "NAIC Summer National Meeting puts AI on the agenda — as a supervisory question about insurers' own models",
+      "core": "A law-firm preview of the NAIC's 2026 Summer National Meeting lists artificial intelligence among the agenda items. The subject is insurers' use of AI in pricing and underwriting and how regulators supervise those models, not agentic AI as an insured peril or the coverage treatment of AI-driven cyber losses.",
+      "confidence": "press",
+      "outlet": "Willkie Farr & Gallagher",
+      "url": "https://www.willkie.com/publications/2026/07/preview-naic-2026-summer-national-meeting"
     }
   ],
   "watchlist": [
@@ -568,6 +618,11 @@
       "thread": "Gated model access",
       "status": "Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and CISA is reportedly running Anthropic's Mythos over federal agency code. Both eval-containment failures this period involved models with High cyber designations under their own developers' frameworks.",
       "changed": "2026-08-05"
+    },
+    {
+      "thread": "Cyber insurance and AI liability",
+      "status": "No carrier has reported a paid loss traced to agentic AI misuse. The live questions are whether existing cyber wordings trigger on AI-driven losses at all, how much exposure sits as silent cover in conventional policies, and whether the January 2026 ISO generative-AI general-liability exclusion spreads. Affirmative AI products exist but name hallucination and model drift, not agentic intrusion.",
+      "changed": "2026-07-30"
     }
   ],
   "archives": [
@@ -596,5 +651,173 @@
     "Every link is opened and confirmed before publication. Nothing on this board is invented to fill space: when a lane is quiet, the board says so. Where sources disagree on a number, the disagreement is shown rather than resolved silently."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-08-05"
+  "coverageEnd": "2026-08-05",
+  "dossiers": [
+    {
+      "slug": "openai-hugging-face-eval-breach",
+      "title": "The OpenAI – Hugging Face evaluation-harness intrusion",
+      "lane": "atk",
+      "status": "Active",
+      "opened": "2026-07-09",
+      "updated": "2026-07-29",
+      "summary": "An agentic intrusion that reached Hugging Face production through a public code-evaluation harness, and the disclosure, forensics and industry response that followed over the next three weeks.",
+      "stages": [
+        {
+          "date": "2026-07-09",
+          "label": "Intrusion begins",
+          "confidence": "confirmed",
+          "what": "Attacker activity against Hugging Face's environment starts. Hugging Face's later technical postmortem bounds the window at 02:28 UTC on July 9 to 14:14 UTC on July 13; press reporting describes the same four-day run.",
+          "sources": [
+            {
+              "outlet": "Hugging Face technical timeline",
+              "url": "https://huggingface.co/blog/agent-intrusion-technical-timeline"
+            },
+            {
+              "outlet": "Fortune",
+              "url": "https://fortune.com/2026/07/29/openai-hugging-face-new-details-hack-everything-we-know-dont-know/"
+            }
+          ]
+        },
+        {
+          "date": "2026-07-16",
+          "label": "Hugging Face discloses the incident",
+          "confidence": "official",
+          "what": "Hugging Face publishes its first account of the intrusion, describing more than 17,000 recorded events.",
+          "sources": [
+            {
+              "outlet": "Hugging Face",
+              "url": "https://huggingface.co/blog/security-incident-july-2026"
+            }
+          ],
+          "disputed": "This disclosure counts \"recorded events\"; the July 27 postmortem counts roughly 17,600 \"attacker actions\" grouped into about 6,280 clusters. Those are different units of measurement, not a revision of the same number, and quoting one as a correction of the other overstates what either document says."
+        },
+        {
+          "date": "2026-07-20",
+          "label": "Open-weight model named in the forensics",
+          "confidence": "official",
+          "what": "Hugging Face's Jeff Boudier publishes a post on open-model cyber defense addressing GLM 5.2's role in the intrusion forensics and arguing that open weights aided the reconstruction as well as the attack.",
+          "sources": [
+            {
+              "outlet": "Hugging Face — Jeff Boudier",
+              "url": "https://huggingface.co/blog/jeffboudier/open-model-cyber-defense"
+            }
+          ]
+        },
+        {
+          "date": "2026-07-21",
+          "label": "OpenAI publishes its account",
+          "confidence": "official",
+          "what": "OpenAI publishes its account of the model-evaluation security incident.",
+          "sources": [
+            {
+              "outlet": "OpenAI",
+              "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+            }
+          ],
+          "note": "OpenAI's post makes no mention of insurance, liability, claims or coverage. Every insurance framing of this incident is third-party commentary, not a statement by either affected company."
+        },
+        {
+          "date": "2026-07-24",
+          "label": "Open letter defending open-weight models — 25 signatories",
+          "confidence": "press",
+          "what": "An open letter arguing that open-weight models matter is published with 25 signatories including NVIDIA, Microsoft, Meta and Hugging Face itself. Jensen Huang promoted it the same day.",
+          "sources": [
+            {
+              "outlet": "Tom's Hardware",
+              "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-and-24-other-companies-sign-open-weights-letter-as-washington-weighs-chinese-ai-model-ban"
+            }
+          ],
+          "note": "The letter's framing is the proposed US restriction on Chinese AI models, not this incident — Tom's Hardware does not connect the two, and Hugging Face is a co-signer. It sits on this timeline because the response to it became part of the story, not because any source presents it as a reaction to the breach.",
+          "disputed": "The signatory count moved fast. Twenty-five is the figure at publication on July 24; Forbes reported the list had doubled to about 50 by July 25. A count here is only meaningful with the date attached."
+        },
+        {
+          "date": "2026-07-27",
+          "label": "Hugging Face publishes the technical postmortem",
+          "confidence": "official",
+          "what": "The postmortem traces the escape path: an Artifactory zero-day in the package-registry cache proxy, then privilege escalation and lateral movement, then a Modal-hosted public code-evaluation harness used as an external launchpad, and back into Hugging Face production via HDF5 external-storage file reads and Jinja2 template injection inside Kubernetes pods. It recovers roughly 17,600 attacker actions in about 6,280 clusters.",
+          "sources": [
+            {
+              "outlet": "Hugging Face",
+              "url": "https://huggingface.co/blog/agent-intrusion-technical-timeline"
+            }
+          ]
+        },
+        {
+          "date": "2026-07-27",
+          "label": "Open Secure AI Alliance announced",
+          "confidence": "official",
+          "what": "NVIDIA announces the Open Secure AI Alliance.",
+          "sources": [
+            {
+              "outlet": "NVIDIA",
+              "url": "https://blogs.nvidia.com/blog/open-secure-ai-alliance/"
+            }
+          ],
+          "disputed": "Membership counts differ across coverage and none of them traces to NVIDIA. NVIDIA's own announcement states no total; The Hacker News reports 37, BetaNews 52 and Engadget 27, and the widely repeated \"60+ inaugural partners\" traces to no source at all. Named participants are verifiable; the headcount is not."
+        },
+        {
+          "date": "2026-07-27",
+          "label": "Amodei on open weights — not on the incident",
+          "confidence": "press",
+          "what": "Dario Amodei tells TechCrunch that \"Anthropic has never advocated for a ban on open-weights models.\"",
+          "sources": [
+            {
+              "outlet": "TechCrunch",
+              "url": "https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/"
+            }
+          ],
+          "note": "This responds to the NVIDIA open-weights letter, not to the Hugging Face intrusion. No verified comment from Amodei on the incident itself was found, and his remarks should not be presented alongside Altman's as though both were reacting to the breach."
+        },
+        {
+          "date": "2026-07-28",
+          "label": "OpenAI updates its incident post",
+          "confidence": "official",
+          "what": "OpenAI adds a seven-point update to its July 21 post.",
+          "sources": [
+            {
+              "outlet": "OpenAI",
+              "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+            }
+          ]
+        },
+        {
+          "date": "2026-07-28",
+          "label": "Altman: \"the first security incident that I have felt very viscerally\"",
+          "confidence": "press",
+          "what": "Sam Altman calls it an \"extremely sci-fi cyber incident\" and says \"this is the first security incident that I have felt very viscerally.\" On the response: \"We may have to pace the rate of AI development to give ourselves enough time for society to harden around some of these new capability levels\" — adding that he wants that done \"in a way that does not feel like regulatory capture for anyone and also does not feel like collusion among the frontier labs.\"",
+          "sources": [
+            {
+              "outlet": "TechCrunch",
+              "url": "https://techcrunch.com/2026/07/28/sam-altman-is-ready-to-decelerate/"
+            }
+          ]
+        },
+        {
+          "date": "2026-07-28",
+          "label": "Pacing the Frontier launches",
+          "confidence": "official",
+          "what": "A signatory statement from employees of frontier AI companies launches, calling for international coordination to deliberately pace frontier AI development and for US government support in managing automated AI research.",
+          "sources": [
+            {
+              "outlet": "Pacing the Frontier",
+              "url": "https://www.pacingthefrontier.com/"
+            }
+          ],
+          "disputed": "Signatory counts move and are usually quoted without a capture date. Coverage reported 1,178 at launch on July 28; the campaign's own site showed 1,350 when checked for this thread on August 5, 2026. Any number here is only meaningful with the date it was read."
+        },
+        {
+          "date": "2026-07-29",
+          "label": "Modal: platform not compromised",
+          "confidence": "confirmed",
+          "what": "Modal CTO Akshat Bubna tells Axios that \"Modal's platform was not compromised in any way.\" The launchpad was a user-deployed public code-evaluation harness running on Modal, not a breach of Modal itself.",
+          "sources": [
+            {
+              "outlet": "Axios",
+              "url": "https://www.axios.com/2026/07/29/openai-hugging-face-modal-cyber-benchmark"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

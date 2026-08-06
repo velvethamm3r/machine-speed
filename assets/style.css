@@ -1,17 +1,19 @@
 /* Machine Speed — shared design system */
 :root{
-  --cap:#1f9d7a; --pol:#c98a12; --def:#3f6fd1; --atk:#d15656;
+  --cap:#1f9d7a; --pol:#c98a12; --def:#3f6fd1; --atk:#d15656; --mkt:#8b5cd6;
   --cap-soft:rgba(31,157,122,.12); --pol-soft:rgba(201,138,18,.12);
   --def-soft:rgba(63,111,209,.12); --atk-soft:rgba(209,86,86,.12);
+  --mkt-soft:rgba(139,92,214,.12);
 }
 /* Dark (default) */
 :root[data-theme="dark"]{
   --bg:#0e1116; --panel:#161b22; --panel-2:#1b2230; --line:#2a3240;
   --ink:#e8edf4; --ink-2:#aab4c2; --ink-3:#7d8898;
   --accent:#5aa0ff; --accent-soft:#1d2c45; --new:#f0c674;
-  --cap:#7bc8b0; --pol:#e2b25a; --def:#8db4ff; --atk:#e88a8a;
+  --cap:#7bc8b0; --pol:#e2b25a; --def:#8db4ff; --atk:#e88a8a; --mkt:#bda0f0;
   --cap-soft:rgba(123,200,176,.16); --pol-soft:rgba(226,178,90,.16);
   --def-soft:rgba(141,180,255,.16); --atk-soft:rgba(232,138,138,.16);
+  --mkt-soft:rgba(189,160,240,.16);
   --shadow:0 1px 0 rgba(255,255,255,.02);
 }
 /* Light */
@@ -46,6 +48,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-of
 .nav a.link:hover{color:var(--ink); text-decoration:none}
 .nav a.link.active{color:var(--ink); border-bottom-color:var(--accent)}
 .nav .spacer{margin-left:auto}
+
+/* Lane bar — the second nav row.
+
+   The site nav carries the places (board, threads, archive, about); the lane
+   bar carries the taxonomy. Splitting them keeps either row from growing past
+   the point where it wraps into an unreadable block, and it lets each lane
+   link wear its own colour, which the single mixed row could not do. */
+.lanebar{display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  padding:0 0 16px; margin:-8px 0 22px; border-bottom:1px solid var(--line)}
+.lanebar .lbl{font-size:10.5px; text-transform:uppercase; letter-spacing:1.4px;
+  color:var(--ink-3); margin-right:6px}
+.lanebar a{font-size:12.5px; font-weight:600; color:var(--ink-2);
+  padding:4px 10px; border-radius:6px; border:1px solid transparent}
+.lanebar a:hover{text-decoration:none; color:var(--ink); background:var(--panel-2)}
+.lanebar a.active{color:var(--ln); background:var(--ln-soft); border-color:var(--ln-soft)}
+.lanebar a i{display:inline-block; width:7px; height:7px; border-radius:2px;
+  background:var(--ln); margin-right:6px; vertical-align:middle}
+@media(max-width:600px){
+  .lanebar{gap:4px; padding-bottom:12px}
+  .lanebar .lbl{display:none}
+  .lanebar a{font-size:12px; padding:4px 8px}
+}
 .themebtn{background:var(--panel-2); color:var(--ink-2); border:1px solid var(--line); border-radius:20px;
   font-size:12.5px; padding:5px 12px; cursor:pointer; display:inline-flex; gap:6px; align-items:center}
 .themebtn:hover{color:var(--ink)}
@@ -91,9 +115,12 @@ section.block{margin-bottom:30px}
 .lanepill{flex:none; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; padding:2px 7px; border-radius:5px; margin-top:2px}
 .lp-cap{background:var(--cap-soft); color:var(--cap)} .lp-pol{background:var(--pol-soft); color:var(--pol)}
 .lp-def{background:var(--def-soft); color:var(--def)} .lp-atk{background:var(--atk-soft); color:var(--atk)}
+.lp-mkt{background:var(--mkt-soft); color:var(--mkt)}
 
 /* KPI + charts row */
-.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px}
+/* One tile per lane. auto-fit rather than a fixed column count so adding a
+   lane never needs a matching CSS edit — the row reflows on its own. */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:26px}
 @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow)}
 .stat .n{font-size:26px; font-weight:750; letter-spacing:-.5px}
@@ -313,4 +340,73 @@ footer + .pager{margin:0}
   .pager{flex-wrap:wrap; gap:8px}
   .pager .prev,.pager .next{flex:1 1 100%; text-align:left}
   .pager .idx{order:3; margin:2px auto 0}
+}
+
+/* ---------------------------------------------------------------------------
+   Dossiers — one incident, in dated stages.
+
+   A lane card answers "what happened today". A dossier answers "how did this
+   thing unfold", which needs a different shape: an ordered spine of stages,
+   each one carrying its own sources and its own confidence label, so a reader
+   can see the difference between what an organisation confirmed on day one and
+   what the press reconstructed a week later. Contested figures get a visible
+   flag rather than a silent choice between two numbers.
+   --------------------------------------------------------------------------- */
+
+/* Index of dossiers */
+.dgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
+.dcard{
+  display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px 15px; box-shadow:var(--shadow); border-left:3px solid var(--ln);
+}
+.dcard:hover{text-decoration:none; border-color:var(--ln)}
+.dcard .top{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+.dcard h3{margin:0 0 6px; font-size:16px; letter-spacing:-.2px; color:var(--ink); line-height:1.35}
+.dcard p{margin:0 0 10px; font-size:13.5px; color:var(--ink-2); line-height:1.5}
+.dcard .foot{font-size:11.5px; color:var(--ink-3); display:flex; gap:10px; flex-wrap:wrap}
+.dstatus{
+  flex:none; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px;
+  padding:2px 7px; border-radius:5px; background:var(--panel-2); color:var(--ink-2);
+  border:1px solid var(--line);
+}
+.dstatus.open{background:var(--atk-soft); color:var(--atk); border-color:transparent}
+
+/* The timeline itself */
+.tl{position:relative; margin:0; padding:0 0 0 26px; list-style:none}
+.tl::before{
+  content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px;
+  background:var(--line); border-radius:2px;
+}
+.tl > li{position:relative; padding:0 0 22px}
+.tl > li:last-child{padding-bottom:2px}
+.tl > li::before{
+  content:""; position:absolute; left:-26px; top:5px; width:14px; height:14px;
+  border-radius:50%; background:var(--bg); border:3px solid var(--ln);
+}
+.tl .when{
+  display:block; font-size:11.5px; font-weight:700; letter-spacing:.7px;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:3px;
+}
+.tl h3{margin:0 0 5px; font-size:15.5px; letter-spacing:-.2px; line-height:1.4; color:var(--ink)}
+.tl p{margin:0 0 8px; font-size:14px; line-height:1.55; color:var(--ink-2)}
+.tl .meta{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:11.5px}
+.tl .meta .src a{color:var(--ink-3)}
+.tl .meta .src a:hover{color:var(--accent)}
+
+/* A contested figure. Shown, not resolved silently. */
+.flag{
+  margin:8px 0 0; padding:9px 12px; border-radius:8px; font-size:12.5px; line-height:1.5;
+  background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--new);
+  color:var(--ink-2);
+}
+.flag b{color:var(--ink); font-weight:650}
+
+/* Dossier page head */
+.dhead .sub{max-width:74ch}
+.dmeta{display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--ink-3); margin-top:10px}
+.dmeta b{color:var(--ink-2); font-weight:600}
+@media(max-width:600px){
+  .tl{padding-left:22px}
+  .tl > li::before{left:-22px; width:12px; height:12px}
+  .dgrid{grid-template-columns:1fr}
 }

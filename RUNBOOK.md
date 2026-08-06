@@ -7,7 +7,7 @@ GitHub Actions does the rest. Live at **https://machinespeed.techpointe.org**.
 
 1. Check the clock: `date "+%Y-%m-%d"` and `TZ=America/New_York date "+%H:%M"`. Never trust a cached date.
 2. Read `dashboard-memory.md`. Anything already listed there is not "new today."
-3. Research the four lanes for everything since `coverageEnd` in `data.json`. Verify every item against a source you actually opened.
+3. Research the five lanes for everything since `coverageEnd` in `data.json`. Verify every item against a source you actually opened.
 4. Edit `data.json` — the only file a normal run touches. Move `coverageEnd` to today, add the new items, and leave the older ones in place. Schema is in `SCHEMA.md`.
 5. Run `python3 build.py`. It validates first and refuses to write if the data is broken.
 6. Append this run to `dashboard-memory.md` and update the watchlist there.
@@ -20,7 +20,8 @@ Preview before committing: `python3 -m http.server -d dist 8000` → http://loca
 | Output | What it is |
 |---|---|
 | `dist/` | The whole pre-rendered site. Generated — never edit, never commit (it's in `.gitignore`). |
-| `dist/week/YYYY-MM-DD/` | One page per Monday-to-Sunday week, all four lanes, generated from the items themselves. A week with no items gets no page. |
+| `dist/week/YYYY-MM-DD/` | One page per Monday-to-Sunday week, every lane that has items that week, generated from the items themselves. A week with no items gets no page. |
+| `dist/threads.html`, `dist/thread/<slug>/` | The dossier index and one page per dossier. Only written when `data.json` has a `dossiers[]` key; with none, every trace of the feature disappears from the nav, the board and the sitemap. |
 | `dist/sitemap.xml`, `dist/robots.txt` | Crawl hints. The sitemap lists the board, the lanes, About and every week page; dated snapshots are deliberately left out so crawlers aren't pointed at copies of the board. |
 | `dist/CNAME` | The custom domain, written on every build so a deploy can't silently drop it. |
 | `archive/machine-speed-YYYY-MM-DD.html` | Today's snapshot, written back into the repo so history survives rebuilds. **Commit this.** |
@@ -35,7 +36,9 @@ fails the Action instead of publishing — the live site keeps serving the last 
 Errors (build stops): missing top-level keys; an item missing any required field; duplicate
 item `id`; an unknown lane or confidence value; a non-`https://` URL; a malformed or
 future-dated item; a watchlist entry with no status; an `archives[]` entry pointing at a file
-that isn't in the repo; no `archives[]` entry for today.
+that isn't in the repo; no `archives[]` entry for today. Dossiers are held to the same bar —
+a duplicate or non-kebab-case slug, a stage missing a date, label or text, a stage with no
+sources, a source with no outlet or a non-`https://` URL, and a stage dated in the future.
 
 Warnings (build continues, message printed): the run stamp is not today; an item is more than
 seven days old — allowed, but `judgmentNote` should say why; more than six items qualify for
@@ -55,6 +58,30 @@ To force an item into the "New in the last 48 hours" strip when it is new to the
 few days old in the world, set `isNew: true`. To keep a genuinely recent item out, set
 `isNew: false`. Omit the field and the 48-hour date rule applies.
 
+## Threads — how a run maintains a dossier
+
+A lane item is a day. A dossier is a story that keeps moving, and most days it does not move,
+so most runs touch `dossiers[]` not at all. Open one only when a story has already produced
+three or four separately-sourced developments and looks like it will produce more — a single
+incident with one disclosure is a lane item, not a thread.
+
+When a story a dossier tracks moves, add a stage rather than rewriting an existing one:
+stages are a record of what was known when, and editing yesterday's stage to match today's
+better information destroys exactly the thing the format exists to show. Give the stage its
+own sources and its own confidence — a first-party postmortem published a week after a press
+reconstruction is `confirmed` sitting next to `press`, and that contrast is the point. Then
+move the dossier's `updated` to the stage date, which is what re-sorts the index.
+
+Two things get flagged instead of silently resolved. If two sources give a figure differently,
+put both in `disputed` with the date each was captured, rather than picking one. If a stage
+could be read as explaining the stage above it and the source makes no such connection, say so
+in `note` — a thread's ordering implies causation whether or not you intend it, so an
+unsupported adjacency has to be labelled. A stage whose only justification is that it makes
+the timeline feel complete does not belong on the timeline.
+
+Retiring a thread means setting `status` to something honest — "Resolved", "Dormant" — not
+deleting it. The page keeps its URL and the record survives.
+
 ## Sourcing rules the build cannot check
 
 These are the rules that matter most and no script can enforce them: every item needs a real
@@ -64,6 +91,13 @@ attribution; when a figure appears in press coverage but not the primary source,
 primary and note the discrepancy in `judgmentNote`; label confidence honestly, using `vendor`
 for unreproduced benchmark claims; and watch for content-farm embellishment, which usually
 shows up as an oddly precise number attached to a real story.
+
+The Markets lane needs one rule of its own. It covers how the money prices the risk — cyber
+insurance, underwriting, liability and the capital response — and that beat runs heavily on
+carrier and broker marketing, where a product launch is written to read as a market finding.
+A new policy wording is a `vendor` item unless a regulator, a court or a loss report says
+otherwise, and a carrier's own claims data is `official` rather than `confirmed`. Material
+that predates `coverageStart` belongs in the watchlist, not backdated onto the board.
 
 ## Configuration
 
@@ -104,10 +138,12 @@ extra to maintain.
 The **board** (`/`) prints the most recent `FRONT_WEEKS` weeks as full cards, then
 indexes every older item one line at a time under "Earlier in this period" — nothing
 scrolls off, but the front page stops growing without limit. Each **week page**
-(`/week/YYYY-MM-DD/`, dated by its Monday) carries that week's full cards across all
-four lanes with previous/next links. The **lane pages** are unchanged: each still holds
-the whole period for its lane, week-headed. The **archive** leads with the week index
-and keeps the dated run snapshots below it.
+(`/week/YYYY-MM-DD/`, dated by its Monday) carries that week's full cards across every
+lane that has items that week, with previous/next links. The **lane pages** are unchanged:
+each still holds the whole period for its lane, week-headed. **Threads** (`/threads.html`)
+indexes the dossiers, each at its own `/thread/<slug>/`; those sit outside the period
+entirely, since a thread's whole purpose is to reach back past it. The **archive** leads
+with the week index and keeps the dated run snapshots below it.
 
 Week pages are regenerated from `data.json` on every build, so an item corrected today
 is corrected on its week page too. The dated snapshots in `archive/` are the opposite
@@ -136,9 +172,15 @@ For the other direction — a Subscribe link on the site — set `SUBSTACK_URL` 
 
 ## Changing the design
 
-`assets/style.css` and `assets/theme.js` are shared by every page. A daily run should not need
-to touch either. If you add a confidence tier, add it in three places: `CONF` and `CONF_VAR` in
-`build.py`, and a `.c-<name>` rule in `assets/style.css`.
+`assets/style.css`, `assets/theme.js` and `assets/icon.svg` are shared by every page. A daily
+run should not need to touch any of them. If you add a confidence tier, add it in three places:
+`CONF` and `CONF_VAR` in `build.py`, and a `.c-<name>` rule in `assets/style.css`.
+
+Adding a lane is a `LANES` entry in `build.py`, a `--x` / `--x-soft` pair in both themes, and a
+`.lp-x` pill rule. Nothing else counts lanes by hand: the stats grid reflows on `auto-fit`, the
+lane bar generates itself from `LANES`, and prose that says "five lanes" derives the word. The
+nav is deliberately two rows — the site nav carries the destinations, the lane bar below it
+carries the taxonomy — because one row stopped fitting at five lanes and would only get worse.
 
 ## Hosting
 

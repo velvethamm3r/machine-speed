@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Machine Speed">
+  <!-- Deliberately carries its own dark background rather than inheriting the page:
+       a favicon is drawn on browser chrome, which is neither of the site's themes. -->
+  <rect width="64" height="64" rx="14" fill="#0e1116"/>
+  <!-- Three bars, shortest at the bottom: capability outrunning the response. -->
+  <rect x="13" y="41" width="20" height="6" rx="3" fill="#3f6fd1"/>
+  <rect x="13" y="29" width="30" height="6" rx="3" fill="#5aa0ff"/>
+  <rect x="13" y="17" width="38" height="6" rx="3" fill="#1f9d7a"/>
+</svg>
