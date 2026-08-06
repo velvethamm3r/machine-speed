@@ -96,8 +96,28 @@ CNAME = SITE_URL.split("//", 1)[1]
 
 # Substack. Set SUBSTACK_URL to the publication home (no trailing slash) to turn
 # on the subscribe links; leave it empty and every Substack element disappears.
+# Point it at a subdomain of this site (newsletter.techpointe.org) rather than
+# *.substack.com and the nav link stops behaving like an outbound one — see
+# same_site() below.
 SUBSTACK_URL = ""                       # e.g. "https://machinespeed.substack.com"
 SUBSTACK_CTA = "Get the board in your inbox"
+SUBSTACK_NAV = "Subscribe"              # the nav label. "Newsletter" reads as part of the site.
+
+
+def same_site(url: str) -> bool:
+    """True when url sits under the same registrable domain as SITE_URL.
+
+    A link to newsletter.techpointe.org from machinespeed.techpointe.org is a
+    move within one property, not a departure from it, so it should not get
+    the new-tab-and-arrow treatment reserved for leaving the site. Compares the
+    last two host labels, which is right for .org/.com and wrong for the
+    multi-part suffixes (.co.uk); this site is on a .org and the failure mode
+    is a link opening in a new tab, so the simple rule earns its keep.
+    """
+    def reg(u: str) -> str:
+        host = u.split("//", 1)[-1].split("/", 1)[0].split(":", 1)[0].lower()
+        return ".".join(host.split(".")[-2:])
+    return bool(url) and reg(url) == reg(SITE_URL)
 
 LANES = {
     "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
@@ -364,7 +384,6 @@ class Site:
         self.d = data
         self.as_of = data.get("updatedISO", "")
         self.prefix = ""  # set to "../" while rendering pages inside /archive
-        self.home_url = self.prefix if self.prefix else "/"
         self.cov_start, self.cov_end = coverage_span(data)
         self.coverage = fmt_span(self.cov_start, self.cov_end)
         self.coverage_days = (
@@ -425,6 +444,23 @@ class Site:
         return days_ago(item["date"], self.as_of) <= NEW_WINDOW_DAYS
 
     # -- shared fragments ---------------------------------------------------
+    @property
+    def home(self) -> str:
+        """The board's href, as a directory rather than a filename.
+
+        The server serves the same bytes for `/` and `/index.html`, but they
+        are two URLs: they get shared, linked and indexed separately, and the
+        filename version is the ugly one. `<canonical>`, the sitemap and the
+        feed have always pointed at `/`; this is what makes the site's own
+        links agree with them, so clicking Board from anywhere lands on the
+        bare domain and the address bar never grows an `index.html`.
+
+        `./` rather than `/` on purpose — a root-absolute link would break the
+        moment the site is served from a subpath, which is exactly what the
+        `username.github.io/<repo>/` fallback URL is.
+        """
+        return self.prefix or "./"
+
     def nav(self, active: str) -> str:
         """Two rows: the places, then the lanes.
 
@@ -439,16 +475,21 @@ class Site:
             links.append(("threads.html", "Threads"))
         links += [("archive.html", "Archive"), ("about.html", "About")]
         out = ['<nav class="nav" aria-label="Site">',
-               f'<a class="logo" href="{self.home_url}"><b>Machine&nbsp;Speed</b>'
+               f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
         for href, label in links:
             cls = "link active" if href == active else "link"
             aria = ' aria-current="page"' if href == active else ""
-            out.append(f'<a class="{cls}" href="{self.prefix}{href}"{aria}>{label}</a>')
+            # "index.html" stays the key that marks the tab active — it is the
+            # page's identity everywhere else in the build — but it is not what
+            # gets written into the link.
+            url = self.home if href == "index.html" else self.prefix + href
+            out.append(f'<a class="{cls}" href="{url}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
         if SUBSTACK_URL:
-            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}" '
-                       f'target="_blank" rel="noopener">Subscribe</a>')
+            tab = "" if same_site(SUBSTACK_URL) else ' target="_blank" rel="noopener"'
+            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}"'
+                       f'{tab}>{escape(SUBSTACK_NAV)}</a>')
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
@@ -536,13 +577,16 @@ class Site:
         """
         if not SUBSTACK_URL:
             return ""
+        own = same_site(SUBSTACK_URL)
+        tab = "" if own else ' target="_blank" rel="noopener"'
+        label = "Subscribe" if own else "Subscribe on Substack ↗"
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
                 f'reporting, written up and sent to your inbox — same sourcing rules, '
                 f'same corrections policy.</p>'
-                f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}" '
-                f'target="_blank" rel="noopener">Subscribe on Substack ↗</a></p>'
+                f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"'
+                f'{tab}>{label}</a></p>'
                 f'</section>')
 
     def footer(self) -> str:
@@ -608,9 +652,7 @@ class Site:
         rel = "" if path == "index.html" else path
         if rel.endswith("/index.html"):
             rel = rel[: -len("index.html")]
-        # Ensure the home page doesn't get a trailing slash if rel is empty, 
-        # but subdirectories do keep their slashes if needed.
-        canonical = SITE_URL if rel == "" else f"{SITE_URL}/{rel}"
+        canonical = f"{SITE_URL}/{rel}"
         return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -699,7 +741,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
                    'grouped by lane and by week.')
 
-        return f"""{self.nav("self.home_url")}
+        return f"""{self.nav("index.html")}
 
   <header class="pagehead">
     <h1>The capability-vs-defense gap, tracked daily</h1>
@@ -828,7 +870,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       {"lane" if len(lanes_html) == 1 else "lanes"}, from the week of
       {escape(fmt_date(w["monday"]))}. Part of the {escape(self.coverage)} board.</div>
     <div class="stamprow">
-      <div class="stamp"><a href="{self.home_url}">← Back to the live board</a></div>
+      <div class="stamp"><a href="{self.home}">← Back to the live board</a></div>
       <div class="stamp cov">Week of <time datetime="{w["monday"]}">{escape(fmt_date(w["monday"]))}</time></div>
     </div>
   </header>
@@ -1268,7 +1310,7 @@ def build(out_dir: Path):
     if snap_date:
         snap_name = f"archive/machine-speed-{snap_date}.html"
         banner = (f'<div class="note" style="margin-bottom:16px">Archived snapshot of the board as of '
-                  f'{fmt_date(snap_date)}. <a href="../index.html">Back to the live board ↗</a></div>')
+                  f'{fmt_date(snap_date)}. <a href="../">Back to the live board ↗</a></div>')
         site.prefix = "../"
         snap_body = banner + site.home_body()
         site.prefix = ""
