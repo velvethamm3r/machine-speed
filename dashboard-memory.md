@@ -101,6 +101,13 @@ Board moved off the rolling 7-day window to a stated coverage period (`coverageS
 
 _Prune note: nothing aged past the ~5-week floor this run (oldest shown-item entry is 2026-07-06). Next run, drop shown-item entries dated before ~2026-07-01._
 
+### Run 2026-08-06 (second pass — vocabulary and layout, no research)
+- No new items. No lane was researched, so `coverageEnd` stays at 2026-08-05 and the board claims no day it did not look at.
+- The incident pages were renamed: `dossiers[]` → `briefs[]`, /thread/<slug>/ → /brief/<slug>/, Threads → Briefs in the nav. The watchlist below still has threads and always did — that collision is why the pages were renamed. `validate()` now hard-errors on the old key.
+- The OpenAI / Hugging Face brief gained an `acts[]` layout: the same 12 stages regrouped into 7 numbered panels (3A/3B and 4A/4B side by side), plus 11 existing board items folded in by id. No new sourced claim was written; an act asserts only a headline summarising its own bullets.
+- `SUBSTACK_URL` set to https://velvethamm3r.substack.com — nav link and footer subscribe block are live, treated as outbound. No feed is pulled in; nothing is posted or sent.
+- Two dead links in the frozen 2026-08-05 snapshot (../threads.html, ../thread/<slug>/) were repaired so that page still works after the rename. A full crawl of all 22 built pages reports 0 dead internal links and 0 hrefs containing index.html.
+
 ## Watchlist (thread · current status · last-changed)
 
 _Synced with data.json as of the 2026-08-05 run._

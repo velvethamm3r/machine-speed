@@ -12,8 +12,8 @@ writes a fully pre-rendered site into dist/:
       defense.html
       attacks.html
       markets.html
-      briefs.html           dossier index (only when data.json has dossiers)
-      brief/<slug>/         one dossier, laid out in dated stages
+      briefs.html           brief index (only when data.json has briefs)
+      brief/<slug>/         one brief: an incident laid out in acts and stages
       archive.html          archive index
       archive/…​.html        dated snapshot of today's board
       about.html
@@ -49,6 +49,12 @@ SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI 
                     "cyber capability and the defense & policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent get the "New" badge / 48h strip
 STRIP_MAX = 6         # spec caps the "New in the last 48 hours" strip at six
+
+# A brief's acts can sit side by side when they share a "row" — two positions
+# answering the same question, two arms of a response. Two fit on a laptop and
+# still hold a readable line length; a third turns each panel into a column of
+# two-word lines, so validate() refuses it rather than letting the page decide.
+ACT_ROW_MAX = 2
 
 # Coverage period. The board shows a stated span of days rather than a rolling
 # window. data.json may set "coverageStart"/"coverageEnd" explicitly; if it does
@@ -103,13 +109,6 @@ SUBSTACK_URL = "https://velvethamm3r.substack.com"
 SUBSTACK_CTA = "Get the board in your inbox"
 SUBSTACK_NAV = "Subscribe"              # the nav label. "Newsletter" reads as part of the site.
 
-# How many recent Substack posts to show on the board. The list is fetched from
-# the publication's RSS feed once per build; a failed or slow fetch skips the
-# list (the subscribe button still renders) rather than failing the build —
-# the newsletter rail is decoration, the board is the product.
-SUBSTACK_POSTS = 3
-SUBSTACK_FETCH_TIMEOUT = 10             # seconds
-
 
 def same_site(url: str) -> bool:
     """True when url sits under the same registrable domain as SITE_URL.
@@ -125,49 +124,6 @@ def same_site(url: str) -> bool:
         host = u.split("//", 1)[-1].split("/", 1)[0].split(":", 1)[0].lower()
         return ".".join(host.split(".")[-2:])
     return bool(url) and reg(url) == reg(SITE_URL)
-
-
-def fetch_substack_posts(limit: int = SUBSTACK_POSTS) -> list:
-    """Latest posts from the Substack publication's RSS feed, or [].
-
-    One network call per build, stdlib only, and deliberately unable to break
-    anything: any failure — DNS, timeout, HTTP error, malformed XML — returns
-    an empty list and the site simply builds without the posts rail, exactly
-    as it did before this feature existed. The build stays deterministic in
-    what it validates (data.json); this is presentation-only garnish.
-    """
-    if not SUBSTACK_URL or not limit:
-        return []
-    import urllib.request
-    import xml.etree.ElementTree as ET
-    from email.utils import parsedate_to_datetime
-    try:
-        req = urllib.request.Request(
-            SUBSTACK_URL.rstrip("/") + "/feed",
-            headers={"User-Agent": f"{SITE_NAME} static build ({SITE_URL})"})
-        with urllib.request.urlopen(req, timeout=SUBSTACK_FETCH_TIMEOUT) as r:
-            root = ET.fromstring(r.read())
-        posts = []
-        for item in root.iter("item"):
-            title = (item.findtext("title") or "").strip()
-            link = (item.findtext("link") or "").strip()
-            if not title or not link:
-                continue
-            date = ""
-            raw = (item.findtext("pubDate") or "").strip()
-            if raw:
-                try:
-                    date = parsedate_to_datetime(raw).strftime("%b %d, %Y").replace(" 0", " ")
-                except (TypeError, ValueError):
-                    pass
-            posts.append({"title": title, "link": link, "date": date})
-            if len(posts) >= limit:
-                break
-        return posts
-    except Exception as e:  # noqa: BLE001 — any failure means "no rail", never a broken build
-        print(f"  note: Substack feed unavailable ({e.__class__.__name__}) — "
-              "building without the latest-posts list.")
-        return []
 
 LANES = {
     "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
@@ -193,13 +149,22 @@ NUMWORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight"
 def numword(n: int) -> str:
     return NUMWORDS[n] if n < len(NUMWORDS) else str(n)
 
+# The last two tiers were called "official" and "vendor" until 2026-08-06. Both
+# names described *who was speaking* rather than *what kind of claim they were
+# making*, which is the distinction the tiers actually draw — and both carried a
+# verdict the board has no business issuing. "Official" lent a lab's own
+# announcement the air of a public record; "vendor" read as a slur on anyone
+# with something to sell, which caught university labs and agencies touting
+# their own tooling in the same net. The replacements name the epistemics
+# instead: whether the speaker has formally put the statement in its own name,
+# and whether the party making a measurement is the party being measured.
 CONF = {
     "confirmed": "Confirmed by org", "claimed": "Claimed by attacker",
     "researchers": "Reported by researchers", "press": "Reported by press",
-    "official": "Official announcement", "vendor": "Vendor claim — unverified",
+    "on-record": "On the record", "self-reported": "Self-reported, untested",
 }
 CONF_VAR = {"confirmed": "--cap", "claimed": "--atk", "researchers": "--def",
-            "press": "--ink-3", "official": "--pol", "vendor": "--atk"}
+            "press": "--ink-3", "on-record": "--pol", "self-reported": "--atk"}
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -359,12 +324,21 @@ def validate(d: dict):
         if not w.get("thread") or not w.get("status"):
             errors.append(f"watchlist entry missing thread or status: {w!r}")
 
-    # dossiers[] is optional — a data.json without one builds exactly as before.
+    # The key was called "dossiers" until 2026-08-06. Renaming it silently would
+    # make every brief page vanish from a build that otherwise reports success,
+    # which is the one failure mode this generator is built to make impossible.
+    if "dossiers" in d:
+        errors.append("data.json still has a 'dossiers' key — it was renamed to "
+                      "'briefs' on 2026-08-06. Rename the key (and, inside each "
+                      "entry, nothing else changes) and rebuild.")
+
+    # briefs[] is optional — a data.json without one builds exactly as before.
     # When present it is held to the same rule as items[]: every claim carries a
     # source you opened, and nothing is dated into the future.
+    item_ids = {i.get("id") for i in d["items"]}
     slugs = set()
-    for n, dos in enumerate(d.get("dossiers", [])):
-        where = f"dossier[{n}] {dos.get('slug', '<no slug>')}"
+    for n, dos in enumerate(d.get("briefs", [])):
+        where = f"brief[{n}] {dos.get('slug', '<no slug>')}"
         for f in ("slug", "title", "summary", "stages"):
             if not dos.get(f):
                 errors.append(f"{where}: missing field '{f}'")
@@ -376,8 +350,53 @@ def validate(d: dict):
             errors.append(f"{where}: slug must be kebab-case (letters, digits, hyphens)")
         if dos.get("lane") and dos["lane"] not in LANES:
             errors.append(f"{where}: lane must be one of {', '.join(LANES)}")
+
+        # acts[] is the optional panel layout. It carries no facts of its own:
+        # every bullet in a panel is a stage or an existing board item, so the
+        # act layer can be added, reordered or deleted without touching a
+        # single sourced claim. The checks below exist because the two ways it
+        # can go wrong are both silent — a stage pointing at an act that does
+        # not exist, or an act layout that quietly drops stages it forgot.
+        acts = dos.get("acts", [])
+        act_ids = set()
+        rows = {}
+        for m, a in enumerate(acts):
+            aw = f"{where} act[{m}] {a.get('id', '<no id>')}"
+            for f in ("id", "headline"):
+                if not a.get(f):
+                    errors.append(f"{aw}: missing field '{f}'")
+            aid = a.get("id", "")
+            if aid in act_ids:
+                errors.append(f"{aw}: duplicate act id")
+            act_ids.add(aid)
+            if aid and not all(c.isalnum() or c == "-" for c in aid):
+                errors.append(f"{aw}: id must be kebab-case (letters, digits, hyphens)")
+            if a.get("lane") and a["lane"] not in LANES:
+                errors.append(f"{aw}: lane must be one of {', '.join(LANES)}")
+            if "row" in a:
+                if not isinstance(a["row"], int):
+                    errors.append(f"{aw}: row must be a whole number")
+                else:
+                    rows.setdefault(a["row"], []).append(aid)
+            for iid in a.get("items", []):
+                if iid not in item_ids:
+                    errors.append(f"{aw}: folds in item '{iid}', which is not in items[]")
+        for r, members in rows.items():
+            if len(members) > ACT_ROW_MAX:
+                errors.append(f"{where}: row {r} has {len(members)} acts "
+                              f"({', '.join(members)}); at most {ACT_ROW_MAX} fit "
+                              f"side by side before the panels stop being readable")
+
         for m, s in enumerate(dos.get("stages", [])):
             sw = f"{where} stage[{m}]"
+            if acts:
+                if not s.get("act"):
+                    errors.append(f"{sw}: this brief has acts[], so every stage needs "
+                                  f"an 'act' — a stage without one would not appear "
+                                  f"on the page at all")
+                elif s["act"] not in act_ids:
+                    errors.append(f"{sw}: act '{s['act']}' is not one of "
+                                  f"{', '.join(sorted(i for i in act_ids if i))}")
             for f in ("date", "label", "what"):
                 if not s.get(f):
                     errors.append(f"{sw}: missing field '{f}'")
@@ -396,6 +415,15 @@ def validate(d: dict):
                     errors.append(f"{sw}: dated in the future ({s['date']})")
             except (KeyError, ValueError):
                 errors.append(f"{sw}: date must be YYYY-MM-DD")
+
+        # An act carrying neither a stage nor a folded-in item renders as a
+        # headline over white space. That is a headline making a claim nothing
+        # underneath it supports, so it is worth saying out loud.
+        used = {s.get("act") for s in dos.get("stages", [])}
+        for a in acts:
+            if a.get("id") not in used and not a.get("items"):
+                warnings.append(f"{where}: act '{a.get('id')}' has no stages and folds "
+                                f"in no items — its headline would stand on nothing")
 
     root = Path(__file__).parent
     for a in d["archives"]:
@@ -433,9 +461,6 @@ class Site:
     def __init__(self, data: dict):
         self.d = data
         self.as_of = data.get("updatedISO", "")
-        # Latest newsletter posts, filled in by build() after validation. Kept
-        # off the constructor so tests and snapshots never trigger a fetch.
-        self.substack_posts = []
         self.prefix = ""  # set to "../" while rendering pages inside /archive
         self.cov_start, self.cov_end = coverage_span(data)
         self.coverage = fmt_span(self.cov_start, self.cov_end)
@@ -449,11 +474,13 @@ class Site:
         # is short enough that the whole period fits on the front page.
         self.front_cutoff = (self.weeks[FRONT_WEEKS - 1]["monday"]
                              if len(self.weeks) > FRONT_WEEKS else "")
-        # Dossiers are optional. With none in data.json the Threads link, the
-        # index page and the board's dossier rail all disappear, so a data file
+        # Briefs are optional. With none in data.json the Briefs link, the
+        # index page and the board's brief rail all disappear, so a data file
         # written before this feature existed still builds unchanged.
-        self.dossiers = sorted(data.get("dossiers", []),
-                               key=lambda x: x.get("updated", ""), reverse=True)
+        self.briefs = sorted(data.get("briefs", []),
+                             key=lambda x: x.get("updated", ""), reverse=True)
+        # Acts fold in board items by id; this is the lookup that resolves them.
+        self.by_id = {i["id"]: i for i in data.get("items", []) if i.get("id")}
 
     def lane_sections(self, key: str, items=None, group=None) -> str:
         """Item cards for a lane, optionally split under week headings."""
@@ -524,7 +551,7 @@ class Site:
         bar below it carries the taxonomy, each lane in its own colour.
         """
         links = [("index.html", "Board")]
-        if self.dossiers:
+        if self.briefs:
             links.append(("briefs.html", "Briefs"))
         links += [("archive.html", "Archive"), ("about.html", "About")]
         out = ['<nav class="nav" aria-label="Site">',
@@ -633,20 +660,11 @@ class Site:
         own = same_site(SUBSTACK_URL)
         tab = "" if own else ' target="_blank" rel="noopener"'
         label = "Subscribe" if own else "Subscribe on Substack ↗"
-        posts = ""
-        if self.substack_posts:
-            lis = "".join(
-                f'<li><a href="{escape(p["link"], quote=True)}"{tab}>{escape(p["title"])}</a>'
-                + (f'<span class="subdate">{escape(p["date"])}</span>' if p["date"] else "")
-                + '</li>'
-                for p in self.substack_posts)
-            posts = f'<h3 class="subhead">Latest from the newsletter</h3><ul class="subposts">{lis}</ul>'
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
                 f'reporting, written up and sent to your inbox — same sourcing rules, '
                 f'same corrections policy.</p>'
-                f'{posts}'
                 f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"'
                 f'{tab}>{label}</a></p>'
                 f'</section>')
@@ -835,7 +853,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   {self.older_index()}
 
-  {self.dossier_rail()}
+  {self.brief_rail()}
 
   {self.watchlist_block()}
 
@@ -1009,8 +1027,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   {self.footer()}"""
 
-    # -- dossiers -----------------------------------------------------------
-    def dossier_card(self, dos) -> str:
+    # -- briefs -------------------------------------------------------------
+    def brief_card(self, dos) -> str:
         v = LANES.get(dos.get("lane", ""), {"name": "", "pill": "", "var": "--accent"})
         style = f'--ln:var({v["var"]})'
         status = escape(dos.get("status", ""))
@@ -1026,14 +1044,14 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 f'<span class="foot"><span>{len(dos.get("stages", []))} stages</span>'
                 f'<span>{escape(span)}</span></span></a>')
 
-    def dossier_rail(self) -> str:
-        """A short pointer to the dossiers, printed on the board itself."""
-        if not self.dossiers:
+    def brief_rail(self) -> str:
+        """A short pointer to the briefs, printed on the board itself."""
+        if not self.briefs:
             return ""
-        cards = "".join(self.dossier_card(x) for x in self.dossiers[:3])
+        cards = "".join(self.brief_card(x) for x in self.briefs[:3])
         more = ('<p class="lede" style="margin-top:12px">'
-                f'<a href="{self.prefix}briefs.html">All {len(self.dossiers)} briefs ↗</a></p>'
-                if len(self.dossiers) > 3 else "")
+                f'<a href="{self.prefix}briefs.html">All {len(self.briefs)} briefs ↗</a></p>'
+                if len(self.briefs) > 3 else "")
         return ('<section class="block"><h2 class="blockhead">Briefs — incidents in stages</h2>'
                 '<p class="lede">Some stories are not a single item. A brief lays one out in '
                 'dated stages, each stage carrying its own sources and its own confidence label, '
@@ -1042,7 +1060,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 f'<div class="dgrid">{cards}</div>{more}</section>')
 
     def briefs_body(self) -> str:
-        cards = "".join(self.dossier_card(x) for x in self.dossiers)
+        cards = "".join(self.brief_card(x) for x in self.briefs)
         return f"""{self.nav("briefs.html")}
 
   <header class="pagehead">
@@ -1053,47 +1071,156 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       Every stage carries its own sources and its own confidence label.</div>
   </header>
 
-  <section class="block"><h2 class="blockhead">{len(self.dossiers)} brief{
-      "" if len(self.dossiers) == 1 else "s"}</h2>
+  <section class="block"><h2 class="blockhead">{len(self.briefs)} brief{
+      "" if len(self.briefs) == 1 else "s"}</h2>
     <div class="dgrid">{cards}</div>
   </section>
 
   {self.footer()}"""
 
-    def dossier_body(self, dos) -> str:
+    def stage_flags(self, s) -> str:
+        """Two kinds of caveat, deliberately distinguished.
+
+        "disputed" is a figure the sources disagree about — picking one number
+        and staying quiet is exactly the failure mode the sourcing rules exist
+        to prevent, so the disagreement is printed next to the claim. "note" is
+        a scope limit: what the source does NOT say, which matters most where a
+        stage sits next to another one it is easily read as explaining.
+        """
+        return "".join(
+            f'<div class="flag"><b>{lbl}</b> {escape(s[k])}</div>'
+            for k, lbl in (("disputed", "Contested:"), ("note", "Note:"))
+            if s.get(k))
+
+    def stage_meta(self, s) -> str:
+        conf = s.get("confidence", "")
+        conf_html = (f'<span class="conf c-{conf}">{CONF.get(conf, conf)}</span>'
+                     if conf else "")
+        srcs = " · ".join(
+            f'<a href="{escape(src["url"], quote=True)}" target="_blank" rel="noopener">'
+            f'{escape(src["outlet"])} ↗</a>'
+            for src in s.get("sources", []))
+        return f'<div class="meta">{conf_html}<span class="src">{srcs}</span></div>'
+
+    def act_panels(self, dos, stages) -> str:
+        """The act layout: numbered panels, some of them side by side.
+
+        An act holds no facts of its own. Its bullets are the brief's own
+        stages plus, optionally, board items folded in by id — so the same
+        sentence never exists in two places and every line on the panel still
+        carries the source it came from. Deleting acts[] from data.json gives
+        back the plain timeline with nothing lost, which is the property that
+        makes the layout safe to rearrange.
+        """
+        acts = dos.get("acts", [])
+        by_act = {}
+        for s in stages:
+            by_act.setdefault(s.get("act"), []).append(s)
+
+        # Group into rows first, because the numbering depends on it: acts
+        # sharing a "row" value sit side by side and share a number, split by a
+        # letter — 3A and 3B rather than 3 and 4. That is the whole signal of a
+        # split row, that these are two answers to one question rather than two
+        # consecutive beats. An act with no "row" gets a row of its own, keyed
+        # on its position so it can never collide with a declared row number.
+        rows, seen = [], {}
+        for n, a in enumerate(acts):
+            key = ("r", a["row"]) if a.get("row") is not None else ("solo", n)
+            if key in seen:
+                rows[seen[key]].append(a)
+            else:
+                seen[key] = len(rows)
+                rows.append([a])
+
+        out = []
+        for r, group in enumerate(rows, 1):
+            panels = []
+            for k, a in enumerate(group):
+                num = f"{r}{chr(65 + k)}" if len(group) > 1 else str(r)
+                v = LANES.get(a.get("lane", dos.get("lane", "")),
+                              {"name": "", "var": "--accent"})
+                kind = escape(a.get("kind", "") or v["name"])
+                when = escape(a.get("when", ""))
+
+                # Stages and folded-in items interleave by date rather than
+                # sitting in two blocks. A panel is a stretch of time, and a
+                # reader following it down the page should not have to restart
+                # at the top when the sourcing changes shape.
+                pts = [(s["date"], self.act_point_stage(s))
+                       for s in by_act.get(a["id"], [])]
+                for iid in a.get("items", []):
+                    it = self.by_id.get(iid)
+                    if it:
+                        pts.append((it["date"], self.act_point_item(it)))
+                pts.sort(key=lambda x: x[0])
+
+                note = (f'<div class="flag actnote"><b>Note:</b> {escape(a["note"])}</div>'
+                        if a.get("note") else "")
+                panels.append(
+                    f'<section class="act" style="--ln:var({v["var"]})">'
+                    f'<div class="acthead"><span class="actnum">{num}</span>'
+                    f'<span class="actkind">{kind}</span>'
+                    f'<span class="actwhen">{when}</span></div>'
+                    f'<h3>{escape(a["headline"])}</h3>'
+                    f'{note}<ul class="pts">{"".join(h for _, h in pts)}</ul></section>')
+            out.append(f'<div class="actrow{" split" if len(panels) > 1 else ""}">'
+                       f'{"".join(panels)}</div>')
+        return "".join(out)
+
+    def act_point_stage(self, s) -> str:
+        return (f'<li><span class="pwhen">'
+                f'<time datetime="{s["date"]}">{fmt_date(s["date"])}</time></span>'
+                f'<b>{escape(s["label"])}</b> {escape(s["what"])}'
+                f'{self.stage_meta(s)}{self.stage_flags(s)}</li>')
+
+    def act_point_item(self, it) -> str:
+        """A board item folded into a panel.
+
+        It keeps its own headline, its own wording and its own link back to the
+        lane page it was filed on, so a reader sees the item as filed rather
+        than a paraphrase written for this panel — and the hollow bullet marks
+        it as context the board already held, not something this brief found.
+        """
+        lv = LANES.get(it["lane"], {"page": "index.html"})
+        conf = it.get("confidence", "")
+        conf_html = (f'<span class="conf c-{conf}">{CONF.get(conf, conf)}</span>'
+                     if conf else "")
+        return (f'<li class="fold"><span class="pwhen">'
+                f'<time datetime="{it["date"]}">{fmt_date(it["date"])}</time></span>'
+                f'<b>{escape(it["headline"])}</b> {escape(it["core"])}'
+                f'<div class="meta">{conf_html}<span class="src">'
+                f'<a href="{escape(it["url"], quote=True)}" target="_blank" '
+                f'rel="noopener">{escape(it["outlet"])} ↗</a> · '
+                f'<a href="{self.prefix}{lv["page"]}#{escape(it["id"], quote=True)}">'
+                f'on the board</a></span></div></li>')
+
+    def brief_body(self, dos) -> str:
         v = LANES.get(dos.get("lane", ""), {"name": "", "var": "--accent"})
         stages = sorted(dos.get("stages", []), key=lambda s: s.get("date", ""))
-        rows = []
-        for s in stages:
-            conf = s.get("confidence", "")
-            conf_html = (f'<span class="conf c-{conf}">{CONF.get(conf, conf)}</span>'
-                         if conf else "")
-            srcs = " · ".join(
-                f'<a href="{escape(src["url"], quote=True)}" target="_blank" rel="noopener">'
-                f'{escape(src["outlet"])} ↗</a>'
-                for src in s.get("sources", []))
-            # Two kinds of caveat, deliberately distinguished. "disputed" is a
-            # figure the sources disagree about — picking one number and staying
-            # quiet is exactly the failure mode the sourcing rules exist to
-            # prevent, so the disagreement is printed next to the claim. "note"
-            # is a scope limit: what the source does NOT say, which matters most
-            # where a stage sits next to another one it is easily read as
-            # explaining.
-            flag = "".join(
-                f'<div class="flag"><b>{lbl}</b> {escape(s[k])}</div>'
-                for k, lbl in (("disputed", "Contested:"), ("note", "Note:"))
-                if s.get(k))
-            rows.append(
-                f'<li style="--ln:var({v["var"]})">'
-                f'<span class="when"><time datetime="{s["date"]}">{fmt_date(s["date"])}</time></span>'
-                f'<h3>{escape(s["label"])}</h3>'
-                f'<p>{escape(s["what"])}</p>'
-                f'<div class="meta">{conf_html}<span class="src">{srcs}</span></div>'
-                f'{flag}</li>')
+
+        if dos.get("acts"):
+            main = (f'<section class="block"><h2 class="blockhead">How it unfolded</h2>'
+                    f'{self.act_panels(dos, stages)}</section>')
+        else:
+            rows = [f'<li style="--ln:var({v["var"]})">'
+                    f'<span class="when"><time datetime="{s["date"]}">'
+                    f'{fmt_date(s["date"])}</time></span>'
+                    f'<h3>{escape(s["label"])}</h3>'
+                    f'<p>{escape(s["what"])}</p>'
+                    f'{self.stage_meta(s)}{self.stage_flags(s)}</li>'
+                    for s in stages]
+            main = ('<section class="block"><h2 class="blockhead">Timeline</h2>'
+                    f'<ol class="tl">{"".join(rows)}</ol></section>')
 
         pool = [{"url": src["url"], "outlet": src["outlet"], "headline": s["label"],
                  "date": s["date"]}
                 for s in stages for src in s.get("sources", [])]
+        for a in dos.get("acts", []):
+            for iid in a.get("items", []):
+                it = self.by_id.get(iid)
+                if it:
+                    pool.append({"url": it["url"], "outlet": it["outlet"],
+                                 "headline": it["headline"], "date": it["date"]})
         status = escape(dos.get("status", ""))
         stat = f'<span class="dstatus">{status}</span>' if status else ""
         return f"""{self.nav("briefs.html")}
@@ -1110,9 +1237,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     <div class="stamp"><a href="{self.prefix}briefs.html">← All briefs</a></div>
   </header>
 
-  <section class="block"><h2 class="blockhead">Timeline</h2>
-    <ol class="tl">{"".join(rows)}</ol>
-  </section>
+  {main}
 
   {self.sources_block(pool, "Sources cited in this brief")}
 
@@ -1173,11 +1298,11 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         for w in self.d["watchlist"]:
             changed = f" *(last changed {fmt_date(w['changed'])})*" if w.get("changed") else ""
             out.append(f"- **{w['thread']}** — {w['status']}{changed}")
-        if self.dossiers:
+        if self.briefs:
             out += ["", "## Briefs", ""]
-            for x in self.dossiers:
+            for x in self.briefs:
                 out.append(f"- **{x['title']}** — {x['summary']} "
-                           f"[Full timeline]({SITE_URL}/brief/{x['slug']}/)")
+                           f"[Full brief]({SITE_URL}/brief/{x['slug']}/)")
             out.append("")
 
         out += ["", "---", "",
@@ -1215,9 +1340,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
-        if self.dossiers:
+        if self.briefs:
             urls.append(("briefs.html", "weekly", "0.7"))
-            urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.dossiers]
+            urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.briefs]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
         for loc, freq, pri in urls:
@@ -1275,7 +1400,6 @@ def build(out_dir: Path):
         sys.exit(1)
 
     site = Site(data)
-    site.substack_posts = fetch_substack_posts()
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -1332,21 +1456,21 @@ def build(out_dir: Path):
             asset_prefix="../../"))
     site.prefix = ""
 
-    # briefs — the index sits at the root, each dossier two levels down under
+    # briefs — the index sits at the root, each brief two levels down under
     # /brief/<slug>/, so the prefixes follow the same pattern as the weeks.
-    if site.dossiers:
+    if site.briefs:
         write("briefs.html", site.page(
             path="briefs.html", title=f"Briefs — {SITE_NAME}",
             description=("Incident briefs: each one laid out in dated stages, "
                          "every stage separately sourced."),
             body=site.briefs_body()))
         site.prefix = "../../"
-        for dos in site.dossiers:
+        for dos in site.briefs:
             write(f'brief/{dos["slug"]}/index.html', site.page(
                 path=f'brief/{dos["slug"]}/index.html',
                 title=f'{dos["title"]} — {SITE_NAME}',
                 description=dos["summary"][:180],
-                body=site.dossier_body(dos),
+                body=site.brief_body(dos),
                 asset_prefix="../../"))
         site.prefix = ""
 
@@ -1401,6 +1525,11 @@ def build(out_dir: Path):
     print(f"  {len(data['items'])} items ({counts}), "
           f"{len(site.fresh_items())} in the 48h strip, "
           f"{len(data['watchlist'])} watchlist threads")
+    if site.briefs:
+        acts = sum(len(b.get("acts", [])) for b in site.briefs)
+        stages = sum(len(b.get("stages", [])) for b in site.briefs)
+        print(f"  {len(site.briefs)} brief{'' if len(site.briefs) == 1 else 's'}, "
+              f"{stages} stages, {acts} acts")
     print(f"  site: {SITE_URL}")
     if not SUBSTACK_URL:
         print("  note: SUBSTACK_URL is unset — subscribe links are hidden. "
