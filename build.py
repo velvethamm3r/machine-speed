@@ -31,6 +31,7 @@ on Cloudflare Pages' build image, GitHub Actions, or your laptop.
 """
 
 import argparse
+import hashlib
 import json
 import shutil
 import sys
@@ -109,6 +110,35 @@ SITE_MARK = "™"
 # archives[] point at a missing file either way — they simply stop being linked
 # from the site, so the record survives even when the index for it does not.
 SHOW_RUN_SNAPSHOTS = False
+
+
+# The stylesheet and the theme script keep the same filenames from one build to
+# the next, so a browser that has already seen them has every reason to go on
+# serving the copy it has — which is how an edit to style.css can be live on the
+# server and invisible in the window. Appending a fingerprint of the file's own
+# contents to the URL makes a changed file a different URL, so the cache is
+# bypassed exactly when it should be and honoured the rest of the time. Nothing
+# is renamed on disk: the query string is not part of the filename, so
+# style.css stays style.css for anyone reading the repo.
+_asset_versions: dict = {}
+
+
+def asset_version(name: str) -> str:
+    """`?v=` fingerprint for an asset, or "" if it cannot be read.
+
+    Falling back to no fingerprint rather than raising is deliberate. A missing
+    stylesheet is already caught by the deploy — failing the whole build over a
+    cache hint would trade a small problem for a much larger one.
+    """
+    if name not in _asset_versions:
+        p = Path(__file__).parent / "assets" / name
+        try:
+            digest = hashlib.sha256(p.read_bytes()).hexdigest()[:8]
+        except OSError:
+            digest = ""
+        _asset_versions[name] = f"?v={digest}" if digest else ""
+    return _asset_versions[name]
+
 
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
 # can never silently drop the domain setting.
@@ -785,8 +815,8 @@ class Site:
 if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
 document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 </script>
-<link rel="stylesheet" href="{asset_prefix}style.css">
-<link rel="icon" href="{asset_prefix}icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{asset_prefix}style.css{asset_version('style.css')}">
+<link rel="icon" href="{asset_prefix}icon.svg{asset_version('icon.svg')}" type="image/svg+xml">
 {extra_head}</head>
 <body>
 <div class="wrap">
@@ -794,7 +824,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
   {body}
 
 </div>
-<script src="{asset_prefix}theme.js" defer></script>
+<script src="{asset_prefix}theme.js{asset_version('theme.js')}" defer></script>
 </body>
 </html>
 """
