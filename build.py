@@ -79,6 +79,12 @@ NOTE_PLACEMENT = "footer"
 # in git history. Set to True to print it in the footer as it used to be.
 SHOW_INTERNAL_NOTE = False
 
+# Optional tagline printed in the footer between the site name and the copyright,
+# e.g. "Independent · Not affiliated with any vendor". Empty leaves the footer as
+# just the site name and the year. This is display text only — it describes the
+# project, it does not govern how a run behaves.
+FOOTER_NOTE = ""
+
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
 # can never silently drop the domain setting.
 CNAME = SITE_URL.split("//", 1)[1]
@@ -462,9 +468,9 @@ class Site:
         internal = escape(self.d.get("internalNote", ""))
         note = (f'<p style="margin-top:12px">{internal}</p>'
                 if SHOW_INTERNAL_NOTE and internal else "")
+        tag = f" · {escape(FOOTER_NOTE)}" if FOOTER_NOTE else ""
         return (f'<footer><div class="legend">{legend}</div>{note}'
-                f'<p style="margin-top:8px">{SITE_NAME} · Research and display only — nothing here '
-                f'is published or sent on anyone\'s behalf. © {year}</p></footer>')
+                f'<p style="margin-top:8px">{SITE_NAME}{tag} · © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
     def chart_lane(self) -> str:
