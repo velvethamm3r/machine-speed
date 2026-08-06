@@ -36,6 +36,12 @@ body{
 a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
 .wrap{max-width:1180px; margin:0 auto; padding:22px 22px 64px}
+/* 22px of gutter either side is 44px of a 390px phone — an eighth of the screen
+   spent on margin, and it compounds: inside .wrap sit a card border and the
+   card's own padding before any text starts. 16px still keeps the cards clear
+   of the bezel and hands back 12px to every line on every page, which is where
+   the brief's stage text was running narrowest. */
+@media(max-width:600px){.wrap{padding:16px 16px 52px}}
 @media(min-width:1400px){.wrap{max-width:1340px; padding:26px 32px 72px}}
 @media(min-width:1750px){.wrap{max-width:1560px}}
 
@@ -75,18 +81,65 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-of
 .themebtn:hover{color:var(--ink)}
 .themebtn[hidden]{display:none}
 
+/* The masthead on a phone.
+
+   Left alone, the nav wrapped onto three rows at 390px: the wordmark, then the
+   links, then the theme button stranded on a line of its own — the auto spacer
+   pushes it right, and once the links have filled a row there is nothing left
+   for it to share with. Three rows for eight controls is a lot of a small
+   screen spent before any content appears.
+
+   The fix is to say which row each thing belongs on rather than leaving it to
+   whatever fits. `order` assigns rows explicitly: the wordmark and the theme
+   toggle take the first — brand left, toggle right, which is where a reader
+   looks for it anyway — and every link takes the second. The toggle loses its
+   text label and keeps the icon, so it is a round target roughly 33px square:
+   still well over the 24px minimum for a thumb, and small enough that the
+   wordmark and its tagline are not squeezed.
+
+   The spacer earns its keep here. Ordering alone is not enough — flex wraps
+   wherever the line runs out, so the first link would ride up onto the first
+   row beside the toggle. Turned into a zero-height item at 100% width, and
+   ordered between the toggle and the links, it consumes the rest of row one and
+   forces the break. That is the whole reason it is not simply hidden.
+
+   Two rows, and the second fits at 360px: six links come to about 262px, plus
+   five gaps. The gap is what has the slack, so it steps down rather than the
+   type. A seventh destination would wrap to a third row again, and the answer
+   then is a scrolling link row, not smaller type. */
+@media(max-width:600px){
+  .nav{gap:14px; row-gap:2px; padding:12px 0 14px; margin-bottom:18px}
+  .nav .logo{order:1; margin-right:0}
+  .nav .logo b{font-size:18px}
+  .nav .themebtn{order:2; margin-left:auto; padding:6px 9px; border-radius:50%}
+  .nav .themebtn .lbl{display:none}
+  .nav .themebtn .ico{font-size:14px; line-height:1}
+  .nav .spacer{order:3; flex:0 0 100%; height:0; margin:0}
+  .nav a.link{order:4; font-size:13px}
+}
+@media(max-width:400px){
+  .nav{gap:10px}
+}
+@media(max-width:380px){
+  .nav .logo span{display:none}
+}
+
 /* Header block */
 h1{font-size:26px; margin:0; font-weight:700; letter-spacing:-.3px; display:flex; align-items:center; gap:12px}
 .lanerule{display:inline-block; width:34px; height:4px; border-radius:2px}
 .pagehead{margin-bottom:18px}
-/* Measure. Typographic advice puts comfortable prose at 60–75 characters, and
-   at that width a page introduction sits in the left third of a 1560px column
-   and reads as though it were cut off. These blocks are two or three sentences,
-   not an article, so they take a wider measure than body copy would: long
-   enough to use the page, short enough that the eye still finds the next line.
-   Anything genuinely paragraph-length — .prose on About — stays tighter. */
-.pagehead .sub{color:var(--ink-2); font-size:14px; margin-top:5px; max-width:96ch}
-@media(min-width:1400px){.pagehead .sub{font-size:14.5px; max-width:104ch}}
+/* Measure. Typographic advice puts comfortable prose at 60–75 characters, and a
+   96ch cap was the compromise here for a while. It still read as truncated: a
+   two-sentence introduction stopping two thirds of the way across leaves a void
+   down the right of the page that looks like a layout failure rather than like
+   restraint. These blocks are two or three sentences, not an article, so they
+   now run the full column and .wrap is the only thing bounding them — which is
+   what the cap should have been all along, since .wrap already steps 1180 →
+   1340 → 1560 with the viewport. To pull them back in, put a max-width here;
+   that is the only place the introduction measure is set.
+   Anything genuinely paragraph-length — .prose on About — sets its own. */
+.pagehead .sub{color:var(--ink-2); font-size:14px; margin-top:5px; max-width:none}
+@media(min-width:1400px){.pagehead .sub{font-size:14.5px}}
 /* The board's own subtitle is one short line and spans the full column. */
 .pagehead .sub.wide{max-width:none; font-size:14.5px}
 @media(min-width:1400px){.pagehead .sub.wide{font-size:15px}}
@@ -227,10 +280,18 @@ ol.sources .outlet{color:var(--ink-3)}
 .prose h2{font-size:17px; margin:26px 0 8px}
 .prose code{background:var(--panel-2); padding:1px 5px; border-radius:4px; font-size:13px}
 @media(min-width:1120px){
-  .prose{max-width:1180px; columns:2; column-gap:52px}
+  .prose{max-width:none; columns:2; column-gap:52px}
   .prose > :first-child{margin-top:0}
   .prose h2{column-span:all}
 }
+/* About is two paragraphs. A third column at 1750px was right when this page ran
+   five paragraphs deep; with two it would stand empty, which reads worse than a
+   wide measure does. So the column count stays at two and the type grows instead
+   — the measure comes back down because the character is wider, not because the
+   column is narrower, and no part of the page is left unused. If About ever gets
+   long again, restore `columns:3` here and drop the size steps. */
+@media(min-width:1400px){.prose p{font-size:15.5px}}
+@media(min-width:1750px){.prose{column-gap:60px} .prose p{font-size:16.5px}}
 
 /* Archive */
 .arch{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px}
@@ -318,7 +379,7 @@ footer{margin-top:34px; border-top:1px solid var(--line); padding-top:16px; font
    --------------------------------------------------------------------------- */
 
 /* Intro line under a section header. */
-.lede{margin:-4px 0 16px; font-size:13px; color:var(--ink-3); max-width:96ch; line-height:1.6}
+.lede{margin:-4px 0 16px; font-size:13px; color:var(--ink-3); max-width:none; line-height:1.6}
 
 /* The compressed index of older weeks. */
 .older .wkgroup{margin-bottom:22px}
@@ -386,9 +447,13 @@ footer + .pager{margin:0}
 .dgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
 /* With one brief on the board, auto-fill still lays out three tracks and the
    card occupies the first — which looks like two cards failed to load rather
-   than like there is one brief. A lone card gets its own sizing instead: wide
-   enough to be the subject of the page, not so wide it spans the screen. */
-.dgrid:has(> :only-child){grid-template-columns:minmax(0,760px)}
+   than like there is one brief. A lone card takes the whole row instead. It was
+   briefly capped at 760px, which fixed the "failed to load" reading but left
+   the right half of the page empty; the card being the full width of the column
+   is what actually makes it read as the subject of the page. The summary inside
+   it is two sentences, so it takes the card's width rather than a measure of
+   its own — a cap there would only move the empty space inside the border. */
+.dgrid:has(> :only-child){grid-template-columns:1fr}
 .dcard{
   display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px;
   padding:16px 18px 15px; box-shadow:var(--shadow); border-left:3px solid var(--ln);
@@ -522,8 +587,28 @@ footer + .pager{margin:0}
   .actrow.split{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .tl{padding-left:22px}
-  .tl > li::before{left:-22px; width:12px; height:12px}
+  /* The stage timeline, without the rail.
+
+     This is the layout a brief falls back to when it has no acts. The vertical
+     rail and its 26px indent are what make such a brief read as a sequence on a
+     laptop; on a phone they are 26px of a 358px column spent on a gutter, and
+     every stage description sets in a ribbon to the right of it.
+
+     So below 600px the rail comes off and the sequence is carried by a hairline
+     between stages plus the lane-coloured dot moved inline, ahead of the date
+     label — the same two signals, costing nothing but themselves. The stage
+     text starts at the left edge and takes the full column. The first stage
+     drops its top rule and padding so the list still begins flush with
+     everything above it. */
+  .tl{padding-left:0}
+  .tl::before,
+  .tl > li::before{display:none}
+  .tl > li{padding:15px 0 17px; border-top:1px solid var(--line)}
+  .tl > li:first-child{padding-top:0; border-top:0}
+  .tl .when{display:flex; align-items:center; gap:7px}
+  .tl .when::before{content:""; flex:none; width:9px; height:9px;
+    border-radius:50%; background:var(--ln)}
+
   .dgrid{grid-template-columns:1fr}
   .act{padding:14px 16px 4px}
   .acthead{flex-wrap:wrap; gap:6px}
