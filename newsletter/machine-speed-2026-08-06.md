@@ -296,4 +296,4 @@ The OpenAI / Hugging Face brief also gained an acts layout: the same twelve stag
 
 **Change since previous run**
 
-No new items: the incident pages were renamed from threads to briefs and moved to /brief/<slug>/ so the word stops colliding with the watchlist's own threads, the OpenAI / Hugging Face brief gained an acts layout that groups its twelve existing stages into seven sourced panels without adding a claim, and the Substack link was switched on in the nav and the footer.
+No new items and no lane researched: the Archive dropped its by-run snapshot index in favour of the weekly pages alone, date ranges inside a single month stopped repeating the month, the text measure on Briefs, Archive and About was widened so those pages stop reading as though they had been cut off, the brief page's act panels were capped at the reference design's line length, the footer gained a trademark mark, and the About text was corrected - it still described four lanes and still named the retired official and vendor confidence tiers.
