@@ -9,6 +9,10 @@ A daily run rewrites this file and nothing else.
   "updatedDisplay": "2026-07-27, 3:45 PM ET",      // required. Shown in the "Last updated" stamp.
   "judgmentNote":   "…",                           // required. Every call you made by hand, in prose.
   "internalNote":   "…",                           // required. One sentence: what changed since the last run.
+  "coverageStart":  "2026-07-01",                  // optional. First day the board claims to cover.
+  "coverageEnd":    "2026-08-05",                  // optional. Last day. Omit either and it is derived
+                                                   //   from the oldest / newest item, so the printed
+                                                   //   label can never overstate what is on the board.
   "items":     [ /* see below */ ],                // required.
   "watchlist": [ /* see below */ ],                // required.
   "archives":  [ /* see below */ ],                // required. Must contain an entry for today.
@@ -33,6 +37,13 @@ A daily run rewrites this file and nothing else.
 ```
 
 Ordering within a lane is handled by the generator (newest first) — array order does not matter.
+`date` also decides which week page an item lands on: items are bucketed by the Monday of
+their week, and each non-empty bucket becomes `/week/YYYY-MM-DD/`. Nothing else declares the
+site's structure — change a date and the item moves pages on the next build.
+Once a lane holds six or more items the generator also splits them under Monday–Sunday week
+headings, clamped to `coverageStart` / `coverageEnd` so the first and last heading never claim
+days outside the stated period. `date` must fall inside that period: outside is a warning,
+in the future is a hard error.
 
 ### Confidence tiers
 

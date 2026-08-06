@@ -7,17 +7,11 @@ GitHub Actions does the rest. Live at **https://machinespeed.techpointe.org**.
 
 1. Check the clock: `date "+%Y-%m-%d"` and `TZ=America/New_York date "+%H:%M"`. Never trust a cached date.
 2. Read `dashboard-memory.md`. Anything already listed there is not "new today."
-3. Research the four lanes for the last 7 days. Verify every item against a source you actually opened.
-4. Edit `data.json` — the only file a normal run touches. Schema is in `SCHEMA.md`.
+3. Research the four lanes for everything since `coverageEnd` in `data.json`. Verify every item against a source you actually opened.
+4. Edit `data.json` — the only file a normal run touches. Move `coverageEnd` to today, add the new items, and leave the older ones in place. Schema is in `SCHEMA.md`.
 5. Run `python3 build.py`. It validates first and refuses to write if the data is broken.
 6. Append this run to `dashboard-memory.md` and update the watchlist there.
 7. Commit and push `data.json`, `archive/`, `newsletter/` and `dashboard-memory.md`. The site rebuilds and deploys in about a minute.
-
-Prefer a human checkpoint? Push the run to a branch and open a pull request instead of
-committing to `main`. The workflow builds and validates the PR automatically (green check =
-data is well-formed; no deploy happens). Review the diff — headlines, notes, the newsletter
-draft — then merge, and only the merge publishes. This is the recommended shape for the
-morning review: the run prepares everything overnight, a human approves with one tap.
 
 Preview before committing: `python3 -m http.server -d dist 8000` → http://localhost:8000
 
@@ -26,6 +20,8 @@ Preview before committing: `python3 -m http.server -d dist 8000` → http://loca
 | Output | What it is |
 |---|---|
 | `dist/` | The whole pre-rendered site. Generated — never edit, never commit (it's in `.gitignore`). |
+| `dist/week/YYYY-MM-DD/` | One page per Monday-to-Sunday week, all four lanes, generated from the items themselves. A week with no items gets no page. |
+| `dist/sitemap.xml`, `dist/robots.txt` | Crawl hints. The sitemap lists the board, the lanes, About and every week page; dated snapshots are deliberately left out so crawlers aren't pointed at copies of the board. |
 | `dist/CNAME` | The custom domain, written on every build so a deploy can't silently drop it. |
 | `archive/machine-speed-YYYY-MM-DD.html` | Today's snapshot, written back into the repo so history survives rebuilds. **Commit this.** |
 | `newsletter/machine-speed-YYYY-MM-DD.md` | Paste-ready Substack draft of the same board. **Commit this.** Nothing is ever sent automatically. |
@@ -79,6 +75,43 @@ All at the top of `build.py`:
 | `SUBSTACK_URL` | Empty by default. Set it to the publication home and the Subscribe link appears in the nav on every page plus a subscribe block on the board. Leave empty and every Substack element disappears. |
 | `SUBSTACK_CTA` | Heading text on the subscribe block. |
 | `NEW_WINDOW_DAYS` / `STRIP_MAX` | 48-hour rule and the six-item cap on the strip. |
+| `COVERAGE_SLACK_DAYS` | How far outside `coverageStart` / `coverageEnd` an item may fall before `validate()` warns. `0` means the stated period must contain every item exactly. |
+| `NOTE_PLACEMENT` | Where the editorial note prints on the board: `"footer"` (a collapsed disclosure below the sources), `"header"` (under the hero, the old position), or `"none"`. The note still goes into `data.json`, the archive snapshot and the newsletter draft either way — this only controls the board. |
+| `GROUP_BY_WEEK` | Week headings inside each lane. `False` gives one flat newest-first list per lane. Headings only appear once a lane holds six or more items. |
+| `FRONT_WEEKS` | How many recent weeks the board prints as full cards. Older weeks stay on the page as a one-line-per-item index linking into their own week pages. Raise it to push more onto the front page, lower it to keep the front page short. |
+
+## The coverage period
+
+The board states the span of days it covers rather than a rolling window. Set
+`coverageStart` and `coverageEnd` in `data.json`; a normal run moves `coverageEnd`
+to today and leaves `coverageStart` alone, so the period grows and the board keeps
+its history on one page. If either key is missing the build derives it from the
+oldest and newest item, which means the printed label can never claim days the
+board does not actually show. To restart the period — a new quarter, say — set both
+keys and drop the items that fall outside.
+
+Items dated outside the period produce warnings, not errors: the build still ships,
+and the fix is either to widen `coverageStart` or to drop the item. An item dated in
+the future is a hard error.
+
+## How the period is split across pages
+
+A run adds items; the page structure follows from their dates, so there is nothing
+extra to maintain.
+
+The **board** (`/`) prints the most recent `FRONT_WEEKS` weeks as full cards, then
+indexes every older item one line at a time under "Earlier in this period" — nothing
+scrolls off, but the front page stops growing without limit. Each **week page**
+(`/week/YYYY-MM-DD/`, dated by its Monday) carries that week's full cards across all
+four lanes with previous/next links. The **lane pages** are unchanged: each still holds
+the whole period for its lane, week-headed. The **archive** leads with the week index
+and keeps the dated run snapshots below it.
+
+Week pages are regenerated from `data.json` on every build, so an item corrected today
+is corrected on its week page too. The dated snapshots in `archive/` are the opposite
+by design — frozen, never rewritten. That is the distinction the archive page explains
+to readers, and it is worth keeping straight: weeks are the living board, snapshots are
+the record of what it said on a given day.
 
 ## The Substack side
 
