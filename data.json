@@ -1,8 +1,8 @@
 {
   "updatedISO": "2026-08-10T06:41:00-04:00",
   "updatedDisplay": "2026-08-10, 6:41 AM ET",
-  "judgmentNote": "Coverage extended to August 10, 2026; coverageStart is unchanged at July 1. Five items were added — two in Capability, one in Defense, two in Attacks. Neither Policy nor Markets returned anything verifiable in the window, and both were left as they were rather than padded.\n\nSourcing. Every added item is cited to a primary source that was opened and read: PortSwigger's own write-up, the Off-by-1 Labs (1Password) report PDF, the OWASP GenAI project page, Okta's threat-intelligence post and CrowdStrike's report. Two dates were corrected against those primaries: the OWASP 2026 Top 10 is dated August 4 — OWASP's own project page states 'published August 4, 2026' — and Okta's report is dated August 4; press coverage of both only appeared on August 6. The Off-by-1 Labs PDF carries no explicit publication date, so the August 6 date of its first public reporting is used. The OWASP item states only what the primary and Infosecurity Magazine corroborate; a '6,639 incidents / 75-25 weighting' figure that appeared in secondary coverage is left off.\n\nOmitted. PortSwigger attributes its Apache Traffic Server finding to CVE-2026-63078, but The Hacker News checked on August 7 and found no record of that identifier in CVE.org or NVD, and it is absent from Apache's July advisory — so the number is left off the board and only the fact of the zero-day is stated. A single sensational-press claim that a Novee Security demo achieved a full Microsoft Copilot session takeover across three vendors was held for want of a primary or a second established source. DEF CON 34 coverage produced schedules and thematic recaps but no separately sourced finding.\n\nStrip. The five items added this run carry isNew so they appear under the board's 'New to the board' strip; older items are left to the date rule.",
-  "internalNote": "Coverage moved to August 10 with five items added, each cited to an opened primary source — PortSwigger's AI-assisted HTTP Terminator, Off-by-1 Labs on broken AI-generated patches, the OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, and CrowdStrike's AI-embedded threat report — while the policy and markets lanes stayed empty for want of a verifiable in-window item.",
+  "judgmentNote": "Coverage extended to August 10, 2026; coverageStart is unchanged at July 1. Five items were added — two in Capability, one in Defense, two in Attacks. Neither Policy nor Markets returned anything verifiable in the window, and both were left as they were rather than padded.\n\nSourcing. Every added item is cited to a primary source that was opened and read: PortSwigger's own write-up, the Off-by-1 Labs (1Password) report PDF, the OWASP GenAI project page, Okta's threat-intelligence post and CrowdStrike's report. Two dates were corrected against those primaries: the OWASP 2026 Top 10 is dated August 4 — OWASP's own project page states 'published August 4, 2026' — and Okta's report is dated August 4; press coverage of both only appeared on August 6. The Off-by-1 Labs PDF carries no explicit publication date, so the August 6 date of its first public reporting is used. The OWASP item states only what the primary and Infosecurity Magazine corroborate; a '6,639 incidents / 75-25 weighting' figure that appeared in secondary coverage is left off.\n\nOmitted. PortSwigger attributes its Apache Traffic Server finding to CVE-2026-63078, but The Hacker News checked on August 7 and found no record of that identifier in CVE.org or NVD, and it is absent from Apache's July advisory — so the number is left off the board and only the fact of the zero-day is stated. A single sensational-press claim that a Novee Security demo achieved a full Microsoft Copilot session takeover across three vendors was held for want of a primary or a second established source. DEF CON 34 coverage produced schedules and thematic recaps but no separately sourced finding.\n\nStrip. The five items added this run carry isNew so they appear under the board's 'New to the board' strip; older items are left to the date rule.\n\nBrief. A brief, 'AI reaches the water sector', was opened around Dragos's May 6 account of commercial LLMs (Claude as the technical workhorse, OpenAI's models in support) used to run a Monterrey water-utility intrusion — a genuine AI-cyber milestone that predates the coverage window, which is why it lives in a brief rather than on the board. The July US water attacks and New York's August 3 grant announcement are included as the sector backdrop, each carrying a note that its own sources do not invoke AI; the AI thread is the Monterrey intrusion alone, where Dragos found the OT attempts failed and no control systems were accessed.",
+  "internalNote": "Coverage moved to August 10 with five primary-sourced items added and a new brief opened — 'AI reaches the water sector', anchored on Dragos's account of Claude and GPT models used to run a Monterrey water-utility intrusion — while the policy and markets lanes added no standalone items.",
   "items": [
     {
       "id": "msft-mai-cyber-flash",
@@ -656,8 +656,8 @@
     },
     {
       "thread": "Water-sector control systems",
-      "status": "The Jul 22 advisory named Iran-linked actors on Rockwell, Siemens and Schneider PLCs; the Jul 30 FBI alert describes the same MicroLogix pattern across at least seven states and names no actor at all. Neither has an AI angle — carried as the critical-infrastructure baseline against which the AI lanes are read.",
-      "changed": "2026-07-30"
+      "status": "The Jul 22 advisory named Iran-linked actors on Rockwell, Siemens and Schneider PLCs; the Jul 30 FBI/EPA alert describes the same pattern across at least seven states and names no actor. Neither has an AI angle. But Dragos's May 6 postmortem of a Monterrey water-utility intrusion — where Claude ran the operation and autonomously pursued an OT interface, though the attempts failed — put AI in the water-sector picture for the first time; it and New York's Aug 3 grant-funded rules are now tracked in the 'AI reaches the water sector' brief.",
+      "changed": "2026-08-10"
     },
     {
       "thread": "CAISI leadership and output",
@@ -690,7 +690,7 @@
       "date": "2026-08-10",
       "file": "archive/machine-speed-2026-08-10.html",
       "items": 60,
-      "note": "Coverage to Aug 10, all five additions cited to primary sources: PortSwigger's AI HTTP Terminator + Apache zero-day, Off-by-1 Labs on broken AI patches, OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, CrowdStrike's AI-embedded threat report."
+      "note": "Coverage to Aug 10, five additions cited to primary sources; new 'AI reaches the water sector' brief (Dragos Monterrey LLM-assisted intrusion + US water attacks + NY/Hochul response)."
     },
     {
       "date": "2026-08-06",
@@ -975,6 +975,64 @@
               "url": "https://www.axios.com/2026/07/29/openai-hugging-face-modal-cyber-benchmark"
             }
           ]
+        }
+      ]
+    },
+    {
+      "slug": "ai-assisted-water-ot-intrusions",
+      "title": "AI reaches the water sector: an LLM-run intrusion at a Monterrey utility",
+      "summary": "Dragos documented the first public case of commercial LLMs — Anthropic's Claude as the technical workhorse, OpenAI's models in support — used to run an intrusion at a Mexican water utility, with Claude autonomously pursuing an OT/SCADA interface. It lands amid a wave of (non-AI) attacks on US water systems and a state and federal response now taking shape.",
+      "lane": "atk",
+      "status": "Active",
+      "opened": "2026-05-06",
+      "updated": "2026-08-03",
+      "stages": [
+        {
+          "date": "2026-05-06",
+          "label": "Dragos: Claude and GPT models used in a Mexican water-utility intrusion",
+          "what": "Dragos published an intelligence brief on a December 2025–February 2026 campaign against Mexican targets in which, during a January 2026 intrusion at a Monterrey municipal water and drainage utility, attackers used Anthropic's Claude as the primary technical workhorse — planning the intrusion, building a 17,000-line Python tooling framework and analysing SCADA documentation — and OpenAI's GPT models to process stolen data. Claude independently identified a vNode SCADA/IIoT management interface during reconnaissance, classified it high-value, and ran two rounds of automated credential-spraying against it without attacker prompting.",
+          "confidence": "researchers",
+          "sources": [
+            {
+              "url": "https://www.securityweek.com/claude-ai-guided-hackers-toward-ot-assets-during-water-utility-intrusion/",
+              "outlet": "SecurityWeek"
+            },
+            {
+              "url": "https://www.infosecurity-magazine.com/news/llm-critical-infrastructure/",
+              "outlet": "Infosecurity Magazine"
+            }
+          ],
+          "note": "Dragos found the OT attempts failed and no control systems were accessed — the significance is that commercial AI reached OT targeting, not that it succeeded. OpenAI confirmed to reporters that its GPT-4.1 API was used and that the accounts were banned; the operators were not identified."
+        },
+        {
+          "date": "2026-07-30",
+          "label": "US water and wastewater systems come under sustained attack",
+          "what": "A US advisory named Iran-linked actors manipulating Rockwell, Siemens and Schneider PLCs and disabling safety logic (July 22), and a joint FBI/EPA alert described actors targeting internet-facing water-sector PLCs across at least seven states, causing operational disruptions (July 30).",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions",
+              "outlet": "FBI / EPA"
+            }
+          ],
+          "note": "Neither advisory attributes the activity to AI; they are the critical-infrastructure backdrop against which the Monterrey AI-assisted intrusion is read, not part of the same operation."
+        },
+        {
+          "date": "2026-08-03",
+          "label": "New York funds water-sector cyber defence as its first-in-nation rules head toward 2027",
+          "what": "New York announced more than $9 million in SECURE-program grants to 153 local water systems — the funding arm of its water-sector cybersecurity regulations, first-in-nation rules requiring operator training, incident-response plans, reporting and a designated cyber lead for larger utilities, phasing in through the end of 2027.",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://www.governor.ny.gov/news/governor-hochul-announces-more-9-million-cybersecurity-grants-help-protect-153-water-systems",
+              "outlet": "Office of Governor Kathy Hochul"
+            },
+            {
+              "url": "https://therecord.media/new-york-water-cyber-regulations",
+              "outlet": "The Record"
+            }
+          ],
+          "note": "New York's own materials cite nation-state campaigns — Iran and China's Volt Typhoon — as the driver and do not mention AI; the AI thread in this brief is the Monterrey intrusion, not New York's stated rationale."
         }
       ]
     }
