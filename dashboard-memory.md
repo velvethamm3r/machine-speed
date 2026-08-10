@@ -139,6 +139,14 @@ Coverage moved from Aug 5 to Aug 10; `coverageStart` unchanged at Jul 1. Five it
 - Sector backdrop stages carry explicit notes that their own sources do NOT invoke AI: the Jul 22 Iran PLC advisory + Jul 30 FBI/EPA water alert, and New York's Aug 3 $9M/153-system SECURE grants + first-in-nation water rules (effective 2027), driven by Iran/Volt Typhoon per the state's own materials.
 - Rationale: the Dragos incident is a real AI-cyber milestone but predates the Jul 1 window, so it sits in a brief (briefs reach past the coverage period) rather than on the board. The Hochul mandate has no AI angle on its own and is carried inside the brief + watchlist, not as a standalone board item.
 
+**OpenAI–Hugging Face brief expanded (matches the lifecycle-brief images)**
+- Added two act panels: '5 The Anthropic disclosure' (Anthropic's Jul 30 post — Jul 23 halt, 141,006 runs, three orgs via Irregular, 'the real company must be part of the exercise', Mythos 5 PyPI ~1hr/15 systems, 'closer to a harness and operational failure than a model alignment failure') and '7 Insurance' (coverage-trigger gap per Assured Cyber/Browne Jacobson; claim-frequency per CyberCube/Coalition; Willis silent->affirmative + CFC; Delinea 42% exclusions; 20-50% premium reductions). Government renumbers 5->6.
+- Correction: an 'Acrisure London Wholesale' attribution in the draft images was dropped — it is in none of the opened sources; the 20-50% figure is cited to FinTech Global, where it actually appears. All Anthropic quotes verified against anthropic.com; insurance items cited to Insurance Business + FinTech Global.
+
+**HF brief panel 1 extended to the May origin (per OpenAI's Aug 5 Black Hat talk)**
+- Added May 7 (eval of unreleased model begins) -> May 26 (first Artifactory SSRF + covert message board) -> Jun 26 (zero-day RCE) -> Jul 4 (outage, creds revoked) -> Jul 20 (OpenAI realizes it was its own agents). Sourced to SC Media + Simon Willison's transcription; carried at press. Brief 'opened' moved to 2026-05-07; incident 'when' -> 'May 7 - Jul 21'.
+- Corrected two draft-image errors: May 26 was an SSRF, not a zero-day (zero-day RCE was Jun 26); Jul 4 was the outage/cred-revocation but OpenAI did not self-attribute until Jul 20. Corrections stated on the stages.
+
 **Judgment calls**
 - CVE-2026-63078 (PortSwigger's Apache Traffic Server finding) omitted: The Hacker News checked Aug 7 and found no record in CVE.org or NVD, and it is absent from Apache's July advisory. Only the fact of the zero-day is stated.
 - Held off (single sensational-press source, no primary or second outlet): a Novee Security / Elad Meged claim of a full Microsoft Copilot session takeover across three vendors via one uploaded document.
