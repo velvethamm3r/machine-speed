@@ -128,13 +128,16 @@ Each run does four things, in this order of care:
      coverage period, so never trim a brief or its stages to fit the window.
 
 4. **Refresh and carry the alert layer.**
-   - **The 48-hour strip** ("New in the last 48 hours") is the top-of-board alert. Items dated
-     within `NEW_WINDOW_DAYS` (2) of today land in it automatically. For something **new to the
-     board but a few days old in the world**, set `isNew: true` so it surfaces this run; set
-     `isNew: false` to hold a genuinely recent item out. The strip is capped at `STRIP_MAX` (6) —
-     if more than six qualify, only the newest six show and the build warns. On a genuinely quiet
-     day nothing qualifies, and an empty strip is the correct, honest outcome — do not manufacture
-     one. **Strip stale `isNew` flags from the previous run** so the strip reflects *this* run only.
+   - **The "New to the board" strip** is the top-of-board alert. (It was headed "New in the last
+     48 hours" until 2026-08-10; the label was changed because the strip is really "what this run
+     added," and forcing days-old-but-new items under a "48 hours" banner was inaccurate.) Items
+     dated within `NEW_WINDOW_DAYS` (2) of today land in it automatically; **set `isNew: true` on
+     everything this run adds** so the run's additions all surface here, and set `isNew: false` to
+     hold an item out. The strip is capped at `STRIP_MAX` (6) — if more than six qualify, only the
+     newest six show and the build warns, so on a heavy run keep `isNew` to the six that matter
+     most. On a genuinely quiet day nothing qualifies, and an empty strip ("Nothing new to report")
+     is the correct, honest outcome — do not manufacture one. **Clear the previous run's `isNew`
+     flags** so the strip reflects *this* run only.
    - **The watchlist** (`watchlist[]`, "Still watching") is the slower alert layer and it persists.
      Carry every thread forward. When a thread moved, update its `status` and set `changed` to the
      date it moved; when it did not move, leave it and its old `changed` date exactly as they are —
@@ -195,6 +198,14 @@ lane is a fine outcome.**
 
 - Every item needs a real source URL **you actually opened and read**. If you could not open it,
   either find one you can or omit the item.
+- **Emphasise primary sources.** Cite the party that produced the finding — the lab's own report,
+  the agency's own page, the vendor's own advisory — not an outlet reporting on it, whenever the
+  primary can be opened. Press is a fallback for when the primary genuinely cannot be reached, not
+  the default. If a run had to carry an item on press because a primary was unreachable (it happens
+  in unattended runs, where a fetch can't be approved), note it, and **on a later run re-open the
+  primary and upgrade the item** — swap the URL to the primary, set the outlet to the originator,
+  and set confidence from the claim's shape. When you upgrade, re-check the primary's own date and
+  figures against the press ones; they sometimes differ, and the primary wins.
 - **Never invent or guess a CVE number, statistic, date, quote or attribution.** If a detail cannot
   be verified, drop the detail — not the caveat. (Example from 2026-08-10: a CVE the primary claimed
   was omitted because it was not yet in CVE.org/NVD; only the fact of the flaw was stated.)
@@ -245,8 +256,8 @@ minute). That upload is a human step, on purpose.
 
 | Constant | Value | Meaning for a run |
 |---|---|---|
-| `NEW_WINDOW_DAYS` | `2` | Items this recent auto-enter the 48h strip. |
-| `STRIP_MAX` | `6` | Strip is capped at six; excess warns. |
+| `NEW_WINDOW_DAYS` | `2` | Items this recent auto-enter the "New to the board" strip; `isNew` overrides. |
+| `STRIP_MAX` | `6` | The "New to the board" strip is capped at six; excess warns. |
 | `COVERAGE_SLACK_DAYS` | `0` | The stated period must contain every item exactly, or the build warns. |
 | `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards; older in-window weeks index one line each. |
 | `GROUP_BY_WEEK` | `True` | A lane with six or more items splits under Monday–Sunday week headings. |

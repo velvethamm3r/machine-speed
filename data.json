@@ -1,8 +1,8 @@
 {
   "updatedISO": "2026-08-10T06:41:00-04:00",
   "updatedDisplay": "2026-08-10, 6:41 AM ET",
-  "judgmentNote": "Coverage extended to August 10, 2026; coverageStart is unchanged at July 1. Five items were added. None is a policy or markets development: both lanes returned nothing verifiable in the window and were left as they were rather than padded.\n\nPrimary access. The 1Password / Off-by-1 Labs patch study, the OWASP 2026 LLM Top 10 and Okta's gray-market report were each read in Help Net Security's reporting; the primary pages (the 1Password PDF, genai.owasp.org and okta.com) could not be opened this run, so all three are carried at press confidence with 'via Help Net Security' outlets — the same convention the July 9 Microsoft item already uses. The PortSwigger HTTP Terminator write-up and the CrowdStrike 2026 Threat Hunting Report press release were opened directly.\n\nOmitted. PortSwigger attributes its Apache Traffic Server finding to CVE-2026-63078, but The Hacker News checked on August 7 and found no record of that identifier in CVE.org or NVD, and it is absent from Apache's July advisory — so the number is left off the board and only the fact of the zero-day is stated. A single sensational-press claim that a Novee Security demo achieved a full Microsoft Copilot session takeover across three vendors was held off for want of a primary or a second established source. DEF CON 34 coverage this week produced schedules and thematic recaps but no separately sourced finding to add.\n\nDating. The CrowdStrike report is dated August 3 and the HTTP Terminator write-up August 5; both are new to the board and fall inside the period, so they are added with their real publication dates, not the run date. The four August 5–6 additions carry isNew so the 48-hour strip reflects this run's work; the older CrowdStrike report is left to the date rule.",
-  "internalNote": "Coverage moved to August 10 with five items added from Black Hat and early-August research — PortSwigger's AI-assisted HTTP Terminator, Off-by-1 Labs on broken AI-generated patches, the OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, and CrowdStrike's AI-embedded threat report — while the policy and markets lanes stayed empty for want of a verifiable in-window item.",
+  "judgmentNote": "Coverage extended to August 10, 2026; coverageStart is unchanged at July 1. Five items were added — two in Capability, one in Defense, two in Attacks. Neither Policy nor Markets returned anything verifiable in the window, and both were left as they were rather than padded.\n\nSourcing. Every added item is cited to a primary source that was opened and read: PortSwigger's own write-up, the Off-by-1 Labs (1Password) report PDF, the OWASP GenAI project page, Okta's threat-intelligence post and CrowdStrike's report. Two dates were corrected against those primaries: the OWASP 2026 Top 10 is dated August 4 — OWASP's own project page states 'published August 4, 2026' — and Okta's report is dated August 4; press coverage of both only appeared on August 6. The Off-by-1 Labs PDF carries no explicit publication date, so the August 6 date of its first public reporting is used. The OWASP item states only what the primary and Infosecurity Magazine corroborate; a '6,639 incidents / 75-25 weighting' figure that appeared in secondary coverage is left off.\n\nOmitted. PortSwigger attributes its Apache Traffic Server finding to CVE-2026-63078, but The Hacker News checked on August 7 and found no record of that identifier in CVE.org or NVD, and it is absent from Apache's July advisory — so the number is left off the board and only the fact of the zero-day is stated. A single sensational-press claim that a Novee Security demo achieved a full Microsoft Copilot session takeover across three vendors was held for want of a primary or a second established source. DEF CON 34 coverage produced schedules and thematic recaps but no separately sourced finding.\n\nStrip. The five items added this run carry isNew so they appear under the board's 'New to the board' strip; older items are left to the date rule.",
+  "internalNote": "Coverage moved to August 10 with five items added, each cited to an opened primary source — PortSwigger's AI-assisted HTTP Terminator, Off-by-1 Labs on broken AI-generated patches, the OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, and CrowdStrike's AI-embedded threat report — while the policy and markets lanes stayed empty for want of a verifiable in-window item.",
   "items": [
     {
       "id": "msft-mai-cyber-flash",
@@ -573,32 +573,32 @@
       "lane": "cap",
       "date": "2026-08-06",
       "headline": "Off-by-1 Labs: about three in four AI-generated vulnerability patches are broken or incomplete",
-      "core": "A study from 1Password's Off-by-1 Labs generated 6,080 candidate patches for six recent CVEs using ChatGPT 5.5 and Claude Opus 4.8 and reported that only roughly one attempt in four actually fixed the flaw, with the rest leaving the bug open or breaking the build. Patches were graded by cross-checked model validators spot-checked by humans, who agreed on the exact grade about two-thirds of the time.",
-      "confidence": "press",
-      "outlet": "1Password Off-by-1 Labs (via Help Net Security)",
-      "url": "https://www.helpnetsecurity.com/2026/08/06/1password-ai-generated-vulnerability-patches/",
+      "core": "A study from 1Password's Off-by-1 Labs had Claude Opus 4.8 and ChatGPT 5.5 generate 6,080 candidate patches for six high-impact CVEs and found only about one in four (26%) fully fixed the flaw, while 51.5% failed to fix it and 4.5% introduced a new vulnerability. The authors conclude that when a frontier model patches a vulnerability autonomously, 'there is only a roughly 1 in 4 chance that it will do so successfully.'",
+      "confidence": "researchers",
+      "outlet": "Off-by-1 Labs (1Password)",
+      "url": "https://1password.com/files/resources/frontier-models-vulnerability-patches-flawed.pdf",
       "isNew": true
     },
     {
       "id": "owasp-genai-llm-top-10-2026",
       "lane": "def",
-      "date": "2026-08-06",
-      "headline": "OWASP publishes the 2026 LLM Top 10, weighting the ranking with real-incident data for the first time",
-      "core": "The OWASP GenAI Security Project released the 2026 edition of its Top 10 for LLM Applications, keeping Prompt Injection and Sensitive Information Disclosure in the top two positions. The project said expert voting still carried 75% of the weight while the remaining 25% drew on 6,639 real incidents, which moved Excessive Agency up to third and Unbounded Consumption up four places.",
-      "confidence": "press",
-      "outlet": "OWASP GenAI Security Project (via Help Net Security)",
-      "url": "https://www.helpnetsecurity.com/2026/08/06/owasp-2026-llm-top-10-released/",
+      "date": "2026-08-04",
+      "headline": "OWASP publishes the 2026 LLM Top 10, blending expert judgement with real-incident data",
+      "core": "The OWASP GenAI Security Project published the 2026 edition of its Top 10 for LLM Applications, keeping Prompt Injection and Sensitive Information Disclosure in the top two spots and moving Excessive Agency up to third. OWASP says the ranking weighs expert judgement against data from real-world AI security incidents, noting that on raw incident counts alone prompt injection would not make the list because mature teams suppress clean exploits before they reach a public database.",
+      "confidence": "on-record",
+      "outlet": "OWASP GenAI Security Project",
+      "url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "isNew": true
     },
     {
       "id": "okta-gray-market-frontier-model-access-proxies",
       "lane": "atk",
-      "date": "2026-08-06",
+      "date": "2026-08-04",
       "headline": "Okta documents gray-market services reselling frontier-model access — and reading every prompt that passes through",
-      "core": "Okta's threat-intelligence team detailed underground services, including one branded 'Poison Claude', that resell access to Anthropic and OpenAI models at a fraction of list price by abusing cloud free credits and proxying requests. Okta noted that a gateway proxy has full visibility into every prompt it forwards, and that separate vendors sell created or stolen API credentials on criminal forums.",
-      "confidence": "press",
-      "outlet": "Okta Threat Intelligence (via Help Net Security)",
-      "url": "https://www.helpnetsecurity.com/2026/08/06/ai-model-access-fraud-gray-market/",
+      "core": "Okta's threat-intelligence team documented gray-market services, one branded 'Poison Claude' with roughly 881 users, that resell Anthropic and OpenAI model access at 5-15% of list price by pooling accounts created on abused AWS Bedrock free credits. Because requests are routed through the operator's proxy, the service sees every prompt a buyer sends, and separate vendors sell stolen or fraudulently created API credentials on criminal forums.",
+      "confidence": "researchers",
+      "outlet": "Okta Threat Intelligence",
+      "url": "https://www.okta.com/blog/threat-intelligence/free_tokens_for_sale/",
       "isNew": true
     },
     {
@@ -609,7 +609,8 @@
       "core": "CrowdStrike's annual Threat Hunting Report documents adversaries using LLMs to generate payloads and shell commands, abuse enterprise models and target AI infrastructure, citing one campaign that sent nearly 200,000 model requests in two minutes. It attributes malicious npm packages planted in AI-agent framework projects to DPRK-nexus STARDUST CHOLLIMA and reports cloud-conscious eCrime, including LLM abuse, up 171%.",
       "confidence": "researchers",
       "outlet": "CrowdStrike",
-      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-2026-threat-hunting-report/"
+      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-2026-threat-hunting-report/",
+      "isNew": true
     }
   ],
   "watchlist": [
@@ -645,7 +646,7 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. On August 6 1Password's Off-by-1 Labs added that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions.",
+      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions.",
       "changed": "2026-08-06"
     },
     {
@@ -675,7 +676,7 @@
     },
     {
       "thread": "Model-access abuse",
-      "status": "A distinct surface from attackers wielding agents: the theft and resale of the model access itself. Okta's August 6 report details gray-market proxies — one branded 'Poison Claude' — reselling Anthropic and OpenAI access by abusing cloud free credits, with full visibility into every forwarded prompt, alongside forums selling stolen API credentials. CrowdStrike separately reports LLMjacking at scale, one campaign sending nearly 200,000 model requests in two minutes.",
+      "status": "A distinct surface from attackers wielding agents: the theft and resale of the model access itself. Okta's August 4 report details gray-market proxies — one branded 'Poison Claude' — reselling Anthropic and OpenAI access off abused AWS Bedrock free credits, with full visibility into every forwarded prompt, alongside forums selling stolen API credentials. CrowdStrike separately reports LLMjacking at scale, one campaign sending nearly 200,000 model requests in two minutes.",
       "changed": "2026-08-06"
     },
     {
@@ -689,7 +690,7 @@
       "date": "2026-08-10",
       "file": "archive/machine-speed-2026-08-10.html",
       "items": 60,
-      "note": "Coverage to Aug 10: PortSwigger's AI HTTP Terminator + Apache zero-day, Off-by-1 Labs on broken AI patches, OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, CrowdStrike's AI-embedded threat report."
+      "note": "Coverage to Aug 10, all five additions cited to primary sources: PortSwigger's AI HTTP Terminator + Apache zero-day, Off-by-1 Labs on broken AI patches, OWASP 2026 LLM Top 10, Okta on gray-market model-access proxies, CrowdStrike's AI-embedded threat report."
     },
     {
       "date": "2026-08-06",

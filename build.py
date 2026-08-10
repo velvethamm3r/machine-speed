@@ -48,8 +48,8 @@ SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
                     "cyber capability and the defense & policy lag around it.")
-NEW_WINDOW_DAYS = 2   # items this recent get the "New" badge / 48h strip
-STRIP_MAX = 6         # spec caps the "New in the last 48 hours" strip at six
+NEW_WINDOW_DAYS = 2   # items this recent auto-enter the "New to the board" strip; isNew overrides
+STRIP_MAX = 6         # spec caps the "New to the board" strip at six
 
 # A brief's acts can sit side by side when they share a "row" — two positions
 # answering the same question, two arms of a response. Two fit on a laptop and
@@ -500,10 +500,10 @@ def validate(d: dict):
              if i.get("isNew") is True
              or (i.get("isNew") is not False and days_ago(i["date"], d["updatedISO"]) <= NEW_WINDOW_DAYS)]
     if not strip:
-        warnings.append("nothing qualifies for the 48-hour strip — the board will say so "
+        warnings.append("nothing qualifies for the 'New to the board' strip — the board will say so "
                         "plainly, which is the correct outcome on a quiet day")
     elif len(strip) > STRIP_MAX:
-        warnings.append(f"{len(strip)} items qualify for the 48-hour strip; "
+        warnings.append(f"{len(strip)} items qualify for the 'New to the board' strip; "
                         f"only the newest {STRIP_MAX} will show")
 
     # Tolerate one day of slack: updatedISO carries an ET offset while a CI
@@ -897,7 +897,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
   </header>
 
   <section class="newstrip">
-    <h2>⚡ New in the last 48 hours</h2>
+    <h2>⚡ New to the board</h2>
     {strip_inner}
   </section>
 
@@ -1343,14 +1343,14 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
         fresh = self.fresh_items()
         if fresh:
-            out.append("## New in the last 48 hours")
+            out.append("## New to the board")
             out.append("")
             for it in fresh:
                 out.append(f"- **{LANES[it['lane']]['name']}** — {it['headline']}. "
                            f"[{it['outlet']}]({it['url']})")
             out.append("")
         else:
-            out += ["## New in the last 48 hours", "",
+            out += ["## New to the board", "",
                     f"Nothing new to report since the last run. A fresh sweep across all "
                     f"{numword(len(LANES))} lanes surfaced no verified, in-window items that "
                     "weren't already shown. No items were invented to fill this space.", ""]
@@ -1596,7 +1596,7 @@ def build(out_dir: Path):
                         for k, v in LANES.items())
     print(f"\nBuild complete → {out_dir}")
     print(f"  {len(data['items'])} items ({counts}), "
-          f"{len(site.fresh_items())} in the 48h strip, "
+          f"{len(site.fresh_items())} in the 'New to the board' strip, "
           f"{len(data['watchlist'])} watchlist threads")
     if site.briefs:
         acts = sum(len(b.get("acts", [])) for b in site.briefs)
