@@ -661,7 +661,7 @@ class Site:
             f'<div class="meta">'
             f'<span class="conf c-{conf}">{CONF.get(conf, conf)}</span>'
             f'<span class="src"><a href="{escape(it["url"], quote=True)}" target="_blank" '
-            f'rel="noopener">{escape(it["outlet"])}</a> · '
+            f'rel="noopener">{escape(it["outlet"])} ↗</a> · '
             f'<time datetime="{it["date"]}">{fmt_date(it["date"])}</time></span>'
             f'</div></article>')
 
