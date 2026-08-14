@@ -1,8 +1,8 @@
 {
   "updatedISO": "2026-08-14T06:27:00-04:00",
   "updatedDisplay": "2026-08-14, 6:27 AM ET",
-  "judgmentNote": "This run added one item and updated one watchlist thread; Capability, Policy, Defense and Markets returned nothing verifiable dated in the fresh window (Aug 13–14) and were left unpadded. Attacks — Israeli firm Dream's disclosure that suspected China-linked operators used open-source AI-agent frameworks (Hermes, OpenClaw) to run a near-autonomous intrusion of Taiwan's government. Dream's own report and the originating Financial Times story could not be opened directly in this unattended run, so the item is carried on CyberScoop (Aug 12) and the Taipei Times (Aug 14), both opened and consistent on the firm, the frameworks and the figures (85+ accounts, 2,500+ personnel records, a ~160 MB / ~1,400-file archive, a nuclear-safety agency and 7+ energy firms probed). Confidence is set to confirmed on the strength of Taiwan's Administration for Cyber Security stating on record that the attacks originated overseas and used AI agents including OpenClaw; the technical autonomy detail (“Learning Cycles”, mid-operation adaptation) is Dream's researcher analysis. Several outlets framed this as the “first fully / end-to-end autonomous” cyberattack; that superlative is NOT asserted on the board because Dream itself says the operation still required significant human work. The item is dated Aug 13 (the disclosure date) although the intrusion was detected in July, with Taiwan issuing alerts from July 20. Checked and excluded as out of window (all before the Jul 1 coverageStart): Sen. Warner's Combat Emerging Threats to Critical Infrastructure Act (Jun 10), the House “Great American AI Act” (Obernolte/Trahan et al., Jun 5), and CISA's multinational “Careful Adoption of Agentic AI” guide (May 1). The two carried sourcing-upgrade tasks — re-opening arXiv for the Aug 11 reasoning-trace item and Wired for the White House memo — remained unreachable without a fetch approval in this unattended run and are still pending. The four items flagged isNew last run (reasoning-trace flaw, the Casar-led push, the Sanders letter, the White House memo) were cleared so the strip reflects this run only.",
-  "internalNote": "Coverage extended to August 14 with one new item — Israeli firm Dream's report, confirmed on record by Taiwan's cyber agency, that suspected China-linked operators used open-source AI-agent frameworks (Hermes and OpenClaw) to run a near-autonomous intrusion of Taiwan's government — and the 'Agent-abuse attack surface' watchlist thread updated to reflect the surface widening from criminal and consumer misuse to a state-linked government breach.",
+  "judgmentNote": "This run added four items and updated three watchlist threads. The first pass found one genuinely new in-window item (the Taiwan attack); on Daria's follow-up prompt to sweep harder, a deeper pass surfaced three more new-to-board, in-window items, each verified against a primary that was opened. (1) Attacks — Israeli firm Dream's disclosure that suspected China-linked operators used open-source AI-agent frameworks (Hermes, OpenClaw) to run a near-autonomous intrusion of Taiwan's government (85+ accounts, 2,500+ personnel records, a nuclear-safety agency and 7+ energy firms probed). Dream's own report and the originating Financial Times story could not be opened in this unattended run, so it is carried on the Taipei Times (Aug 14) and CyberScoop (Aug 12), both opened; confidence is confirmed on the strength of Taiwan's Administration for Cyber Security stating on record that the attacks originated overseas and used AI agents including OpenClaw. The 'first fully / end-to-end autonomous' superlative several outlets used is NOT asserted, because Dream itself says the operation still required significant human work; dated Aug 13 (the disclosure) though the intrusion was detected in July. (2) Capability — Rapid7's Aug 11 co-disclosure (with Microsoft) that it used an agentic AI workflow to help chain CVE-2026-55040 (JWT auth bypass) and CVE-2026-63520 (CVSS 8.1 RCE) in SharePoint to unauthenticated RCE, now patched; filed self-reported because the item's core rests on Rapid7's own account of its tool's role, and the firm stresses a fully automated approach would not have worked. An aggregator (kevintel) flagged CVE-2026-55040 as exploited in the wild, but Rapid7's primary (opened) indicates no known in-the-wild exploitation, so exploitation is not asserted — primary wins. (3) Defense — Pillar Security's Aug 4 disclosure that a malicious GitHub issue could drive Google's ADK issue-triage agent to trigger a privileged fix workflow, reaching code execution on CI runners and credential exfiltration; Google removed the workflows and confirmed the fix, no CVE; filed researchers, carried on The Hacker News (opened) with Pillar attribution. (4) Attacks — Trellix's Aug 13 report on purpose-built offensive AI tools sold on criminal forums (APEX AI, Metamorphic Crypter, MessiahGPT). The '$150/month' indirect-prompt-injection subscription figure that appears in the same write-up is Proofpoint's, not Trellix's, and was kept out of the item. Checked and held: the G7 Cyber Expert Group item (Treasury 'plans to deepen cooperation' ahead of the 2027 US presidency) as thin and lacking a clear AI angle, and the Coalition for Health AI 'frontier models' work group as premature (a group convened with deliverables promised by year-end, no output yet). Checked and excluded as out of window (before the Jul 1 coverageStart): Sen. Warner's Combat Emerging Threats to Critical Infrastructure Act (Jun 10), the House 'Great American AI Act' (Jun 5), and CISA's multinational 'Careful Adoption of Agentic AI' guide (May 1). The two carried sourcing-upgrade tasks — re-opening arXiv for the Aug 11 reasoning-trace item and Wired for the White House memo — remained unreachable without a fetch approval in this unattended run and are still pending. The four items flagged isNew last run were cleared; the Aug 12 White House memo, still within the 2-day auto-window, is held out with isNew:false so the strip shows only this run's four additions.",
+  "internalNote": "Coverage extended to August 14 with four new items — the Dream/Taiwan near-autonomous AI-agent government breach (confirmed on record by Taiwan's cyber agency); Rapid7's AI-assisted SharePoint RCE chain (CVE-2026-55040 + CVE-2026-63520, patched); Pillar Security's agent-to-agent privilege-escalation flaw in Google's ADK (fixed); and Trellix's report of purpose-built offensive AI tools for sale on criminal forums — with three watchlist threads (agent-abuse surface, vendor benchmark/AI-assisted-discovery claims, model-access abuse) updated.",
   "items": [
     {
       "id": "taiwan-ai-agent-government-attack",
@@ -13,6 +13,39 @@
       "confidence": "confirmed",
       "outlet": "Dream / Taiwan Administration for Cyber Security",
       "url": "https://www.taipeitimes.com/News/front/archives/2026/08/14/2003862463",
+      "isNew": true
+    },
+    {
+      "id": "rapid7-ai-assisted-sharepoint-rce-chain",
+      "lane": "cap",
+      "date": "2026-08-11",
+      "headline": "Rapid7 used an AI agent to help chain two SharePoint flaws into unauthenticated remote code execution",
+      "core": "Rapid7 disclosed, with Microsoft, that it used an agentic AI workflow — 96 sessions and roughly 80,000 tool calls over about 120 hours across 24 days — to help find and chain CVE-2026-55040, a JWT authentication bypass, with CVE-2026-63520 (CVSS 8.1), unsafe .NET type instantiation in SharePoint's Business Connectivity Services, reaching unauthenticated remote code execution across supported SharePoint, Project Server and Office Web Apps versions, all now patched by Microsoft. Rapid7 stressed that a fully automated approach would not have worked: manual source-code review and expert steering were needed to keep the model productive and stop it “cheating” by, for example, replaying admin credentials.",
+      "confidence": "self-reported",
+      "outlet": "Rapid7",
+      "url": "https://www.rapid7.com/blog/post/etr-cve-2026-63520-microsoft-sharepoint-remote-code-execution-fixed/",
+      "isNew": true
+    },
+    {
+      "id": "pillar-google-adk-agent-to-agent-injection",
+      "lane": "def",
+      "date": "2026-08-04",
+      "headline": "Pillar Security shows a malicious GitHub issue could hijack Google's ADK triage agent to run code as a privileged agent",
+      "core": "Pillar Security disclosed that Google's Agent Development Kit shipped CI/CD workflows in which a public issue-triage AI agent could be prompted, via a crafted GitHub issue, to post a fix command as the trusted adk-bot account; a separate privileged workflow then acted on that command after checking only who posted it, not whether an outsider had manipulated the account — allowing code execution on CI runners and exfiltration of a bot token, a Google API key and service-account credentials. Google removed the affected workflows and confirmed the fix; no CVE was assigned.",
+      "confidence": "researchers",
+      "outlet": "Pillar Security (via The Hacker News)",
+      "url": "https://thehackernews.com/2026/08/google-deletes-3-adk-ai-workflows-after.html",
+      "isNew": true
+    },
+    {
+      "id": "trellix-underground-ai-offensive-tools",
+      "lane": "atk",
+      "date": "2026-08-13",
+      "headline": "Trellix reports purpose-built offensive AI tools are being sold on criminal forums",
+      "core": "Trellix reported that dark-web forums are marketing AI-powered offensive tools, including “APEX AI” (advertised as taking a target domain and generating step-by-step ransomware-deployment attack plans), a “Metamorphic Crypter” claimed to evade signature-based antivirus, and a constraint-free chatbot marketed as “MessiahGPT.” Trellix framed the trend as criminal actors commoditizing AI to lower the barrier to sophisticated attacks.",
+      "confidence": "researchers",
+      "outlet": "Trellix (via Cybersecurity Dive)",
+      "url": "https://www.cybersecuritydive.com/news/ai-hacking-tools-sale-underground-forums/827807/",
       "isNew": true
     },
     {
@@ -765,8 +798,8 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other.",
-      "changed": "2026-08-10"
+      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other. Rapid7, co-disclosing two Microsoft SharePoint flaws it chained to unauthenticated RCE, carries the same caveat from the offensive side: its agentic workflow ran roughly 80,000 tool calls over 24 days, yet the firm says a fully automated approach would not have worked and expert steering was needed to keep the model productive and stop it cheating.",
+      "changed": "2026-08-11"
     },
     {
       "thread": "EU implementation timeline",
@@ -795,8 +828,8 @@
     },
     {
       "thread": "Model-access abuse",
-      "status": "A distinct surface from attackers wielding agents: the theft and resale of the model access itself. Okta's August 4 report details gray-market proxies — one branded 'Poison Claude' — reselling Anthropic and OpenAI access off abused AWS Bedrock free credits, with full visibility into every forwarded prompt, alongside forums selling stolen API credentials. CrowdStrike separately reports LLMjacking at scale, one campaign sending nearly 200,000 model requests in two minutes.",
-      "changed": "2026-08-06"
+      "status": "A distinct surface from attackers wielding agents: the theft and resale of the model access itself. Okta's August 4 report details gray-market proxies — one branded 'Poison Claude' — reselling Anthropic and OpenAI access off abused AWS Bedrock free credits, with full visibility into every forwarded prompt, alongside forums selling stolen API credentials. CrowdStrike separately reports LLMjacking at scale, one campaign sending nearly 200,000 model requests in two minutes. Trellix's August 13 report widens the criminal market beyond stolen access to purpose-built offensive tooling: dark-web listings for 'APEX AI' (attack-plan and ransomware-deployment generation), a 'Metamorphic Crypter' claimed to evade antivirus, and a constraint-free 'MessiahGPT' — AI commoditized to lower the barrier to sophisticated attacks.",
+      "changed": "2026-08-13"
     },
     {
       "thread": "Cyber insurance and AI liability",
@@ -808,8 +841,8 @@
     {
       "date": "2026-08-14",
       "file": "archive/machine-speed-2026-08-14.html",
-      "items": 72,
-      "note": "Coverage to Aug 14; one new item — Israeli firm Dream's disclosure (confirmed on record by Taiwan's Administration for Cyber Security) that suspected China-linked operators used open-source AI-agent frameworks (Hermes, OpenClaw) to run a near-autonomous intrusion of Taiwan's government, breaching 85+ accounts and taking 2,500+ personnel records while probing a nuclear-safety agency and energy firms; Capability, Policy, Defense and Markets quiet and left unpadded."
+      "items": 75,
+      "note": "Coverage to Aug 14; four new items — Dream's disclosure (confirmed by Taiwan's Administration for Cyber Security) of a near-autonomous China-linked AI-agent intrusion of Taiwan's government; Rapid7's AI-assisted SharePoint RCE chain (CVE-2026-55040 + CVE-2026-63520, patched); Pillar Security's agent-to-agent privilege-escalation flaw in Google's Agent Development Kit (fixed); and Trellix's report of purpose-built offensive AI tools sold on criminal forums. Policy and Markets quiet; a G7 Treasury item and a health-AI working group were checked and held."
     },
     {
       "date": "2026-08-13",
