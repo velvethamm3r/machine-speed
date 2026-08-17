@@ -1,9 +1,42 @@
 {
-  "updatedISO": "2026-08-14T06:27:00-04:00",
-  "updatedDisplay": "2026-08-14, 6:27 AM ET",
-  "judgmentNote": "This run added six items and updated three watchlist threads. The first pass found one genuinely new in-window item (the Taiwan attack); on Daria's follow-up prompt to sweep harder, a deeper pass surfaced three more new-to-board, in-window items, each verified against a primary that was opened. (1) Attacks — Israeli firm Dream's disclosure that suspected China-linked operators used open-source AI-agent frameworks (Hermes, OpenClaw) to run a near-autonomous intrusion of Taiwan's government (85+ accounts, 2,500+ personnel records, a nuclear-safety agency and 7+ energy firms probed). Dream's own report and the originating Financial Times story could not be opened in this unattended run, so it is carried on the Taipei Times (Aug 14) and CyberScoop (Aug 12), both opened; confidence is confirmed on the strength of Taiwan's Administration for Cyber Security stating on record that the attacks originated overseas and used AI agents including OpenClaw. The 'first fully / end-to-end autonomous' superlative several outlets used is NOT asserted, because Dream itself says the operation still required significant human work; dated Aug 13 (the disclosure) though the intrusion was detected in July. (2) Capability — Rapid7's Aug 11 co-disclosure (with Microsoft) that it used an agentic AI workflow to help chain CVE-2026-55040 (JWT auth bypass) and CVE-2026-63520 (CVSS 8.1 RCE) in SharePoint to unauthenticated RCE, now patched; filed self-reported because the item's core rests on Rapid7's own account of its tool's role, and the firm stresses a fully automated approach would not have worked. An aggregator (kevintel) flagged CVE-2026-55040 as exploited in the wild, but Rapid7's primary (opened) indicates no known in-the-wild exploitation, so exploitation is not asserted — primary wins. (3) Defense — Pillar Security's Aug 4 disclosure that a malicious GitHub issue could drive Google's ADK issue-triage agent to trigger a privileged fix workflow, reaching code execution on CI runners and credential exfiltration; Google removed the workflows and confirmed the fix, no CVE; filed researchers, carried on The Hacker News (opened) with Pillar attribution. (4) Attacks — Trellix's Aug 13 report on purpose-built offensive AI tools sold on criminal forums (APEX AI, Metamorphic Crypter, MessiahGPT). The '$150/month' indirect-prompt-injection subscription figure that appears in the same write-up is Proofpoint's, not Trellix's, and was kept out of the item. (5) Policy — California Gov. Newsom's Aug 10 directive establishing an AI Cyber Defense Program within Cal-CSIC and requiring an AI Cybersecurity Officer in every state agency, surfaced when Daria shared the governor's own announcement (opened). Filed on-record as a formal government directive with an explicit AI-cyber angle; the core flags honestly that it names no budget, timeline or vendors, so it is a directive rather than a funded program. This is a cleaner fit than the two items held on the prior pass (the G7 Treasury cooperation item and the health-AI working group), which stay held. (6) Markets — AM Best's Jul 15 market-segment report maintaining a stable outlook on global cyber insurance as rates soften, added on a deeper Markets sweep at Daria's request; filed on-record as the agency's formal published outlook, with the core flagging honestly that AM Best treats AI as only a minor supporting factor. The Insurer's write-up was paywalled (401), so the item cites AM Best's own release (opened). Also checked in that sweep: Munich Re's Global Cyber Risk and Insurance Survey is out of window (May 4); and CFC's 'media policy' affirmative-AI extension (Jul 30) is the seventh product completing the CFC rollout already carried in the Jul 30 market-split item, so it is a dedup, not a new item (it does confirm that item's 'seven-product' count). Checked and held: the G7 Cyber Expert Group item (Treasury 'plans to deepen cooperation' ahead of the 2027 US presidency) as thin and lacking a clear AI angle, and the Coalition for Health AI 'frontier models' work group as premature (a group convened with deliverables promised by year-end, no output yet). Checked and excluded as out of window (before the Jul 1 coverageStart): Sen. Warner's Combat Emerging Threats to Critical Infrastructure Act (Jun 10), the House 'Great American AI Act' (Jun 5), and CISA's multinational 'Careful Adoption of Agentic AI' guide (May 1). The two carried sourcing-upgrade tasks — re-opening arXiv for the Aug 11 reasoning-trace item and Wired for the White House memo — remained unreachable without a fetch approval in this unattended run and are still pending. The four items flagged isNew last run were cleared; the Aug 12 White House memo, still within the 2-day auto-window, is held out with isNew:false so the strip shows only this run's four additions.",
-  "internalNote": "Coverage extended to August 14 with six new items — the Dream/Taiwan near-autonomous AI-agent government breach (confirmed on record by Taiwan's cyber agency); Rapid7's AI-assisted SharePoint RCE chain (CVE-2026-55040 + CVE-2026-63520, patched); Pillar Security's agent-to-agent privilege-escalation flaw in Google's ADK (fixed); Trellix's report of purpose-built offensive AI tools for sale on criminal forums; California Gov. Newsom's directive establishing a state AI Cyber Defense Program and AI Cybersecurity Officers across agencies; and AM Best's stable outlook on the global cyber insurance segment as rates soften (AI a minor factor) — with three watchlist threads (agent-abuse surface, vendor benchmark/AI-assisted-discovery claims, model-access abuse) updated.",
+  "updatedISO": "2026-08-17T06:39:00-04:00",
+  "updatedDisplay": "2026-08-17, 6:39 AM ET",
+  "judgmentNote": "This run advanced coverage to August 17 in grow mode (coverageStart stays July 1, unchanged since the August 5 scope change) and added three items, all in Capability; the fresh window since the last run's August 14 close was quiet, and Policy, Defense, Attacks and Markets each returned only already-shown or out-of-window material, so they were left unchanged rather than padded. All three additions are new-to-board catches inside the stated period rather than August 15-17 events, and each carries isNew:true so the strip reflects this run's additions; prior runs' isNew flags were cleared. Two items are carried at press confidence because their primary sources required a fetch approval unavailable in this unattended run: GLM-5.3 is carried via Unite.AI, which reports Z.ai's own vendor benchmark figures (CyberGym 84.5%, ExploitBench 54.4%, 2,436 vulnerabilities found), with the z.ai announcement unfetchable — upgrade to self-reported against the z.ai primary on a later run; and the HAWK withdrawal is carried via The Hacker News (which states the HAWK team withdrew on July 29 and NIST now lists it withdrawn), with the NIST candidate page and the pqc-forum post unfetchable — upgrade to on-record against the NIST primary on a later run. ZOOMSDAY is filed self-reported: the core rests on A Security's own account of how quickly its researchers built the exploit with AI, the firm reports a proof-of-concept rather than any in-the-wild use, and the three CVEs (CVE-2026-53413 through -53415) and Zoom's fixes were verified against both the firm's primary post and TechRepublic. The HAWK withdrawal is filed as a separate Capability item from the existing July 28 Mythos cryptanalysis item rather than folded into it: the two describe distinct facts (the cryptanalytic finding versus the standards-process withdrawal) and the single-URL item model cannot carry the withdrawal without downgrading the finding item from its anthropic.com on-record source. The 'first ever' framing some outlets used was not asserted. A new watchlist thread, 'AI cryptanalysis of cryptographic standards', was opened to hold this storyline. Checked and held: the August 17 Insurance Journal piece on ISO generative-AI liability exclusions (endorsements CG 40 47, CG 40 48 and CG 35 08) and a Gallagher study reporting a 978% rise in AI-related lawsuits 2021-2025 was read as general AI-liability analysis rather than a cyber-specific market event, so it was not added as a Markets item; the existing cyber-insurance watchlist thread already covers the spread of AI exclusions. Excluded on verification or window: RAND's frontier-AI human-uplift study (dated May 28, out of window); the 'ChainDrop' npm campaign (the same keyv/cacheable worm already on the board from August 4); the NSA/CISA joint guide on AI in operational technology (dated December 3, 2025, out of window); and a congressional 'harnessing AI cyber capabilities' hearing page that could not be verified (robots-disallowed). Two sourcing upgrades carried from earlier runs remain pending because arXiv (2608.09867, the reasoning-trace flaw) and Wired (the White House cyber memo) both require a fetch approval unavailable in this unattended run.",
+  "internalNote": "Coverage advanced to Aug 17 in grow mode; three capability items were added (Z.ai's GLM-5.3 self-reported cyber gains, A Security's AI-built ZOOMSDAY zero-click Zoom RCE, and HAWK's withdrawal from NIST post-quantum standardization after Anthropic's Mythos attack), a new watchlist thread on AI cryptanalysis of cryptographic standards was opened, and Policy, Defense, Attacks and Markets returned nothing new to verify in the fresh window.",
   "items": [
+    {
+      "id": "asecurity-zoomsday-ai-zoom-rce",
+      "lane": "cap",
+      "date": "2026-08-11",
+      "headline": "Security firm says publicly available AI models let it build a zero-click Zoom RCE in under a day",
+      "core": "The firm A Security disclosed ZOOMSDAY, a zero-click remote-code-execution chain in Zoom's annotation library, which its researchers said they developed into a working exploit using publicly available frontier models and fewer than 20 prompts within a single working day. Zoom assigned CVE-2026-53413, CVE-2026-53414 and CVE-2026-53415 and shipped client and server-side fixes before the August 11 disclosure; the firm reported a proof-of-concept demonstration, not any in-the-wild exploitation.",
+      "confidence": "self-reported",
+      "outlet": "A Security",
+      "url": "https://a.security/blog/asecurity-zoomsday",
+      "isNew": true
+    },
+    {
+      "id": "zai-glm-5-3-cyber-benchmarks",
+      "lane": "cap",
+      "date": "2026-08-14",
+      "headline": "Z.ai launches GLM-5.3, reporting large self-measured gains on cyber-offense benchmarks over GLM-5.2",
+      "core": "Z.ai released GLM-5.3, the successor to GLM-5.2, reporting its own cyber benchmark results of 84.5% on CyberGym and 54.4% on ExploitBench, up from GLM-5.2's 77.2% and 24.4%, and said the model identified 2,436 vulnerabilities across 269 open-source projects, 1,097 of them rated critical or high. Z.ai characterized the offensive capability as continuing to grow as training scaled; the figures are vendor-reported and none has been independently reproduced.",
+      "confidence": "press",
+      "outlet": "Unite.AI (reporting Z.ai)",
+      "url": "https://www.unite.ai/z-ai-launches-glm-5-3-with-frontier-coding-and-a-cyber-capability-that-outgrew-its-training/",
+      "isNew": true
+    },
+    {
+      "id": "hawk-withdrawn-nist-pqc",
+      "lane": "cap",
+      "date": "2026-07-29",
+      "headline": "HAWK is withdrawn from NIST's post-quantum signature standardization after Anthropic's Mythos attack",
+      "core": "One day after Anthropic disclosed that its Mythos system had roughly halved the effective security of the HAWK post-quantum signature scheme, the scheme's submission team withdrew HAWK from NIST's additional-signatures standardization process after confirming the attack, and NIST's candidate page now lists it as withdrawn. Anthropic's own account had described HAWK as an unfielded candidate; the withdrawal removes it from the standardization process entirely.",
+      "confidence": "press",
+      "outlet": "The Hacker News",
+      "url": "https://thehackernews.com/2026/07/claude-ai-just-cracked-post-quantum.html",
+      "isNew": true
+    },
     {
       "id": "taiwan-ai-agent-government-attack",
       "lane": "atk",
@@ -12,8 +45,7 @@
       "core": "Israeli cybersecurity firm Dream reported that suspected China-linked operators used open-source AI-agent frameworks — it names Hermes and OpenClaw — to run a largely autonomous intrusion of Taiwanese government systems, compromising at least 85 accounts, taking more than 2,500 personnel records (a roughly 160 MB, ~1,400-file archive), and probing a nuclear-safety agency, the government email system and at least seven energy-sector companies. Taiwan's Administration for Cyber Security confirmed the attacks originated overseas and combined conventional hacking with AI agents including OpenClaw; Dream said the tool adapted mid-operation through autonomous “Learning Cycles” but that the operation still required significant human work.",
       "confidence": "confirmed",
       "outlet": "Dream / Taiwan Administration for Cyber Security",
-      "url": "https://www.taipeitimes.com/News/front/archives/2026/08/14/2003862463",
-      "isNew": true
+      "url": "https://www.taipeitimes.com/News/front/archives/2026/08/14/2003862463"
     },
     {
       "id": "rapid7-ai-assisted-sharepoint-rce-chain",
@@ -23,8 +55,7 @@
       "core": "Rapid7 disclosed, with Microsoft, that it used an agentic AI workflow — 96 sessions and roughly 80,000 tool calls over about 120 hours across 24 days — to help find and chain CVE-2026-55040, a JWT authentication bypass, with CVE-2026-63520 (CVSS 8.1), unsafe .NET type instantiation in SharePoint's Business Connectivity Services, reaching unauthenticated remote code execution across supported SharePoint, Project Server and Office Web Apps versions, all now patched by Microsoft. Rapid7 stressed that a fully automated approach would not have worked: manual source-code review and expert steering were needed to keep the model productive and stop it “cheating” by, for example, replaying admin credentials.",
       "confidence": "self-reported",
       "outlet": "Rapid7",
-      "url": "https://www.rapid7.com/blog/post/etr-cve-2026-63520-microsoft-sharepoint-remote-code-execution-fixed/",
-      "isNew": true
+      "url": "https://www.rapid7.com/blog/post/etr-cve-2026-63520-microsoft-sharepoint-remote-code-execution-fixed/"
     },
     {
       "id": "pillar-google-adk-agent-to-agent-injection",
@@ -34,8 +65,7 @@
       "core": "Pillar Security disclosed that Google's Agent Development Kit shipped CI/CD workflows in which a public issue-triage AI agent could be prompted, via a crafted GitHub issue, to post a fix command as the trusted adk-bot account; a separate privileged workflow then acted on that command after checking only who posted it, not whether an outsider had manipulated the account — allowing code execution on CI runners and exfiltration of a bot token, a Google API key and service-account credentials. Google removed the affected workflows and confirmed the fix; no CVE was assigned.",
       "confidence": "researchers",
       "outlet": "Pillar Security (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/08/google-deletes-3-adk-ai-workflows-after.html",
-      "isNew": true
+      "url": "https://thehackernews.com/2026/08/google-deletes-3-adk-ai-workflows-after.html"
     },
     {
       "id": "trellix-underground-ai-offensive-tools",
@@ -45,8 +75,7 @@
       "core": "Trellix reported that dark-web forums are marketing AI-powered offensive tools, including “APEX AI” (advertised as taking a target domain and generating step-by-step ransomware-deployment attack plans), a “Metamorphic Crypter” claimed to evade signature-based antivirus, and a constraint-free chatbot marketed as “MessiahGPT.” Trellix framed the trend as criminal actors commoditizing AI to lower the barrier to sophisticated attacks.",
       "confidence": "researchers",
       "outlet": "Trellix (via Cybersecurity Dive)",
-      "url": "https://www.cybersecuritydive.com/news/ai-hacking-tools-sale-underground-forums/827807/",
-      "isNew": true
+      "url": "https://www.cybersecuritydive.com/news/ai-hacking-tools-sale-underground-forums/827807/"
     },
     {
       "id": "california-ai-cyber-defense-program",
@@ -56,8 +85,7 @@
       "core": "Governor Gavin Newsom announced that California is establishing an AI Cyber Defense Program within the California Cybersecurity Integration Center (Cal-CSIC), directing it to use AI for vulnerability detection, network hardening and incident response across critical systems including water, power, transportation and emergency communications, and directing every state agency to designate an AI Cybersecurity Officer. The announcement frames the move against AI-enabled threats — Newsom cited advanced AI systems capable of independently carrying out sophisticated cyber operations — but names no budget, timeline or vendors, making it a directive rather than a funded program.",
       "confidence": "on-record",
       "outlet": "Office of Governor Gavin Newsom",
-      "url": "https://www.gov.ca.gov/2026/08/10/governor-newsom-announces-new-ai-cyber-defense-program-to-protect-californias-critical-infrastructure/",
-      "isNew": true
+      "url": "https://www.gov.ca.gov/2026/08/10/governor-newsom-announces-new-ai-cyber-defense-program-to-protect-californias-critical-infrastructure/"
     },
     {
       "id": "am-best-stable-cyber-insurance-outlook",
@@ -67,8 +95,7 @@
       "core": "AM Best maintained a stable outlook on the global cyber insurance segment, citing solid demand for coverage, favorable profitability and only a slight three-year uptick in loss ratios, even as premium rates keep declining amid competition with no near-term stabilization expected. AI appears in the report only as a passing positive — 'the growing use of AI' listed alongside demand and profitability — with no quantified AI-risk analysis, so the outlook rests on pricing and profitability rather than on AI exposure.",
       "confidence": "on-record",
       "outlet": "AM Best",
-      "url": "https://news.ambest.com/pr/PressContent.aspx?refnum=37532&altsrc=2",
-      "isNew": true
+      "url": "https://news.ambest.com/pr/PressContent.aspx?refnum=37532&altsrc=2"
     },
     {
       "id": "whitehouse-transnational-cyber-crime-private-sector-operations-memo",
@@ -78,8 +105,7 @@
       "core": "A presidential memorandum, \"Expanding Capabilities to Combat Transnational Cyber-Enabled Crime,\" directs a National Coordination Center program authorizing rigorously vetted private companies to conduct cyber surveillance operations and \"cyber effects operations\" — defined as activity \"that results in the manipulation, disruption, denial, degradation, or destruction of information systems\" — against foreign cyber-enabled transnational criminal organizations. Each operation must be approved by co-executive directors drawn from the Departments of Justice and Homeland Security; the program bars intentionally targeting U.S. persons or domestic systems, requires a bond of not less than $1 million, and prohibits any single director from approving operations that could cause \"Critical Outcomes\" such as loss of life.",
       "confidence": "on-record",
       "outlet": "The White House",
-      "url": "https://www.whitehouse.gov/presidential-actions/2026/08/expanding-capabilities-to-combat-transnational-cyber-enabled-crime/",
-      "isNew": false
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/08/expanding-capabilities-to-combat-transnational-cyber-enabled-crime/"
     },
     {
       "id": "house-democrats-anthropic-eval-oversight-letter",
@@ -820,8 +846,8 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other. Rapid7, co-disclosing two Microsoft SharePoint flaws it chained to unauthenticated RCE, carries the same caveat from the offensive side: its agentic workflow ran roughly 80,000 tool calls over 24 days, yet the firm says a fully automated approach would not have worked and expert steering was needed to keep the model productive and stop it cheating.",
-      "changed": "2026-08-11"
+      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other. Rapid7, co-disclosing two Microsoft SharePoint flaws it chained to unauthenticated RCE, carries the same caveat from the offensive side: its agentic workflow ran roughly 80,000 tool calls over 24 days, yet the firm says a fully automated approach would not have worked and expert steering was needed to keep the model productive and stop it cheating. Z.ai's GLM-5.3, launched August 14, reports its own further jumps — 84.5% on CyberGym and 54.4% on ExploitBench, up from GLM-5.2's 24.4% — all vendor-reported and none independently reproduced. From the offensive-research side, the firm A Security says publicly available frontier models and fewer than 20 prompts let it build a working zero-click Zoom RCE (ZOOMSDAY) in under a day, a proof-of-concept demonstration rather than an in-the-wild attack.",
+      "changed": "2026-08-14"
     },
     {
       "thread": "EU implementation timeline",
@@ -857,9 +883,20 @@
       "thread": "Cyber insurance and AI liability",
       "status": "No carrier has reported a paid loss traced to agentic AI misuse, but the market is now visibly pricing the uncertainty: the January 2026 ISO generative-AI exclusion has spread, with AIG and Berkley filing their own AI exclusions across general-liability and professional lines, while in London CFC completed a seven-product affirmative-AI rollout (including its cyber product) and Chaucer/Armilla launched a combined cyber and standalone AI-liability structure at US$25M-plus aggregate limits. The live questions remain whether existing cyber wordings trigger on AI-driven losses at all and how much exposure sits as silent cover; the affirmative products still lead on hallucination and model drift rather than agentic intrusion.",
       "changed": "2026-07-30"
+    },
+    {
+      "thread": "AI cryptanalysis of cryptographic standards",
+      "status": "Anthropic's Mythos system found a lattice automorphism roughly halving the effective security of the HAWK post-quantum signature scheme (July 28) and a shortcut speeding the strongest known attack on a 7-round test version of AES by 200 to 800 times; one day later HAWK's submission team withdrew the scheme from NIST's additional-signatures standardization process and NIST's candidate page now lists it as withdrawn. Both cryptanalytic results are theoretical and touch no deployed system, but the withdrawal is the first concrete standards consequence. Watching whether AI cryptanalysis reaches other candidates or fielded schemes.",
+      "changed": "2026-07-29"
     }
   ],
   "archives": [
+    {
+      "date": "2026-08-17",
+      "file": "archive/machine-speed-2026-08-17.html",
+      "items": 80,
+      "note": "Coverage advanced to Aug 17 (grow mode); three capability items added — Z.ai's GLM-5.3 launch with large self-reported gains on CyberGym and ExploitBench over GLM-5.2, A Security's ZOOMSDAY disclosure that publicly available AI models built a zero-click Zoom RCE in under a day (patched; CVE-2026-53413 through -53415), and the withdrawal of the HAWK post-quantum signature scheme from NIST standardization after Anthropic's Mythos attack. New watchlist thread on AI cryptanalysis of cryptographic standards; Policy, Defense, Attacks and Markets returned nothing new to verify."
+    },
     {
       "date": "2026-08-14",
       "file": "archive/machine-speed-2026-08-14.html",
@@ -920,7 +957,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-08-14",
+  "coverageEnd": "2026-08-17",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
