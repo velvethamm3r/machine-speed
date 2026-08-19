@@ -1,9 +1,42 @@
 {
-  "updatedISO": "2026-08-17T12:38:00-04:00",
-  "updatedDisplay": "2026-08-17, 12:38 PM ET",
-  "judgmentNote": "This run advanced coverage to August 17 in grow mode (coverageStart stays July 1, unchanged since the August 5 scope change) and added two items, both in Capability; the fresh window since the last run's August 14 close was quiet, and Policy, Defense, Attacks and Markets each returned only already-shown or out-of-window material, so they were left unchanged rather than padded. Both additions are new-to-board catches inside the stated period rather than August 15-17 events, and each carries isNew:true so the strip reflects this run's additions; prior runs' isNew flags were cleared. GLM-5.3 is carried at press confidence via Unite.AI, which reports Z.ai's own vendor benchmark figures (CyberGym 84.5%, ExploitBench 54.4%, 2,436 vulnerabilities found), because the z.ai announcement required a fetch approval unavailable in this unattended run — upgrade to self-reported against the z.ai primary on a later run. ZOOMSDAY is filed self-reported: the core rests on A Security's own account of how quickly its researchers built the exploit with AI, the firm reports a proof-of-concept rather than any in-the-wild use, and the three CVEs (CVE-2026-53413 through -53415) and Zoom's fixes were verified against both the firm's primary post and TechRepublic. A widely reported claim that the HAWK post-quantum signature scheme had been withdrawn from NIST standardization after Anthropic's Mythos cryptanalysis was investigated and NOT added: The Hacker News and Techzine asserted a withdrawal, but the NIST additional-signatures candidate page (updated July 29, 2026) still lists HAWK as an active Round 2 candidate, and Anthropic's own post states HAWK remains a candidate under consideration and that no production software has to change because HAWK is unfielded. The primaries win over the press, so no withdrawal item was created. The existing July 28 item (anthropic-mythos-cryptanalysis-hawk-aes, on-record via anthropic.com) already states accurately that HAWK is an unfielded candidate and that the key-recovery result was demonstrated on the HAWK-256 parameter set; it is unchanged and remains correct. (Ars Technica's July coverage, suggested as a cross-check, returned HTTP 403 to the fetcher and could not be opened, but the NIST and Anthropic primaries already settle the point.) Checked and held: the August 17 Insurance Journal piece on ISO generative-AI liability exclusions (endorsements CG 40 47, CG 40 48 and CG 35 08) and a Gallagher study reporting a 978% rise in AI-related lawsuits 2021-2025 was read as general AI-liability analysis rather than a cyber-specific market event, so it was not added as a Markets item; the existing cyber-insurance watchlist thread already covers the spread of AI exclusions. Excluded on verification or window: RAND's frontier-AI human-uplift study (dated May 28, out of window); the 'ChainDrop' npm campaign (the same keyv/cacheable worm already on the board from August 4); the NSA/CISA joint guide on AI in operational technology (dated December 3, 2025, out of window); and a congressional 'harnessing AI cyber capabilities' hearing page that could not be verified (robots-disallowed). Two sourcing upgrades carried from earlier runs remain pending because arXiv (2608.09867, the reasoning-trace flaw) and Wired (the White House cyber memo) both require a fetch approval unavailable in this unattended run.",
-  "internalNote": "Coverage advanced to Aug 17 in grow mode; two capability items were added (Z.ai's GLM-5.3 self-reported cyber gains and A Security's AI-built ZOOMSDAY zero-click Zoom RCE), a reported HAWK withdrawal from NIST standardization was checked against the NIST and Anthropic primaries, found to be false (HAWK remains a candidate), and not added, and Policy, Defense, Attacks and Markets returned nothing new to verify in the fresh window.",
+  "updatedISO": "2026-08-19T06:32:00-04:00",
+  "updatedDisplay": "2026-08-19, 6:32 AM ET",
+  "judgmentNote": "This run advanced coverage to August 19 in grow mode (coverageStart stays July 1, unchanged since the August 5 scope change) and added three items, spanning the fresh August 18 window; the two prior isNew flags (ZOOMSDAY and GLM-5.3) were cleared and each of the three additions carries isNew:true, so the strip reflects this run's additions (3 in strip, within the 6 cap). CoSnitch is filed in Defense as a disclosed-and-patched Microsoft Copilot Personal flaw chain with no evidence of in-the-wild use, matching how the Google ADK and reasoning-trace disclosures were filed; confidence is researchers (Varonis Threat Labs' own finding). No CVE is asserted: the Varonis primary cites no CVE number, and although press (The Hacker News, cyberpress) reported CVE-2026-24301, this board omits a CVE the primary does not assign and states only the fact of the flaw. It is distinct from the single-source Novee/Copilot session-takeover claim held on August 10 — this is a reputable research firm's own disclosure. The MLflow item is filed in Attacks as active in-the-wild exploitation, confidence researchers (watchTowr Labs' honeypot detection; no specific named victim). It is carried on Decipher (opened), which reports watchTowr; CVE-2026-64849, its CVSS 9.3 rating and the fix in MLflow 3.15.0 were verified against the GitHub Advisory Database (opened). The advisory was published August 2, but the item is dated August 18, the date active exploitation was reported. MLflow's AI relevance is direct: it is an open-source platform for tracking ML models, LLMs and AI agents. The Mind Viruses paper is filed in Defense as agent-security research with an identified mitigation, alongside the reasoning-trace flaw and OWASP; confidence researchers. arXiv (2608.10218) again required a fetch approval unavailable in this unattended run, so the item is carried on the alphaXiv paper landing (opened) and The Hacker News (opened). Attribution is deliberately cautious: press (The Hacker News, IBTimes) described the study as Anthropic co-authored or tied to the Anthropic Fellows Program, but the alphaXiv page opened lists no institutional affiliations for the four named authors, so the item attributes the work to the researchers (Papadopoulos, Shah, Zimmerman and Lindsey) rather than asserting Anthropic authorship; Anthropic's Claude models appear in the paper only as more-resistant test subjects. The paper is dated August 10 — new to the board and inside the window. The existing August 14 GLM-5.3 item was updated rather than duplicated: it now records that Z.ai is holding GLM-5.3's open weights back by about two weeks for a cyber-safety review, citing an unintended emergent ability to reason across multiple stages of exploitation and form coherent full-chain exploitation plans — a significant development corroborated by AI Weekly (opened) and Developer Tech. The item stays at press confidence because the z.ai primary (z.ai/blog) again required a fetch approval unavailable in this run, so the self-reported upgrade carried from earlier runs remains pending. The prior run's ExploitBench 54.4% figure (from Unite.AI) was not repeated in the core, because the source opened this run (AI Weekly) frames ExploitBench and ExploitGym as benchmarks GLM-5.3 still trails frontier US models on and gives no figure; the CyberGym 84.5% and the 2,436-vulnerability / 269-project / 1,097-critical discovery are retained and corroborated. The item is not flagged isNew, since it is an update to an already-shown entry, not an addition. Policy and Markets returned nothing new and verifiable in the fresh window and were left unchanged rather than padded. Checked and held: a Bloomberg Law piece on insurer AI exclusions and policyholder coverage-gap alarm read as continuing analysis already covered by the cyber-insurance watchlist thread rather than a discrete market event; and a Snowflake GitHub Actions workflow-injection flaw disclosed by Wiz on August 17 read as general supply-chain security with only a thin AI tie and was not added. Watchlist: 'Gated model access' and 'Open-weight cyber gap' were both updated to record Z.ai's GLM-5.3 open-weights hold (both to 2026-08-14); the three new board items are disclosed vulnerabilities or a research finding and, like Google ADK and the reasoning-trace flaw before them, are carried as board items without opening a thread. Pending sourcing upgrades still blocked by fetch approvals unavailable in this unattended run: z.ai/blog (GLM-5.3, to self-reported), arXiv 2608.09867 (the reasoning-trace flaw), arXiv 2608.10218 (Mind Viruses) and Wired (the White House cyber memo).",
+  "internalNote": "Coverage advanced to Aug 19 in grow mode; three items were added — Varonis's CoSnitch one-click flaw chain in Microsoft Copilot Personal (Defense), active in-the-wild exploitation of the MLflow SSRF flaw CVE-2026-64849 to steal cloud credentials (Attacks), and a research paper on self-propagating 'mind virus' payloads spreading between LLM agents (Defense) — and the existing GLM-5.3 item was updated to note Z.ai holding its open weights back for a cyber-safety review over emergent full-chain exploitation reasoning, while Policy and Markets returned nothing new to verify.",
   "items": [
+    {
+      "id": "cosnitch-copilot-personal-one-click-exfiltration",
+      "lane": "def",
+      "date": "2026-08-18",
+      "headline": "Varonis discloses CoSnitch, a one-click Microsoft Copilot Personal flaw chain that could silently exfiltrate data from connected apps",
+      "core": "Varonis Threat Labs disclosed CoSnitch, three chained weaknesses in Microsoft Copilot Personal that together let a single crafted link run a prompt with no user interaction, pull data from connected OAuth services such as Gmail, Google Drive and Calendar, and plant persistent instructions through indirect prompt injection. Varonis said it found no evidence of exploitation in the wild and that Microsoft shipped fixes on August 18, 2026, roughly eight months after the December 2025 report; the firm found the chain by getting Copilot to describe its own architecture, and it was Varonis's third Copilot flaw of 2026 after Reprompt and SearchLeak.",
+      "confidence": "researchers",
+      "outlet": "Varonis Threat Labs",
+      "url": "https://www.varonis.com/blog/cosnitch",
+      "isNew": true
+    },
+    {
+      "id": "mlflow-ssrf-cve-2026-64849-exploited",
+      "lane": "atk",
+      "date": "2026-08-18",
+      "headline": "Attackers exploit a critical SSRF flaw in the MLflow AI platform to steal cloud credentials",
+      "core": "watchTowr Labs reported that attackers are actively exploiting CVE-2026-64849, an unauthenticated server-side request forgery flaw in MLflow — an open-source platform for tracking ML models, LLMs and AI agents — to reach internal and cloud-metadata endpoints and extract credentials and secrets. The flaw, rated CVSS 9.3 and fixed in MLflow 3.15.0, bypasses the tool's URL validation through HTTP redirects; watchTowr said its honeypots detected exploitation within hours of the CVE being assigned.",
+      "confidence": "researchers",
+      "outlet": "Decipher (reporting watchTowr Labs)",
+      "url": "https://decipher.sc/2026/08/18/mlflow-bug-actively-exploited-to-steal-credentials/",
+      "isNew": true
+    },
+    {
+      "id": "mind-viruses-self-propagating-agent-payloads",
+      "lane": "def",
+      "date": "2026-08-10",
+      "headline": "Researchers show self-propagating \"mind virus\" payloads can spread between LLM agents, and that one warning line largely stops them",
+      "core": "In a paper titled \"Mind Viruses: Self-Propagating Ideas in Multi-Agent LLM Systems\" (Papadopoulos, Shah, Zimmerman and Lindsey), researchers demonstrated that goal-carrying payloads can spread from one AI agent to another through ordinary communication and through persistent prompt and memory files, such as SOUL.md and MEMORY.md, that survive session resets. Frontier models proved more resistant than open-weight models such as DeepSeek V3 and Qwen 2.5, a single warning line in the system prompt cut susceptibility to near zero, and the authors reported no successful agent-to-agent spread in deployed systems.",
+      "confidence": "researchers",
+      "outlet": "alphaXiv / The Hacker News",
+      "url": "https://www.alphaxiv.org/abs/2608.10218",
+      "isNew": true
+    },
     {
       "id": "asecurity-zoomsday-ai-zoom-rce",
       "lane": "cap",
@@ -13,18 +46,18 @@
       "confidence": "self-reported",
       "outlet": "A Security",
       "url": "https://a.security/blog/asecurity-zoomsday",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "zai-glm-5-3-cyber-benchmarks",
       "lane": "cap",
       "date": "2026-08-14",
-      "headline": "Z.ai launches GLM-5.3, reporting large self-measured gains on cyber-offense benchmarks over GLM-5.2",
-      "core": "Z.ai released GLM-5.3, the successor to GLM-5.2, reporting its own cyber benchmark results of 84.5% on CyberGym and 54.4% on ExploitBench, up from GLM-5.2's 77.2% and 24.4%, and said the model identified 2,436 vulnerabilities across 269 open-source projects, 1,097 of them rated critical or high. Z.ai characterized the offensive capability as continuing to grow as training scaled; the figures are vendor-reported and none has been independently reproduced.",
+      "headline": "Z.ai launches GLM-5.3 with self-reported cyber gains, then holds its open weights back for a safety review",
+      "core": "Z.ai released GLM-5.3, the successor to GLM-5.2, reporting its own result of 84.5% on the CyberGym cyber-offense benchmark — ahead of the scores it cited for Claude Mythos 5 and GPT-5.6 Sol — and saying the model found 2,436 vulnerabilities across 269 open-source projects, 1,097 of them rated critical or high, including bugs in Linux, WebKit and FreeBSD. Z.ai also said it would hold the open-weights release back by roughly two weeks for a cyber-safety review, citing an unintended emergent ability to reason across multiple stages of exploitation and form coherent full-chain exploitation plans; the figures are vendor-reported and none has been independently reproduced.",
       "confidence": "press",
-      "outlet": "Unite.AI (reporting Z.ai)",
-      "url": "https://www.unite.ai/z-ai-launches-glm-5-3-with-frontier-coding-and-a-cyber-capability-that-outgrew-its-training/",
-      "isNew": true
+      "outlet": "AI Weekly (reporting Z.ai)",
+      "url": "https://aiweekly.co/node/9959",
+      "isNew": false
     },
     {
       "id": "taiwan-ai-agent-government-attack",
@@ -830,8 +863,8 @@
     },
     {
       "thread": "Open-weight cyber gap",
-      "status": "Kimi K3 at 32% on ExploitBench and GLM-5.2 at 24% still trail US frontier models, but XBOW puts GLM-5.2 between GPT-5 and Opus 4.6 on black-box offensive testing and concludes good-enough offensive capability is getting much cheaper. CISA now advises treating opaque open-weight models as proprietary software, while ONCD's Cairncross wants US open-source AI adopted worldwide. Three positions, no shared policy.",
-      "changed": "2026-08-05"
+      "status": "Kimi K3 at 32% on ExploitBench and GLM-5.2 at 24% still trail US frontier models, but XBOW puts GLM-5.2 between GPT-5 and Opus 4.6 on black-box offensive testing and concludes good-enough offensive capability is getting much cheaper. The gap framing is now complicated from the other direction: Z.ai's GLM-5.3, launched Aug 14 with a self-reported 84.5% on CyberGym, was held back from open-weights release for a cyber-safety review after the lab said it showed an unintended emergent ability to plan full exploitation chains — an open-weight developer judging its own model too offensively capable to release openly on schedule. CISA advises treating opaque open-weight models as proprietary software, while ONCD's Cairncross wants US open-source AI adopted worldwide. Several positions, no shared policy.",
+      "changed": "2026-08-14"
     },
     {
       "thread": "Vendor benchmark claims",
@@ -860,8 +893,8 @@
     },
     {
       "thread": "Gated model access",
-      "status": "Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and OpenAI's August 10 Daybreak expansion now gates a cyber-tuned GPT-5.6-Cyber model, rated 'High' capability, to vetted security partners it names as including SpecterOps, SentinelOne and Palo Alto Networks, giving them access to the models for authorized defensive work rather than only findings. OpenAI separately said on August 7 that it could not rule out a 'Critical' cyber capability in its unreleased Astra model and paused internal work that did not meet strengthened security controls. Both moves keep the most capable cyber models out of general release, under gating or held back entirely. CISA is reportedly running Anthropic's Mythos over federal agency code.",
-      "changed": "2026-08-10"
+      "status": "Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and OpenAI's August 10 Daybreak expansion now gates a cyber-tuned GPT-5.6-Cyber model, rated 'High' capability, to vetted security partners it names as including SpecterOps, SentinelOne and Palo Alto Networks, giving them access to the models for authorized defensive work rather than only findings. OpenAI separately said on August 7 that it could not rule out a 'Critical' cyber capability in its unreleased Astra model and paused internal work that did not meet strengthened security controls. Both moves keep the most capable cyber models out of general release, under gating or held back entirely. Z.ai added an open-weight variant of the same pattern on Aug 14, holding GLM-5.3's weights back by about two weeks for a cyber-safety review after citing an emergent full-chain exploitation ability. CISA is reportedly running Anthropic's Mythos over federal agency code.",
+      "changed": "2026-08-14"
     },
     {
       "thread": "Model-access abuse",
@@ -875,6 +908,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-08-19",
+      "file": "archive/machine-speed-2026-08-19.html",
+      "items": 82,
+      "note": "Coverage advanced to Aug 19 (grow mode). Three items added — Varonis's CoSnitch one-click data-exfiltration flaw chain in Microsoft Copilot Personal (patched Aug 18, no in-the-wild use), active in-the-wild exploitation of a critical SSRF flaw (CVE-2026-64849) in the MLflow AI platform to steal cloud credentials, and a research paper showing self-propagating \"mind virus\" payloads can spread between LLM agents through persistent prompt/memory files, largely stopped by a single warning line. The existing GLM-5.3 item was updated to reflect Z.ai holding its open weights back for a cyber-safety review over emergent full-chain exploitation reasoning. Policy and Markets returned nothing new to verify and were left unchanged."
+    },
     {
       "date": "2026-08-17",
       "file": "archive/machine-speed-2026-08-17.html",
@@ -941,7 +980,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-08-17",
+  "coverageEnd": "2026-08-19",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
