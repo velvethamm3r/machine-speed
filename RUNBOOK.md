@@ -7,7 +7,7 @@ GitHub Actions does the rest. Live at **https://machinespeed.techpointe.org**.
 
 1. Check the clock: `date "+%Y-%m-%d"` and `TZ=America/New_York date "+%H:%M"`. Never trust a cached date.
 2. Read `dashboard-memory.md`. Anything already listed there is not "new today."
-3. Research the five lanes for everything since `coverageEnd` in `data.json`. Verify every item against a source you actually opened.
+3. Research the five lanes for everything since `coverageEnd` in `data.json`, working from the scan list in `SOURCES.md` as the floor. Verify every item against a source you actually opened.
 4. Edit `data.json` — the only file a normal run touches. Move `coverageEnd` to today, add the new items, and leave the older ones in place. Schema is in `SCHEMA.md`.
 5. Run `python3 build.py`. It validates first and refuses to write if the data is broken.
 6. Append this run to `dashboard-memory.md` and update the watchlist there.

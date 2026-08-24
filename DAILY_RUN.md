@@ -1,11 +1,13 @@
 # Machine Speed — DAILY_RUN
 
 **This file is the authoritative instruction for a daily run.** Read it end to end
-before touching anything. It sits on top of three references and does not replace them:
+before touching anything. It sits on top of four references and does not replace them:
 
 - `RUNBOOK.md` — how the build works, what it validates, every config knob.
 - `SCHEMA.md` — the exact shape of every field in `data.json`.
 - `dashboard-memory.md` — what has already been shown, and the running watchlist.
+- `SOURCES.md` — the scan list: the labs, big-tech security arms, cyber vendors, open-weight
+  developers, research institutions and government/advisory channels each run sweeps.
 
 A run reads those three, edits **one data file**, rebuilds, and hands the changed
 files back to a human. It never publishes and never pushes. Live board:
@@ -166,8 +168,9 @@ live board.
 2. **Read** `dashboard-memory.md`, then `RUNBOOK.md` and `SCHEMA.md`. Note the current
    `coverageStart` / `coverageEnd` and what is already shown.
 3. **Research the five lanes** — `cap`, `pol`, `def`, `atk`, `mkt` — for everything since the last
-   `coverageEnd`, plus anything new-to-the-board that still falls inside the new window. Open and
-   read every source; see "Sourcing" below.
+   `coverageEnd`, plus anything new-to-the-board that still falls inside the new window. Work from
+   `SOURCES.md`, the canonical scan list, as the **floor, not the ceiling** — sweep every source on
+   it and follow any lead it hands you past its edge. Open and read every source; see "Sourcing" below.
 4. **Edit `data.json`:**
    - `updatedISO` and `updatedDisplay` → now (ISO 8601 with the ET offset; display in `YYYY-MM-DD,
      h:MM AM/PM ET`).
@@ -195,6 +198,11 @@ live board.
 
 These matter more than volume. **Fewer real items beats more shaky ones. Never pad a lane; an empty
 lane is a fine outcome.**
+
+`SOURCES.md` is the scan list these rules apply to — the frontier labs, big-tech security arms,
+cyber and AI-security vendors, open-weight developers, universities and think tanks, and the
+government and joint-advisory channels. It is a research checklist, not something the build reads;
+treat it as the floor and add to it whenever a new source proves worth keeping.
 
 - Every item needs a real source URL **you actually opened and read**. If you could not open it,
   either find one you can or omit the item.
