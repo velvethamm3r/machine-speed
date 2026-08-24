@@ -419,6 +419,21 @@ Coverage moved from Aug 21 to Aug 24; `coverageStart` unchanged at Jul 1 (grow m
 
 _Prune note: nothing aged past the ~5-week floor this run (oldest board item is 2026-07-01, the coverage start). Board items persist within the stated period, so shown-item log entries are retained for dedup rather than dropped._
 
+### Run 2026-08-24 (re-run, 10:24 AM ET — deeper sweep via the new SOURCES.md scan list; no new items)
+
+At Daria's request, a same-day re-run exercising the newly added `SOURCES.md` scan list, focused on the source categories the morning pass did not sweep systematically: open-weight developers (Z.ai, Moonshot/Kimi, DeepSeek, Mistral, Qwen), universities and eval/safety labs (METR, Apollo, RAND, CSET, arXiv cs.CR), think tanks (CSIS, Atlantic Council), and the AI-security and general cyber vendors beyond the morning's set. The broadened sweep surfaced **no further verifiable in-window item**. No board item was added or changed in this pass; `coverageEnd` stays 2026-08-24, the timestamp was advanced, and today's snapshot was regenerated (the single Aug 24 `archives[]` entry was updated in place, not duplicated). Board unchanged at 89 items; strip still the one morning addition (Grok/Gemini).
+
+**Checked and excluded / not board-worthy this pass**
+- GLM-5.3 "found a serious vulnerability in Cursor" (VentureBeat, Aug 14) — traces to a single X post by a Z.ai developer advocate; Cursor had not confirmed and no CVE or primary disclosure exists. Excluded as unverified single-source, per the standing rule; the existing Aug 14 GLM-5.3 board item is unchanged.
+- METR's only in-window post (Aug 14) is a $71M funding update — off-remit.
+- RAND human-uplift study (May 28), METR Frontier Risk Report (Feb–Mar, published May 19), and the arXiv offensive-agent papers surfaced were all out of window; CSIS/CSET/Atlantic Council results were undated analysis rather than a discrete in-window AI-cyber event.
+
+**Pending upgrades (still blocked)** — z.ai/blog returned 404 again this pass, so the GLM-5.3 press→self-reported upgrade stays pending, alongside arXiv 2608.09867 / 2608.10218 and Wired (White House memo).
+
+**Watchlist / briefs** — unchanged this pass; nothing moved.
+
+_Prune note: nothing aged past the ~5-week floor (oldest board item is 2026-07-01, the coverage start)._
+
 ## Watchlist (thread · current status · last-changed)
 
 _Synced with data.json as of the 2026-08-24 run._
