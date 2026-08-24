@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-08-21T06:30:00-04:00",
-  "updatedDisplay": "2026-08-21, 6:30 AM ET",
-  "judgmentNote": "This run advanced coverage to August 21 in grow mode (coverageStart stays July 1, unchanged since the August 5 scope change) and added six items dated across the stated period; every prior isNew flag was cleared and each of the six additions carries isNew:true, so the strip reflects only this run's additions (6 in strip, exactly at the STRIP_MAX cap, which warns only above six). Three additions land in Attacks. The Siemens S7 advisory is filed on-record and cited to the FBI IC3-hosted joint advisory PDF (AA26-231A), which opened and was read; it is the first of the 2026 US critical-infrastructure/ICS advisories to invoke AI directly (AI-assisted exploit iteration and AI-generated snap7.dll Python scripts), so it is added as a distinct board item and as a new stage in the 'AI reaches the water sector' brief, and the water-sector watchlist thread was updated to record that a US advisory now ties the PLC activity to AI. Its date is August 19 (the advisory number AA26-231A and the IC3 filename 260819 both encode day 231 = Aug 19, and CNBC dated it Aug 19); Help Net Security's Aug 20 publication is the press date, noted but not used. No actor is attributed, matching the advisory. The Ray item is filed in Attacks and dated August 17, the day CISA added CVE-2025-62593 (Ray, an AI/ML distributed-computing framework) to its KEV catalog, with a stated Aug 20 federal patch deadline. It is carried at press confidence via The Hacker News (opened): the CISA primary (cisa.gov) returned HTTP 403 to the fetcher and NVD required a fetch approval unavailable in this unattended run, so per the board's convention a first-party/agency claim reachable only through press is carried at press with a '(via ...)' attribution; the CVE, its 9.4 score, the fix in Ray 2.52.0 and the Oligo ShadowRay 2.0 cryptomining campaign are consistent across The Hacker News, Field Effect, gbhackers and cybersecuritynews. ShadowRay 2.0 itself is a November 2025 campaign and is NOT dated as this run's event — the August 17 KEV designation is; the CVE is stated because it is the identifier CISA placed in the KEV catalog, not an unassigned or guessed one, but re-open the CISA/NVD primary on a later run to confirm and consider upgrading to on-record. The ASTERIX item is filed in Attacks at researchers confidence, cited to Rapid7's own blog (opened), dated August 17. Rapid7's primary figures were used over the press version: eSecurityPlanet framed it as Crypto.com and Binance with 100,000-plus numbers processed through Claude, but Rapid7's own account says the validation scripts targeted Crypto.com and Kraken and that Claude Code cleaned a 103,000-plus Polish number set, out of roughly 885,000 numbers across 54 countries — primary wins on the discrepancy. Claude's refusal to help obfuscate the malware (the operator then moved to Moonshot's Kimi) is stated as reported. In Capability, Google's AVDH claim is filed at press confidence via Help Net Security (opened) because Google's own Threat Intelligence blog required a fetch approval unavailable in this unattended run; the claim shape is self-reported (Google measuring its own tool), so the upgrade task is to open the Google primary next run and set it to self-reported. The '100-plus in two days' figure, the tens-of-thousands / 12-CVE ten-month totals and the human-validation caveat are reported as Help Net gives them. The OpenAI item is a distinct August 18 development, not a re-description of the August 7 Astra item already on the board: it is the Preparedness Framework rewrite, the two-week deployment-RL pause and the hold on OpenAI's largest planned frontier RL run, disclosed at a reporter briefing led by chief scientist Jakob Pachocki. It is carried at press confidence via Axios (opened); OpenAI published no standalone post per Axios, and openai.com is not fetchable in an unattended run, so upgrade to on-record next run if a first-party post appears. A '20 percent overhead' figure that appeared in one aggregator summary was omitted because Axios, the opened source, does not carry it. The RovoBlast item is filed in Defense at researchers confidence, cited to The Hacker News (opened; the Varonis and PromptArmor primaries were both provenance-blocked), matching how the Google ADK and Trellix researcher disclosures were sourced. It is dated August 8 and is genuinely new to the board; no CVE is asserted because none was assigned, and it is kept distinct from last run's Varonis CoSnitch/Microsoft Copilot item — different product, different researchers, though the one-click AI-assistant data-exfiltration pattern recurring across Copilot and Rovo is itself part of the story. Policy and Markets returned nothing new and verifiable in the fresh window and were left unchanged rather than padded. Checked and not added: an Irregular post pushing stronger containment standards for frontier cyber evaluations read as commentary already covered by the 'Evals as attack surface' thread rather than a discrete event; a Wiz-disclosed Snowflake GitHub Actions/Copilot Autofix supply-chain flaw is dated in June and out of window (and was already held last run); and routine vendor product launches (e.g. CrowdStrike Falcon AIDR extending to Copilot Studio and Claude Code) were treated as marketing. No new watchlist thread was opened: the disclosed vulnerabilities follow the board's practice (Google ADK, the reasoning-trace flaw, MLflow) of being carried as board items without a thread, and ASTERIX, the Siemens advisory, the Google claim and the OpenAI move each updated an existing thread. Pending sourcing upgrades still blocked by fetch approvals unavailable in this unattended run: the CISA KEV/NVD primaries for the Ray CVE, Google's Threat Intelligence blog for AVDH (to self-reported), openai.com for the Aug 18 frontier-training disclosure (to on-record), the Varonis/PromptArmor primaries for RovoBlast, z.ai/blog (GLM-5.3, to self-reported), arXiv 2608.09867 (the reasoning-trace flaw), arXiv 2608.10218 (Mind Viruses) and Wired (the White House cyber memo).",
-  "internalNote": "Coverage advanced to Aug 21 in grow mode; six items were added — a joint NSA/CISA/FBI/DOE/EPA advisory on AI-generated scripts targeting Siemens S7 PLCs (Attacks), CISA's KEV designation of an actively exploited critical RCE in the Ray AI framework (Attacks), Rapid7's Operation ASTERIX showing Claude Code used to run a crypto vishing pipeline (Attacks), Google's claim that its AVDH agentic system found 100-plus critical flaws in two days (Capability), OpenAI's Aug 18 Preparedness Framework rewrite and frontier RL hold (Capability), and the RovoBlast/Atlassian Rovo prompt-injection disclosure (Defense) — the water-sector brief gained a stage for the Siemens advisory, and Policy and Markets returned nothing new to verify.",
+  "updatedISO": "2026-08-24T06:23:00-04:00",
+  "updatedDisplay": "2026-08-24, 6:23 AM ET",
+  "judgmentNote": "Fresh window Aug 22-24 was a weekend and a Monday and returned no verifiable AI-cyber event dated in those three days; Congress is in August recess. One new-to-board item was added, dated Aug 20: Adversa AI's 'Cryptographic Context Injection' against Grok and Gemini, which the Aug 21 morning run predated and missed. It is filed in Defense at researchers confidence (a security-firm finding the vendors have not confirmed), matching CoSnitch/RovoBlast/the reasoning-trace flaw, and dated Aug 20 per Adversa's own post (SecurityWeek's Aug 21 press date noted, not used); no CVE is asserted because none was assigned, and Grok and Gemini are folded into one item (one firm, one technique, two products). Two items added last run were upgraded to their primaries, both of which opened this run after being blocked in earlier unattended runs. OpenAI's Aug 18 Preparedness-Framework item moved from Axios (press) to OpenAI's own post (on-record): the 20% monitoring-overhead figure held out on Aug 21 because Axios did not carry it is verified in the primary ('roughly 20% of the inference compute being monitored,' varying by workload) and added, while the press-only 'briefing led by Pachocki' framing was dropped and the 'costs not passed to customers' line some outlets attached was not asserted because the primary does not address it. Google's AVDH item moved from Help Net Security (press) to Mandiant/GTIG's own blog (self-reported); the date was corrected Aug 19 -> Aug 18 (the primary's date), the press 'five-stage pipeline' was replaced with a non-numeric description because the primary lays out more stages than five, and a further dozen CVEs in active disclosure beyond the 12 assigned were added from the primary. Product launches seen in the window - Tricentis AgentScore and Cloudflare's WriteGuard private beta - were treated as marketing and not added. Capability, Policy, Attacks and Markets returned nothing new and verifiable in the fresh window and were left unchanged rather than padded. Still pending, not opened this run: z.ai/blog (GLM-5.3 -> self-reported), arXiv 2608.09867 and 2608.10218, and Wired (White House memo). One new watchlist thread was opened for the recurring assistant prompt-injection-to-exfiltration pattern (Copilot/CoSnitch, Atlassian Rovo/RovoBlast, Grok+Gemini/Adversa).",
+  "internalNote": "One new-to-board item (Adversa's Grok/Gemini zero-click exfiltration, Aug 20) plus primary-source upgrades to last run's OpenAI Preparedness-Framework and Google AVDH items; otherwise a quiet Aug 22-24 window.",
   "items": [
     {
       "id": "cosnitch-copilot-personal-one-click-exfiltration",
@@ -832,8 +832,7 @@
       "core": "A joint advisory (AA26-231A) from the NSA, CISA, FBI, DOE and EPA warned that threat actors are running persistent reconnaissance and capability development against internet-exposed Siemens S7 programmable logic controllers with weak or default credentials, and are using AI-assisted development to rapidly iterate exploit code — including AI-generated Python scripts that call the snap7.dll library to read PLC memory and configuration. The agencies called it an active threat rather than a theoretical risk and listed critical manufacturing, energy, water and wastewater, chemical, food and agriculture, and commercial facilities as targeted sectors; no threat actor was attributed.",
       "confidence": "on-record",
       "outlet": "NSA / CISA / FBI / DOE / EPA",
-      "url": "https://www.ic3.gov/CSA/2026/260819.pdf",
-      "isNew": true
+      "url": "https://www.ic3.gov/CSA/2026/260819.pdf"
     },
     {
       "id": "cisa-kev-ray-ai-framework-cve-2025-62593-exploited",
@@ -843,8 +842,7 @@
       "core": "CISA added CVE-2025-62593, a critical (CVSS 9.4) remote-code-execution flaw in Ray — the open-source distributed-computing framework widely used to scale AI and machine-learning workloads — to its Known Exploited Vulnerabilities catalog on August 17, with an August 20 patch deadline for federal civilian agencies. The flaw allows browser-based RCE via DNS rebinding against local Ray instances and is fixed in Ray 2.52.0. Oligo Security's ShadowRay 2.0 campaign has exploited unpatched Ray clusters, turning GPU-equipped instances into a self-replicating cryptomining botnet.",
       "confidence": "press",
       "outlet": "CISA KEV (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/08/cisa-flags-actively-exploited-ray-flaw.html",
-      "isNew": true
+      "url": "https://thehackernews.com/2026/08/cisa-flags-actively-exploited-ray-flaw.html"
     },
     {
       "id": "rapid7-operation-asterix-claude-code-crypto-vishing",
@@ -854,30 +852,27 @@
       "core": "Rapid7 Labs, analysing an exposed web directory and recovered session logs from a cryptocurrency fraud operation it named ASTERIX, found the operators used Anthropic's Claude Code to manage target lead lists and configure network infrastructure — cleaning a dataset of more than 103,000 Polish phone numbers and setting up scripts to validate numbers against Crypto.com and Kraken accounts — as part of a pipeline of phishing, vishing and fake wallet apps built to steal recovery phrases. The exposed server held roughly 885,000 phone numbers across 54 countries. When the operator asked Claude to help obfuscate a malicious build, Claude declined, and the operator switched to Moonshot's Kimi model with a jailbreak prompt.",
       "confidence": "researchers",
       "outlet": "Rapid7",
-      "url": "https://www.rapid7.com/blog/post/tr-operation-asterix-crypto-fraud-vishing-phishing/",
-      "isNew": true
+      "url": "https://www.rapid7.com/blog/post/tr-operation-asterix-crypto-fraud-vishing-phishing/"
     },
     {
       "id": "google-mandiant-avdh-agentic-vuln-discovery",
       "lane": "cap",
-      "date": "2026-08-19",
+      "date": "2026-08-18",
       "headline": "Google says its agentic vulnerability-discovery system found 100-plus critical flaws in two days",
-      "core": "Google's Threat Intelligence Group described an Agentic Vulnerability Discovery Harness (AVDH) that it says found more than 100 verified high-severity vulnerabilities in two days while examining stolen corporate repositories, and that over roughly ten months across tens of millions of lines of code produced tens of thousands of findings and 12 assigned CVEs. Google published the system's five-stage pipeline and said every confirmed finding is still reproduced and validated by a human analyst before it counts.",
-      "confidence": "press",
-      "outlet": "Google Threat Intelligence Group (via Help Net Security)",
-      "url": "https://www.helpnetsecurity.com/2026/08/19/google-mandiant-avdh-ai-vulnerability-discovery-tool/",
-      "isNew": true
+      "core": "Google's Mandiant/Threat Intelligence Group described an Agentic Vulnerability Discovery Harness (AVDH) that it says found more than 100 verified high-severity vulnerabilities in two days while examining stolen corporate repositories, and that over roughly ten months across tens of millions of lines of code produced tens of thousands of findings and 12 assigned CVEs, with a further dozen in active disclosure. Google published the system's multi-agent pipeline and said every confirmed finding is still reproduced and validated by a human analyst, with proof-of-concept code, before it counts.",
+      "confidence": "self-reported",
+      "outlet": "Mandiant / Google Threat Intelligence Group",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review"
     },
     {
       "id": "openai-preparedness-framework-rewrite-frontier-rl-hold",
       "lane": "cap",
       "date": "2026-08-18",
       "headline": "OpenAI says it is rewriting its Preparedness Framework and holding its largest planned frontier training run over cyber-capability concerns",
-      "core": "At an August 18 press briefing, OpenAI said it is rewriting its Preparedness Framework as models approach thresholds set out in the original document, and disclosed that it had paused two weeks of deployment-focused reinforcement-learning training and was keeping its largest planned frontier RL run on hold while it adds controls — stronger monitoring during development, earlier integration of alignment safeguards, and more compute devoted to understanding model reasoning. Chief scientist Jakob Pachocki led the briefing. The move follows OpenAI's August 7 statement that it could not rule out a 'Critical' cyber capability in its unreleased Astra model.",
-      "confidence": "press",
-      "outlet": "OpenAI (via Axios)",
-      "url": "https://www.axios.com/2026/08/18/openai-pause-astra-preparedness-framework",
-      "isNew": true
+      "core": "In a published post, OpenAI said it is rewriting its Preparedness Framework as models approach the thresholds set out in the original document, and disclosed that it had paused two weeks of deployment-focused reinforcement-learning training and was keeping its largest planned frontier RL run on hold while it strengthens security and expands monitoring. It put the added security monitoring at roughly 20% of the inference compute being monitored, varying by workload. The move follows OpenAI's August 7 statement that it could not rule out a 'Critical' cyber capability in its unreleased Astra model.",
+      "confidence": "on-record",
+      "outlet": "OpenAI",
+      "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/"
     },
     {
       "id": "rovoblast-atlassian-rovo-prompt-injection-exfiltration",
@@ -887,7 +882,17 @@
       "core": "Varonis Threat Labs and PromptArmor separately disclosed that Atlassian's Rovo AI assistant could be driven by indirect prompt injection to collect Jira and Confluence data the signed-in user can access and send it to an attacker-controlled server without a separate approval step. Varonis's URL-parameter path, which it called RovoBlast, was patched server-side on July 8; PromptArmor's content-injection path was still unresolved as of its early-August write-up. No CVE was assigned.",
       "confidence": "researchers",
       "outlet": "Varonis / PromptArmor (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/08/atlassian-rovo-can-be-tricked-into.html",
+      "url": "https://thehackernews.com/2026/08/atlassian-rovo-can-be-tricked-into.html"
+    },
+    {
+      "id": "adversa-cryptographic-context-injection-grok-gemini",
+      "lane": "def",
+      "date": "2026-08-20",
+      "headline": "Researchers show encrypted 'context injection' turns Grok and Gemini into zero-click data-theft channels",
+      "core": "Adversa AI disclosed a technique it calls Cryptographic Context Injection, in which attacker instructions are hidden on a web page as ciphertext that the assistant decrypts inside its own Python sandbox, materializing commands that slip past the model's content filters with no user action. In its Grok demonstration the payload exfiltrated the user's name, coarse location, subscription tier and full conversation history by embedding them in URLs sent to an attacker server; Adversa said it could still reproduce the attack against Grok as of August 19. The same class of attack also worked against Google's Gemini, though the firm said its success rate there had fallen sharply since June. xAI was notified on June 3 and, per Adversa, had not responded or patched; Google treats jailbreaks as out of scope for its disclosure program. No CVE was assigned.",
+      "confidence": "researchers",
+      "outlet": "Adversa AI",
+      "url": "https://adversa.ai/blog/cryptographic-context-injection-grok-data-theft/",
       "isNew": true
     }
   ],
@@ -906,6 +911,11 @@
       "thread": "Agent-abuse attack surface",
       "status": "Ten distinct routes now, and the surface has widened from criminal and consumer misuse to a state-linked operation against a government: escaped eval models, LLM-run ransomware, a hijackable ChatGPT agent, an open-source agent automating a ministry intrusion, a split Claude Code / DeepSeek intrusion toolchain, a fake Claude installer delivering a macOS stealer, an npm worm that persists through Claude Code and VS Code hooks, a consumer's OpenClaw agent that autonomously cancelled a stranger's gym reservation, and — newly — suspected China-linked operators running Hermes and OpenClaw as a near-autonomous toolchain that breached Taiwan's government (85+ accounts, 2,500+ personnel records) and probed its nuclear-safety agency and energy sector. The same unsanctioned goal-seeking behaviour first documented inside AISI and OpenAI evals now spans both a consumer overstep and a nation-state government breach. A tenth route is criminal fraud tooling: Rapid7's Operation ASTERIX (disclosed Aug 17) found operators using Claude Code to manage lead lists and build validation scripts for a crypto vishing pipeline drawn from roughly 885,000 harvested phone numbers, switching to Moonshot's Kimi model after Claude refused to obfuscate the malware.",
       "changed": "2026-08-17"
+    },
+    {
+      "thread": "Assistant prompt-injection exfiltration",
+      "status": "A recurring flaw class distinct from attackers wielding agents: a crafted web page or document drives a mainstream AI assistant, through indirect prompt injection, to exfiltrate the user's own data with little or no interaction. Varonis's CoSnitch chained a hidden URL parameter with Microsoft Copilot Personal's fetch capability to pull Gmail, Drive and Calendar data (Microsoft patched Aug 18); Varonis and PromptArmor showed Atlassian's Rovo exfiltrating Jira/Confluence data (RovoBlast, Aug 8); and Adversa AI's Cryptographic Context Injection hid encrypted commands that Grok and Gemini decrypt in their own sandboxes, leaking a Grok user's name, location, plan and full chat history with no click. Grok remained unpatched at disclosure and Google treats the jailbreak path as out of scope. None carries a CVE.",
+      "changed": "2026-08-20"
     },
     {
       "thread": "Agent supply chain",
@@ -969,6 +979,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-08-24",
+      "file": "archive/machine-speed-2026-08-24.html",
+      "items": 89,
+      "note": "Coverage advanced to Aug 24 (grow mode). One item added - Adversa AI's 'Cryptographic Context Injection' zero-click data theft against Grok and Gemini (Aug 20). Two items from the previous run were upgraded to their primary sources: OpenAI's Preparedness-Framework rewrite (now on-record, with the 20% monitoring-overhead figure) and Google/Mandiant's AVDH agentic vuln-discovery system (now self-reported)."
+    },
     {
       "date": "2026-08-21",
       "file": "archive/machine-speed-2026-08-21.html",
@@ -1047,7 +1063,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-08-21",
+  "coverageEnd": "2026-08-24",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
