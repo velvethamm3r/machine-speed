@@ -436,11 +436,31 @@ At Daria's request, a same-day re-run exercising the newly added `SOURCES.md` sc
 
 **Ray item — conflation corrected (11:02 AM ET)** — Re-checking the item against the primary (after Daria asked whether the narrative survived the source swap) exposed a conflation that had ridden along since the Aug 21 run: the core appended "Oligo Security's ShadowRay 2.0 campaign … self-replicating cryptomining botnet," but ShadowRay 2.0 (Oligo, early Nov 2025) exploits **CVE-2023-48022** — the older, disputed Ray Jobs-API RCE — **not** the KEV item's **CVE-2025-62593** (browser RCE via DNS rebinding, added to KEV Aug 17). NVD ties the two CVEs to nothing in common and the Oligo primary (opened) confirms the different CVE, so the ShadowRay sentence was **removed** rather than left implying a link the sources do not make. The item's "actively exploited" now rests on the CISA KEV designation itself (which is what a KEV listing means), and every remaining clause is supported by the cited NVD record.
 
+**Layout fix — `build.py` strip "details" link (deliberate generator edit, not a data change)** — Daria flagged that the "details" link for the state-AG strip item was broken. Cause: the "New to the board" strip's `details ↓` link is a same-page `#id` anchor, but an item's full card is only on the home page for the front `FRONT_WEEKS` weeks. A new-to-board item dated in an *older* week (the AG demand is Aug 3, while the front page shows only the two most recent weeks) has no full card on the home page, so the `#id` anchor dangled. Fix: in `home_body()`, the strip link now checks whether the item's card is on the home page (`it["date"] >= self.front_cutoff`); if not, it points to the canonical **lane-page** anchor instead (`{prefix}{lane.page}#{id}`, rendered `details ↗`) — the same location RSS and JSON-LD already use — while recent items keep the in-page `details ↓` scroll. Verified: the AG strip link now resolves to `policy.html#state-ags-openai-preservation-demand` on the live board and `../policy.html#…` in the dated snapshot; the Grok item keeps its in-page anchor. No `data.json` or content change; `build.py` is the file to upload alongside the regenerated snapshot.
+
 **Pending upgrades (still blocked)** — z.ai/blog returned 404 again this pass, so the GLM-5.3 press→self-reported upgrade stays pending, alongside arXiv 2608.09867 / 2608.10218 and Wired (White House memo).
 
 **Strip / isNew** — two items now carry `isNew:true` (the morning's Grok/Gemini and this pass's state-AG demand; 2 in strip, within the 6 cap).
 
 **Watchlist** — the "Congressional response to the eval incidents" thread was **renamed** "Government response to the eval incidents" and broadened to hold the state AGs alongside the congressional letters; `changed` stays 2026-08-10 (the most recent event in the thread; the AG demand is Aug 3). No other thread moved; briefs unchanged.
+
+_Prune note: nothing aged past the ~5-week floor (oldest board item is 2026-07-01, the coverage start)._
+
+### Run 2026-08-24 (opportunistic Andrew Curran lead-scan, 12:59 PM ET — one item added)
+
+First live use of the "lead source" pattern from `SOURCES.md` §12. x.com is not fetchable (robots-disallowed), but WebSearch surfaces Andrew Curran's (@AndrewCurran_) posts as snippets; each surfaced lead was chased to a **primary** and verified before anything went on the board — the tweet itself is never the citation. Board now **91 items** (was 90).
+
+**New this pass (1)**
+- Guidelight AI Standards assessment scoring five frontier labs (Anthropic, Google, OpenAI, Meta, xAI) on publicly documented rogue-model containment plans — OpenAI highest at 3/5, none perfect, Anthropic and Meta lowest; chief scientist Steven Adler quoted · 2026-08-22 · Policy · press · [techcrunch.com, opened; corroborated by unite.ai]
+
+**Sourcing / judgment calls**
+- Filed `pol` under the lane's "standards and governance" remit (a standards org's governance-readiness scorecard), sitting with the other eval-incident responses (AGs, Congress). Carried at **press** on TechCrunch because Guidelight's own report URL could not be located this pass — upgrade to `researchers` against the Guidelight primary when reachable. A Wion headline that a lab "scored zero" was not used; TechCrunch (the opened source) says "lowest," not zero, so the specific low scores were left unstated beyond "Anthropic and Meta lowest."
+- **Held (Curran lead that did not survive verification):** his post that OpenAI "permanently deactivated" the Hugging Face model. The verifiable half — an internal-only research prototype, deactivated/encrypted/restricted from research access — is OpenAI's **Jul 28-29** blog update (openai.com, opened), already inside the board's coverage of that incident, not a fresh event. The novel "permanently deactivated" phrasing is an Altman press-scrum remark with no openable primary (only the tweet's paraphrase), so it was not asserted. Good demonstration that a lead can resolve to "nothing to add."
+- Other Curran snippets pointed to already-shown items (Astra pause, Anthropic's three-org disclosure).
+
+**Strip / isNew** — three items now carry `isNew:true` (Grok/Gemini, the state-AG demand, and Guidelight; 3 in strip, within the 6 cap). The strip-link fix behaved correctly on a mixed set: Guidelight (Aug 22) and Grok (Aug 20) are in front weeks and keep the in-page `details ↓` anchor, while the AG item (Aug 3, older week) uses the `policy.html#…` lane-page fallback.
+
+**Watchlist / briefs** — unchanged this pass; the Guidelight report is a single research item filed as a board item without a thread (matching VulnCheck / IBM).
 
 _Prune note: nothing aged past the ~5-week floor (oldest board item is 2026-07-01, the coverage start)._
 
