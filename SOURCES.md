@@ -133,6 +133,7 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 ## 6. US government & agencies — `pol` `def` `atk`
 
 - **CISA** — Cybersecurity Advisories https://www.cisa.gov/news-events/cybersecurity-advisories · Known Exploited Vulnerabilities (KEV) https://www.cisa.gov/known-exploited-vulnerabilities-catalog · News https://www.cisa.gov/news-events/news. `pol` `def` `atk`
+  - _Note: cisa.gov blocks automated fetchers (HTTP 403), so an unattended run usually cannot open a CISA page directly. To source a KEV entry, open the CVE on **NVD** (§10) — the NVD record carries the CISA KEV "Date Added" and "Due Date," so it confirms the KEV determination on a government primary. IC3 advisory PDFs (ic3.gov) and the co-sealed agency pages are often reachable when cisa.gov is not._
 - **NSA** — Cybersecurity Advisories & Guidance https://www.nsa.gov/Cybersecurity/Cybersecurity-Advisories-Guidance/. `def` `atk`
 - **FBI IC3** — https://www.ic3.gov/ · Industry alerts / PSAs https://www.ic3.gov/Home/IndustryAlerts. `atk`
 - **NIST** — AI https://www.nist.gov/artificial-intelligence · CAISI (Center for AI Standards & Innovation) https://www.nist.gov/caisi · CSRC news https://csrc.nist.gov/news. `pol` `def`
@@ -144,7 +145,23 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 - **CRS Reports** — https://crsreports.congress.gov/ (In Focus explainers). `pol`
 - **Member offices** — when a specific bill or letter is the event, cite the sponsor's own `.senate.gov` / `.house.gov` press release or letter PDF. `pol`
 
-## 8. Joint & international advisory channels — `atk` `def` `pol`
+## 8. State & local government — `pol` `atk` `def`
+
+State-level AI and cyber moves are in remit and already on the board (Illinois SB 315, California's
+Newsom AI Cyber Defense Program, New York's water rules, the multistate AG demand to OpenAI). Watch
+state legislation, governor and AG actions, and state/local incidents — cite the state's own primary
+(the governor's office, the bill page, the AG newsroom) whenever a specific action is the event.
+
+- **NCSL** — Artificial-intelligence legislation https://www.ncsl.org/technology-and-communication/artificial-intelligence-2026-legislation · Cybersecurity legislation https://www.ncsl.org/technology-and-communication/cybersecurity-legislation. `pol`
+- **MultiState — AI legislation tracker (all 50 states)** — https://www.multistate.ai/artificial-intelligence-ai-legislation. `pol`
+- **IAPP — US State AI Governance Legislation Tracker** — https://iapp.org/resources/article/us-state-ai-governance-legislation-tracker/. `pol`
+- **State governors & legislatures** — cite the primary when a specific law or program is the event: e.g. California https://www.gov.ca.gov/ · New York https://www.governor.ny.gov/ · Illinois General Assembly https://www.ilga.gov/. `pol` `def`
+- **State attorneys general** — coalition actions and enforcement; individual AG newsrooms (e.g. Iowa https://www.iowaattorneygeneral.gov/newsroom · California https://oag.ca.gov/news · New York https://ag.ny.gov/press-releases · Texas https://www.texasattorneygeneral.gov/news) and NAAG https://www.naag.org/. `pol`
+- **StateScoop** — state & local government technology and cyber news. https://statescoop.com/. `pol` `atk` `def`
+- **MS-ISAC / Center for Internet Security** — state, local, tribal & territorial incident coordination. https://www.cisecurity.org/ms-isac. `atk` `def`
+- **State cyber agencies & fusion centers** — when named in an event (e.g. California Cybersecurity Integration Center / Cal-CSIC). `def` `atk`
+
+## 9. Joint & international advisory channels — `atk` `def` `pol`
 
 Joint advisories arrive through the agency feeds in §6 (a CISA `AAxx-xxxA` advisory co-sealed
 with NSA / FBI / DC3 / EPA / DOE and international partners). Watch these directly too:
@@ -153,7 +170,7 @@ with NSA / FBI / DC3 / EPA / DOE and international partners). Watch these direct
 - **EU — European Commission (Digital)** — https://digital-strategy.ec.europa.eu/ · **ENISA** https://www.enisa.europa.eu/. `pol` `def`
 - **Five Eyes partners** — Australia ASD/ACSC https://www.cyber.gov.au/ · Canada CCCS https://www.cyber.gc.ca/ · New Zealand NCSC https://www.ncsc.govt.nz/ (usually co-signed on the joint advisories). `atk` `def`
 
-## 9. Vulnerability & CVE registries — verification (cross-lane)
+## 10. Vulnerability & CVE registries — verification (cross-lane)
 
 Used to verify — never invent — a CVE, its CVSS or its status before it goes on the board.
 
@@ -162,7 +179,7 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
 - **GitHub Advisory Database** — https://github.com/advisories (GHSA records).
 - **VulnCheck** — https://vulncheck.com/blog (exploitation-in-the-wild data).
 
-## 10. Markets / cyber-insurance — `mkt`
+## 11. Markets / cyber-insurance — `mkt`
 
 - **Insurance Business** — https://www.insurancebusinessmag.com/us/cyber/. `mkt`
 - **AM Best** — https://news.ambest.com/. `mkt`
