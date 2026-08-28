@@ -171,6 +171,9 @@ live board.
    `coverageEnd`, plus anything new-to-the-board that still falls inside the new window. Work from
    `SOURCES.md`, the canonical scan list, as the **floor, not the ceiling** — sweep every source on
    it and follow any lead it hands you past its edge. Open and read every source; see "Sourcing" below.
+   **If a lab, big-tech or vendor primary is provenance-blocked (a common `PROVENANCE_REQUIRED` result in
+   an unattended run), run the site-scoped search fallback in "Sourcing" before treating that source's
+   lane as quiet — a blocked primary is not an empty one.**
 4. **Edit `data.json`:**
    - `updatedISO` and `updatedDisplay` → now (ISO 8601 with the ET offset; display in `YYYY-MM-DD,
      h:MM AM/PM ET`).
@@ -214,6 +217,21 @@ treat it as the floor and add to it whenever a new source proves worth keeping.
   primary and upgrade the item** — swap the URL to the primary, set the outlet to the originator,
   and set confidence from the claim's shape. When you upgrade, re-check the primary's own date and
   figures against the press ones; they sometimes differ, and the primary wins.
+- **A provenance-blocked primary is not a quiet lane — run the search fallback before concluding a
+  source published nothing.** In an unattended run the lab, big-tech and vendor primaries (openai.com,
+  anthropic.com and the other §1–§3 sources in `SOURCES.md`) frequently return `PROVENANCE_REQUIRED`,
+  because opening them needs a fetch approval no one is there to give. That block tells you nothing about
+  whether the source published — so never treat "couldn't open the primary" as "the source was quiet."
+  Before declaring a blocked lab or vendor's lane empty, run a **site-scoped search for its last ~48
+  hours of posts** — e.g. `site:openai.com <window + lane keyword>`, or the lab's name plus the date
+  window and a cyber keyword — and open whatever it surfaces (a syndicating outlet if the primary itself
+  still won't open). Carry anything real on `press` with a "(via <outlet>)" attribution and flag it for a
+  primary-source upgrade on a later attended run. Broad topical queries are not a substitute for this
+  per-source pass: they surface aggregators and older look-alike stories and bury the day's actual post.
+  (Cautionary case, 2026-08-28: OpenAI's Aug 27 collective-cyber-defense open letter sat on openai.com
+  behind a provenance block; the morning pass's topical searches surfaced the older July "pace" letter
+  instead and the item was missed until a tighter `site:`-scoped query found it. The letter was reachable
+  the whole time — the run just never ran the per-source fallback.)
 - **Never invent or guess a CVE number, statistic, date, quote or attribution.** If a detail cannot
   be verified, drop the detail — not the caveat. (Example from 2026-08-10: a CVE the primary claimed
   was omitted because it was not yet in CVE.org/NVD; only the fact of the flaw was stated.)

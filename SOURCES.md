@@ -23,7 +23,11 @@ the build reads: `build.py` only ever renders `data.json`. This list sits alongs
 - Some vendor and lab blogs sit behind bot-checks or need a fetch approval that an unattended
   run cannot give; when the primary can't be opened, carry the item on press with a "(via …)"
   attribution and upgrade it on a later attended run (this is the standing practice in
-  `dashboard-memory.md`).
+  `dashboard-memory.md`). **A blocked primary is not an empty one:** before treating that source's
+  lane as quiet, run a site-scoped search for its last ~48 hours of posts (e.g. `site:openai.com`
+  plus the date window and a cyber keyword) and open whatever it surfaces — a broad topical query
+  buries the day's actual post under aggregators and older look-alikes. See `DAILY_RUN.md` →
+  "Sourcing" for the full rule and the 2026-08-28 cautionary case.
 
 _Entry points below were confirmed reachable on 2026-08-24. Keep them current: retire a dead
 source by replacing or removing its line rather than leaving a link that 404s._
