@@ -1,9 +1,31 @@
 {
-  "updatedISO": "2026-08-28T06:26:00-04:00",
-  "updatedDisplay": "2026-08-28, 6:26 AM ET",
-  "judgmentNote": "2026-08-28 run (grow mode; coverageStart held at Jul 1, coverageEnd advanced to Aug 28). One item added on a quiet day: Alabama AG Steve Marshall's Aug 24 investigation and subpoena of OpenAI and Sam Altman over the July Hugging Face eval-breach, filed pol/on-record and cited to the Alabama AG office's own primary (dated Aug 24; corroborated by TechCrunch, CNN and The Hill). The primary's Aug 24 date was used over Alabama Public Radio's Aug 25 and a secondary Bloomberg Aug 26 stamp. This is a new-to-board escalation distinct from the Aug 3 fifteen-state preservation letter already on the board, and it was folded into the 'Government response to the eval incidents' watchlist thread (changed to Aug 24). Capability, Defense, Attacks and Markets returned nothing new and verifiable in the Aug 27-28 fresh window and were left unchanged rather than padded. Held / excluded: the 42-state AG coalition subpoena of OpenAI (reported Aug 27) targets ads, minors, model sycophancy and data practices tied to the IPO filing, a consumer-protection probe off this board's cyber remit and not the Hugging Face incident, so omitted as a board item (noted in the eval-response thread); Insurance Journal's Aug 27 'cyber insurers adapting to rogue AI agents' is press trend commentary with no discrete new carrier action, already the standing insurance watchlist thread; the roughly 1,000-employee 'pace AI development' letter (Jul 28) is an RSI-governance letter off the cyber remit; and the Aug 26-27 CISA KEV additions could not be confirmed to carry an AI angle (cisa.gov returns 403 to the unattended fetcher and no AI-specific CVE surfaced), so none was added. Lab primaries (anthropic.com, openai.com) again required a fetch approval this unattended run could not give; no item added today depended on them.",
-  "internalNote": "Quiet day: one item added, Alabama's Aug 24 AG investigation and subpoena of OpenAI over the Hugging Face breach (board 99 to 100), with coverage advanced to Aug 28; the 42-state consumer-protection AG probe and an insurance-market trend piece were checked and held as off cyber remit.",
+  "updatedISO": "2026-08-28T09:19:00-04:00",
+  "updatedDisplay": "2026-08-28, 9:19 AM ET",
+  "judgmentNote": "2026-08-28 run (grow mode; coverageStart held at Jul 1, coverageEnd advanced to Aug 28). One item added on a quiet day: Alabama AG Steve Marshall's Aug 24 investigation and subpoena of OpenAI and Sam Altman over the July Hugging Face eval-breach, filed pol/on-record and cited to the Alabama AG office's own primary (dated Aug 24; corroborated by TechCrunch, CNN and The Hill). The primary's Aug 24 date was used over Alabama Public Radio's Aug 25 and a secondary Bloomberg Aug 26 stamp. This is a new-to-board escalation distinct from the Aug 3 fifteen-state preservation letter already on the board, and it was folded into the 'Government response to the eval incidents' watchlist thread (changed to Aug 24). Capability, Defense, Attacks and Markets returned nothing new and verifiable in the Aug 27-28 fresh window and were left unchanged rather than padded. Held / excluded: the 42-state AG coalition subpoena of OpenAI (reported Aug 27) targets ads, minors, model sycophancy and data practices tied to the IPO filing, a consumer-protection probe off this board's cyber remit and not the Hugging Face incident, so omitted as a board item (noted in the eval-response thread); Insurance Journal's Aug 27 'cyber insurers adapting to rogue AI agents' is press trend commentary with no discrete new carrier action, already the standing insurance watchlist thread; the roughly 1,000-employee 'pace AI development' letter (Jul 28) is an RSI-governance letter off the cyber remit; and the Aug 26-27 CISA KEV additions could not be confirmed to carry an AI angle (cisa.gov returns 403 to the unattended fetcher and no AI-specific CVE surfaced), so none was added. Lab primaries (anthropic.com, openai.com) again required a fetch approval this unattended run could not give; no item added today depended on them. \u2014\u2014 Follow-up (9:17 AM ET), at Daria's prompt: the morning pass missed OpenAI's Aug 27 collective-cyber-defense open letter, which is added here (def, on-record; primary openai.com/collective-cyberdefense/ opened and confirmed, publication date Aug 27 per Engadget/Quartz/Benzinga). Filed def and folded into the 'Industry-government defense collaboration' watchlist thread (OSAIA precedent for an industry defense-coalition item); reported as an event \u2014 who signed and what it asks \u2014 not endorsed, consistent with how the Sanders and House letters are carried. Signatory count stated as 'more than 100' (the floor all sources agree on; the primary lists on the order of 140). SEPARATELY, the reported NVIDIA / Hugging Face $12.9B acquisition (The Information, Aug 26; unconfirmed by either party and 'could still atomize') was reviewed and held OFF the board as a corporate M&A story outside this board's cyber remit (capability / defense / policy / attacks / insurance-pricing) and still unconfirmed; its only cyber tie \u2014 HF using an NVIDIA-modified open model for the breach forensics \u2014 is already carried in the Hugging Face breach brief. Flagged to Daria for a remit decision rather than added unilaterally. \u2014\u2014 Further follow-up (9:19 AM ET): at Daria's direction the reported NVIDIA / Hugging Face acquisition is now carried in Markets as the capital response, filed mkt/press and explicitly unconfirmed \u2014 cited to TechCrunch reporting The Information's Aug 26 scoop (dated Aug 26; neither NVIDIA nor Hugging Face has confirmed a signed deal, and reporting says it could still fall through). Price stated as ~$12.9B, the figure The Information reported. The item notes the deal's one tie to this board \u2014 HF's use of an NVIDIA-modified open model for the breach forensics, already a stage in the Hugging Face brief \u2014 without asserting the deal is closed. To be upgraded (outlet to the confirming primary, confidence off press) or corrected if and when a signed agreement is announced.",
+  "internalNote": "Same-day follow-ups added two items the morning pass did not carry: OpenAI's Aug 27 collective-cyber-defense open letter (def/on-record) and, at Daria's direction, the reported-but-unconfirmed NVIDIA/Hugging Face ~$12.9B acquisition in Markets (press); board 100 to 102.",
   "items": [
+    {
+      "id": "nvidia-hugging-face-reported-acquisition",
+      "lane": "mkt",
+      "date": "2026-08-26",
+      "headline": "NVIDIA is reported to be nearing a $12.9B acquisition of Hugging Face",
+      "core": "Multiple outlets, citing The Information, reported that NVIDIA is in advanced talks to acquire the open-model hosting platform Hugging Face for about $12.9 billion. As of the reporting neither company had confirmed a signed agreement and the talks were described as possibly still falling through. Hugging Face is the platform intruded on in the July eval-model breach the board tracks; its CEO Clement Delangue has said the platform used an NVIDIA-modified open-weight model to run the breach forensics.",
+      "confidence": "press",
+      "outlet": "TechCrunch (reporting The Information); unconfirmed by either company",
+      "url": "https://techcrunch.com/2026/08/26/nvidia-closes-in-on-hugging-face-acquisition/",
+      "isNew": true
+    },
+    {
+      "id": "openai-collective-cyber-defense-open-letter",
+      "lane": "def",
+      "date": "2026-08-27",
+      "headline": "OpenAI leads more than 100 companies in an open letter calling for collective AI cyber defense",
+      "core": "OpenAI published an open letter, co-signed by more than 100 organizations including Anthropic, Google, Microsoft, AWS, Oracle, Cisco, Cloudflare, CrowdStrike, Palo Alto Networks and Hugging Face, calling for collective action to defend against sustained AI-enabled attacks. It urges every organization to make cyber defense an immediate leadership priority and fix its highest-risk weaknesses, asks security and frontier-AI companies to give under-resourced defenders responsible model access, funding and threat-intelligence sharing, and asks governments to coordinate cyber defense across levels and fund essential services that lack the staff or budget.",
+      "confidence": "on-record",
+      "outlet": "OpenAI (open letter, 100+ signatories)",
+      "url": "https://openai.com/collective-cyberdefense/",
+      "isNew": true
+    },
     {
       "id": "alabama-ag-openai-hugging-face-investigation-subpoena",
       "lane": "pol",
@@ -1039,8 +1061,8 @@
     },
     {
       "thread": "Industry-government defense collaboration",
-      "status": "Open Secure AI Alliance launched Jul 27 with 37 partners and by Aug 4 had shipped an RFC for SAFE agentic-AI incident sharing with the Linux Foundation plus NVIDIA's OpenShell sandbox runtime. Gold Eagle, the Treasury-led AI-vulnerability clearinghouse, launched Jul 14. NIST joined the DOE Genesis Mission Aug 4 with an AI center for critical-infrastructure security.",
-      "changed": "2026-08-04"
+      "status": "Open Secure AI Alliance launched Jul 27 with 37 partners and by Aug 4 had shipped an RFC for SAFE agentic-AI incident sharing with the Linux Foundation plus NVIDIA's OpenShell sandbox runtime. Gold Eagle, the Treasury-led AI-vulnerability clearinghouse, launched Jul 14. NIST joined the DOE Genesis Mission Aug 4 with an AI center for critical-infrastructure security. On Aug 27 OpenAI published an open letter co-signed by more than 100 companies \u2014 Anthropic, Google, Microsoft, AWS, Oracle, CrowdStrike, Palo Alto Networks and Hugging Face among them \u2014 calling for collective AI cyber defense: an immediate leadership priority and weakness-fixing for every organization, responsible model access and funding for under-resourced defenders from frontier-AI firms, and coordinated government funding for essential services.",
+      "changed": "2026-08-27"
     },
     {
       "thread": "Open-weight cyber gap",
@@ -1092,8 +1114,8 @@
     {
       "date": "2026-08-28",
       "file": "archive/machine-speed-2026-08-28.html",
-      "items": 100,
-      "note": "Coverage advanced to Aug 28 (grow mode). One item added on a quiet day: Alabama AG Steve Marshall's Aug 24 formal investigation and subpoena of OpenAI and Sam Altman over the July Hugging Face eval-breach (pol, on-record, cited to the Alabama AG office primary). Capability, Defense, Attacks and Markets returned nothing new and verifiable in the Aug 27-28 window. The 42-state AG consumer-protection probe (ads / minors / sycophancy) and an insurance-market trend piece were checked and held as off cyber remit."
+      "items": 102,
+      "note": "Coverage advanced to Aug 28 (grow mode). Three items added across the daily run and two same-day follow-ups: Alabama AG Steve Marshall's Aug 24 investigation and subpoena of OpenAI over the July Hugging Face eval-breach (pol, on-record); OpenAI's Aug 27 open letter with 100+ signatories calling for collective AI cyber defense (def, on-record, cited to the openai.com primary); and, at Daria's direction, the reported-but-unconfirmed NVIDIA/Hugging Face ~$12.9B acquisition carried in Markets (press). The 42-state AG consumer-protection probe and an insurance trend piece were held as off cyber remit."
     },
     {
       "date": "2026-08-27",
