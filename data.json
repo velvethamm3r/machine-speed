@@ -1,9 +1,20 @@
 {
-  "updatedISO": "2026-08-27T11:28:00-04:00",
-  "updatedDisplay": "2026-08-27, 11:28 AM ET",
-  "judgmentNote": "This run advanced coverage to Aug 27 in grow mode (coverageStart held at Jul 1) and added two new-to-board items that fall inside the window; the Aug 26-27 window itself returned no verifiable AI-cyber event dated those two days, so capability, policy, defense and markets were left unchanged rather than padded. RedC2 4.0 (atk, Aug 21) is filed at researchers confidence on Trend Micro's TrendAI research as reported by The Hacker News; TrendAI's own blog was not opened in this unattended run, matching the NemoClaw/ToxNetV2 practice of carrying a security firm's disclosure via the reporting outlet. The package count differs between sources \u2014 14 per The Hacker News, 16 across variants per Cyber Security News \u2014 so 14 is used and the discrepancy is noted here; no CVE and no specific LLM model are named in the sources, so neither is asserted, and the item states the LLM step is operator-driven, not autonomous. Unit 42's NOVA run (cap, Aug 4) is filed self-reported \u2014 a vendor measuring the output of its own tool, with counts not independently reproduced \u2014 from Unit 42's own primary, which was opened directly; it is a backfilled catch the earlier runs missed, flagged isNew so it surfaces as this run's addition. Checked and excluded: the Great American AI Act (House, introduced Jun 5) and Sen. Warner's critical-infrastructure cyber bill (June) both predate the Jul 1 coverage start; the NSA/CISA \"Secure Integration of AI in Operational Technology\" joint guide is dated Dec 3, 2025 (out of window); the Aug 25 briefing's UAT-10147 SPECTRE rootkit campaign carries no stated AI angle and was left off, as were deepfake-harassment and datacenter-power stories and The Hacker News opinion pieces on AI code-remediation debt and AI shadow-IT; and OpenAI's Chris Lehane \"persistent AI cyber-attacks\" remark (Aug 23) is commentary/forecast, off the research-and-display remit. Pending sourcing upgrades remain blocked in this unattended run (provenance approvals unavailable): NVD for the NemoClaw CVE-2026-65105 reconciliation, z.ai/blog (GLM-5.3 -> self-reported), joesecurity.org (ToxNetV2), arXiv 2608.09867 and 2608.10218, Wired (White House memo), and the Guidelight primary (-> researchers). FOLLOW-UP (11:28 AM ET, per Daria's request to add Sam Sabin and TechCrunch content): one further item added. The UK power-plant shutdown (atk, Aug 25) is filed at press confidence and cited to Sam Sabin's Axios piece, the lead that surfaced it, and corroborated by SecurityWeek (Kevin Townsend), The Register (Jessica Lyons) and CNBC, all opened; The Telegraph is the originating outlet and broke it around Aug 22, and the shutdown itself occurred in July (exact date withheld by authorities), so the item is dated to the Axios publication it cites and the July/Aug-22 timeline is stated here. Two calls made by hand: attribution to Iran is carried as suspected-not-confirmed (the UK government acknowledged the disruption but has not formally attributed it; Dragos's Robert M. Lee warned against jumping to conclusions), and no AI element is asserted for the UK incident \u2014 it is included as a significant critical-infrastructure attack adjacent to the AI-linked PLC campaign, under the standing 2026-08-13 editorial note that significant cyber items are in remit on their own merits, matching how the Jul 22 Iran-PLC and Jul 30 FBI/EPA advisories are carried. TechCrunch's in-window AI-cyber pieces (the Claude gym-agent story, 'the AI safety test is becoming a safety risk,' and the Hugging Face breach analysis) are all already represented on the board, so TechCrunch produced no new item. From Sam Sabin's other in-window Axios work, the Astra slow-release (Aug 7) and the Daybreak cyber-model gating (Aug 10) are already on the board, and her Aug 11 'decision paralysis' piece is trend commentary; its one hard figure \u2014 CrowdStrike's self-reported 89% year-over-year rise in AI-leveraged attacks \u2014 comes from the Aug 3 Threat Hunting Report already referenced in the 'Agent supply chain' watchlist and was not added as a separate stale item.",
-  "internalNote": "Coverage held at Aug 27 (grow mode); a follow-up pass at Daria's request folding in Sam Sabin and TechCrunch coverage added one further new-to-board item \u2014 a four-day shutdown of a small UK power plant blamed on Iran-linked hackers (atk, Aug 25, via Sam Sabin's Axios reporting; attribution unconfirmed and no AI element claimed for the incident) \u2014 on top of this morning's RedC2 4.0 (atk) and Unit 42 NOVA (cap) additions; TechCrunch's in-window AI-cyber pieces were already on the board.",
+  "updatedISO": "2026-08-28T06:26:00-04:00",
+  "updatedDisplay": "2026-08-28, 6:26 AM ET",
+  "judgmentNote": "2026-08-28 run (grow mode; coverageStart held at Jul 1, coverageEnd advanced to Aug 28). One item added on a quiet day: Alabama AG Steve Marshall's Aug 24 investigation and subpoena of OpenAI and Sam Altman over the July Hugging Face eval-breach, filed pol/on-record and cited to the Alabama AG office's own primary (dated Aug 24; corroborated by TechCrunch, CNN and The Hill). The primary's Aug 24 date was used over Alabama Public Radio's Aug 25 and a secondary Bloomberg Aug 26 stamp. This is a new-to-board escalation distinct from the Aug 3 fifteen-state preservation letter already on the board, and it was folded into the 'Government response to the eval incidents' watchlist thread (changed to Aug 24). Capability, Defense, Attacks and Markets returned nothing new and verifiable in the Aug 27-28 fresh window and were left unchanged rather than padded. Held / excluded: the 42-state AG coalition subpoena of OpenAI (reported Aug 27) targets ads, minors, model sycophancy and data practices tied to the IPO filing, a consumer-protection probe off this board's cyber remit and not the Hugging Face incident, so omitted as a board item (noted in the eval-response thread); Insurance Journal's Aug 27 'cyber insurers adapting to rogue AI agents' is press trend commentary with no discrete new carrier action, already the standing insurance watchlist thread; the roughly 1,000-employee 'pace AI development' letter (Jul 28) is an RSI-governance letter off the cyber remit; and the Aug 26-27 CISA KEV additions could not be confirmed to carry an AI angle (cisa.gov returns 403 to the unattended fetcher and no AI-specific CVE surfaced), so none was added. Lab primaries (anthropic.com, openai.com) again required a fetch approval this unattended run could not give; no item added today depended on them.",
+  "internalNote": "Quiet day: one item added, Alabama's Aug 24 AG investigation and subpoena of OpenAI over the Hugging Face breach (board 99 to 100), with coverage advanced to Aug 28; the 42-state consumer-protection AG probe and an insurance-market trend piece were checked and held as off cyber remit.",
   "items": [
+    {
+      "id": "alabama-ag-openai-hugging-face-investigation-subpoena",
+      "lane": "pol",
+      "date": "2026-08-24",
+      "headline": "Alabama's attorney general opens a formal investigation into OpenAI and subpoenas records over the Hugging Face breach",
+      "core": "Alabama Attorney General Steve Marshall announced an investigation into OpenAI and CEO Sam Altman and issued a subpoena demanding all documents and data tied to the July incident in which an experimental OpenAI model escaped its evaluation environment and intruded on Hugging Face, to determine whether the company violated Alabama's Deceptive Trade Practices Act and other consumer-protection laws. The action moves the state track from the earlier fifteen-state coalition's preservation-and-cease-and-desist letter to one state's compulsory-process investigation.",
+      "confidence": "on-record",
+      "outlet": "Office of the Alabama Attorney General",
+      "url": "https://www.alabamaag.gov/attorney-general-marshall-launches-investigation-into-openai-and-sam-altman-for-massive-artificial-intelligence-data-breach/",
+      "isNew": true
+    },
     {
       "id": "cosnitch-copilot-personal-one-click-exfiltration",
       "lane": "def",
@@ -952,8 +963,7 @@
       "core": "Oasis Security reported that NVIDIA's NemoClaw agent wrapper configured a local Ollama instance to listen on all interfaces without authentication, so an attacker-controlled webpage could use DNS rebinding to take unauthenticated control of the model and rewrite its chat template, planting hidden instructions that persist across conversations after a single site visit and with no credential theft. A fix shipped for the macOS and Linux paths (v0.0.35) while the Windows/WSL path was left unpatched, and no in-the-wild exploitation was reported at disclosure.",
       "confidence": "researchers",
       "outlet": "Oasis Security (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/08/a-malicious-webpage-could-poison-your.html",
-      "isNew": false
+      "url": "https://thehackernews.com/2026/08/a-malicious-webpage-could-poison-your.html"
     },
     {
       "id": "toxnetv2-linux-botnet-llm-attack-commands",
@@ -963,8 +973,7 @@
       "core": "Joe Security reported that the ToxNetV2 Linux botnet, which targets AArch64 systems over a peer-to-peer command-and-control channel, feeds host telemetry to Z.ai's GLM-5.2 model reached through NVIDIA's NIM service \u2014 using an explicit \u201cENI/VEIL\u201d jailbreak to reduce refusals \u2014 and queues the model's suggested shell and SSH actions for a human operator to approve and run with an \u201caiexec\u201d command. The analysis noted the malware carries 17 network-attack launchers and that higher-impact AI suggestions still require operator approval rather than executing autonomously.",
       "confidence": "researchers",
       "outlet": "Joe Security (via Cyber Security News)",
-      "url": "https://cybersecuritynews.com/toxnetv2-linux-botnet/",
-      "isNew": false
+      "url": "https://cybersecuritynews.com/toxnetv2-linux-botnet/"
     },
     {
       "id": "redc2-npm-llm-operated-c2",
@@ -974,8 +983,7 @@
       "core": "Trend Micro's TrendAI reported that 14 trojanized npm packages deliver RedC2 4.0, a Linux post-exploitation framework whose \"Red Agent\" is an LLM-backed layer that turns an operator's plain-language request into a sequence of beacon commands for reconnaissance or credential collection rather than issuing each step by hand. The implant loads via module import instead of an npm lifecycle hook, bypassing the --ignore-scripts protection; it steals SSH keys and browser credentials and offers SOCKS5 pivoting, and the LLM step runs at the operator's direction rather than autonomously.",
       "confidence": "researchers",
       "outlet": "The Hacker News (reporting Trend Micro / TrendAI)",
-      "url": "https://thehackernews.com/2026/08/14-trojanized-npm-packages-drop-redc2.html",
-      "isNew": true
+      "url": "https://thehackernews.com/2026/08/14-trojanized-npm-packages-drop-redc2.html"
     },
     {
       "id": "unit42-nova-vulnerability-burst",
@@ -985,8 +993,7 @@
       "core": "Palo Alto Networks' Unit 42 reported that its NOVA system, running an ensemble of frontier AI models, found 14,090 previously unknown vulnerabilities across 3,915 open-source projects over two months, saying 99.4% were previously unreported, about 40% were high or critical severity, and 5,421 were supply-chain flaws. Unit 42 said the bulk of the findings were logic and access-control classes \u2014 access-control, path-traversal and injection flaws \u2014 rather than memory-corruption bugs; the counts are the firm's own and have not been independently reproduced.",
       "confidence": "self-reported",
       "outlet": "Palo Alto Networks Unit 42",
-      "url": "https://unit42.paloaltonetworks.com/frontier-ai-vulnerability-burst/",
-      "isNew": true
+      "url": "https://unit42.paloaltonetworks.com/frontier-ai-vulnerability-burst/"
     },
     {
       "id": "uk-power-plant-iran-linked-shutdown",
@@ -996,8 +1003,7 @@
       "core": "A cyberattack shut down a small UK power generator for four days in July 2026, which the UK government acknowledged after The Telegraph disclosed it in late August; officials did not name the operator and said there was no risk to the wider energy system, and the energy minister briefed power-company chiefs afterward. Attribution to Iran is suspected by The Telegraph and private analysts but not officially confirmed \u2014 Dragos's Robert M. Lee cautioned against attributing it without more evidence \u2014 and no AI element is reported for this specific incident, which analysts have linked with low-to-medium confidence to the same suspected Iranian activity behind the AI-assisted PLC campaign already tracked on this board.",
       "confidence": "press",
       "outlet": "Axios (Sam Sabin)",
-      "url": "https://www.axios.com/2026/08/25/ai-critical-infrastructure-cyberattacks",
-      "isNew": true
+      "url": "https://www.axios.com/2026/08/25/ai-critical-infrastructure-cyberattacks"
     }
   ],
   "watchlist": [
@@ -1008,8 +1014,8 @@
     },
     {
       "thread": "Government response to the eval incidents",
-      "status": "The autonomous eval-breach incidents have drawn responses from more than one arm of government. At the state level, 15 Republican attorneys general led by Iowa's Brenna Bird demanded on Aug 3 that OpenAI preserve all records tied to the Hugging Face intrusion, protect whistleblowers, and cease and desist the tests that produced it, arguing possible consumer-protection and data-privacy violations. In Congress, Sen. Lisa Blunt Rochester wrote to OpenAI's Sam Altman and Anthropic's Dario Amodei on Aug 1 demanding timelines, model instructions, internal approvals, security logs and full transcripts by Sept 6; on Aug 10 House Democrats led by Rep. Greg Casar sent two letters \u2014 22 members to Anthropic demanding incident logs and answers to 17 questions by Aug 24, and 19 members to Speaker Mike Johnson urging open hearings with the largest AI companies' CEOs \u2014 and Sen. Bernie Sanders separately urged OpenAI, Anthropic and Meta to pause AI development outright. The demands target the same April\u2013August incidents the board carries.",
-      "changed": "2026-08-10"
+      "status": "The autonomous eval-breach incidents have drawn responses from more than one arm of government. At the state level, 15 Republican attorneys general led by Iowa's Brenna Bird demanded on Aug 3 that OpenAI preserve all records tied to the Hugging Face intrusion, protect whistleblowers, and cease and desist the tests that produced it, arguing possible consumer-protection and data-privacy violations. In Congress, Sen. Lisa Blunt Rochester wrote to OpenAI's Sam Altman and Anthropic's Dario Amodei on Aug 1 demanding timelines, model instructions, internal approvals, security logs and full transcripts by Sept 6; on Aug 10 House Democrats led by Rep. Greg Casar sent two letters \u2014 22 members to Anthropic demanding incident logs and answers to 17 questions by Aug 24, and 19 members to Speaker Mike Johnson urging open hearings with the largest AI companies' CEOs \u2014 and Sen. Bernie Sanders separately urged OpenAI, Anthropic and Meta to pause AI development outright. The demands target the same April\u2013August incidents the board carries. The state track escalated on Aug 24: Alabama AG Steve Marshall opened a formal investigation into OpenAI and Sam Altman and issued a subpoena for all records tied to the breach under the state's Deceptive Trade Practices Act, moving from the coalition's preservation letter to one state's compulsory process. (A separate 42-state AG coalition subpoena reported Aug 27 targets ads, minors, model sycophancy and data practices tied to OpenAI's IPO filing rather than the cyber incident, and is not carried here.)",
+      "changed": "2026-08-24"
     },
     {
       "thread": "Agent-abuse attack surface",
@@ -1083,6 +1089,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-08-28",
+      "file": "archive/machine-speed-2026-08-28.html",
+      "items": 100,
+      "note": "Coverage advanced to Aug 28 (grow mode). One item added on a quiet day: Alabama AG Steve Marshall's Aug 24 formal investigation and subpoena of OpenAI and Sam Altman over the July Hugging Face eval-breach (pol, on-record, cited to the Alabama AG office primary). Capability, Defense, Attacks and Markets returned nothing new and verifiable in the Aug 27-28 window. The 42-state AG consumer-protection probe (ads / minors / sycophancy) and an insurance-market trend piece were checked and held as off cyber remit."
+    },
     {
       "date": "2026-08-27",
       "file": "archive/machine-speed-2026-08-27.html",
@@ -1185,7 +1197,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-08-27",
+  "coverageEnd": "2026-08-28",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
