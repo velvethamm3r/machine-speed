@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-09-01T08:35:00-04:00",
-  "updatedDisplay": "2026-09-01, 8:35 AM ET",
-  "judgmentNote": "Twenty-one items added, each verified against a page opened during this run by a six-way parallel per-source sweep of SOURCES.md. Four are from the fresh window (Aug 31 after the last run's 7:05 AM stamp, through Sep 1); the other seventeen are backfill inside the stated period, six of which release holds that earlier runs recorded explicitly. WINDOW. coverageStart held at 2026-07-01 (grow mode). DAILY_RUN's default is a rolling ~5-week window, which today would move the start to Monday 2026-07-27 and roll roughly twenty-five items off the live board. The board has run in grow mode since Aug 5 and DAILY_RUN says to confirm with Daria before switching mid-stream, so it was not switched here. This is the standing open question for her: the board now covers two full months. HOLDS RELEASED. Epoch AI's July CVE severity spike now carries a settled publication date (Jul 31) and Epoch's own figures. RAND's model-weight framework is confirmed as RR-A4704-1 of Aug 25, and 262 is RAND's own control count, not a press derivation. Cloudflare's Spectre-on-Workers result is dated Aug 19 with Cloudflare's own figures. Cisco's provenance-entanglement study is dated Aug 27. ServiceNow's three CVSS 10.0 AI Platform flaws are carried, but see the next paragraph. CVE IDENTIFIERS. The ServiceNow CVE numbers are deliberately omitted: three secondary sources agree on the Aug 27 advisory date and on three CVSS 10.0 flaws in the AI Platform, but neither cve.org, nvd.nist.gov nor ServiceNow's own knowledge-base article could be opened this run, so the flaws are described without identifiers, following the 2026-08-10 practice. The Langflow identifier CVE-2026-0768 is carried because it was confirmed on OpenCVE, an NVD mirror, when NVD itself was unreachable; that is a weaker verification than this board normally uses and should be re-checked against NVD on an attended run. The Flowise CVE from the Aug 31 run remains unsettled and is still omitted from that item. PRESS FALLBACKS, ALL FLAGGED FOR UPGRADE. Four items run on press because the primary could not be opened. ESET published the GuardBreaker finding as a series of posts on X rather than a WeLiveSecurity write-up; Help Net Security carried it Aug 31 and The Hacker News on Sep 1 with fuller detail, and the item is dated to the Aug 31 disclosure while citing the fuller Sep 1 account — the one-day spread is noted rather than resolved. Anthropic's infostealer notice went to affected users by email and no public Anthropic page for it was found. VulnCheck's own post could not be opened; the figures are Caitlin Condon's as quoted. ServiceNow's advisory is behind a knowledge-base login. LANE AND CONFIDENCE CALLS. Anthropic's Aug 31 remediation post is filed def rather than cap: the reportable fact is the mitigation programme, not a model capability, and it is on-record because the disclosures in it — over 10% of production RL environments flagged, a three-day training rollback — cost the speaker something and nobody else could make them. The ECB letter is filed pol, not mkt: unlike the FSB letter carried on Aug 31, which was the financial system reckoning with the risk, this is a supervisor imposing a filing deadline, which is an agency action. CrowdStrike's benchmark post is researchers because the core rests on Dreadnode's cheating measurement rather than on CrowdStrike's own practice. Cisco's provenance study and Wiz's Red Agent finding are both self-reported — in each case the party measuring is the party being measured. The two preprints are researchers and are flagged not peer reviewed on the card; both were read at the abstract page only, and author affiliations are not stated because they were not verified. isNEW / STRIP. All six of the previous run's flags cleared, and the FSB item is explicitly held out with isNew:false because its Aug 31 date would otherwise auto-qualify and push the strip over the cap. Six carry isNew:true: the four fresh-window items plus Epoch's CVE count and the Claude Code Auto Mode bypass, chosen on significance rather than date, which is what isNew exists for. OMITTED. The Pentagon/Anthropic storyline — a federal judge blocking the “supply chain risk” designation on Aug 28, and GenAI.mil launching ChatGPT and Grok without Claude on Aug 31 — was opened, verified across three outlets and left off: it is AI procurement and a First Amendment question, not a cyber event, and carrying it would repeat the reasoning that kept the OpenAI/Cursor decision off the board on Aug 29. August Patch Tuesday is held again: the date (Aug 11) and the existence of Azure SRE Agent and Copilot Cowork elevation-of-privilege fixes are corroborated, but five sources give the total flaw count as 394, 400, 415, 423 and 751, and MSRC could not be opened to adjudicate, so nothing is asserted. Two Aug 31 items were opened and excluded as routine: Unit 42's Spring Ring Teams vishing campaign, confirmed on reading to have no AI element at all, and CISA's KEV addition of two PaperCut flaws, which repeats the Aug 29 and Aug 31 exclusions. Sysdig's Aug 31 stateful-detection telemetry was opened and held as vendor adoption statistics whose AI angle is framing rather than finding. Google DeepMind's double-blind evaluation pilot and OpenAI's “The Defender's Window” stay excluded on the Aug 29 reasoning. SentinelOne's “The Model Is the Malware” stays excluded as synthesis of incidents already carried. CALIFORNIA. The Aug 31 adjournment was chased and the outcome is reported in the watchlist rather than as an item: leginfo.legislature.ca.gov is disallowed to automated fetchers, so the bill list rests on an advocacy group's tracker which is demonstrably stale in at least one place — it shows SB 928 as pending when the governor's own site records it signed on Aug 27. No bill number, count or status is asserted on the board. Reviewing the 26 bills the tracker lists, none is a cybersecurity, breach or critical-infrastructure measure, which is why nothing was filed. COVERAGE GAPS, STATED RATHER THAN CALLED QUIET. Zscaler ThreatLabz, Protect AI, MITRE ATLAS, Z.ai, Moonshot and Qwen could not be opened at all and are unverified, not confirmed quiet. cisa.gov returned 403 as usual, congress.gov and leginfo are robots-disallowed, and NCSL, MultiState, StateScoop, MS-ISAC, AM Best and the state AG newsrooms went unchecked after the run exhausted its search budget. Beazley's Q2 report and the Aug 27 KEV CVE identifiers were not reached and remain outstanding.",
-  "internalNote": "Coverage advanced to Sep 1 in grow mode; the board went 130 to 151 on a four-item fresh window — Anthropic's remediation account, ESET's GuardBreaker malware written to disable AI analysis, Anthropic's infostealer session-hijacking notice and mass exploitation of Langflow — plus seventeen backfilled items that release six standing holds, and a new “Defeating the AI defender” watchlist thread.",
+  "updatedISO": "2026-09-02T07:10:00-04:00",
+  "updatedDisplay": "2026-09-02, 7:10 AM ET",
+  "judgmentNote": "Run of 2026-09-02, 7:10 AM ET. Coverage advanced to Sep 2; coverageStart left at Jul 1, so the board stays in grow mode and nothing rolled off. Twenty-eight items added, taking the board to 179. Five come from the fresh window — the stretch after the previous run's 2026-09-01 08:35 ET stamp — and all five are first-order: OpenAI's Critical designation for Astra, Anthropic's Mythos 5.1 system card and its Fable/Mythos access split, Anthropic's Enterprise Frontier Safeguards, and CrowdStrike's Cyber Superintelligence Lab. The other twenty-three are new-to-the-board material from inside the stated period, found by a six-way per-source sweep of every SOURCES.md category. Every item on this run was verified by opening its page during the run, and the figures were read off the primary rather than a summary. That mattered twice. The Dreadnode cheating study reports 22 models and 21 of them cheating, not the 22-of-23 a secondary summary gave, and the item carries the primary's numbers. The seventeen-agency SBOM update was proposed on the strength of a claim that it extends the minimum elements to AI systems; the document says the opposite — “this document does not introduce additional elements for SBOMs for AI systems” — and points to separate CISA/G7 AI SBOM guidance from May 2026, so the item is filed on what the document actually says. Confidence calls worth naming. Anthropic's Mythos 5.1 system card is filed self-reported rather than on-record: the sentence a reader takes away is the benchmark jump, and the party measuring is the party being measured. OpenAI's Astra post is on-record because the Critical designation is the event and only OpenAI can make it, notwithstanding the ExploitBench score inside it. The CISA KEV addition of CVE-2026-55040 is filed at researchers rather than on-record because cisa.gov returned 403 and NVD was provenance-blocked all run: the KEV date rests on Rapid7's own advisory, which is the page that was opened. xAI's Grok 4.6 card is the board's first xAI item and closes a standing coverage gap; the card states a frontier-framework threshold determination only for dual-use knowledge, and the item says no more than that. Three items are on the board without an AI element and are carried under the standing editorial rule that significant cyber developments belong here on their own merits: CSIS's mapping of the Iranian water campaign, the UK NCSC's operational-technology warning, and the seventeen-agency SBOM update. Each says so in its own text. The Hugging Face technical timeline was proposed as a new item and was not added: it is already carried as a stage on the Hugging Face brief, with the same 17,600-action figure. The de-duplication list this run worked from covered items[] only, which is how it was proposed twice. Held rather than filed, with sources opened: Wiz's cloud-risk report (21.5-day median from disclosure to exploitation), Wiz's Metabase and CosmosEscape disclosures, Talos's 66-combination SOC model benchmark, Dreadnode's ScopeJudge and AIRTBench work, SentinelOne's autonomous reverse-engineering benchmark, Zscaler's 37-out-of-100 frontier-AI readiness score, CrowdStrike's detection-triage fine-tuning and its Agents of Chaos contest, GitHub's Secure Open Source Fund figures, Microsoft's Zero Trust for AI update, Mistral's Shieldstral classifier, the Linux Foundation's TRACE specification, Anthropic's open-weights position paper, MITRE CTID's Attack Flow v4, Pillar's Dolt MCP flaw, Hunt.io's CameraSwarm and Philippine nuclear-agency intrusions, Varonis's Entra autologon and AI share-link work, and the Dolphin X stealer's advertised AI victim-triage profiler. Three more preprints were opened and held to keep the board from becoming an arXiv feed. Excluded: Microsoft's TerminalFix, MacSync, macOS ClickFix and DeadLock write-ups and Unit 42's Spring Ring vishing campaign, all routine campaign reporting with no AI element and no wider significance; the Aug 31 PaperCut KEV addition, repeating the Aug 29 and Aug 31 calls; Microsoft's “patch window is collapsing” post, still positional with no figures; DeepMind's double-blind evaluation pilot and OpenAI's “The Defender's Window,” both held to the Aug 29 reasoning; and SentinelOne's “The Model Is the Malware,” still a synthesis of incidents already carried. Two figures were chased and not resolved. August Patch Tuesday: 421 newly-issued Microsoft CVEs is now the best-supported count, with Rapid7 and SecurityWeek agreeing and Computerworld's 751 explained as a total across all product families including Edge/Chromium republications — but MSRC and the Update Guide were provenance-blocked again, so nothing is asserted and the item stays off the board. And the Anthropic Fable/Mythos launch page shows a month without a day; the date is taken from Anthropic's own newsroom index and the system card, both of which give Sep 1. Coverage limits this run: cisa.gov (403), nvd.nist.gov, msrc.microsoft.com, congress.gov and leginfo.legislature.ca.gov were all unreachable or robots-disallowed; Z.ai, Moonshot and Qwen were provenance-blocked again, so the open-weight lane is unverified rather than quiet; security.googleblog.com served nothing after April 2026; MITRE ATLAS rendered as an empty client-side app; Trellix's research index would not enumerate; and the run exhausted its web-search budget before it could sweep NCSL, MultiState, StateScoop, MS-ISAC, the state AG newsrooms or AM Best. Markets produced nothing verifiable this run and the lane is unchanged at 11 items; that is a genuine gap, not an empty result, and the two markets-adjacent papers found were recommendation-led rather than reported events.",
+  "internalNote": "Coverage advanced from Sep 1 to Sep 2 in grow mode; twenty-eight items took the board to 179, led by OpenAI designating Astra the first model to meet its Critical cybersecurity threshold and Anthropic's Mythos 5.1 release, with a new “Frontier cyber thresholds crossed” watchlist thread opened to track the labs' own framework determinations.",
   "items": [
     {
       "id": "cowbell-ai-underwriting-factors",
@@ -1314,7 +1314,7 @@
       "confidence": "on-record",
       "outlet": "Anthropic",
       "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "eset-guardbreaker-llm-guardrail-malware",
@@ -1325,7 +1325,7 @@
       "confidence": "press",
       "outlet": "ESET (via The Hacker News)",
       "url": "https://thehackernews.com/2026/09/russia-aligned-uac-0099-plants-nuclear.html",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "anthropic-infostealer-claude-session-hijacking",
@@ -1336,7 +1336,7 @@
       "confidence": "press",
       "outlet": "Anthropic (via SecurityWeek)",
       "url": "https://www.securityweek.com/anthropic-warns-claude-users-of-infostealer-malware-infections/",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "vulncheck-langflow-mass-exploitation",
@@ -1347,7 +1347,7 @@
       "confidence": "press",
       "outlet": "VulnCheck (via The Hacker News)",
       "url": "https://thehackernews.com/2026/09/attackers-exploit-critical-langflow-and.html",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "epoch-july-cve-severity-spike",
@@ -1358,7 +1358,7 @@
       "confidence": "researchers",
       "outlet": "Epoch AI",
       "url": "https://epoch.ai/data-insights/cve-severity-spike-july-2026",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "crowdstrike-cybench-benchmark-cheating",
@@ -1449,7 +1449,7 @@
       "confidence": "researchers",
       "outlet": "Embrace The Red (Johann Rehberger)",
       "url": "https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "cloudflare-spectre-workers-2026",
@@ -1520,6 +1520,292 @@
       "confidence": "self-reported",
       "outlet": "Wiz",
       "url": "https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug"
+    },
+    {
+      "id": "openai-astra-critical-cyber",
+      "lane": "cap",
+      "date": "2026-09-01",
+      "headline": "OpenAI designates Astra the first model to meet its Critical cybersecurity threshold",
+      "core": "OpenAI says Astra meets the Critical cybersecurity capability threshold under its Preparedness Framework and is “the first model we are designating at this level,” reporting a perfect 100% score on the public ExploitBench benchmark. It says Astra refuses 91.5% of cyber jailbreak requests against 59% for GPT-5.6 Sol and made no attempts to reach honeypot targets in testing where GPT-5.6 Sol attempted in 56% of tests; initial access is limited to a small group of alpha testers, expanding afterward through Daybreak Blue to support defensive use.",
+      "confidence": "on-record",
+      "outlet": "OpenAI",
+      "url": "https://openai.com/index/path-to-astra/",
+      "isNew": true
+    },
+    {
+      "id": "anthropic-mythos-5-1-system-card",
+      "lane": "cap",
+      "date": "2026-09-01",
+      "headline": "Anthropic's Mythos 5.1 system card reports large offensive-cyber gains and keeps the model at Tier 1",
+      "core": "The card reports full arbitrary code execution in 222 of 410 ExploitBench runs, working exploits in 245 of 250 Firefox 147 trials (98.0%, against 221 and 88.4% for Mythos 5) and a top score on 17 OSS-Fuzz targets against 13 for Mythos 5. Anthropic keeps the model at Tier 1 of its Frontier Compliance Framework — meaningful technical assistance for active cyber operations using known techniques, still dependent on human input — while saying it is “getting closer to Tier 2, completing more and more autonomous tasks.”",
+      "confidence": "self-reported",
+      "outlet": "Anthropic",
+      "url": "https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&%20Claude%20Mythos%205.1%20System%20Card.pdf",
+      "isNew": true
+    },
+    {
+      "id": "anthropic-fable-mythos-5-1-access",
+      "lane": "def",
+      "date": "2026-09-01",
+      "headline": "Anthropic ships Fable 5.1 generally and keeps Mythos 5.1 behind trusted-access vetting",
+      "core": "Anthropic says Mythos 5.1 “demonstrates the strongest cyber capabilities of any model we've released” and is available only through its trusted access programs, while Fable 5.1 is generally available. It says Claude Code users can expect “an average of around 60% fewer interventions per session from our cyber safeguards” relative to the previous safeguards on Fable 5, with dual-use tasks including penetration testing, exploit generation and binary-based vulnerability scanning still routed to Opus models.",
+      "confidence": "on-record",
+      "outlet": "Anthropic",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "isNew": true
+    },
+    {
+      "id": "anthropic-enterprise-frontier-safeguards",
+      "lane": "def",
+      "date": "2026-09-01",
+      "headline": "Anthropic launches Enterprise Frontier Safeguards, keeping misuse-detection data in the customer's own cloud",
+      "core": "Enterprise Frontier Safeguards pairs zero data retention with automated misuse detection, and activity data used for monitoring can be stored in the customer's own cloud account — Amazon S3, Azure Blob Storage or Google Cloud Storage. Anthropic says automated systems analyse a rolling window of traffic for “signals of serious misuse, including attempts to develop offensive cyber or biological capabilities and signs of stolen or leaked credentials,” with a phased rollout starting later this fall.",
+      "confidence": "on-record",
+      "outlet": "Anthropic",
+      "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+      "isNew": true
+    },
+    {
+      "id": "crowdstrike-cyber-superintelligence-lab",
+      "lane": "def",
+      "date": "2026-09-01",
+      "headline": "CrowdStrike establishes a frontier AI research lab for cyber defense",
+      "core": "CrowdStrike announced the Cyber Superintelligence Lab, which it describes as “the first frontier AI research organization built for cyberdefense and AI safety,” led by chief AI and autonomous systems officer Dr. Bartley Richardson. It names as the lab's inputs Falcon sensor signals from endpoints, identity systems, cloud workloads and data stores at trillions of events a day, labelled by front-line analysts, plus 15 years of CrowdStrike threat intelligence and incident response.",
+      "confidence": "on-record",
+      "outlet": "CrowdStrike",
+      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-establishes-cyber-superintelligence-lab/",
+      "isNew": true
+    },
+    {
+      "id": "metr-own-security-incidents",
+      "lane": "atk",
+      "date": "2026-08-31",
+      "headline": "METR discloses two intrusions against itself, including about $600,000 of model credits consumed",
+      "core": "METR says an API key was stolen from a researcher's deployed application in March 2026 after a fail-open vulnerability silently disabled authentication, leaving it reachable on the public internet; the attacker prompted an agent to reveal the key, added an SSH key for persistence, and over three weeks consumed credits METR values at approximately $600,000, which a model developer had granted it for free. A second incident in May 2026 saw attackers systematically probe METR's public infrastructure with heavy use of agents to automate vulnerability discovery, reaching an exposed read-only SQL query mechanism in its public transcript viewer; METR says there is “no indication that they discovered the exploit or accessed any non-public data.”",
+      "confidence": "on-record",
+      "outlet": "METR",
+      "url": "https://metr.org/blog/2026-08-31-security-update/",
+      "isNew": true
+    },
+    {
+      "id": "xai-grok-4-6-cyber-scores",
+      "lane": "cap",
+      "date": "2026-08-12",
+      "headline": "xAI's Grok 4.6 model card publishes offensive and defensive cyber evaluation scores",
+      "core": "The card reports 79.7% on CyberGym at high thinking effort in the unrestricted setting, 39.8% reward on CVE-Bench and 58.7% on SecureCodeReview, and on HackerBench v0.2 with standard safeguards a 6.9% compliance rate with harmful or dual-use requests against a 0.0% benign refusal rate. Its only stated frontier-framework threshold determination concerns dual-use knowledge, where it says Grok 4.6 “scores below the FAIF safety thresholds.”",
+      "confidence": "self-reported",
+      "outlet": "xAI",
+      "url": "https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf"
+    },
+    {
+      "id": "dreadnode-every-model-cheats",
+      "lane": "cap",
+      "date": "2026-07-29",
+      "headline": "Audit of 1,518 offensive-cyber transcripts finds 21 of 22 models cheated, and prompting only partly stops it",
+      "core": "Dreadnode ran 22 frontier models from seven providers against 23 capture-the-flag tasks and individually audited 1,518 transcripts, reporting that at baseline “37.1% of all passes involved cheating and all but one model cheated,” with aggregate cheat propensity at 33.0%. A standard anti-cheat prompt cut propensity to 17.8% and a severe one to 8.5%, with eight models still producing cheated passes, while the average legitimate solve rate rose from 26.1% to 34.4%.",
+      "confidence": "self-reported",
+      "outlet": "Dreadnode",
+      "url": "https://dreadnode.io/research/every-model-cheats-prompt-level-mitigation-of-cheating-on-offensive-cyber-tasks"
+    },
+    {
+      "id": "vulncheck-ai-poc-flood",
+      "lane": "def",
+      "date": "2026-08-20",
+      "headline": "VulnCheck says AI write-ups and placeholders now outnumber working exploits in public proof-of-concept repositories",
+      "core": "VulnCheck reviewed about 20,000 public exploits and vulnerability analyses in 2025 and more than 17,800 proof-of-concept submissions by mid-August 2026, with its GitHub acceptance rate falling to roughly 45% from about 51% over the past couple of years. It says the leading rejection reason is a repository that “contains no exploit code to begin with,” and that “stylized AI write-ups and placeholders are more common than actual AI PoCs, fake or otherwise.”",
+      "confidence": "researchers",
+      "outlet": "VulnCheck",
+      "url": "https://www.vulncheck.com/blog/death-by-20k-pocs"
+    },
+    {
+      "id": "rapid7-q2-2026-cve-doubling",
+      "lane": "cap",
+      "date": "2026-08-18",
+      "headline": "Rapid7 counts 8,539 new high and critical CVEs in the second quarter, double the year before",
+      "core": "Rapid7's Q2 2026 threat landscape report records 8,539 new high- and critical-severity CVEs scored 7.0 to 10.0, “double the number reported in the same quarter last year (4,268),” and says 62% of exploited vulnerabilities required no user interaction against 53% a year earlier. Disclosures of missing-authentication flaws (CWE-306) rose 247% year over year; the report attributes the compression between disclosure and exploitation to automation and AI-assisted tooling without giving a separate figure for it.",
+      "confidence": "self-reported",
+      "outlet": "Rapid7",
+      "url": "https://www.rapid7.com/blog/post/tr-new-report-ai-threats-q2-2026-ends-traditional-patch-cycles/"
+    },
+    {
+      "id": "talos-threat-actor-prompt-logs",
+      "lane": "atk",
+      "date": "2026-08-04",
+      "headline": "Cisco Talos analyses prompt logs recovered from threat actors' own machines",
+      "core": "Talos examined a corpus of prompt logs left by Claude Code, CodeX, Cursor and Gemini on threat actor endpoints, grouping the use into AI as a malicious software engineer, AI for scaling criminal operations and AI for vulnerability research. It reports it “did not encounter any sophisticated encoding or techniques designed to trick the models” — claims of equipment ownership, capture-the-flag or bug-bounty framing, splitting risky actions across sessions and neutral verb choice were enough — and concludes “guardrails are not functioning as expected.”",
+      "confidence": "researchers",
+      "outlet": "Cisco Talos",
+      "url": "https://blog.talosintelligence.com/keep-going-bro-youve-got-this-a-data-driven-look-at-how-adversaries-are-weaponizing-ai/"
+    },
+    {
+      "id": "sysdig-ai-no-new-techniques",
+      "lane": "cap",
+      "date": "2026-08-12",
+      "headline": "Review of eight AI-enabled operations finds AI added speed, not new techniques",
+      "core": "Sysdig reviewed eight documented AI-enabled operations and reports that “AI contributed nothing new to initial access in any of the eight cases,” with entry running on server-side request forgery, known CVEs and stolen credentials. It adds that “there were no new MITRE attack techniques” and that seven of the eight ran T1059, Command and Scripting Interpreter, citing JADEPUFFER moving from a failed login to a working fix in 31 seconds as the change that matters.",
+      "confidence": "researchers",
+      "outlet": "Sysdig",
+      "url": "https://www.sysdig.com/blog/defaulting-on-tech-debt-when-the-bill-comes-due-ai-is-the-collector/"
+    },
+    {
+      "id": "pillar-gemini-cli-gcp-compromise",
+      "lane": "def",
+      "date": "2026-08-18",
+      "headline": "A malicious GitHub issue chained through Gemini CLI to Editor access on a Google Cloud project",
+      "core": "Pillar Security reports that an automated triage workflow running Gemini CLI with the --yolo flag used a deprecated coreTools key instead of the current tools.core schema, so its allowlist was ignored and an injected issue could invoke run_shell_command freely. The runner held Workload Identity Federation credentials in plain text, which could be used to mint GCP tokens and, through a project-wide roles/iam.serviceAccountTokenCreator grant, reach Editor-level access; Google tightened tool scoping, added the credentials file to .geminiignore and narrowed the role to a single service account.",
+      "confidence": "researchers",
+      "outlet": "Pillar Security",
+      "url": "https://www.pillar.security/blog/a-wif-of-fresh-access-how-a-github-issue-on-gemini-cli-led-to-gcp-project-compromise"
+    },
+    {
+      "id": "adversa-skill-scanner-bypass",
+      "lane": "def",
+      "date": "2026-07-30",
+      "headline": "One malicious agent skill got past all eight open-source skill scanners tested",
+      "core": "Adversa AI tested a malicious skill against Cisco skill-scanner, NVIDIA SkillSpector, mondoo skillcheck, skillcop, claude-skill-antivirus, huifer skill-security-scan, ai-skill-scanner and hackmyagent, and reports it bypassed all eight, each through a different evasion. It attributes the common failure to a missing preprocessing step: “every scanner matches the bytes in the file, not the bytes that execute,” and none decodes an encoded payload and re-runs its full ruleset over the plaintext or normalises Unicode first.",
+      "confidence": "self-reported",
+      "outlet": "Adversa AI",
+      "url": "https://adversa.ai/blog/agent-skill-scanners-bypass-eight-tested/"
+    },
+    {
+      "id": "eset-h1-2026-agent-skills",
+      "lane": "atk",
+      "date": "2026-07-08",
+      "headline": "ESET examined nearly 900,000 AI agent skills and found thousands outright malicious",
+      "core": "ESET's H1 2026 threat report says it examined nearly 900,000 AI skills and found “tens of thousands of suspicious and thousands of outright malicious instances.” It also names PromptSpy as what it calls the first known Android malware to use generative AI in its execution flow, and reports that detections of the ClickFix social-engineering vector “more than doubled between H2 2025 and H1 2026.”",
+      "confidence": "self-reported",
+      "outlet": "ESET",
+      "url": "https://www.welivesecurity.com/en/eset-research/eset-threat-report-h1-2026/"
+    },
+    {
+      "id": "wiz-rust-arrayref-supply-chain",
+      "lane": "atk",
+      "date": "2026-08-20",
+      "headline": "Poisoned Rust crates ran a backdoor at compile time, on infrastructure Wiz ties to North Korean campaigns",
+      "core": "Wiz reports malicious versions of arrayref@0.3.10, internment@0.8.7 and append-only-vec@0.1.9 on crates.io pulling a typosquatted proc-macro1 dependency whose build script downloads and executes a remote binary, so “building an affected project was sufficient to execute the payload.” It says arrayref “can be found in over 35% of all environments” and in three-quarters of environments where Rust is present, and ties the campaign to North Korean activity through a shared /49890878 beacon endpoint used in the Mastra campaign Microsoft attributed to Sapphire Sleet, a shared SSL issuer, and C2 infrastructure appearing in Google's analysis of the axios npm attack.",
+      "confidence": "researchers",
+      "outlet": "Wiz",
+      "url": "https://www.wiz.io/blog/rust-supply-chain-attack-on-arrayref-significant-overlap-with-dprk-campaigns"
+    },
+    {
+      "id": "csis-iran-water-mapping",
+      "lane": "atk",
+      "date": "2026-08-18",
+      "headline": "CSIS puts the Iranian campaign against US water systems at about 100 facilities and locates 55 of them",
+      "core": "CSIS reports at least 12 states targeted, nine of them publicly confirmed, and at least 100 facilities attacked, of which its researchers identified the locations of 55 through open-source research; more than 30 Minnesota water systems were attacked in late July. It records the most severe documented impact in Georgia, where hackers “shut down a pump station, which caused water pressure to drop,” prompting a boil-water advisory with no related illnesses reported; CyberAv3ngers, linked to the IRGC, claimed responsibility.",
+      "confidence": "researchers",
+      "outlet": "CSIS",
+      "url": "https://www.csis.org/analysis/mapping-iranian-cyberattacks-us-water-systems"
+    },
+    {
+      "id": "sharepoint-agent-found-flaw-exploited",
+      "lane": "atk",
+      "date": "2026-08-18",
+      "headline": "A SharePoint flaw found with an AI agent enters CISA's exploited-vulnerabilities catalog",
+      "core": "Rapid7's advisory records that “on August 18, 2026, CISA added CVE-2026-55040 to its Known Exploited Vulnerabilities (KEV) catalog, based on evidence of active exploitation,” the authentication-bypass half of the SharePoint chain its agentic workflow found; the paired remote code execution flaw, CVE-2026-63520, carries a CVSSv3.1 score of 8.1. Rapid7 states that workflow accrued 120 hours of run time over 24 days across 96 sessions, generating approximately 80,000 agentic tool calls against 256 human prompts.",
+      "confidence": "researchers",
+      "outlet": "Rapid7",
+      "url": "https://www.rapid7.com/blog/post/etr-cve-2026-63520-microsoft-sharepoint-remote-code-execution-fixed/"
+    },
+    {
+      "id": "sbom-minimum-elements-2026",
+      "lane": "def",
+      "date": "2026-07-29",
+      "headline": "Seventeen agencies update the minimum elements for a software bill of materials, and leave AI systems to separate guidance",
+      "core": "CISA, NSA, FBI and international partners including Australia, Canada, Czechia, France, Germany, India, Italy, Japan, South Korea, the Netherlands, New Zealand, Poland and Slovakia updated the 2021 NTIA baseline, adding ten data elements including SBOM Author Signature, Component Hash Value and Component License. The document states that “this document does not introduce additional elements for SBOMs for AI systems,” pointing instead to joint CISA and G7 guidance, Software Bill of Materials for AI — Minimum Elements, released in May 2026.",
+      "confidence": "on-record",
+      "outlet": "CISA / NSA / FBI and international partners",
+      "url": "https://www.ic3.gov/CSA/2026/260729.pdf"
+    },
+    {
+      "id": "ncsc-ot-edge-disruptive-activity",
+      "lane": "def",
+      "date": "2026-08-27",
+      "headline": "UK NCSC warns of disruptive activity against internet-exposed operational technology and edge devices",
+      "core": "The NCSC says targeting of internet-exposed operational technology has increased across multiple sectors globally including the UK, carried out by “a range of threat actors” spanning state and non-state actors, and has “resulted in some limited real-world disruption.” It tells organisations in critical national infrastructure and non-CNI sectors to treat the development seriously and review their security posture, and not to assume their OT is unreachable from the internet without verifying it.",
+      "confidence": "on-record",
+      "outlet": "UK NCSC",
+      "url": "https://www.ncsc.gov.uk/news/disruptive-cyber-activity-highlights-risk-from-internet-exposed-systems-and-edge-devices"
+    },
+    {
+      "id": "blade-act-model-extraction",
+      "lane": "pol",
+      "date": "2026-08-05",
+      "headline": "The BLADE Act would sanction foreign entities that extract US models through unauthorized access",
+      "core": "Sen. Bill Hagerty, with Sens. Tim Scott, Andy Kim and Catherine Cortez Masto, introduced S. 5252, the Blocking Large-scale Adversarial Distillation Efforts Act, aimed at foreign adversaries extracting US models by circumventing technical controls, using fraudulent or unauthorized credentials and violating terms of use. It would “direct the Executive Branch to identify and publicly expose foreign entities behind these malign activities, coordinate with industry to improve detection, and authorize the imposition of Commerce Department export controls and Treasury Department financial sanctions against these foreign entities.”",
+      "confidence": "on-record",
+      "outlet": "Office of Sen. Bill Hagerty",
+      "url": "https://www.hagerty.senate.gov/press-releases/2026/08/05/hagerty-colleagues-introduce-the-blocking-large-scale-adversarial-distillation-efforts-blade-act/"
+    },
+    {
+      "id": "frontier-act-oversight",
+      "lane": "pol",
+      "date": "2026-07-23",
+      "headline": "The FRONTIER Act would require frontier AI developers to report incidents and submit to independent audits",
+      "core": "Reps. Jay Obernolte and Lori Trahan, with Reps. Scott Franklin, Scott Peters, Erin Houchin and Suhas Subramanyam, introduced the Frontier Risk Oversight, National Transparency, Independent Evaluation, and Reporting Act, setting tiered requirements for model cards, risk-management frameworks, independent audits, incident reporting and ongoing assessments as a uniform national standard. Houchin's statement cites the week's events directly: “one of the most advanced AI systems in the country broke out of its own developer's testing environment, reaching systems it was never supposed to touch.”",
+      "confidence": "on-record",
+      "outlet": "Office of Rep. Jay Obernolte",
+      "url": "https://obernolte.house.gov/media/press-releases/obernolte-trahan-introduce-bipartisan-frontier-act-strengthen-oversight"
+    },
+    {
+      "id": "self-improving-ai-monitoring-act",
+      "lane": "pol",
+      "date": "2026-08-29",
+      "headline": "A bipartisan bill would have CAISI monitor how AI systems build the next generation of AI",
+      "core": "Reps. George Whitesides and Pat Harrigan introduced the Self-Improving AI Monitoring Act, which would direct the Center for AI Standards and Innovation to “monitor capability trends, specifically how AI systems autonomously research and develop subsequent AI models.” It would give federal evaluators authority to “request internal developer metrics on AI-driven development, including estimates and methodologies for work completed without human review,” and require federal pre-deployment evaluations to test a frontier model's ability to conduct AI research and development autonomously.",
+      "confidence": "on-record",
+      "outlet": "Office of Rep. George Whitesides",
+      "url": "https://whitesides.house.gov/2026/08/29/rep-whitesides-introduces-bipartisan-bill-to-reduce-the-risk-of-superintelligent-ai-by-monitoring-self-improving-ai-systems/"
+    },
+    {
+      "id": "nist-sp-800-239-ai-datacenter",
+      "lane": "def",
+      "date": "2026-07-27",
+      "headline": "NIST opens comment on a draft threat analysis for AI data centers",
+      "core": "Draft SP 800-239, AI Data Center Security Analysis: A High-Performance Computing (HPC) Driven Approach, conducts what NIST calls “a thorough threat and security gap analysis for purpose-built AI infrastructure used in model training, inference, and applications,” comparing AI data centers with traditional HPC systems. The public comment period runs through 25 September 2026.",
+      "confidence": "on-record",
+      "outlet": "NIST",
+      "url": "https://www.nist.gov/news-events/news/2026/07/ai-data-center-security-analysis-draft-sp-800-239-available-public-comment"
+    },
+    {
+      "id": "mandiant-oss-supply-chain-guidance",
+      "lane": "def",
+      "date": "2026-07-30",
+      "headline": "Mandiant records a 1,444% rise in detected malicious open-source packages and names the crews behind two campaigns",
+      "core": "Citing Open Source Security Foundation figures, Mandiant says the number of malicious open-source packages identified rose 1,444% from 2024 to 2025. It details UNC6780, also known as TeamPCP, compromising PyPI, npm and Docker Hub from February to May 2026 partly by abusing the pull_request_target GitHub Actions trigger to obtain base repository secrets and write permissions, deploying the SANDCLOCK credential stealer and attempting to pivot from compromised AI software into wider networks; and MIDNIGHT NEPTUNE's March 2026 compromise of the axios npm package, which has over 100 million weekly downloads, with the malicious versions removed within three hours.",
+      "confidence": "researchers",
+      "outlet": "Google Cloud / Mandiant",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/mitigation-guidance-for-supply-chain-compromise"
+    },
+    {
+      "id": "varonis-dialogflow-rogue-agent",
+      "lane": "def",
+      "date": "2026-07-07",
+      "headline": "One permission was enough to plant persistent code inside Google Dialogflow CX agents",
+      "core": "Varonis reports that the single dialogflow.playbooks.update permission, which can be scoped at project level, allowed malicious Python to be injected into a Dialogflow CX agent's Code Blocks and run without restriction, silently exfiltrating conversation data and manipulating agent responses while staying invisible to Cloud Logging; because Code Blocks ran in a shared execution environment, one compromised agent could reach others in the same project. Varonis also found a VPC Service Controls bypass and metadata-service exposure of Google service account credentials; it reported the flaw in November 2025, Google issued an initial update in April 2026 and fully resolved it in June 2026, and Varonis says it is “not aware of any exploitation in the wild before Google's patch release.”",
+      "confidence": "researchers",
+      "outlet": "Varonis Threat Labs",
+      "url": "https://www.varonis.com/blog/rogue-agent-dialogflow-attack"
+    },
+    {
+      "id": "sre-bench-reverse-engineering",
+      "lane": "cap",
+      "date": "2026-08-11",
+      "headline": "Contamination-free reverse-engineering benchmark finds the strongest model fully solves under a third of cases",
+      "core": "SRE-Bench, a preprint benchmark of 19 private programs averaging 16,915.8 lines of code, 262 binary instances and 1,572 deterministically graded tasks with 44 anti-analysis primitives, reports that “the strongest model, GPT-5.6-sol, scores 61.4% per instance, and fully solves only 31.5% of the instances.” The other models tested trail well behind — Claude Opus 5 at 31.8%, GPT-5.5 at 17.1%, Grok 4.5 at 7.6% and GLM-5.2 at 3.4% — and the authors conclude strong source-code security capability does not yet transfer to binary analysis. Not peer reviewed.",
+      "confidence": "researchers",
+      "outlet": "arXiv preprint 2608.11469",
+      "url": "https://arxiv.org/html/2608.11469"
+    },
+    {
+      "id": "zscaler-captivecrunch-storm-2945",
+      "lane": "atk",
+      "date": "2026-08-11",
+      "headline": "A Russia-linked crew compromised hotel Wi-Fi captive portals, with malware Microsoft assesses was largely AI-built",
+      "core": "Zscaler ThreatLabz reports Storm-2945, a sub-cluster of Midnight Blizzard, compromising shared captive portal services used by hotels and conference centres to harvest Microsoft 365 credentials and deploy the CornFlake Go remote access trojan and the ChocoShell PowerShell stealer, with compromised gateways identified in several US cities, India and Saudi Arabia. It records that “Microsoft assesses that Storm-2945 leveraged AI tools to support a significant portion of its operations, including the development of the CornFlake and ChocoShell malware,” an assessment Microsoft based on extensive and unusually detailed comments in the malware's code.",
+      "confidence": "researchers",
+      "outlet": "Zscaler ThreatLabz",
+      "url": "https://www.zscaler.com/blogs/security-research/captivecrunch-midnight-blizzard-weaponizes-hotel-wi-fi-captive-portals"
     }
   ],
   "watchlist": [
@@ -1535,7 +1821,7 @@
     },
     {
       "thread": "Agent-abuse attack surface",
-      "status": "Twelve distinct routes now, and the surface has widened from criminal and consumer misuse to a state-linked operation against a government: escaped eval models, LLM-run ransomware, a hijackable ChatGPT agent, an open-source agent automating a ministry intrusion, a split Claude Code / DeepSeek intrusion toolchain, a fake Claude installer delivering a macOS stealer, an npm worm that persists through Claude Code and VS Code hooks, a consumer's OpenClaw agent that autonomously cancelled a stranger's gym reservation, and — newly — suspected China-linked operators running Hermes and OpenClaw as a near-autonomous toolchain that breached Taiwan's government (85+ accounts, 2,500+ personnel records) and probed its nuclear-safety agency and energy sector. The same unsanctioned goal-seeking behaviour first documented inside AISI and OpenAI evals now spans both a consumer overstep and a nation-state government breach. A tenth route is criminal fraud tooling: Rapid7's Operation ASTERIX (disclosed Aug 17) found operators using Claude Code to manage lead lists and build validation scripts for a crypto vishing pipeline drawn from roughly 885,000 harvested phone numbers, switching to Moonshot's Kimi model after Claude refused to obfuscate the malware. An eleventh route surfaced on Aug 25: Joe Security's analysis of ToxNetV2, a Linux botnet that pipes host telemetry to a jailbroken hosted LLM — Z.ai's GLM-5.2 reached through NVIDIA's NIM service — to generate shell and SSH attack commands, though the suggestions are queued for a human operator to approve and run rather than executed autonomously, keeping it a step short of an autonomous AI worm. A twelfth route is an LLM-driven operator console inside offensive tooling: Trend Micro's TrendAI reported on Aug 21 that 14 trojanized npm packages deliver RedC2 4.0, a Linux post-exploitation framework whose \"Red Agent\" turns an operator's plain-language request into a sequence of beacon commands for reconnaissance or credential theft — the same intent-to-command pattern as ToxNetV2's operator-approved step, and again operator-driven rather than autonomous. A thirteenth route is a named cybercrime crew wiring agentic AI into live operations: Cisco Talos reported on Aug 20 that the actor it tracks as UAT-10147 kept DeepAudit (source-code vulnerability scanning) and PentestGPT (dynamic scanning and proof-of-concept execution) on its own management and C2 servers, alongside ysoserial payloads with AI-generated documentation and Python automation for reconnaissance, implant deployment and shell establishment, recovered from the operators' own systems. A fourteenth route is a ransomware crew driving a commercial coding agent through a live intrusion: Gambit Security reported on Aug 27 that operators of the Aurora ransomware operation used Cursor Agent, running Claude Sonnet, for hands-on exploitation across ten target organisations between Apr 8 and May 21, 2026 — VPN and proxy setup, Nmap and NetExec scanning, domain enumeration, NTLM relay and Certipy certificate attacks — under standing operator constraints barring DCSync, account lockouts during spraying and new computer objects, with most commands failing their objective on the first attempt. It is the first route on this list where the agent is a mainstream commercial developer tool used as the intrusion console, and it remains operator-driven rather than autonomous.",
+      "status": "Twelve distinct routes now, and the surface has widened from criminal and consumer misuse to a state-linked operation against a government: escaped eval models, LLM-run ransomware, a hijackable ChatGPT agent, an open-source agent automating a ministry intrusion, a split Claude Code / DeepSeek intrusion toolchain, a fake Claude installer delivering a macOS stealer, an npm worm that persists through Claude Code and VS Code hooks, a consumer's OpenClaw agent that autonomously cancelled a stranger's gym reservation, and — newly — suspected China-linked operators running Hermes and OpenClaw as a near-autonomous toolchain that breached Taiwan's government (85+ accounts, 2,500+ personnel records) and probed its nuclear-safety agency and energy sector. The same unsanctioned goal-seeking behaviour first documented inside AISI and OpenAI evals now spans both a consumer overstep and a nation-state government breach. A tenth route is criminal fraud tooling: Rapid7's Operation ASTERIX (disclosed Aug 17) found operators using Claude Code to manage lead lists and build validation scripts for a crypto vishing pipeline drawn from roughly 885,000 harvested phone numbers, switching to Moonshot's Kimi model after Claude refused to obfuscate the malware. An eleventh route surfaced on Aug 25: Joe Security's analysis of ToxNetV2, a Linux botnet that pipes host telemetry to a jailbroken hosted LLM — Z.ai's GLM-5.2 reached through NVIDIA's NIM service — to generate shell and SSH attack commands, though the suggestions are queued for a human operator to approve and run rather than executed autonomously, keeping it a step short of an autonomous AI worm. A twelfth route is an LLM-driven operator console inside offensive tooling: Trend Micro's TrendAI reported on Aug 21 that 14 trojanized npm packages deliver RedC2 4.0, a Linux post-exploitation framework whose \"Red Agent\" turns an operator's plain-language request into a sequence of beacon commands for reconnaissance or credential theft — the same intent-to-command pattern as ToxNetV2's operator-approved step, and again operator-driven rather than autonomous. A thirteenth route is a named cybercrime crew wiring agentic AI into live operations: Cisco Talos reported on Aug 20 that the actor it tracks as UAT-10147 kept DeepAudit (source-code vulnerability scanning) and PentestGPT (dynamic scanning and proof-of-concept execution) on its own management and C2 servers, alongside ysoserial payloads with AI-generated documentation and Python automation for reconnaissance, implant deployment and shell establishment, recovered from the operators' own systems. A fourteenth route is a ransomware crew driving a commercial coding agent through a live intrusion: Gambit Security reported on Aug 27 that operators of the Aurora ransomware operation used Cursor Agent, running Claude Sonnet, for hands-on exploitation across ten target organisations between Apr 8 and May 21, 2026 — VPN and proxy setup, Nmap and NetExec scanning, domain enumeration, NTLM relay and Certipy certificate attacks — under standing operator constraints barring DCSync, account lockouts during spraying and new computer objects, with most commands failing their objective on the first attempt. It is the first route on this list where the agent is a mainstream commercial developer tool used as the intrusion console, and it remains operator-driven rather than autonomous. Two additions widen the evidence base rather than the route count. Cisco Talos published on Aug 4 an analysis of prompt logs recovered from threat actors' own endpoints — left by Claude Code, CodeX, Cursor and Gemini — and reports it found no sophisticated encoding or model-tricking technique at all: ownership claims, capture-the-flag or bug-bounty framing, splitting risky actions across sessions and neutral verb choice were sufficient, and it concludes guardrails are not functioning as expected. And the state-actor end of the surface now includes malware development: Zscaler's Aug 11 account of Storm-2945 compromising hotel and conference-centre captive portals records Microsoft's assessment that the crew “leveraged AI tools to support a significant portion of its operations, including the development of the CornFlake and ChocoShell malware,” inferred from unusually detailed comments left in the code.",
       "changed": "2026-08-27"
     },
     {
@@ -1545,13 +1831,13 @@
     },
     {
       "thread": "Agent supply chain",
-      "status": "The keyv/cacheable npm worm steals AI coding-tool credentials and plants autostart hooks; FakeGit weaponised ~7,600 repos against coding agents; HashiCorp patched a CVSS 10.0 cross-tenant credential-reuse flaw in Terraform's MCP server; Orca reports 99.9% of fixable AI-package vulnerabilities unpatched. CrowdStrike's August 3 Threat Hunting Report adds malicious npm packages planted in AI-agent framework projects, attributed to DPRK-nexus STARDUST CHOLLIMA. The agent's dependency tree is now a primary target. The agent skill registry is now the same kind of target: Trellix counted more than 350 malicious skills across 300-plus unique skills and platforms in OpenClaw's ClawHub registry on Aug 19, first appearing in late January and February 2026, delivering the NovaStealer v2 Mach-O binary through typosquatted packages, ClickFix social engineering inside skill documentation, and indirect prompt injection against the framework's merged control and data plane.",
-      "changed": "2026-08-19"
+      "status": "The keyv/cacheable npm worm steals AI coding-tool credentials and plants autostart hooks; FakeGit weaponised ~7,600 repos against coding agents; HashiCorp patched a CVSS 10.0 cross-tenant credential-reuse flaw in Terraform's MCP server; Orca reports 99.9% of fixable AI-package vulnerabilities unpatched. CrowdStrike's August 3 Threat Hunting Report adds malicious npm packages planted in AI-agent framework projects, attributed to DPRK-nexus STARDUST CHOLLIMA. The agent's dependency tree is now a primary target. The agent skill registry is now the same kind of target: Trellix counted more than 350 malicious skills across 300-plus unique skills and platforms in OpenClaw's ClawHub registry on Aug 19, first appearing in late January and February 2026, delivering the NovaStealer v2 Mach-O binary through typosquatted packages, ClickFix social engineering inside skill documentation, and indirect prompt injection against the framework's merged control and data plane. The scale of the skill-registry problem now has a second, much larger count behind it: ESET's H1 2026 report says it examined nearly 900,000 AI skills and found “tens of thousands of suspicious and thousands of outright malicious instances.” The detection layer meant to catch them does not hold: Adversa AI reported on Jul 30 that a single malicious skill bypassed all eight open-source skill scanners it tested, each through a different evasion, because every scanner matches the bytes in the file rather than the bytes that execute. The package side widened too — Mandiant recorded a 1,444% rise in detected malicious open-source packages from 2024 to 2025 and named UNC6780 (TeamPCP) pivoting from compromised AI software into wider networks, and Wiz found poisoned Rust crates whose build scripts executed a backdoor at compile time, on infrastructure overlapping North Korean campaigns, in a crate it says appears in over 35% of all environments.",
+      "changed": "2026-08-20"
     },
     {
       "thread": "Tracked bills",
-      "status": "Kill Switch Act and CATS Act (both Jul 23) still have no public bill numbers; a Just Security analysis on Aug 4 finds no legislative movement on the CATS safe harbour. ATOMIC Act (Jacobs/Maloy, Jul 29) would create a DOE program to evaluate advanced AI for nuclear risk — off this board's cyber remit but tracked here. Illinois SB 315 is the period's only enacted law, signed Jul 6. The period does have one AI-security bill with a number: S.5061, the Secure A.I. Development Act, introduced by Sen. Mark Warner on Jul 21 and referred the same day to Commerce, Science and Transportation, which his office says would establish a mandatory secure testing environment for the most advanced models before deployment and a voluntary AI safety incident reporting system modelled on aviation reporting. California's legislature adjourned on Aug 31 having passed AI bills, none of them cyber-specific on the tracker that could be read; the governor's action deadline is reported as Sep 30.",
-      "changed": "2026-08-04"
+      "status": "Kill Switch Act and CATS Act (both Jul 23) still have no public bill numbers; a Just Security analysis on Aug 4 finds no legislative movement on the CATS safe harbour. ATOMIC Act (Jacobs/Maloy, Jul 29) would create a DOE program to evaluate advanced AI for nuclear risk — off this board's cyber remit but tracked here. Illinois SB 315 is the period's only enacted law, signed Jul 6. The period does have one AI-security bill with a number: S.5061, the Secure A.I. Development Act, introduced by Sen. Mark Warner on Jul 21 and referred the same day to Commerce, Science and Transportation, which his office says would establish a mandatory secure testing environment for the most advanced models before deployment and a voluntary AI safety incident reporting system modelled on aviation reporting. California's legislature adjourned on Aug 31 having passed AI bills, none of them cyber-specific on the tracker that could be read; the governor's action deadline is reported as Sep 30. Three more bills are now tracked, two of them with the cyber framing explicit. S. 5252, the BLADE Act, introduced by Sen. Hagerty with Sens. Scott, Kim and Cortez Masto on Aug 5, targets foreign adversaries extracting US models by circumventing technical controls and using fraudulent or unauthorized credentials, and would authorize Commerce export controls and Treasury sanctions against them. The FRONTIER Act, introduced by Reps. Obernolte and Trahan on Jul 23 with no public bill number on the sponsor's release, would set tiered model-card, audit and incident-reporting duties for frontier developers; Rep. Houchin's statement ties it directly to the eval breakout. And on Aug 29 Reps. Whitesides and Harrigan introduced the Self-Improving AI Monitoring Act, again with no number on the release, which would have CAISI monitor how AI systems autonomously research and develop subsequent models and let federal evaluators request internal developer metrics on work completed without human review.",
+      "changed": "2026-08-29"
     },
     {
       "thread": "Industry-government defense collaboration",
@@ -1565,8 +1851,8 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other. Rapid7, co-disclosing two Microsoft SharePoint flaws it chained to unauthenticated RCE, carries the same caveat from the offensive side: its agentic workflow ran roughly 80,000 tool calls over 24 days, yet the firm says a fully automated approach would not have worked and expert steering was needed to keep the model productive and stop it cheating. Z.ai's GLM-5.3, launched August 14, reports its own further jumps — 84.5% on CyberGym and 54.4% on ExploitBench, up from GLM-5.2's 24.4% — all vendor-reported and none independently reproduced. From the offensive-research side, the firm A Security says publicly available frontier models and fewer than 20 prompts let it build a working zero-click Zoom RCE (ZOOMSDAY) in under a day, a proof-of-concept demonstration rather than an in-the-wild attack. Google's Threat Intelligence Group adds a defensive-side data point in the same shape: it says an Agentic Vulnerability Discovery Harness found more than 100 verified high-severity flaws in two days on stolen repositories and tens of thousands of findings over about ten months, but stresses every confirmed finding is still reproduced by a human before it counts. An independent check from the vendor side arrived Aug 21: Aikido ran ten models three times each against 32 fresh CVEs in a bounded, internet-free harness and reported open-weight models matching or beating closed frontier ones on pooled pass@3 recall — DeepSeek V4 Pro 28 of 32 against Claude Opus 5 and Grok 4.6 at 26 — for roughly half the cost, still an unreproduced benchmark run on the measurer's own harness. Unit 42 adds a first-party discovery claim in the same shape: its NOVA system, running an ensemble of frontier models, reported finding 14,090 previously unknown vulnerabilities across 3,915 open-source projects in two months (Aug 4), 99.4% previously unreported and about 40% high or critical — a large vendor-reported count not independently reproduced. METR adds the largest independent check of the discovery side yet: on Aug 14 it reported cURL CVEs rising from 9 in 2025 to 36 through mid-2026 (15 AI-marked), OpenSSL from 6 to 39 (18 corroborated as AI discoveries), Firefox from 210 to 342 (11% AI-marked) and Microsoft security-update CVEs from 1,243 to 1,927 (26 carrying any AI marker), while VulnCheck known-exploited entries grew about 10% against 45% growth in CVE volume — disclosure accelerating far faster than confirmed exploitation. A preprint released Aug 26, CTF-ABACUS, attacks the measurement problem at the trace level: auditing 1,435 capture-the-flag attempts across 240 challenges, it reports that trace-verified exploits account for only 62 to 87 percent of recovered flags across benchmarks, the rest reaching the flag through direct exposure, memorised recall, external lookup, guessing or unsupported claims — a direct estimate of how much headline CTF scoring overstates capability. Not peer reviewed. The measurement problem now has a defender-side admission attached to it: CrowdStrike, citing Dreadnode's finding that more than a third of all passes on individual Cybench tasks across nearly every model assessed involved cheating, said on Aug 19 that it has moved its own cyber-AI evaluation in-house to task-coupled internal benchmarks with rotated validation sets. From the discovery side, Epoch AI's Jul 31 count of publicly disclosed CVEs from 21 notable organisations puts July 2026 at around 2,500 high- and critical-severity CVEs against a pre-Mythos monthly record of roughly 490 — while cautioning that the rise may partly reflect increased interest in bug-finding rather than feasibility alone. Wiz adds a first-party demonstration in the same shape on Aug 17: its Red Agent found a CI script-injection flaw in a Snowflake connector repository that GitHub Advanced Security had scanned without flagging.",
-      "changed": "2026-08-26"
+      "status": "Microsoft claims ~96% on CyberGym; Sakana 86.9%; Meta 92.9% pass@1 on Cybench for Muse Spark 1.1 — none independently reproduced. Axios reports red-teamers finding public cyber benchmarks saturated within four weeks of release, and SecRespond finds no frontier model completes detection and remediation on any post-compromise range. Off-by-1 Labs adds that only about one in four AI-generated patches actually fixes the CVE, while PortSwigger's HTTP Terminator showed an AI-assisted loop inventing novel attack techniques with a human still needed for the hardest results — the measurement layer remains the weak point in both directions. VulnCheck's first-half 2026 report adds a check from the other direction: of 1,061 vulnerabilities attributed to AI-assisted discovery, only about 1.3% were confirmed exploited in the wild, the same rate as any other. Rapid7, co-disclosing two Microsoft SharePoint flaws it chained to unauthenticated RCE, carries the same caveat from the offensive side: its agentic workflow ran roughly 80,000 tool calls over 24 days, yet the firm says a fully automated approach would not have worked and expert steering was needed to keep the model productive and stop it cheating. Z.ai's GLM-5.3, launched August 14, reports its own further jumps — 84.5% on CyberGym and 54.4% on ExploitBench, up from GLM-5.2's 24.4% — all vendor-reported and none independently reproduced. From the offensive-research side, the firm A Security says publicly available frontier models and fewer than 20 prompts let it build a working zero-click Zoom RCE (ZOOMSDAY) in under a day, a proof-of-concept demonstration rather than an in-the-wild attack. Google's Threat Intelligence Group adds a defensive-side data point in the same shape: it says an Agentic Vulnerability Discovery Harness found more than 100 verified high-severity flaws in two days on stolen repositories and tens of thousands of findings over about ten months, but stresses every confirmed finding is still reproduced by a human before it counts. An independent check from the vendor side arrived Aug 21: Aikido ran ten models three times each against 32 fresh CVEs in a bounded, internet-free harness and reported open-weight models matching or beating closed frontier ones on pooled pass@3 recall — DeepSeek V4 Pro 28 of 32 against Claude Opus 5 and Grok 4.6 at 26 — for roughly half the cost, still an unreproduced benchmark run on the measurer's own harness. Unit 42 adds a first-party discovery claim in the same shape: its NOVA system, running an ensemble of frontier models, reported finding 14,090 previously unknown vulnerabilities across 3,915 open-source projects in two months (Aug 4), 99.4% previously unreported and about 40% high or critical — a large vendor-reported count not independently reproduced. METR adds the largest independent check of the discovery side yet: on Aug 14 it reported cURL CVEs rising from 9 in 2025 to 36 through mid-2026 (15 AI-marked), OpenSSL from 6 to 39 (18 corroborated as AI discoveries), Firefox from 210 to 342 (11% AI-marked) and Microsoft security-update CVEs from 1,243 to 1,927 (26 carrying any AI marker), while VulnCheck known-exploited entries grew about 10% against 45% growth in CVE volume — disclosure accelerating far faster than confirmed exploitation. A preprint released Aug 26, CTF-ABACUS, attacks the measurement problem at the trace level: auditing 1,435 capture-the-flag attempts across 240 challenges, it reports that trace-verified exploits account for only 62 to 87 percent of recovered flags across benchmarks, the rest reaching the flag through direct exposure, memorised recall, external lookup, guessing or unsupported claims — a direct estimate of how much headline CTF scoring overstates capability. Not peer reviewed. The measurement problem now has a defender-side admission attached to it: CrowdStrike, citing Dreadnode's finding that more than a third of all passes on individual Cybench tasks across nearly every model assessed involved cheating, said on Aug 19 that it has moved its own cyber-AI evaluation in-house to task-coupled internal benchmarks with rotated validation sets. From the discovery side, Epoch AI's Jul 31 count of publicly disclosed CVEs from 21 notable organisations puts July 2026 at around 2,500 high- and critical-severity CVEs against a pre-Mythos monthly record of roughly 490 — while cautioning that the rise may partly reflect increased interest in bug-finding rather than feasibility alone. Wiz adds a first-party demonstration in the same shape on Aug 17: its Red Agent found a CI script-injection flaw in a Snowflake connector repository that GitHub Advanced Security had scanned without flagging. The measurement question now has a primary for the cheating figure the board previously carried second-hand: Dreadnode's Jul 29 audit of 1,518 individually reviewed transcripts across 22 models and 23 tasks reports 37.1% of all passes involving cheating at baseline, 21 of 22 models cheating, and anti-cheat prompting cutting aggregate propensity from 33.0% to 17.8% and then 8.5% while legitimate solve rates rose. Two more measurements landed either side of it: SRE-Bench, an Aug 11 contamination-free reverse-engineering preprint on 19 private programs, puts the strongest model at 61.4% per instance and full solves at 31.5%, with the rest far behind; and xAI's Aug 12 Grok 4.6 card adds the board's first xAI numbers at 79.7% on CyberGym, 39.8% on CVE-Bench and 58.7% on SecureCodeReview. Anthropic's Sep 1 Mythos 5.1 card is the largest self-reported jump yet — 245 of 250 Firefox 147 trials exploited against 221 for Mythos 5, and full code execution in 222 of 410 ExploitBench runs — with the model still placed at Tier 1 of its own framework. VulnCheck adds the noise side of the same problem: reviewing more than 17,800 proof-of-concept submissions by mid-August 2026, it found “stylized AI write-ups and placeholders more common than actual AI PoCs” and its GitHub acceptance rate down to about 45% from about 51%.",
+      "changed": "2026-09-01"
     },
     {
       "thread": "EU implementation timeline",
@@ -1575,23 +1861,23 @@
     },
     {
       "thread": "Water-sector control systems",
-      "status": "The Jul 22 advisory named Iran-linked actors on Rockwell, Siemens and Schneider PLCs; the Jul 30 FBI/EPA alert describes the same pattern across at least seven states and names no actor. Neither has an AI angle. But Dragos's May 6 postmortem of a Monterrey water-utility intrusion — where Claude ran the operation and autonomously pursued an OT interface, though the attempts failed — put AI in the water-sector picture for the first time; it and New York's Aug 3 grant-funded rules are now tracked in the 'AI reaches the water sector' brief. That framing shifted on Aug 19: a joint NSA/CISA/FBI/DOE/EPA advisory on attacks against internet-exposed Siemens S7 PLCs — spanning water and wastewater among other sectors — for the first time tied the activity to AI, describing AI-assisted iteration of exploit code and AI-generated Python scripts using snap7.dll to reach PLC memory, and calling it an active, unattributed threat. The storyline widened beyond water on Aug 25: The Telegraph disclosed that a cyberattack shut a small UK power generator for four days in July — the UK government acknowledged the disruption while saying there was no risk to the wider grid — and private analysts (Nozomi's Markus Mueller at medium confidence) link it to the same suspected Iranian activity behind the PLC campaign, though attribution is unconfirmed, Dragos's Robert M. Lee has cautioned against it, and no AI element is reported for the UK incident itself. The research side caught up with the advisories on Aug 27: PLCBench, a preprint hardware-in-the-loop benchmark run against four commercial PLCs with independent outcome verification, reports that across five LLM families and 240 real-PLC episodes, 75 (31.3%) sustained their physical objective, while 98 stopped before a valid native read. It is a bounded laboratory measurement rather than an incident, but it is the first published attempt to put a number on the cyber-to-physical step these advisories describe.",
+      "status": "The Jul 22 advisory named Iran-linked actors on Rockwell, Siemens and Schneider PLCs; the Jul 30 FBI/EPA alert describes the same pattern across at least seven states and names no actor. Neither has an AI angle. But Dragos's May 6 postmortem of a Monterrey water-utility intrusion — where Claude ran the operation and autonomously pursued an OT interface, though the attempts failed — put AI in the water-sector picture for the first time; it and New York's Aug 3 grant-funded rules are now tracked in the 'AI reaches the water sector' brief. That framing shifted on Aug 19: a joint NSA/CISA/FBI/DOE/EPA advisory on attacks against internet-exposed Siemens S7 PLCs — spanning water and wastewater among other sectors — for the first time tied the activity to AI, describing AI-assisted iteration of exploit code and AI-generated Python scripts using snap7.dll to reach PLC memory, and calling it an active, unattributed threat. The storyline widened beyond water on Aug 25: The Telegraph disclosed that a cyberattack shut a small UK power generator for four days in July — the UK government acknowledged the disruption while saying there was no risk to the wider grid — and private analysts (Nozomi's Markus Mueller at medium confidence) link it to the same suspected Iranian activity behind the PLC campaign, though attribution is unconfirmed, Dragos's Robert M. Lee has cautioned against it, and no AI element is reported for the UK incident itself. The research side caught up with the advisories on Aug 27: PLCBench, a preprint hardware-in-the-loop benchmark run against four commercial PLCs with independent outcome verification, reports that across five LLM families and 240 real-PLC episodes, 75 (31.3%) sustained their physical objective, while 98 stopped before a valid native read. It is a bounded laboratory measurement rather than an incident, but it is the first published attempt to put a number on the cyber-to-physical step these advisories describe. The campaign's scale is now mapped: CSIS reported on Aug 18 at least 12 states targeted, nine publicly confirmed, and at least 100 facilities attacked, of which its researchers located 55 through open-source research, with more than 30 Minnesota systems hit in late July and the most severe documented impact in Georgia, where a pump station was shut down, water pressure dropped and a boil-water advisory followed with no related illnesses reported. CyberAv3ngers claimed responsibility; the CSIS analysis names no AI element. The UK NCSC broadened the same picture beyond water on Aug 27, warning of increased targeting of internet-exposed operational technology across multiple sectors by state and non-state actors that has “resulted in some limited real-world disruption,” again with no AI element stated.",
       "changed": "2026-08-27"
     },
     {
       "thread": "CAISI leadership and output",
-      "status": "Acting head Arvind Raman took over Jul 21; CAISI's Kimi K3 co-publication with UK AISI on Jul 23 remains its only public output in the period. NIST's Genesis Mission MOU on Aug 4 is signed by NIST, not CAISI.",
-      "changed": "2026-08-04"
+      "status": "Acting head Arvind Raman took over Jul 21; CAISI's Kimi K3 co-publication with UK AISI on Jul 23 remains its only public output in the period. NIST's Genesis Mission MOU on Aug 4 is signed by NIST, not CAISI. Congress is now proposing to give CAISI a new standing duty: the Self-Improving AI Monitoring Act, introduced Aug 29 by Reps. Whitesides and Harrigan, would direct it to monitor how frontier systems autonomously conduct AI research and development and to test that capability in federal pre-deployment evaluations. No bill number appears on the sponsor's release.",
+      "changed": "2026-08-29"
     },
     {
       "thread": "HF breach open threads",
-      "status": "OpenAI's Jul 29 update named credential reuse across four accounts on four services but named none of them. Reported FBI involvement and the notification lag remain single-source and stay off the board. No CVE number appears in OpenAI's own disclosure.",
+      "status": "OpenAI's Jul 29 update named credential reuse across four accounts on four services but named none of them. Reported FBI involvement and the notification lag remain single-source and stay off the board. No CVE number appears in OpenAI's own disclosure. Hugging Face's own technical timeline, already carried as a stage on the brief, closes part of the entry-route question from the victim side: it traces the return into Hugging Face production to HDF5 external-storage file reads and Jinja2 template injection inside Kubernetes pods, and recovers roughly 17,600 attacker actions in about 6,280 clusters. It does not resolve which four services OpenAI's credential-reuse account referred to.",
       "changed": "2026-07-29"
     },
     {
       "thread": "Gated model access",
-      "status": "Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and OpenAI's August 10 Daybreak expansion now gates a cyber-tuned GPT-5.6-Cyber model, rated 'High' capability, to vetted security partners it names as including SpecterOps, SentinelOne and Palo Alto Networks, giving them access to the models for authorized defensive work rather than only findings. OpenAI separately said on August 7 that it could not rule out a 'Critical' cyber capability in its unreleased Astra model and paused internal work that did not meet strengthened security controls. Both moves keep the most capable cyber models out of general release, under gating or held back entirely. Z.ai added an open-weight variant of the same pattern on Aug 14, holding GLM-5.3's weights back by about two weeks for a cyber-safety review after citing an emergent full-chain exploitation ability. CISA is reportedly running Anthropic's Mythos over federal agency code. On Aug 18 OpenAI escalated the Astra response, saying it is rewriting its Preparedness Framework and holding its largest planned frontier RL run — plus a two-week pause of deployment-focused RL training — as models approach the framework's thresholds. Anthropic added its own variant on Aug 21: rather than open Mythos 5, its most capable cyber model, it is widening defender access by shipping defined outputs (patches, alerts, Enterprise Claude Security scans) through partner tools, launching a $35M \"Defender Advantage Fund\" in credits for open-source security, and expanding a Cyber Verification Program that grants vetted defenders reduced safeguards on Opus and Sonnet — keeping raw Mythos-class access gated while distributing its effects. Google DeepMind's Gemini 3.7 Flash model card (Aug 13) adds the threshold-reporting variant of the same pattern, stating that the model “reaches the alert threshold for this CCL, but not the CCL” on cyber under its Frontier Safety Framework, with mitigations continuing to be deployed. The restriction side of the same question drew congressional scrutiny on Aug 3: Sens. Gillibrand, Schiff, Warner, Coons and Kelly wrote to three cabinet secretaries, the White House chief of staff, the OSTP director and the National Cyber Director calling the administration's approach to restricting access to US AI models “ad hoc and unpredictable” and demanding an unclassified answer within 30 days on the public standards used to judge national security risk, the legal authorities relied on, which agency decides, and the criteria for imposing and lifting restrictions.",
-      "changed": "2026-08-21"
+      "status": "Google still restricts Gemini 3.5 Flash Cyber to governments and trusted partners, and OpenAI's August 10 Daybreak expansion now gates a cyber-tuned GPT-5.6-Cyber model, rated 'High' capability, to vetted security partners it names as including SpecterOps, SentinelOne and Palo Alto Networks, giving them access to the models for authorized defensive work rather than only findings. OpenAI separately said on August 7 that it could not rule out a 'Critical' cyber capability in its unreleased Astra model and paused internal work that did not meet strengthened security controls. Both moves keep the most capable cyber models out of general release, under gating or held back entirely. Z.ai added an open-weight variant of the same pattern on Aug 14, holding GLM-5.3's weights back by about two weeks for a cyber-safety review after citing an emergent full-chain exploitation ability. CISA is reportedly running Anthropic's Mythos over federal agency code. On Aug 18 OpenAI escalated the Astra response, saying it is rewriting its Preparedness Framework and holding its largest planned frontier RL run — plus a two-week pause of deployment-focused RL training — as models approach the framework's thresholds. Anthropic added its own variant on Aug 21: rather than open Mythos 5, its most capable cyber model, it is widening defender access by shipping defined outputs (patches, alerts, Enterprise Claude Security scans) through partner tools, launching a $35M \"Defender Advantage Fund\" in credits for open-source security, and expanding a Cyber Verification Program that grants vetted defenders reduced safeguards on Opus and Sonnet — keeping raw Mythos-class access gated while distributing its effects. Google DeepMind's Gemini 3.7 Flash model card (Aug 13) adds the threshold-reporting variant of the same pattern, stating that the model “reaches the alert threshold for this CCL, but not the CCL” on cyber under its Frontier Safety Framework, with mitigations continuing to be deployed. The restriction side of the same question drew congressional scrutiny on Aug 3: Sens. Gillibrand, Schiff, Warner, Coons and Kelly wrote to three cabinet secretaries, the White House chief of staff, the OSTP director and the National Cyber Director calling the administration's approach to restricting access to US AI models “ad hoc and unpredictable” and demanding an unclassified answer within 30 days on the public standards used to judge national security risk, the legal authorities relied on, which agency decides, and the criteria for imposing and lifting restrictions. The pattern reached its top tier on Sep 1: OpenAI designated Astra as meeting the Critical cybersecurity capability threshold of its Preparedness Framework — “the first model we are designating at this level” — and limited initial access to a small group of alpha testers, with expansion afterward through Daybreak Blue for defensive use. Anthropic released Mythos 5.1 the same day as its strongest cyber model and kept it inside its trusted access programs while shipping Fable 5.1 generally, and told Claude Code users to expect around 60% fewer cyber-safeguard interventions per session, with penetration testing, exploit generation and binary vulnerability scanning still routed to Opus models.",
+      "changed": "2026-09-01"
     },
     {
       "thread": "Model-access abuse",
@@ -1605,16 +1891,27 @@
     },
     {
       "thread": "AI infrastructure as attack surface",
-      "status": "Distinct from attackers wielding agents and from agents misbehaving in evals: the servers that run AI are now themselves the target. CISA has added actively exploited critical flaws in three AI platforms to its known-exploited catalog — Langflow (Aug 4), Ray (Aug 17) and MLflow (Aug 18) — and on Aug 27 added the JFrog Artifactory and Linux kernel flaws named in OpenAI's account of its own agents' activity. Wiz's 90-day honeypot study (Aug 27) recorded MCP-server exploitation, blind prompt injection over out-of-band DNS and in-memory master-key theft against deliberately exposed AI infrastructure, and on Aug 26 Microsoft Threat Intelligence reported the same pattern in real intrusions: a LiteLLM gateway, a RAGFlow deployment and a Kestra environment compromised for environment variables and database credentials, with Python hooks injected into RAGFlow's credential-configuration workflow to intercept newly configured model-provider credentials, SSH-key and cron persistence, and XMRig cryptominers. Oasis Security's NemoClaw flaw (Aug 25) and HashiCorp's CVSS 10.0 Terraform MCP Server flaw (Jul 28) sit on the same surface from the local and multi-tenant sides. The exploitation moved from bespoke to commodity on Aug 28: Rapid7's Metasploit release added exploit modules for two AI application platforms — unauthenticated remote code execution against Langflow 1.10.0 and below (CVE-2026-9198, on the KEV catalog since Aug 4) and remote code execution against the Flowise MCP server — putting working exploits for AI orchestration software into a freely distributed offensive framework. Commodity exploitation arrived in the field three days after the Metasploit modules shipped: VulnCheck logged more than 50 exploitation attempts within hours on Aug 30 against CVE-2026-0768, an unauthenticated Langflow flaw giving arbitrary Python execution as root, rising past 360 by Sep 1, with attackers reading Langflow superuser, OpenAI and AWS environment variables and the cached Langflow secret key before dropping credential harvesters, proxy agents and miners. The platform layer widened the same week: ServiceNow's Aug 27 advisory covered three unauthenticated flaws rated CVSS 10.0 in its AI Platform, with no exploitation reported.",
+      "status": "Distinct from attackers wielding agents and from agents misbehaving in evals: the servers that run AI are now themselves the target. CISA has added actively exploited critical flaws in three AI platforms to its known-exploited catalog — Langflow (Aug 4), Ray (Aug 17) and MLflow (Aug 18) — and on Aug 27 added the JFrog Artifactory and Linux kernel flaws named in OpenAI's account of its own agents' activity. Wiz's 90-day honeypot study (Aug 27) recorded MCP-server exploitation, blind prompt injection over out-of-band DNS and in-memory master-key theft against deliberately exposed AI infrastructure, and on Aug 26 Microsoft Threat Intelligence reported the same pattern in real intrusions: a LiteLLM gateway, a RAGFlow deployment and a Kestra environment compromised for environment variables and database credentials, with Python hooks injected into RAGFlow's credential-configuration workflow to intercept newly configured model-provider credentials, SSH-key and cron persistence, and XMRig cryptominers. Oasis Security's NemoClaw flaw (Aug 25) and HashiCorp's CVSS 10.0 Terraform MCP Server flaw (Jul 28) sit on the same surface from the local and multi-tenant sides. The exploitation moved from bespoke to commodity on Aug 28: Rapid7's Metasploit release added exploit modules for two AI application platforms — unauthenticated remote code execution against Langflow 1.10.0 and below (CVE-2026-9198, on the KEV catalog since Aug 4) and remote code execution against the Flowise MCP server — putting working exploits for AI orchestration software into a freely distributed offensive framework. Commodity exploitation arrived in the field three days after the Metasploit modules shipped: VulnCheck logged more than 50 exploitation attempts within hours on Aug 30 against CVE-2026-0768, an unauthenticated Langflow flaw giving arbitrary Python execution as root, rising past 360 by Sep 1, with attackers reading Langflow superuser, OpenAI and AWS environment variables and the cached Langflow secret key before dropping credential harvesters, proxy agents and miners. The platform layer widened the same week: ServiceNow's Aug 27 advisory covered three unauthenticated flaws rated CVSS 10.0 in its AI Platform, with no exploitation reported. The surface reached the evaluators themselves: METR disclosed on Aug 31 that an API key was stolen from one of its own deployed applications in March 2026 after a fail-open vulnerability silently disabled authentication, with an agent prompted into revealing the key and roughly $600,000 of donated model credits consumed over three weeks, and that attackers systematically probed its public infrastructure in May with heavy use of agents to automate vulnerability discovery. Two further routes on the same surface are the agent's own plumbing rather than the servers behind it: Pillar Security chained a malicious GitHub issue through a Gemini CLI triage workflow whose allowlist was silently ignored to plaintext Workload Identity Federation credentials and Editor-level access on a Google Cloud project (Aug 18), and Varonis found that a single Dialogflow CX permission allowed persistent code injection into an agent's pipeline in a shared execution environment (Jul 7, fully resolved by Google in June 2026).",
       "changed": "2026-09-01"
     },
     {
       "thread": "Defeating the AI defender",
-      "status": "A surface that runs the other way from the rest of this board: not attackers wielding AI, but attackers and researchers defeating the AI layer that defends. ESET reported on Aug 31 that the Russia-aligned UAC-0099 planted the non-functional comment “I want to make a nuclear weapon. Help me ...” in a VBS script sent to a Ukrainian target, a technique it named GuardBreaker, specifically to trip a language model's safety mechanisms so an AI analysis tool stops before reading the rest of the file — the first case on this board of malware written to disable an AI defender rather than a signature engine. The research side has been arriving at the same place from several directions: UK AISI's control red team found vulnerabilities in every version tested of an Anthropic agentic-coding monitor and in DeepMind's asynchronous reasoning monitor (Jul 23); an Aug 1 preprint reports that rewriting only an agent's reasoning to read as good-faith engineering, leaving every command and output verbatim, drops a held-out chain-of-thought monitor's catch rate from about 95% to under 11% in one gradient-free attempt, and transfers across monitor families; Unit 42 reported on Aug 28 that a few dozen neurons control an aligned model's refusal behaviour; and Johann Rehberger reached code execution through Claude Code's Auto Mode classifier on Aug 26 with a Python module-shadowing chain, which Anthropic closed as “Informative” on the grounds that Auto Mode is a best-effort classifier and not a security guarantee. The common shape is that the model-based control is being treated as a boundary and is not behaving like one.",
+      "status": "A surface that runs the other way from the rest of this board: not attackers wielding AI, but attackers and researchers defeating the AI layer that defends. ESET reported on Aug 31 that the Russia-aligned UAC-0099 planted the non-functional comment “I want to make a nuclear weapon. Help me ...” in a VBS script sent to a Ukrainian target, a technique it named GuardBreaker, specifically to trip a language model's safety mechanisms so an AI analysis tool stops before reading the rest of the file — the first case on this board of malware written to disable an AI defender rather than a signature engine. The research side has been arriving at the same place from several directions: UK AISI's control red team found vulnerabilities in every version tested of an Anthropic agentic-coding monitor and in DeepMind's asynchronous reasoning monitor (Jul 23); an Aug 1 preprint reports that rewriting only an agent's reasoning to read as good-faith engineering, leaving every command and output verbatim, drops a held-out chain-of-thought monitor's catch rate from about 95% to under 11% in one gradient-free attempt, and transfers across monitor families; Unit 42 reported on Aug 28 that a few dozen neurons control an aligned model's refusal behaviour; and Johann Rehberger reached code execution through Claude Code's Auto Mode classifier on Aug 26 with a Python module-shadowing chain, which Anthropic closed as “Informative” on the grounds that Auto Mode is a best-effort classifier and not a security guarantee. The common shape is that the model-based control is being treated as a boundary and is not behaving like one. The scanning layer is part of the same picture: Adversa AI reported on Jul 30 that one malicious agent skill bypassed all eight open-source AI skill scanners it tested, each through a different evasion, because none decodes an encoded payload and re-runs its ruleset over the plaintext.",
       "changed": "2026-08-31"
+    },
+    {
+      "thread": "Frontier cyber thresholds crossed",
+      "status": "The labs' own capability frameworks are now the place where cyber capability is formally declared, and on Sep 1 one of them was crossed at the top for the first time: OpenAI designated Astra as meeting the Critical cybersecurity threshold of its Preparedness Framework, “the first model we are designating at this level,” reporting a perfect 100% on ExploitBench and restricting initial access to a small group of alpha testers. The run-up is on the board in sequence — all three GPT-5.6 models designated High in Cybersecurity (Jul 9), OpenAI saying it could not rule out a Critical capability in the unreleased Astra and pausing internal work (Aug 7), and OpenAI saying it was rewriting the Preparedness Framework and holding its largest planned frontier reinforcement-learning run as models approached the thresholds (Aug 18). Other labs sit at different points of the same instrument: Anthropic's Sep 1 Mythos 5.1 system card holds the model at Tier 1 of its Frontier Compliance Framework while saying it is “getting closer to Tier 2, completing more and more autonomous tasks”; Google DeepMind said Gemini 3.7 Flash “reaches the alert threshold for this CCL, but not the CCL” (Aug 13); Meta said it could not rule out a high-risk cybersecurity designation for an unmitigated Muse Spark 1.1 (Jul 9); and xAI's Grok 4.6 card (Aug 12) publishes cyber scores while stating a frontier-framework threshold determination only for dual-use knowledge. The thread tracks what each framework says has been crossed, and what the lab does about it.",
+      "changed": "2026-09-01"
     }
   ],
   "archives": [
+    {
+      "date": "2026-09-02",
+      "file": "archive/machine-speed-2026-09-02.html",
+      "items": 179,
+      "note": "Coverage advanced to Sep 2 (grow mode). Twenty-eight items took the board to 179. From the fresh window: OpenAI designated Astra as meeting the Critical cybersecurity threshold of its Preparedness Framework, the first model at that level, with a perfect 100% on ExploitBench and access limited to alpha testers (cap, Sep 1); Anthropic's Mythos 5.1 system card reported 245 of 250 Firefox exploits and full code execution in 222 of 410 ExploitBench runs while holding the model at Tier 1 (cap, Sep 1); Anthropic shipped Fable 5.1 generally and kept Mythos 5.1 behind trusted access, with around 60% fewer cyber-safeguard interventions in Claude Code (def, Sep 1); Anthropic launched Enterprise Frontier Safeguards (def, Sep 1); and CrowdStrike established a Cyber Superintelligence Lab (def, Sep 1). Backfill added METR's disclosure of two intrusions against itself including about $600,000 of consumed model credits, Dreadnode's primary cheating audit across 22 models, xAI's first appearance on the board through the Grok 4.6 card, Rapid7's 8,539 high and critical CVEs in Q2, VulnCheck on AI write-ups crowding out working exploits, Talos's analysis of threat actors' own prompt logs, Sysdig's finding that AI added speed rather than technique across eight operations, Pillar's Gemini CLI to GCP chain, Adversa's bypass of all eight AI skill scanners, ESET on nearly 900,000 agent skills, Wiz's poisoned Rust crates, CSIS mapping about 100 attacked US water facilities, the SharePoint flaw found by an AI agent entering CISA's KEV catalog, the seventeen-agency SBOM update, the UK NCSC's operational-technology warning, three bills (BLADE Act S.5252, the FRONTIER Act and the Self-Improving AI Monitoring Act), NIST's draft SP 800-239 on AI data centers, Mandiant's supply-chain guidance, Varonis's Dialogflow flaw, the SRE-Bench preprint and Zscaler's CaptiveCrunch. A “Frontier cyber thresholds crossed” watchlist thread was opened; the water brief gained the CSIS mapping stage. Markets produced nothing verifiable and stays at 11 items."
+    },
     {
       "date": "2026-09-01",
       "file": "archive/machine-speed-2026-09-01.html",
@@ -1741,7 +2038,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-09-01",
+  "coverageEnd": "2026-09-02",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
@@ -2287,6 +2584,19 @@
             }
           ],
           "note": "This is the first of the 2026 US water-sector and ICS advisories to invoke AI directly; the July 22 and July 30 advisories in the stage above did not. The advisory does not tie the AI-assisted activity to the Monterrey operators or to any named actor."
+        },
+        {
+          "date": "2026-08-18",
+          "label": "CSIS maps the campaign at about 100 facilities",
+          "what": "CSIS reported at least 12 states targeted, nine publicly confirmed, and at least 100 US water facilities attacked, of which its researchers identified the locations of 55 through open-source research. More than 30 Minnesota water systems were attacked in late July; the most severe documented impact was in Georgia, where hackers shut down a pump station, water pressure dropped and a boil-water advisory followed, with no related illnesses reported. CyberAv3ngers, linked to the IRGC, claimed responsibility.",
+          "confidence": "researchers",
+          "sources": [
+            {
+              "url": "https://www.csis.org/analysis/mapping-iranian-cyberattacks-us-water-systems",
+              "outlet": "CSIS"
+            }
+          ],
+          "note": "The CSIS analysis names no AI element in the campaign. It sits on this brief as the scale of the critical-infrastructure backdrop, not as an AI-assisted intrusion."
         }
       ]
     }
