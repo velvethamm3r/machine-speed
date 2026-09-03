@@ -127,6 +127,18 @@ SHOW_RUN_SNAPSHOTS = False
 DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
                     "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap")
 
+# Cloudflare Web Analytics. The token is a public site identifier, not a secret —
+# it ships in the HTML of every page by design, which is why it lives here rather
+# than in a repository secret. Empty the string and the beacon and its request
+# disappear from every page.
+#
+# Two things worth knowing about what this measures. It is a client-side beacon,
+# so ad-blockers and privacy extensions block it — and this board's readers are
+# security people, the population most likely to run them. Read the numbers as a
+# floor, not a count: the level is wrong, the trend is usable. And a beacon never
+# sees feed.xml, so RSS readers are invisible to it no matter what.
+WEB_ANALYTICS_TOKEN = "0907e6f1cbb74105841c3cb74d580d7f"
+
 # Which view answers the bare domain. "explore" makes the interactive board the
 # landing page and moves the pre-rendered one to BOARD_PAGE; "board" restores the
 # original arrangement. The pre-rendered board never goes away either way — it is
@@ -779,7 +791,7 @@ class Site:
                 'judgment calls behind this board</summary>'
                 f'<div class="note">{note_paras(text)}</div></details>')
 
-    def subscribe_block(self, compact: bool = False) -> str:
+    def subscribe_block(self) -> str:
         """Substack call-to-action. Renders nothing at all if SUBSTACK_URL is unset.
 
         A plain link rather than Substack's iframe embed: it keeps the site
@@ -791,14 +803,6 @@ class Site:
         own = same_site(SUBSTACK_URL)
         tab = "" if own else ' target="_blank" rel="noopener"'
         label = "Subscribe" if own else "Subscribe on Substack ↗"
-        if compact:
-            # The board is a page of dense cards; the stacked heading-paragraph-button
-            # block reads as three loose elements at the end of it. Same content, one row.
-            return (f'<section class="block subscribe compact">'
-                    f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
-                    f'<p>The same reporting, written up and sent to your inbox.</p>'
-                    f'<a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"{tab}>{label}</a>'
-                    f'</section>')
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
@@ -873,6 +877,12 @@ class Site:
         if rel.endswith("/index.html"):
             rel = rel[: -len("index.html")]
         canonical = f"{SITE_URL}/{rel}"
+        analytics = (
+            "<!-- Cloudflare Web Analytics --><script type='module' "
+            "src='https://static.cloudflareinsights.com/beacon.min.js' "
+            f"data-cf-beacon='{{\"token\": \"{WEB_ANALYTICS_TOKEN}\"}}'></script>"
+            "<!-- End Cloudflare Web Analytics -->\n"
+        ) if WEB_ANALYTICS_TOKEN else ""
         return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -907,7 +917,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
 </div>
 <script src="{asset_prefix}theme.js{asset_version('theme.js')}" defer></script>
-</body>
+{analytics}</body>
 </html>
 """
 
@@ -1556,7 +1566,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     </noscript>
   </div>
 
-  {self.subscribe_block(compact=True)}
+  {self.subscribe_block()}
 
   {self.footer()}"""
 

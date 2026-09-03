@@ -234,6 +234,9 @@ forgets to snapshot itself and an archive page full of 404s.
 
 `data.json` is read by `build.py`, which pre-renders every page into `dist/` — all content is
 in the HTML itself, so search engines, RSS readers, link previews, screen readers and no-JS
-browsers see the full board. The only client-side JavaScript is the theme toggle in
-`assets/theme.js`. `archive/` and `newsletter/` are written back into the repo (not `dist/`)
-so history and drafts survive every rebuild. Nothing loads from a CDN.
+browsers see the full board. The client-side JavaScript is the theme toggle in
+`assets/theme.js`, the Explore board in `assets/board.js`, and the Cloudflare Web Analytics
+beacon set by `WEB_ANALYTICS_TOKEN`. `archive/` and `newsletter/` are written back into the
+repo (not `dist/`) so history and drafts survive every rebuild. The only requests leaving the
+page are the Google Fonts display face and the analytics beacon; empty `DISPLAY_FONT_URL` and
+`WEB_ANALYTICS_TOKEN` and the site fetches nothing from a CDN at all.
