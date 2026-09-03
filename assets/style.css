@@ -644,6 +644,20 @@ h1{font-family:var(--display); font-weight:500; font-size:29px; letter-spacing:-
 .pagehead.board.nohead .stampline{margin-top:0}
 .thesis{font-family:var(--display); font-size:17px; line-height:1.4; font-weight:400;
   color:var(--ink-2); margin:0 0 8px; max-width:60ch}
+
+/* Compact subscribe — one row, card language, for the foot of the board. */
+.block.subscribe.compact{display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  padding:14px 18px; margin:18px 0 0; box-shadow:var(--shadow)}
+.block.subscribe.compact .blockhead{margin:0; border-left:0; padding-left:0;
+  font-size:11px; letter-spacing:1.2px; white-space:nowrap}
+.block.subscribe.compact p{margin:0; flex:1; min-width:220px; max-width:none;
+  font-size:13.5px; color:var(--ink-2)}
+.block.subscribe.compact .subbtn{flex:none; margin:0; font-size:13px; padding:9px 15px}
+@media(max-width:620px){
+  .block.subscribe.compact{gap:10px}
+  .block.subscribe.compact p{flex:1 1 100%}
+}
 @media(max-width:600px){.thesis{font-size:16px}}
 .stampline{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:10px 0 0;
   font-size:12px; color:var(--ink-3); letter-spacing:.2px}

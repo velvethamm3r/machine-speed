@@ -779,7 +779,7 @@ class Site:
                 'judgment calls behind this board</summary>'
                 f'<div class="note">{note_paras(text)}</div></details>')
 
-    def subscribe_block(self) -> str:
+    def subscribe_block(self, compact: bool = False) -> str:
         """Substack call-to-action. Renders nothing at all if SUBSTACK_URL is unset.
 
         A plain link rather than Substack's iframe embed: it keeps the site
@@ -791,6 +791,14 @@ class Site:
         own = same_site(SUBSTACK_URL)
         tab = "" if own else ' target="_blank" rel="noopener"'
         label = "Subscribe" if own else "Subscribe on Substack ↗"
+        if compact:
+            # The board is a page of dense cards; the stacked heading-paragraph-button
+            # block reads as three loose elements at the end of it. Same content, one row.
+            return (f'<section class="block subscribe compact">'
+                    f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
+                    f'<p>The same reporting, written up and sent to your inbox.</p>'
+                    f'<a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"{tab}>{label}</a>'
+                    f'</section>')
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
@@ -1548,7 +1556,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     </noscript>
   </div>
 
-  {self.subscribe_block()}
+  {self.subscribe_block(compact=True)}
 
   {self.footer()}"""
 
