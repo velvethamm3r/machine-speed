@@ -1,6 +1,6 @@
 # Machine Speed
 
-A daily, source-verified intelligence board tracking frontier AI cyber
+A daily, source-verified intelligence board tracking AI cyber
 capability against the defense and policy lag.
 
 Live at **https://machinespeed.techpointe.org**.
@@ -17,12 +17,8 @@ All content lives in one file — `data.json` — and `build.py` turns it into a
 fully pre-rendered static site: HTML pages, an RSS feed, JSON-LD, a sitemap,
 and a dated archive snapshot. Every headline, summary and source is in the
 HTML itself, so search engines, RSS readers, link previews, screen readers and
-no-JS browsers all see the full content. The client-side JavaScript is the
-light/dark theme toggle, the Explore board's search and filtering, and a
-Cloudflare Web Analytics beacon. Two requests leave the page — the display face
-from Google Fonts and the analytics beacon — and nothing else is fetched from a
-CDN; empty `DISPLAY_FONT_URL` and `WEB_ANALYTICS_TOKEN` in `build.py` and even
-those two stop.
+no-JS browsers all see the full content. The only client-side JavaScript is the
+light/dark theme toggle. Nothing loads from a CDN.
 
 ```
 ├── data.json     ← single source of truth

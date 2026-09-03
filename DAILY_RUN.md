@@ -39,15 +39,8 @@ stop and keep the guarantee.
 
 The site is fully generated. `build.py` reads `data.json` and pre-renders every page,
 the RSS feed and the newsletter draft. The design lives in `assets/style.css`,
-`assets/theme.js`, `assets/icon.svg`, `assets/board.css` and `assets/board.js`, and the
-HTML structure lives in `build.py`. **A daily run touches none of these.** Correct data
-in, correct layout out.
-
-Since the 2026-09 redesign the bare domain answers with the **Explore** view — an
-interactive, filterable, searchable board rendered in the browser from data inlined into
-the page (`LANDING = "explore"`). This changes nothing about what a run does: a run still
-edits `data.json` and lets `build.py` render. It does mean the run's prose is now read in
-two places rather than one, which is what the "What Explore renders" section below is for.
+`assets/theme.js` and `assets/icon.svg`, and the HTML structure lives in `build.py`.
+**A daily run touches none of these.** Correct data in, correct layout out.
 
 Concretely:
 
@@ -74,81 +67,6 @@ Concretely:
 
 If the presentation genuinely needs to change, that is a separate, deliberate task against
 `build.py`/`assets/` with its own review — never a side effect of a daily run.
-
-### What Explore renders (added 2026-09-03, after the redesign)
-
-`explore_payload()` in `build.py` inlines a **projection** of `data.json` into the landing
-page. Per item it carries exactly nine fields — `id`, `lane`, `date`, `headline`, `core`,
-`confidence`, `outlet`, `url`, and the lane page the row links back to. It also carries
-every watchlist entry's `thread`, `status` and `changed`. Nothing else from `data.json`
-reaches the interactive view: `isNew`, `briefs`, `archives`, `about`, `judgmentNote` and
-`internalNote` are not in the payload.
-
-What follows for a run:
-
-- **You do not need to sanitise or escape anything.** The payload serialiser already
-  escapes every `<` as the six characters backslash-u-0-0-3-c, so no headline, `core` or
-  watchlist `status` can close the script element early no matter what characters it
-  contains. Write plain text as always and do not invent workarounds for this.
-- **The lane path in the payload is generated, never authored.** Each row carries the lane
-  page it links back to, taken from `LANES` in `build.py`. Those paths became directories
-  (`capability/`, not `capability.html`) in the 2026-09 clean-URL change, with the flat
-  paths kept permanently as redirect stubs. A run writes `lane` and nothing else; it never
-  writes a URL for an item's own lane page.
-- **`core` is now read while scanning and filtering, not only on a card.** Keep each one
-  self-contained and legible out of context — no "as above", no reliance on the item next
-  to it. This was already good practice; it is now load-bearing.
-- **The strip is a pre-rendered concept, not an Explore one.** `isNew` is not in the
-  payload, so the "New to the board" strip exists on the pre-rendered pages and in the
-  newsletter, not in the interactive view. Keep setting it per Guarantee 3 — it still
-  drives the newsletter and the snapshot — but do not expect it to change what Explore shows.
-- **Dated snapshots are unaffected.** `BOARD_PAGE` is empty, so the full pre-rendered board
-  is not published as a page, but the renderer still runs and each
-  `archive/machine-speed-YYYY-MM-DD.html` is still a complete frozen copy of that markup.
-  Guarantee 2 is intact; a run needs to do nothing differently.
-
-### Watchlist length — rewrite, do not append
-
-The watchlist `status` strings are rendered in an Explore panel now, and recent runs have
-been **appending** a sentence per development rather than rewriting the thread. As of
-2026-09-03 that has produced a median status of ~2,250 characters and a longest of ~6,250,
-totalling ~44 KB — roughly a fifth of the entire inlined payload, for twenty threads.
-
-From now on, when a thread moves: **rewrite the status so the newest development leads**,
-then compress what is behind it. A thread's status is meant to answer "where does this
-stand today", not to be a changelog — the changelog is `dashboard-memory.md`, which is
-where the full history belongs and where it costs nothing. Retire rather than accumulate:
-a storyline that has stopped moving gets an honest closing status ("Resolved", "Dormant"),
-not another appended clause.
-
-**Keep each status under about 1,200 characters, and the twenty threads together under
-about 25 KB.** Those numbers come from actually doing the compression on 2026-09-03 rather
-than from a guess: the threads that carry the most material — "Vendor benchmark claims",
-"Agent-abuse attack surface", "AI infrastructure as attack surface" — land near 1,150–1,200
-without losing a load-bearing figure, and squeezing them below about 900 starts costing
-real facts. Past 1,500 a thread has stopped being a status and needs either a hard trim or
-a split into two threads. When a thread's material genuinely will not compress, move the
-enumeration to `dashboard-memory.md` and say so in the status ("Full route-by-route list in
-dashboard-memory.md") rather than carrying the list on the board.
-
-Trimming prose is **not** a thread moving: leave `changed` at the date the storyline last
-actually moved, and do not restamp it because you rewrote the wording.
-
-### Standing note — landing-page weight (decide later, do not act on a daily run)
-
-Because the payload is inlined, every item a run adds also adds to the landing page's
-download. Baseline measured 2026-09-03 at 212 items: the page is 297 KB, of which 239 KB
-is the payload — about 1.1 KB per item. Inside that payload, `core` is 114 KB, watchlist
-statuses 44 KB, other item fields 34 KB, headlines 21 KB.
-
-In grow mode at twenty to thirty items a day this grows by roughly 25–35 KB a day without
-limit. Two levers exist and **both are deliberate design tasks, not daily-run decisions**:
-tighten the projection further (dropping or truncating `core`, the single largest term, and
-letting the lane pages carry the full text), or cap the rolling window so items age off.
-The watchlist discipline above is the one part a run controls directly, and it is worth
-about a fifth of the payload on its own. A run should record the current numbers in
-`dashboard-memory.md` if they move sharply, and otherwise leave this alone.
-
 
 ---
 
@@ -184,8 +102,7 @@ as a provenance trail rather than a second front door. Leave that setting as it 
 ## Guarantee 3 — a rolling "last month or so" of alerts, built on the last run
 
 The board states the exact span of days it covers (`coverageStart` … `coverageEnd` in
-`data.json`) and covers every item inside that span — in Explore through filtering and search, and
-on the lane and week pages as pre-rendered cards. The intent is that the span stays
+`data.json`) and shows every item inside that span on one page. The intent is that the span stays
 at **roughly the last five weeks** — "the last month or so" — so the board is always a current
 picture, not an ever-growing scroll and not a blank slate.
 
@@ -369,10 +286,7 @@ minute). That upload is a human step, on purpose.
 | `NEW_WINDOW_DAYS` | `2` | Items this recent auto-enter the "New to the board" strip; `isNew` overrides. |
 | `STRIP_MAX` | `6` | The "New to the board" strip is capped at six; excess warns. |
 | `COVERAGE_SLACK_DAYS` | `0` | The stated period must contain every item exactly, or the build warns. |
-| `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards on the pre-rendered board; older in-window weeks index one line each. Does not affect Explore, which filters the whole period. |
-| `LANDING` | `"explore"` | The bare domain answers with the interactive Explore view. A run never changes this. |
-| `EXPLORE_PAGE` | `"explore.html"` | Where Explore lives when it is *not* the landing page. Empty removes the feature entirely, including `board.css` / `board.js`. |
-| `BOARD_PAGE` | `""` (empty) | The full pre-rendered board is not published as a page — the lane and week pages carry every item, and each dated snapshot in `archive/` is still a complete copy of that markup. |
+| `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards; older in-window weeks index one line each. |
 | `GROUP_BY_WEEK` | `True` | A lane with six or more items splits under Monday–Sunday week headings. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |
 | `SHOW_INTERNAL_NOTE` | `False` | `internalNote` stays in the data, off the page. |

@@ -50,8 +50,7 @@ SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on AI cyber "
-                    "capability — closed and open-weight — and the defense & policy "
-                    "lag around it.")
+                    "capability and the defense & policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent auto-enter the "New to the board" strip; isNew overrides
 STRIP_MAX = 6         # spec caps the "New to the board" strip at six
 
@@ -1154,10 +1153,6 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 f'{escape(a.get("note", ""))}</span></a>'
                 for a in sorted(self.d.get("archives", []),
                                 key=lambda a: a["date"], reverse=True))
-            intro = ('Two ways in. <strong>By week</strong> is the board itself, split into '
-                     'Monday-to-Sunday pages that stay live and keep their links. '
-                     '<strong>By run</strong> is the frozen snapshot taken each time the board '
-                     'was published — the record of what it said that day, corrections and all.')
             runs = f"""
 
   <section class="block"><h2 class="blockhead">By run — dated snapshots</h2>
@@ -1166,16 +1161,12 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     <div class="arch">{snaps}</div>
   </section>"""
         else:
-            intro = ('The board, split into Monday-to-Sunday pages. Each week keeps its own '
-                     'URL and its own sourcing, so a link to a week goes on meaning what it '
-                     'meant the day it was made. Weeks at either end of the covered period are '
-                     'trimmed to the days actually covered rather than padded out to seven.')
             runs = ""
         return f"""{self.nav(ARCHIVE_URL)}
 
   <header class="pagehead">
     <h1>Archive</h1>
-    <div class="sub">{intro}</div>
+    <div class="sub">The board, split into weekly pages.</div>
   </header>
 
   <section class="block"><h2 class="blockhead">By week — {len(self.weeks)} weeks,
@@ -1223,10 +1214,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
   <header class="pagehead">
     <h1>Briefs</h1>
-    <div class="sub">An incident rarely lands as one item. A brief is the same
-      source-verified material laid out as a sequence of dated stages — what happened,
-      when it was disclosed, who confirmed what, and which figures are still contested.
-      Every stage carries its own sources and its own confidence label.</div>
+    <div class="sub">Standout, complex incidents that require dedicated space,
+      outlined chronologically.</div>
   </header>
 
   <section class="block"><h2 class="blockhead">{len(self.briefs)} brief{
@@ -1742,8 +1731,8 @@ def build(out_dir: Path):
         site.prefix = "../"
         write(BRIEFS_URL + "index.html", site.page(
             path=BRIEFS_URL + "index.html", title=f"Briefs — {SITE_NAME}",
-            description=("Incident briefs: each one laid out in dated stages, "
-                         "every stage separately sourced."),
+            description=("Standout, complex incidents that require dedicated space, "
+                         "outlined chronologically."),
             body=site.briefs_body(),
             asset_prefix="../"))
         site.prefix = ""
@@ -1761,7 +1750,7 @@ def build(out_dir: Path):
     site.prefix = "../"
     write(ARCHIVE_URL + "index.html", site.page(
         path=ARCHIVE_URL + "index.html", title=f"Archive — {SITE_NAME}",
-        description="Dated snapshots of the Machine Speed board.",
+        description="The Machine Speed board, split into weekly pages.",
         body=site.archive_body(),
         asset_prefix="../"))
     write(ABOUT_URL + "index.html", site.page(
