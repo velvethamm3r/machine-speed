@@ -7,7 +7,8 @@ writes a fully pre-rendered site into dist/:
 
     dist/
       index.html            landing page — Explore when LANDING = "explore"
-      board.html            the pre-rendered board (all content in the HTML, no JS)
+                            (the pre-rendered board is published only if BOARD_PAGE
+                            is set; its markup is always used for today's snapshot)
       capability.html       lane pages
       policy.html
       defense.html
@@ -133,7 +134,13 @@ LANDING = "explore"
 
 EXPLORE_PAGE = "explore.html"      # where Explore lives when it is NOT the landing page
 EXPLORE_NAV = "Explore"
-BOARD_PAGE = "board.html"          # where the pre-rendered board lives when Explore is home
+# Where the pre-rendered board is published when Explore is the landing page.
+# Empty means it is not published at all — and that is the default, because it is
+# redundant: every item it lists is already pre-rendered on the lane pages and the
+# week pages, which is what crawlers and no-JavaScript readers actually reach.
+# The renderer itself stays either way: each dated snapshot in archive/ IS a copy
+# of that markup, frozen, and that record is the one thing the build guarantees.
+BOARD_PAGE = ""
 BOARD_NAV = "Full board"
 
 
@@ -187,7 +194,9 @@ def home_of(kind: str) -> str:
     """
     if kind == "explore":
         return "index.html" if LANDING == "explore" and EXPLORE_PAGE else EXPLORE_PAGE
-    return BOARD_PAGE if LANDING == "explore" and EXPLORE_PAGE else "index.html"
+    if LANDING == "explore" and EXPLORE_PAGE:
+        return BOARD_PAGE          # "" when the pre-rendered board is not published
+    return "index.html"
 
 
 def same_site(url: str) -> bool:
@@ -647,7 +656,9 @@ class Site:
         bar below it carries the taxonomy, each lane in its own colour.
         """
         if LANDING == "explore" and EXPLORE_PAGE:
-            links = [("index.html", "Board"), (BOARD_PAGE, BOARD_NAV)]
+            links = [("index.html", "Board")]
+            if BOARD_PAGE:
+                links.append((BOARD_PAGE, BOARD_NAV))
         else:
             links = [("index.html", "Board")]
             if EXPLORE_PAGE:
@@ -1491,6 +1502,10 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         weeks = "".join(
             f'<li><a href="{self.prefix}week/{w["monday"]}/">{escape(w["label"])}</a> '
             f'&middot; {len(w["items"])} items</li>' for w in self.weeks)
+        lane_bits = [f'<a href="{self.prefix}{v["page"]}">{v["name"]}</a>' for v in LANES.values()]
+        if BOARD_PAGE:
+            lane_bits.insert(0, f'<a href="{self.prefix}{BOARD_PAGE}">The full board</a>')
+        lanes_links = " &middot; ".join(lane_bits)
         return f"""{self.nav(home_of("explore"))}
 
   <header class="pagehead">
@@ -1506,9 +1521,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
   <div class="msx" id="msx">
     <noscript>
       <div class="msx-noscript">
-        <p>Exploring by lane and week needs JavaScript. Every item is also on the
-        pre-rendered pages, which need none:</p>
-        <p><a href="{self.prefix}{home_of("board")}">The full board &#8594;</a></p>
+        <p>Exploring by lane and week needs JavaScript. Every item is also
+        pre-rendered on the pages below, which need none.</p>
+        <p>{lanes_links}</p>
         <ul>{weeks}</ul>
       </div>
     </noscript>
@@ -1532,10 +1547,11 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 ("about.html", "monthly", "0.3")]
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         if EXPLORE_PAGE:
-            # Whichever of the two is not the landing page still needs its own entry;
-            # the landing page is the "" URL already at the top of this list.
-            urls.append((home_of("board") if LANDING == "explore" else EXPLORE_PAGE,
-                         "daily", "0.9" if LANDING == "explore" else "0.7"))
+            # Whichever of the two is not the landing page needs its own entry — unless
+            # it is not published, in which case there is nothing to point at.
+            other = home_of("board") if LANDING == "explore" else EXPLORE_PAGE
+            if other:
+                urls.append((other, "daily", "0.9" if LANDING == "explore" else "0.7"))
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
         if self.briefs:
@@ -1631,16 +1647,19 @@ def build(out_dir: Path):
 
     # the pre-rendered board and the interactive one; LANDING decides which is "/"
     board_path = home_of("board")
-    write(board_path, site.page(
-        path=board_path,
-        title=(f"{SITE_NAME} — AI-Cyber Intelligence" if board_path == "index.html"
-               else f"Full board — {SITE_NAME}"),
-        description=SITE_DESCRIPTION,
-        body=site.home_body(),
-        extra_head=site.home_jsonld()))
+    if board_path:
+        write(board_path, site.page(
+            path=board_path,
+            title=(f"{SITE_NAME} — AI-Cyber Intelligence" if board_path == "index.html"
+                   else f"Full board — {SITE_NAME}"),
+            description=SITE_DESCRIPTION,
+            body=site.home_body(),
+            extra_head=site.home_jsonld()))
 
     if EXPLORE_PAGE:
         explore_path = home_of("explore")
+        # The ItemList follows whichever page is the landing page, so the structured
+        # data always describes the URL that gets shared and indexed.
         write(explore_path, site.page(
             path=explore_path,
             title=(f"{SITE_NAME} — AI-Cyber Intelligence" if explore_path == "index.html"
@@ -1650,7 +1669,8 @@ def build(out_dir: Path):
                          "running story across weeks, and see what is new since your "
                          "last visit."),
             body=site.explore_body(),
-            extra_head=site.explore_head()))
+            extra_head=site.explore_head()
+                       + (site.home_jsonld() if not board_path else "")))
 
     # /explore.html existed for a day and may be linked or bookmarked, so when it
     # becomes the landing page the old URL is kept as a redirect rather than a 404.
