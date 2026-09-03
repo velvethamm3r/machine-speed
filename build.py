@@ -6,19 +6,20 @@ Reads data.json (single source of truth, rewritten by the daily run) and
 writes a fully pre-rendered site into dist/:
 
     dist/
-      index.html            landing page — Explore when LANDING = "explore"
+      index.html            landing page — Explore, unless LANDING is "board"
                             (the pre-rendered board is published only if BOARD_PAGE
                             is set; its markup is always used for today's snapshot)
-      capability.html       lane pages
-      policy.html
-      defense.html
-      attacks.html
-      markets.html
-      briefs.html           brief index (only when data.json has briefs)
+      capability/           lane pages, one directory each
+      policy/
+      defense/
+      attacks/
+      markets/
+      briefs/               brief index (only when data.json has briefs)
       brief/<slug>/         one brief: an incident laid out in acts and stages
-      archive.html          archive index
+      archive/              archive index
       archive/…​.html        dated snapshot of today's board
-      about.html
+      about/
+      capability.html …     redirect stubs at the old flat paths
       feed.xml              RSS 2.0
       style.css             shared stylesheet (cached across pages)
       theme.js              theme toggle only (site works fine without it)
@@ -130,6 +131,22 @@ DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
 # original arrangement. The pre-rendered board never goes away either way — it is
 # the no-JavaScript fallback, the thing crawlers read, and what each dated archive
 # snapshot is a copy of.
+# Clean URLs. Every page except the landing page is written as index.html inside
+# its own directory, so /capability/ works on GitHub Pages, which serves files
+# literally and does not strip extensions. The old flat paths stay behind as
+# redirect stubs — permanently, not as a migration step: the dated snapshots in
+# archive/ are frozen HTML that still links to ../capability.html, and those files
+# are never rewritten.
+ARCHIVE_URL = "archive/"
+BRIEFS_URL = "briefs/"
+ABOUT_URL = "about/"
+LEGACY_PATHS = {
+    "capability.html": "capability/", "policy.html": "policy/",
+    "defense.html": "defense/", "attacks.html": "attacks/",
+    "markets.html": "markets/", "briefs.html": BRIEFS_URL,
+    "archive.html": ARCHIVE_URL, "about.html": ABOUT_URL,
+}
+
 LANDING = "explore"
 
 EXPLORE_PAGE = "explore.html"      # where Explore lives when it is NOT the landing page
@@ -215,15 +232,15 @@ def same_site(url: str) -> bool:
     return bool(url) and reg(url) == reg(SITE_URL)
 
 LANES = {
-    "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
+    "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability/",
             "desc": "What frontier AI systems can now do in the cyber domain."},
-    "pol": {"name": "Policy", "var": "--pol", "pill": "lp-pol", "page": "policy.html",
+    "pol": {"name": "Policy", "var": "--pol", "pill": "lp-pol", "page": "policy/",
             "desc": "Government, standards and governance responses."},
-    "def": {"name": "Defense", "var": "--def", "pill": "lp-def", "page": "defense.html",
+    "def": {"name": "Defense", "var": "--def", "pill": "lp-def", "page": "defense/",
             "desc": "Defensive tooling, patching and mitigation."},
-    "atk": {"name": "Attacks", "var": "--atk", "pill": "lp-atk", "page": "attacks.html",
+    "atk": {"name": "Attacks", "var": "--atk", "pill": "lp-atk", "page": "attacks/",
             "desc": "Real-world incidents and offensive use."},
-    "mkt": {"name": "Markets", "var": "--mkt", "pill": "lp-mkt", "page": "markets.html",
+    "mkt": {"name": "Markets", "var": "--mkt", "pill": "lp-mkt", "page": "markets/",
             "desc": "How the money prices the risk — cyber insurance, underwriting, "
                     "liability and the capital response."},
 }
@@ -664,8 +681,8 @@ class Site:
             if EXPLORE_PAGE:
                 links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
-            links.append(("briefs.html", "Briefs"))
-        links += [("archive.html", "Archive"), ("about.html", "About")]
+            links.append((BRIEFS_URL, "Briefs"))
+        links += [(ARCHIVE_URL, "Archive"), (ABOUT_URL, "About")]
         out = ['<nav class="nav" aria-label="Site">',
                f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
@@ -1055,13 +1072,13 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         pager = ['<nav class="pager" aria-label="Weeks">']
         pager.append(f'<a class="prev" href="{self.prefix}week/{older["monday"]}/">'
                      f'← {escape(older["label"])}</a>' if older else '<span class="prev"></span>')
-        pager.append(f'<a class="idx" href="{self.prefix}archive.html">All weeks</a>')
+        pager.append(f'<a class="idx" href="{self.prefix}{ARCHIVE_URL}">All weeks</a>')
         pager.append(f'<a class="next" href="{self.prefix}week/{newer["monday"]}/">'
                      f'{escape(newer["label"])} →</a>' if newer else '<span class="next"></span>')
         pager.append('</nav>')
         pager_html = "".join(pager)
 
-        return f"""{self.nav("archive.html")}
+        return f"""{self.nav(ARCHIVE_URL)}
 
   <header class="pagehead">
     <h1>{escape(w["label"])}</h1>
@@ -1144,7 +1161,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                      'meant the day it was made. Weeks at either end of the covered period are '
                      'trimmed to the days actually covered rather than padded out to seven.')
             runs = ""
-        return f"""{self.nav("archive.html")}
+        return f"""{self.nav(ARCHIVE_URL)}
 
   <header class="pagehead">
     <h1>Archive</h1>
@@ -1181,7 +1198,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             return ""
         cards = "".join(self.brief_card(x) for x in self.briefs[:3])
         more = ('<p class="lede" style="margin-top:12px">'
-                f'<a href="{self.prefix}briefs.html">All {len(self.briefs)} briefs ↗</a></p>'
+                f'<a href="{self.prefix}{BRIEFS_URL}">All {len(self.briefs)} briefs ↗</a></p>'
                 if len(self.briefs) > 3 else "")
         return ('<section class="block"><h2 class="blockhead">Briefs — incidents in stages</h2>'
                 '<p class="lede">Some stories are not a single item. A brief lays one out in '
@@ -1192,7 +1209,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
     def briefs_body(self) -> str:
         cards = "".join(self.brief_card(x) for x in self.briefs)
-        return f"""{self.nav("briefs.html")}
+        return f"""{self.nav(BRIEFS_URL)}
 
   <header class="pagehead">
     <h1>Briefs</h1>
@@ -1354,7 +1371,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                                  "headline": it["headline"], "date": it["date"]})
         status = escape(dos.get("status", ""))
         stat = f'<span class="dstatus">{status}</span>' if status else ""
-        return f"""{self.nav("briefs.html")}
+        return f"""{self.nav(BRIEFS_URL)}
 
   <header class="pagehead dhead">
     <h1>{escape(dos["title"])}<span class="lanerule" style="background:var({v["var"]})"></span></h1>
@@ -1365,7 +1382,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       <span><b>Span:</b> {escape(fmt_span(dos.get("opened", ""), dos.get("updated", "")))}</span>
       {stat}
     </div>
-    <div class="stamp"><a href="{self.prefix}briefs.html">← All briefs</a></div>
+    <div class="stamp"><a href="{self.prefix}{BRIEFS_URL}">← All briefs</a></div>
   </header>
 
   {main}
@@ -1377,7 +1394,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     # -- about --------------------------------------------------------------
     def about_body(self) -> str:
         paras = "".join(f"<p>{escape(p)}</p>" for p in self.d.get("about", []))
-        return f"""{self.nav("about.html")}
+        return f"""{self.nav(ABOUT_URL)}
 
   <header class="pagehead"><h1>About {escape(SITE_NAME)}</h1></header>
   <div class="prose">{paras}</div>
@@ -1543,8 +1560,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         the live board under copies of itself.
         """
         day = (self.as_of or "")[:10]
-        urls = [("", "daily", "1.0"), ("archive.html", "daily", "0.6"),
-                ("about.html", "monthly", "0.3")]
+        urls = [("", "daily", "1.0"), (ARCHIVE_URL, "daily", "0.6"),
+                (ABOUT_URL, "monthly", "0.3")]
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         if EXPLORE_PAGE:
             # Whichever of the two is not the landing page needs its own entry — unless
@@ -1555,7 +1572,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
         if self.briefs:
-            urls.append(("briefs.html", "weekly", "0.7"))
+            urls.append((BRIEFS_URL, "weekly", "0.7"))
             urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.briefs]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -1684,13 +1701,16 @@ def build(out_dir: Path):
               '<body><p>The Explore board is now the front page. '
               '<a href="./">Continue &#8594;</a></p></body>\n</html>\n')
 
-    # lanes
+    # lanes — one directory each, so the nav and the assets need a one-step prefix
+    site.prefix = "../"
     for key, v in LANES.items():
-        write(v["page"], site.page(
-            path=v["page"],
+        write(v["page"] + "index.html", site.page(
+            path=v["page"] + "index.html",
             title=f"{v['name']} — {SITE_NAME}",
             description=f"{v['desc']} {site.coverage}, source-verified.",
-            body=site.lane_body(key)))
+            body=site.lane_body(key),
+            asset_prefix="../"))
+    site.prefix = ""
 
     # week pages — one directory per Monday-to-Sunday week, two levels down, so
     # both the nav links and the shared assets need a two-step relative prefix.
@@ -1709,11 +1729,14 @@ def build(out_dir: Path):
     # briefs — the index sits at the root, each brief two levels down under
     # /brief/<slug>/, so the prefixes follow the same pattern as the weeks.
     if site.briefs:
-        write("briefs.html", site.page(
-            path="briefs.html", title=f"Briefs — {SITE_NAME}",
+        site.prefix = "../"
+        write(BRIEFS_URL + "index.html", site.page(
+            path=BRIEFS_URL + "index.html", title=f"Briefs — {SITE_NAME}",
             description=("Incident briefs: each one laid out in dated stages, "
                          "every stage separately sourced."),
-            body=site.briefs_body()))
+            body=site.briefs_body(),
+            asset_prefix="../"))
+        site.prefix = ""
         site.prefix = "../../"
         for dos in site.briefs:
             write(f'brief/{dos["slug"]}/index.html', site.page(
@@ -1725,13 +1748,29 @@ def build(out_dir: Path):
         site.prefix = ""
 
     # archive index + about
-    write("archive.html", site.page(
-        path="archive.html", title=f"Archive — {SITE_NAME}",
+    site.prefix = "../"
+    write(ARCHIVE_URL + "index.html", site.page(
+        path=ARCHIVE_URL + "index.html", title=f"Archive — {SITE_NAME}",
         description="Dated snapshots of the Machine Speed board.",
-        body=site.archive_body()))
-    write("about.html", site.page(
-        path="about.html", title=f"About — {SITE_NAME}",
-        description=SITE_DESCRIPTION, body=site.about_body()))
+        body=site.archive_body(),
+        asset_prefix="../"))
+    write(ABOUT_URL + "index.html", site.page(
+        path=ABOUT_URL + "index.html", title=f"About — {SITE_NAME}",
+        description=SITE_DESCRIPTION, body=site.about_body(),
+        asset_prefix="../"))
+    site.prefix = ""
+
+    # Redirect stubs at the old flat paths. Permanent: the frozen snapshots in
+    # archive/ link to them and are never rewritten.
+    for old, new in LEGACY_PATHS.items():
+        if new == BRIEFS_URL and not site.briefs:
+            continue          # no briefs means no /briefs/ to send anyone to
+        write(old,
+              '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+              f'<link rel="canonical" href="{SITE_URL}/{new}">\n'
+              '<meta name="robots" content="noindex">\n'
+              f'<meta http-equiv="refresh" content="0; url=./{new}">\n</head>\n'
+              f'<body><p><a href="./{new}">Continue &#8594;</a></p></body>\n</html>\n')
 
     # RSS + crawl hints
     write("feed.xml", site.feed())
