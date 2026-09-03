@@ -631,6 +631,24 @@ footer + .pager{margin:0}
 :root{--display:"Newsreader",Georgia,"Times New Roman",serif}
 
 h1{font-family:var(--display); font-weight:500; font-size:29px; letter-spacing:-.4px}
+/* The masthead carries the display face too. Without it the serif shows up only
+   in the headline under a sans wordmark, which reads as a mismatch rather than
+   as the publication's voice. */
+.nav .logo b{font-family:var(--display); font-weight:600; font-size:21px; letter-spacing:-.3px}
+/* Header metadata is metadata: one quiet line, not two filled pills competing
+   with the headline they sit under. */
+.pagehead.board{margin-bottom:6px}
+/* The landing page states its claim in one line rather than a display headline:
+   a board someone opens daily does not need a poster over it, but dropping the
+   thesis entirely would leave a feed with no position. */
+.pagehead.board.nohead .stampline{margin-top:0}
+.thesis{font-family:var(--display); font-size:17px; line-height:1.4; font-weight:400;
+  color:var(--ink-2); margin:0 0 8px; max-width:60ch}
+@media(max-width:600px){.thesis{font-size:16px}}
+.stampline{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:10px 0 0;
+  font-size:12px; color:var(--ink-3); letter-spacing:.2px}
+.stampline time{color:var(--ink-2); font-weight:600}
+.stampline .dot{margin-right:2px}
 @media(max-width:600px){h1{font-size:24px}}
 .item h4{font-family:var(--display); font-weight:600; font-size:16px; line-height:1.3}
 ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}

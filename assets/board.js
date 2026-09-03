@@ -291,6 +291,7 @@
     elBar.innerHTML =
       '<span class="lbl">SEARCH</span>' +
       '<input class="msx-search" type="search" placeholder="langflow, PLC, npm, CVE-2026…" aria-label="Search the board">' +
+      '<span class="msx-scope" data-role="scope"></span>' +
       '<span class="msx-count" data-role="count"></span>' +
       '<button class="msx-plain" data-act="reset" type="button">Reset</button>';
     root.appendChild(elBar);
@@ -315,7 +316,7 @@
         '<select class="msx-select" data-role="weeksel" aria-label="Jump to one week">' + opts + "</select></span>" +
       '<span class="msx-group"><button class="msx-chip ghost" data-act="unread" type="button" aria-pressed="false" data-role="unread"></button>' +
         '<button class="msx-plain" data-act="markread" type="button" data-role="markread">Mark all read</button></span>' +
-      '<span class="msx-scope" data-role="scope"></span>';
+      "";
     root.appendChild(bar2);
 
     elMain = document.createElement("div");

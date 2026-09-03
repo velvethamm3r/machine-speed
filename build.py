@@ -49,8 +49,9 @@ from pathlib import Path
 SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
-SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
-                    "cyber capability and the defense & policy lag around it.")
+SITE_DESCRIPTION = ("A daily, source-verified intelligence board on AI cyber "
+                    "capability — closed and open-weight — and the defense & policy "
+                    "lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent auto-enter the "New to the board" strip; isNew overrides
 STRIP_MAX = 6         # spec caps the "New to the board" strip at six
 
@@ -233,7 +234,7 @@ def same_site(url: str) -> bool:
 
 LANES = {
     "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability/",
-            "desc": "What frontier AI systems can now do in the cyber domain."},
+            "desc": "What AI systems can now do in the cyber domain, closed and open-weight."},
     "pol": {"name": "Policy", "var": "--pol", "pill": "lp-pol", "page": "policy/",
             "desc": "Government, standards and governance responses."},
     "def": {"name": "Defense", "var": "--def", "pill": "lp-def", "page": "defense/",
@@ -663,7 +664,7 @@ class Site:
         """
         return self.prefix or "./"
 
-    def nav(self, active: str) -> str:
+    def nav(self, active: str, lanes: bool = True) -> str:
         """Two rows: the places, then the lanes.
 
         The single row worked at four lanes and would not at five — Board,
@@ -703,7 +704,8 @@ class Site:
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
         out.append('</nav>')
-        out.append(self.lanebar(active))
+        if lanes:
+            out.append(self.lanebar(active))
         return "\n    ".join(out)
 
     def lanebar(self, active: str) -> str:
@@ -946,14 +948,14 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
         if self.front_cutoff:
             shown = fmt_span(self.front_cutoff, self.cov_end)
-            lede = ('Frontier AI cyber capability against the defense &amp; policy lag. '
+            lede = ('AI cyber capability against the defense &amp; policy lag. '
                     if home_of("board") == "index.html" else
                     'Every item on the board, pre-rendered — no JavaScript, no filters. ')
             sub = (f'{lede}'
                    f'The last two weeks in full — <strong>{escape(shown)}</strong> — then every '
                    f'earlier item from {escape(self.coverage)} indexed by week below.')
         else:
-            sub = ('Frontier AI cyber capability against the defense &amp; policy lag — '
+            sub = ('AI cyber capability against the defense &amp; policy lag — '
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
                    'grouped by lane and by week.')
 
@@ -1523,16 +1525,16 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         if BOARD_PAGE:
             lane_bits.insert(0, f'<a href="{self.prefix}{BOARD_PAGE}">The full board</a>')
         lanes_links = " &middot; ".join(lane_bits)
-        return f"""{self.nav(home_of("explore"))}
+        return f"""{self.nav(home_of("explore"), lanes=False)}
 
-  <header class="pagehead">
-    <h1>The capability-vs-defense gap, tracked daily</h1>
-    <div class="stamprow">
-      <div class="stamp"><span class="dot"></span>Last updated:
-        <time datetime="{self.as_of}">{escape(self.d.get("updatedDisplay", ""))}</time></div>
-      <div class="stamp cov">Covering <time datetime="{self.cov_start}">{escape(self.coverage)}</time>
-        &middot; {len(self.d["items"])} items</div>
-    </div>
+  <header class="pagehead board nohead">
+    <p class="thesis">AI cyber capability against the defense and policy lag,
+      tracked daily.</p>
+    <p class="stampline"><span class="dot"></span>Updated
+      <time datetime="{self.as_of}">{escape(self.d.get("updatedDisplay", ""))}</time>
+      &nbsp;&middot;&nbsp; covering
+      <time datetime="{self.cov_start}">{escape(self.coverage)}</time>
+      &nbsp;&middot;&nbsp; {len(self.d["items"])} items in {numword(len(LANES))} lanes</p>
   </header>
 
   <div class="msx" id="msx">

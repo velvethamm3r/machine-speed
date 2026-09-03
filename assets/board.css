@@ -66,7 +66,7 @@
 .msx-btn{font:600 10.5px/1 var(--x-sans);color:var(--x-ink);background:transparent;border:1px solid var(--x-line);padding:5px 9px;cursor:pointer}
 .msx-btn[disabled]{opacity:.35;cursor:default}
 .msx-chip[disabled]{opacity:.4;cursor:default}
-.msx-scope{font:700 8.5px/1 var(--x-mono);letter-spacing:.12em;color:var(--x-ink);margin-left:auto}
+.msx-scope{font:700 8.5px/1 var(--x-mono);letter-spacing:.12em;color:var(--x-ink);margin-left:auto;white-space:nowrap}
 
 /* stories ---------------------------------------------------------------- */
 .msx-sec{padding:18px 18px 4px}
