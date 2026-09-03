@@ -1,6 +1,6 @@
 # Machine Speed — Sep 3, 2026
 
-*A daily, source-verified intelligence board on AI cyber capability — closed and open-weight — and the defense & policy lag around it.* Covering Jul 1 – Sep 3, 2026 · 213 items. [Live board](https://machinespeed.techpointe.org/) · [RSS](https://machinespeed.techpointe.org/feed.xml)
+*A daily, source-verified intelligence board on AI cyber capability and the defense & policy lag around it.* Covering Jul 1 – Sep 3, 2026 · 213 items. [Live board](https://machinespeed.techpointe.org/) · [RSS](https://machinespeed.techpointe.org/feed.xml)
 
 ---
 
