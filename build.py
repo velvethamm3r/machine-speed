@@ -24,6 +24,7 @@ writes a fully pre-rendered site into dist/:
       style.css             shared stylesheet (cached across pages)
       theme.js              theme toggle only (site works fine without it)
       icon.svg              favicon
+      og.png                social preview image (only if assets/og.png exists)
 
 Usage:
     python3 build.py            # build into ./dist
@@ -123,6 +124,16 @@ SHOW_RUN_SNAPSHOTS = False
 # Display face for headlines. Loaded on every page (so the archive snapshots
 # match the live board) and applied by the --display token in style.css. Empty
 # both strings and the whole site falls back to the UI sans with no request.
+# Social preview image. Put a file at assets/<OG_IMAGE> and every page points at
+# it, which is what fills the picture slot on a Slack, iMessage, LinkedIn or X
+# card. 1200x630 is the size every platform crops well from; anything under
+# 600x315 gets dropped. Missing file means the tags are simply not emitted —
+# a card with no image beats a card pointing at a 404.
+OG_IMAGE = "og.png"
+OG_IMAGE_W, OG_IMAGE_H = 1200, 630
+OG_IMAGE_ALT = ("Don't sleep on AI-cyber policy — Machine Speed, "
+                "a daily AI-cyber intelligence board")
+
 DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
                     "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap")
 
@@ -187,6 +198,14 @@ def asset_version(name: str) -> str:
             digest = ""
         _asset_versions[name] = f"?v={digest}" if digest else ""
     return _asset_versions[name]
+
+
+def og_image_path():
+    """The social image, if it is actually there. None otherwise."""
+    if not OG_IMAGE:
+        return None
+    p = Path(__file__).parent / "assets" / OG_IMAGE
+    return p if p.exists() else None
 
 
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
@@ -886,7 +905,12 @@ class Site:
 <meta property="og:title" content="{escape(title, quote=True)}">
 <meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:url" content="{canonical}">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="{'summary_large_image' if og_image_path() else 'summary'}">
+{f'''<meta property="og:image" content="{SITE_URL}/{OG_IMAGE}">
+<meta property="og:image:width" content="{OG_IMAGE_W}">
+<meta property="og:image:height" content="{OG_IMAGE_H}">
+<meta property="og:image:alt" content="{escape(OG_IMAGE_ALT, quote=True)}">
+<meta name="twitter:image" content="{SITE_URL}/{OG_IMAGE}">''' if og_image_path() else ''}
 <script>
 /* Set theme before first paint to avoid a flash. Falls back to system preference. */
 (function(){{try{{var t=localStorage.getItem("ms-theme");
@@ -1654,6 +1678,11 @@ def build(out_dir: Path):
     if EXPLORE_PAGE:
         shutil.copy(root / "assets" / "board.css", out_dir / "board.css")
         shutil.copy(root / "assets" / "board.js", out_dir / "board.js")
+    og = og_image_path()
+    if og:
+        shutil.copy(og, out_dir / OG_IMAGE)
+    else:
+        print(f"  note: no assets/{OG_IMAGE} — social cards will have no image")
 
     def write(path: str, html: str):
         p = out_dir / path
