@@ -45,7 +45,8 @@ the RSS feed and the newsletter draft. The design lives in `assets/style.css`,
 Concretely:
 
 - **Edit `data.json` only** (and append to `dashboard-memory.md`). Do not edit `build.py`,
-  anything under `assets/`, `README.md`, `RUNBOOK.md`, `SCHEMA.md`, or any file in `dist/`.
+  anything under `assets/` — including `board.css` and `board.js`, which render the
+     landing page — `README.md`, `RUNBOOK.md`, `SCHEMA.md`, or any file in `dist/`.
 - **Do not hand-edit anything in `dist/`.** It is generated and git-ignored; edits there are
   overwritten on the next build and never committed.
 - **Let the build be the gate.** `python3 build.py` validates first and, on any error, writes

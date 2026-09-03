@@ -23,16 +23,18 @@ light/dark theme toggle. Nothing loads from a CDN.
 ```
 ├── data.json     ← single source of truth
 ├── build.py      ← generator (Python 3 stdlib only, no dependencies)
-├── assets/       ← stylesheet, theme toggle, favicon
+├── assets/       ← stylesheet, theme toggle, favicon, Explore board (board.css/js)
 ├── archive/      ← dated board snapshots
 ├── newsletter/   ← Markdown drafts of each day's board
 └── dist/         ← build output (generated; not committed)
-    ├── index.html          the board
-    ├── <lane>.html         one page per lane, holding the whole period
+    ├── index.html          the board — filterable, story-clustered (needs JS)
+    ├── <lane>/             one page per lane, holding the whole period
     ├── week/YYYY-MM-DD/    one page per week
-    ├── briefs.html         brief index
+    ├── briefs/             brief index
     ├── brief/<slug>/       one brief, in dated stages
-    ├── archive.html        week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
+    ├── archive/            week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
+    ├── about/
+    ├── <lane>.html …       redirect stubs at the old flat paths
     └── feed.xml            RSS 2.0
 ```
 
@@ -42,6 +44,18 @@ light/dark theme toggle. Nothing loads from a CDN.
 python3 build.py                        # validates data.json, then writes ./dist
 python3 -m http.server -d dist 8000     # preview at http://localhost:8000
 ```
+
+Every page except the landing page is a directory holding `index.html`, so URLs
+carry no `.html` — GitHub Pages serves files literally and will not strip an
+extension. The old flat paths stay behind as redirect stubs permanently, because
+the frozen snapshots in `archive/` link to them and are never rewritten.
+
+The landing page is the interactive board: a lane and week filter, related items
+collapsed into running stories, and an unread mark per visitor held in
+`localStorage`. It is the only page that needs JavaScript. Every item is also
+pre-rendered on the lane and week pages, which need none, and that pre-rendered
+markup is still what each dated snapshot is a copy of. `LANDING` and `BOARD_PAGE`
+at the top of `build.py` control the arrangement.
 
 The build validates before it writes anything and exits non-zero on a
 structural error, so a broken `data.json` fails the deploy instead of

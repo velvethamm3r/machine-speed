@@ -21,8 +21,11 @@ Preview before committing: `python3 -m http.server -d dist 8000` → http://loca
 |---|---|
 | `dist/` | The whole pre-rendered site. Generated — never edit, never commit (it's in `.gitignore`). |
 | `dist/week/YYYY-MM-DD/` | One page per Monday-to-Sunday week, every lane that has items that week, generated from the items themselves. A week with no items gets no page. |
-| `dist/briefs.html`, `dist/brief/<slug>/` | The brief index and one page per brief. Only written when `data.json` has a `briefs[]` key; with none, every trace of the feature disappears from the nav, the board and the sitemap. |
-| `dist/sitemap.xml`, `dist/robots.txt` | Crawl hints. The sitemap lists the board, the lanes, About and every week page; dated snapshots are deliberately left out so crawlers aren't pointed at copies of the board. |
+| `dist/index.html` | The landing page: the interactive board. Filters by lane and week, collapses related items into running stories, marks what is unread per visitor. The only page that needs JavaScript, and the only page that loads `board.css`/`board.js`. |
+| `dist/<lane>/`, `dist/about/`, `dist/archive/` | Directory pages, so URLs carry no `.html`. Every item is pre-rendered here, which is what crawlers and no-JavaScript readers read. |
+| `dist/<lane>.html`, `dist/explore.html` … | Redirect stubs at the old flat paths. Permanent: the frozen snapshots link to them. |
+| `dist/briefs/`, `dist/brief/<slug>/` | The brief index and one page per brief. Only written when `data.json` has a `briefs[]` key; with none, every trace of the feature disappears from the nav, the board and the sitemap. |
+| `dist/sitemap.xml`, `dist/robots.txt` | Crawl hints. The sitemap lists the board, the lanes, About and every week page; dated snapshots and redirect stubs are deliberately left out so crawlers aren't pointed at copies of the board. |
 | `dist/CNAME` | The custom domain, written on every build so a deploy can't silently drop it. |
 | `archive/machine-speed-YYYY-MM-DD.html` | Today's snapshot, written back into the repo so history survives rebuilds. **Commit this.** |
 | `newsletter/machine-speed-YYYY-MM-DD.md` | Paste-ready Substack draft of the same board, with the run's working notes below a marked CUT HERE line. Delete that block before posting. **Commit this.** Nothing is ever sent automatically. |
@@ -152,6 +155,9 @@ All at the top of `build.py`:
 
 | Constant | Purpose |
 |---|---|
+| `LANDING` | Which view answers the bare domain: `"explore"` (default) or `"board"`. |
+| `BOARD_PAGE` | Where the pre-rendered board is published when Explore is home. Empty by default — it is not published at all, since the lane and week pages already pre-render every item. Its markup is generated regardless, because the dated snapshots are copies of it. |
+| `DISPLAY_FONT_URL` | The headline face, loaded on every page. Empty falls the whole site back to the UI sans with no request. Applied by `--display` in `assets/style.css`, on headline text only. |
 | `SITE_URL` | `https://machinespeed.techpointe.org`. Drives canonical URLs, Open Graph, JSON-LD, RSS, and `dist/CNAME`. |
 | `SUBSTACK_URL` | Set to `https://velvethamm3r.substack.com`, which puts the newsletter link in the nav on every page and a subscribe block on the board. Empty it and every Substack element disappears. Point it at a subdomain of this site rather than `*.substack.com` and the links stop being treated as outbound — same tab, no ↗ — because `same_site()` compares the registrable domain. |
 | `SUBSTACK_NAV` | The nav label. `"Subscribe"` by default; `"Newsletter"` reads as a section of the site rather than an ask, which is the better label once the newsletter lives on your own subdomain. |
@@ -185,16 +191,30 @@ the future is a hard error.
 A run adds items; the page structure follows from their dates, so there is nothing
 extra to maintain.
 
-The **board** (`/`) prints the most recent `FRONT_WEEKS` weeks as full cards, then
-indexes every older item one line at a time under "Earlier in this period" — nothing
-scrolls off, but the front page stops growing without limit. Each **week page**
-(`/week/YYYY-MM-DD/`, dated by its Monday) carries that week's full cards across every
-lane that has items that week, with previous/next links. The **lane pages** are unchanged:
-each still holds the whole period for its lane, week-headed. **Briefs** (`/briefs.html`)
-indexes them, each at its own `/brief/<slug>/`; those sit outside the period
-entirely, since a brief's whole purpose is to reach back past it. The **archive** is the
-week index; whether it also lists the dated run snapshots is `SHOW_RUN_SNAPSHOTS`, and
-since 2026-08-06 it does not.
+The **landing page** (`/`) is the interactive board. Nothing on it is a separate copy
+of the data: it renders from the same `data.json` items, inlined into the page at build
+time, and offers a lane filter, a week range, one-week scoping, search across headlines,
+abstracts, sources and watchlist threads, and an unread mark held per visitor in
+`localStorage`. Related items collapse into **running stories** — watchlist threads first,
+since those are the editorial judgement already made, then two-word proper-noun phrases
+from headlines; a thread longer than three items opens as one item plus its own date
+timeline. Everything not in a story falls through to a by-week, by-lane ledger.
+
+The **pre-rendered board** — `FRONT_WEEKS` weeks as full cards, then every older item
+indexed one line at a time — is no longer published as a page, because it was the same
+items twice. Its markup is still generated on every build: **each dated snapshot in
+`archive/` is a copy of it.** `BOARD_PAGE = "board.html"` publishes it again as a
+secondary page and `LANDING = "board"` puts it back on `/`.
+
+Each **week page** (`/week/YYYY-MM-DD/`, dated by its Monday) carries that week's full
+cards across every lane that has items that week, with previous/next links. The **lane
+pages** (`/capability/` and so on) are unchanged: each still holds the whole period for
+its lane, week-headed. Together they are where every item is pre-rendered, which is what
+crawlers and no-JavaScript readers reach. **Briefs** (`/briefs/`) indexes them, each at
+its own `/brief/<slug>/`; those sit outside the period entirely, since a brief's whole
+purpose is to reach back past it. The **archive** (`/archive/`) is the week index; whether
+it also lists the dated run snapshots is `SHOW_RUN_SNAPSHOTS`, and since 2026-08-06 it
+does not.
 
 Week pages are regenerated from `data.json` on every build, so an item corrected today
 is corrected on its week page too. The dated snapshots in `archive/` are the opposite
