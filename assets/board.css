@@ -1,0 +1,161 @@
+/* Machine Speed — Explore board (the filterable, story-clustered view).
+   Everything is scoped under .msx so it cannot leak into the pre-rendered pages.
+   The tokens below read the site's own design system first and fall back to the
+   console palette, so the theme toggle drives this page like every other one and
+   nothing here has to be kept in sync with style.css by hand. */
+
+.msx{
+  --x-bg:var(--panel,#15171b);
+  --x-panel:var(--panel-2,#1b1e24);
+  --x-sunk:var(--bg,#101317);
+  --x-ink:var(--ink,#ecebe6);
+  --x-mute:var(--ink-2,#a4a9b0);
+  /* NOT var(--ink-3): that grey is tuned for the 11-12.5px captions on the
+     pre-rendered pages, and it measures 4.44:1 on --panel-2. This view uses the
+     token at 8-8.5px for labels and axis figures, so it gets its own value in
+     both themes rather than inheriting one that only just passes at twice the
+     size. Every other colour here still comes from the site. */
+  --x-faint:#8b95a5;
+  --x-dim:var(--ink-2,#8b9098);
+  --x-hair:var(--line,rgba(255,255,255,.09));
+  --x-line:var(--line,rgba(255,255,255,.14));
+  --x-hi:rgba(255,255,255,.07);
+  --x-link:var(--accent,#7aa8e6);
+  --x-mark:var(--accent-soft,#d7a83c);
+  --x-cap:var(--cap,#57c08a); --x-pol:var(--pol,#d7a83c); --x-def:var(--def,#7aa8e6);
+  --x-atk:var(--atk,#e8705a); --x-mkt:var(--mkt,#b48ce6);
+  background:var(--x-bg);
+  border:1px solid var(--x-line);
+  border-radius:12px;
+  overflow:hidden;
+  color:var(--x-ink);
+  margin:22px 0 0;
+}
+[data-theme="light"] .msx{--x-hi:rgba(0,0,0,.05);--x-faint:#5c6470}
+
+/* Type: the site's own faces. Only the monospace run is named here, because the
+   pre-rendered pages never needed one. Point --x-display at a display face if
+   you ever load one and every headline in this view picks it up. */
+.msx{
+  --x-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --x-display:var(--display,var(--x-sans));
+  --x-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-family:var(--x-sans);
+}
+.msx *{box-sizing:border-box}
+.msx a{text-decoration:none;color:inherit}
+.msx .mono{font-family:var(--x-mono)}
+
+/* toolbar ---------------------------------------------------------------- */
+.msx-bar{display:flex;align-items:center;gap:16px;padding:12px 18px 10px;background:var(--x-panel);border-bottom:1px solid var(--x-hair);flex-wrap:wrap}
+/* A group keeps its label and its controls on the same line through any wrap. */
+.msx-group{display:inline-flex;align-items:center;gap:6px}
+.msx-bar .lbl{font:700 8.5px/1 var(--x-mono);letter-spacing:.13em;color:var(--x-faint)}
+.msx-search{flex:1;min-width:200px;font:400 13.5px/1.2 var(--x-sans);color:var(--x-ink);background:var(--x-sunk);border:1px solid var(--x-line);padding:8px 11px;outline:none}
+.msx-search:focus{border-color:var(--x-link)}
+.msx-count{font:400 10.5px/1 var(--x-mono);color:var(--x-mute)}
+.msx-chip{font:500 10.5px/1 var(--x-sans);border:1px solid var(--x-line);padding:6px 10px;white-space:nowrap;cursor:pointer;background:transparent;color:var(--x-ink)}
+.msx-chip.lane{color:var(--ln-text,var(--ln))}
+.msx-chip.lane[aria-pressed="true"]{background:var(--ln-soft);border-color:var(--ln);color:var(--ln-text-on,var(--ln-text,var(--ln)));font-weight:700}
+.msx-chip[aria-pressed="true"]:not(.lane){background:var(--x-ink);border-color:var(--x-ink);color:var(--x-bg);font-weight:600}
+.msx-chip.ghost{border-style:dashed}
+.msx-select{font:500 11px/1 var(--x-sans);color:var(--x-ink);background:var(--x-sunk);border:1px solid var(--x-line);border-radius:4px;padding:6px 8px;max-width:190px}
+.msx-select:focus{outline:none;border-color:var(--x-link)}
+.msx-plain{font:500 10.5px/1 var(--x-sans);color:var(--x-mute);background:none;border:0;cursor:pointer;padding:4px 2px}
+.msx-plain:hover{color:var(--x-ink)}
+.msx-btn{font:600 10.5px/1 var(--x-sans);color:var(--x-ink);background:transparent;border:1px solid var(--x-line);padding:5px 9px;cursor:pointer}
+.msx-btn[disabled]{opacity:.35;cursor:default}
+.msx-chip[disabled]{opacity:.4;cursor:default}
+.msx-scope{font:700 8.5px/1 var(--x-mono);letter-spacing:.12em;color:var(--x-ink);margin-left:auto}
+
+/* stories ---------------------------------------------------------------- */
+.msx-sec{padding:18px 18px 4px}
+.msx-sechead{display:flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:2px solid var(--x-ink);font:700 9px/1 var(--x-mono);letter-spacing:.14em;color:var(--x-ink)}
+.msx-sechead .meta{margin-left:auto;font:400 10px/1 var(--x-mono);color:var(--x-faint);letter-spacing:0}
+.msx-story{border-bottom:1px solid var(--x-hair)}
+.msx-sbtn{display:flex;align-items:baseline;gap:14px;width:100%;padding:13px 0 11px;background:none;border:0;text-align:left;cursor:pointer;color:inherit}
+.msx-shead{flex:1 1 auto;min-width:0}
+.msx-tag{display:block;width:fit-content;margin-bottom:7px;font:700 9px/1 var(--x-mono);letter-spacing:.1em;padding:4px 7px;border:1px solid var(--x-line);border-radius:3px;color:var(--x-mute)}
+.msx-tag.watch{background:var(--x-hi);border-color:var(--x-mute);color:var(--x-ink)}
+.msx-stitle{font:500 17px/1.25 var(--x-display);color:var(--x-ink);text-wrap:pretty}
+.msx-lanetags{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.msx-lanetags i{font:700 9.5px/1 var(--x-mono);letter-spacing:.06em;font-style:normal;padding:5px 7px;border-radius:3px}
+.msx-span{font:400 10px/1 var(--x-mono);color:var(--x-faint);width:120px;flex:none;text-align:right}
+.msx-n{font:400 10px/1 var(--x-mono);color:var(--x-mute);width:132px;flex:none;text-align:right;white-space:nowrap}
+.msx-caret{font:400 10px/1 var(--x-sans);color:var(--x-mute);flex:none}
+.msx-outside{font:400 10px/1.5 var(--x-mono);color:var(--x-pol);padding:0 0 9px}
+
+.msx-reader{background:var(--x-panel);border:1px solid var(--x-line);padding:16px 18px 14px}
+.msx-time{position:relative;height:22px;margin:0 4px 16px}
+.msx-time .axis{position:absolute;left:0;right:0;top:10px;height:1px;background:var(--x-line)}
+.msx-tick{position:absolute;border:0;padding:0;cursor:pointer}
+/* The thread index is as long as the story; the article is not. Left the two to
+   size each other and a fourteen-item thread left a column of blank space under
+   the headline. So the index scrolls inside a capped box and the article's
+   footer is pinned to the bottom of its column — the card's height is set by
+   the item you are reading, not by how long the story got. */
+.msx-cols{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:stretch}
+.msx-cols > .msx-art{display:flex;flex-direction:column;min-width:0}
+.msx-cols > .msx-art > .msx-foot{margin-top:auto}
+@media (max-width:900px){.msx-cols{grid-template-columns:1fr}}
+.msx-kicker{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.msx-kicker i{font:700 10px/1 var(--x-mono);letter-spacing:.06em;font-style:normal;padding:6px 8px;border-radius:3px}
+.msx-kicker time{font:400 10.5px/1 var(--x-mono);color:var(--x-faint)}
+.msx-reader h3{font:400 24px/1.2 var(--x-display);color:var(--x-ink);margin:0 0 11px;letter-spacing:-.01em;text-wrap:pretty}
+.msx-reader p{font:400 14.5px/1.6 var(--x-sans);color:var(--x-mute);margin:0 0 14px;text-wrap:pretty}
+.msx-foot{display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--x-line)}
+.msx-conf{font:700 8.5px/1 var(--x-mono);letter-spacing:.1em;color:var(--x-mute);border:1px solid var(--x-line);padding:5px 7px}
+.msx-src{font:500 12px/1 var(--x-sans);color:var(--x-link)}
+/* The index list is positioned out of flow so it cannot lengthen the card: the
+   row's height is the article's, and the list scrolls inside whatever that is.
+   min-height keeps a short item from squeezing the index down to nothing. */
+.msx-idx{position:relative;border-left:1px solid var(--x-line);padding-left:16px;min-height:210px}
+.msx-ilist{position:absolute;left:16px;right:0;top:30px;bottom:0;overflow-y:auto;overscroll-behavior:contain}
+.msx-ilist::-webkit-scrollbar{width:8px}
+.msx-ilist::-webkit-scrollbar-thumb{background:var(--x-line);border-radius:4px}
+@media (max-width:900px){
+  .msx-idx{border-left:0;padding-left:0;border-top:1px solid var(--x-line);padding-top:14px;min-height:0}
+  .msx-ilist{position:static;max-height:300px}
+}
+.msx-idx .h{font:700 8px/1 var(--x-mono);letter-spacing:.13em;color:var(--x-faint);margin-bottom:10px}
+.msx-ibtn{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:baseline;width:100%;padding:7px 9px;margin-bottom:2px;background:none;border:0;border-left:2px solid transparent;text-align:left;cursor:pointer}
+.msx-ibtn time{font:400 10px/1.35 var(--x-mono);color:var(--ln-text,var(--ln))}
+.msx-ibtn span{font:400 11.5px/1.4 var(--x-sans);color:var(--x-dim);text-wrap:pretty}
+.msx-ibtn[aria-current="true"]{background:var(--x-hi);border-left-color:var(--ln)}
+.msx-ibtn[aria-current="true"] span{color:var(--x-ink)}
+
+/* rows and ledger -------------------------------------------------------- */
+.msx-row{display:grid;grid-template-columns:8px 74px 1fr 140px 54px 12px;gap:11px;align-items:baseline;width:100%;padding:10px 0;background:none;border:0;border-top:1px solid var(--x-hair);text-align:left;cursor:pointer;color:inherit}
+.msx-row.nolane{grid-template-columns:8px 1fr 140px 54px 12px}
+.msx-row .dot{width:5px;height:5px;border-radius:50%;background:transparent}
+.msx-row.unread .dot{background:var(--x-atk)}
+.msx-row .ln{font:700 9px/1 var(--x-mono);letter-spacing:.06em;color:var(--ln-text,var(--ln))}
+.msx-row .hl{font:500 14.5px/1.35 var(--x-display);color:var(--x-dim);text-wrap:pretty}
+.msx-row.unread .hl{color:var(--x-ink)}
+.msx-row.faded .hl{color:var(--x-mute);font-weight:400}
+.msx-row .out{font:400 11px/1.3 var(--x-sans);color:var(--x-dim)}
+.msx-row .dt{font:400 10px/1 var(--x-mono);color:var(--x-faint)}
+.msx-row .cv{font:400 10px/1 var(--x-sans);color:var(--x-mute);text-align:right}
+.msx-body{padding:11px 0 14px 94px;background:var(--x-panel);border-top:1px solid var(--x-hair)}
+.msx-body.flush{padding-left:19px}
+.msx-body p{font:400 13.5px/1.6 var(--x-sans);color:var(--x-mute);margin:0 0 9px;max-width:80ch;text-wrap:pretty}
+.msx-week{border-bottom:1px solid var(--x-hair)}
+.msx-wbtn{display:flex;align-items:center;gap:16px;width:100%;padding:13px 18px 11px;background:none;border:0;text-align:left;cursor:pointer;color:inherit}
+.msx-wbtn .wl{font:700 10px/1 var(--x-mono);letter-spacing:.14em;color:var(--x-ink);width:150px;flex:none}
+.msx-wbtn .bar{display:flex;flex:1;min-width:0;height:7px;gap:1px}
+.msx-wbtn .bar i{display:block}
+.msx-wbtn .wm{font:400 10px/1 var(--x-mono);color:var(--x-mute);width:164px;flex:none;text-align:right}
+.msx-wsum{padding:0 18px 13px 184px;font:400 11.5px/1.5 var(--x-sans);color:var(--x-faint)}
+.msx-lanehead{display:flex;align-items:center;gap:9px;padding:9px 0 7px;border-bottom:1px solid var(--ln);font:700 9.5px/1 var(--x-mono);letter-spacing:.1em;color:var(--ln-text,var(--ln))}
+.msx-lanehead i{width:7px;height:7px;background:var(--ln)}
+.msx-lanehead .c{margin-left:auto;font:400 9.5px/1 var(--x-mono);color:var(--x-faint);letter-spacing:0}
+.msx-lanegroup{padding:0 18px 12px}
+.msx-more{font:500 11px/1 var(--x-sans);color:var(--x-mute);background:none;border:0;border-bottom:1px solid var(--x-line);padding:0 0 2px;margin-top:11px;cursor:pointer}
+.msx-empty{margin:22px 18px;padding:22px;background:var(--x-panel);border:1px dashed var(--x-line)}
+.msx-empty h4{font:700 9px/1 var(--x-mono);letter-spacing:.14em;color:var(--x-atk);margin:0 0 9px}
+.msx-empty p{font:400 15.5px/1.5 var(--x-display);color:var(--x-ink);margin:0 0 14px;max-width:58ch}
+.msx-ledgerhead{display:flex;align-items:center;gap:10px;padding:22px 18px 8px;font:700 9px/1 var(--x-mono);letter-spacing:.14em;color:var(--x-ink)}
+.msx-ledgerhead .rule{height:1px;flex:1;background:var(--x-line)}
+.msx-foot-note{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border-top:1px solid var(--x-hair);font:400 10.5px/1.5 var(--x-sans);color:var(--x-faint)}
+.msx mark{background:var(--x-mark);color:var(--x-ink);padding:0 2px;border-radius:2px}
+.msx-noscript{padding:20px 18px;font:400 14px/1.6 var(--x-sans);color:var(--x-mute)}

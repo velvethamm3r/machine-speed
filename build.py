@@ -111,6 +111,21 @@ SITE_MARK = "™"
 # from the site, so the record survives even when the index for it does not.
 SHOW_RUN_SNAPSHOTS = False
 
+# The Explore board — the filterable, story-clustered view of the same items.
+# It is one extra page, built from the same data.json, and it is the only page
+# that needs JavaScript: every pre-rendered page keeps working untouched, and a
+# visitor with JS off gets a plain list of week links instead. Set EXPLORE_PAGE
+# to "" and the page, its nav link, its assets and its sitemap entry all
+# disappear — the site builds exactly as it did before it existed.
+# Display face for headlines. Loaded on every page (so the archive snapshots
+# match the live board) and applied by the --display token in style.css. Empty
+# both strings and the whole site falls back to the UI sans with no request.
+DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
+                    "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap")
+
+EXPLORE_PAGE = "explore.html"
+EXPLORE_NAV = "Explore"
+
 
 # The stylesheet and the theme script keep the same filenames from one build to
 # the next, so a browser that has already seen them has every reason to go on
@@ -611,6 +626,8 @@ class Site:
         bar below it carries the taxonomy, each lane in its own colour.
         """
         links = [("index.html", "Board")]
+        if EXPLORE_PAGE:
+            links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
             links.append(("briefs.html", "Briefs"))
         links += [("archive.html", "Archive"), ("about.html", "About")]
@@ -815,6 +832,9 @@ class Site:
 if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
 document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 </script>
+{'''<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="''' + DISPLAY_FONT_URL + '''">''' if DISPLAY_FONT_URL else ''}
 <link rel="stylesheet" href="{asset_prefix}style.css{asset_version('style.css')}">
 <link rel="icon" href="{asset_prefix}icon.svg{asset_version('icon.svg')}" type="image/svg+xml">
 {extra_head}</head>
@@ -1398,6 +1418,79 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 "**Change since previous run**", "", self.d.get("internalNote", ""), ""]
         return "\n".join(out)
 
+    # -- explore -------------------------------------------------------------
+    def explore_payload(self) -> str:
+        """The board's items as JSON, inlined into the page.
+
+        Inlined rather than fetched so the page has no request to make, works
+        from a file:// copy, and cannot render half a board if data.json is
+        momentarily unavailable. Only the fields the view actually reads are
+        included, and each item carries the lane page it lives on so every row
+        can link back to its full card on the pre-rendered board.
+        """
+        dates = sorted({a["date"] for a in self.d.get("archives", []) if a.get("date")}, reverse=True)
+        run_day = (self.as_of or "")[:10]
+        prev = next((x for x in dates if x < run_day), "")
+        payload = {
+            "updatedDisplay": self.d.get("updatedDisplay", ""),
+            "updatedISO": self.as_of,
+            "coverage": self.coverage,
+            "prevRun": prev,
+            "lanes": [{"key": k, "name": v["name"]} for k, v in LANES.items()],
+            "conf": CONF,
+            "watchlist": [{"thread": w.get("thread", ""), "status": w.get("status", ""),
+                           "changed": w.get("changed", "")} for w in self.d.get("watchlist", [])],
+            "items": [{"id": i["id"], "lane": i["lane"], "date": i["date"],
+                       "headline": i["headline"], "core": i["core"],
+                       "confidence": i["confidence"], "outlet": i["outlet"],
+                       "url": i["url"], "page": LANES[i["lane"]]["page"]}
+                      for i in sorted(self.d["items"], key=lambda x: x["date"], reverse=True)],
+        }
+        # "<" is escaped so the payload can never close the script element early.
+        return json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+
+    def explore_head(self) -> str:
+        return (f'<link rel="stylesheet" href="board.css{asset_version("board.css")}">\n'
+                f'<script id="msx-data" type="application/json">{self.explore_payload()}</script>\n'
+                f'<script src="board.js{asset_version("board.js")}" defer></script>\n')
+
+    def explore_body(self) -> str:
+        """The mount point, a plain-language header, and a no-JS fallback.
+
+        The fallback is not an apology — it is the same content the rest of the
+        site already serves, so a reader without JavaScript is pointed at the
+        week pages rather than at an empty box.
+        """
+        weeks = "".join(
+            f'<li><a href="{self.prefix}week/{w["monday"]}/">{escape(w["label"])}</a> '
+            f'&middot; {len(w["items"])} items</li>' for w in self.weeks)
+        return f"""{self.nav(EXPLORE_PAGE)}
+
+  <header class="pagehead">
+    <h1>Explore the board</h1>
+    <div class="stamprow">
+      <div class="stamp"><span class="dot"></span>Last updated:
+        <time datetime="{self.as_of}">{escape(self.d.get("updatedDisplay", ""))}</time></div>
+      <div class="stamp cov">Covering <time datetime="{self.cov_start}">{escape(self.coverage)}</time>
+        &middot; {len(self.d["items"])} items</div>
+    </div>
+  </header>
+
+  <div class="msx" id="msx">
+    <noscript>
+      <div class="msx-noscript">
+        <p>Exploring by lane and week needs JavaScript. Everything here is also on
+        the pre-rendered pages, which need none:</p>
+        <ul>{weeks}</ul>
+        <p><a href="{self.home}">Back to the board &#8594;</a></p>
+      </div>
+    </noscript>
+  </div>
+
+  {self.subscribe_block()}
+
+  {self.footer()}"""
+
     # -- sitemap -------------------------------------------------------------
     def sitemap(self) -> str:
         """Canonical routes only.
@@ -1411,6 +1504,8 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         urls = [("", "daily", "1.0"), ("archive.html", "daily", "0.6"),
                 ("about.html", "monthly", "0.3")]
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
+        if EXPLORE_PAGE:
+            urls.append((EXPLORE_PAGE, "daily", "0.7"))
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
         if self.briefs:
@@ -1492,6 +1587,11 @@ def build(out_dir: Path):
     # server logs a 404 on every first page view — harmless, but it is the kind
     # of noise that hides a real missing asset the day one appears.
     shutil.copy(root / "assets" / "icon.svg", out_dir / "icon.svg")
+    # The Explore page's stylesheet and script. Both are optional: with
+    # EXPLORE_PAGE empty they are not copied and not referenced.
+    if EXPLORE_PAGE:
+        shutil.copy(root / "assets" / "board.css", out_dir / "board.css")
+        shutil.copy(root / "assets" / "board.js", out_dir / "board.js")
 
     def write(path: str, html: str):
         p = out_dir / path
@@ -1506,6 +1606,17 @@ def build(out_dir: Path):
         description=SITE_DESCRIPTION,
         body=site.home_body(),
         extra_head=site.home_jsonld()))
+
+    # explore
+    if EXPLORE_PAGE:
+        write(EXPLORE_PAGE, site.page(
+            path=EXPLORE_PAGE,
+            title=f"Explore — {SITE_NAME}",
+            description=("Filter the Machine Speed board by lane and week, follow a "
+                         "running story across weeks, and see what is new since your "
+                         "last visit."),
+            body=site.explore_body(),
+            extra_head=site.explore_head()))
 
     # lanes
     for key, v in LANES.items():

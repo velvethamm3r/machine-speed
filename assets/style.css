@@ -614,3 +614,26 @@ footer + .pager{margin:0}
   .acthead{flex-wrap:wrap; gap:6px}
   .actwhen{width:100%}
 }
+
+/* Display face — headlines only
+   ----------------------------------------------------------------------------
+   Newsreader is built for screen reading at small sizes, which is what the
+   board is: a page skimmed for what changed. It runs on headline text only —
+   page titles, item headlines, the compressed index, brief and act headings —
+   while every label, count, table header and body paragraph stays on the UI
+   sans. The uppercase micro-labels (.blockhead, .weekhead, .lane > h3) are
+   deliberately left alone: at 13px, letterspaced and capitalised, a serif
+   reads as decoration rather than hierarchy.
+
+   Weights step down as size does — a serif at 700 next to 13.5px body copy is
+   heavier than the page needs, and Newsreader's 600 holds its own at 15px.
+   Set --display to inherit and every rule below falls back to the sans. */
+:root{--display:"Newsreader",Georgia,"Times New Roman",serif}
+
+h1{font-family:var(--display); font-weight:500; font-size:29px; letter-spacing:-.4px}
+@media(max-width:600px){h1{font-size:24px}}
+.item h4{font-family:var(--display); font-weight:600; font-size:16px; line-height:1.3}
+ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
+.arch .d{font-family:var(--display); font-weight:600}
+.dcard h3, .tl h3, .act > h3{font-family:var(--display); font-weight:600; letter-spacing:-.1px}
+.newstrip li > span{font-family:var(--display); font-size:15px}
