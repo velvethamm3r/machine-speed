@@ -49,19 +49,30 @@ item id that is not in `items[]`. And because the key was renamed on 2026-08-06,
 still carrying `dossiers` is a hard error rather than a build that succeeds with every brief
 page missing.
 
-Warnings (build continues, message printed): the run stamp is not today; an item is more than
-seven days old — allowed, but `judgmentNote` should say why; more than six items qualify for
-the 48-hour strip, so only the newest six will show; nothing qualifies for the strip at all,
-which is the correct outcome on a genuinely quiet day.
+Warnings (build continues, message printed): the run stamp drifts from today; an item is dated
+before `coverageStart` or after `coverageEnd`; an act has no stages and folds no items; more than
+six items qualify for the "New to the board" strip, so only the newest six will show; nothing
+qualifies for the strip at all, which is the correct outcome on a genuinely quiet day.
+
+There is **no** item-age warning. This paragraph used to describe one for items more than seven
+days old; that check belonged to the original rolling-7-day window and is gone from `build.py`.
+Under grow mode nearly every item on the board is older than a week, so the warning would fire
+on almost all of them and mean nothing.
 
 ## Editing data.json for a run
 
 Change `updatedISO` and `updatedDisplay` to now. Rewrite `judgmentNote` (what you had to call
 by hand — corrections, unverifiable details dropped, thin lanes) and `internalNote` (one
-sentence on what changed since the last run). Add new items to `items[]`, delete items now
-older than seven days, and update `watchlist[]` statuses — carry threads forward unchanged
-rather than deleting them when nothing moved. Add a new entry at the top of `archives[]` with
-today's date and file path.
+sentence on what changed since the last run). Add new items to `items[]` and update
+`watchlist[]` statuses — carry threads forward unchanged rather than deleting them when nothing
+moved, and rewrite rather than append on a thread that did move. Add a new entry at the top of
+`archives[]` with today's date and file path.
+
+**Nothing is deleted for being old.** This paragraph used to say "delete items now older than
+seven days," which was the board's original rolling-7-day window. That was superseded first by a
+rolling ~5-week window and then, since 2026-08-05, by grow mode: `coverageStart` is pinned at
+`2026-07-01` and every item stays. `DAILY_RUN.md` → Guarantee 3 is authoritative on this and
+spells out what following the old rule would cost.
 
 To force an item into the "New in the last 48 hours" strip when it is new to the board but a
 few days old in the world, set `isNew: true`. To keep a genuinely recent item out, set

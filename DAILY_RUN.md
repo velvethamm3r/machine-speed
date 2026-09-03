@@ -27,11 +27,11 @@ stop and keep the guarantee.
 2. **Preserve the archive.** Every past dated snapshot in `archive/` is a frozen record of
    what the board said on that day. A run only ever **adds** to `archive/`; it never edits
    or deletes a file that is already there.
-3. **Keep the alerts on a rolling "last month or so" window, building on the run before.**
-   The board is not rebuilt from scratch each day and it is not allowed to grow without
-   limit. It carries the previous run's items forward, adds what is genuinely new, and lets
-   items older than roughly five weeks roll off the live board — while their frozen
-   snapshots keep them forever.
+3. **Build on the run before, and do not roll anything off.** The board is not rebuilt from
+   scratch each day. It carries every previous item forward and adds what is genuinely new.
+   **The board has been in grow mode since 2026-08-05:** `coverageStart` is pinned at
+   `2026-07-01` and nothing ages off the live board. Guarantee 3 below has the detail and
+   the alternative; the one thing a run must not do is quietly start rolling.
 
 ---
 
@@ -39,8 +39,15 @@ stop and keep the guarantee.
 
 The site is fully generated. `build.py` reads `data.json` and pre-renders every page,
 the RSS feed and the newsletter draft. The design lives in `assets/style.css`,
-`assets/theme.js` and `assets/icon.svg`, and the HTML structure lives in `build.py`.
-**A daily run touches none of these.** Correct data in, correct layout out.
+`assets/theme.js`, `assets/icon.svg`, `assets/board.css` and `assets/board.js`, and the
+HTML structure lives in `build.py`. **A daily run touches none of these.** Correct data
+in, correct layout out.
+
+Since the 2026-09 redesign the bare domain answers with the **Explore** view — an interactive,
+filterable, searchable board rendered in the browser from data inlined into the page
+(`LANDING = "explore"`). This changes nothing about what a run does: a run still edits
+`data.json` and lets `build.py` render. It does mean the run's prose is now read in two places
+rather than one, which is what the next section is for.
 
 Concretely:
 
@@ -67,6 +74,90 @@ Concretely:
 
 If the presentation genuinely needs to change, that is a separate, deliberate task against
 `build.py`/`assets/` with its own review — never a side effect of a daily run.
+
+### What Explore renders
+
+`explore_payload()` in `build.py` inlines a **projection** of `data.json` into the landing page.
+Per item it carries exactly nine fields — `id`, `lane`, `date`, `headline`, `core`, `confidence`,
+`outlet`, `url`, and the lane page the row links back to. It also carries every watchlist entry's
+`thread`, `status` and `changed`. Nothing else reaches the interactive view: `isNew`, `briefs`,
+`archives`, `about`, `judgmentNote` and `internalNote` are not in the payload.
+
+What follows for a run:
+
+- **You do not need to sanitise or escape anything.** The payload serialiser already escapes
+  every `<`, so no headline, `core` or watchlist `status` can close the script element early no
+  matter what characters it contains. Write plain text as always and do not invent workarounds.
+- **The lane path is generated, never authored.** Each row carries the lane page it links back
+  to, taken from `LANES` in `build.py`. Those paths became directories (`capability/`, not
+  `capability.html`) in the 2026-09 clean-URL change, with the flat paths kept permanently as
+  redirect stubs. A run writes `lane` and nothing else; it never writes a URL for a lane page.
+- **`core` is read while scanning and filtering, not only on a card.** Keep each one
+  self-contained and legible out of context — no "as above", no reliance on a neighbouring item.
+- **The strip is a pre-rendered concept, not an Explore one.** `isNew` is not in the payload, so
+  the "New to the board" strip exists on the pre-rendered pages and in the newsletter, not in the
+  interactive view. Keep setting it per Guarantee 3 — it still drives the newsletter and the
+  snapshot — but do not expect it to change what Explore shows.
+- **Dated snapshots are unaffected.** `BOARD_PAGE` is empty, so the full pre-rendered board is not
+  published as a page, but the renderer still runs and each `archive/machine-speed-YYYY-MM-DD.html`
+  is still a complete frozen copy of that markup. Guarantee 2 is intact.
+
+### Watchlist length — rewrite, do not append
+
+Watchlist `status` strings are inlined into the landing page and rendered in an Explore panel.
+Runs had been **appending** a clause per development rather than rewriting the thread, which by
+2026-09-03 had produced 46,235 characters across twenty threads — about a fifth of the whole
+inlined payload. They were compressed to 20,794 characters that day.
+
+When a thread moves: **rewrite the status so the newest development leads**, then compress what is
+behind it. A status answers "where does this stand today"; it is not a changelog. The changelog is
+`dashboard-memory.md`, where the full history belongs and costs nothing. Retire rather than
+accumulate — a storyline that stopped moving gets an honest closing status ("Resolved", "Dormant"),
+not another appended clause.
+
+**Keep each status under about 1,200 characters and the twenty together under about 25 KB.** Those
+numbers come from doing the compression rather than guessing: the threads carrying the most
+material land at 1,150–1,200 without losing a load-bearing figure, and squeezing below about 900
+starts costing real facts. Past 1,500 a thread needs a hard trim or a split. When material
+genuinely will not compress, move the enumeration to `dashboard-memory.md` and say so in the status
+("Full route-by-route list in dashboard-memory.md").
+
+Trimming prose is **not** a thread moving: leave `changed` at the date the storyline last actually
+moved, and do not restamp it because you rewrote the wording.
+
+### Where the board stands
+
+A dated snapshot of state, so a run knows what it is inheriting. **Live numbers always come from
+`data.json`** — these are the values as of the last run and will be stale the moment one lands.
+
+| | As of 2026-09-03 |
+|---|---|
+| Coverage | `2026-07-01` → `2026-09-03`, **grow mode**, `coverageStart` pinned |
+| Items | 213 — cap 54 · pol 33 · def 58 · atk 54 · mkt 14 |
+| Watchlist | 20 threads, 20,794 characters total |
+| Briefs | 2 — `openai-hugging-face-eval-breach` (27 stages, 9 acts), `ai-assisted-water-ot-intrusions` (6 stages, no acts) |
+| Archives | 22 entries, newest `2026-09-03` |
+| Landing page | Explore, 272 KB, of which ~215 KB is the inlined payload |
+| Social card | `assets/og.png`, 1200×630, emitted on every page as `summary_large_image` |
+
+Standing context worth carrying into a run: Markets is the thinnest lane and moved for the first
+time in three runs on 2026-09-03. The open-weight question — whether GLM-5.3's weights shipped and
+whether its safety review concluded — has been unresolved for four runs because no Z.ai primary can
+be opened. cisa.gov, nvd.nist.gov and cve.org are unreachable to automated fetchers, so CVEs are
+carried as their primaries state them. Check Point post bodies and the Google Cloud/Mandiant blog
+could not be opened on 2026-09-03 and are unverified rather than quiet for that window.
+
+### Standing note — landing-page weight (decide later, not on a daily run)
+
+Because the payload is inlined, every item a run adds also adds to the landing page's download.
+Measured 2026-09-03 at 213 items: 272 KB page, ~215 KB payload, about 1.0 KB per item — of which
+`core` is the largest term. In grow mode at twenty to thirty items a day this grows by roughly
+25–35 KB a day without limit.
+
+Two levers exist and **both are design tasks, not daily-run decisions**: tighten the projection
+further (dropping or truncating `core`, letting the lane pages carry the full text), or cap the
+window so items age off. The watchlist discipline above is the one part a run controls directly.
+Record the numbers in `dashboard-memory.md` if they move sharply; otherwise leave this alone.
 
 ---
 
@@ -99,12 +190,23 @@ as a provenance trail rather than a second front door. Leave that setting as it 
 
 ---
 
-## Guarantee 3 — a rolling "last month or so" of alerts, built on the last run
+## Guarantee 3 — carry everything forward, built on the last run
 
 The board states the exact span of days it covers (`coverageStart` … `coverageEnd` in
-`data.json`) and shows every item inside that span on one page. The intent is that the span stays
-at **roughly the last five weeks** — "the last month or so" — so the board is always a current
-picture, not an ever-growing scroll and not a blank slate.
+`data.json`) and covers every item inside that span — in Explore through filtering and search,
+and on the lane and week pages as pre-rendered cards.
+
+> ### ⚠ The board is in GROW mode. Do not roll items off.
+>
+> `coverageStart` has been pinned at **`2026-07-01`** since 2026-08-05 and every run since has
+> operated this way — twelve archive entries say "grow mode" in their own note. **A run advances
+> `coverageEnd` only.** It never advances `coverageStart` and never deletes an item for being old.
+>
+> This matters because the original design was a rolling five-week window, and the instructions
+> below used to lead with it. If a run applied that rule on 2026-09-04 it would set
+> `coverageStart` to 2026-07-27 and **delete 47 of the board's 213 items** — 22% of it, across
+> all five lanes, with only 6 protected by brief folding. That is a silent, hard-to-notice
+> amputation, which is why grow mode is now stated first and in a box.
 
 Each run does four things, in this order of care:
 
@@ -113,22 +215,20 @@ Each run does four things, in this order of care:
    unchanged unless you have a sourced correction. Do not re-add or re-describe something already
    on the board.
 
-2. **Advance the window.**
+2. **Extend the window at the near end only.**
    - Set `coverageEnd` to **today**.
-   - Advance `coverageStart` so the span is about five weeks: use the **Monday on or before
-     `today − 35 days`**. Anchoring to a Monday keeps the week headings clean (items are bucketed
-     by the Monday of their week).
-   - This is the one change from a naive "just add items" run: the window *moves*, it does not
-     only grow.
+   - **Leave `coverageStart` at `2026-07-01`.** Do not compute a new one.
 
-3. **Roll off what aged out — but preserve it.** Remove from `items[]` any item now dated before
-   the new `coverageStart`. Those items do not disappear from history: their **frozen snapshots**
-   in `archive/` still show them. Two exemptions:
-   - **Never drop an item that a brief folds in by id** (`acts[].items` or a stage referencing it).
-     `validate()` hard-errors on a folded id that is not in `items[]`. If an aged-out item is
-     referenced by a live brief, keep it in `items[]`.
-   - **Briefs are outside the window entirely.** A brief's whole purpose is to reach back past the
-     coverage period, so never trim a brief or its stages to fit the window.
+3. **Nothing rolls off.** Every item stays in `items[]`. Do not remove an item because it is old;
+   the only reasons to remove one are a sourced correction or a de-duplication, and both get
+   written down in `dashboard-memory.md`.
+
+   *If the board is ever switched back to a rolling window* — Daria's call, not a run's — the
+   rule was: advance `coverageStart` to the Monday on or before `today − 35 days`, then remove
+   items dated before it, with two exemptions. **Never drop an item a brief folds in by id**
+   (`acts[].items` or a stage referencing it); `validate()` hard-errors on a folded id missing
+   from `items[]`. And **briefs sit outside the window entirely** — a brief's whole purpose is to
+   reach back past the coverage period, so never trim one to fit.
 
 4. **Refresh and carry the alert layer.**
    - **The "New to the board" strip** is the top-of-board alert. (It was headed "New in the last
@@ -148,17 +248,19 @@ Each run does four things, in this order of care:
      running storyline appears; retire one by setting an honest `status` ("Resolved", "Dormant"),
      never by deleting it.
 
-**If you would rather the board keep everything and grow instead of rolling** — one continuous
-period with nothing ever leaving the live board — the switch is: leave `coverageStart` fixed and
-skip step 3. Everything else is identical. That is the only knob; the layout and archive guarantees
-are unaffected either way. (The board ran this way from 2026-08-05 to 2026-08-06.) Confirm with
-Daria which behaviour she wants before changing it mid-stream, because it changes what rolls off the
-live board.
+**Switching back to a rolling window is a deliberate decision, not a run's.** The only knob is
+`coverageStart`: pin it and the board grows, advance it and items roll off. The layout and archive
+guarantees hold either way, and the frozen snapshots in `archive/` keep every rolled-off item
+forever. But it changes what a reader sees on the live board, so confirm with Daria before
+changing it mid-stream — and if it is ever changed, update this section in the same edit so the
+instruction and the behaviour cannot drift apart again.
 
-> **Legacy note.** `RUNBOOK.md` still contains a line from the board's original design that says to
-> "delete items now older than seven days." That was the old rolling-**7-day** window and is
-> superseded by this rolling **~5-week** window. Follow this file. (Worth reconciling that line in
-> `RUNBOOK.md` in a separate docs edit so the two cannot be read against each other.)
+> **Legacy note — resolved 2026-09-03.** The board has had three retention rules: a rolling
+> **7-day** window at launch, then a rolling **~5-week** window, and since 2026-08-05 **grow mode**.
+> `RUNBOOK.md` carried the seven-day line until 2026-09-03, when it was corrected to point here;
+> its "The coverage period" section already described grow mode, so that file had been
+> contradicting itself. All three documents now say the same thing. If retention ever changes
+> again, change it in `DAILY_RUN.md` Guarantee 3 and `RUNBOOK.md` in the same edit.
 
 ---
 
@@ -178,11 +280,11 @@ live board.
 4. **Edit `data.json`:**
    - `updatedISO` and `updatedDisplay` → now (ISO 8601 with the ET offset; display in `YYYY-MM-DD,
      h:MM AM/PM ET`).
-   - `coverageEnd` → today; advance `coverageStart` per Guarantee 3 (or leave it, if running in
-     grow mode).
-   - Add new items to `items[]`; remove items now before `coverageStart` (respecting the two
-     exemptions); set/clear `isNew`.
-   - Update `watchlist[]` statuses and `changed` dates; carry quiet threads unchanged.
+   - `coverageEnd` → today. **Leave `coverageStart` at `2026-07-01`** — the board is in grow
+     mode (Guarantee 3).
+   - Add new items to `items[]`; set/clear `isNew`. **Remove nothing for being old.**
+   - Update `watchlist[]` statuses and `changed` dates; carry quiet threads unchanged, and
+     **rewrite rather than append** on a thread that moved (see "Watchlist length" above).
    - Rewrite `judgmentNote` (every call you made by hand — corrections, unverifiable details
      dropped, thin or empty lanes, why an item was omitted) and `internalNote` (one sentence: what
      changed since the last run).
@@ -286,8 +388,14 @@ minute). That upload is a human step, on purpose.
 | `NEW_WINDOW_DAYS` | `2` | Items this recent auto-enter the "New to the board" strip; `isNew` overrides. |
 | `STRIP_MAX` | `6` | The "New to the board" strip is capped at six; excess warns. |
 | `COVERAGE_SLACK_DAYS` | `0` | The stated period must contain every item exactly, or the build warns. |
-| `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards; older in-window weeks index one line each. |
+| `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards on the pre-rendered board; older in-window weeks index one line each. Does not affect Explore, which filters the whole period. |
+| `LANDING` | `"explore"` | The bare domain answers with the interactive Explore view. A run never changes this. |
+| `EXPLORE_PAGE` | `"explore.html"` | Where Explore lives when it is *not* the landing page. Empty removes the feature entirely, including `board.css` / `board.js`. |
+| `BOARD_PAGE` | `""` (empty) | The full pre-rendered board is not published as a page — the lane and week pages carry every item, and each dated snapshot in `archive/` is still a complete copy of that markup. |
 | `GROUP_BY_WEEK` | `True` | A lane with six or more items splits under Monday–Sunday week headings. |
+| `OG_IMAGE` | `"og.png"` | Social preview image, read from `assets/`. Present, and every page emits `og:image` / `twitter:image` and the card becomes `summary_large_image`; missing, and the tags are simply not emitted. A run never touches it. |
+| `OG_IMAGE_W` / `OG_IMAGE_H` | `1200` / `630` | Declared dimensions. They must match the real file — platforms trust the tag, and a mismatch crops the card wrong. |
+| `OG_IMAGE_ALT` | text | Alt text on the card. Describes the image, not the site. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |
 | `SHOW_INTERNAL_NOTE` | `False` | `internalNote` stays in the data, off the page. |
 | `NOTE_PLACEMENT` | `"none"` | `judgmentNote` is kept in the data and newsletter, off the board face. |
