@@ -137,6 +137,18 @@ OG_IMAGE_ALT = ("Don't sleep on AI-cyber policy — Machine Speed, "
 DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
                     "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap")
 
+# Cloudflare Web Analytics. The token is a public site identifier, not a secret —
+# it ships in the HTML of every page by design, which is why it lives here rather
+# than in a repository secret. Empty the string and the beacon and its request
+# disappear from every page.
+#
+# Two things worth knowing about what this measures. It is a client-side beacon,
+# so ad-blockers and privacy extensions block it — and this board's readers are
+# security people, the population most likely to run them. Read the numbers as a
+# floor with a usable trend, not a count. And no beacon ever sees feed.xml, so
+# RSS readers are invisible to it.
+WEB_ANALYTICS_TOKEN = "0907e6f1cbb74105841c3cb74d580d7f"
+
 # Which view answers the bare domain. "explore" makes the interactive board the
 # landing page and moves the pre-rendered one to BOARD_PAGE; "board" restores the
 # original arrangement. The pre-rendered board never goes away either way — it is
@@ -217,9 +229,9 @@ CNAME = SITE_URL.split("//", 1)[1]
 # Point it at a subdomain of this site (newsletter.techpointe.org) rather than
 # *.substack.com and the nav link stops behaving like an outbound one — see
 # same_site() below.
-SUBSTACK_URL = "https://velvethamm3r.substack.com"
+SUBSTACK_URL = "https://newsletter.techpointe.org"
 SUBSTACK_CTA = "Get the board in your inbox"
-SUBSTACK_NAV = "Subscribe"              # the nav label. "Newsletter" reads as part of the site.
+SUBSTACK_NAV = "Newsletter"             # on our own subdomain, so same_site() drops the new-tab arrow.
 
 
 def home_of(kind: str) -> str:
@@ -891,6 +903,12 @@ class Site:
         if rel.endswith("/index.html"):
             rel = rel[: -len("index.html")]
         canonical = f"{SITE_URL}/{rel}"
+        analytics = (
+            "<!-- Cloudflare Web Analytics --><script type='module' "
+            "src='https://static.cloudflareinsights.com/beacon.min.js' "
+            f"data-cf-beacon='{{\"token\": \"{WEB_ANALYTICS_TOKEN}\"}}'></script>"
+            "<!-- End Cloudflare Web Analytics -->\n"
+        ) if WEB_ANALYTICS_TOKEN else ""
         return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -930,7 +948,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
 </div>
 <script src="{asset_prefix}theme.js{asset_version('theme.js')}" defer></script>
-</body>
+{analytics}</body>
 </html>
 """
 

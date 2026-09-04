@@ -139,6 +139,8 @@ A dated snapshot of state, so a run knows what it is inheriting. **Live numbers 
 | Archives | 22 entries, newest `2026-09-03` |
 | Landing page | Explore, 272 KB, of which ~215 KB is the inlined payload |
 | Social card | `assets/og.png`, 1200×630, emitted on every page as `summary_large_image` |
+| Newsletter | `newsletter.techpointe.org` (Substack, custom domain, live 2026-09-03) — same-tab link |
+| Analytics | Cloudflare Web Analytics beacon on all 22 live pages; a floor, not a count |
 
 Standing context worth carrying into a run: Markets is the thinnest lane and moved for the first
 time in three runs on 2026-09-03. The open-weight question — whether GLM-5.3's weights shipped and
@@ -396,6 +398,8 @@ minute). That upload is a human step, on purpose.
 | `OG_IMAGE` | `"og.png"` | Social preview image, read from `assets/`. Present, and every page emits `og:image` / `twitter:image` and the card becomes `summary_large_image`; missing, and the tags are simply not emitted. A run never touches it. |
 | `OG_IMAGE_W` / `OG_IMAGE_H` | `1200` / `630` | Declared dimensions. They must match the real file — platforms trust the tag, and a mismatch crops the card wrong. |
 | `OG_IMAGE_ALT` | text | Alt text on the card. Describes the image, not the site. |
+| `WEB_ANALYTICS_TOKEN` | set | Cloudflare Web Analytics beacon, injected before `</body>` on every generated page. The token is a public site identifier, not a secret. Empty it and the beacon and its request vanish. Redirect stubs are excluded (they would double-count their destination) and frozen snapshots already in `archive/` are never rewritten, so each keeps whatever the site carried on its own day. A run never touches this. |
+| `SUBSTACK_URL` | `https://newsletter.techpointe.org` | The newsletter moved to its own subdomain on 2026-09-03. Because `same_site()` compares the registrable domain, the nav link and subscribe button now open in the same tab with no ↗ — that is automatic, not a template change. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |
 | `SHOW_INTERNAL_NOTE` | `False` | `internalNote` stays in the data, off the page. |
 | `NOTE_PLACEMENT` | `"none"` | `judgmentNote` is kept in the data and newsletter, off the board face. |
