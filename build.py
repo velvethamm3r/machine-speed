@@ -231,7 +231,14 @@ CNAME = SITE_URL.split("//", 1)[1]
 # same_site() below.
 SUBSTACK_URL = "https://newsletter.techpointe.org"
 SUBSTACK_CTA = "Get the board in your inbox"
-SUBSTACK_NAV = "Newsletter"             # on our own subdomain, so same_site() drops the new-tab arrow.
+SUBSTACK_NAV = "Newsletter"             # sits in the destinations group, between Briefs and Archive.
+
+# Force the newsletter link to open in a new tab even though it is now on our own
+# subdomain. same_site() would otherwise keep it in the same tab, which is right
+# for a page of this site but wrong for a subscription flow: a reader part-way
+# down the board should not lose their place to go and subscribe. Set False to
+# let same_site() decide again.
+SUBSTACK_NEW_TAB = True
 
 
 def home_of(kind: str) -> str:
@@ -713,11 +720,21 @@ class Site:
                 links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
             links.append((BRIEFS_URL, "Briefs"))
+        # The newsletter sits with the things people read, ahead of the reference
+        # pages — an absolute URL here is the marker that it renders differently.
+        if SUBSTACK_URL:
+            links.append((SUBSTACK_URL, SUBSTACK_NAV))
         links += [(ARCHIVE_URL, "Archive"), (ABOUT_URL, "About")]
         out = ['<nav class="nav" aria-label="Site">',
                f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
         for href, label in links:
+            if href.startswith("http"):
+                newtab = SUBSTACK_NEW_TAB or not same_site(href)
+                tab = ' target="_blank" rel="noopener"' if newtab else ""
+                out.append(f'<a class="link sub-link" href="{escape(href, quote=True)}"'
+                           f'{tab}>{escape(label)}</a>')
+                continue
             cls = "link active" if href == active else "link"
             aria = ' aria-current="page"' if href == active else ""
             # "index.html" stays the key that marks the tab active — it is the
@@ -726,10 +743,6 @@ class Site:
             url = self.home if href == "index.html" else self.prefix + href
             out.append(f'<a class="{cls}" href="{url}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
-        if SUBSTACK_URL:
-            tab = "" if same_site(SUBSTACK_URL) else ' target="_blank" rel="noopener"'
-            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}"'
-                       f'{tab}>{escape(SUBSTACK_NAV)}</a>')
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
@@ -819,8 +832,12 @@ class Site:
         if not SUBSTACK_URL:
             return ""
         own = same_site(SUBSTACK_URL)
-        tab = "" if own else ' target="_blank" rel="noopener"'
-        label = "Subscribe" if own else "Subscribe on Substack ↗"
+        newtab = SUBSTACK_NEW_TAB or not own
+        tab = ' target="_blank" rel="noopener"' if newtab else ""
+        if own:
+            label = "Subscribe ↗" if newtab else "Subscribe"
+        else:
+            label = "Subscribe on Substack ↗"
         if compact:
             # The board is a page of dense cards; the stacked heading-paragraph-button
             # block reads as three loose elements at the end of it. Same content, one row.

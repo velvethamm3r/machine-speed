@@ -399,7 +399,8 @@ minute). That upload is a human step, on purpose.
 | `OG_IMAGE_W` / `OG_IMAGE_H` | `1200` / `630` | Declared dimensions. They must match the real file — platforms trust the tag, and a mismatch crops the card wrong. |
 | `OG_IMAGE_ALT` | text | Alt text on the card. Describes the image, not the site. |
 | `WEB_ANALYTICS_TOKEN` | set | Cloudflare Web Analytics beacon, injected before `</body>` on every generated page. The token is a public site identifier, not a secret. Empty it and the beacon and its request vanish. Redirect stubs are excluded (they would double-count their destination) and frozen snapshots already in `archive/` are never rewritten, so each keeps whatever the site carried on its own day. A run never touches this. |
-| `SUBSTACK_URL` | `https://newsletter.techpointe.org` | The newsletter moved to its own subdomain on 2026-09-03. Because `same_site()` compares the registrable domain, the nav link and subscribe button now open in the same tab with no ↗ — that is automatic, not a template change. |
+| `SUBSTACK_URL` | `https://newsletter.techpointe.org` | The newsletter moved to its own subdomain on 2026-09-03. It sits in the nav's destinations group, between Briefs and Archive. |
+| `SUBSTACK_NEW_TAB` | `True` | Forces the newsletter link and subscribe button to open in a new tab even though the URL is now same-site. Without it `same_site()` would keep them in the same tab, which is right for a page of this site but wrong for a subscription flow — a reader part-way down the board should not lose their place. Set `False` to let `same_site()` decide again. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |
 | `SHOW_INTERNAL_NOTE` | `False` | `internalNote` stays in the data, off the page. |
 | `NOTE_PLACEMENT` | `"none"` | `judgmentNote` is kept in the data and newsletter, off the board face. |
