@@ -68,6 +68,54 @@
 .msx-chip[disabled]{opacity:.4;cursor:default}
 .msx-scope{font:700 8.5px/1 var(--x-mono);letter-spacing:.12em;color:var(--x-ink);margin-left:auto;white-space:nowrap}
 
+
+/* new-additions carousel ---------------------------------------------------
+   Its own panel above the board: same chrome, one step lighter surface, so it
+   reads as a separate module and the search bar below it gets real air. */
+.msx-carpanel{background:var(--x-panel);margin:22px 0 0}
+.msx-car{display:block}
+.msx-carhead{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 18px 12px;border-bottom:1px solid var(--x-hair)}
+/* --car-mark is set by board.js: the policy hue run through readable() against
+   the panel it actually sits on. --x-mark is a soft WASH token, not a text
+   colour — using it here put the module's own label at ~1.1:1 in both themes. */
+.msx-cartitle{display:flex;align-items:center;gap:9px;font:700 9px/1 var(--x-mono);letter-spacing:.14em;color:var(--car-mark,var(--x-ink))}
+.msx-cartitle i{width:6px;height:6px;border-radius:50%;background:var(--car-mark,var(--x-pol))}
+.msx-carnav{display:flex;align-items:center;gap:10px}
+.msx-carnav .c{font:400 10px/1 var(--x-mono);color:var(--x-faint)}
+.msx-carbtn{font:400 12px/1 var(--x-sans);color:var(--x-mute);background:transparent;border:1px solid var(--x-line);padding:5px 10px;cursor:pointer}
+.msx-carbtn:hover{color:var(--x-ink);border-color:var(--x-mute)}
+
+/* NOT display:flex: a flex item gets blockified, and the source row is pinned
+   to the bottom absolutely instead — which is also why the padding reserves
+   room for it. The fixed height keeps the page still as slides advance. */
+.msx-carslide{position:relative;height:252px;padding:20px 22px 50px 22px;border-left:4px solid var(--ln)}
+.msx-carkick{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.msx-carkick i{font:700 9.5px/1 var(--x-mono);letter-spacing:.06em;font-style:normal;padding:5px 7px;border-radius:3px;background:var(--ln-soft);color:var(--ln-text)}
+.msx-carkick time{font:400 10.5px/1 var(--x-mono);color:var(--x-faint)}
+.msx-carlag{font:700 8.5px/1 var(--x-mono);letter-spacing:.1em;color:var(--car-mark,var(--x-ink))}
+.msx-carslide h3{font:400 25px/1.24 var(--x-display);margin:0 0 11px;letter-spacing:-.01em;text-wrap:pretty;max-width:36ch}
+.msx-carslide h3 a{color:var(--x-ink)}
+.msx-carslide h3 a:hover{color:var(--x-link)}
+.msx-carslide p{font:400 14px/1.6 var(--x-sans);color:var(--x-mute);margin:0;max-width:84ch;text-wrap:pretty}
+.msx-carsrc{position:absolute;left:22px;right:22px;bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+.msx-carticks{display:flex;gap:3px;height:3px;padding:0 18px}
+.msx-carthumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;padding:13px 18px 15px}
+.msx-carthumb{display:block;text-align:left;padding:8px 9px 9px;background:transparent;border:0;border-top:2px solid transparent;cursor:pointer}
+.msx-carthumb .t{display:flex;align-items:center;gap:6px;margin-bottom:6px;font:400 8.5px/1 var(--x-mono);color:var(--x-faint)}
+.msx-carthumb .t i{width:5px;height:5px;border-radius:50%;background:var(--ln)}
+.msx-carthumb .h{display:block;font:400 11.5px/1.35 var(--x-display);color:var(--x-faint);text-wrap:pretty}
+.msx-carthumb:hover .h{color:var(--x-mute)}
+.msx-carthumb.on{background:var(--x-hi);border-top-color:var(--ln)}
+.msx-carthumb.on .h{color:var(--x-ink)}
+
+@media (max-width:900px){
+  .msx-carslide{height:auto;padding:18px 16px 16px 18px}
+  .msx-carslide h3{font-size:21px;max-width:none}
+  .msx-carsrc{position:static;left:auto;right:auto;bottom:auto;margin-top:14px}
+  .msx-carthumbs{grid-template-columns:repeat(2,1fr);gap:2px}
+}
+
 /* stories ---------------------------------------------------------------- */
 .msx-sec{padding:18px 18px 4px}
 .msx-sechead{display:flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:2px solid var(--x-ink);font:700 9px/1 var(--x-mono);letter-spacing:.14em;color:var(--x-ink)}

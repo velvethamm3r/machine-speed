@@ -55,6 +55,27 @@ SITE_DESCRIPTION = ("A daily, source-verified intelligence board on AI cyber "
 NEW_WINDOW_DAYS = 2   # items this recent auto-enter the "New to the board" strip; isNew overrides
 STRIP_MAX = 6         # spec caps the "New to the board" strip at six
 
+# The board's rolling strip forgets: an item leaves "New to the board" after two
+# days, and unread state lives in one visitor's browser. Two things make the
+# delta durable instead — new.xml, a feed of items in the order they ENTERED the
+# board, and the carousel at the top of the landing page, which reads the same
+# order. Entry order is not event order: an incident dated three weeks ago that
+# the board picks up today entered today.
+#
+# Entry dates cannot be derived from data.json (an item carries the date of the
+# event, not the date this project noticed it), so they live in a small
+# committed ledger: entered.json, id -> the run date the id first appeared. The
+# ledger is why a missed run does not silently swallow items — a reader who
+# checks once a week still receives everything that entered in between.
+#
+# Seeding: on the first build the ledger does not exist, and every id is
+# recorded at that item's own date rather than today, so the feed opens as an
+# honest recency list instead of announcing the whole board as new this morning.
+# Every run after that records real entry dates.
+NEW_FEED = "new.xml"
+NEW_FEED_MAX = 40     # entries the new-items feed carries; readers keep their own history
+LEDGER_FILE = "entered.json"
+
 # A brief's acts can sit side by side when they share a "row" — two positions
 # answering the same question, two arms of a response. Two fit on a laptop and
 # still hold a readable line length; a third turns each panel into a column of
@@ -617,9 +638,46 @@ def validate(d: dict):
     return errors, warnings
 
 
+def sync_ledger(root: Path, data: dict) -> dict:
+    """id -> the run date that id first appeared on the board.
+
+    Reads entered.json, adds any id it has not seen at today's run date, and
+    writes it back when it grew. Ids that leave data.json are kept: the feed
+    they were published in is already in readers' hands, and dropping them would
+    resurrect them as new if the item ever came back.
+    """
+    path = root / LEDGER_FILE
+    run_day = (data.get("updatedISO", "") or "")[:10]
+    items = [i for i in data.get("items", []) if i.get("id")]
+
+    if path.exists():
+        ledger = json.loads(path.read_text(encoding="utf-8"))
+        seeding = False
+    else:
+        ledger, seeding = {}, True
+
+    added = 0
+    for it in items:
+        if it["id"] in ledger:
+            continue
+        ledger[it["id"]] = it["date"] if seeding else (run_day or it["date"])
+        added += 1
+
+    if added:
+        path.write_text(json.dumps(dict(sorted(ledger.items())), indent=2) + "\n",
+                        encoding="utf-8")
+        if seeding:
+            print(f"  {LEDGER_FILE} created — seeded {added} ids at their own dates")
+        else:
+            print(f"  {LEDGER_FILE}: {added} id(s) entered the board on {run_day}")
+    return ledger
+
+
 class Site:
-    def __init__(self, data: dict):
+    def __init__(self, data: dict, entered: dict = None):
         self.d = data
+        # id -> entry date. Empty is safe: everything falls back to item dates.
+        self.entered = entered or {}
         self.as_of = data.get("updatedISO", "")
         self.prefix = ""  # set to "../" while rendering pages inside /archive
         self.cov_start, self.cov_end = coverage_span(data)
@@ -671,6 +729,19 @@ class Site:
         fresh = [i for i in self.d["items"] if self.is_new(i)]
         fresh.sort(key=lambda i: i["date"], reverse=True)
         return fresh[:STRIP_MAX]
+
+    def entry_date(self, item) -> str:
+        return self.entered.get(item["id"], item["date"])
+
+    def entered_items(self):
+        """Items newest-first by the date they ENTERED the board, capped.
+
+        Ties — everything that landed in the same run — fall back to the item's
+        own date, so a single day's batch still reads newest event first.
+        """
+        items = [i for i in self.d["items"] if i.get("id")]
+        items.sort(key=lambda i: (self.entry_date(i), i["date"]), reverse=True)
+        return items[:NEW_FEED_MAX]
 
     def is_new(self, item) -> bool:
         """A run can override the date rule with isNew.
@@ -935,6 +1006,7 @@ class Site:
 <meta name="description" content="{escape(description, quote=True)}">
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" type="application/rss+xml" title="{escape(SITE_NAME)}" href="{SITE_URL}/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="{escape(SITE_NAME)} — new to the board" href="{SITE_URL}/{NEW_FEED}">
 <meta property="og:site_name" content="{escape(SITE_NAME)}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{escape(title, quote=True)}">
@@ -1549,6 +1621,10 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             "updatedISO": self.as_of,
             "coverage": self.coverage,
             "prevRun": prev,
+            # The ledger, for the ids on the board: the carousel and the "new"
+            # affordances key on entry date, which no item field can supply.
+            "entered": {i["id"]: self.entry_date(i)
+                        for i in self.d["items"] if i.get("id")},
             "lanes": [{"key": k, "name": v["name"]} for k, v in LANES.items()],
             "conf": CONF,
             "watchlist": [{"thread": w.get("thread", ""), "status": w.get("status", ""),
@@ -1642,32 +1718,60 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         return "\n".join(out) + "\n"
 
     # -- RSS ----------------------------------------------------------------
-    def feed(self) -> str:
-        items_xml = []
-        for i in sorted(self.d["items"], key=lambda x: x["date"], reverse=True):
-            lane = LANES[i["lane"]]["name"]
-            link = f"{SITE_URL}/{LANES[i['lane']]['page']}#{i['id']}"
-            items_xml.append(f"""  <item>
+    def rss_item(self, i: dict, pub: str = "", guid_suffix: str = "") -> str:
+        """One <item>. `pub` overrides the pubDate; `guid_suffix` keys the guid.
+
+        The two feeds carry the same items under different guids on purpose: a
+        reader subscribed to both should see each item once per feed, and the
+        new-items feed keys on entry date so a re-dated item is not re-sent.
+        """
+        lane = LANES[i["lane"]]["name"]
+        link = f"{SITE_URL}/{LANES[i['lane']]['page']}#{i['id']}"
+        return f"""  <item>
     <title>{escape(f'[{lane}] ' + i["headline"])}</title>
     <link>{escape(link)}</link>
-    <guid isPermaLink="false">{escape(i["id"])}-{i["date"]}</guid>
-    <pubDate>{rfc822(i["date"])}</pubDate>
+    <guid isPermaLink="false">{escape(i["id"])}-{guid_suffix or i["date"]}</guid>
+    <pubDate>{rfc822(pub or i["date"])}</pubDate>
     <description>{escape(i["core"])} (Source: {escape(i["outlet"])} — {escape(i["url"])})</description>
-  </item>""")
+  </item>"""
+
+    def rss(self, title: str, description: str, self_href: str, items_xml: list) -> str:
         build_date = rfc822(self.as_of[:10]) if self.as_of else ""
         return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>{escape(SITE_NAME)}</title>
+  <title>{escape(title)}</title>
   <link>{SITE_URL}/</link>
-  <atom:link href="{SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>{escape(SITE_DESCRIPTION)}</description>
+  <atom:link href="{SITE_URL}/{self_href}" rel="self" type="application/rss+xml"/>
+  <description>{escape(description)}</description>
   <language>en</language>
   <lastBuildDate>{build_date}</lastBuildDate>
 {chr(10).join(items_xml)}
 </channel>
 </rss>
 """
+
+    def feed(self) -> str:
+        """Everything on the board, newest event first."""
+        rows = sorted(self.d["items"], key=lambda x: x["date"], reverse=True)
+        return self.rss(SITE_NAME, SITE_DESCRIPTION, "feed.xml",
+                        [self.rss_item(i) for i in rows])
+
+    def new_feed(self) -> str:
+        """Only what entered the board, in the order it entered.
+
+        pubDate is the entry date, not the event date, so a reader's client
+        sorts by when the board learned it — which is the question this feed
+        answers.
+        """
+        rows = self.entered_items()
+        return self.rss(
+            f"{SITE_NAME} — new to the board",
+            "Items as they enter the Machine Speed board, newest first. "
+            "Entry order, not event order.",
+            NEW_FEED,
+            [self.rss_item(i, pub=self.entry_date(i),
+                           guid_suffix="in-" + self.entry_date(i)) for i in rows])
 
 
 # ---------------------------------------------------------------------------
@@ -1688,7 +1792,7 @@ def build(out_dir: Path):
               file=sys.stderr)
         sys.exit(1)
 
-    site = Site(data)
+    site = Site(data, sync_ledger(Path(__file__).resolve().parent, data))
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -1837,6 +1941,7 @@ def build(out_dir: Path):
 
     # RSS + crawl hints
     write("feed.xml", site.feed())
+    write(NEW_FEED, site.new_feed())
     write("sitemap.xml", site.sitemap())
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
 
@@ -1876,6 +1981,7 @@ def build(out_dir: Path):
     print(f"\nBuild complete → {out_dir}")
     print(f"  {len(data['items'])} items ({counts}), "
           f"{len(site.fresh_items())} in the 'New to the board' strip, "
+          f"{len(site.entered_items())} in {NEW_FEED}, "
           f"{len(data['watchlist'])} watchlist threads")
     if site.briefs:
         acts = sum(len(b.get("acts", [])) for b in site.briefs)

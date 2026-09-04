@@ -26,6 +26,7 @@ those two stop.
 
 ```
 ├── data.json     ← single source of truth
+├── entered.json  ← ledger: item id → the run date it entered the board (build-written, committed)
 ├── build.py      ← generator (Python 3 stdlib only, no dependencies)
 ├── assets/       ← stylesheet, theme toggle, favicon, Explore board (board.css/js)
 ├── archive/      ← dated board snapshots
@@ -39,8 +40,20 @@ those two stop.
     ├── archive/            week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
     ├── about/
     ├── <lane>.html …       redirect stubs at the old flat paths
-    └── feed.xml            RSS 2.0
+    ├── feed.xml            RSS 2.0 — the whole board, in event order
+    └── new.xml             RSS 2.0 — only items as they enter the board
 ```
+
+**Two feeds, and a carousel.** `feed.xml` is the whole board in event order —
+when things happened. `new.xml` is the delta in *entry* order — when the board
+learned them, capped at the last 40, `pubDate` set to the entry date. The
+carousel at the top of the landing page reads the same order and shows the
+current day's arrivals, so an item rotates out once it stops being new.
+
+An incident dated three weeks ago that the board picks up today enters today.
+That distinction is why entry dates live in `entered.json` rather than being
+inferred from `data.json`, and why a reader who checks once a week still
+receives every item that entered in between.
 
 ## Build
 

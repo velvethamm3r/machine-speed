@@ -113,6 +113,24 @@
     return null;
   }
 
+  /* Entry dates: id -> the run date the board first carried the item. build.py
+     inlines the ledger (entered.json) into the payload. Absent for an item the
+     ledger has not seen, in which case its own date is the honest fallback. */
+  var ENTERED = DATA.entered || {};
+  function entryDate(it) { return ENTERED[it.id] || it.date; }
+
+  /* Clamped by character budget, not by -webkit-line-clamp: the clamp does not
+     engage in every engine and a headline chopped with no ellipsis reads as a
+     bug. Backs up to the last word so it never cuts mid-word. */
+  function clip(s, max) {
+    s = String(s);
+    if (s.length <= max) return s;
+    var cut = s.slice(0, max - 1);
+    var sp = cut.lastIndexOf(" ");
+    if (sp > max * 0.6) cut = cut.slice(0, sp);
+    return cut.replace(/[ ,;:\u2014-]+$/, "") + "\u2026";
+  }
+
   var MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
   var MONT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -162,6 +180,26 @@
     render();
   }
   function isUnread(it) { return since ? it.date > since : false; }
+
+  /* ---- the new-additions carousel --------------------------------------
+     Keyed on entry date, not event date: that is what makes a slide leave the
+     carousel the day after it stops being new, and what lets an incident dated
+     three weeks ago have its day here when the board picks it up today.
+     A day with only one arrival is not a carousel, so it falls back to the most
+     recent arrivals and says so — the module keeps its height either way. */
+  var CAR = (function () {
+    var byEntry = ITEMS.slice().sort(function (a, b) {
+      var ea = entryDate(a), eb = entryDate(b);
+      if (ea !== eb) return ea < eb ? 1 : -1;
+      return byDateDesc(a, b);
+    });
+    if (!byEntry.length) return { items: [] };
+    var top = entryDate(byEntry[0]);
+    var today = byEntry.filter(function (it) { return entryDate(it) === top; });
+    var fresh = today.length >= 2;
+    return { fresh: fresh, day: top, items: (fresh ? today : byEntry).slice(0, 6) };
+  })();
+  var carAt = 0, carHold = false, carTimer = null;
 
   /* ---- state ------------------------------------------------------------ */
   var WEEKS = [];
@@ -283,7 +321,7 @@
   }
 
   /* ---- toolbar (built once, so the search field keeps focus) ------------ */
-  var elBar, elMain;
+  var elBar, elMain, elCar, carPanel;
   function boot() {
     root.innerHTML = "";
     elBar = document.createElement("div");
@@ -322,6 +360,25 @@
     elMain = document.createElement("div");
     root.appendChild(elMain);
 
+    /* Its own panel, a sibling ABOVE #msx rather than a child of it: the
+       carousel is a different kind of thing from the filter surface, and
+       sharing one box made the search bar read as squashed under it. It keeps
+       class "msx" so it inherits the --x-* tokens, the chrome and the theme. */
+    if (CAR.items.length) {
+      carPanel = document.createElement("div");
+      carPanel.className = "msx msx-carpanel";
+      elCar = document.createElement("div");
+      elCar.className = "msx-car";
+      carPanel.appendChild(elCar);
+      root.parentNode.insertBefore(carPanel, root);
+      /* The panel is outside #msx, so it needs its own binding: the delegated
+         handler below is attached to root and guards on root.contains(). */
+      carPanel.addEventListener("click", onClick);
+      carPanel.addEventListener("mouseenter", function () { carHold = true; });
+      carPanel.addEventListener("mouseleave", function () { carHold = false; });
+      carStart();
+    }
+
     var foot = document.createElement("div");
     foot.className = "msx-foot-note";
     foot.innerHTML = "<span>" + esc(DATA.coverage ? "Covering " + DATA.coverage : "") +
@@ -342,14 +399,21 @@
       S.week = e.target.value || null;
       render();
     });
-    var mo = new MutationObserver(function () { _cache = {}; render(); });  /* probes re-read live */
+    var mo = new MutationObserver(function () { _cache = {}; renderCar(); render(); });  /* probes re-read live */
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   }
 
   function onClick(e) {
     var b = e.target.closest("[data-act]");
-    if (!b || !root.contains(b)) return;
+    if (!b || !(root.contains(b) || (elCar && elCar.contains(b)))) return;
     var act = b.getAttribute("data-act");
+    if (act === "carstep" || act === "carto") {
+      carAt = act === "carto" ? +b.getAttribute("data-i") : carAt + +b.getAttribute("data-n");
+      renderCar();
+      carStart();          /* a deliberate move restarts the dwell, not shortens it */
+      e.preventDefault();
+      return;
+    }
     if (act === "lane") {
       var k = b.getAttribute("data-lane");
       var i = S.lanes.indexOf(k);
@@ -392,6 +456,62 @@
   }
   function weekOpen(key, i) {
     return key in S.weeksOpen ? S.weeksOpen[key] : (!!S.week || i === 0);
+  }
+
+  /* ---- carousel --------------------------------------------------------- */
+  function carStart() {
+    if (carTimer) clearInterval(carTimer);
+    carTimer = setInterval(function () {
+      if (!carHold && !document.hidden) { carAt++; renderCar(); }
+    }, 7000);
+  }
+
+  function renderCar() {
+    if (!elCar || !CAR.items.length) return;
+    var n = CAR.items.length;
+    var i = ((carAt % n) + n) % n;
+    var it = CAR.items[i];
+    var col = laneColor(it.lane);
+    /* The header label is measured like every other coloured run in this view,
+       rather than trusting a token: readable() mixes toward the ink until it
+       clears 4.5:1 on the surfaces it can land on, in either theme. */
+    elCar.style.setProperty("--car-mark", readable(cssVar("--x-pol"), 0));
+
+    var ticks = CAR.items.map(function (x, j) {
+      return '<i style="flex:' + (j === i ? 2 : 1) + ";background:" +
+        (j === i ? laneColor(x.lane) : "var(--x-line)") + '"></i>';
+    }).join("");
+
+    var thumbs = CAR.items.map(function (x, j) {
+      return '<button class="msx-carthumb' + (j === i ? " on" : "") + '" data-act="carto" data-i="' + j +
+        '" type="button" aria-current="' + (j === i) + '" style="--ln:' + laneColor(x.lane) + '">' +
+        '<span class="t"><i></i>' + (j + 1 < 10 ? "0" + (j + 1) : j + 1) + "</span>" +
+        "<span class=\"h\">" + esc(clip(x.headline, 46)) + "</span></button>";
+    }).join("");
+
+    elCar.innerHTML =
+      '<div class="msx-carhead">' +
+        '<span class="msx-cartitle"><i></i>' +
+        (CAR.fresh ? "NEW TO THE BOARD &middot; " + stamp(CAR.day) : "MOST RECENT ON THE BOARD") +
+        "</span>" +
+        '<span class="msx-carnav"><span class="mono c">' + (i + 1) + " / " + n + "</span>" +
+        '<button class="msx-carbtn" data-act="carstep" data-n="-1" type="button" aria-label="Previous">&#8592;</button>' +
+        '<button class="msx-carbtn" data-act="carstep" data-n="1" type="button" aria-label="Next">&#8594;</button>' +
+        "</span></div>" +
+      '<div class="msx-carslide" style="--ln:' + col + ";--ln-soft:" + tint(col, 0.16) +
+        ";--ln-text:" + readable(col, 0.16) + '">' +
+        '<div class="msx-carkick"><i>' + esc((LKEY[it.lane] || {}).name.toUpperCase()) + "</i>" +
+        "<time>" + stamp(it.date) + "</time>" +
+        (CAR.fresh && entryDate(it) !== it.date ? '<span class="msx-carlag">ENTERED ' + stamp(entryDate(it)) + "</span>" : "") +
+        "</div>" +
+        "<h3><a href=\"" + esc(it.page) + "#" + esc(it.id) + "\">" + esc(clip(it.headline, 82)) + "</a></h3>" +
+        "<p>" + esc(clip(it.core, 300)) + "</p>" +
+        '<div class="msx-carsrc"><span class="msx-conf">' + esc(DATA.conf[it.confidence] || it.confidence) + "</span>" +
+        '<a class="msx-src" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.outlet) + " &#8599;</a>" +
+        '<a class="msx-src" href="' + esc(it.page) + "#" + esc(it.id) + '">on the board &#8594;</a></div>' +
+      "</div>" +
+      '<div class="msx-carticks">' + ticks + "</div>" +
+      '<div class="msx-carthumbs">' + thumbs + "</div>";
   }
 
   /* ---- rows ------------------------------------------------------------- */
@@ -623,5 +743,6 @@
   }
 
   boot();
+  renderCar();
   render();
 })();
