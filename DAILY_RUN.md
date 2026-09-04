@@ -139,7 +139,7 @@ A dated snapshot of state, so a run knows what it is inheriting. **Live numbers 
 | Archives | 22 entries, newest `2026-09-03` |
 | Landing page | Explore, 272 KB, of which ~215 KB is the inlined payload |
 | Social card | `assets/og.png`, 1200×630, emitted on every page as `summary_large_image` |
-| Newsletter | `newsletter.techpointe.org` (Substack, custom domain, live 2026-09-03) — same-tab link |
+| Newsletter | `newsletter.techpointe.org` (Substack, custom domain, live 2026-09-03). Sits in the nav between Briefs and Archive and opens in a **new tab** (`SUBSTACK_NEW_TAB`). |
 | Analytics | Cloudflare Web Analytics beacon on all 22 live pages; a floor, not a count |
 
 Standing context worth carrying into a run: Markets is the thinnest lane and moved for the first
