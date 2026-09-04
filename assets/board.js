@@ -504,14 +504,15 @@
         "<time>" + stamp(it.date) + "</time>" +
         (CAR.fresh && entryDate(it) !== it.date ? '<span class="msx-carlag">ENTERED ' + stamp(entryDate(it)) + "</span>" : "") +
         "</div>" +
-        "<h3><a href=\"" + esc(it.page) + "#" + esc(it.id) + "\">" + esc(clip(it.headline, 82)) + "</a></h3>" +
-        "<p>" + esc(clip(it.core, 300)) + "</p>" +
+        "<h3><a href=\"" + esc(it.page) + "#" + esc(it.id) + "\">" + esc(clip(it.headline, 104)) + "</a></h3>" +
+        "<p>" + esc(clip(it.core, 340)) + "</p>" +
         '<div class="msx-carsrc"><span class="msx-conf">' + esc(DATA.conf[it.confidence] || it.confidence) + "</span>" +
         '<a class="msx-src" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.outlet) + " &#8599;</a>" +
         '<a class="msx-src" href="' + esc(it.page) + "#" + esc(it.id) + '">on the board &#8594;</a></div>' +
       "</div>" +
       '<div class="msx-carticks">' + ticks + "</div>" +
-      '<div class="msx-carthumbs">' + thumbs + "</div>";
+      '<div class="msx-carthumbs" style="grid-template-columns:repeat(' +
+        Math.min(n, 6) + ',minmax(0,1fr))">' + thumbs + "</div>";
   }
 
   /* ---- rows ------------------------------------------------------------- */
