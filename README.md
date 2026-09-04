@@ -1,6 +1,6 @@
 # Machine Speed
 
-A daily, source-verified intelligence board tracking frontier AI cyber
+A daily, source-verified intelligence board tracking AI cyber
 capability against the defense and policy lag.
 
 Live at **https://machinespeed.techpointe.org**.
@@ -17,24 +17,43 @@ All content lives in one file — `data.json` — and `build.py` turns it into a
 fully pre-rendered static site: HTML pages, an RSS feed, JSON-LD, a sitemap,
 and a dated archive snapshot. Every headline, summary and source is in the
 HTML itself, so search engines, RSS readers, link previews, screen readers and
-no-JS browsers all see the full content. The only client-side JavaScript is the
-light/dark theme toggle. Nothing loads from a CDN.
+no-JS browsers all see the full content. The client-side JavaScript is the
+light/dark theme toggle, the Explore board's search and filtering, and a
+Cloudflare Web Analytics beacon. Two requests leave the page — the display face
+from Google Fonts and the analytics beacon — and nothing else is fetched from a
+CDN; empty `DISPLAY_FONT_URL` and `WEB_ANALYTICS_TOKEN` in `build.py` and even
+those two stop.
 
 ```
 ├── data.json     ← single source of truth
+├── entered.json  ← ledger: item id → the run date it entered the board (build-written, committed)
 ├── build.py      ← generator (Python 3 stdlib only, no dependencies)
-├── assets/       ← stylesheet, theme toggle, favicon
+├── assets/       ← stylesheet, theme toggle, favicon, Explore board (board.css/js)
 ├── archive/      ← dated board snapshots
 ├── newsletter/   ← Markdown drafts of each day's board
 └── dist/         ← build output (generated; not committed)
-    ├── index.html          the board
-    ├── <lane>.html         one page per lane, holding the whole period
+    ├── index.html          the board — filterable, story-clustered (needs JS)
+    ├── <lane>/             one page per lane, holding the whole period
     ├── week/YYYY-MM-DD/    one page per week
-    ├── briefs.html         brief index
+    ├── briefs/             brief index
     ├── brief/<slug>/       one brief, in dated stages
-    ├── archive.html        week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
-    └── feed.xml            RSS 2.0
+    ├── archive/            week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)
+    ├── about/
+    ├── <lane>.html …       redirect stubs at the old flat paths
+    ├── feed.xml            RSS 2.0 — the whole board, in event order
+    └── new.xml             RSS 2.0 — only items as they enter the board
 ```
+
+**Two feeds, and a carousel.** `feed.xml` is the whole board in event order —
+when things happened. `new.xml` is the delta in *entry* order — when the board
+learned them, capped at the last 40, `pubDate` set to the entry date. The
+carousel at the top of the landing page reads the same order and shows the
+current day's arrivals, so an item rotates out once it stops being new.
+
+An incident dated three weeks ago that the board picks up today enters today.
+That distinction is why entry dates live in `entered.json` rather than being
+inferred from `data.json`, and why a reader who checks once a week still
+receives every item that entered in between.
 
 ## Build
 
@@ -42,6 +61,18 @@ light/dark theme toggle. Nothing loads from a CDN.
 python3 build.py                        # validates data.json, then writes ./dist
 python3 -m http.server -d dist 8000     # preview at http://localhost:8000
 ```
+
+Every page except the landing page is a directory holding `index.html`, so URLs
+carry no `.html` — GitHub Pages serves files literally and will not strip an
+extension. The old flat paths stay behind as redirect stubs permanently, because
+the frozen snapshots in `archive/` link to them and are never rewritten.
+
+The landing page is the interactive board: a lane and week filter, related items
+collapsed into running stories, and an unread mark per visitor held in
+`localStorage`. It is the only page that needs JavaScript. Every item is also
+pre-rendered on the lane and week pages, which need none, and that pre-rendered
+markup is still what each dated snapshot is a copy of. `LANDING` and `BOARD_PAGE`
+at the top of `build.py` control the arrangement.
 
 The build validates before it writes anything and exits non-zero on a
 structural error, so a broken `data.json` fails the deploy instead of

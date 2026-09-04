@@ -6,21 +6,25 @@ Reads data.json (single source of truth, rewritten by the daily run) and
 writes a fully pre-rendered site into dist/:
 
     dist/
-      index.html            home board (all content in the HTML, no JS needed)
-      capability.html       lane pages
-      policy.html
-      defense.html
-      attacks.html
-      markets.html
-      briefs.html           brief index (only when data.json has briefs)
+      index.html            landing page — Explore, unless LANDING is "board"
+                            (the pre-rendered board is published only if BOARD_PAGE
+                            is set; its markup is always used for today's snapshot)
+      capability/           lane pages, one directory each
+      policy/
+      defense/
+      attacks/
+      markets/
+      briefs/               brief index (only when data.json has briefs)
       brief/<slug>/         one brief: an incident laid out in acts and stages
-      archive.html          archive index
+      archive/              archive index
       archive/…​.html        dated snapshot of today's board
-      about.html
+      about/
+      capability.html …     redirect stubs at the old flat paths
       feed.xml              RSS 2.0
       style.css             shared stylesheet (cached across pages)
       theme.js              theme toggle only (site works fine without it)
       icon.svg              favicon
+      og.png                social preview image (only if assets/og.png exists)
 
 Usage:
     python3 build.py            # build into ./dist
@@ -46,10 +50,31 @@ from pathlib import Path
 SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
-SITE_DESCRIPTION = ("A daily, source-verified intelligence board on frontier AI "
-                    "cyber capability and the defense & policy lag around it.")
+SITE_DESCRIPTION = ("A daily, source-verified intelligence board on AI cyber "
+                    "capability and the defense & policy lag around it.")
 NEW_WINDOW_DAYS = 2   # items this recent auto-enter the "New to the board" strip; isNew overrides
 STRIP_MAX = 6         # spec caps the "New to the board" strip at six
+
+# The board's rolling strip forgets: an item leaves "New to the board" after two
+# days, and unread state lives in one visitor's browser. Two things make the
+# delta durable instead — new.xml, a feed of items in the order they ENTERED the
+# board, and the carousel at the top of the landing page, which reads the same
+# order. Entry order is not event order: an incident dated three weeks ago that
+# the board picks up today entered today.
+#
+# Entry dates cannot be derived from data.json (an item carries the date of the
+# event, not the date this project noticed it), so they live in a small
+# committed ledger: entered.json, id -> the run date the id first appeared. The
+# ledger is why a missed run does not silently swallow items — a reader who
+# checks once a week still receives everything that entered in between.
+#
+# Seeding: on the first build the ledger does not exist, and every id is
+# recorded at that item's own date rather than today, so the feed opens as an
+# honest recency list instead of announcing the whole board as new this morning.
+# Every run after that records real entry dates.
+NEW_FEED = "new.xml"
+NEW_FEED_MAX = 40     # entries the new-items feed carries; readers keep their own history
+LEDGER_FILE = "entered.json"
 
 # A brief's acts can sit side by side when they share a "row" — two positions
 # answering the same question, two arms of a response. Two fit on a laptop and
@@ -111,6 +136,74 @@ SITE_MARK = "™"
 # from the site, so the record survives even when the index for it does not.
 SHOW_RUN_SNAPSHOTS = False
 
+# The Explore board — the filterable, story-clustered view of the same items.
+# It is one extra page, built from the same data.json, and it is the only page
+# that needs JavaScript: every pre-rendered page keeps working untouched, and a
+# visitor with JS off gets a plain list of week links instead. Set EXPLORE_PAGE
+# to "" and the page, its nav link, its assets and its sitemap entry all
+# disappear — the site builds exactly as it did before it existed.
+# Display face for headlines. Loaded on every page (so the archive snapshots
+# match the live board) and applied by the --display token in style.css. Empty
+# both strings and the whole site falls back to the UI sans with no request.
+# Social preview image. Put a file at assets/<OG_IMAGE> and every page points at
+# it, which is what fills the picture slot on a Slack, iMessage, LinkedIn or X
+# card. 1200x630 is the size every platform crops well from; anything under
+# 600x315 gets dropped. Missing file means the tags are simply not emitted —
+# a card with no image beats a card pointing at a 404.
+OG_IMAGE = "og.png"
+OG_IMAGE_W, OG_IMAGE_H = 1200, 630
+OG_IMAGE_ALT = ("Don't sleep on AI-cyber policy — Machine Speed, "
+                "a daily AI-cyber intelligence board")
+
+DISPLAY_FONT_URL = ("https://fonts.googleapis.com/css2?"
+                    "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap")
+
+# Cloudflare Web Analytics. The token is a public site identifier, not a secret —
+# it ships in the HTML of every page by design, which is why it lives here rather
+# than in a repository secret. Empty the string and the beacon and its request
+# disappear from every page.
+#
+# Two things worth knowing about what this measures. It is a client-side beacon,
+# so ad-blockers and privacy extensions block it — and this board's readers are
+# security people, the population most likely to run them. Read the numbers as a
+# floor with a usable trend, not a count. And no beacon ever sees feed.xml, so
+# RSS readers are invisible to it.
+WEB_ANALYTICS_TOKEN = "0907e6f1cbb74105841c3cb74d580d7f"
+
+# Which view answers the bare domain. "explore" makes the interactive board the
+# landing page and moves the pre-rendered one to BOARD_PAGE; "board" restores the
+# original arrangement. The pre-rendered board never goes away either way — it is
+# the no-JavaScript fallback, the thing crawlers read, and what each dated archive
+# snapshot is a copy of.
+# Clean URLs. Every page except the landing page is written as index.html inside
+# its own directory, so /capability/ works on GitHub Pages, which serves files
+# literally and does not strip extensions. The old flat paths stay behind as
+# redirect stubs — permanently, not as a migration step: the dated snapshots in
+# archive/ are frozen HTML that still links to ../capability.html, and those files
+# are never rewritten.
+ARCHIVE_URL = "archive/"
+BRIEFS_URL = "briefs/"
+ABOUT_URL = "about/"
+LEGACY_PATHS = {
+    "capability.html": "capability/", "policy.html": "policy/",
+    "defense.html": "defense/", "attacks.html": "attacks/",
+    "markets.html": "markets/", "briefs.html": BRIEFS_URL,
+    "archive.html": ARCHIVE_URL, "about.html": ABOUT_URL,
+}
+
+LANDING = "explore"
+
+EXPLORE_PAGE = "explore.html"      # where Explore lives when it is NOT the landing page
+EXPLORE_NAV = "Explore"
+# Where the pre-rendered board is published when Explore is the landing page.
+# Empty means it is not published at all — and that is the default, because it is
+# redundant: every item it lists is already pre-rendered on the lane pages and the
+# week pages, which is what crawlers and no-JavaScript readers actually reach.
+# The renderer itself stays either way: each dated snapshot in archive/ IS a copy
+# of that markup, frozen, and that record is the one thing the build guarantees.
+BOARD_PAGE = ""
+BOARD_NAV = "Full board"
+
 
 # The stylesheet and the theme script keep the same filenames from one build to
 # the next, so a browser that has already seen them has every reason to go on
@@ -140,6 +233,14 @@ def asset_version(name: str) -> str:
     return _asset_versions[name]
 
 
+def og_image_path():
+    """The social image, if it is actually there. None otherwise."""
+    if not OG_IMAGE:
+        return None
+    p = Path(__file__).parent / "assets" / OG_IMAGE
+    return p if p.exists() else None
+
+
 # Custom domain. Written to dist/CNAME on every build so a GitHub Pages deploy
 # can never silently drop the domain setting.
 CNAME = SITE_URL.split("//", 1)[1]
@@ -149,9 +250,29 @@ CNAME = SITE_URL.split("//", 1)[1]
 # Point it at a subdomain of this site (newsletter.techpointe.org) rather than
 # *.substack.com and the nav link stops behaving like an outbound one — see
 # same_site() below.
-SUBSTACK_URL = "https://velvethamm3r.substack.com"
+SUBSTACK_URL = "https://newsletter.techpointe.org"
 SUBSTACK_CTA = "Get the board in your inbox"
-SUBSTACK_NAV = "Subscribe"              # the nav label. "Newsletter" reads as part of the site.
+SUBSTACK_NAV = "Newsletter"             # sits in the destinations group, between Briefs and Archive.
+
+# Force the newsletter link to open in a new tab even though it is now on our own
+# subdomain. same_site() would otherwise keep it in the same tab, which is right
+# for a page of this site but wrong for a subscription flow: a reader part-way
+# down the board should not lose their place to go and subscribe. Set False to
+# let same_site() decide again.
+SUBSTACK_NEW_TAB = True
+
+
+def home_of(kind: str) -> str:
+    """The path a view is written to, given the landing-page choice.
+
+    Everything else in the build asks these two functions rather than hardcoding
+    a filename, so flipping LANDING moves both pages and every link to them.
+    """
+    if kind == "explore":
+        return "index.html" if LANDING == "explore" and EXPLORE_PAGE else EXPLORE_PAGE
+    if LANDING == "explore" and EXPLORE_PAGE:
+        return BOARD_PAGE          # "" when the pre-rendered board is not published
+    return "index.html"
 
 
 def same_site(url: str) -> bool:
@@ -170,15 +291,15 @@ def same_site(url: str) -> bool:
     return bool(url) and reg(url) == reg(SITE_URL)
 
 LANES = {
-    "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability.html",
-            "desc": "What frontier AI systems can now do in the cyber domain."},
-    "pol": {"name": "Policy", "var": "--pol", "pill": "lp-pol", "page": "policy.html",
+    "cap": {"name": "Capability", "var": "--cap", "pill": "lp-cap", "page": "capability/",
+            "desc": "What AI systems can now do in the cyber domain, closed and open-weight."},
+    "pol": {"name": "Policy", "var": "--pol", "pill": "lp-pol", "page": "policy/",
             "desc": "Government, standards and governance responses."},
-    "def": {"name": "Defense", "var": "--def", "pill": "lp-def", "page": "defense.html",
+    "def": {"name": "Defense", "var": "--def", "pill": "lp-def", "page": "defense/",
             "desc": "Defensive tooling, patching and mitigation."},
-    "atk": {"name": "Attacks", "var": "--atk", "pill": "lp-atk", "page": "attacks.html",
+    "atk": {"name": "Attacks", "var": "--atk", "pill": "lp-atk", "page": "attacks/",
             "desc": "Real-world incidents and offensive use."},
-    "mkt": {"name": "Markets", "var": "--mkt", "pill": "lp-mkt", "page": "markets.html",
+    "mkt": {"name": "Markets", "var": "--mkt", "pill": "lp-mkt", "page": "markets/",
             "desc": "How the money prices the risk — cyber insurance, underwriting, "
                     "liability and the capital response."},
 }
@@ -517,9 +638,46 @@ def validate(d: dict):
     return errors, warnings
 
 
+def sync_ledger(root: Path, data: dict) -> dict:
+    """id -> the run date that id first appeared on the board.
+
+    Reads entered.json, adds any id it has not seen at today's run date, and
+    writes it back when it grew. Ids that leave data.json are kept: the feed
+    they were published in is already in readers' hands, and dropping them would
+    resurrect them as new if the item ever came back.
+    """
+    path = root / LEDGER_FILE
+    run_day = (data.get("updatedISO", "") or "")[:10]
+    items = [i for i in data.get("items", []) if i.get("id")]
+
+    if path.exists():
+        ledger = json.loads(path.read_text(encoding="utf-8"))
+        seeding = False
+    else:
+        ledger, seeding = {}, True
+
+    added = 0
+    for it in items:
+        if it["id"] in ledger:
+            continue
+        ledger[it["id"]] = it["date"] if seeding else (run_day or it["date"])
+        added += 1
+
+    if added:
+        path.write_text(json.dumps(dict(sorted(ledger.items())), indent=2) + "\n",
+                        encoding="utf-8")
+        if seeding:
+            print(f"  {LEDGER_FILE} created — seeded {added} ids at their own dates")
+        else:
+            print(f"  {LEDGER_FILE}: {added} id(s) entered the board on {run_day}")
+    return ledger
+
+
 class Site:
-    def __init__(self, data: dict):
+    def __init__(self, data: dict, entered: dict = None):
         self.d = data
+        # id -> entry date. Empty is safe: everything falls back to item dates.
+        self.entered = entered or {}
         self.as_of = data.get("updatedISO", "")
         self.prefix = ""  # set to "../" while rendering pages inside /archive
         self.cov_start, self.cov_end = coverage_span(data)
@@ -572,6 +730,19 @@ class Site:
         fresh.sort(key=lambda i: i["date"], reverse=True)
         return fresh[:STRIP_MAX]
 
+    def entry_date(self, item) -> str:
+        return self.entered.get(item["id"], item["date"])
+
+    def entered_items(self):
+        """Items newest-first by the date they ENTERED the board, capped.
+
+        Ties — everything that landed in the same run — fall back to the item's
+        own date, so a single day's batch still reads newest event first.
+        """
+        items = [i for i in self.d["items"] if i.get("id")]
+        items.sort(key=lambda i: (self.entry_date(i), i["date"]), reverse=True)
+        return items[:NEW_FEED_MAX]
+
     def is_new(self, item) -> bool:
         """A run can override the date rule with isNew.
 
@@ -601,7 +772,7 @@ class Site:
         """
         return self.prefix or "./"
 
-    def nav(self, active: str) -> str:
+    def nav(self, active: str, lanes: bool = True) -> str:
         """Two rows: the places, then the lanes.
 
         The single row worked at four lanes and would not at five — Board,
@@ -610,14 +781,31 @@ class Site:
         a wall on a phone. So the site nav keeps the destinations and the lane
         bar below it carries the taxonomy, each lane in its own colour.
         """
-        links = [("index.html", "Board")]
+        if LANDING == "explore" and EXPLORE_PAGE:
+            links = [("index.html", "Board")]
+            if BOARD_PAGE:
+                links.append((BOARD_PAGE, BOARD_NAV))
+        else:
+            links = [("index.html", "Board")]
+            if EXPLORE_PAGE:
+                links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
-            links.append(("briefs.html", "Briefs"))
-        links += [("archive.html", "Archive"), ("about.html", "About")]
+            links.append((BRIEFS_URL, "Briefs"))
+        # The newsletter sits with the things people read, ahead of the reference
+        # pages — an absolute URL here is the marker that it renders differently.
+        if SUBSTACK_URL:
+            links.append((SUBSTACK_URL, SUBSTACK_NAV))
+        links += [(ARCHIVE_URL, "Archive"), (ABOUT_URL, "About")]
         out = ['<nav class="nav" aria-label="Site">',
                f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
         for href, label in links:
+            if href.startswith("http"):
+                newtab = SUBSTACK_NEW_TAB or not same_site(href)
+                tab = ' target="_blank" rel="noopener"' if newtab else ""
+                out.append(f'<a class="link sub-link" href="{escape(href, quote=True)}"'
+                           f'{tab}>{escape(label)}</a>')
+                continue
             cls = "link active" if href == active else "link"
             aria = ' aria-current="page"' if href == active else ""
             # "index.html" stays the key that marks the tab active — it is the
@@ -626,15 +814,12 @@ class Site:
             url = self.home if href == "index.html" else self.prefix + href
             out.append(f'<a class="{cls}" href="{url}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
-        if SUBSTACK_URL:
-            tab = "" if same_site(SUBSTACK_URL) else ' target="_blank" rel="noopener"'
-            out.append(f'<a class="link sub-link" href="{escape(SUBSTACK_URL, quote=True)}"'
-                       f'{tab}>{escape(SUBSTACK_NAV)}</a>')
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
         out.append('</nav>')
-        out.append(self.lanebar(active))
+        if lanes:
+            out.append(self.lanebar(active))
         return "\n    ".join(out)
 
     def lanebar(self, active: str) -> str:
@@ -708,7 +893,7 @@ class Site:
                 'judgment calls behind this board</summary>'
                 f'<div class="note">{note_paras(text)}</div></details>')
 
-    def subscribe_block(self) -> str:
+    def subscribe_block(self, compact: bool = False) -> str:
         """Substack call-to-action. Renders nothing at all if SUBSTACK_URL is unset.
 
         A plain link rather than Substack's iframe embed: it keeps the site
@@ -718,8 +903,20 @@ class Site:
         if not SUBSTACK_URL:
             return ""
         own = same_site(SUBSTACK_URL)
-        tab = "" if own else ' target="_blank" rel="noopener"'
-        label = "Subscribe" if own else "Subscribe on Substack ↗"
+        newtab = SUBSTACK_NEW_TAB or not own
+        tab = ' target="_blank" rel="noopener"' if newtab else ""
+        if own:
+            label = "Subscribe ↗" if newtab else "Subscribe"
+        else:
+            label = "Subscribe on Substack ↗"
+        if compact:
+            # The board is a page of dense cards; the stacked heading-paragraph-button
+            # block reads as three loose elements at the end of it. Same content, one row.
+            return (f'<section class="block subscribe compact">'
+                    f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
+                    f'<p>The same reporting, written up and sent to your inbox.</p>'
+                    f'<a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"{tab}>{label}</a>'
+                    f'</section>')
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
                 f'<p>The board updates daily on the web. The newsletter is the same '
@@ -794,6 +991,12 @@ class Site:
         if rel.endswith("/index.html"):
             rel = rel[: -len("index.html")]
         canonical = f"{SITE_URL}/{rel}"
+        analytics = (
+            "<!-- Cloudflare Web Analytics --><script type='module' "
+            "src='https://static.cloudflareinsights.com/beacon.min.js' "
+            f"data-cf-beacon='{{\"token\": \"{WEB_ANALYTICS_TOKEN}\"}}'></script>"
+            "<!-- End Cloudflare Web Analytics -->\n"
+        ) if WEB_ANALYTICS_TOKEN else ""
         return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -803,18 +1006,27 @@ class Site:
 <meta name="description" content="{escape(description, quote=True)}">
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" type="application/rss+xml" title="{escape(SITE_NAME)}" href="{SITE_URL}/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="{escape(SITE_NAME)} — new to the board" href="{SITE_URL}/{NEW_FEED}">
 <meta property="og:site_name" content="{escape(SITE_NAME)}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{escape(title, quote=True)}">
 <meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:url" content="{canonical}">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="{'summary_large_image' if og_image_path() else 'summary'}">
+{f'''<meta property="og:image" content="{SITE_URL}/{OG_IMAGE}">
+<meta property="og:image:width" content="{OG_IMAGE_W}">
+<meta property="og:image:height" content="{OG_IMAGE_H}">
+<meta property="og:image:alt" content="{escape(OG_IMAGE_ALT, quote=True)}">
+<meta name="twitter:image" content="{SITE_URL}/{OG_IMAGE}">''' if og_image_path() else ''}
 <script>
 /* Set theme before first paint to avoid a flash. Falls back to system preference. */
 (function(){{try{{var t=localStorage.getItem("ms-theme");
 if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
 document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 </script>
+{'''<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="''' + DISPLAY_FONT_URL + '''">''' if DISPLAY_FONT_URL else ''}
 <link rel="stylesheet" href="{asset_prefix}style.css{asset_version('style.css')}">
 <link rel="icon" href="{asset_prefix}icon.svg{asset_version('icon.svg')}" type="image/svg+xml">
 {extra_head}</head>
@@ -825,7 +1037,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
 </div>
 <script src="{asset_prefix}theme.js{asset_version('theme.js')}" defer></script>
-</body>
+{analytics}</body>
 </html>
 """
 
@@ -874,18 +1086,21 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
         if self.front_cutoff:
             shown = fmt_span(self.front_cutoff, self.cov_end)
-            sub = (f'Frontier AI cyber capability against the defense &amp; policy lag. '
+            lede = ('AI cyber capability against the defense &amp; policy lag. '
+                    if home_of("board") == "index.html" else
+                    'Every item on the board, pre-rendered — no JavaScript, no filters. ')
+            sub = (f'{lede}'
                    f'The last two weeks in full — <strong>{escape(shown)}</strong> — then every '
                    f'earlier item from {escape(self.coverage)} indexed by week below.')
         else:
-            sub = ('Frontier AI cyber capability against the defense &amp; policy lag — '
+            sub = ('AI cyber capability against the defense &amp; policy lag — '
                    f'every verified item from <strong>{escape(self.coverage)}</strong>, '
                    'grouped by lane and by week.')
 
-        return f"""{self.nav("index.html")}
+        return f"""{self.nav(home_of("board"))}
 
   <header class="pagehead">
-    <h1>The capability-vs-defense gap, tracked daily</h1>
+    <h1>{"The capability-vs-defense gap, tracked daily" if home_of("board") == "index.html" else "The full board"}</h1>
     <div class="sub wide">{sub}</div>
     <div class="stamprow">
       <div class="stamp"><span class="dot"></span>Last updated:
@@ -997,13 +1212,13 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         pager = ['<nav class="pager" aria-label="Weeks">']
         pager.append(f'<a class="prev" href="{self.prefix}week/{older["monday"]}/">'
                      f'← {escape(older["label"])}</a>' if older else '<span class="prev"></span>')
-        pager.append(f'<a class="idx" href="{self.prefix}archive.html">All weeks</a>')
+        pager.append(f'<a class="idx" href="{self.prefix}{ARCHIVE_URL}">All weeks</a>')
         pager.append(f'<a class="next" href="{self.prefix}week/{newer["monday"]}/">'
                      f'{escape(newer["label"])} →</a>' if newer else '<span class="next"></span>')
         pager.append('</nav>')
         pager_html = "".join(pager)
 
-        return f"""{self.nav("archive.html")}
+        return f"""{self.nav(ARCHIVE_URL)}
 
   <header class="pagehead">
     <h1>{escape(w["label"])}</h1>
@@ -1069,10 +1284,6 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 f'{escape(a.get("note", ""))}</span></a>'
                 for a in sorted(self.d.get("archives", []),
                                 key=lambda a: a["date"], reverse=True))
-            intro = ('Two ways in. <strong>By week</strong> is the board itself, split into '
-                     'Monday-to-Sunday pages that stay live and keep their links. '
-                     '<strong>By run</strong> is the frozen snapshot taken each time the board '
-                     'was published — the record of what it said that day, corrections and all.')
             runs = f"""
 
   <section class="block"><h2 class="blockhead">By run — dated snapshots</h2>
@@ -1081,16 +1292,12 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     <div class="arch">{snaps}</div>
   </section>"""
         else:
-            intro = ('The board, split into Monday-to-Sunday pages. Each week keeps its own '
-                     'URL and its own sourcing, so a link to a week goes on meaning what it '
-                     'meant the day it was made. Weeks at either end of the covered period are '
-                     'trimmed to the days actually covered rather than padded out to seven.')
             runs = ""
-        return f"""{self.nav("archive.html")}
+        return f"""{self.nav(ARCHIVE_URL)}
 
   <header class="pagehead">
     <h1>Archive</h1>
-    <div class="sub">{intro}</div>
+    <div class="sub">The board, split into weekly pages.</div>
   </header>
 
   <section class="block"><h2 class="blockhead">By week — {len(self.weeks)} weeks,
@@ -1123,7 +1330,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             return ""
         cards = "".join(self.brief_card(x) for x in self.briefs[:3])
         more = ('<p class="lede" style="margin-top:12px">'
-                f'<a href="{self.prefix}briefs.html">All {len(self.briefs)} briefs ↗</a></p>'
+                f'<a href="{self.prefix}{BRIEFS_URL}">All {len(self.briefs)} briefs ↗</a></p>'
                 if len(self.briefs) > 3 else "")
         return ('<section class="block"><h2 class="blockhead">Briefs — incidents in stages</h2>'
                 '<p class="lede">Some stories are not a single item. A brief lays one out in '
@@ -1134,14 +1341,12 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 
     def briefs_body(self) -> str:
         cards = "".join(self.brief_card(x) for x in self.briefs)
-        return f"""{self.nav("briefs.html")}
+        return f"""{self.nav(BRIEFS_URL)}
 
   <header class="pagehead">
     <h1>Briefs</h1>
-    <div class="sub">An incident rarely lands as one item. A brief is the same
-      source-verified material laid out as a sequence of dated stages — what happened,
-      when it was disclosed, who confirmed what, and which figures are still contested.
-      Every stage carries its own sources and its own confidence label.</div>
+    <div class="sub">Standout, complex incidents that require dedicated space,
+      outlined chronologically.</div>
   </header>
 
   <section class="block"><h2 class="blockhead">{len(self.briefs)} brief{
@@ -1296,7 +1501,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                                  "headline": it["headline"], "date": it["date"]})
         status = escape(dos.get("status", ""))
         stat = f'<span class="dstatus">{status}</span>' if status else ""
-        return f"""{self.nav("briefs.html")}
+        return f"""{self.nav(BRIEFS_URL)}
 
   <header class="pagehead dhead">
     <h1>{escape(dos["title"])}<span class="lanerule" style="background:var({v["var"]})"></span></h1>
@@ -1307,7 +1512,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
       <span><b>Span:</b> {escape(fmt_span(dos.get("opened", ""), dos.get("updated", "")))}</span>
       {stat}
     </div>
-    <div class="stamp"><a href="{self.prefix}briefs.html">← All briefs</a></div>
+    <div class="stamp"><a href="{self.prefix}{BRIEFS_URL}">← All briefs</a></div>
   </header>
 
   {main}
@@ -1319,7 +1524,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     # -- about --------------------------------------------------------------
     def about_body(self) -> str:
         paras = "".join(f"<p>{escape(p)}</p>" for p in self.d.get("about", []))
-        return f"""{self.nav("about.html")}
+        return f"""{self.nav(ABOUT_URL)}
 
   <header class="pagehead"><h1>About {escape(SITE_NAME)}</h1></header>
   <div class="prose">{paras}</div>
@@ -1398,6 +1603,87 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 "**Change since previous run**", "", self.d.get("internalNote", ""), ""]
         return "\n".join(out)
 
+    # -- explore -------------------------------------------------------------
+    def explore_payload(self) -> str:
+        """The board's items as JSON, inlined into the page.
+
+        Inlined rather than fetched so the page has no request to make, works
+        from a file:// copy, and cannot render half a board if data.json is
+        momentarily unavailable. Only the fields the view actually reads are
+        included, and each item carries the lane page it lives on so every row
+        can link back to its full card on the pre-rendered board.
+        """
+        dates = sorted({a["date"] for a in self.d.get("archives", []) if a.get("date")}, reverse=True)
+        run_day = (self.as_of or "")[:10]
+        prev = next((x for x in dates if x < run_day), "")
+        payload = {
+            "updatedDisplay": self.d.get("updatedDisplay", ""),
+            "updatedISO": self.as_of,
+            "coverage": self.coverage,
+            "prevRun": prev,
+            # The ledger, for the ids on the board: the carousel and the "new"
+            # affordances key on entry date, which no item field can supply.
+            "entered": {i["id"]: self.entry_date(i)
+                        for i in self.d["items"] if i.get("id")},
+            "lanes": [{"key": k, "name": v["name"]} for k, v in LANES.items()],
+            "conf": CONF,
+            "watchlist": [{"thread": w.get("thread", ""), "status": w.get("status", ""),
+                           "changed": w.get("changed", "")} for w in self.d.get("watchlist", [])],
+            "items": [{"id": i["id"], "lane": i["lane"], "date": i["date"],
+                       "headline": i["headline"], "core": i["core"],
+                       "confidence": i["confidence"], "outlet": i["outlet"],
+                       "url": i["url"], "page": LANES[i["lane"]]["page"]}
+                      for i in sorted(self.d["items"], key=lambda x: x["date"], reverse=True)],
+        }
+        # "<" is escaped so the payload can never close the script element early.
+        return json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+
+    def explore_head(self) -> str:
+        return (f'<link rel="stylesheet" href="board.css{asset_version("board.css")}">\n'
+                f'<script id="msx-data" type="application/json">{self.explore_payload()}</script>\n'
+                f'<script src="board.js{asset_version("board.js")}" defer></script>\n')
+
+    def explore_body(self) -> str:
+        """The mount point, a plain-language header, and a no-JS fallback.
+
+        The fallback is not an apology — it is the same content the rest of the
+        site already serves, so a reader without JavaScript is pointed at the
+        week pages rather than at an empty box.
+        """
+        weeks = "".join(
+            f'<li><a href="{self.prefix}week/{w["monday"]}/">{escape(w["label"])}</a> '
+            f'&middot; {len(w["items"])} items</li>' for w in self.weeks)
+        lane_bits = [f'<a href="{self.prefix}{v["page"]}">{v["name"]}</a>' for v in LANES.values()]
+        if BOARD_PAGE:
+            lane_bits.insert(0, f'<a href="{self.prefix}{BOARD_PAGE}">The full board</a>')
+        lanes_links = " &middot; ".join(lane_bits)
+        return f"""{self.nav(home_of("explore"), lanes=False)}
+
+  <header class="pagehead board nohead">
+    <p class="thesis">AI cyber capability against the defense and policy lag,
+      tracked daily.</p>
+    <p class="stampline"><span class="dot"></span>Updated
+      <time datetime="{self.as_of}">{escape(self.d.get("updatedDisplay", ""))}</time>
+      &nbsp;&middot;&nbsp; covering
+      <time datetime="{self.cov_start}">{escape(self.coverage)}</time>
+      &nbsp;&middot;&nbsp; {len(self.d["items"])} items in {numword(len(LANES))} lanes</p>
+  </header>
+
+  <div class="msx" id="msx">
+    <noscript>
+      <div class="msx-noscript">
+        <p>Exploring by lane and week needs JavaScript. Every item is also
+        pre-rendered on the pages below, which need none.</p>
+        <p>{lanes_links}</p>
+        <ul>{weeks}</ul>
+      </div>
+    </noscript>
+  </div>
+
+  {self.subscribe_block(compact=True)}
+
+  {self.footer()}"""
+
     # -- sitemap -------------------------------------------------------------
     def sitemap(self) -> str:
         """Canonical routes only.
@@ -1408,13 +1694,19 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         the live board under copies of itself.
         """
         day = (self.as_of or "")[:10]
-        urls = [("", "daily", "1.0"), ("archive.html", "daily", "0.6"),
-                ("about.html", "monthly", "0.3")]
+        urls = [("", "daily", "1.0"), (ARCHIVE_URL, "daily", "0.6"),
+                (ABOUT_URL, "monthly", "0.3")]
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
+        if EXPLORE_PAGE:
+            # Whichever of the two is not the landing page needs its own entry — unless
+            # it is not published, in which case there is nothing to point at.
+            other = home_of("board") if LANDING == "explore" else EXPLORE_PAGE
+            if other:
+                urls.append((other, "daily", "0.9" if LANDING == "explore" else "0.7"))
         urls += [(f'week/{w["monday"]}/', "weekly" if n else "daily", "0.7")
                  for n, w in enumerate(self.weeks)]
         if self.briefs:
-            urls.append(("briefs.html", "weekly", "0.7"))
+            urls.append((BRIEFS_URL, "weekly", "0.7"))
             urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.briefs]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -1426,32 +1718,60 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         return "\n".join(out) + "\n"
 
     # -- RSS ----------------------------------------------------------------
-    def feed(self) -> str:
-        items_xml = []
-        for i in sorted(self.d["items"], key=lambda x: x["date"], reverse=True):
-            lane = LANES[i["lane"]]["name"]
-            link = f"{SITE_URL}/{LANES[i['lane']]['page']}#{i['id']}"
-            items_xml.append(f"""  <item>
+    def rss_item(self, i: dict, pub: str = "", guid_suffix: str = "") -> str:
+        """One <item>. `pub` overrides the pubDate; `guid_suffix` keys the guid.
+
+        The two feeds carry the same items under different guids on purpose: a
+        reader subscribed to both should see each item once per feed, and the
+        new-items feed keys on entry date so a re-dated item is not re-sent.
+        """
+        lane = LANES[i["lane"]]["name"]
+        link = f"{SITE_URL}/{LANES[i['lane']]['page']}#{i['id']}"
+        return f"""  <item>
     <title>{escape(f'[{lane}] ' + i["headline"])}</title>
     <link>{escape(link)}</link>
-    <guid isPermaLink="false">{escape(i["id"])}-{i["date"]}</guid>
-    <pubDate>{rfc822(i["date"])}</pubDate>
+    <guid isPermaLink="false">{escape(i["id"])}-{guid_suffix or i["date"]}</guid>
+    <pubDate>{rfc822(pub or i["date"])}</pubDate>
     <description>{escape(i["core"])} (Source: {escape(i["outlet"])} — {escape(i["url"])})</description>
-  </item>""")
+  </item>"""
+
+    def rss(self, title: str, description: str, self_href: str, items_xml: list) -> str:
         build_date = rfc822(self.as_of[:10]) if self.as_of else ""
         return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>{escape(SITE_NAME)}</title>
+  <title>{escape(title)}</title>
   <link>{SITE_URL}/</link>
-  <atom:link href="{SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>{escape(SITE_DESCRIPTION)}</description>
+  <atom:link href="{SITE_URL}/{self_href}" rel="self" type="application/rss+xml"/>
+  <description>{escape(description)}</description>
   <language>en</language>
   <lastBuildDate>{build_date}</lastBuildDate>
 {chr(10).join(items_xml)}
 </channel>
 </rss>
 """
+
+    def feed(self) -> str:
+        """Everything on the board, newest event first."""
+        rows = sorted(self.d["items"], key=lambda x: x["date"], reverse=True)
+        return self.rss(SITE_NAME, SITE_DESCRIPTION, "feed.xml",
+                        [self.rss_item(i) for i in rows])
+
+    def new_feed(self) -> str:
+        """Only what entered the board, in the order it entered.
+
+        pubDate is the entry date, not the event date, so a reader's client
+        sorts by when the board learned it — which is the question this feed
+        answers.
+        """
+        rows = self.entered_items()
+        return self.rss(
+            f"{SITE_NAME} — new to the board",
+            "Items as they enter the Machine Speed board, newest first. "
+            "Entry order, not event order.",
+            NEW_FEED,
+            [self.rss_item(i, pub=self.entry_date(i),
+                           guid_suffix="in-" + self.entry_date(i)) for i in rows])
 
 
 # ---------------------------------------------------------------------------
@@ -1472,7 +1792,7 @@ def build(out_dir: Path):
               file=sys.stderr)
         sys.exit(1)
 
-    site = Site(data)
+    site = Site(data, sync_ledger(Path(__file__).resolve().parent, data))
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -1492,6 +1812,16 @@ def build(out_dir: Path):
     # server logs a 404 on every first page view — harmless, but it is the kind
     # of noise that hides a real missing asset the day one appears.
     shutil.copy(root / "assets" / "icon.svg", out_dir / "icon.svg")
+    # The Explore page's stylesheet and script. Both are optional: with
+    # EXPLORE_PAGE empty they are not copied and not referenced.
+    if EXPLORE_PAGE:
+        shutil.copy(root / "assets" / "board.css", out_dir / "board.css")
+        shutil.copy(root / "assets" / "board.js", out_dir / "board.js")
+    og = og_image_path()
+    if og:
+        shutil.copy(og, out_dir / OG_IMAGE)
+    else:
+        print(f"  note: no assets/{OG_IMAGE} — social cards will have no image")
 
     def write(path: str, html: str):
         p = out_dir / path
@@ -1499,21 +1829,55 @@ def build(out_dir: Path):
         p.write_text(html, encoding="utf-8")
         print(f"  wrote {path}  ({len(html.encode()):,} bytes)")
 
-    # home
-    write("index.html", site.page(
-        path="index.html",
-        title=f"{SITE_NAME} — AI-Cyber Intelligence",
-        description=SITE_DESCRIPTION,
-        body=site.home_body(),
-        extra_head=site.home_jsonld()))
+    # the pre-rendered board and the interactive one; LANDING decides which is "/"
+    board_path = home_of("board")
+    if board_path:
+        write(board_path, site.page(
+            path=board_path,
+            title=(f"{SITE_NAME} — AI-Cyber Intelligence" if board_path == "index.html"
+                   else f"Full board — {SITE_NAME}"),
+            description=SITE_DESCRIPTION,
+            body=site.home_body(),
+            extra_head=site.home_jsonld()))
 
-    # lanes
+    if EXPLORE_PAGE:
+        explore_path = home_of("explore")
+        # The ItemList follows whichever page is the landing page, so the structured
+        # data always describes the URL that gets shared and indexed.
+        write(explore_path, site.page(
+            path=explore_path,
+            title=(f"{SITE_NAME} — AI-Cyber Intelligence" if explore_path == "index.html"
+                   else f"Explore — {SITE_NAME}"),
+            description=(SITE_DESCRIPTION if explore_path == "index.html" else
+                         "Filter the Machine Speed board by lane and week, follow a "
+                         "running story across weeks, and see what is new since your "
+                         "last visit."),
+            body=site.explore_body(),
+            extra_head=site.explore_head()
+                       + (site.home_jsonld() if not board_path else "")))
+
+    # /explore.html existed for a day and may be linked or bookmarked, so when it
+    # becomes the landing page the old URL is kept as a redirect rather than a 404.
+    if EXPLORE_PAGE and home_of("explore") != EXPLORE_PAGE:
+        write(EXPLORE_PAGE,
+              '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+              f'<title>Explore — {escape(SITE_NAME)}</title>\n'
+              f'<link rel="canonical" href="{SITE_URL}/">\n'
+              '<meta name="robots" content="noindex">\n'
+              '<meta http-equiv="refresh" content="0; url=./">\n</head>\n'
+              '<body><p>The Explore board is now the front page. '
+              '<a href="./">Continue &#8594;</a></p></body>\n</html>\n')
+
+    # lanes — one directory each, so the nav and the assets need a one-step prefix
+    site.prefix = "../"
     for key, v in LANES.items():
-        write(v["page"], site.page(
-            path=v["page"],
+        write(v["page"] + "index.html", site.page(
+            path=v["page"] + "index.html",
             title=f"{v['name']} — {SITE_NAME}",
             description=f"{v['desc']} {site.coverage}, source-verified.",
-            body=site.lane_body(key)))
+            body=site.lane_body(key),
+            asset_prefix="../"))
+    site.prefix = ""
 
     # week pages — one directory per Monday-to-Sunday week, two levels down, so
     # both the nav links and the shared assets need a two-step relative prefix.
@@ -1532,11 +1896,14 @@ def build(out_dir: Path):
     # briefs — the index sits at the root, each brief two levels down under
     # /brief/<slug>/, so the prefixes follow the same pattern as the weeks.
     if site.briefs:
-        write("briefs.html", site.page(
-            path="briefs.html", title=f"Briefs — {SITE_NAME}",
-            description=("Incident briefs: each one laid out in dated stages, "
-                         "every stage separately sourced."),
-            body=site.briefs_body()))
+        site.prefix = "../"
+        write(BRIEFS_URL + "index.html", site.page(
+            path=BRIEFS_URL + "index.html", title=f"Briefs — {SITE_NAME}",
+            description=("Standout, complex incidents that require dedicated space, "
+                         "outlined chronologically."),
+            body=site.briefs_body(),
+            asset_prefix="../"))
+        site.prefix = ""
         site.prefix = "../../"
         for dos in site.briefs:
             write(f'brief/{dos["slug"]}/index.html', site.page(
@@ -1548,16 +1915,33 @@ def build(out_dir: Path):
         site.prefix = ""
 
     # archive index + about
-    write("archive.html", site.page(
-        path="archive.html", title=f"Archive — {SITE_NAME}",
-        description="Dated snapshots of the Machine Speed board.",
-        body=site.archive_body()))
-    write("about.html", site.page(
-        path="about.html", title=f"About — {SITE_NAME}",
-        description=SITE_DESCRIPTION, body=site.about_body()))
+    site.prefix = "../"
+    write(ARCHIVE_URL + "index.html", site.page(
+        path=ARCHIVE_URL + "index.html", title=f"Archive — {SITE_NAME}",
+        description="The Machine Speed board, split into weekly pages.",
+        body=site.archive_body(),
+        asset_prefix="../"))
+    write(ABOUT_URL + "index.html", site.page(
+        path=ABOUT_URL + "index.html", title=f"About — {SITE_NAME}",
+        description=SITE_DESCRIPTION, body=site.about_body(),
+        asset_prefix="../"))
+    site.prefix = ""
+
+    # Redirect stubs at the old flat paths. Permanent: the frozen snapshots in
+    # archive/ link to them and are never rewritten.
+    for old, new in LEGACY_PATHS.items():
+        if new == BRIEFS_URL and not site.briefs:
+            continue          # no briefs means no /briefs/ to send anyone to
+        write(old,
+              '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+              f'<link rel="canonical" href="{SITE_URL}/{new}">\n'
+              '<meta name="robots" content="noindex">\n'
+              f'<meta http-equiv="refresh" content="0; url=./{new}">\n</head>\n'
+              f'<body><p><a href="./{new}">Continue &#8594;</a></p></body>\n</html>\n')
 
     # RSS + crawl hints
     write("feed.xml", site.feed())
+    write(NEW_FEED, site.new_feed())
     write("sitemap.xml", site.sitemap())
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
 
@@ -1597,6 +1981,7 @@ def build(out_dir: Path):
     print(f"\nBuild complete → {out_dir}")
     print(f"  {len(data['items'])} items ({counts}), "
           f"{len(site.fresh_items())} in the 'New to the board' strip, "
+          f"{len(site.entered_items())} in {NEW_FEED}, "
           f"{len(data['watchlist'])} watchlist threads")
     if site.briefs:
         acts = sum(len(b.get("acts", [])) for b in site.briefs)
