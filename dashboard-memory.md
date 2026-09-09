@@ -1301,6 +1301,47 @@ _Backfill inside the stated period (Sep 3)_
 _Prune note: nothing aged past the ~5-6 week floor, because the board is in grow mode and the oldest item is still 2026-07-01, the coverage start. The shown-item log is retained in full for dedup for the same reason._
 
 
+### Run 2026-09-09 (follow-up — Daria asked why the DOE item took six days; source-list gap measured and closed. No research, no new items, `data.json` untouched)
+
+Daria's question on the delivered run: the DOE/Sandia item is dated Sep 3 and only reached the board on Sep 9. The answer was measured rather than guessed, using `entered.json` (id -> first-appearance run date) against each item's own event date.
+
+**What the numbers say.** Across the 55 items that entered the board between Sep 1 and Sep 9: median lag one day, mean 2.5, and 32 of 55 landed same-or-next-day. The board is not generally slow. The tail is the problem, and it has one cause:
+
+| Lag | Item | Source | On `SOURCES.md`? |
+|---|---|---|---|
+| 9d | `g7-post-quantum-call-to-action` | cyber.gc.ca | **yes** — a sweep miss |
+| 9d | `jetbrains-cadence-teamcity-breach` | blog.jetbrains.com | no |
+| 6d | `doe-ceser-sandia-grid-ai-detection` | energy.gov | no |
+| 6d | `greynoise-fake-ai-crawler-credential-scanning` | greynoise.io | no |
+| 6d | `swiss-re-cyber-market-ai-era-2026` | swissre.com | only as "when cited" |
+| 6d | `upwind-series-c-300m` | Calcalist | no |
+
+(`pillar-ai-coding-agent-sandbox-escapes` shows a 47-day lag but is not a discovery failure — it was a deliberate hold released on the Sep 1 run.)
+
+**Five of the six were sources the scan list did not name.** DOE is the cleanest case: `energy.gov` appeared in `SOURCES.md` exactly once, inside a parenthetical about which agencies co-seal CISA advisories. There was no DOE entry, no national labs, and no OT trade press. "Sandia" and "CESER" appear nowhere in this file before today — **no previous run ever mentioned them, because no run was ever pointed at them.** The item reached the board on Sep 9 only because Industrial Cyber's Sep 8 OT roundup carried it and the run opened that roundup. That is luck, not coverage.
+
+**The larger version of the same gap:** `SOURCES.md` named **no press outlet at all** — not Help Net Security, SecurityWeek, The Hacker News, BleepingComputer, Reuters, CyberScoop — even though those are exactly what the board falls back to whenever a primary is provenance-blocked, which on recent runs is most of them. So the daily "what happened yesterday" pass had no defined starting point. That is the mechanism behind the backfill-heavy days in this log: **Sep 6 produced eight items and none from the fresh window**, and Sep 5 produced eight with one.
+
+**Changes made (docs only — `data.json`, the archive snapshot and the newsletter draft are unchanged from the morning run).**
+
+`SOURCES.md`:
+- New **§12, a press tier**, naming eleven outlets with entry points, each confirmed reachable 2026-09-09. Framed explicitly as a **discovery layer, not a citation layer** — it establishes what happened; primaries still source it.
+- **§6:** DOE/CESER (`https://www.energy.gov/ceser` plus the department listing `https://www.energy.gov/listings/energy-news`) and the national labs (Sandia, Idaho National Laboratory — the ICS/OT lab). Recorded in the file that `/ceser/articles` and `/ceser/newsroom` both **404**, since those are the two paths a run would guess from the article URL; both were tried and both failed.
+- **§3:** GreyNoise, which the board has already cited once while not listing it.
+- **§11:** funding and M&A trackers (Crunchbase News cybersecurity, TechCrunch security), because the Markets lane's capital half never reaches a carrier primary at all.
+- A "How to use it" bullet stating the press-first ordering.
+
+`DAILY_RUN.md`:
+- **Step 3 split into 3a (press pass, mandatory, first) and 3b (primary pass).** The press pass is discovery only; nothing it surfaces is cited from press while a primary opens. Each carries the measured failure mode it exists to prevent.
+- A **lag note** in step 3: a late item is almost never a slow run, it is a missing source — so close the gap in the same run that finds it.
+- **Guarantee 1 amended** to permit exactly this: a run may *add an entry* to `SOURCES.md` (documentation the build never reads); restructuring it stays a deliberate task. Without this the new step 3 would have contradicted the "edit `data.json` only" rule.
+- **The Deliver list corrected from four files to five.** It omitted `entered.json`, which Guarantee 1 says "must be committed together with `data.json`" — a straight internal contradiction, and a run following the list literally would break the `new.xml` ledger and re-send the day's items on the next run. `SOURCES.md` added as a conditional sixth, only on runs that add a source.
+
+**One data point recorded for a later run.** Dark Reading's Sep 8 headline is "Patch Tuesday Sets Another Record With 974 CVEs", making it a **fourth** outlet at 974 against Tenable's 964. The card is unchanged and still carries both figures with attribution, which remains correct with no primary openable — but the weight now sits with 974, and a run that reaches Microsoft's Update Guide should settle it.
+
+**Not done, and deliberately.** No item was added, removed or re-dated; no watchlist thread was touched; `coverageEnd` stays Sep 9. This was a documentation change to stop the gap recurring, not a re-run of the day.
+
+
 ## Watchlist (thread · current status · last-changed)
 
 _Synced with data.json as of the 2026-09-09 run._

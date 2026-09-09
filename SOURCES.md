@@ -20,6 +20,11 @@ the build reads: `build.py` only ever renders `data.json`. This list sits alongs
 - The tags in brackets are the lanes a source most often feeds: `cap` capability · `pol`
   policy · `def` defense · `atk` attacks · `mkt` markets. They are a hint, not a rule — a
   lab can produce a `pol` item and an agency a `cap` one.
+- **The press tier in §12 is a discovery layer, not a citation layer.** Sweep it *first*, to find
+  out what actually happened in the window; then source what it surfaces from the primary in
+  §1–§11. Press becomes the citation only when the primary genuinely cannot be opened. Running the
+  per-source sweep without the press pass is what produces a run that finds nothing in the fresh
+  window and fills the day with backfill instead (see the 2026-09-09 note in `dashboard-memory.md`).
 - Some vendor and lab blogs sit behind bot-checks or need a fetch approval that an unattended
   run cannot give; when the primary can't be opened, carry the item on press with a "(via …)"
   attribution and upgrade it on a later attended run (this is the standing practice in
@@ -29,8 +34,9 @@ the build reads: `build.py` only ever renders `data.json`. This list sits alongs
   buries the day's actual post under aggregators and older look-alikes. See `DAILY_RUN.md` →
   "Sourcing" for the full rule and the 2026-08-28 cautionary case.
 
-_Entry points below were confirmed reachable on 2026-08-24. Keep them current: retire a dead
-source by replacing or removing its line rather than leaving a link that 404s._
+_Entry points below were confirmed reachable on 2026-08-24; those added on 2026-09-09 were
+confirmed that day. Keep them current: retire a dead source by replacing or removing its line
+rather than leaving a link that 404s._
 
 ---
 
@@ -75,6 +81,8 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **watchTowr Labs** — https://labs.watchtowr.com/. `atk`
 - **Okta Threat Intelligence** — https://sec.okta.com/. `atk`
 - **Hunt.io** — https://hunt.io/blog. `atk`
+- **GreyNoise** — https://www.greynoise.io/blog (internet-scanning telemetry; forged-crawler and
+  mass-exploitation observations). `atk` `def`
 
 **AI-security specialists**
 
@@ -141,6 +149,9 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 - **NSA** — Cybersecurity Advisories & Guidance https://www.nsa.gov/Cybersecurity/Cybersecurity-Advisories-Guidance/. `def` `atk`
 - **FBI IC3** — https://www.ic3.gov/ · Industry alerts / PSAs https://www.ic3.gov/Home/IndustryAlerts. `atk`
 - **NIST** — AI https://www.nist.gov/artificial-intelligence · CAISI (Center for AI Standards & Innovation) https://www.nist.gov/caisi · CSRC news https://csrc.nist.gov/news. `pol` `def`
+- **DOE — CESER (Office of Cybersecurity, Energy Security & Emergency Response)** — https://www.energy.gov/ceser (the office's landing page carries a Latest News block) · department-wide listing https://www.energy.gov/listings/energy-news. Energy-sector cyber programs, grid AI work, and the AI-FORTS line of research. `def` `pol`
+  - _Note: DOE was absent from this list until 2026-09-09, and the cost was measurable — the CESER/Sandia grid-detection item of Sep 3 did not reach the board until Sep 6 days later, and only because an OT trade outlet happened to carry it. `www.energy.gov/ceser/articles` and `/ceser/newsroom` both 404; use the two paths above._
+- **National laboratories** — Sandia https://newsreleases.sandia.gov/ · Idaho National Laboratory https://inl.gov/news/ (the ICS/OT-security lab). Both publish cyber work directly rather than only through DOE. `def` `cap`
 - **White House** — Presidential actions https://www.whitehouse.gov/presidential-actions/ · Executive orders https://www.whitehouse.gov/presidential-actions/executive-orders/ (memoranda, EOs; OSTP / ONCD releases appear here too). `pol`
 
 ## 7. Congress & policy — `pol`
@@ -189,6 +200,37 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
 - **AM Best** — https://news.ambest.com/. `mkt`
 - **Carrier / broker / reinsurer primaries** when cited (Munich Re, Swiss Re, Lloyd's, CFC, Coalition, Chaucer/Armilla, AIG, Berkley) — use the primary; carrier/broker marketing is `self-reported` unless a regulator, court or loss report says otherwise. `mkt`
 - **Research reports** — IBM Cost of a Data Breach, ISO filings/endorsements. `mkt`
+- **Funding & M&A trackers** — Crunchbase News cybersecurity https://news.crunchbase.com/sections/cybersecurity/ · TechCrunch security https://techcrunch.com/category/security/. The lane's capital half (rounds, valuations, acquisitions) arrives here first and rarely reaches a carrier or broker primary at all; without a standing sweep these land on the board four to six days late, as Upwind's $300M did on 2026-09-08. `mkt`
+
+## 12. Press — the discovery pass (cross-lane)
+
+**Sweep this tier first, before §1–§11.** Its job is to tell a run *what happened* in the window;
+the primary sweep's job is to *source* it. Nothing here is a citation while a primary can be
+opened — see the rule in "How to use it" above, and `DAILY_RUN.md` step 3.
+
+Why this tier exists: until 2026-09-09 the scan list named no press outlet at all, even though
+these are the outlets the board falls back to every time a lab or vendor primary is
+provenance-blocked. With no defined starting point, the daily sweep depended on whichever roundup
+a run happened to open, which is how the 2026-09-06 run produced eight items and **none** from the
+fresh window.
+
+- **Help Net Security** — https://www.helpnetsecurity.com/. Daily volume, week-in-review on Mondays. Strong on AI-security research write-ups.
+- **SecurityWeek** — https://www.securityweek.com/ · AI section https://www.securityweek.com/category/artificial-intelligence/.
+- **The Hacker News** — https://thehackernews.com/ · AI label https://thehackernews.com/search/label/artificial%20intelligence.
+- **BleepingComputer** — https://www.bleepingcomputer.com/. Fastest on active exploitation and vendor advisories.
+- **The Record (Recorded Future News)** — https://therecord.media/. Strong on government, nation-state and policy.
+- **CyberScoop** — https://cyberscoop.com/. Strong on US federal and agency action.
+- **Cybersecurity Dive** — https://www.cybersecuritydive.com/.
+- **Dark Reading** — https://www.darkreading.com/.
+- **Industrial Cyber** — https://industrialcyber.co/. The OT/ICS beat, including a daily OT news roundup. This is the outlet that surfaced the DOE/Sandia item the government sweep had missed.
+- **Axios** — https://www.axios.com/technology. Frequently first on AI-lab governance and policy moves.
+- **Reuters** — technology and cyber desks. _Note: reuters.com has refused automated fetchers on every run that tried it; expect to reach its reporting through a syndicating outlet._
+
+Two cautions carried over from `RUNBOOK.md`. Watch for content-farm embellishment, which shows up
+as an oddly precise number attached to a real story — several sites in the search results for any
+given day are AI-generated rewrites of the outlets above, and they invent figures. And where two
+outlets give a figure differently, neither is the primary: say so on the card and record it in
+`judgmentNote`, as the 2026-09-09 Patch Tuesday item does.
 
 ---
 

@@ -54,6 +54,10 @@ Concretely:
 - **Edit `data.json` only** (and append to `dashboard-memory.md`). Do not edit `build.py`,
   anything under `assets/` — including `board.css` and `board.js`, which render the
      landing page — `README.md`, `RUNBOOK.md`, `SCHEMA.md`, or any file in `dist/`.
+  **The one exception, since 2026-09-09: a run may add an entry to `SOURCES.md`** when a source
+  proves worth keeping — that file is documentation the build never reads, and step 3 now asks a
+  run to close a coverage gap in the same run that finds it. Adding a source is in scope; a
+  restructure of the file is a deliberate task like any other.
 - **`entered.json` is written by the build, not by you.** It is the ledger behind `new.xml`
   and the landing page's new-additions carousel: item id → the run date that id first
   appeared on the board. The build appends to it and prints a line when it grows
@@ -283,9 +287,29 @@ instruction and the behaviour cannot drift apart again.
    `coverageEnd`, plus anything new-to-the-board that still falls inside the new window. Work from
    `SOURCES.md`, the canonical scan list, as the **floor, not the ceiling** — sweep every source on
    it and follow any lead it hands you past its edge. Open and read every source; see "Sourcing" below.
-   **If a lab, big-tech or vendor primary is provenance-blocked (a common `PROVENANCE_REQUIRED` result in
-   an unattended run), run the site-scoped search fallback in "Sourcing" before treating that source's
-   lane as quiet — a blocked primary is not an empty one.**
+   Do it in two passes, in this order:
+
+   **3a. The press pass — do this first, and do not skip it.** Sweep the press tier in `SOURCES.md`
+   §12 for the window, to establish *what actually happened* since the last `coverageEnd`. This pass
+   is for discovery only: it tells you which events exist, and nothing it surfaces is cited from
+   press while a primary can be opened. It is mandatory because the alternative has a measured
+   failure mode — with no defined starting point, a run's sense of the day depends on whichever
+   roundup it happens to open, and on 2026-09-06 that produced a run with eight items and **none**
+   from the fresh window.
+
+   **3b. The primary pass.** Take everything 3a surfaced back to the party that produced it, and
+   sweep §1–§11 directly for anything the press did not carry. This is where items are actually
+   sourced. **If a lab, big-tech or vendor primary is provenance-blocked (a common
+   `PROVENANCE_REQUIRED` result in an unattended run), run the site-scoped search fallback in
+   "Sourcing" before treating that source's lane as quiet — a blocked primary is not an empty one.**
+
+   **A note on lag, which is the thing these two passes exist to control.** The board's median lag
+   from event date to board is one day, which is fine; the tail is not. Measured on 2026-09-09
+   across the 55 items that entered between Sep 1 and Sep 9, six landed four or more days late, and
+   **five of those six came from sources that were not on the scan list at all** — DOE, GreyNoise,
+   JetBrains, a venture round, and a reinsurer listed only as "when cited". A late item is almost
+   never a slow run; it is a missing source. When you find one, add it to `SOURCES.md` in the same
+   run and say so in `dashboard-memory.md`, rather than treating the catch as a lucky save.
 4. **Edit `data.json`:**
    - `updatedISO` and `updatedDisplay` → now (ISO 8601 with the ET offset; display in `YYYY-MM-DD,
      h:MM AM/PM ET`).
@@ -373,12 +397,18 @@ publishes; automation does not.
   scheduled task. The `newsletter/machine-speed-YYYY-MM-DD.md` the build writes is an **unpublished
   draft**; everything below its `CUT HERE` line is working notes to be rewritten or deleted by the
   human before any post — never published as-is.
-- **Hand back four files** and say plainly where each goes:
+- **Hand back five files** and say plainly where each goes:
   1. `data.json` → repo **root** (replaces the existing one).
   2. `dashboard-memory.md` → repo **root** (replaces the existing one).
-  3. `archive/machine-speed-YYYY-MM-DD.html` → **`archive/`** (new file, added alongside the others —
+  3. `entered.json` → repo **root** (replaces the existing one). **The build rewrites this and it
+     must go up in the same upload as `data.json`** — see Guarantee 1. This list said "four files"
+     and omitted it until 2026-09-09, which contradicted Guarantee 1; a run that followed the list
+     literally would have re-sent every one of the day's items to `new.xml` on the next run.
+  4. `archive/machine-speed-YYYY-MM-DD.html` → **`archive/`** (new file, added alongside the others —
      never replacing one).
-  4. `newsletter/machine-speed-YYYY-MM-DD.md` → **`newsletter/`** (new file; unpublished draft).
+  5. `newsletter/machine-speed-YYYY-MM-DD.md` → **`newsletter/`** (new file; unpublished draft).
+  6. **`SOURCES.md`** → repo **root**, *only on a run that added a source* (see step 3). Most runs
+     do not change it and do not hand it back.
 - Close with **one sentence on what changed since the previous run**, and name anything notable you
   omitted or held.
 - If the research turned up nothing worth adding, **say so and deliver nothing** rather than
