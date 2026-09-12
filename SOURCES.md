@@ -123,6 +123,12 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 - **Apollo Research** — https://www.apolloresearch.ai/. `cap`
 - **Epoch AI** — https://epoch.ai/. `cap`
 - **MITRE** — ATLAS (adversarial ML) https://atlas.mitre.org/ · ATT&CK https://attack.mitre.org/. `def`
+- **Independent OpenAI-agent investigators (Kitts / Larsen / Von Arx and collaborators)** — per-incident sites:
+  https://collusion.wiki (DseWiki takeover) · https://rubyhack.ai (RubyGems campaign). `cap` `atk`
+  - _Added 2026-09-12. This group has now produced two board items, and both times the board learned of the
+    work from press rather than from the site. Both domains have been provenance-blocked on every attempt,
+    so expect to cite a syndicating outlet; the value of the entry is knowing to look for a new one-off
+    domain when a fresh OpenAI-agent episode surfaces, rather than discovering it a day late._
 
 **University centers**
 
