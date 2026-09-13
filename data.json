@@ -1,8 +1,8 @@
 {
   "updatedISO": "2026-09-13T07:05:00-04:00",
   "updatedDisplay": "2026-09-13, 7:05 AM ET",
-  "judgmentNote": "Eight items, two of them from the fresh window (Sep 12) and the rest new-to-board backfills inside the period. Calls made by hand this run. Amodei's essay is filed Capability, not Policy: it carries a policy programme, but the sentence a reader takes away is the capability claim about an agent swarm holding the internet as a botnet, which is the same shape as the Pachocki essay already filed under Capability. The essay page itself is stamped only “September 2026” with no day; Axios and TechCrunch both date it September 12 and the item is dated accordingly. Sam Altman's stated agreement is carried in the watchlist on the Axios account rather than as a second card, because it is the same event. Three cards come from Anthropic's September misuse report, which already carried two. The GTG-50014 APK pipeline and the GTG-10007 attribution were both held on 2026-09-12 because the two secondary accounts of them conflicted and the primary could not be opened; the report PDF at www-cdn.anthropic.com opened this run and settles both, so they are carried on-record against the primary and the conflict is resolved in Anthropic's favour. The distillation section of that PDF was beyond the portion that could be retrieved, so the seven-lab card is carried at press confidence on The Hacker News, corroborated on the count by TechNode, and is flagged for a primary-source upgrade. Its comparison with the September 8 NSA/CISA/FBI advisory — five names shared, Xiaomi and SenseTime new, StepFun absent — is drawn from the two documents themselves, not from either outlet. The fuller RubyGems account published September 12, which adds remote code execution on RubyDoc.info's servers, the campaign name GemStuffer and further package batches in late May and June, was folded into the Agent supply chain watchlist thread rather than given a second card, because it is the same campaign as the item carried on September 11. That item is left exactly as written. The SGLang card cites the OpenCVE registry entry because no vendor or researcher primary could be opened; the framing of a fourth AI-inference CVE in four weeks, which appeared only on an outlet not on the scan list, is off the card, and only the CVE record and CERT/CC's own July note are used. No CVSS score is stated because none is attached to the record. Alice's $700–800 million valuation is attributed to Calcalist on the card, and quoted rather than asserted, because it is Calcalist's own figure rather than a disclosed one; two outlets agree on the $140 million round, the lead investor and the $280 million total. Omitted: Greg Brockman's August 17 “The Defender's Window,” in period and never on the board, but advisory in shape and a month old; the CISA KEV additions of September 12 and the JFrog Artifactory exploitation beside them, which carry no AI element; and a sponsored SOC-alert-growth figure with no reachable underlying report. Markets moved for the first time in four runs, on a capital item rather than an insurance one. A verification pass re-opened every cited page against the drafted cards before the build and caught two over-statements: a claim that no bill text or number exists for the Senate measure, which the Reuters account does not say, and a claim that Alice did not disclose its valuation, which only a second outlet's gloss supported. Both were corrected to what the cited pages state.",
-  "internalNote": "Coverage advanced to Sep 13; eight items took the board to 265, including two Anthropic findings held on the previous run and now confirmed against the report PDF, and the first Markets item in four runs.",
+  "judgmentNote": "Eight items, two of them from the fresh window (Sep 12) and the rest new-to-board backfills inside the period. Calls made by hand this run. Amodei's essay is filed Capability, not Policy: it carries a policy programme, but the sentence a reader takes away is the capability claim about an agent swarm holding the internet as a botnet, which is the same shape as the Pachocki essay already filed under Capability. The essay page itself is stamped only “September 2026” with no day; Axios and TechCrunch both date it September 12 and the item is dated accordingly. Sam Altman's stated agreement is carried in the watchlist on the Axios account rather than as a second card, because it is the same event. Three cards come from Anthropic's September misuse report, which already carried two. The GTG-50014 APK pipeline and the GTG-10007 attribution were both held on 2026-09-12 because the two secondary accounts of them conflicted and the primary could not be opened; the report PDF at www-cdn.anthropic.com opened this run and settles both, so they are carried on-record against the primary and the conflict is resolved in Anthropic's favour. The distillation section of that PDF was beyond the portion that could be retrieved, so the seven-lab card is carried at press confidence on The Hacker News, corroborated on the count by TechNode, and is flagged for a primary-source upgrade. Its comparison with the September 8 NSA/CISA/FBI advisory — five names shared, Xiaomi and SenseTime new, StepFun absent — is drawn from the two documents themselves, not from either outlet. The fuller RubyGems account published September 12, which adds remote code execution on RubyDoc.info's servers, the campaign name GemStuffer and further package batches in late May and June, was folded into the Agent supply chain watchlist thread rather than given a second card, because it is the same campaign as the item carried on September 11. That item is left exactly as written. The SGLang card cites the OpenCVE registry entry because no vendor or researcher primary could be opened; the framing of a fourth AI-inference CVE in four weeks, which appeared only on an outlet not on the scan list, is off the card, and only the CVE record and CERT/CC's own July note are used. No CVSS score is stated because none is attached to the record. Alice's $700–800 million valuation is attributed to Calcalist on the card, and quoted rather than asserted, because it is Calcalist's own figure rather than a disclosed one; two outlets agree on the $140 million round, the lead investor and the $280 million total. Omitted: Greg Brockman's August 17 “The Defender's Window,” in period and never on the board, but advisory in shape and a month old; the CISA KEV additions of September 12 and the JFrog Artifactory exploitation beside them, which carry no AI element; and a sponsored SOC-alert-growth figure with no reachable underlying report. Markets moved for the first time in four runs, on a capital item rather than an insurance one. A verification pass re-opened every cited page against the drafted cards before the build and caught two over-statements: a claim that no bill text or number exists for the Senate measure, which the Reuters account does not say, and a claim that Alice did not disclose its valuation, which only a second outlet's gloss supported. Both were corrected to what the cited pages state. Added after the run, on Daria's instruction: a third brief, “anderegg-stable-diffusion-deprecation-gap,” tracking the first federal prosecution over AI-generated CSAM against four years of Stable Diffusion releases, withdrawals and safety commitments. It is the first brief on this board with no cyber mechanism — its subject is AI content harm, dataset provenance and product liability rather than cyber capability — and it is here on an explicit editorial call, not because it met the standing remit test. Every source in it was opened and checked before it went in, and six of the eleven stages as drafted carried a source that did not support the claim attached to it; the corrections are itemised in dashboard-memory.md. Two details were dropped for want of any openable source: Stability AI's 2022 takedown request against the Stable Diffusion 1.5 release and its withdrawal, and the claim that Judge Kolar joined Judge Lee's concurrence. One date, the district court's February 13, 2025 decision, is carried on a day that no opened source states — both secondary accounts place it only in February 2025 — and the stage note says so.",
+  "internalNote": "Coverage advanced to Sep 13; eight items took the board to 265, including two Anthropic findings held on the previous run and now confirmed against the report PDF, the first Markets item in four runs, and a third brief added after the run on the Anderegg prosecution.",
   "items": [
     {
       "id": "cowbell-ai-underwriting-factors",
@@ -2778,7 +2778,7 @@
       "date": "2026-09-13",
       "file": "archive/machine-speed-2026-09-13.html",
       "items": 265,
-      "note": "Coverage advanced to Sep 13 (grow mode); eight items took the board to 265. Amodei's pacing essay led a quiet Saturday window; the Anthropic report's APK-harvesting pipeline and Hunan espionage attribution, both held last run, were confirmed against the primary PDF; Markets moved for the first time in four runs."
+      "note": "Coverage advanced to Sep 13 (grow mode); eight items took the board to 265. Amodei's pacing essay led a quiet Saturday window; the Anthropic report's APK-harvesting pipeline and Hunan espionage attribution, both held last run, were confirmed against the primary PDF; Markets moved for the first time in four runs. A third brief, on the Anderegg prosecution and the Stable Diffusion versions that were never deprecated, was added after the run on an explicit editorial call; it is the first brief here with no cyber mechanism."
     },
     {
       "date": "2026-09-12",
@@ -3532,6 +3532,242 @@
             }
           ],
           "note": "No source opened for this run states that the pilot was created in response to the Iran-linked campaign this brief tracks; the adjacency is chronological, not a claimed causal link."
+        }
+      ]
+    },
+    {
+      "slug": "anderegg-stable-diffusion-deprecation-gap",
+      "title": "The Anderegg prosecution and the model that was never deprecated",
+      "summary": "The first federal prosecution over AI-generated CSAM ran in parallel with four years of Stable Diffusion releases, takedowns and safety pledges. The courts could not reach private possession; every withdrawal that stuck landed somewhere other than the version named in the indictment. Civil liability is the one thing moving the other way.",
+      "lane": "pol",
+      "status": "Active",
+      "opened": "2022-10-20",
+      "updated": "2026-08-25",
+      "acts": [
+        {
+          "id": "origin",
+          "kind": "Release & provenance",
+          "lane": "cap",
+          "when": "Oct 2022 – Aug 2024",
+          "row": 1,
+          "headline": "Stable Diffusion 1.5 shipped from Runway rather than Stability, and the dataset beneath it was later shown to contain validated links to CSAM.",
+          "note": "The Stanford report does not claim the presence of CSAM in LAION-5B caused any specific model output, and does not address the Anderegg images."
+        },
+        {
+          "id": "prosecution",
+          "kind": "The criminal case",
+          "lane": "pol",
+          "when": "Oct 2023 – Aug 2026",
+          "row": 2,
+          "headline": "Detection to federal arrest took roughly seven months; the possession count then failed on precedent set twenty-four years before the technology existed.",
+          "note": "Only the possession count was dismissed. The production, distribution and transfer counts remain pending and are not resolved by either ruling."
+        },
+        {
+          "id": "industry",
+          "kind": "Withdrawals & commitments",
+          "lane": "def",
+          "when": "Apr 2024 – Nov 2025",
+          "row": 2,
+          "headline": "Three separate industry actions over nineteen months — a safety pledge, a policy restriction and a deprecation — none of which reached Stable Diffusion 1.5.",
+          "note": "No action in this act was framed by its author as a response to the prosecution, and none asserts a connection to it. A fourth action, the August 2024 removal of the 1.5 weights, renders in the Release & provenance panel above; it reached 1.5 but did not hold."
+        },
+        {
+          "id": "civil",
+          "kind": "Civil exposure",
+          "lane": "mkt",
+          "when": "Jul 2026",
+          "row": 3,
+          "headline": "Six weeks before the Seventh Circuit narrowed criminal exposure at the possessor end, a civil complaint advanced toward the supplier.",
+          "note": "Allegations in an amended pleading. Nothing here has been tested or decided, and no court has ruled on Stability AI's liability."
+        }
+      ],
+      "stages": [
+        {
+          "date": "2022-10-20",
+          "act": "origin",
+          "label": "Stable Diffusion 1.5 is released from Runway's repository",
+          "what": "The Stable Diffusion 1.5 weights were published to Hugging Face under Runway's account rather than Stability AI's. The original repository has since been deprecated; the weights remain available through community mirrors.",
+          "confidence": "press",
+          "sources": [
+            {
+              "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5",
+              "outlet": "Hugging Face (community mirror of the deprecated runwayml repository)"
+            }
+          ],
+          "note": "The cited page is a mirror, which states it is \"a mirror of the now deprecated runwayml/stable-diffusion-v1-5\" and \"not affiliated in any way with RunwayML.\" It does not carry a release date; the date here is the widely reported one and is not confirmed by the cited source."
+        },
+        {
+          "date": "2023-10-01",
+          "act": "prosecution",
+          "label": "Meta reports to the CyberTipline, and a search warrant follows",
+          "what": "Meta reported the online transmission of suspected CSAM to NCMEC's CyberTipline after an Instagram user sent apparent AI-generated material by direct message to an account belonging to a minor. The opinion states that \"according to the government, in October 2023, Meta Platforms, Instagram's parent company, reported the online transmission of potential CSAM to the CyberTipline,\" and that \"law enforcement then executed a search warrant of his home, his personal laptop, two other cell phones, and other devices.\"",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://caselaw.findlaw.com/court/us-7th-circuit/343401.html",
+              "outlet": "United States v. Anderegg, 7th Cir. (opinion)"
+            }
+          ],
+          "note": "The opinion gives the month of the report but no day, and gives no date for the search warrant."
+        },
+        {
+          "date": "2023-12-20",
+          "act": "origin",
+          "label": "Stanford finds CSAM in the training data",
+          "what": "David Thiel of the Stanford Internet Observatory reported that the open LAION-5B dataset underlying Stable Diffusion contained links to suspected CSAM. The report's abstract states that its methodology \"detected many hundreds of instances of known CSAM in the training set, as well as many new candidates that were subsequently verified by outside parties.\" The Associated Press reported that the study recommended anyone who built training sets from LAION-5B \"delete them or work with intermediaries to clean the material,\" and that legitimate platforms \"can stop offering versions of it for download.\" LAION told the AP it was temporarily removing its datasets on the eve of publication.",
+          "confidence": "researchers",
+          "sources": [
+            {
+              "url": "https://purl.stanford.edu/kh752sm9123",
+              "outlet": "Stanford Internet Observatory / Stanford Digital Repository"
+            },
+            {
+              "url": "https://fortune.com/2023/12/20/top-ai-image-generators-trained-child-sexual-abuse-stanford-internet-observatory",
+              "outlet": "Fortune / Associated Press"
+            }
+          ],
+          "disputed": "The count differs between the two sources cited here. The report's own abstract says \"many hundreds of instances of known CSAM\" plus further candidates verified externally; the Associated Press account says \"more than 3,200 images of suspected child sexual abuse.\" The Stanford Digital Repository landing page exposes metadata and the abstract only, so no table figure is cited.",
+          "note": "The report's recommendation to deprecate affected models predates every industry action below it."
+        },
+        {
+          "date": "2024-04-23",
+          "act": "industry",
+          "label": "Stability AI adopts Safety by Design",
+          "what": "Stability AI was among the companies announcing adoption of Safety by Design principles developed with Thorn and All Tech Is Human, intended to prevent the misuse of generative AI to create or spread CSAM. The commitments applied to future development; no model already in circulation was withdrawn.",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://www.thorn.org/blog/generative-ai-principles/",
+              "outlet": "Thorn"
+            }
+          ]
+        },
+        {
+          "date": "2024-05-20",
+          "act": "prosecution",
+          "label": "Federal grand jury returns a four-count indictment",
+          "what": "The Justice Department announced that Steven Anderegg, 42, of Holmen, Wisconsin, had been charged on four counts: producing, distributing and possessing obscene visual depictions of minors engaged in sexually explicit conduct, and transferring obscene material to a minor under the age of 16. The release states the images were generated with Stable Diffusion and puts the maximum penalty at 70 years with a five-year mandatory minimum.",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://www.justice.gov/opa/pr/man-arrested-producing-distributing-and-possessing-ai-generated-images-minors-engaged",
+              "outlet": "U.S. Department of Justice, Office of Public Affairs"
+            },
+            {
+              "url": "https://caselaw.findlaw.com/court/us-7th-circuit/343401.html",
+              "outlet": "United States v. Anderegg, 7th Cir. (opinion)"
+            }
+          ],
+          "disputed": "The two sources characterise the counts differently. The Justice Department release describes all four as concerning obscene material; the Seventh Circuit opinion describes counts one to three as concerning \"visual depictions of minors engaged in sexually explicit conduct\" and only the fourth as \"knowingly possessing obscene CSAM.\"",
+          "note": "The release says the arrest occurred \"last week\" and gives no arrest date. It does not mention a search warrant date or any prior state arrest."
+        },
+        {
+          "date": "2024-08-30",
+          "act": "origin",
+          "label": "SD 1.5 is pulled from Hugging Face and re-hosted",
+          "what": "Runway removed the Stable Diffusion 1.5 weights from Hugging Face without explanation; the community re-uploaded them within days. The removal coincided with LAION's release of Re-LAION-5B, a version of the dataset it described as cleaned of known links to suspected CSAM.",
+          "confidence": "press",
+          "sources": [
+            {
+              "url": "https://techcrunch.com/2024/08/30/the-org-behind-the-data-set-used-to-train-stable-diffusion-claims-it-has-removed-csam",
+              "outlet": "TechCrunch"
+            },
+            {
+              "url": "https://laion.ai/blog/relaion-5b/",
+              "outlet": "LAION"
+            }
+          ],
+          "note": "Runway gave no reason for the removal. The link to the Stanford findings is inference by reporters, not a stated cause. Re-LAION-5B is a new dataset, not a retraining of any released model."
+        },
+        {
+          "date": "2025-02-13",
+          "act": "prosecution",
+          "label": "District court dismisses the possession count",
+          "what": "The Western District of Wisconsin held 18 U.S.C. § 1466A(b)(1) unconstitutional as applied to Anderegg's private, in-home possession of the AI-generated images, relying on Stanley v. Georgia and on Ashcroft v. Free Speech Coalition, which distinguishes virtual CSAM from material depicting an actual child. The court declined to extend Stanley to production, and declined to dismiss the distribution charge or the charge of transferring the images to a minor.",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://www.techpolicy.press/court-rules-that-constitution-protects-private-possession-of-aigenerated-csam/",
+              "outlet": "Tech Policy Press (Riana Pfefferkorn)"
+            },
+            {
+              "url": "https://wislawjournal.com/2026/08/31/first-amendment-virtual-child-pornography/",
+              "outlet": "Wisconsin Law Journal"
+            }
+          ],
+          "note": "Neither cited source gives the day of the decision; both place it in February 2025. The Seventh Circuit appeal is numbered 25-1354."
+        },
+        {
+          "date": "2025-07-31",
+          "act": "industry",
+          "label": "Acceptable Use Policy restricts explicit generation",
+          "what": "Stability AI updated its Acceptable Use Policy to prohibit the generation of sexually explicit content, effective July 31, 2025. Civitai removed Stability AI Core Models from its generator, deleted fewer than 6,000 R-rated images made with them, disabled 563 derivative resources and barred new R+ content generated with the affected models. Civitai stated that the restrictions “do not affect SD1.5, SDXL, or SDXL derivative models, which remain fully usable both for R+ (NSFW) generation and content hosting on Civitai.”",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://civitai.com/articles/17499/update-on-stability-ai-acceptable-use-policy-change",
+              "outlet": "Civitai"
+            }
+          ],
+          "note": "This is a licensing restriction on hosted generation, not a withdrawal of weights, and the carve-out is Civitai's characterisation of the policy's scope rather than Stability AI's. The model named in the indictment was expressly outside it. Stability AI's live policy page now carries a later revision date and cannot be used to source the July 2025 change."
+        },
+        {
+          "date": "2025-11-13",
+          "act": "industry",
+          "label": "Stable Diffusion 2.0 and 2.1 are deprecated",
+          "what": "Stability AI removed Stable Diffusion 2.0 and 2.1 from Hugging Face. A user thread opened on November 13, 2025 asking why 2.1 had been deleted; on November 15 another user relayed a statement attributed to Stability AI saying the versions had been “outpaced by newer architectures that offer far stronger performance, safety, and alignment” and that deprecation was “part of our effort to clean up and consolidate our model offering and to get ahead of upcoming compliance requirements for the EU AI Act in 2026.” Versions 1.5 and SDXL were left in place.",
+          "confidence": "press",
+          "sources": [
+            {
+              "url": "https://huggingface.co/spaces/stabilityai/stable-diffusion-3.5-large/discussions/648",
+              "outlet": "Hugging Face (community discussion thread)"
+            }
+          ],
+          "note": "No formal announcement appears to have been published. The quoted reason is twice removed — a forum user relaying a statement attributed to a Stability AI account on a different forum — and no Stability AI or Hugging Face staff member replied in the thread. The date here is when the removal was first publicly noticed, not a stated removal date. The repository URL now returns HTTP 401."
+        },
+        {
+          "date": "2026-07-07",
+          "act": "civil",
+          "label": "Stability AI added as a defendant",
+          "what": "An amended class-action complaint in the Northern District of California added Stability AI to a suit already pending against xAI, bringing the case to five plaintiffs — the three original Tennessee plaintiffs plus one from Wyoming and one from Wisconsin. NPR reports the complaint alleges Stability AI filtered not-safe-for-work content from its training data for one model version and later removed those safeguards, and that because its models are open-weight it is \"much easier for users to remove restrictions that model makers have put in place.\"",
+          "confidence": "press",
+          "sources": [
+            {
+              "url": "https://www.npr.org/2026/07/09/nx-s1-5885052/spacexai-stabilityai-deepfake-csam-class-action",
+              "outlet": "NPR"
+            },
+            {
+              "url": "https://cyberscoop.com/deepfake-csam-lawsuit-grok-xai-expands-stability-ai/",
+              "outlet": "CyberScoop"
+            },
+            {
+              "url": "https://www.lieffcabraser.com/2026/07/deepfake-victims-bolster-class-action-against-xai-add-stability-ai/",
+              "outlet": "Lieff Cabraser Heimann & Bernstein (plaintiffs' counsel)"
+            }
+          ],
+          "note": "Untested allegations in a pleading. The third source is plaintiffs' counsel and is not a neutral account; the complaint concerns models and downstream apps generally, not the Anderegg images."
+        },
+        {
+          "date": "2026-08-25",
+          "act": "prosecution",
+          "label": "Seventh Circuit affirms",
+          "what": "The Seventh Circuit upheld dismissal of the possession count, holding § 1466A(b)(1) unconstitutional as applied, \"assuming for the sake of argument that obscene virtual CSAM is equivalent to other forms of obscenity.\" The court found the government's AI-specific arguments — grooming, normalisation and market effects — already rejected in Free Speech Coalition. The majority wrote: \"Given the relentless advancement in artificial intelligence models, we have some concerns about the lines these cases draw, but we are not free to redraw them ourselves.\" A separate concurrence by Judge Lee asked for Supreme Court guidance on the First Amendment and virtual CSAM.",
+          "confidence": "on-record",
+          "sources": [
+            {
+              "url": "https://caselaw.findlaw.com/court/us-7th-circuit/343401.html",
+              "outlet": "United States v. Anderegg, 7th Cir. (opinion)"
+            },
+            {
+              "url": "https://reason.com/volokh/2026/08/27/home-possession-of-ai-generated-porn-depicting-fake-children-remains-constitutionally-protected-seventh-circuit-rules/",
+              "outlet": "Reason (Volokh Conspiracy)"
+            },
+            {
+              "url": "https://www.kriegdevault.com/insights/seventh-circuit-refuses-to-stretch-existing-law-to-reach-ai-generated-content-united-states-v-anderegg",
+              "outlet": "Krieg DeVault"
+            }
+          ],
+          "note": "The holding is as-applied and narrow: the statute was not struck down, and the ruling does not reach production, distribution or transfer. The \"not free to redraw them\" concession is the court's own, in the majority opinion — not the concurrence."
         }
       ]
     }
