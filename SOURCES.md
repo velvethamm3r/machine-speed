@@ -199,6 +199,8 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
 - **NVD** — https://nvd.nist.gov/ (CVSS, status).
 - **GitHub Advisory Database** — https://github.com/advisories (GHSA records).
 - **VulnCheck** — https://vulncheck.com/blog (exploitation-in-the-wild data).
+- **OpenCVE** — https://app.opencve.io/cve/ (record, description, affected version range, assigning CNA). Added 2026-09-13. cve.org and nvd.nist.gov had been unreachable to this board's fetcher for six consecutive runs, so no CVE had been checked against any registry in that time; OpenCVE mirrors the same records and opens normally. Use it as the fallback registry, not the first choice — it carries no CVSS where none has been assigned, and it is a mirror, so a discrepancy with cve.org is resolved in cve.org's favour.
+- **CERT/CC Vulnerability Notes** — https://www.kb.cert.org/vuls/. Added 2026-09-13. The coordination record rather than the registry entry: it names the reporter, states whether the vendor responded and whether a patch exists, and is often the only account of a flaw in an unmaintained project. Opens normally. It is a primary, so prefer it to a press write-up of the same note.
 
 ## 11. Markets / cyber-insurance — `mkt`
 
