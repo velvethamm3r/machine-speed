@@ -73,9 +73,16 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Trellix Advanced Research Center** — https://www.trellix.com/blogs/research/. `atk`
 - **Varonis Threat Labs** — https://www.varonis.com/blog. `def` `atk`
 - **Sysdig** — https://www.sysdig.com/blog. `atk`
+  - _Note added 2026-09-14: when `www.sysdig.com` is provenance-blocked, the same post is reachable at
+    `https://webflow.sysdig.com/blog/<slug>`. It is a Sysdig-owned host serving the identical article, so it is still
+    a first-party citation; prefer the `www` URL whenever it opens._
 - **Zscaler ThreatLabz** — https://www.zscaler.com/blogs/security-research. `atk`
 - **Cisco Talos** — https://blog.talosintelligence.com/. `atk` `def`
-- **Check Point Research** — https://research.checkpoint.com/. `atk`
+- **Check Point Research** — https://research.checkpoint.com/ · **corporate blog https://blog.checkpoint.com/** `atk` `def`
+  - _Added 2026-09-14 (the blog entry). `research.checkpoint.com` post bodies have been provenance-blocked on every
+    attempt since 2026-09-03; `blog.checkpoint.com` carries the same research, dated and bylined, and opens first try.
+    It is Check Point's own site, so an item sourced there is primary, not press. Two board items came from it this
+    run after four blocked attempts on the research host._
 - **SentinelOne Labs** — https://www.sentinelone.com/labs/. `atk` `def`
 - **Wiz** — https://www.wiz.io/blog. `def`
 - **watchTowr Labs** — https://labs.watchtowr.com/. `atk`
@@ -233,6 +240,7 @@ fresh window.
 - **Industrial Cyber** — https://industrialcyber.co/. The OT/ICS beat, including a daily OT news roundup. This is the outlet that surfaced the DOE/Sandia item the government sweep had missed.
 - **Axios** — https://www.axios.com/technology. Frequently first on AI-lab governance and policy moves.
 - **Reuters** — technology and cyber desks. _Note: reuters.com has refused automated fetchers on every run that tried it; expect to reach its reporting through a syndicating outlet._
+- **South China Morning Post** — https://www.scmp.com/tech · China politics https://www.scmp.com/news/china/politics. _Added 2026-09-14. The scan list had no route to Chinese official statements at all: §1–§11 cover Chinese labs but no Chinese state or Party channel, and the Cyberspace Administration of China's own journal `China Cyberspace` is not openable to this fetcher. SCMP reports those statements in English within a day and opens first try — it is how the state security minister's naming of Claude Mythos and GPT-5.5-Cyber reached this board. Press, so still a fallback: cite the Chinese primary whenever one can be opened._
 
 Two cautions carried over from `RUNBOOK.md`. Watch for content-farm embellishment, which shows up
 as an oddly precise number attached to a real story — several sites in the search results for any

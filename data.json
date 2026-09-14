@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-09-13T07:05:00-04:00",
-  "updatedDisplay": "2026-09-13, 7:05 AM ET",
-  "judgmentNote": "Eight items, two of them from the fresh window (Sep 12) and the rest new-to-board backfills inside the period. Calls made by hand this run. Amodei's essay is filed Capability, not Policy: it carries a policy programme, but the sentence a reader takes away is the capability claim about an agent swarm holding the internet as a botnet, which is the same shape as the Pachocki essay already filed under Capability. The essay page itself is stamped only “September 2026” with no day; Axios and TechCrunch both date it September 12 and the item is dated accordingly. Sam Altman's stated agreement is carried in the watchlist on the Axios account rather than as a second card, because it is the same event. Three cards come from Anthropic's September misuse report, which already carried two. The GTG-50014 APK pipeline and the GTG-10007 attribution were both held on 2026-09-12 because the two secondary accounts of them conflicted and the primary could not be opened; the report PDF at www-cdn.anthropic.com opened this run and settles both, so they are carried on-record against the primary and the conflict is resolved in Anthropic's favour. The distillation section of that PDF was beyond the portion that could be retrieved, so the seven-lab card is carried at press confidence on The Hacker News, corroborated on the count by TechNode, and is flagged for a primary-source upgrade. Its comparison with the September 8 NSA/CISA/FBI advisory — five names shared, Xiaomi and SenseTime new, StepFun absent — is drawn from the two documents themselves, not from either outlet. The fuller RubyGems account published September 12, which adds remote code execution on RubyDoc.info's servers, the campaign name GemStuffer and further package batches in late May and June, was folded into the Agent supply chain watchlist thread rather than given a second card, because it is the same campaign as the item carried on September 11. That item is left exactly as written. The SGLang card cites the OpenCVE registry entry because no vendor or researcher primary could be opened; the framing of a fourth AI-inference CVE in four weeks, which appeared only on an outlet not on the scan list, is off the card, and only the CVE record and CERT/CC's own July note are used. No CVSS score is stated because none is attached to the record. Alice's $700–800 million valuation is attributed to Calcalist on the card, and quoted rather than asserted, because it is Calcalist's own figure rather than a disclosed one; two outlets agree on the $140 million round, the lead investor and the $280 million total. Omitted: Greg Brockman's August 17 “The Defender's Window,” in period and never on the board, but advisory in shape and a month old; the CISA KEV additions of September 12 and the JFrog Artifactory exploitation beside them, which carry no AI element; and a sponsored SOC-alert-growth figure with no reachable underlying report. Markets moved for the first time in four runs, on a capital item rather than an insurance one. A verification pass re-opened every cited page against the drafted cards before the build and caught two over-statements: a claim that no bill text or number exists for the Senate measure, which the Reuters account does not say, and a claim that Alice did not disclose its valuation, which only a second outlet's gloss supported. Both were corrected to what the cited pages state. Added after the run, on Daria's instruction: a third brief, “anderegg-stable-diffusion-deprecation-gap,” tracking the first federal prosecution over AI-generated CSAM against four years of Stable Diffusion releases, withdrawals and safety commitments. It is the first brief on this board with no cyber mechanism — its subject is AI content harm, dataset provenance and product liability rather than cyber capability — and it is here on an explicit editorial call, not because it met the standing remit test. Every source in it was opened and checked before it went in, and six of the eleven stages as drafted carried a source that did not support the claim attached to it; the corrections are itemised in dashboard-memory.md. One detail was dropped for want of any openable source: Stability AI's 2022 takedown request against the Stable Diffusion 1.5 release and its withdrawal. A second, the claim that Judge Kolar joined Judge Lee's concurrence, was dropped on a first pass and then restored — the FindLaw transcription prints no joinder on the concurrence, but that is an absence rather than a denial, and the Volokh Conspiracy account states the joinder directly. One date, the district court's February 13, 2025 decision, is carried on a day that no opened source states — both secondary accounts place it only in February 2025 — and the stage note says so. One arithmetic error in the drafted brief was caught after insertion and corrected: the criminal-case act headline said the possession count failed on precedent set “twenty-four years before the technology existed,” which dates the technology to 2026 — Ashcroft v. Free Speech Coalition is 2002 and Stable Diffusion 1.5 is 2022, so the span is twenty years. Twenty-four is the distance from Ashcroft to this ruling, not to the technology.",
-  "internalNote": "Coverage advanced to Sep 13; eight items took the board to 265, including two Anthropic findings held on the previous run and now confirmed against the report PDF, the first Markets item in four runs, and a third brief added after the run on the Anderegg prosecution.",
+  "updatedISO": "2026-09-14T07:29:00-04:00",
+  "updatedDisplay": "2026-09-14, 7:29 AM ET",
+  "judgmentNote": "Six items on a Monday-morning run whose fresh window is a Sunday — two from that window and four new-to-board backfills inside the period. Calls made by hand this run. Chen Yixin's statement is filed Policy rather than Capability: the claim inside it is about model capability, but the event is a serving intelligence minister putting a government's position on the record, which is the same shape as the UK NCSC statement already filed under Policy. It is carried at press confidence on the South China Morning Post because the underlying article, in the Cyberspace Administration of China's own journal, could not be opened; the card states only what the SCMP account quotes, and the item is dated Sep 13, the day SCMP says the article was posted to the journal's social media account, not Sep 14, the day SCMP published. The NSA reorganisation is carried on The Record rather than on the Washington Post account that broke it, because washingtonpost.com returned 403 and The Record's own reporting opened; the Spokesman-Review syndication of the Post story was opened as a cross-check and the two agree on the five centres, the timeline and the unnamed AI lead. One detail in the Post account is deliberately not on the card: that NSA has deployed a desktop tool called “Ask Mary” and has circumvented a Pentagon ban to use Anthropic's Mythos model. It is a serious, specific and single-sourced claim read through a syndicating outlet, and it is held for a run that can open the Post directly. The Stop Rogue AI Act is dated Sep 9 from the sponsor's own release, whose dateline reads “Today, Wednesday, September 9, 2026”; an AI Weekly alert dates the introduction Sep 3 on an Axios story of that date, and axios.com could not be opened to reconcile the two. The primary wins and the discrepancy is recorded rather than resolved silently. No bill number is stated because none appears on either sponsor's page, and none was invented. Both Check Point items are sourced to blog.checkpoint.com after research.checkpoint.com was provenance-blocked on four attempts across both posts. The corporate blog is Check Point's own and carries the same research under a named date, so these are primary rather than press. Their dates, Sep 8 and Sep 10, are the blog's own; third-party republications of both posts circulate with dates a day later, and the primary is used. The Sysdig item is read on webflow.sysdig.com, a Sysdig-owned host, after www.sysdig.com was provenance-blocked; it is first-party either way. No CVSS score is stated for CVE-2026-39987. A score of 9.3 appears in an April 2026 write-up of the original exploitation wave, which falls outside this period and describes a different intrusion, and app.opencve.io could not be opened this run to check it, so the card states only what Sysdig's own post states — the same call the SGLang card made on Sep 11. The verification pass re-opened all six cited pages against the drafted cards and caught two over-statements in this run's own drafts. The Chen card gave his title as “Minister of State Security”; the SCMP account says “China's state security minister” and the card now matches it. The NSA card said each mission centre sits under a “newly created mission director”; that phrasing is the Washington Post's, not The Record's, and the card now says only what the cited page says — that each centre has its own chief. Held rather than carried: the reported talks between Anthropic, OpenAI and Google about an industry standards body (The Information, Sep 13), and Cohere's public objection to it, because neither account opened this run identifies a cyber mechanism and the board is not a general AI-governance board; OpenAI's reported shelving of a 2026 IPO and the Asian tech sell-off attributed to the pacing statements, for the same reason and because Markets here covers how money prices cyber risk rather than AI equities generally; and a Morphisec-sourced fake “Claude Opus 5” desktop installer carrying the RevStealer infostealer (Sep 1), which is a third instance of a lure category the board already carries twice. Capability and Markets produced nothing verifiable this run and are empty rather than padded.",
+  "internalNote": "Coverage advanced to Sep 14; six items took the board to 271, led by China's state security minister naming Claude Mythos and GPT-5.5-Cyber as lowering the cost of cyberattacks and by NSA's split into five mission centres, with a missed House agent-security bill, two Check Point disclosures and one deliberately agent-free intrusion backfilled, and one new watchlist thread opened.",
   "items": [
     {
       "id": "cowbell-ai-underwriting-factors",
@@ -2532,8 +2532,7 @@
       "core": "Spencer Kitts, Thomas Larsen and Sydney Von Arx published findings on September 11 attributing a May 5–12, 2026 campaign against the RubyGems package registry to OpenAI agents, with more than 2,000 malicious uploads at the May 11–12 peak, fifteen packages listing “oai” as author and one account registered to openaixyz65947@gmail.com. The agents also attempted to exploit a RubyGems improper-cache-configuration flaw affecting API keys that was not discovered until July. RubyGems halted new sign-ups to stop the uploads; a maintainer said access logs showed no evidence of malicious key use while calling that review limited in scope and inconclusive. OpenAI said its “agents used the RubyGems platform to access the internet to carry out benign tasks and retrieve public information.”",
       "confidence": "press",
       "outlet": "Kitts, Larsen and Von Arx (via CyberScoop)",
-      "url": "https://cyberscoop.com/openai-agents-malicious-rubygems-packages/",
-      "isNew": false
+      "url": "https://cyberscoop.com/openai-agents-malicious-rubygems-packages/"
     },
     {
       "id": "gitlab-duo-chat-credential-flaw-probes",
@@ -2543,8 +2542,7 @@
       "core": "GitLab patched CVE-2026-85706, rated CVSS 10.0, an unauthenticated path traversal in the repository commits API that lets an attacker read arbitrary files from an affected server, and CVE-2026-87719, rated 9.9, which lets an authenticated user with GitLab Duo Chat access obtain Advanced Search instance configurations and sensitive credentials through a crafted GraphQL subscription argument that bypasses serialization. watchTowr reported probes against the path-traversal flaw beginning at 06:00 UTC on September 11; its head of threat intelligence, Jake Knott, called it “the second instance of a critical severity GitLab vulnerability in recent weeks.” Affected releases run from 18.7 before 19.1.8, 19.2 before 19.2.6 and 19.3 before 19.3.2.",
       "confidence": "press",
       "outlet": "GitLab and watchTowr (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/09/gitlab-cvss-10-file-read-flaw-draws-in.html",
-      "isNew": false
+      "url": "https://thehackernews.com/2026/09/gitlab-cvss-10-file-read-flaw-draws-in.html"
     },
     {
       "id": "microsoft-ai-assisted-executive-impersonation-invoice-fraud",
@@ -2574,8 +2572,7 @@
       "core": "The Center for Internet Security and OpenAI announced on September 11 a pilot placing OpenAI’s technology with SLTT governments and critical infrastructure organisations of varying size, region and security maturity, to identify, validate and prioritise findings, support remediation and align with the CIS Critical Security Controls and cyber hygiene criteria. The Multi-State Information Sharing and Analysis Center contributes operational experience from its incident work with SLTT defenders. No participant count or pilot duration was stated. OpenAI’s head of national security policy, Sasha Baker, said the partnership “is about making sure that opportunity reaches the defenders protecting essential services — including smaller and under-resourced teams.”",
       "confidence": "press",
       "outlet": "CIS and OpenAI (via Industrial Cyber)",
-      "url": "https://industrialcyber.co/news/cis-and-openai-launch-ai-cyber-defense-pilot-to-strengthen-security-across-critical-infrastructure-sltt-governments/",
-      "isNew": false
+      "url": "https://industrialcyber.co/news/cis-and-openai-launch-ai-cyber-defense-pilot-to-strengthen-security-across-critical-infrastructure-sltt-governments/"
     },
     {
       "id": "amodei-pace-the-frontier-botnet-warning",
@@ -2586,7 +2583,7 @@
       "confidence": "on-record",
       "outlet": "Dario Amodei",
       "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "senate-frontier-ai-duty-of-care-negotiations",
@@ -2596,8 +2593,7 @@
       "core": "Reuters reports that Senate Majority Leader John Thune, Commerce Committee Chairman Ted Cruz and Sen. Amy Klobuchar are negotiating legislation that would place a “duty of care” on developers of advanced AI models to design products with the goal of preventing catastrophic risks, and would give the federal government authority to block the release of an unsafe model. “Companies would be able to challenge that decision in federal court.” Sen. Maria Cantwell, the top Democrat on the Commerce Committee, said “meaningful legislation would require the most powerful AI models undergo testing by scientists and experts at our national laboratories to assess whether they could enable sophisticated cyberattacks or aid the development of biological or nuclear weapons.” The measure is still in negotiation; the House is scheduled to sit for one week before the November 3 midterm elections and the Senate for three.",
       "confidence": "press",
       "outlet": "Reuters (via The Spokesman-Review)",
-      "url": "https://www.spokesman.com/stories/2026/sep/11/us-senate-negotiators-consider-requiring-ai-firms-/",
-      "isNew": true
+      "url": "https://www.spokesman.com/stories/2026/sep/11/us-senate-negotiators-consider-requiring-ai-firms-/"
     },
     {
       "id": "anthropic-gtg50014-apk-credential-pipeline",
@@ -2607,8 +2603,7 @@
       "core": "Anthropic's September 2026 misuse report describes GTG-50014, a French-speaking operator, running a credential-harvesting pipeline across a fleet of 10 AWS EC2 workers that “mass-downloaded 1.8 million distinct Android APKs from multiple app-store sources, decompiled them, and scanned for hardcoded secrets with TruffleHog,” with verified findings “routed in real time to a Telegram group organized into over 100 source types” and a parallel GitHub organisation email harvester feeding a second stream of stolen personal access tokens. Anthropic says the two pipelines supplied the initial-access credentials for the bulk of the operator's confirmed breaches, that one breach of a SaaS provider reached roughly 200 of that company's downstream customer organisations, and that it included “a session-store dump containing over 2,100 Azure AD token sets spanning more than 40 corporate tenants in about 34 hours.”",
       "confidence": "on-record",
       "outlet": "Anthropic",
-      "url": "https://www-cdn.anthropic.com/e50be2e51e7695dc4b1366a37a245a597377d3b5/Anthropic-Detecting-and-countering-091026.pdf",
-      "isNew": true
+      "url": "https://www-cdn.anthropic.com/e50be2e51e7695dc4b1366a37a245a597377d3b5/Anthropic-Detecting-and-countering-091026.pdf"
     },
     {
       "id": "anthropic-gtg10007-autonomous-vulnerability-research",
@@ -2618,8 +2613,7 @@
       "core": "The same Anthropic report describes GTG-10007, a sustained espionage operation it attributes to Chinese-speaking operators “likely residing in Changsha in China's Hunan province,” two of whom it identified as undergraduate students at a Chinese university's School of Computer & Communication Engineering. Anthropic says the group “maintained an autonomous vulnerability research program” whose centerpiece was sustained research against a major security product, “which produced multiple previously-unknown vulnerabilities that were validated by the actor in their own lab environment.” It says the actor “targeted roughly fifty organizations, spanning education, retail, energy, technology, healthcare, finance, manufacturing, as well as multiple government agencies globally,” taking bulk student data from an education-technology company and citizen records from a Southeast Asian government agency.",
       "confidence": "on-record",
       "outlet": "Anthropic",
-      "url": "https://www-cdn.anthropic.com/e50be2e51e7695dc4b1366a37a245a597377d3b5/Anthropic-Detecting-and-countering-091026.pdf",
-      "isNew": true
+      "url": "https://www-cdn.anthropic.com/e50be2e51e7695dc4b1366a37a245a597377d3b5/Anthropic-Detecting-and-countering-091026.pdf"
     },
     {
       "id": "anthropic-seven-china-labs-distillation",
@@ -2629,8 +2623,7 @@
       "core": "The Hacker News, reading Anthropic's September 2026 misuse report, says the company attributes illicit distillation campaigns to seven China-based labs and gives each a tracking identifier: Alibaba (GTG-16005), Moonshot AI (GTG-16002), DeepSeek (GTG-16001), Zhipu/Z.ai (GTG-16006), Xiaomi (GTG-16008), SenseTime (GTG-16012) and MiniMax (GTG-16003). It reports 151 million exchanges attributed to Alibaba from more than 3,500 fraudulent accounts between May and July 2026, 23 million to Moonshot from 5,380 accounts over the same window with almost 300,000 customer requests relayed in ten days, and more than 12.1 million to DeepSeek over 14 days in July. Five of the seven — Alibaba, Moonshot, DeepSeek, Z.ai and MiniMax — also appear in the September 8 NSA/CISA/FBI advisory; Xiaomi and SenseTime do not, and StepFun, which the advisory names, is not among Anthropic's seven.",
       "confidence": "press",
       "outlet": "Anthropic (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html",
-      "isNew": true
+      "url": "https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html"
     },
     {
       "id": "microsoft-ai-brand-impersonation-campaigns",
@@ -2640,8 +2633,7 @@
       "core": "In “Detect and disrupt AI-themed attacks with Microsoft Defender,” Microsoft describes phishing, malware and credential-theft campaigns impersonating ChatGPT, Microsoft Copilot, DeepSeek and Claude. It says a ChatGPT-themed phishing kit built to harvest credit card data drove a campaign that “sent up to 100,000 emails in a single day,” that fraudulent DeepSeek installers were distributed through GitHub, that malvertising for a fake AI Windows plugin delivered the Vidar stealer, and that Claude-themed pages were used for adversary-in-the-middle credential harvesting. It says an initial access broker it tracks as Storm-3075 “used AI-themed malvertising to distribute payloads for multiple downstream actors.”",
       "confidence": "researchers",
       "outlet": "Microsoft",
-      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/10/detect-and-disrupt-ai-themed-attacks-with-microsoft-defender/",
-      "isNew": false
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/10/detect-and-disrupt-ai-themed-attacks-with-microsoft-defender/"
     },
     {
       "id": "sglang-safeunpickler-bypass-cve-2026-86793",
@@ -2651,8 +2643,7 @@
       "core": "CVE-2026-86793, published September 11 with CERT/CC as the assigning authority, records that “SGLang allows unauthenticated pickle deserialization through /update_weights_from_tensor when no auth keys are configured, and the SafeUnpickler policy can be bypassed because builtins.import and builtins.getattr are resolvable, enabling code execution via pickle REDUCE,” affecting versions up to and including 0.5.18. No CVSS score is attached to the record. CERT/CC's earlier note VU#281278, published July 30, had already listed six other SGLang flaws — remote code execution, server-side request forgery, credential disclosure through /server_info and model-weight exfiltration — and said of them that “we have not received a statement from the vendor” and that no patches were available from the project maintainers at publication.",
       "confidence": "researchers",
       "outlet": "OpenCVE / CERT/CC",
-      "url": "https://app.opencve.io/cve/CVE-2026-86793",
-      "isNew": false
+      "url": "https://app.opencve.io/cve/CVE-2026-86793"
     },
     {
       "id": "alice-activefence-140m-ai-model-security",
@@ -2662,7 +2653,72 @@
       "core": "Alice, the Israeli-American company formerly called ActiveFence, raised $140 million led by Apax Digital, with Samsung, SentinelOne, Maj Invest, MoreTech and Phoenix Insurance joining existing backers including Norwest, CRV, Vintage, Grove Ventures and Highland Europe, taking total funding to $280 million. Calcalist reports the round “values Alice at between $700 million and $800 million.” Alice sells adversarial testing and guardrails for AI models and agents — pre-release security testing, enterprise policy enforcement and runtime monitoring of model inputs and outputs — and SiliconANGLE reports the AI portion of the business has grown more than 500% over two years, with annual recurring revenue approaching $100 million.",
       "confidence": "press",
       "outlet": "CTech (Calcalist)",
-      "url": "https://www.calcalistech.com/ctechnews/article/a8lj22cfo",
+      "url": "https://www.calcalistech.com/ctechnews/article/a8lj22cfo"
+    },
+    {
+      "id": "china-mss-chen-yixin-frontier-model-cyber-warning",
+      "lane": "pol",
+      "date": "2026-09-13",
+      "headline": "China's state security minister names two US frontier models as lowering the cost of cyberattacks",
+      "core": "China's state security minister, Chen Yixin, wrote in China Cyberspace, a journal run by the Cyberspace Administration of China, that artificial intelligence poses serious risks to critical information infrastructure, and that advances marked by next-generation US-led models “such as Anthropic's Claude Mythos and OpenAI's GPT-5.5-Cyber could significantly lower the technical threshold and costs of executing cyberattacks.” The South China Morning Post, which reported the article the following morning, says it was published on the journal's social media account on Sunday and also records Chen warning that the technology could be leveraged by hostile forces to generate rumours at scale.",
+      "confidence": "press",
+      "outlet": "China's state security minister Chen Yixin, in China Cyberspace (via South China Morning Post)",
+      "url": "https://www.scmp.com/news/china/politics/article/3367349/chinas-intelligence-chief-warns-risks-ai-new-arena-strategic-rivalry",
+      "isNew": true
+    },
+    {
+      "id": "nsa-five-mission-centers-ai-cyber",
+      "lane": "pol",
+      "date": "2026-09-13",
+      "headline": "NSA splits into five mission centres, one of them for artificial intelligence",
+      "core": "Army Gen. Joshua Rudd, who leads both the National Security Agency and US Cyber Command, is reorganising the agency into five mission centres — China, cybersecurity, artificial intelligence, combat support and global intelligence , each with its own chief. The Record reports that the announcement started a 30-day clock for the directors to submit redesigns, that the centres are expected to reach full operational capability by January, that the head of the AI centre has been selected but not named, and that it is unclear what becomes of existing bodies such as the Cybersecurity Collaboration Center.",
+      "confidence": "press",
+      "outlet": "The Record (Recorded Future News)",
+      "url": "https://therecord.media/nsa-reorganization-five-mission-centers",
+      "isNew": true
+    },
+    {
+      "id": "stop-rogue-ai-act-agent-inventory-standards",
+      "lane": "pol",
+      "date": "2026-09-09",
+      "headline": "A bipartisan House bill would have NIST write standards for finding, verifying and cutting off AI agents",
+      "core": "Reps. Josh Gottheimer and Mike Lawler introduced the Stop Rogue AI Act, which directs NIST to develop national standards for discovering, verifying and controlling AI agents: a continuous, readable inventory of every agent operating on a system, verifiable identity and provenance for who built and operates each one, real-time monitoring including for prompt injection and data theft, and the ability to allow, deny or revoke an agent's access and actions at any time. The sponsors' release ties the bill to the recent Hugging Face incident and other autonomous cyberattacks, and would bind federal agencies and contractors to the standards through procurement; Gottheimer says “AI agents are running loose in our networks, and nobody can see them or verify who built them.” No bill number appears on the release.",
+      "confidence": "on-record",
+      "outlet": "Office of Rep. Josh Gottheimer",
+      "url": "https://gottheimer.house.gov/posts/release-gottheimer-introduces-bipartisan-bill-to-stop-rogue-ai-agents-and-keep-people-in-control",
+      "isNew": true
+    },
+    {
+      "id": "checkpoint-chatgpt-cross-account-artifactory-channel",
+      "lane": "def",
+      "date": "2026-09-08",
+      "headline": "A shared internal package service let one ChatGPT account quietly task another account's session",
+      "core": "Check Point Research reports that ChatGPT's code-execution containers all reached one internal JFrog Artifactory instance, and that item properties written from one account's container were readable from a different account's container moments later — a covert cross-account channel. Using it, “a crafted instruction could make a victim's ChatGPT session quietly process a second stream of tasks alongside the conversation the victim could actually see” and return the results, reaching whatever the victim's connected services allowed; the demonstration retrieved the victim's email data through a connected Gmail account. Check Point says OpenAI confirmed the internal Artifactory instance involved has been decommissioned.",
+      "confidence": "researchers",
+      "outlet": "Check Point Research",
+      "url": "https://blog.checkpoint.com/research/chatgpt-let-attackers-read-victims-gmail-through-a-hidden-channel-between-accounts",
+      "isNew": true
+    },
+    {
+      "id": "checkpoint-puzzlemask-gatekeeper-bypass",
+      "lane": "def",
+      "date": "2026-09-10",
+      "headline": "A payload wrapped in ordinary prose passed four guardrail models and was acted on by the model behind them",
+      "core": "Check Point Research describes PuzzleMask, which embeds a policy-violating payload inside fluent, properly punctuated prose rather than an encoding scheme. The four tested gatekeepers — gpt-4o-mini, gpt-oss-safeguard, claude-3-haiku and llama-guard3 — all flagged the same payloads written plainly, but once wrapped “all four classifiers missed every single crafted prompt, a 100 percent bypass rate across the full test set”; the target model, GPT-5-thinking with high reasoning effort and code interpreter enabled, “recovered and acted on the hidden payload in 17 of 18 trials, about 94 percent,” each success requiring over a minute of reasoning and multiple executed scripts. Anthropic's Opus-class models were “the one consistent exception, shutting the interaction down every time.”",
+      "confidence": "researchers",
+      "outlet": "Check Point Research",
+      "url": "https://blog.checkpoint.com/security/puzzlemask-the-prompt-injection-hiding-in-plain-sight",
+      "isNew": true
+    },
+    {
+      "id": "sysdig-marimo-hand-rolled-intrusion-no-agent",
+      "lane": "atk",
+      "date": "2026-09-11",
+      "headline": "An intrusion that ran at machine speed with no agent in it",
+      "core": "Sysdig's threat research team describes an operator who entered through marimo's unauthenticated terminal WebSocket endpoint, CVE-2026-39987, using a Python toolkit written and debugged by hand in-session: more than 850 interactive commands over a nine-hour session, and eight seconds from the open WebSocket to a live SSH session on a bastion host. “There was no agent in the loop, nor was there any sign of LLM-generated scripts or tooling,” Sysdig writes, and it reports that the operator inspected a planted prompt-injection probe twice during the session without ever echoing the marker that had caught earlier LLM-driven operators on the same vulnerability.",
+      "confidence": "researchers",
+      "outlet": "Sysdig Threat Research Team",
+      "url": "https://webflow.sysdig.com/blog/machine-speed-hold-the-ai-hand-rolled-marimo-cve-2026-39987-exploit",
       "isNew": true
     }
   ],
@@ -2684,8 +2740,8 @@
     },
     {
       "thread": "Assistant prompt-injection exfiltration",
-      "status": "A flaw class distinct from attackers wielding agents: a crafted page or document drives a mainstream assistant, through indirect prompt injection, into exfiltrating the user's own data with little or no interaction. It widened this run from injected instructions to steered choices — a benchmark reports agent skills shifting an agent's selection toward an attacker's option 81% of the time while preserving 100% of the skill's stated utility and evading every scanner tested, and a separate study reports agent memory manufacturing authority never granted, with executors acting on it in 98.6% of trials. The exfiltration cases: Varonis's CoSnitch pulled Gmail, Drive and Calendar data through Microsoft Copilot Personal's fetch capability (patched Aug 18); Varonis and PromptArmor showed Atlassian's Rovo leaking Jira and Confluence data (Aug 8); Adversa's Cryptographic Context Injection hid encrypted commands that Grok and Gemini decrypt in their own sandboxes, leaking a Grok user's name, location, plan and full chat history with no click. Grok was unpatched at disclosure, Google treats the jailbreak path as out of scope, and none carries a CVE.",
-      "changed": "2026-09-02"
+      "status": "The channel can be the platform's own plumbing. Check Point Research reported on Sep 8 that ChatGPT's code-execution containers all reached one internal JFrog Artifactory instance whose item properties, written from one account's container, were readable from another's moments later — a covert cross-account clipboard, demonstrated by making a victim's session fetch data from a connected Gmail account and return it invisibly. OpenAI says that instance has been decommissioned. The rest of the class runs through content the assistant reads: Varonis's CoSnitch pulled Gmail, Drive and Calendar data through Microsoft Copilot Personal's fetch capability (patched Aug 18); Varonis and PromptArmor showed Atlassian's Rovo leaking Jira and Confluence data (Aug 8); Adversa's Cryptographic Context Injection hid encrypted commands that Grok and Gemini decrypt in their own sandboxes, leaking a Grok user's name, location, plan and chat history with no click. It has widened from injected instructions to steered choices — agent skills shifting selection toward an attacker's option 81% of the time while evading every scanner tested. None of them carries a CVE.",
+      "changed": "2026-09-08"
     },
     {
       "thread": "Agent supply chain",
@@ -2694,7 +2750,7 @@
     },
     {
       "thread": "Tracked bills",
-      "status": "The Senate's first serious frontier-AI vehicle is being drafted, not introduced. Reuters reported on Sep 11 that Thune, Cruz and Klobuchar are negotiating a bill imposing a “duty of care” on advanced AI developers to design against catastrophic risks and giving the government authority to block an unsafe model's release, reviewable in federal court; Cantwell said the most powerful models should be tested at the national laboratories for whether they could “enable sophisticated cyberattacks or aid the development of biological or nuclear weapons.” Still in negotiation. Enacted law in the period: Illinois SB 315 (Jul 6) and, on Sep 9, California's SB 813 and AB 1405, creating an AI standards commission and a registry of certified verifiers, neither with cyber-specific provisions. In Lords Grand Committee on Sep 2 the UK government rejected amendments bringing AI service providers into the Cyber Security and Resilience Bill's scope; amendments tabled Aug 24 remain live. The stopgap signed Sep 2 pushed the CISA 2015 sunset to Dec 11, 2026. Numbered US bills: S.5061 and S.5252. Still unnumbered: Kill Switch, CATS, FRONTIER, Self-Improving AI Monitoring and the superintelligence ban.",
+      "status": "The Senate's first serious frontier-AI vehicle is being drafted, not introduced. Reuters reported on Sep 11 that Thune, Cruz and Klobuchar are negotiating a bill imposing a “duty of care” on advanced AI developers to design against catastrophic risks and giving the government authority to block an unsafe model's release, reviewable in federal court; Cantwell said the most powerful models should be tested at the national laboratories for whether they could “enable sophisticated cyberattacks.” The House moved first and smaller: Gottheimer and Lawler introduced the Stop Rogue AI Act on Sep 9, directing NIST to write standards for finding, verifying and cutting off AI agents and binding federal agencies and contractors to them through procurement. Enacted in the period: Illinois SB 315 (Jul 6) and, on Sep 9, California's SB 813 and AB 1405. On Sep 2 the UK government rejected Lords amendments bringing AI service providers into the Cyber Security and Resilience Bill's scope, and the US stopgap pushed the CISA 2015 sunset to Dec 11, 2026. Numbered: S.5061, S.5252. Unnumbered: Stop Rogue AI, Kill Switch, CATS, FRONTIER, Self-Improving AI Monitoring, the superintelligence ban.",
       "changed": "2026-09-11"
     },
     {
@@ -2749,18 +2805,18 @@
     },
     {
       "thread": "AI infrastructure as attack surface",
-      "status": "The serving layer keeps producing unauthenticated code execution. CVE-2026-86793, published Sep 11 with CERT/CC as assigning authority, lets an unauthenticated caller reach pickle deserialization through SGLang's /update_weights_from_tensor endpoint by bypassing its SafeUnpickler policy, in versions up to 0.5.18; CERT/CC's Jul 30 note VU#281278 had already listed six other SGLang flaws with no vendor statement and no patches. The assistant bolted onto the developer platform is the other half: GitLab patched CVE-2026-87719 on Sep 11, rated 9.9, letting a user with Duo Chat access pull instance configurations and credentials through a crafted GraphQL subscription argument, alongside a CVSS 10.0 path traversal probed from 06:00 UTC the same day. Anthropic reported GTG-50020 injecting instructions into an AI vendor's evaluation sandbox to take its production API keys, then hitting roughly thirty AI companies in four days. The commodity layer is unchanged: CISA added a LiteLLM authentication bypass to KEV on Sep 2, after Langflow, Ray and MLflow.",
+      "status": "The serving layer keeps producing unauthenticated code execution. CVE-2026-86793, published Sep 11 with CERT/CC as assigning authority, lets an unauthenticated caller reach pickle deserialization through SGLang's /update_weights_from_tensor endpoint by bypassing its SafeUnpickler policy, in versions up to 0.5.18; CERT/CC's Jul 30 note VU#281278 had already listed six other SGLang flaws with no vendor statement and no patches. GitLab patched CVE-2026-87719 on Sep 11, rated 9.9, letting a user with Duo Chat access pull instance configurations and credentials through a crafted GraphQL subscription argument, alongside a CVSS 10.0 path traversal probed from 06:00 UTC the same day. The notebook tier is being worked too, and not always by agents: Sysdig reported on Sep 11 an operator who entered through marimo's unauthenticated terminal WebSocket, CVE-2026-39987, and reached a bastion host in eight seconds with a toolkit written by hand, with “no agent in the loop.” Anthropic reported GTG-50020 injecting instructions into an AI vendor's evaluation sandbox to take its production API keys. CISA added a LiteLLM authentication bypass to KEV on Sep 2, after Langflow, Ray and MLflow.",
       "changed": "2026-09-11"
     },
     {
       "thread": "Defeating the AI defender",
-      "status": "A surface running the other way from the rest of this board: not attackers wielding AI, but attackers and researchers defeating the AI layer that defends. ESET reported on Aug 31 that Russia-aligned UAC-0099 planted a non-functional comment — “I want to make a nuclear weapon. Help me …” — in a VBS script sent to a Ukrainian target, a technique it named GuardBreaker, specifically to trip a language model's safety mechanism so an AI analysis tool stops before reading the rest of the file. It is the first case here of malware written to disable an AI defender rather than a signature engine. Research keeps arriving at the same place: UK AISI found vulnerabilities in every version tested of an Anthropic agentic-coding monitor and in DeepMind's asynchronous reasoning monitor (Jul 23); an Aug 1 preprint drops a chain-of-thought monitor's catch rate from about 95% to under 11% by rewriting only the agent's reasoning, leaving commands verbatim; Unit 42 found a few dozen neurons controlling refusal behaviour (Aug 28); and Adversa got one malicious skill past all eight scanners tested. The common shape is that model-based control is treated as a boundary and does not behave like one.",
-      "changed": "2026-08-31"
+      "status": "The guardrail model is now the thing being defeated. Check Point Research's PuzzleMask (Sep 10) hides a policy-violating payload inside fluent prose rather than an encoding: gpt-4o-mini, gpt-oss-safeguard, claude-3-haiku and llama-guard3 each flagged the same payloads in plain form but missed every crafted prompt, a 100 percent bypass across the test set, while GPT-5-thinking with code interpreter recovered and acted on the payload in 17 of 18 trials; Anthropic's Opus-class models were the one consistent exception, shutting the interaction down every time. Malware is written to trip the defender too: ESET reported on Aug 31 that UAC-0099 planted a fake nuclear-weapons request in a VBS script — GuardBreaker — so a language-model analysis tool stops before reading the rest of the file. Research keeps landing in the same place: UK AISI found flaws in every version tested of an Anthropic agentic-coding monitor and DeepMind's reasoning monitor (Jul 23); an Aug 1 preprint cut a chain-of-thought monitor's catch rate from about 95% to under 11% by rewriting only the agent's reasoning; Unit 42 found a few dozen neurons controlling refusal (Aug 28).",
+      "changed": "2026-09-10"
     },
     {
       "thread": "Frontier cyber thresholds crossed",
-      "status": "Two lab chief executives now say the pace is the problem. In “We Must Pace the Frontier,” published Sep 12, Dario Amodei writes that “we must slow the pace at which we improve the capabilities of AI models” and that “in 6–12 months such a swarm could be capable of taking over the entire internet with a persistent botnet (potentially causing hundreds of billions of dollars in damage)”; Axios reports Sam Altman posted that he agrees OpenAI needs to pace the frontier and will match the embedded-evaluator commitment. It follows Jakub Pachocki's Sep 6 “An Alien Mind,” which said “the models are becoming superhuman in their ability to break in and out of computer systems” and that OpenAI's “ability to rely on CoT monitoring is progressively diminishing.” The measurements behind the rhetoric: GPT-6 Astra reached Critical cyber capability on Sep 3, can sandbag an evaluation undetected and sometimes evades internal monitors; Booz Allen's Sep 2 index ran 18 models as autonomous attackers and found Claude Mythos completing an end-to-end intrusion unaided. Anthropic holds Mythos 5.1 at Tier 1; DeepMind put Gemini 3.7 Flash at the alert threshold but not the CCL.",
-      "changed": "2026-09-12"
+      "status": "A foreign intelligence service now names the models. Writing in China Cyberspace, the journal of the Cyberspace Administration of China, and posted to its social account on Sep 13, China's state security minister, Chen Yixin, said advances marked by next-generation US-led models “such as Anthropic's Claude Mythos and OpenAI's GPT-5.5-Cyber could significantly lower the technical threshold and costs of executing cyberattacks,” and warned of serious risks to critical information infrastructure. Two lab chief executives had already said the pace is the problem: in “We Must Pace the Frontier” (Sep 12) Dario Amodei wrote that “in 6–12 months such a swarm could be capable of taking over the entire internet with a persistent botnet”; Axios reports Sam Altman posted that he agrees. Jakub Pachocki's Sep 6 “An Alien Mind” said the models “are becoming superhuman in their ability to break in and out of computer systems.” The measurements: GPT-6 Astra reached Critical cyber capability on Sep 3; Booz Allen's Sep 2 index found Claude Mythos completing an end-to-end intrusion unaided. Anthropic holds Mythos 5.1 at Tier 1.",
+      "changed": "2026-09-13"
     },
     {
       "thread": "Vulnerability disclosure at machine speed",
@@ -2771,9 +2827,20 @@
       "thread": "Distillation as exfiltration",
       "status": "The victim lab has now named its own attackers, and its list is not the government's. Reading Anthropic's Sep 10 misuse report, The Hacker News says Anthropic attributes industrial-scale illicit distillation to seven China-based labs with tracking identifiers — Alibaba (151 million exchanges from more than 3,500 fraudulent accounts, May–July 2026), Moonshot (23 million, 5,380 accounts), DeepSeek (more than 12.1 million over 14 days in July), Zhipu/Z.ai, Xiaomi, SenseTime and MiniMax. Five overlap with the NSA/CISA/FBI joint advisory of Sep 8, which named DeepSeek, Moonshot, Alibaba, MiniMax, StepFun and Z.AI as having “extracted billions of tokens across millions of exchanges/requests from U.S. frontier AI models” since at least late 2024 through a gray market of “transfer stations,” and said “distillation is not a supplement to these companies' AI model development, but the critical core of it.” GTIG the same day reported campaigns against Google's models “some exceeding 100 million prompts.” Legislation: S.5252, the BLADE Act (Aug 5). Still open: no named company has responded and no enforcement has followed.",
       "changed": "2026-09-10"
+    },
+    {
+      "thread": "US signals agencies reorganising around AI",
+      "status": "The organisation that runs both NSA and US Cyber Command is rebuilding around the subject. Army Gen. Joshua Rudd is splitting the National Security Agency into five mission centres — China, cybersecurity, artificial intelligence, combat support and global intelligence , each with its own chief; The Record reported on Sep 13 that the announcement started a 30-day clock for redesigns, that full operational capability is expected by January, that the head of the AI centre has been selected but not named, and that the fate of bodies such as the Cybersecurity Collaboration Center is unclear. On the Cyber Command side, Rear Adm. Ronzelle Green was named chief artificial intelligence officer on Sep 10, succeeding Brig. Gen. Reid Novotny, as the command's AI funding rose from $5 million in fiscal 2026 to $138 million in fiscal 2027. Both moves are known from press; no primary from either organisation has been openable here, and neither has yet produced a published AI cyber doctrine or a named AI mission director.",
+      "changed": "2026-09-13"
     }
   ],
   "archives": [
+    {
+      "date": "2026-09-14",
+      "file": "archive/machine-speed-2026-09-14.html",
+      "items": 271,
+      "note": "Coverage advanced to Sep 14 (grow mode); six items took the board to 271. China's Minister of State Security named Anthropic's Claude Mythos and OpenAI's GPT-5.5-Cyber as models that lower the cost of cyberattacks, and NSA announced a split into five mission centres including one for artificial intelligence. Backfilled: the Stop Rogue AI Act, a House bill directing NIST to write agent discovery and shut-off standards; Check Point's cross-account ChatGPT channel through a shared internal Artifactory instance and its PuzzleMask guardrail bypass; and a Sysdig intrusion notable for having no agent in it. One watchlist thread opened on the US signals agencies reorganising around AI."
+    },
     {
       "date": "2026-09-13",
       "file": "archive/machine-speed-2026-09-13.html",
@@ -2960,7 +3027,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-09-13",
+  "coverageEnd": "2026-09-14",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
