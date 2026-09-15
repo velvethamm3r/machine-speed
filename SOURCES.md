@@ -97,6 +97,11 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Pillar Security** — https://www.pillar.security/blog. `def`
 - **HiddenLayer** — https://hiddenlayer.com/research/. `def`
 - **Protect AI** — https://protectai.com/blog. `def`
+- **OX Security — OX Research** — https://www.ox.security/blog. `def` `cap`
+  - _Added 2026-09-15. The discoverer of CVE-2026-82533, the DeepSeek Harness flaw that let a sandboxed agent disable its own
+    confinement with one shell command; the item took seven days to reach the board because no entry here pointed at them, which
+    is the source-gap signature the 2026-09-09 measurement identified. The blog opens first try, posts are dated and bylined, and
+    the company is publishing CVE-level findings against agent harnesses — the fastest-moving part of the Defense lane._
 - **XBOW** — https://xbow.com/blog (offensive-capability comparisons). `cap`
 - **PromptArmor** — research posts (often co-disclosed via The Hacker News). `def`
 

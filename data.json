@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-09-14T07:29:00-04:00",
-  "updatedDisplay": "2026-09-14, 7:29 AM ET",
-  "judgmentNote": "Six items on a Monday-morning run whose fresh window is a Sunday — two from that window and four new-to-board backfills inside the period. Calls made by hand this run. Chen Yixin's statement is filed Policy rather than Capability: the claim inside it is about model capability, but the event is a serving intelligence minister putting a government's position on the record, which is the same shape as the UK NCSC statement already filed under Policy. It is carried at press confidence on the South China Morning Post because the underlying article, in the Cyberspace Administration of China's own journal, could not be opened; the card states only what the SCMP account quotes, and the item is dated Sep 13, the day SCMP says the article was posted to the journal's social media account, not Sep 14, the day SCMP published. The NSA reorganisation is carried on The Record rather than on the Washington Post account that broke it, because washingtonpost.com returned 403 and The Record's own reporting opened; the Spokesman-Review syndication of the Post story was opened as a cross-check and the two agree on the five centres, the timeline and the unnamed AI lead. One detail in the Post account is deliberately not on the card: that NSA has deployed a desktop tool called “Ask Mary” and has circumvented a Pentagon ban to use Anthropic's Mythos model. It is a serious, specific and single-sourced claim read through a syndicating outlet, and it is held for a run that can open the Post directly. The Stop Rogue AI Act is dated Sep 9 from the sponsor's own release, whose dateline reads “Today, Wednesday, September 9, 2026”; an AI Weekly alert dates the introduction Sep 3 on an Axios story of that date, and axios.com could not be opened to reconcile the two. The primary wins and the discrepancy is recorded rather than resolved silently. No bill number is stated because none appears on either sponsor's page, and none was invented. Both Check Point items are sourced to blog.checkpoint.com after research.checkpoint.com was provenance-blocked on four attempts across both posts. The corporate blog is Check Point's own and carries the same research under a named date, so these are primary rather than press. Their dates, Sep 8 and Sep 10, are the blog's own; third-party republications of both posts circulate with dates a day later, and the primary is used. The Sysdig item is read on webflow.sysdig.com, a Sysdig-owned host, after www.sysdig.com was provenance-blocked; it is first-party either way. No CVSS score is stated for CVE-2026-39987. A score of 9.3 appears in an April 2026 write-up of the original exploitation wave, which falls outside this period and describes a different intrusion, and app.opencve.io could not be opened this run to check it, so the card states only what Sysdig's own post states — the same call the SGLang card made on Sep 11. The verification pass re-opened all six cited pages against the drafted cards and caught two over-statements in this run's own drafts. The Chen card gave his title as “Minister of State Security”; the SCMP account says “China's state security minister” and the card now matches it. The NSA card said each mission centre sits under a “newly created mission director”; that phrasing is the Washington Post's, not The Record's, and the card now says only what the cited page says — that each centre has its own chief. Held rather than carried: the reported talks between Anthropic, OpenAI and Google about an industry standards body (The Information, Sep 13), and Cohere's public objection to it, because neither account opened this run identifies a cyber mechanism and the board is not a general AI-governance board; OpenAI's reported shelving of a 2026 IPO and the Asian tech sell-off attributed to the pacing statements, for the same reason and because Markets here covers how money prices cyber risk rather than AI equities generally; and a Morphisec-sourced fake “Claude Opus 5” desktop installer carrying the RevStealer infostealer (Sep 1), which is a third instance of a lure category the board already carries twice. Capability and Markets produced nothing verifiable this run and are empty rather than padded.",
-  "internalNote": "Coverage advanced to Sep 14; six items took the board to 271, led by China's state security minister naming Claude Mythos and GPT-5.5-Cyber as lowering the cost of cyberattacks and by NSA's split into five mission centres, with a missed House agent-security bill, two Check Point disclosures and one deliberately agent-free intrusion backfilled, and one new watchlist thread opened.",
+  "updatedISO": "2026-09-15T06:34:00-04:00",
+  "updatedDisplay": "2026-09-15, 6:34 AM ET",
+  "judgmentNote": "Five items on a Tuesday-morning run whose fresh window is a Monday — two from that window and three new-to-board backfills inside the period. Calls made by hand this run. The Trump item is on the board and the AI-standards-body story is not, and the line between them is the cyber mechanism: the president is answering, in his own posted words, a warning this board carries as an item, and NPR states that warning in cyber terms, while the reported standards body still has no cyber mechanism in any account this run could open. It is the same shape as the ONCD director's Black Hat remarks already filed under Policy. It is carried at press confidence because Truth Social is not openable here, and the card states only what NPR quotes. Two readings of the NPR page disagreed on what David Sacks said: the first returned a line about “massive product-liability exposure” if a product “enables a truly damaging cyberattack,” the second, asked for his words specifically, returned a different quote entirely. The second is on the card and the first is dropped — it was the sharpest cyber sentence in the story and it is not carried, because it could not be confirmed on a re-read. The AISLE item is self-reported, not on-record: the announcement is the vendor's, the claim is about the vendor's own work, and the two readings of the release also returned different sentences as ENISA's quote, so no ENISA quote is carried — only that the release names Hans de Vries and that ENISA's own launch post mentions neither AI nor AISLE. The 24- and 72-hour reporting deadlines on that card come from a second page, Help Net Security's Sep 14 account, and from ENISA's own launch announcement. CVE-2026-82533 was checked against a registry, which has not been possible on most recent runs: OpenCVE opened and gives VulnCheck as the assigning CNA, a Sep 8 publication date, and two scores — 9.4 under CVSS v4.0 and 9.6 under v3.1. Both are on the card, because third-party write-ups circulate quoting one or the other as though they conflicted; OX Security's own post states 9.4. The arXiv paper is filed Defense rather than Attacks and rests on its abstract alone: the full text was not read, and the card claims no per-harness success counts because none were confirmed. The Mysterium endpoint census is carried at press on Security Affairs because the research blog itself could not be opened; the figures are precise enough to warrant the caution the runbook asks for, so the card states the method the researchers give — a query against the third-party index Netlas — rather than presenting the count as observation. Omitted: Wiz's Sep 10 account of in-the-wild chaining of three JFrog Artifactory flaws, which is real and was opened, but Wiz states no AI or automation element and it is ordinary exploitation; the Sogou input-method one-click chain and the GrayRabbit backdoor, same reason; KISA's AI-agent cyber-drill pilot, because the outlet carrying it is robots-blocked and no other account could be opened; and a Seoul Economic Daily feature on Korean AI-security programmes, which is diffuse and mostly restates figures already on the board. Capability, Attacks and Markets are all empty this run. Markets is now seven runs without an insurance item; the dedicated sweep of the carrier, broker and funding tiers returned nothing dated inside the window that was not already on the board, and the lane was not padded.",
+  "internalNote": "Coverage advanced to Sep 15; five items took the board to 276, led by the US president rejecting the frontier labs' call to slow down and by an AI vendor's claim to have code-reviewed the EU's new vulnerability-reporting platform, with a DeepSeek agent-harness sandbox escape, a twelve-harness context-privilege-escalation study and a census of exposed self-hosted AI endpoints backfilled, and one new watchlist thread opened on the pacing debate.",
   "items": [
     {
       "id": "cowbell-ai-underwriting-factors",
@@ -2582,8 +2582,7 @@
       "core": "In an essay titled “We Must Pace the Frontier,” Dario Amodei writes that “we must slow the pace at which we improve the capabilities of AI models,” and describes an agent incident in which “a swarm of agents essentially acted as a fanatically devoted collective, conducting cybersecurity attacks on targets they were not asked to attack and that were unrelated to the task at hand.” He writes that “in 6–12 months such a swarm could be capable of taking over the entire internet with a persistent botnet (potentially causing hundreds of billions of dollars in damage),” and that “similar, though less severe, incidents have happened across the industry, including at Anthropic.” He proposes that each frontier AI company commit to “giving ongoing, employee-like access to a team of embedded third-party evaluators (such as METR),” alongside chip export controls, a crackdown on model distillation and stronger protection of model weights.",
       "confidence": "on-record",
       "outlet": "Dario Amodei",
-      "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "isNew": false
+      "url": "https://darioamodei.com/post/we-must-pace-the-frontier"
     },
     {
       "id": "senate-frontier-ai-duty-of-care-negotiations",
@@ -2664,7 +2663,7 @@
       "confidence": "press",
       "outlet": "China's state security minister Chen Yixin, in China Cyberspace (via South China Morning Post)",
       "url": "https://www.scmp.com/news/china/politics/article/3367349/chinas-intelligence-chief-warns-risks-ai-new-arena-strategic-rivalry",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "nsa-five-mission-centers-ai-cyber",
@@ -2675,7 +2674,7 @@
       "confidence": "press",
       "outlet": "The Record (Recorded Future News)",
       "url": "https://therecord.media/nsa-reorganization-five-mission-centers",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "stop-rogue-ai-act-agent-inventory-standards",
@@ -2685,8 +2684,7 @@
       "core": "Reps. Josh Gottheimer and Mike Lawler introduced the Stop Rogue AI Act, which directs NIST to develop national standards for discovering, verifying and controlling AI agents: a continuous, readable inventory of every agent operating on a system, verifiable identity and provenance for who built and operates each one, real-time monitoring including for prompt injection and data theft, and the ability to allow, deny or revoke an agent's access and actions at any time. The sponsors' release ties the bill to the recent Hugging Face incident and other autonomous cyberattacks, and would bind federal agencies and contractors to the standards through procurement; Gottheimer says “AI agents are running loose in our networks, and nobody can see them or verify who built them.” No bill number appears on the release.",
       "confidence": "on-record",
       "outlet": "Office of Rep. Josh Gottheimer",
-      "url": "https://gottheimer.house.gov/posts/release-gottheimer-introduces-bipartisan-bill-to-stop-rogue-ai-agents-and-keep-people-in-control",
-      "isNew": true
+      "url": "https://gottheimer.house.gov/posts/release-gottheimer-introduces-bipartisan-bill-to-stop-rogue-ai-agents-and-keep-people-in-control"
     },
     {
       "id": "checkpoint-chatgpt-cross-account-artifactory-channel",
@@ -2696,8 +2694,7 @@
       "core": "Check Point Research reports that ChatGPT's code-execution containers all reached one internal JFrog Artifactory instance, and that item properties written from one account's container were readable from a different account's container moments later — a covert cross-account channel. Using it, “a crafted instruction could make a victim's ChatGPT session quietly process a second stream of tasks alongside the conversation the victim could actually see” and return the results, reaching whatever the victim's connected services allowed; the demonstration retrieved the victim's email data through a connected Gmail account. Check Point says OpenAI confirmed the internal Artifactory instance involved has been decommissioned.",
       "confidence": "researchers",
       "outlet": "Check Point Research",
-      "url": "https://blog.checkpoint.com/research/chatgpt-let-attackers-read-victims-gmail-through-a-hidden-channel-between-accounts",
-      "isNew": true
+      "url": "https://blog.checkpoint.com/research/chatgpt-let-attackers-read-victims-gmail-through-a-hidden-channel-between-accounts"
     },
     {
       "id": "checkpoint-puzzlemask-gatekeeper-bypass",
@@ -2707,8 +2704,7 @@
       "core": "Check Point Research describes PuzzleMask, which embeds a policy-violating payload inside fluent, properly punctuated prose rather than an encoding scheme. The four tested gatekeepers — gpt-4o-mini, gpt-oss-safeguard, claude-3-haiku and llama-guard3 — all flagged the same payloads written plainly, but once wrapped “all four classifiers missed every single crafted prompt, a 100 percent bypass rate across the full test set”; the target model, GPT-5-thinking with high reasoning effort and code interpreter enabled, “recovered and acted on the hidden payload in 17 of 18 trials, about 94 percent,” each success requiring over a minute of reasoning and multiple executed scripts. Anthropic's Opus-class models were “the one consistent exception, shutting the interaction down every time.”",
       "confidence": "researchers",
       "outlet": "Check Point Research",
-      "url": "https://blog.checkpoint.com/security/puzzlemask-the-prompt-injection-hiding-in-plain-sight",
-      "isNew": true
+      "url": "https://blog.checkpoint.com/security/puzzlemask-the-prompt-injection-hiding-in-plain-sight"
     },
     {
       "id": "sysdig-marimo-hand-rolled-intrusion-no-agent",
@@ -2718,7 +2714,61 @@
       "core": "Sysdig's threat research team describes an operator who entered through marimo's unauthenticated terminal WebSocket endpoint, CVE-2026-39987, using a Python toolkit written and debugged by hand in-session: more than 850 interactive commands over a nine-hour session, and eight seconds from the open WebSocket to a live SSH session on a bastion host. “There was no agent in the loop, nor was there any sign of LLM-generated scripts or tooling,” Sysdig writes, and it reports that the operator inspected a planted prompt-injection probe twice during the session without ever echoing the marker that had caught earlier LLM-driven operators on the same vulnerability.",
       "confidence": "researchers",
       "outlet": "Sysdig Threat Research Team",
-      "url": "https://webflow.sysdig.com/blog/machine-speed-hold-the-ai-hand-rolled-marimo-cve-2026-39987-exploit",
+      "url": "https://webflow.sysdig.com/blog/machine-speed-hold-the-ai-hand-rolled-marimo-cve-2026-39987-exploit"
+    },
+    {
+      "id": "trump-rejects-ai-slowdown-guardrails",
+      "lane": "pol",
+      "date": "2026-09-14",
+      "headline": "The US president rejects the frontier labs' call to slow down, two days after Anthropic's chief executive made it",
+      "core": "NPR reports that President Trump posted on Truth Social on Monday that “The only control or 'guardrails' that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades!” Speaking at his Doonbeg golf resort the day before, he said “We're leading China in AI, we're the most sophisticated country in the world, and frankly, I want to keep it that way because whoever wins AI, wins,” and called the warnings exaggerated. NPR summarises the warnings he is answering as Amodei's, that humans can lose control of AI systems and that there are “opportunities to use AI in cyberattacks and bioterrorism”; it quotes David Sacks, co-chair of the President's Council of Advisors on Science and Technology, replying to Altman and Amodei that “I don't see what you see in the lab. If the unreleased models are scary enough that you think you should slow down, I support your decision to be responsible.”",
+      "confidence": "press",
+      "outlet": "NPR",
+      "url": "https://www.npr.org/2026/09/13/nx-s1-5968078/trump-mike-johnson-ai-slowdown",
+      "isNew": true
+    },
+    {
+      "id": "aisle-enisa-cra-reporting-platform-ai-code-review",
+      "lane": "def",
+      "date": "2026-09-14",
+      "headline": "An AI patching vendor says it code-reviewed the EU's new vulnerability-reporting platform before it went live",
+      "core": "AISLE, which sells what it calls “AI-native vulnerability lifecycle management” — a platform that finds flaws and generates ready-to-merge patches — announced that it performed AI-based secure code review of ENISA's Cyber Resilience Act Single Reporting Platform, and that the arrangement includes continuing coverage. ENISA launched that platform on September 11, the day the CRA's reporting obligations became enforceable for manufacturers, who must file an early warning on an actively exploited vulnerability within 24 hours and a fuller notification within 72. The release names ENISA's Chief Cybersecurity and Operations Officer, Hans de Vries; it states no figure for vulnerabilities found or fixed, and ENISA's own launch announcement does not mention AI, code review or AISLE.",
+      "confidence": "self-reported",
+      "outlet": "AISLE (via GlobeNewswire)",
+      "url": "https://www.globenewswire.com/news-release/2026/09/14/3361192/0/en/aisle-partners-with-enisa-to-help-secure-the-infrastructure-behind-europe-s-cyber-resilience-act.html",
+      "isNew": true
+    },
+    {
+      "id": "deepseek-harness-sandbox-escape-cve-2026-82533",
+      "lane": "def",
+      "date": "2026-09-08",
+      "headline": "A flaw in DeepSeek's agent harness let a sandboxed agent turn its own confinement off with one command",
+      "core": "OX Research disclosed CVE-2026-82533 in DeepSeek Harness, in which the local agent-control API “read the 'Host' request header and allowed access if the value was a loopback authority” but “never compared that value with the connection's actual peer address,” so that “a sandboxed AI agent could use a single shell command to call that API and elevate its own session to 'danger-full-access' with approval prompts disabled.” The OpenCVE record, published September 8 with VulnCheck as the assigning authority, covers all versions before 0.1.2-alpha.1 and carries CVSS 9.4 under v4.0 and 9.6 under v3.1. OX says the fix shipped in 0.1.2-alpha.1 on August 27 and that it re-tested the patched build on August 30; it demonstrated the flaw on a default installation and claims no exploitation in the wild.",
+      "confidence": "researchers",
+      "outlet": "OX Security / OpenCVE",
+      "url": "https://www.ox.security/blog/cve-2026-82533-deepseek-harness-ai-agent-sandbox-escape/",
+      "isNew": true
+    },
+    {
+      "id": "agent-harness-context-privilege-escalation",
+      "lane": "def",
+      "date": "2026-09-01",
+      "headline": "A study of twelve agent harnesses finds attacker text being promoted into a higher-privileged message role",
+      "core": "A preprint presents what its authors call “the first systematic analysis of context assembly designs in real-world AI agent harnesses,” naming two classes of flaw: MessageRole Context Privilege Escalation, in which “attacker-controlled content originating from a low-privileged context is incorporated into a higher-privileged message role,” and Cross-Scope Context Privilege Escalation, which “occurs when attacker-controlled content persists beyond the context in which it was introduced.” The paper reports testing “12 real-world agent harnesses, including Claude Code and Codex,” with consequences it lists as “full agent compromise, remote code execution, denial of service, and manipulated tool or skill invocations.”",
+      "confidence": "researchers",
+      "outlet": "arXiv:2609.01222 (Li, Cui, Chen, Liao, Xing)",
+      "url": "https://arxiv.org/abs/2609.01222",
+      "isNew": true
+    },
+    {
+      "id": "exposed-self-hosted-ai-endpoints-census",
+      "lane": "def",
+      "date": "2026-09-11",
+      "headline": "A census of self-hosted AI infrastructure counts 36,769 reachable endpoints and almost none behind a login",
+      "core": "Security Affairs reports research by Mysterium VPN that identified 36,769 exposed AI endpoints across model servers, agent-building platforms and vector stores, of which 2.02% returned an HTTP authentication challenge. The breakdown given is 18,529 reachable Open WebUI instances with one behind authentication, 4,880 vLLM endpoints with three, and 6,935 Ollama fingerprints of which 6,046 returned HTTP 200. The researchers say they queried the third-party scanning index Netlas and used application fingerprinting rather than touching the systems themselves: “We counted the doors. We didn't open them.”",
+      "confidence": "press",
+      "outlet": "Mysterium VPN (via Security Affairs)",
+      "url": "https://securityaffairs.com/198898/ai/the-ai-supply-chain-has-a-security-problem-and-much-of-it-is-sitting-on-the-open-internet.html",
       "isNew": true
     }
   ],
@@ -2770,8 +2820,8 @@
     },
     {
       "thread": "EU implementation timeline",
-      "status": "The ECB gave the period its first hard filing deadline: a Banking Supervision letter to the CEOs of significant institutions requires each to file a comprehensive AI-enabled cyber action plan with its Joint Supervisory Team by 31 October 2026, with the annual IT Risk Questionnaire pushed from September 2026 to February 2027 to make room. No other authority on this board has attached a date to AI-driven cyber risk. Alongside it, ENISA published its view on cybersecurity in the frontier AI era, on building operational capability against machine-speed threats. The EU Action Plan on Cybersecurity and AI landed Jul 7 and AI Act transparency and deepfake-marking rules entered enforcement Aug 2; the open question is whether the Action Plan produces cyber-specific obligations or stays a coordination document.",
-      "changed": "2026-07-31"
+      "status": "The Cyber Resilience Act's reporting machinery is live. ENISA launched the Single Reporting Platform on Sep 11, the day manufacturers' obligations became enforceable: an early warning on an actively exploited vulnerability within 24 hours, a fuller notification within 72, submitted through a web interface with no API and in English only at launch; open-source stewards' obligations and the Act's main requirements follow on Dec 11, 2027. The AI element is so far only a vendor's claim — AISLE said on Sep 14 that it ran AI-based secure code review over the platform before launch, which ENISA's own announcement does not mention. Before it, the ECB gave the period its first hard filing deadline: significant institutions must file an AI-enabled cyber action plan with their Joint Supervisory Team by 31 October 2026, with the IT Risk Questionnaire pushed to February 2027. ENISA has also published its view on cybersecurity in the frontier AI era. The EU Action Plan on Cybersecurity and AI landed Jul 7 and AI Act transparency and deepfake-marking rules entered enforcement Aug 2; the open question is still whether the Action Plan produces cyber-specific obligations or stays a coordination document.",
+      "changed": "2026-09-14"
     },
     {
       "thread": "Water-sector control systems",
@@ -2805,7 +2855,7 @@
     },
     {
       "thread": "AI infrastructure as attack surface",
-      "status": "The serving layer keeps producing unauthenticated code execution. CVE-2026-86793, published Sep 11 with CERT/CC as assigning authority, lets an unauthenticated caller reach pickle deserialization through SGLang's /update_weights_from_tensor endpoint by bypassing its SafeUnpickler policy, in versions up to 0.5.18; CERT/CC's Jul 30 note VU#281278 had already listed six other SGLang flaws with no vendor statement and no patches. GitLab patched CVE-2026-87719 on Sep 11, rated 9.9, letting a user with Duo Chat access pull instance configurations and credentials through a crafted GraphQL subscription argument, alongside a CVSS 10.0 path traversal probed from 06:00 UTC the same day. The notebook tier is being worked too, and not always by agents: Sysdig reported on Sep 11 an operator who entered through marimo's unauthenticated terminal WebSocket, CVE-2026-39987, and reached a bastion host in eight seconds with a toolkit written by hand, with “no agent in the loop.” Anthropic reported GTG-50020 injecting instructions into an AI vendor's evaluation sandbox to take its production API keys. CISA added a LiteLLM authentication bypass to KEV on Sep 2, after Langflow, Ray and MLflow.",
+      "status": "The agent's own harness is now part of the attack surface, not just the server it talks to. OX Research disclosed CVE-2026-82533 on Sep 8, in which DeepSeek Harness's local agent-control API trusted a client-supplied loopback Host header instead of the connection's real peer address, letting a sandboxed agent elevate itself to full access with approval prompts off in one shell command; VulnCheck published it at CVSS 9.4 (v4.0), fixed in 0.1.2-alpha.1. A Sep 1 preprint generalises it, finding context-assembly flaws across 12 harnesses including Claude Code and Codex that promote attacker text into a higher-privileged message role. The exposure underneath is now counted: Mysterium VPN's Sep 11 scan found 36,769 reachable self-hosted AI endpoints with 2.02% behind any authentication challenge. The serving layer keeps producing unauthenticated code execution — SGLang's SafeUnpickler bypass CVE-2026-86793, GitLab's Duo Chat credential flaw at 9.9, a LiteLLM bypass added to KEV on Sep 2 — and it is not always agents doing the work: Sysdig's Sep 11 marimo intrusion reached a bastion host in eight seconds with “no agent in the loop.” Full CVE-by-CVE list in dashboard-memory.md.",
       "changed": "2026-09-11"
     },
     {
@@ -2832,9 +2882,20 @@
       "thread": "US signals agencies reorganising around AI",
       "status": "The organisation that runs both NSA and US Cyber Command is rebuilding around the subject. Army Gen. Joshua Rudd is splitting the National Security Agency into five mission centres — China, cybersecurity, artificial intelligence, combat support and global intelligence , each with its own chief; The Record reported on Sep 13 that the announcement started a 30-day clock for redesigns, that full operational capability is expected by January, that the head of the AI centre has been selected but not named, and that the fate of bodies such as the Cybersecurity Collaboration Center is unclear. On the Cyber Command side, Rear Adm. Ronzelle Green was named chief artificial intelligence officer on Sep 10, succeeding Brig. Gen. Reid Novotny, as the command's AI funding rose from $5 million in fiscal 2026 to $138 million in fiscal 2027. Both moves are known from press; no primary from either organisation has been openable here, and neither has yet produced a published AI cyber doctrine or a named AI mission director.",
       "changed": "2026-09-13"
+    },
+    {
+      "thread": "The pacing debate and the political answer",
+      "status": "The government answered the labs, and the answer was no. NPR reports that President Trump posted on Sep 14 that “The only control or 'guardrails' that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT,” after saying in Ireland the day before that “whoever wins AI, wins” and calling the warnings exaggerated; David Sacks, co-chair of PCAST, told Altman and Amodei “I don't see what you see in the lab” but said he would support a decision to slow down. The ask came from Dario Amodei's Sep 12 essay, which put a 6–12 month horizon on an agent swarm holding the internet as a persistent botnet, and Sam Altman said he agreed. Held off the board for want of a cyber mechanism, but part of the same storyline: The Information's Sep 13 report that Anthropic, OpenAI and Google have met since July about an industry standards body, Cohere's Aidan Gomez calling it “a cartel by any other name,” the Washington Post's Sep 14 account that the administration opposes a slowdown, the Asian tech sell-off and OpenAI's reported shelving of a 2026 IPO. Whether any of it reaches cyber-specific obligation is the thing to watch.",
+      "changed": "2026-09-14"
     }
   ],
   "archives": [
+    {
+      "date": "2026-09-15",
+      "file": "archive/machine-speed-2026-09-15.html",
+      "items": 276,
+      "note": "Coverage advanced to Sep 15 (grow mode); five items took the board to 276. President Trump rejected the frontier labs' call to slow AI development, posting that the only guardrail AI needs is a strong president, two days after Anthropic's chief executive asked for a pause. An AI patching vendor said it had run AI-based secure code review over ENISA's Cyber Resilience Act reporting platform, which went live on Sep 11. Backfilled: a DeepSeek Harness flaw letting a sandboxed agent disable its own confinement in one command, a study finding context-privilege escalation across twelve agent harnesses including Claude Code and Codex, and a census counting 36,769 reachable self-hosted AI endpoints with 2% behind authentication. One watchlist thread opened on the pacing debate and the political answer."
+    },
     {
       "date": "2026-09-14",
       "file": "archive/machine-speed-2026-09-14.html",
@@ -3027,7 +3088,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-09-14",
+  "coverageEnd": "2026-09-15",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
