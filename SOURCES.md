@@ -84,6 +84,12 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     It is Check Point's own site, so an item sourced there is primary, not press. Two board items came from it this
     run after four blocked attempts on the research host._
 - **SentinelOne Labs** — https://www.sentinelone.com/labs/. `atk` `def`
+- **Sophos — Counter Threat Unit / Sophos News** — https://news.sophos.com/en-us/category/threat-research/ · corporate https://www.sophos.com/en-us/blog. `atk` `def`
+  - _Added 2026-09-16. The CTU found Luciferus, the uncensored-LLM subscription sold on the Exploit forum, and the
+    board reached it only through Help Net Security because nothing here pointed at Sophos — the source-gap signature
+    the 2026-09-09 measurement identified. Both Sophos hosts were provenance-blocked on every attempt this run, so
+    expect to cite a syndicating outlet and upgrade on an attended run; the value of the entry is knowing the CTU is
+    publishing on criminal AI tooling at all._
 - **Wiz** — https://www.wiz.io/blog. `def`
 - **watchTowr Labs** — https://labs.watchtowr.com/. `atk`
 - **Okta Threat Intelligence** — https://sec.okta.com/. `atk`

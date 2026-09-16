@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-09-15T06:34:00-04:00",
-  "updatedDisplay": "2026-09-15, 6:34 AM ET",
-  "judgmentNote": "Five items on a Tuesday-morning run whose fresh window is a Monday — two from that window and three new-to-board backfills inside the period. Calls made by hand this run. The Trump item is on the board and the AI-standards-body story is not, and the line between them is the cyber mechanism: the president is answering, in his own posted words, a warning this board carries as an item, and NPR states that warning in cyber terms, while the reported standards body still has no cyber mechanism in any account this run could open. It is the same shape as the ONCD director's Black Hat remarks already filed under Policy. It is carried at press confidence because Truth Social is not openable here, and the card states only what NPR quotes. Two readings of the NPR page disagreed on what David Sacks said: the first returned a line about “massive product-liability exposure” if a product “enables a truly damaging cyberattack,” the second, asked for his words specifically, returned a different quote entirely. The second is on the card and the first is dropped — it was the sharpest cyber sentence in the story and it is not carried, because it could not be confirmed on a re-read. The AISLE item is self-reported, not on-record: the announcement is the vendor's, the claim is about the vendor's own work, and the two readings of the release also returned different sentences as ENISA's quote, so no ENISA quote is carried — only that the release names Hans de Vries and that ENISA's own launch post mentions neither AI nor AISLE. The 24- and 72-hour reporting deadlines on that card come from a second page, Help Net Security's Sep 14 account, and from ENISA's own launch announcement. CVE-2026-82533 was checked against a registry, which has not been possible on most recent runs: OpenCVE opened and gives VulnCheck as the assigning CNA, a Sep 8 publication date, and two scores — 9.4 under CVSS v4.0 and 9.6 under v3.1. Both are on the card, because third-party write-ups circulate quoting one or the other as though they conflicted; OX Security's own post states 9.4. The arXiv paper is filed Defense rather than Attacks and rests on its abstract alone: the full text was not read, and the card claims no per-harness success counts because none were confirmed. The Mysterium endpoint census is carried at press on Security Affairs because the research blog itself could not be opened; the figures are precise enough to warrant the caution the runbook asks for, so the card states the method the researchers give — a query against the third-party index Netlas — rather than presenting the count as observation. Omitted: Wiz's Sep 10 account of in-the-wild chaining of three JFrog Artifactory flaws, which is real and was opened, but Wiz states no AI or automation element and it is ordinary exploitation; the Sogou input-method one-click chain and the GrayRabbit backdoor, same reason; KISA's AI-agent cyber-drill pilot, because the outlet carrying it is robots-blocked and no other account could be opened; and a Seoul Economic Daily feature on Korean AI-security programmes, which is diffuse and mostly restates figures already on the board. Capability, Attacks and Markets are all empty this run. Markets is now seven runs without an insurance item; the dedicated sweep of the carrier, broker and funding tiers returned nothing dated inside the window that was not already on the board, and the lane was not padded.",
-  "internalNote": "Coverage advanced to Sep 15; five items took the board to 276, led by the US president rejecting the frontier labs' call to slow down and by an AI vendor's claim to have code-reviewed the EU's new vulnerability-reporting platform, with a DeepSeek agent-harness sandbox escape, a twelve-harness context-privilege-escalation study and a census of exposed self-hosted AI endpoints backfilled, and one new watchlist thread opened on the pacing debate.",
+  "updatedISO": "2026-09-16T10:35:00-04:00",
+  "updatedDisplay": "2026-09-16, 10:35 AM ET",
+  "judgmentNote": "Seven items across a morning run and an afternoon follow-up. Coverage advanced to Sep 16; coverageStart stays pinned at Jul 1 (grow mode) and nothing rolled off.\n\nThe follow-up is a remit decision, and it is Daria's, not the run's. The morning run held the Sep 15 pacing-and-carve-out material off the board for the third consecutive run because no source opened had any participant naming a cyber mechanism, and recorded that the call was getting less comfortable each time. Daria directed that it go on. Two items were added: OpenAI's own confirmation of the multi-lab coordination, and the same day's refusal of a liability exemption by Treasury and of an antitrust exemption by the FTC. Both are `pol` and both are `press`; the standards-body reporting, Gomez's “cartel” line and the IPO reporting stay off the board and in the watchlist, because adding the two items Daria named is not the same as dissolving the cyber-mechanism test.\n\nHand calls on the two new items. Bessent and Ferguson are one card, not two: two officials in two venues on one day refusing one proposition, filed the way the Sep 14 Trump card carries a Truth Social post and remarks in Ireland as one item. The Bessent quotes were checked three times against the two accounts that carry them, after a first and second reading of implicator.ai each returned a different one of his sentences as though it were the only one; FedScoop carries six, names the questioner as Rep. Juan Vargas and is the citation. Reuters supplies Ferguson's fuller sentences and the fact that he was answering Anthropic's waiver request specifically, and is named inside the card rather than cited, since Bessent leads it. **A figure discrepancy is resolved in the primary's favour and the number is therefore absent from the card:** Reuters says Amodei warned agents could shut down the internet “within six months,” while the essay itself, which this board carries at Sep 12, says “in 6–12 months.” The card says only that he warned an agent swarm could take over the internet. Lehane's card is Bloomberg's account via Claims Journal, because Bloomberg is where the quote is; TechCrunch's Rebecca Bellan carries the FRONTIER Act detail but no verbatim Lehane quote at all, which was confirmed on a second read. No primary exists for either card that this run could open: Lehane spoke at a press briefing, and neither a hearing transcript nor an FTC release was reachable.\n\nFrom the morning run, unchanged. Four of the five morning items are carried at press confidence because the primary could not be opened in an unattended run, and all four are flagged for a primary-source upgrade on a later attended run: microsoft.ai/code-of-conduct/ (the draft itself), news.sophos.com and sophos.com (the Counter Threat Unit post on Luciferus), exein.io (the funding release) and People's Daily's own commentary. The Microsoft item is dated Sep 14 on the strength of Fox Business and Bloomberg, which both date publication to Monday Sep 14, and TechCrunch, which reported it that day; SecurityWeek and Help Net Security, whose readings supply every quotation on the card, are dated Sep 15 and give no publication date of their own, and Help Net Security dates the consultation window from Sep 15. The card states no page count: the 37-page figure appears in Fox Business and in neither of the two accounts the card quotes. The Luciferus card gives the forum listing's prices and notes that the service's own site lists three cheaper tiers, because the two price lists differ; the parameter count and the “proprietary model” framing are the seller's claims, and Sophos's attribution to Qwen is stated at the low confidence Sophos gave it. Sophos's own publication date could not be confirmed because its research host is provenance-blocked, so the item is dated to the account that carries it. The DeepZero card is self-reported: the maintainer's claim of verified findings is about his own tool, no CVE identifier or advisory for any of them appears in the account, and the card says so rather than implying registry confirmation. The People's Daily commentary is dated Sep 16 — both the South China Morning Post and Reuters place it on Wednesday, though the syndicating page carrying the Reuters copy sits at a Sep 15 URL; the card quotes only what the South China Morning Post renders. China's foreign ministry answering Amodei on Sep 14 and the commerce ministry's Sep 10 rejection are folded into the People's Daily card and the watchlist rather than filed separately, because they are one storyline at three levels of seniority.\n\nStill held. The IANS/Artico security budget benchmark (70% of CISOs name AI their top priority for new spend, Sep 15) is survey-of-opinion material under the standing call. The Cisco email-gateway zero-day CVE-2026-76461 and the week's other exploited-flaw disclosures are significant cyber with no AI element stated in any account opened, held under the same rule as the JFrog Artifactory chaining on Sep 15. Unit 42's Sep 14 cloud-identity behavioural-clustering research is machine learning applied to audit logs rather than a frontier-AI cyber development. Rapid7's 2026 Global Threat Landscape Report, surfaced in the window through a syndicated release, is dated March 18 2026 and out of period.\n\nDeduplicated: the dev.ua and Cybernews accounts of an intrusion completed in under ten hours that left the victim an 80-page audit resolve to unit42-ai-assisted-intrusion-ten-hours (Sep 2); the Infosecurity account of “the first fully agentic ransomware” resolves to the two JadePuffer items from July; the PaperCut agent campaign in the Sep 15 roundups is greynoise-papercut-ai-orchestrated-campaign.\n\nCoverage limits this run, which are gaps rather than quiet findings: provenance-blocked on every attempt were microsoft.ai, openai.com, thehackernews.com, cyberscoop.com, bleepingcomputer.com, securityweek.com's own index, news.sophos.com, sophos.com, exein.io, github.com and arxiv.org's cs.CR listing. HTTP 429: techxplore.com and a Yahoo syndication of the Reuters OpenAI story. cisa.gov remains 403, so the Sep 14 KEV addition could not be read and no CVE was checked against a registry this run. anthropic.com/news, unit42.paloaltonetworks.com and helpnetsecurity.com opened normally; Anthropic has published nothing since Sep 10. Capability is empty and was not padded.",
+  "internalNote": "Coverage advanced to Sep 16 in grow mode; seven items took the board to 283 across a morning run and a follow-up in which Daria directed the held Sep 15 pacing-and-carve-out material onto the board, Sophos was added to SOURCES.md, and five watchlist threads were rewritten with none opened or retired.",
   "items": [
     {
       "id": "cowbell-ai-underwriting-factors",
@@ -2662,8 +2662,7 @@
       "core": "China's state security minister, Chen Yixin, wrote in China Cyberspace, a journal run by the Cyberspace Administration of China, that artificial intelligence poses serious risks to critical information infrastructure, and that advances marked by next-generation US-led models “such as Anthropic's Claude Mythos and OpenAI's GPT-5.5-Cyber could significantly lower the technical threshold and costs of executing cyberattacks.” The South China Morning Post, which reported the article the following morning, says it was published on the journal's social media account on Sunday and also records Chen warning that the technology could be leveraged by hostile forces to generate rumours at scale.",
       "confidence": "press",
       "outlet": "China's state security minister Chen Yixin, in China Cyberspace (via South China Morning Post)",
-      "url": "https://www.scmp.com/news/china/politics/article/3367349/chinas-intelligence-chief-warns-risks-ai-new-arena-strategic-rivalry",
-      "isNew": false
+      "url": "https://www.scmp.com/news/china/politics/article/3367349/chinas-intelligence-chief-warns-risks-ai-new-arena-strategic-rivalry"
     },
     {
       "id": "nsa-five-mission-centers-ai-cyber",
@@ -2673,8 +2672,7 @@
       "core": "Army Gen. Joshua Rudd, who leads both the National Security Agency and US Cyber Command, is reorganising the agency into five mission centres — China, cybersecurity, artificial intelligence, combat support and global intelligence , each with its own chief. The Record reports that the announcement started a 30-day clock for the directors to submit redesigns, that the centres are expected to reach full operational capability by January, that the head of the AI centre has been selected but not named, and that it is unclear what becomes of existing bodies such as the Cybersecurity Collaboration Center.",
       "confidence": "press",
       "outlet": "The Record (Recorded Future News)",
-      "url": "https://therecord.media/nsa-reorganization-five-mission-centers",
-      "isNew": false
+      "url": "https://therecord.media/nsa-reorganization-five-mission-centers"
     },
     {
       "id": "stop-rogue-ai-act-agent-inventory-standards",
@@ -2725,7 +2723,7 @@
       "confidence": "press",
       "outlet": "NPR",
       "url": "https://www.npr.org/2026/09/13/nx-s1-5968078/trump-mike-johnson-ai-slowdown",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "aisle-enisa-cra-reporting-platform-ai-code-review",
@@ -2736,7 +2734,7 @@
       "confidence": "self-reported",
       "outlet": "AISLE (via GlobeNewswire)",
       "url": "https://www.globenewswire.com/news-release/2026/09/14/3361192/0/en/aisle-partners-with-enisa-to-help-secure-the-infrastructure-behind-europe-s-cyber-resilience-act.html",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "deepseek-harness-sandbox-escape-cve-2026-82533",
@@ -2746,8 +2744,7 @@
       "core": "OX Research disclosed CVE-2026-82533 in DeepSeek Harness, in which the local agent-control API “read the 'Host' request header and allowed access if the value was a loopback authority” but “never compared that value with the connection's actual peer address,” so that “a sandboxed AI agent could use a single shell command to call that API and elevate its own session to 'danger-full-access' with approval prompts disabled.” The OpenCVE record, published September 8 with VulnCheck as the assigning authority, covers all versions before 0.1.2-alpha.1 and carries CVSS 9.4 under v4.0 and 9.6 under v3.1. OX says the fix shipped in 0.1.2-alpha.1 on August 27 and that it re-tested the patched build on August 30; it demonstrated the flaw on a default installation and claims no exploitation in the wild.",
       "confidence": "researchers",
       "outlet": "OX Security / OpenCVE",
-      "url": "https://www.ox.security/blog/cve-2026-82533-deepseek-harness-ai-agent-sandbox-escape/",
-      "isNew": true
+      "url": "https://www.ox.security/blog/cve-2026-82533-deepseek-harness-ai-agent-sandbox-escape/"
     },
     {
       "id": "agent-harness-context-privilege-escalation",
@@ -2757,8 +2754,7 @@
       "core": "A preprint presents what its authors call “the first systematic analysis of context assembly designs in real-world AI agent harnesses,” naming two classes of flaw: MessageRole Context Privilege Escalation, in which “attacker-controlled content originating from a low-privileged context is incorporated into a higher-privileged message role,” and Cross-Scope Context Privilege Escalation, which “occurs when attacker-controlled content persists beyond the context in which it was introduced.” The paper reports testing “12 real-world agent harnesses, including Claude Code and Codex,” with consequences it lists as “full agent compromise, remote code execution, denial of service, and manipulated tool or skill invocations.”",
       "confidence": "researchers",
       "outlet": "arXiv:2609.01222 (Li, Cui, Chen, Liao, Xing)",
-      "url": "https://arxiv.org/abs/2609.01222",
-      "isNew": true
+      "url": "https://arxiv.org/abs/2609.01222"
     },
     {
       "id": "exposed-self-hosted-ai-endpoints-census",
@@ -2768,7 +2764,83 @@
       "core": "Security Affairs reports research by Mysterium VPN that identified 36,769 exposed AI endpoints across model servers, agent-building platforms and vector stores, of which 2.02% returned an HTTP authentication challenge. The breakdown given is 18,529 reachable Open WebUI instances with one behind authentication, 4,880 vLLM endpoints with three, and 6,935 Ollama fingerprints of which 6,046 returned HTTP 200. The researchers say they queried the third-party scanning index Netlas and used application fingerprinting rather than touching the systems themselves: “We counted the doors. We didn't open them.”",
       "confidence": "press",
       "outlet": "Mysterium VPN (via Security Affairs)",
-      "url": "https://securityaffairs.com/198898/ai/the-ai-supply-chain-has-a-security-problem-and-much-of-it-is-sitting-on-the-open-internet.html",
+      "url": "https://securityaffairs.com/198898/ai/the-ai-supply-chain-has-a-security-problem-and-much-of-it-is-sitting-on-the-open-internet.html"
+    },
+    {
+      "id": "microsoft-ai-humanist-code-of-conduct",
+      "lane": "def",
+      "date": "2026-09-14",
+      "headline": "Microsoft's draft code of conduct forbids its own models from producing anything that would enable a cyberattack",
+      "core": "Microsoft AI published a draft Humanist AI Code of Conduct for its MAI models and opened a six-week public consultation before a revised version intended to guide 2027 model development. Reading the document, SecurityWeek reports that “models are blocked from producing working exploit code, attack tooling, planning and targeting methodologies, intrusion procedures, evasion techniques, operational guidance, or other assistance that would enable or improve a cyberattack,” that they “are barred from escalating their own access,” and that under the code's chain of command “tool outputs, file contents, webpages and messages from other AI systems carry no authority on their own.” Help Net Security, reading the same draft, reports it permits “authorized and lawful defensive cybersecurity work” including vulnerability discovery, malware analysis and proof-of-concept exploit development, and requires models to follow the principle of minimum privilege and to respect attempts to interrupt, correct or shut them down.",
+      "confidence": "press",
+      "outlet": "Microsoft AI (via SecurityWeek)",
+      "url": "https://www.securityweek.com/microsoft-ai-code-of-conduct-sets-cyberattack-boundaries-chain-of-command-safety-constraints/",
+      "isNew": true
+    },
+    {
+      "id": "exein-270m-physical-ai-security-round",
+      "lane": "mkt",
+      "date": "2026-09-15",
+      "headline": "Embedded-security firm Exein raises $270 million at a $1.7 billion valuation to build a foundation model for physical-AI security",
+      "core": "Exein, an Italian company selling embedded and runtime security for connected devices, raised $270 million at a $1.7 billion valuation in an oversubscribed round led by Headline, with Sofina, Goldman Sachs, the European Investment Bank Group, KfW Capital, Balderton and Lakestar participating, taking total funding above $600 million. The company says it is building “a proprietary foundation model specifically crafted for Physical AI security, trained on real-world machine activity” to drive autonomous defensive agents; chief executive Gianni Cuozzo is quoted saying “frontier models are pushing the patch window to zero. Attacks now happen at machine speed, so defense has to as well.”",
+      "confidence": "press",
+      "outlet": "SecurityWeek",
+      "url": "https://www.securityweek.com/exein-secures-270m-at-1-7b-valuation-for-physical-ai-security/",
+      "isNew": true
+    },
+    {
+      "id": "sophos-luciferus-uncensored-ai-subscription",
+      "lane": "atk",
+      "date": "2026-09-15",
+      "headline": "Researchers find an uncensored AI service sold by subscription on a criminal forum as an alternative to jailbreaking",
+      "core": "Sophos's Counter Threat Unit says it found Luciferus, a service advertised on the Exploit forum on August 24 by a persona called “Optimus_Prime” and marketed as a system that “answers requests without moral or ethical restrictions.” The forum listing prices it at $35, $55 and $75 a month with a private-deployment option and claims “a proprietary model with 120 billion parameters,” while the service's own site lists three cheaper tiers; asked on the cheapest tier for a remote access trojan in Python, it returned a Russian-language explanation of the malware's networking and command-execution functions followed by source code. The researchers say they assess with low confidence that Luciferus is built on Alibaba's open-weight Qwen family, and that “proprietary model claims can be misleading, as many of the services are likely based on fine-tuned open-source models, custom system prompts, or orchestration layers rather than entirely new foundation models.”",
+      "confidence": "press",
+      "outlet": "Sophos Counter Threat Unit (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/09/15/luciferus-uncensored-ai-service-hacking-forum/",
+      "isNew": true
+    },
+    {
+      "id": "peoples-daily-rejects-us-distillation-claims",
+      "lane": "pol",
+      "date": "2026-09-16",
+      "headline": "The Chinese Communist Party's own newspaper rejects the US distillation allegations and warns of countermeasures",
+      "core": "A People's Daily commentary rejected the US allegation that Chinese AI companies ran industrial-scale distillation against American frontier models as “without factual or legal basis,” accused Washington of “politicising” a normal technical and commercial practice, and said Beijing would take “countermeasures” if the allegation were used as a pretext to suppress Chinese companies' development. The allegation was made in the September 8 NSA/CISA/FBI joint advisory that named six Chinese labs; China's commerce ministry rejected it on September 10, and the Party newspaper's commentary lands ahead of a Xi–Trump meeting expected on September 24.",
+      "confidence": "press",
+      "outlet": "People's Daily (via South China Morning Post)",
+      "url": "https://www.scmp.com/tech/article/3367717/peoples-daily-rejects-us-claims-malicious-ai-distillation-warns-countermeasures",
+      "isNew": true
+    },
+    {
+      "id": "deepzero-model-assisted-vulnerable-driver-hunting",
+      "lane": "def",
+      "date": "2026-09-16",
+      "headline": "An open-source pipeline puts a model at the end of a driver-analysis chain to hunt bring-your-own-vulnerable-driver targets",
+      "core": "DeepZero, an open-source tool maintained by Rehman Ahmadzai, runs Windows kernel-mode drivers through a seven-stage pipeline — PE header parsing, IOCTL filtering, comparison against loldrivers.io, Ghidra headless decompilation and Semgrep rule scanning among them — before a model assesses exploitability. Ahmadzai says “the AI evaluation step is placed at the end so that the earlier stages can gather context,” and that the tool has “found multiple verified vulnerabilities in a subset of the Snappy Driver Installer corpus, with some still undergoing the disclosure process”; no CVE identifier or advisory for any of them appears in the account.",
+      "confidence": "self-reported",
+      "outlet": "Rehman Ahmadzai (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/09/16/vulnerable-windows-drivers-deepzero-open-source/",
+      "isNew": false
+    },
+    {
+      "id": "openai-confirms-multilab-safety-coordination",
+      "lane": "pol",
+      "date": "2026-09-15",
+      "headline": "OpenAI confirms weeks of safety coordination with Anthropic and Google DeepMind, and says it needs no antitrust waiver for it",
+      "core": "Bloomberg reports that OpenAI's global policy chief, Chris Lehane, told a briefing in Washington on Tuesday that the company has been working with Anthropic and Google DeepMind on AI safety for several weeks — “it's better to try to work together to prioritize safety” — and that OpenAI “does not need” an antitrust waiver, having done that work “for several weeks without needing one.” Bloomberg describes the vehicle that would grant one, the Banks–Schiff Collaboration on Adversarial Threats and Security Risks Act, as “a narrow antitrust carveout to share information with one other related to loss of control over AI systems, cyber or biological threats and attempts by Chinese companies to exfiltrate data.” TechCrunch reports Lehane also said OpenAI backs a FRONTIER Act provision that would require top frontier labs to admit “independent verification organizations.”",
+      "confidence": "press",
+      "outlet": "Bloomberg (via Claims Journal)",
+      "url": "https://www.claimsjournal.com/news/national/2026/09/15/340158.htm",
+      "isNew": true
+    },
+    {
+      "id": "treasury-ftc-reject-ai-lab-carve-outs",
+      "lane": "pol",
+      "date": "2026-09-15",
+      "headline": "Treasury and the FTC both refuse the frontier labs the carve-outs they asked for in exchange for slowing down",
+      "core": "Treasury Secretary Scott Bessent told the House Financial Services Committee, answering Rep. Juan Vargas, that the labs have been “working on safety nonstop since the release of Mythos” but that what government “shouldn't do on safety is to give these labs a liability exemption,” characterising the ask as “we would like to all slow down, but please give us a waiver on liability, which should not be done” and saying “the best way to guarantee safety is that the creators are liable for what they build and generate.” The same day, FTC chairman Andrew Ferguson said at a Georgetown University event that “if companies are simultaneously coming to Washington and asking for a host of regulations and an antitrust exemption, all of my alarm bells go off,” and that “they're asking for barriers to entry that will insulate their incumbency from challenge.” Reuters reports Ferguson was answering Anthropic's request for a narrow waiver for certain kinds of safety conversations, made alongside its chief executive's warning that an agent swarm could take over the internet.",
+      "confidence": "press",
+      "outlet": "FedScoop",
+      "url": "https://fedscoop.com/treasury-scott-bessent-ai-labs-liability-exemptions/",
       "isNew": true
     }
   ],
@@ -2840,13 +2912,13 @@
     },
     {
       "thread": "Gated model access",
-      "status": "The gate started delivering product on Sep 3: SentinelOne put OpenAI's GPT-5.6-Cyber, reached through the Daybreak Defense Network, behind three Wayfinder Frontier AI services — code risk analysis, compromise assessment and malware analysis — with the Daybreak-backed capabilities in private preview. It is the first named Daybreak partner here shipping customer services on the gated cyber model rather than announcing access to it. A security vendor had joined the labs two days earlier: CrowdStrike's SafeMind pair runs natively in Falcon, with standalone model and harness access routed through a Project QuiltWorks trusted-access programme whose conditions are not stated. All three US frontier labs gate a cyber-tuned model and all three moved within two days — Google's Gemini 3.8 Flash Cyber only through the new Fairwind Program with more than 650 partners (Sep 2); OpenAI's Astra at the Critical threshold, initially alpha testers only (Sep 1), after its Aug 10 Daybreak expansion gated a High-rated GPT-5.6-Cyber to named partners including SentinelOne and Palo Alto Networks; Anthropic's Mythos 5.1 inside trusted-access programmes while Fable 5.1 shipped generally (Sep 1). Five senators called the administration's own access-restriction approach “ad hoc and unpredictable” on Aug 3.",
-      "changed": "2026-09-03"
+      "status": "A developer has now written down what its models may not do in cyber, rather than who may use them. Microsoft AI's draft Humanist AI Code of Conduct, out for a six-week consultation from Sep 14, blocks its MAI models from producing “working exploit code, attack tooling, planning and targeting methodologies, intrusion procedures, evasion techniques, operational guidance” while permitting “authorized and lawful defensive cybersecurity work,” and bars them from escalating their own access. The access gate keeps delivering product: SentinelOne put OpenAI's GPT-5.6-Cyber, reached through the Daybreak Defense Network, behind three Wayfinder Frontier AI services on Sep 3 — the first named Daybreak partner shipping customer services on the gated model rather than announcing access to it — and CrowdStrike's SafeMind pair runs natively in Falcon, standalone access routed through a Project QuiltWorks trusted-access programme on undisclosed terms. All three US frontier labs gate a cyber-tuned model and all three moved within two days at the start of September: Gemini 3.8 Flash Cyber through Fairwind, Astra at the Critical threshold, Mythos 5.1 inside trusted-access programmes.",
+      "changed": "2026-09-14"
     },
     {
       "thread": "Model-access abuse",
-      "status": "A distinct surface from attackers wielding agents: the theft and resale of the model access itself, and it reached the labs' own users on Aug 31, when Anthropic emailed Claude customers to say ordinary infostealers — Vidar, Lumma, StealC, RedLine and Acreed on Windows, Atomic Stealer on a small number of Macs — had lifted cookies and session tokens that let attackers replay live sessions past two-factor authentication and drain paid usage. The resale layer above it is priced: Unit 42 described token jacking on Aug 6, in which exposed provider credentials are folded into open-source proxy “transfer stations” within minutes, handling obfuscation, rotation, billing and routing at tens of millions of API calls a day, with close to a million dollars billed to one victim before containment. Okta detailed gray-market proxies including one branded “Poison Claude” reselling access off abused AWS Bedrock credits with full visibility into every forwarded prompt (Aug 4); CrowdStrike recorded one LLMjacking campaign sending nearly 200,000 requests in two minutes; and Trellix found dark-web listings for purpose-built offensive tooling (Aug 13).",
-      "changed": "2026-08-31"
+      "status": "The gray market now sells the model as well as the access. Sophos's Counter Threat Unit describes Luciferus, advertised on the Exploit forum on Aug 24 as answering “requests without moral or ethical restrictions,” sold at $35–$75 a month, claiming a proprietary 120-billion-parameter model the researchers assess with low confidence is a Qwen fine-tune, and returning working Python RAT source on request. Beneath it, theft and resale of legitimate access continues: Anthropic emailed Claude customers on Aug 31 to say ordinary infostealers — Vidar, Lumma, StealC, RedLine, Acreed, Atomic Stealer — had lifted cookies and session tokens that let attackers replay live sessions past two-factor authentication and drain paid usage. Unit 42 priced the resale layer on Aug 6: exposed credentials folded into open-source proxy “transfer stations” within minutes, tens of millions of API calls a day, close to a million dollars billed to one victim. Okta found “Poison Claude” and other proxies reselling abused AWS Bedrock credits with full visibility into every prompt (Aug 4); Trellix found dark-web offensive tooling listings (Aug 13).",
+      "changed": "2026-09-15"
     },
     {
       "thread": "Cyber insurance and AI liability",
@@ -2875,8 +2947,8 @@
     },
     {
       "thread": "Distillation as exfiltration",
-      "status": "The victim lab has now named its own attackers, and its list is not the government's. Reading Anthropic's Sep 10 misuse report, The Hacker News says Anthropic attributes industrial-scale illicit distillation to seven China-based labs with tracking identifiers — Alibaba (151 million exchanges from more than 3,500 fraudulent accounts, May–July 2026), Moonshot (23 million, 5,380 accounts), DeepSeek (more than 12.1 million over 14 days in July), Zhipu/Z.ai, Xiaomi, SenseTime and MiniMax. Five overlap with the NSA/CISA/FBI joint advisory of Sep 8, which named DeepSeek, Moonshot, Alibaba, MiniMax, StepFun and Z.AI as having “extracted billions of tokens across millions of exchanges/requests from U.S. frontier AI models” since at least late 2024 through a gray market of “transfer stations,” and said “distillation is not a supplement to these companies' AI model development, but the critical core of it.” GTIG the same day reported campaigns against Google's models “some exceeding 100 million prompts.” Legislation: S.5252, the BLADE Act (Aug 5). Still open: no named company has responded and no enforcement has followed.",
-      "changed": "2026-09-10"
+      "status": "Beijing has answered at Party level. A People's Daily commentary on Sep 16 called the US allegation of industrial-scale distillation “without factual or legal basis,” accused Washington of “politicising” a normal technical and commercial practice, and warned of “countermeasures” if it becomes a pretext to suppress Chinese firms; Reuters reports the same commentary calling AI “not a monopoly of great powers.” The commerce ministry had said on Sep 10 that the move “politicizes distillation,” and the foreign ministry answered Amodei's chip-control essay on Sep 14 with “fearmongering, confrontation and vicious competition will only disrupt the process of global [AI governance].” What is being rejected: the Sep 8 NSA/CISA/FBI advisory naming DeepSeek, Moonshot, Alibaba, MiniMax, StepFun and Z.AI as having extracted “billions of tokens across millions of exchanges/requests” through a gray market of “transfer stations”; Anthropic's Sep 10 misuse report attributing the same to seven China-based labs with per-lab counts; and GTIG's campaigns “some exceeding 100 million prompts.” Legislation: S.5252, the BLADE Act. Still open: no named company has responded and no enforcement has followed.",
+      "changed": "2026-09-16"
     },
     {
       "thread": "US signals agencies reorganising around AI",
@@ -2885,11 +2957,17 @@
     },
     {
       "thread": "The pacing debate and the political answer",
-      "status": "The government answered the labs, and the answer was no. NPR reports that President Trump posted on Sep 14 that “The only control or 'guardrails' that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT,” after saying in Ireland the day before that “whoever wins AI, wins” and calling the warnings exaggerated; David Sacks, co-chair of PCAST, told Altman and Amodei “I don't see what you see in the lab” but said he would support a decision to slow down. The ask came from Dario Amodei's Sep 12 essay, which put a 6–12 month horizon on an agent swarm holding the internet as a persistent botnet, and Sam Altman said he agreed. Held off the board for want of a cyber mechanism, but part of the same storyline: The Information's Sep 13 report that Anthropic, OpenAI and Google have met since July about an industry standards body, Cohere's Aidan Gomez calling it “a cartel by any other name,” the Washington Post's Sep 14 account that the administration opposes a slowdown, the Asian tech sell-off and OpenAI's reported shelving of a 2026 IPO. Whether any of it reaches cyber-specific obligation is the thing to watch.",
-      "changed": "2026-09-14"
+      "status": "The labs asked Washington for cover and Washington said no. OpenAI global policy chief Chris Lehane confirmed on Sep 15 that the company had been working with Anthropic and Google DeepMind on safety for several weeks — “it's better to try to work together to prioritize safety” — and said OpenAI needs no antitrust waiver to do it, unlike Anthropic, which asked for a narrow waiver for safety conversations. The same day Treasury Secretary Scott Bessent told House Financial Services that government “shouldn't do on safety is to give these labs a liability exemption,” and FTC chairman Andrew Ferguson said a simultaneous request for regulation and an antitrust exemption sets off “all of my alarm bells.” The statutory vehicle for one is the CATS Act, whose safe harbour names attacks on frontier AI systems. The ask came from Amodei's Sep 12 essay putting a 6–12 month horizon on an agent swarm holding the internet as a persistent botnet, which Altman said he agreed with; Trump answered on Sep 14 that the only guardrail AI needs is “a STRONG AND SMART (High IQ!) PRESIDENT.” Still off the board for want of a cyber mechanism: the Sep 13 standards-body report and Cohere's “cartel by any other name.”",
+      "changed": "2026-09-15"
     }
   ],
   "archives": [
+    {
+      "date": "2026-09-16",
+      "file": "archive/machine-speed-2026-09-16.html",
+      "items": 283,
+      "note": "Coverage advanced to Sep 16 (grow mode); seven items took the board to 283. Microsoft AI's draft code of conduct forbids its own models from producing anything that would enable a cyberattack; the Chinese Communist Party's newspaper rejected the US distillation allegations and warned of countermeasures; and on Daria's remit call the Sep 15 carve-out fight went on the board — OpenAI confirming weeks of multi-lab safety coordination, Treasury and the FTC refusing the labs a liability or antitrust exemption. Markets moved for the first time in twelve runs."
+    },
     {
       "date": "2026-09-15",
       "file": "archive/machine-speed-2026-09-15.html",
@@ -3088,7 +3166,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-09-15",
+  "coverageEnd": "2026-09-16",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
