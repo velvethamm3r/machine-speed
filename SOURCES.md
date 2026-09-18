@@ -108,6 +108,19 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     confinement with one shell command; the item took seven days to reach the board because no entry here pointed at them, which
     is the source-gap signature the 2026-09-09 measurement identified. The blog opens first try, posts are dated and bylined, and
     the company is publishing CVE-level findings against agent harnesses — the fastest-moving part of the Defense lane._
+- **AIR Security** — https://www.air.security/blog-posts. `atk` `def`
+  - _Added 2026-09-18. Publisher of Plugin4Shell, the pinned-commit bypass affecting the plugin marketplaces of Claude Code, Codex, GitHub
+    Copilot and Gemini CLI. The company was already on the board as a Markets item (its $50M launch, Sep 1) but nothing here pointed at its
+    research, so the finding reached this board through Help Net Security rather than a listed channel — the source-gap signature the
+    2026-09-09 measurement identified. Posts are dated and bylined and carry coordinated-disclosure timelines. The blog was
+    provenance-blocked on the first attempt and opened on the second; retry once before falling back to a syndicating outlet._
+- **Hacktron AI** — https://www.hacktron.ai/blog. `cap` `atk`
+  - _Added 2026-09-18. Publisher of the "HEIF Heist" work and of the Sep 13 account of using Claude Opus 5 to chain a libheif flaw into an
+    OpenAI employee's Codex account and a pull request in OpenAI's internal monorepo. The post was open for five days before the board saw it,
+    and only because Daria asked — the press wave (VentureBeat, Fortune, Forbes, TechRadar) did not break until Sep 17–18, so a run sweeping
+    press alone reaches this class of item days late. **What this source publishes is the before-and-after capability comparison** — which model
+    version could and could not build a given exploit — which is this board's central question and is rarely stated that precisely anywhere else.
+    Opens first try; posts are dated and carry named authors and full disclosure timelines._
 - **XBOW** — https://xbow.com/blog (offensive-capability comparisons). `cap`
 - **PromptArmor** — research posts (often co-disclosed via The Hacker News). `def`
 
