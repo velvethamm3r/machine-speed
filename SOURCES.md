@@ -220,6 +220,8 @@ with NSA / FBI / DC3 / EPA / DOE and international partners). Watch these direct
 
 - **UK NCSC** — https://www.ncsc.gov.uk/. `def` `pol`
 - **EU — European Commission (Digital)** — https://digital-strategy.ec.europa.eu/ · **ENISA** https://www.enisa.europa.eu/. `pol` `def`
+- **European Supervisory Authorities (EBA, EIOPA, ESMA) and the ESRB** — ESMA news https://www.esma.europa.eu/press-news · EBA press releases https://www.eba.europa.eu/publications-and-media/press-releases. `pol` `mkt`
+  - _Added 2026-09-23. §9 covered the European Commission and ENISA but no financial-sector supervisor, and the cost was the usual one: the three ESAs' joint statement on ICT risks from frontier AI models (JC 2026 25, Jul 31) and the ESRB warning behind it (Jul 7) were fifty-four days old before this board saw them, and reached it through a law-firm summary rather than any listed channel — the source-gap signature the 2026-09-09 measurement identified. This is where EU financial regulators state supervisory expectations for frontier-AI cyber risk under DORA. Both hosts open first try and carry dated press releases linking the underlying documents._
 - **Five Eyes partners** — Australia ASD/ACSC https://www.cyber.gov.au/ · Canada CCCS https://www.cyber.gc.ca/ · New Zealand NCSC https://www.ncsc.govt.nz/ (usually co-signed on the joint advisories). `atk` `def`
 
 ## 10. Vulnerability & CVE registries — verification (cross-lane)
