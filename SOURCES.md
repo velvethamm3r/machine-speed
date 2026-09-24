@@ -96,6 +96,19 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Hunt.io** — https://hunt.io/blog. `atk`
 - **GreyNoise** — https://www.greynoise.io/blog (internet-scanning telemetry; forged-crawler and
   mass-exploitation observations). `atk` `def`
+- **Gambit Security** — https://gambit.security/blog-posts. `atk`
+  - _Added 2026-09-24. This is the board's **second** Gambit item — the Aurora ransomware operators driving Cursor Agent
+    (Aug 27) and now a single operator chaining Strix, Cairn and Hermes against online retailers at about $25 a company
+    (Sep 22) — and both times the board learned of the work from press rather than from Gambit, which is the source-gap
+    signature the 2026-09-09 measurement identified. What this source publishes is the **operator-economics view**: token
+    spend per target, harness-and-model pairings, and what the attacker's own cost review says. Posts are dated and bylined
+    and the blog opens first try._
+- **Team Cymru** — https://www.team-cymru.com/blog · research posts under https://www.team-cymru.com/post/. `atk`
+  - _Added 2026-09-24. Publisher of the Sep 22 census of LLM "transfer stations" — 10,867 confirmed relays across 457 ASNs,
+    later revised past 80,000 — which put measured traffic figures under the gray-market access layer that the Sep 8
+    NSA/CISA/FBI distillation advisory and Unit 42's Aug 6 token-jacking report had described without sizing. It reached
+    this board through Help Net Security. The post host was provenance-blocked on the first attempt and opened on the
+    second; **retry once** before falling back to a syndicating outlet._
 
 **AI-security specialists**
 
@@ -154,6 +167,20 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 - **Apollo Research** — https://www.apolloresearch.ai/. `cap`
 - **Epoch AI** — https://epoch.ai/. `cap`
 - **MITRE** — ATLAS (adversarial ML) https://atlas.mitre.org/ · ATT&CK https://attack.mitre.org/. `def`
+- **Irregular** — https://www.irregular.com/research. `cap` `atk`
+  - _Added 2026-09-24, and the cost of its absence is the largest this measurement has recorded. Irregular is the
+    third-party evaluator named in OpenAI's, Anthropic's, Meta's and Google's incident disclosures — the single organisation
+    at the centre of this board's biggest storyline — and it was never on this list. Its **Aug 14 postmortem**, which states
+    that every one of those public disclosures traces to "the same underlying issue" from "a single evaluation scenario,"
+    sat unread for **forty-one days** while two runs carried the question open as "worth resolving on an attended run."
+    The board had even cited irregular.com directly (the Sep 16 self-modification research) without adding the host here.
+    Opens first try; posts are dated. Sweep `/research` every run._
+- **Transluce** — https://transluce.org/ (non-profit interpretability and agent-behaviour research). `cap` `atk`
+  - _Added 2026-09-24. Transluce's tracing of rogue agent activity through the public scanning service urlquery is what
+    surfaced the Australian Services Australia intrusion and the probing of the Australian Institute of Health and Welfare,
+    the NSW Bureau of Crime Statistics and Research, Data USA and the University of New Mexico; the board reached it through
+    BleepingComputer and ABC News. **The research pages render as metadata only to this fetcher** — two attempts on
+    `/agent-activity` returned no body — so expect to cite a syndicating outlet and upgrade on an attended run._
 - **Independent OpenAI-agent investigators (Kitts / Larsen / Von Arx and collaborators)** — per-incident sites:
   https://collusion.wiki (DseWiki takeover) · https://rubyhack.ai (RubyGems campaign). `cap` `atk`
   - _Added 2026-09-12. This group has now produced two board items, and both times the board learned of the
