@@ -110,8 +110,40 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     this board through Help Net Security. The post host was provenance-blocked on the first attempt and opened on the
     second; **retry once** before falling back to a syndicating outlet._
 
+**Supply chain & credential exposure**
+
+- **SafeDep** — https://safedep.io/ (open-source supply-chain compromises; package-level analysis). `atk` `def`
+  - _Added 2026-09-26. Publisher of the Sep 23 analysis of the MemTensor compromise — the first supply-chain worm this
+    board has carried that targets AI agent memory infrastructure, shipping the `sckit` Go implant through
+    `@memtensor/memos-cloud-openclaw-plugin` on npm and `MemoryOS` on PyPI. The board reached it through a press roundup
+    two days late. **What this source publishes is the package-and-version level detail** — exactly which releases are
+    malicious, which are clean, and how the publish tokens were taken out of the project's own CI — which is the part a
+    reader needs and which press write-ups compress away. Opens first try; posts are dated._
+- **ThreatDown (Malwarebytes)** — https://www.threatdown.com/blog/. `atk`
+  - _Added 2026-09-26. Publisher of the Sep 23 CARBONATO write-up: a Docker botnet that installs Nous Research's
+    open-source Hermes Agent unchanged and overwrites its persona file, so the attacker's own tooling is an
+    off-the-shelf agent rather than bespoke malware. That framing — commodity agent, hostile prompt — is the shape this
+    board exists to track, and nothing on the list pointed at ThreatDown. Provenance-blocked on the first two attempts
+    and opened on the third; **retry before falling back to a syndicating outlet**, and note that press coverage of this
+    post added a funding claim the primary does not make._
+- **SpyCloud** — https://spycloud.com/blog/ (recaptured infostealer and identity-exposure data). `def` `atk`
+  - _Added 2026-09-26. Publisher of the Sep 22 census that found 1,787 of about 10,000 EPA-registered water and
+    wastewater organisations with active infostealer exposure, 258 of them holding OT or remote-access credentials. It
+    is the only source on this list producing sector-wide **identity-exposure** measurements, which is a different
+    quantity from vulnerability counts and is where the water-sector storyline had no numbers. The blog was
+    provenance-blocked on every attempt this run, so expect to cite CyberScoop or TechCrunch and upgrade on an attended
+    run._
+
 **AI-security specialists**
 
+- **Forever Security** — https://forever.security/blog/. `atk` `def`
+  - _Added 2026-09-26. Publisher of BragJack (Sep 16): one malicious browser extension hijacking the built-in agents of
+    Chrome's Gemini Live, Perplexity Comet, Microsoft Edge, Opera Neon and Claude in Chrome with no click, and of
+    "Prompt Forcing" as a named technique distinct from prompt injection. **The post sat open for ten days before this
+    board saw it**, and reached it through a Friday press roundup rather than any listed channel — the source-gap
+    signature the 2026-09-09 measurement identified. The main write-up host is provenance-blocked; the technical
+    overview at `/blog/bragjack-attack-hijacks-every-browser-agent/` opens and carries the dated impact table and the
+    CVE assignments. Note its own date runs ahead of the press date by three days._
 - **Adversa AI** — https://adversa.ai/blog/. `def` `cap`
 - **Pillar Security** — https://www.pillar.security/blog. `def`
 - **HiddenLayer** — https://hiddenlayer.com/research/. `def`
@@ -284,6 +316,11 @@ fresh window.
 
 - **Help Net Security** — https://www.helpnetsecurity.com/. Daily volume, week-in-review on Mondays. Strong on AI-security research write-ups.
 - **SecurityWeek** — https://www.securityweek.com/ · AI section https://www.securityweek.com/category/artificial-intelligence/.
+  - _Note added 2026-09-26: the Friday **"In Other News"** roundup is the single most productive discovery item this list
+    has. On 2026-09-26 it surfaced four of the run's eight items — CARBONATO, the MemTensor worm, BragJack and the
+    SpyCloud water census — each with the research primary's own URL, while the section indexes above were
+    provenance-blocked. Search `site:securityweek.com "In Other News"` plus the week's dates and open the roundup itself
+    rather than the index._
 - **The Hacker News** — https://thehackernews.com/ · AI label https://thehackernews.com/search/label/artificial%20intelligence.
 - **BleepingComputer** — https://www.bleepingcomputer.com/. Fastest on active exploitation and vendor advisories.
 - **The Record (Recorded Future News)** — https://therecord.media/. Strong on government, nation-state and policy.
