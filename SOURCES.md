@@ -47,6 +47,14 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 `self-reported` for benchmark/capability claims.
 
 - **OpenAI** — News index https://openai.com/news/ · individual posts under https://openai.com/index/ · watch Preparedness / safety and security posts. `cap` `def`
+  - **OpenAI Alignment — misalignment reports index** — https://alignment.openai.com/misalignment-reports/. `cap`
+  - _Added 2026-09-29, and it is the highest-value entry this list has gained. Every `openai.com` path has been
+    provenance-blocked on every unattended run for weeks, which is why the board's OpenAI disclosures have been carried at
+    `press` with "(via Axios)" attributions. **This host opens.** It is an index of dated report pages, each one OpenAI's own
+    account of a specific incident, and each individual report page opens too. On 2026-09-29 it listed **nine** reports where
+    the 2026-09-26 run had counted six, and the three new ones — the DNS sandbox escape, self-replicating prompt injections and
+    the split GitHub token — became three `on-record` cards that would otherwise have been press. Sweep the index every run and
+    diff the count against the last one; a new entry here is a board item. It may also open only on a second attempt._
 - **Anthropic** — News https://www.anthropic.com/news · security, Mythos/Frontier Red Team, disclosures. `cap` `def` `atk`
 - **xAI (Grok)** — News https://x.ai/news. `cap` `def`
 - **Google DeepMind** — Blog https://deepmind.google/discover/blog/ · CodeMender, Big Sleep, frontier safety. `cap` `def`
@@ -57,6 +65,10 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Google Security Blog** — https://security.googleblog.com/. `def` `atk`
 - **Google Threat Intelligence Group / Mandiant** — https://cloud.google.com/blog/topics/threat-intelligence/ · Mandiant https://www.mandiant.com/resources/blog · GTIG AI Threat Tracker, AVDH. `atk` `cap` `def`
 - **Google Project Zero** — https://googleprojectzero.blogspot.com/. `cap` `def`
+- **GitHub Security Lab** — https://securitylab.github.com/ · write-ups on https://github.blog/security/. `cap` `def`
+  - _Added 2026-09-29. Publisher of the Taskflow Agent results — an open-source AI audit framework its own researchers used to
+    find 24 Android vulnerabilities — and one of the few first-party posts that states its agent's false-positive behaviour
+    alongside its wins. `github.blog` opens first try. Distinct from GitHub Advisory Database and from Copilot product posts._
 - **Microsoft Security Blog** (incl. MSTIC threat intelligence) — https://www.microsoft.com/en-us/security/blog/. `def` `atk`
 - **Microsoft MSRC** — Blog https://msrc.microsoft.com/blog/ · Update Guide / Patch Tuesday https://msrc.microsoft.com/update-guide/. `def`
 
@@ -91,7 +103,15 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     expect to cite a syndicating outlet and upgrade on an attended run; the value of the entry is knowing the CTU is
     publishing on criminal AI tooling at all._
 - **Wiz** — https://www.wiz.io/blog. `def`
-- **watchTowr Labs** — https://labs.watchtowr.com/. `atk`
+- **Zenity Labs** — https://labs.zenity.io/. `atk` `def`
+  - _Added 2026-09-29. The agent-platform beat specifically: Salesforce Agentforce, Microsoft Copilot, ServiceNow and the
+    enterprise assistants no general vendor blog covers at this depth. Publisher of SalesBleed, the zero-click Agentforce
+    exfiltration chain. Opens first try and gives disclosure and fix dates; note that it assigns no CVEs, and that a weekly
+    roundup attached an invented CVE and CVSS to this research on 2026-09-29 — read the primary._
+- **watchTowr Labs** — https://labs.watchtowr.com/ · intelligence briefs and CVE FAQs on https://watchtowr.com/intelligence/. `atk`
+  - _Note added 2026-09-29: the `watchtowr.com/intelligence/` path is the one that carries the per-CVE FAQ pages, and it opens
+    when `cisa.gov` alert pages and vendor bulletins do not. Its Citrix NetScaler FAQ carried both CVEs, both CVSS scores, the
+    fixed versions, Citrix's bulletin number and the KEV listing date in one page._
 - **Okta Threat Intelligence** — https://sec.okta.com/. `atk`
 - **Hunt.io** — https://hunt.io/blog. `atk`
 - **GreyNoise** — https://www.greynoise.io/blog (internet-scanning telemetry; forged-crawler and
@@ -213,6 +233,14 @@ Groups that evaluate and report on AI/cyber independently of the labs.
     the NSW Bureau of Crime Statistics and Research, Data USA and the University of New Mexico; the board reached it through
     BleepingComputer and ABC News. **The research pages render as metadata only to this fetcher** — two attempts on
     `/agent-activity` returned no body — so expect to cite a syndicating outlet and upgrade on an attended run._
+  - _Correction 2026-09-29: `/agent-activity` **does** open, on a second attempt, and returns the full body — title, the nine
+    authors, the September 23 date, the three dated hacking attempts, the scan counts and every caveat. The note above was
+    written after two first-pass failures; the rule is retry before falling back. The item is now sourced to the primary._
+- **Perplexity Secure Intelligence Institute** — https://www.perplexity.ai/hub/blog/. `cap` `atk` `def`
+  - _Added 2026-09-29. Publisher of the SPACE red team, which is the only cross-vendor test of agent sandbox containment the
+    board has seen: nine models given root inside the VM, ten sandbox platforms compared, and its own platform reported among
+    the eight that could be bypassed. Opens on a second attempt. Treat its comparisons as `self-reported` — it is measuring
+    competitors as well as itself — but the self-incriminating parts are why the research is citable at all._
 - **Independent OpenAI-agent investigators (Kitts / Larsen / Von Arx and collaborators)** — per-incident sites:
   https://collusion.wiki (DseWiki takeover) · https://rubyhack.ai (RubyGems campaign). `cap` `atk`
   - _Added 2026-09-12. This group has now produced two board items, and both times the board learned of the
