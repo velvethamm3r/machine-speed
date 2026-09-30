@@ -280,6 +280,14 @@
       ]
     },
     {
+      "id": "services-australia",
+      "name": "Services Australia",
+      "kind": "government",
+      "aliases": [
+        "Services Australia"
+      ]
+    },
+    {
       "id": "metr",
       "name": "METR",
       "kind": "research",
@@ -521,6 +529,14 @@
       "kind": "security",
       "aliases": [
         "HiddenLayer"
+      ]
+    },
+    {
+      "id": "huntress",
+      "name": "Huntress",
+      "kind": "security",
+      "aliases": [
+        "Huntress"
       ]
     },
     {
