@@ -5,9 +5,10 @@
    Three ideas do the work:
      1. The lane x week matrix is the navigator — every cell is a two-axis
         filter (that lane, that week) and the gutter carries each lane's trend.
-     2. Related items collapse into running stories. Watchlist threads from
-        data.json are the primary keys; two-word proper-noun phrases are the
-        fallback. A story can span weeks, which is the point.
+     2. Related items collapse into running stories: the editor's topics
+        (items[].topics) are the primary keys and link to their topic pages;
+        two-word proper-noun phrases are the fallback. A story can span weeks,
+        which is the point. (Until 2026-09-30 the keys were watchlist threads.)
      3. Unread is per visitor, remembered in localStorage, not a build-time date.
 */
 (function () {
@@ -269,25 +270,17 @@
   function clusters(list) {
     var used = {}, out = [];
 
-    (DATA.watchlist || []).forEach(function (t) {
-      var terms = [];
-      t.thread.replace(/[^A-Za-z0-9\- ]/g, " ").split(/\s+/).forEach(function (w) {
-        var lw = w.toLowerCase();
-        var acro = w.length >= 4 && /^[A-Z0-9]+$/.test(w);
-        if (!acro && (lw.length < 5 || STOP[lw])) return;
-        terms.push({ t: lw, strong: acro || lw.length >= 9 });
-      });
-      if (!terms.length) return;
+    /* Topics first: the editor's own tags (items[].topics), in the same order
+       and with the same names as the front page, each linking to its topic
+       page. An item in two topics sits under the first. Whatever no topic
+       claims falls through to the shared-subject clustering below. */
+    (DATA.topics || []).forEach(function (t) {
       var items = list.filter(function (it) {
-        if (used[it.id]) return false;
-        var hay = (it.headline + " " + it.core).toLowerCase();
-        var n = 0, strong = false;
-        terms.forEach(function (x) { if (hay.indexOf(x.t) >= 0) { n++; if (x.strong) strong = true; } });
-        return n >= 2 || (n === 1 && strong);
+        return !used[it.id] && (it.topics || [])[0] === t.id;
       });
-      if (items.length < 2) return;
+      if (!items.length) return;
       items.forEach(function (it) { used[it.id] = 1; });
-      out.push({ key: "w:" + t.thread, title: t.thread, watch: true, items: items.slice().sort(byDateDesc) });
+      out.push({ key: "t:" + t.id, title: t.name, watch: true, url: t.url, items: items.slice().sort(byDateDesc) });
     });
 
     var BI = {}, LBL = {};
@@ -364,7 +357,8 @@
        carousel is a different kind of thing from the filter surface, and
        sharing one box made the search bar read as squashed under it. It keeps
        class "msx" so it inherits the --x-* tokens, the chrome and the theme. */
-    if (CAR.items.length) {
+    /* DATA.carousel is false when the front page carries its own banner. */
+    if (CAR.items.length && DATA.carousel !== false) {
       carPanel = document.createElement("div");
       carPanel.className = "msx msx-carpanel";
       elCar = document.createElement("div");
@@ -558,7 +552,7 @@
     out.push('<button class="msx-sbtn" data-act="story" data-story="' + esc(c.key) + '" data-i="' + i + '" type="button" aria-expanded="' + open + '">' +
       '<span class="msx-shead">' +
         '<span class="msx-tag' + (c.watch ? " watch" : "") + '">' +
-        (c.watch ? "WATCHLIST THREAD" : "SHARED SUBJECT") + "</span>" +
+        (c.watch ? "TOPIC" : "SHARED SUBJECT") + "</span>" +
         '<span class="msx-stitle">' + esc(c.title) + "</span>" +
         '<span class="msx-lanetags">' + lanes + "</span>" +
       "</span>" +
@@ -568,6 +562,7 @@
 
     if (open) {
       out.push("<div>");
+      if (c.url) out.push('<p class="msx-topiclink"><a class="msx-src" href="' + esc(c.url) + '">Everything on this topic, week by week &#8594;</a></p>');
       var long = c.items.length > 3;
       var listMode = !!S.list[c.key];
       if (long && !listMode) {
@@ -605,7 +600,7 @@
           '<a class="msx-src" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.outlet) + " &#8599;</a>" +
           '<a class="msx-src" href="' + esc(it.page) + "#" + esc(it.id) + '">on the board &#8594;</a>' +
           "</div></div>" +
-          '<div class="msx-idx"><div class="h">IN THIS THREAD</div><div class="msx-ilist">' + idx + "</div></div>" +
+          '<div class="msx-idx"><div class="h">IN THIS STORY</div><div class="msx-ilist">' + idx + "</div></div>" +
           "</div></div>");
       } else {
         out.push(c.items.map(function (x) {
@@ -733,11 +728,18 @@
       out.push(cl.map(function (c, i) { return storyHTML(c, i, inScope); }).join(""));
       out.push("</section>");
     }
-    if (singles.length) {
-      out.push('<div class="msx-ledgerhead"><span>' +
-        (cl.length ? "EVERYTHING ELSE, BY WEEK AND LANE" : "BY WEEK, GROUPED BY LANE") +
+    /* Items no story claims are left off the resting view, which is the
+       topics; they are still on the lane pages, the week pages and the front
+       page's week cards. A search or a lane or week filter brings the ones it
+       matches back, as a plain newest-first list. (The old week-by-lane
+       ledger, ledgerHTML, is kept but no longer rendered.) */
+    var filtering = !!(S.q.trim() || S.lanes.length || S.week);
+    if (singles.length && filtering) {
+      out.push('<div class="msx-ledgerhead"><span>OTHER MATCHING ITEMS &middot; ' + singles.length +
         '</span><span class="rule"></span></div>');
-      out.push(ledgerHTML(singles));
+      out.push('<div class="msx-flat">' + singles.slice().sort(byDateDesc).map(function (it) {
+        return rowHTML(it, {});
+      }).join("") + "</div>");
     }
     elMain.innerHTML = out.join("");
     toURL();

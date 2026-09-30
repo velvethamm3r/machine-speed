@@ -258,7 +258,9 @@ Each run does four things, in this order of care:
      Carry every thread forward. When a thread moved, update its `status` and set `changed` to the
      date it moved; when it did not move, leave it and its old `changed` date exactly as they are —
      the panel's value is that it survives quiet days. Open a new thread when a genuinely new
-     running storyline appears; retire one by setting an honest `status` ("Resolved", "Dormant"),
+     running storyline appears, and give it a `topic` from `topics.json` when one fits (see `SCHEMA.md`). **Append each new
+     item's id to the `items` of every thread it belongs to** — that list is what readers open on
+     the Watchlist and topic pages; retire one by setting an honest `status` ("Resolved", "Dormant"),
      never by deleting it.
 
 **Switching back to a rolling window is a deliberate decision, not a run's.** The only knob is
@@ -316,6 +318,18 @@ instruction and the behaviour cannot drift apart again.
    - `coverageEnd` → today. **Leave `coverageStart` at `2026-07-01`** — the board is in grow
      mode (Guarantee 3).
    - Add new items to `items[]`; set/clear `isNew`. **Remove nothing for being old.**
+   - **Tag each new item's `topics`** with the ids from `topics.json` it belongs to (see
+     `SCHEMA.md`). Most capability and attacks items fit one; many policy, defense and markets
+     items fit none, and that is fine. A response filed under the topic it answers is what closes
+     that topic's lag on the Findings page. When unsure, leave it untagged and say so in the
+     closing note rather than guess. **A run never adds, renames or removes a topic** — that is
+     Daria's call.
+   - **Mark `key: true`** on an item that moves a story — a first confirmed case, a bill
+     introduced, a lab's own disclosure — not on items that add detail. Usually zero to two per
+     run. Key items lead the week cards on the front page.
+   - **Log corrections.** If this run changed a published item in a way a reader could have relied
+     on — a date, a figure, a claim tied to the wrong event — append a `corrections[]` entry. A
+     plain sourcing upgrade with the same facts does not need one.
    - Update `watchlist[]` statuses and `changed` dates; carry quiet threads unchanged, and
      **rewrite rather than append** on a thread that moved (see "Watchlist length" above).
    - Rewrite `judgmentNote` (every call you made by hand — corrections, unverifiable details
@@ -388,6 +402,36 @@ treat it as the floor and add to it whenever a new source proves worth keeping.
 
 ---
 
+## Findings, entities and drafts — nothing extra to hand back
+
+The Findings, Entities, Data, Methodology and Corrections pages are all generated from
+`data.json`, `entered.json`, `entities.json` and `topics.json`; a run changes them only through
+`topics`, `key` and `corrections[]` above. **A run does not edit `entities.json`** — if a new item names something
+the registry misses, say so in the closing note for Daria. The weekly and quarterly drafts the
+build writes into `newsletter/` are rewritten and committed by the GitHub Action on every deploy,
+so a run does not hand them back.
+
+---
+
+## Weekly picks — not a run's job
+
+`weekly[]` in `data.json` is Daria's editorial choice. A run never adds or edits picks; it carries
+the array forward untouched like any other field. The build's weekly draft in `newsletter/` is
+where she chooses them; once the current week has picks, they lead the front page.
+
+---
+
+## Forecasts — not a run's job
+
+`forecasts.json` is Daria's, written by hand; the "do not forecast" rule above still binds
+every run. A run never adds, edits or resolves a forecast, and never hands back
+`forecasts.json` or `forecasts.lock.json` — the GitHub Action alone writes the lock. The
+build validates forecasts on every run; if it fails on one, stop and report the error
+rather than editing either file. Resolution warnings ("passed its resolveBy date") are for
+Daria and go in the closing note, not in `judgmentNote`. See `FORECASTS.md`.
+
+---
+
 ## Deliver — never publish, never push
 
 The newsletter and the site are both **draft-only from a run's point of view.** A human reviews and
@@ -428,7 +472,9 @@ minute). That upload is a human step, on purpose.
 | `STRIP_MAX` | `6` | The "New to the board" strip is capped at six; excess warns. |
 | `COVERAGE_SLACK_DAYS` | `0` | The stated period must contain every item exactly, or the build warns. |
 | `FRONT_WEEKS` | `2` | The two most recent weeks show as full cards on the pre-rendered board; older in-window weeks index one line each. Does not affect Explore, which filters the whole period. |
-| `LANDING` | `"explore"` | The bare domain answers with the interactive Explore view. A run never changes this. |
+| `LANDING` | `"home"` | The bare domain answers with the front page ("The Board": This week banner, topics, week cards). "Watchlist" is `/watchlist/`; search is `/search/`. A run never changes this. |
+| `EXPLORE_PAGE` | `""` | Explore is retired; `/explore.html` redirects. A run never changes this. |
+| `SHOW_FINDINGS` / `SHOW_FORECASTS` | `False` | Findings and Forecasts are held back from the live site while Daria reviews them. A run never changes these. |
 | `EXPLORE_PAGE` | `"explore.html"` | Where Explore lives when it is *not* the landing page. Empty removes the feature entirely, including `board.css` / `board.js`. |
 | `BOARD_PAGE` | `""` (empty) | The full pre-rendered board is not published as a page — the lane and week pages carry every item, and each dated snapshot in `archive/` is still a complete copy of that markup. |
 | `GROUP_BY_WEEK` | `True` | A lane with six or more items splits under Monday–Sunday week headings. |

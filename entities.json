@@ -1,0 +1,731 @@
+{
+  "_readme": "Named entities the build tags items with, by matching aliases (case-sensitive, whole word) in each item's headline and core. Add an alias when an item names an entity a new way. 'weights' is set only where the board's own items establish it.",
+  "entities": [
+    {
+      "id": "claude",
+      "name": "Claude (Anthropic)",
+      "kind": "model",
+      "aliases": [
+        "Claude",
+        "Mythos",
+        "Claude Opus",
+        "Fable 5.1"
+      ],
+      "weights": "closed",
+      "org": "anthropic"
+    },
+    {
+      "id": "gpt",
+      "name": "GPT and ChatGPT (OpenAI)",
+      "kind": "model",
+      "aliases": [
+        "GPT-5",
+        "GPT-6",
+        "ChatGPT",
+        "Astra"
+      ],
+      "weights": "closed",
+      "org": "openai"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini (Google)",
+      "kind": "model",
+      "aliases": [
+        "Gemini"
+      ],
+      "weights": "closed",
+      "org": "google"
+    },
+    {
+      "id": "grok",
+      "name": "Grok (xAI)",
+      "kind": "model",
+      "aliases": [
+        "Grok"
+      ],
+      "weights": "closed",
+      "org": "xai"
+    },
+    {
+      "id": "muse-spark",
+      "name": "Muse Spark (Meta)",
+      "kind": "model",
+      "aliases": [
+        "Muse Spark"
+      ],
+      "org": "meta"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "kind": "model",
+      "aliases": [
+        "DeepSeek"
+      ],
+      "weights": "open"
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi (Moonshot AI)",
+      "kind": "model",
+      "aliases": [
+        "Kimi",
+        "Moonshot"
+      ],
+      "weights": "open"
+    },
+    {
+      "id": "glm",
+      "name": "GLM (Z.ai)",
+      "kind": "model",
+      "aliases": [
+        "GLM-5",
+        "Z.ai"
+      ],
+      "weights": "open"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "kind": "lab",
+      "aliases": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "kind": "lab",
+      "aliases": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google and Google DeepMind",
+      "kind": "lab",
+      "aliases": [
+        "Google",
+        "DeepMind"
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "kind": "lab",
+      "aliases": [
+        "Meta"
+      ]
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "kind": "lab",
+      "aliases": [
+        "xAI"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "kind": "lab",
+      "aliases": [
+        "Microsoft"
+      ]
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "kind": "lab",
+      "aliases": [
+        "NVIDIA",
+        "Nvidia"
+      ]
+    },
+    {
+      "id": "cisa",
+      "name": "CISA",
+      "kind": "government",
+      "aliases": [
+        "CISA"
+      ]
+    },
+    {
+      "id": "nist",
+      "name": "NIST",
+      "kind": "government",
+      "aliases": [
+        "NIST"
+      ]
+    },
+    {
+      "id": "caisi",
+      "name": "CAISI",
+      "kind": "government",
+      "aliases": [
+        "CAISI"
+      ]
+    },
+    {
+      "id": "uk-aisi",
+      "name": "UK AI Security Institute",
+      "kind": "government",
+      "aliases": [
+        "UK AISI",
+        "AI Security Institute",
+        "AISI"
+      ]
+    },
+    {
+      "id": "uk-ncsc",
+      "name": "UK NCSC",
+      "kind": "government",
+      "aliases": [
+        "NCSC"
+      ]
+    },
+    {
+      "id": "enisa",
+      "name": "ENISA",
+      "kind": "government",
+      "aliases": [
+        "ENISA"
+      ]
+    },
+    {
+      "id": "nsa",
+      "name": "NSA",
+      "kind": "government",
+      "aliases": [
+        "NSA"
+      ]
+    },
+    {
+      "id": "fbi",
+      "name": "FBI",
+      "kind": "government",
+      "aliases": [
+        "FBI"
+      ]
+    },
+    {
+      "id": "oncd",
+      "name": "Office of the National Cyber Director",
+      "kind": "government",
+      "aliases": [
+        "National Cyber Director",
+        "ONCD"
+      ]
+    },
+    {
+      "id": "european-commission",
+      "name": "European Commission",
+      "kind": "government",
+      "aliases": [
+        "European Commission"
+      ]
+    },
+    {
+      "id": "white-house",
+      "name": "White House",
+      "kind": "government",
+      "aliases": [
+        "White House"
+      ]
+    },
+    {
+      "id": "treasury",
+      "name": "US Treasury",
+      "kind": "government",
+      "aliases": [
+        "Treasury"
+      ]
+    },
+    {
+      "id": "doe",
+      "name": "US Department of Energy",
+      "kind": "government",
+      "aliases": [
+        "Energy Department",
+        "DOE"
+      ]
+    },
+    {
+      "id": "epa",
+      "name": "EPA",
+      "kind": "government",
+      "aliases": [
+        "EPA"
+      ]
+    },
+    {
+      "id": "cybercom",
+      "name": "US Cyber Command",
+      "kind": "government",
+      "aliases": [
+        "Cyber Command"
+      ]
+    },
+    {
+      "id": "congress",
+      "name": "US Congress",
+      "kind": "government",
+      "aliases": [
+        "Senate",
+        "House Democrats",
+        "House bill",
+        "Congress",
+        "Congressional"
+      ]
+    },
+    {
+      "id": "metr",
+      "name": "METR",
+      "kind": "research",
+      "aliases": [
+        "METR"
+      ]
+    },
+    {
+      "id": "irregular",
+      "name": "Irregular",
+      "kind": "research",
+      "aliases": [
+        "Irregular"
+      ]
+    },
+    {
+      "id": "owasp",
+      "name": "OWASP",
+      "kind": "research",
+      "aliases": [
+        "OWASP"
+      ]
+    },
+    {
+      "id": "rand",
+      "name": "RAND",
+      "kind": "research",
+      "aliases": [
+        "RAND"
+      ]
+    },
+    {
+      "id": "csis",
+      "name": "CSIS",
+      "kind": "research",
+      "aliases": [
+        "CSIS"
+      ]
+    },
+    {
+      "id": "hugging-face",
+      "name": "Hugging Face",
+      "kind": "research",
+      "aliases": [
+        "Hugging Face"
+      ]
+    },
+    {
+      "id": "palo-alto",
+      "name": "Palo Alto Networks / Unit 42",
+      "kind": "security",
+      "aliases": [
+        "Palo Alto Networks",
+        "Unit 42"
+      ]
+    },
+    {
+      "id": "cisco",
+      "name": "Cisco / Talos",
+      "kind": "security",
+      "aliases": [
+        "Cisco",
+        "Talos"
+      ]
+    },
+    {
+      "id": "crowdstrike",
+      "name": "CrowdStrike",
+      "kind": "security",
+      "aliases": [
+        "CrowdStrike"
+      ]
+    },
+    {
+      "id": "mandiant",
+      "name": "Mandiant / Google Threat Intelligence",
+      "kind": "security",
+      "aliases": [
+        "Mandiant",
+        "GTIG",
+        "Google Threat Intelligence"
+      ]
+    },
+    {
+      "id": "wiz",
+      "name": "Wiz",
+      "kind": "security",
+      "aliases": [
+        "Wiz"
+      ]
+    },
+    {
+      "id": "vulncheck",
+      "name": "VulnCheck",
+      "kind": "security",
+      "aliases": [
+        "VulnCheck"
+      ]
+    },
+    {
+      "id": "rapid7",
+      "name": "Rapid7",
+      "kind": "security",
+      "aliases": [
+        "Rapid7"
+      ]
+    },
+    {
+      "id": "pillar",
+      "name": "Pillar Security",
+      "kind": "security",
+      "aliases": [
+        "Pillar Security"
+      ]
+    },
+    {
+      "id": "sysdig",
+      "name": "Sysdig",
+      "kind": "security",
+      "aliases": [
+        "Sysdig"
+      ]
+    },
+    {
+      "id": "varonis",
+      "name": "Varonis",
+      "kind": "security",
+      "aliases": [
+        "Varonis"
+      ]
+    },
+    {
+      "id": "eset",
+      "name": "ESET",
+      "kind": "security",
+      "aliases": [
+        "ESET"
+      ]
+    },
+    {
+      "id": "trellix",
+      "name": "Trellix",
+      "kind": "security",
+      "aliases": [
+        "Trellix"
+      ]
+    },
+    {
+      "id": "sentinelone",
+      "name": "SentinelOne",
+      "kind": "security",
+      "aliases": [
+        "SentinelOne"
+      ]
+    },
+    {
+      "id": "check-point",
+      "name": "Check Point",
+      "kind": "security",
+      "aliases": [
+        "Check Point"
+      ]
+    },
+    {
+      "id": "xbow",
+      "name": "XBOW",
+      "kind": "security",
+      "aliases": [
+        "XBOW"
+      ]
+    },
+    {
+      "id": "booz-allen",
+      "name": "Booz Allen",
+      "kind": "security",
+      "aliases": [
+        "Booz Allen"
+      ]
+    },
+    {
+      "id": "greynoise",
+      "name": "GreyNoise",
+      "kind": "security",
+      "aliases": [
+        "GreyNoise"
+      ]
+    },
+    {
+      "id": "team-cymru",
+      "name": "Team Cymru",
+      "kind": "security",
+      "aliases": [
+        "Team Cymru"
+      ]
+    },
+    {
+      "id": "okta",
+      "name": "Okta",
+      "kind": "security",
+      "aliases": [
+        "Okta"
+      ]
+    },
+    {
+      "id": "fortinet",
+      "name": "Fortinet",
+      "kind": "security",
+      "aliases": [
+        "Fortinet"
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "kind": "security",
+      "aliases": [
+        "Cloudflare"
+      ]
+    },
+    {
+      "id": "dreadnode",
+      "name": "Dreadnode",
+      "kind": "security",
+      "aliases": [
+        "Dreadnode"
+      ]
+    },
+    {
+      "id": "adversa",
+      "name": "Adversa AI",
+      "kind": "security",
+      "aliases": [
+        "Adversa"
+      ]
+    },
+    {
+      "id": "hiddenlayer",
+      "name": "HiddenLayer",
+      "kind": "security",
+      "aliases": [
+        "HiddenLayer"
+      ]
+    },
+    {
+      "id": "langflow",
+      "name": "Langflow",
+      "kind": "platform",
+      "aliases": [
+        "Langflow"
+      ]
+    },
+    {
+      "id": "mcp",
+      "name": "Model Context Protocol (MCP)",
+      "kind": "platform",
+      "aliases": [
+        "MCP"
+      ]
+    },
+    {
+      "id": "openclaw",
+      "name": "OpenClaw",
+      "kind": "platform",
+      "aliases": [
+        "OpenClaw",
+        "ClawHub"
+      ]
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "kind": "platform",
+      "aliases": [
+        "Hermes"
+      ]
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "kind": "platform",
+      "aliases": [
+        "Claude Code"
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "kind": "platform",
+      "aliases": [
+        "Cursor"
+      ]
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "kind": "platform",
+      "aliases": [
+        "Gemini CLI"
+      ]
+    },
+    {
+      "id": "litellm",
+      "name": "LiteLLM",
+      "kind": "platform",
+      "aliases": [
+        "LiteLLM"
+      ]
+    },
+    {
+      "id": "mlflow",
+      "name": "MLflow",
+      "kind": "platform",
+      "aliases": [
+        "MLflow"
+      ]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "kind": "platform",
+      "aliases": [
+        "GitHub"
+      ]
+    },
+    {
+      "id": "beazley",
+      "name": "Beazley",
+      "kind": "insurance",
+      "aliases": [
+        "Beazley"
+      ]
+    },
+    {
+      "id": "munich-re",
+      "name": "Munich Re",
+      "kind": "insurance",
+      "aliases": [
+        "Munich Re"
+      ]
+    },
+    {
+      "id": "swiss-re",
+      "name": "Swiss Re",
+      "kind": "insurance",
+      "aliases": [
+        "Swiss Re"
+      ]
+    },
+    {
+      "id": "coalition",
+      "name": "Coalition",
+      "kind": "insurance",
+      "aliases": [
+        "Coalition underwriter",
+        "Coalition's"
+      ]
+    },
+    {
+      "id": "aiuc",
+      "name": "AIUC",
+      "kind": "insurance",
+      "aliases": [
+        "AIUC"
+      ]
+    },
+    {
+      "id": "at-bay",
+      "name": "At-Bay",
+      "kind": "insurance",
+      "aliases": [
+        "At-Bay"
+      ]
+    },
+    {
+      "id": "cowbell",
+      "name": "Cowbell",
+      "kind": "insurance",
+      "aliases": [
+        "Cowbell"
+      ]
+    },
+    {
+      "id": "qbe",
+      "name": "QBE",
+      "kind": "insurance",
+      "aliases": [
+        "QBE"
+      ]
+    },
+    {
+      "id": "aig",
+      "name": "AIG",
+      "kind": "insurance",
+      "aliases": [
+        "AIG"
+      ]
+    },
+    {
+      "id": "cfc",
+      "name": "CFC",
+      "kind": "insurance",
+      "aliases": [
+        "CFC"
+      ]
+    },
+    {
+      "id": "naic",
+      "name": "NAIC",
+      "kind": "insurance",
+      "aliases": [
+        "NAIC"
+      ]
+    },
+    {
+      "id": "china-nexus",
+      "name": "China-nexus actors",
+      "kind": "actor",
+      "aliases": [
+        "China-linked",
+        "PRC-nexus"
+      ]
+    },
+    {
+      "id": "iran-nexus",
+      "name": "Iran-nexus actors",
+      "kind": "actor",
+      "aliases": [
+        "Iran-linked"
+      ]
+    },
+    {
+      "id": "russia-nexus",
+      "name": "Russia-nexus actors",
+      "kind": "actor",
+      "aliases": [
+        "Russia-linked"
+      ]
+    },
+    {
+      "id": "dprk-nexus",
+      "name": "North Korea-nexus actors",
+      "kind": "actor",
+      "aliases": [
+        "North Korea",
+        "North Korean"
+      ]
+    }
+  ]
+}

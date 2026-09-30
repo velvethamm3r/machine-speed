@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Machine Speed: a source-verified AI-cyber intelligence board"
+type: dataset
+authors:
+  - family-names: Bahrami
+    given-names: Daria
+url: "https://machinespeed.techpointe.org/data/"
+repository-code: "https://github.com/velvethamm3r/machine-speed"
+license: CC-BY-4.0
+keywords:
+  - artificial intelligence
+  - cybersecurity
+  - AI policy
+  - threat intelligence
+abstract: >-
+  A daily, source-verified record of AI cyber capability, policy, defense,
+  attacks and markets, with each item labelled by the kind of claim it rests on.

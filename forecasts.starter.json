@@ -1,0 +1,101 @@
+{
+  "_readme": "Candidates only — the build never reads this file. Set each p yourself (0.01–0.99), set made to the day you add it, add a rationale if you like, then move the entry into forecasts.json. Board forecasts must be added before their metric.from date (Oct 1 for these). Their thresholds sit near the trend baseline's median as of 2026-09-29 — the baseline gives them roughly 35–45% — so your p is your disagreement with the trend.",
+  "forecasts": [
+    {
+      "id": "hr-10519-markup-2026",
+      "made": "",
+      "lane": "pol",
+      "question": "Will H.R. 10519 (Critical Infrastructure AI Cyber Defense Pilot Program) be marked up by a House committee by Dec 31, 2026?",
+      "p": null,
+      "resolveBy": "2026-12-31",
+      "criteria": "Congress.gov lists a committee markup or 'ordered to be reported' action on H.R. 10519 dated on or before Dec 31, 2026."
+    },
+    {
+      "id": "caisi-second-cyber-eval-2026",
+      "made": "",
+      "lane": "pol",
+      "question": "Will CAISI publish a second public cyber-capability evaluation of an AI model by Dec 31, 2026?",
+      "p": null,
+      "resolveBy": "2026-12-31",
+      "criteria": "NIST/CAISI publishes, alone or jointly, a cyber-capability evaluation of a named AI model other than the Jul 23, 2026 Kimi K3 co-publication, dated on or before Dec 31, 2026."
+    },
+    {
+      "id": "eo-14409-public-designation-2026",
+      "made": "",
+      "lane": "pol",
+      "question": "Will the U.S. government publicly confirm that any AI model has been designated a 'covered frontier model' under EO 14409 by Dec 31, 2026?",
+      "p": null,
+      "resolveBy": "2026-12-31",
+      "criteria": "An official U.S. government statement, or the model's developer on the record, confirms a covered-frontier-model designation under EO 14409 on or before Dec 31, 2026."
+    },
+    {
+      "id": "us-china-ai-incident-mechanism-2027q1",
+      "made": "",
+      "lane": "pol",
+      "question": "Will the U.S. and China announce an agreed AI incident notification mechanism by Mar 31, 2027?",
+      "p": null,
+      "resolveBy": "2027-03-31",
+      "criteria": "Both governments, or a joint statement, confirm an agreed mechanism for notifying each other of AI incidents with national security implications, announced on or before Mar 31, 2027. A proposal or agreement to keep talking does not count."
+    },
+    {
+      "id": "second-lab-cyber-gating-2026",
+      "made": "",
+      "lane": "cap",
+      "question": "Will OpenAI or Google DeepMind restrict or reroute cybersecurity tasks for a newly released flagship model, as Anthropic did with Claude Opus 5.5, by Dec 31, 2026?",
+      "p": null,
+      "resolveBy": "2026-12-31",
+      "criteria": "OpenAI or Google DeepMind states on the record that a flagship model released on or after Sep 29, 2026 routes, refuses or gates general cybersecurity tasks for ordinary users differently from other tasks."
+    },
+    {
+      "id": "second-vendor-ai-found-critical-cves-2026",
+      "made": "",
+      "lane": "def",
+      "question": "Will a major software vendor other than Cisco attribute a CVSS 9.0+ vulnerability to AI-assisted discovery in its own advisory by Dec 31, 2026?",
+      "p": null,
+      "resolveBy": "2026-12-31",
+      "criteria": "A vendor's own security advisory, dated Sep 29 – Dec 31, 2026, credits AI or AI-assisted internal testing with finding at least one flaw it rates CVSS 9.0 or higher. 'Major' = a company on the Fortune 500 or Forbes Global 2000."
+    },
+    {
+      "id": "board-atk-q4-2026",
+      "made": "",
+      "kind": "board",
+      "question": "Will the board log at least 125 Attacks items dated Oct 1 – Dec 31, 2026?",
+      "p": null,
+      "criteria": "125 or more Attacks-lane items on the board dated Oct 1 – Dec 31, 2026, counted 7 days after the window closes.",
+      "metric": {
+        "lane": "atk",
+        "from": "2026-10-01",
+        "to": "2026-12-31",
+        "atLeast": 125
+      }
+    },
+    {
+      "id": "board-cap-q4-2026",
+      "made": "",
+      "kind": "board",
+      "question": "Will the board log at least 100 Capability items dated Oct 1 – Dec 31, 2026?",
+      "p": null,
+      "criteria": "100 or more Capability-lane items on the board dated Oct 1 – Dec 31, 2026, counted 7 days after the window closes.",
+      "metric": {
+        "lane": "cap",
+        "from": "2026-10-01",
+        "to": "2026-12-31",
+        "atLeast": 100
+      }
+    },
+    {
+      "id": "board-mkt-q4-2026",
+      "made": "",
+      "kind": "board",
+      "question": "Will the board log at least 40 Markets items dated Oct 1 – Dec 31, 2026?",
+      "p": null,
+      "criteria": "40 or more Markets-lane items on the board dated Oct 1 – Dec 31, 2026, counted 7 days after the window closes.",
+      "metric": {
+        "lane": "mkt",
+        "from": "2026-10-01",
+        "to": "2026-12-31",
+        "atLeast": 40
+      }
+    }
+  ]
+}

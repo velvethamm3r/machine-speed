@@ -232,3 +232,4 @@
 .msx-foot-note{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border-top:1px solid var(--x-hair);font:400 10.5px/1.5 var(--x-sans);color:var(--x-faint)}
 .msx mark{background:var(--x-mark);color:var(--x-ink);padding:0 2px;border-radius:2px}
 .msx-noscript{padding:20px 18px;font:400 14px/1.6 var(--x-sans);color:var(--x-mute)}
+.msx-topiclink{margin:0; padding:10px 18px 0}

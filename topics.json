@@ -1,0 +1,35 @@
+{
+  "_readme": "The topics readers browse by. Each item lists its topic ids in items[].topics. Keep the list short and the definitions plain; a topic is a question a reader follows, not a filing category — lanes already do that.",
+  "topics": [
+    {
+      "id": "evaluation-incidents",
+      "name": "Lab evaluation incidents",
+      "definition": "AI models breaking out of their cyber evaluations into real systems, and the response from labs and governments."
+    },
+    {
+      "id": "frontier-capability",
+      "name": "Frontier model capability",
+      "definition": "What the most capable models can now do in cyber, how labs and testers measure it, and who is allowed access."
+    },
+    {
+      "id": "ai-in-attacks",
+      "name": "AI in real attacks",
+      "definition": "Attackers using AI models and agents in actual operations."
+    },
+    {
+      "id": "attacks-on-ai",
+      "name": "Attacks on AI systems",
+      "definition": "Attacks aimed at AI itself: prompt injection, poisoned agent tools and packages, exposed AI infrastructure, and stolen or copied model access."
+    },
+    {
+      "id": "ai-found-vulnerabilities",
+      "name": "AI-found vulnerabilities",
+      "definition": "AI finding software flaws faster than they are patched, and what that does to disclosure."
+    },
+    {
+      "id": "critical-infrastructure",
+      "name": "Critical infrastructure",
+      "definition": "AI-linked threats to water, power and other industrial control systems."
+    }
+  ]
+}

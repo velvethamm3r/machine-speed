@@ -669,3 +669,225 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .arch .d{font-family:var(--display); font-weight:600}
 .dcard h3, .tl h3, .act > h3{font-family:var(--display); font-weight:600; letter-spacing:-.1px}
 .newstrip li > span{font-family:var(--display); font-size:15px}
+
+/* Forecasts page (forecasts.py). A forecast card is a board card with the
+   probability pulled out to the left, so the number reads before the question. */
+.fc-list .item.fc{display:grid; grid-template-columns:64px 1fr; gap:14px; align-items:start}
+.fc-list .item.fc:last-child{border-bottom:0}
+.fc-p{font-size:22px; font-weight:750; letter-spacing:-.4px; color:var(--accent); line-height:1.1;
+  font-variant-numeric:tabular-nums; padding-top:1px}
+.fc-main h4{display:flex; gap:8px; align-items:flex-start}
+.fc-main .meta{display:block; font-size:12.5px; line-height:1.55}
+.fc-why{font-size:13px !important}
+.fc-verdict{margin-top:9px; display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px;
+  text-transform:uppercase; padding:3px 8px; border-radius:5px}
+.fc-verdict a{color:inherit; text-decoration:underline}
+.fc-yes{background:var(--cap-soft); color:var(--cap)}
+.fc-no{background:var(--atk-soft); color:var(--atk)}
+.fc-void{background:var(--panel-2); color:var(--ink-3)}
+.fc-list > .lede{padding:14px 16px; margin:0}
+@media(max-width:600px){.fc-list .item.fc{grid-template-columns:1fr; gap:4px}}
+.fc-cal th:nth-child(1),.fc-cal th:nth-child(3){width:auto}
+.fc-cal th{overflow-wrap:normal; letter-spacing:.3px}
+
+/* Findings layer (insights.py). Chart marks use their own tokens: the dark
+   theme's lane colours are tuned for text-sized pills and read as pastel at
+   mark size, so marks take a deeper step, validated against the dark panel
+   (CVD and normal-vision separation, contrast). Light marks are the lane colours. */
+:root{--cap-mark:var(--cap); --pol-mark:var(--pol); --def-mark:var(--def); --atk-mark:var(--atk); --mkt-mark:var(--mkt)}
+:root[data-theme="dark"]{--cap-mark:#2a9f7c; --pol-mark:#c4841a; --def-mark:#5a86e0; --atk-mark:#d65c5c; --mkt-mark:#9170dc}
+.stat .d{font-size:12px; color:var(--ink-3); margin-top:6px}
+.footlinks{margin-top:10px; font-size:12.5px} .footlinks a{color:var(--ink-2)}
+.ms-multiples{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px}
+.ms-mini{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 14px 10px; box-shadow:var(--shadow)}
+.ms-mhead{display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:650; color:var(--ink-2); margin-bottom:10px}
+.ms-mhead b{margin-left:auto; color:var(--ink); font-variant-numeric:tabular-nums}
+.ms-mhead .sw,.ms-legend i{width:9px; height:9px; border-radius:2px; display:inline-block}
+.ms-cols{display:flex; align-items:flex-end; gap:2px; height:92px; border-bottom:1px solid var(--line)}
+.ms-col{flex:1; max-width:24px; height:100%; display:flex; align-items:flex-end; cursor:default}
+.ms-col i{display:block; width:100%; min-height:1px; background:var(--c); border-radius:4px 4px 0 0}
+.ms-col:hover i{filter:brightness(1.15)}
+.ms-col.partial i{opacity:.4}
+.ms-axis{display:flex; justify-content:space-between; font-size:10.5px; color:var(--ink-3); margin-top:5px}
+.ms-table{margin:14px 0 0} .ms-table table{border:0; border-radius:0; box-shadow:none}
+.ms-legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--ink-2); margin:10px 0 0}
+.ms-legend span{display:inline-flex; align-items:center; gap:6px} .ms-legend i{border-radius:50%}
+.lagwrap{overflow-x:auto; border-radius:12px}
+.lagtab{min-width:760px; table-layout:auto}
+.lagtab th,.lagtab td{padding:10px 12px}
+.lagtab th[scope=row]{font-weight:600; font-size:13px; width:26%}
+.lagtab th[scope=row] small{display:block; font-weight:400; color:var(--ink-3); font-size:11.5px; margin-top:2px}
+.lagtab .num{text-align:right; white-space:nowrap; width:1%; font-variant-numeric:tabular-nums}
+.lagtab td.open{color:var(--ink-3)} .lagtab td.open small{font-size:11px}
+.lagtab .ahead{color:var(--ink-3); cursor:help}
+.lagtab .strip{width:44%; position:relative}
+.lagtab .track{position:relative; display:block; height:14px; border-bottom:1px solid var(--line)}
+.lagtab .track i{position:absolute; top:3px; width:8px; height:8px; margin-left:-4px; border-radius:50%;
+  box-shadow:0 0 0 2px var(--panel); cursor:default}
+.lagtab .track i.resp{border-radius:2px}
+.lagtab .track i:hover{transform:scale(1.5); z-index:2}
+.lagtab .months{position:relative; display:block; height:14px}
+.lagtab .months span{position:absolute; font-size:10.5px; transform:translateX(-50%)}
+.conftab{min-width:640px; table-layout:auto} .conftab .num{text-align:right}
+.conftab th:nth-child(1){width:auto}
+.arch .wt{font-weight:500; color:var(--ink-3); font-size:11.5px}
+.corr td.when{white-space:nowrap; width:1%} .corr p{margin:6px 0 0; color:var(--ink-2); line-height:1.55}
+@media(max-width:600px){.ms-multiples{grid-template-columns:1fr 1fr}}
+.lagtab th[scope=row],.conftab th[scope=row]{text-transform:none; letter-spacing:normal; color:var(--ink); background:var(--panel)}
+.conftab th[scope=row]{font-weight:600; font-size:13px}
+/* On a phone the lag table keeps what it is for — thread, policy, defense —
+   and drops the markets column and the timeline strip rather than scroll. */
+@media(max-width:640px){
+  .lagtab{min-width:0}
+  .lagtab .strip,.lagtab th:nth-child(4),.lagtab td:nth-child(4){display:none}
+  .lagtab th[scope=row]{width:auto}
+}
+.corr{table-layout:auto} .corr td.when{color:var(--ink-3); font-size:12.5px; padding-right:4px}
+@media(max-width:600px){.corr td.when{white-space:normal; width:5.5em}}
+
+/* Front page and topic pages (layers.py): This week, the search box, topics
+   and one card per week. */
+.thisweek .picks{margin:0}
+.thisweek .more{display:inline-block; margin-top:12px; font-size:13.5px; font-weight:600}
+.picks{list-style:none; margin:0 0 30px; padding:0; display:grid; gap:12px}
+.pick{display:grid; grid-template-columns:34px 1fr; gap:12px; background:var(--panel); border:1px solid var(--line);
+  border-radius:12px; padding:14px 16px; box-shadow:var(--shadow)}
+.pick.nopn{grid-template-columns:1fr}
+.pick > div{min-width:0}
+.pn{font-family:var(--display); font-size:24px; line-height:1; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.ph{display:block; font-weight:650; font-size:15px; color:var(--ink); line-height:1.4}
+.pw{margin:6px 0 8px; color:var(--ink-2); font-size:14px; line-height:1.55; max-width:95ch}
+.pm{display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:var(--ink-3)}
+.homesearch{display:grid; gap:8px; margin:0 0 30px; padding:16px; background:var(--panel-2);
+  border:1px solid var(--line); border-radius:12px}
+.homesearch label{font-size:12px; font-weight:650; text-transform:uppercase; letter-spacing:1px; color:var(--ink-2)}
+.homesearch div{display:flex; gap:8px}
+.homesearch input[type=search]{flex:1; min-width:0; font:inherit; font-size:15px; padding:10px 12px; color:var(--ink);
+  background:var(--panel); border:1px solid var(--line); border-radius:8px}
+.homesearch input[type=search]:focus{outline:2px solid var(--accent); outline-offset:1px}
+.homesearch button{font:inherit; font-weight:650; font-size:14px; padding:0 16px; border-radius:8px; cursor:pointer;
+  color:var(--bg); background:var(--accent); border:0}
+.homesearch button:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.topics{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px}
+.topic{display:grid; gap:4px; min-width:0; padding:12px 14px; background:var(--panel); border:1px solid var(--line);
+  border-radius:12px; color:inherit}
+.topic:hover,.topic:focus-visible{border-color:var(--accent); text-decoration:none; outline:none}
+.topic .tn{display:flex; align-items:baseline; gap:8px; font-weight:650; font-size:14.5px; color:var(--ink)}
+.topic .tn b{margin-left:auto; font-weight:600; font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.topic .td{font-size:13px; line-height:1.5; color:var(--ink-2)}
+.wgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px}
+.wcard{display:flex; flex-direction:column; gap:9px; min-width:0; padding:14px 16px; background:var(--panel);
+  border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); color:inherit}
+.wcard:hover,.wcard:focus-visible{border-color:var(--accent); text-decoration:none; outline:none}
+.wcard .wt{display:flex; align-items:baseline; gap:8px; font-family:var(--display); font-size:18px; color:var(--ink)}
+.wcard .wt b{margin-left:auto; font-family:inherit; font-size:12px; font-weight:600; color:var(--ink-3)}
+.wbar{display:flex; gap:2px; height:6px}
+.wbar i{display:block; border-radius:2px; min-width:3px}
+.wkey{font-size:11.5px; color:var(--ink-3)}
+.wcard .wl{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--ink-3)}
+.wcard ul{list-style:none; margin:0; padding:0; display:grid; gap:7px}
+.wcard li{display:flex; align-items:flex-start; gap:8px; font-size:13.5px; line-height:1.4; color:var(--ink-2)}
+.wcard li span:last-child{min-width:0}
+.wcard .wgo{margin-top:auto; padding-top:4px; font-size:13px; font-weight:600; color:var(--accent)}
+.tlist .weekhead{top:0}
+.crows{list-style:none; margin:0; padding:2px 0 8px; border-bottom:1px solid var(--line)}
+.crows:last-child{border-bottom:0}
+.crow{display:grid; grid-template-columns:52px auto 1fr; gap:10px; align-items:baseline; padding:6px 16px; font-size:13.5px}
+.crow time{color:var(--ink-3); font-size:12px; font-variant-numeric:tabular-nums}
+.crow a{color:var(--ink-2)} .crow a:hover{color:var(--ink)}
+.crow.key a{color:var(--ink); font-weight:600}
+.crow .lanepill{margin-top:0}
+.topics.wide{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+@media(max-width:600px){
+  .wgrid,.topics,.topics.wide{grid-template-columns:1fr}
+  .crow{grid-template-columns:46px 1fr; row-gap:4px} .crow a{grid-column:1 / -1}
+  .pick{grid-template-columns:24px 1fr; gap:10px}
+}
+.pick.nopn .pw{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.topic{align-content:start}
+.wcard .wt b{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.thisweek{margin-top:22px}
+.crow .lanepill{justify-self:start}
+/* This week banner (layers.py + home.js), on Explore's carousel chrome. */
+.hcar{--car-mark:var(--new)}
+.hcar .msx-carnav,.hcar .msx-carthumbs,.hcar .msx-carticks{display:none}
+.hcar.js .msx-carnav{display:flex}
+.hcar.js .msx-carticks{display:flex}
+.hcar.js .msx-carthumbs{display:grid}
+.hcar:not(.js) .hcar-slides .msx-carslide + .msx-carslide{border-top:1px solid var(--x-hair)}
+.hcar .msx-carticks i{flex:1; background:var(--x-line)}
+.hcar .msx-carticks i.on{flex:2; background:var(--ln)}
+.hcar .why{font-weight:650; color:var(--x-ink)}
+.thisweek .more{margin-top:12px}
+@media(max-width:640px){.hcar.js .msx-carthumbs{display:none}}
+.hcar .msx-carslide[hidden]{display:none}
+/* Header search and the search page (layers.py, search.js). */
+.navsearch{display:flex; margin-right:4px}
+.navsearch input{width:190px; font:inherit; font-size:13px; padding:6px 10px; color:var(--ink);
+  background:var(--panel); border:1px solid var(--line); border-radius:20px}
+.navsearch input:focus{outline:2px solid var(--accent); outline-offset:1px; width:240px}
+@media(max-width:700px){.navsearch{order:10; flex-basis:100%; margin:4px 0 0} .navsearch input,.navsearch input:focus{width:100%}}
+.bigsearch{display:grid; gap:10px; margin:0 0 14px}
+.bigsearch input{font:inherit; font-size:16px; padding:11px 14px; color:var(--ink); background:var(--panel);
+  border:1px solid var(--line); border-radius:10px}
+.bigsearch input:focus{outline:2px solid var(--accent); outline-offset:1px}
+.schips{display:flex; flex-wrap:wrap; gap:8px}
+.schip{display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:12.5px; font-weight:600; color:var(--ink-2);
+  background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:5px 11px; cursor:pointer}
+.schip i{width:8px; height:8px; border-radius:50%}
+.schip[aria-pressed="true"]{color:var(--ink); border-color:var(--accent); background:var(--accent-soft)}
+.scount{color:var(--ink-3); font-size:13px; margin:0 0 12px}
+.sresults{list-style:none; margin:0 0 30px; padding:0; display:grid; gap:10px}
+.sres{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:13px 16px; min-width:0}
+.sres .sm{display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:var(--ink-3); margin-bottom:6px}
+.sres .sm .lanepill{margin-top:0}
+.sres .stop{color:var(--ink-2)}
+.sres .sh{display:block; font-weight:650; font-size:15px; color:var(--ink); line-height:1.4}
+.sres .sc{margin:6px 0; color:var(--ink-2); font-size:13.5px; line-height:1.55}
+.sres .ss{font-size:12px; color:var(--ink-3)} .sres .ss a{color:var(--ink-2)}
+.sres mark{background:var(--accent-soft); color:inherit; border-radius:2px; padding:0 1px}
+.wcard2 .ws{font-size:13px; line-height:1.5; color:var(--ink-2); border-top:1px solid var(--line); padding-top:8px; margin-top:4px}
+.wcard2 .ws b{color:var(--ink); font-weight:600}
+.wcard2 .wgo{font-size:13px; font-weight:600; color:var(--accent); margin-top:2px}
+.blockhead a{text-transform:none; letter-spacing:0; font-weight:600}
+.topics.wide{margin-bottom:30px}
+.awlist{background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+.aw{border-bottom:1px solid var(--line)} .aw:last-child{border-bottom:0}
+.aw summary{display:flex; align-items:baseline; gap:12px; padding:11px 16px; cursor:pointer; list-style:none;
+  font-size:14px; font-weight:600; color:var(--ink)}
+.aw summary::-webkit-details-marker{display:none}
+.aw summary::before{content:"+"; width:12px; color:var(--ink-3); font-weight:500}
+.aw[open] summary::before{content:"–"}
+.aw summary time{margin-left:auto; font-size:12px; font-weight:500; color:var(--ink-3); white-space:nowrap}
+.aw summary:hover{background:var(--panel-2)}
+.aw summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+.aw p{margin:0; padding:0 16px 14px 40px; font-size:13.5px; line-height:1.6; color:var(--ink-2); max-width:110ch}
+.aw summary em{font-style:normal; font-size:12px; font-weight:600; color:var(--ink-3); background:var(--panel-2);
+  border:1px solid var(--line); border-radius:20px; padding:0 8px}
+.awitems{list-style:none; margin:0; padding:0 16px 12px 40px; display:grid; gap:2px}
+.awitems li{display:grid; grid-template-columns:52px auto minmax(0,1fr) auto; gap:10px; align-items:baseline;
+  padding:6px 0; border-top:1px solid var(--line); font-size:13.5px}
+.awitems li:first-child{border-top:0}
+.awitems time{font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.awitems .lanepill{margin-top:0; justify-self:start}
+.awitems .h{color:var(--ink-2)} .awitems .h:hover{color:var(--ink)}
+.awitems .src{font-size:12px; color:var(--accent); white-space:nowrap}
+@media(max-width:640px){
+  .awitems{padding-left:16px}
+  .awitems li{grid-template-columns:46px 1fr; row-gap:4px}
+  .awitems .h,.awitems .src{grid-column:1 / -1}
+}
+.awitems .src{white-space:normal; max-width:30ch; text-align:right} @media(max-width:640px){.awitems .src{max-width:none; text-align:left}}
+/* The guide strip under the This week banner (layers.guide_bar). */
+.guide{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; margin-top:14px;
+  background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+.gcell{position:relative; display:grid; gap:4px; align-content:start; padding:14px 40px 14px 16px;
+  background:var(--panel); color:inherit; min-width:0}
+.gcell:hover,.gcell:focus-visible{background:var(--panel-2); text-decoration:none; outline:none}
+.gcell:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.gl{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--ink)}
+.gd{font-size:13.5px; line-height:1.45; color:var(--ink-2)}
+.gm{font-size:12px; color:var(--ink-3); margin-top:2px}
+.ga{position:absolute; right:16px; top:14px; color:var(--accent); font-size:15px}
+.gcell:hover .ga{transform:translateX(2px)}
+@media(prefers-reduced-motion:reduce){.gcell:hover .ga{transform:none}}

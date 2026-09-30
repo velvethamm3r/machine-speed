@@ -33,9 +33,21 @@ A daily run rewrites this file and nothing else.
   "confidence": "on-record",            // required. See tiers below.
   "outlet":     "UK AI Security Institute / CAISI",  // required. Who published it.
   "url":        "https://…",            // required. https only. A page you actually opened.
-  "isNew":      true                    // optional. Forces into / out of the 48h strip. Omit for the date rule.
+  "isNew":      true,                   // optional. Forces into / out of the 48h strip. Omit for the date rule.
+  "topics":     ["evaluation-incidents"],  // optional. Topic ids from topics.json. See below.
+  "key":        true                    // optional. A turning point; see below.
 }
 ```
+
+`topics` files an item under the questions readers follow, using the ids in `topics.json`
+(six at present: lab evaluation incidents, frontier model capability, AI in real attacks,
+attacks on AI systems, AI-found vulnerabilities, critical infrastructure). An unknown id is a
+hard error. An item can sit in several topics or none — a policy, defense or markets item with
+no topic is still on its lane page and in search. Topics drive the `/topic/<id>/` pages and the
+Findings page's **response lag**: a topic's clock starts at its first `cap` or `atk` item and
+stops, lane by lane, at its first `pol`, `def` and `mkt` item on or after that date, so tag a
+response to the topic it answers. Topics replaced the thread tags (`threads`) on 2026-09-30;
+the watchlist itself is unchanged.
 
 Ordering within a lane is handled by the generator (newest first) — array order does not matter.
 `date` also decides which week page an item lands on: items are bucketed by the Monday of
@@ -104,15 +116,70 @@ rules are kept in `assets/style.css` so those pages keep rendering as written.
 Each tier needs a label in `CONF`, a colour in `CONF_VAR` (both in `build.py`) and a
 `.c-<tier>` rule in `assets/style.css`.
 
+`key` marks the items that actually move a story — the disclosure, the bill, the first
+confirmed case — as against the ones that add detail. Key items lead the week cards on the front
+page and print in bold on topic pages. Use it sparingly: if most items are key, none are.
+
+## weekly[]
+
+Optional. The editor's picks. The current week's picks lead the front page as "This week";
+until they exist, the front page shows the week's newest items instead. Past weeks' picks lead
+their week cards.
+
+```jsonc
+{
+  "week":  "2026-09-21",                  // required. The Monday that starts the week.
+  "note":  "…",                           // optional. One or two sentences above the picks.
+  "picks": [                              // required. Five is the design; more warns.
+    { "item": "microsoft-storm-3168-azure-service-principals", "why": "One line on why it matters." }
+  ]
+}
+```
+
+Order does not matter; the build matches picks to weeks by `week`.
+
+## corrections[]
+
+Optional. The public corrections log at `/corrections/`.
+
+```jsonc
+{
+  "date": "2026-08-24",                    // required. The day the item was corrected.
+  "item": "google-mandiant-avdh-agentic-vuln-discovery",  // optional. The corrected item's id.
+  "text": "Date corrected from Aug 19 to Aug 18, …"       // required. What changed, in a sentence or two.
+}
+```
+
+Add an entry whenever a published item changes in a way a reader could have relied on: a wrong
+date, a figure the primary did not support, a claim tied to the wrong event. A sourcing upgrade
+that changes nothing a reader relied on (press → the primary, same facts) does not need one.
+Entries are never deleted. An `item` that has since left the board prints without a link.
+
+## entities.json
+
+Not part of `data.json`: a separate file listing the organisations, model families, platforms
+and actors the build tags items with, by matching each entity's `aliases` (case-sensitive,
+whole word) in the item's `headline` and `core`. Tags are derived on every build and never
+stored on items. `weights` (`open` / `closed`) is set on a model family only where the board's
+own items establish it. Adding an alias retags the whole board on the next build.
+
 ## watchlist[]
 
 ```jsonc
 {
   "thread":  "Tracked bills",   // required. Short, stable label — the same thread keeps the same name across runs.
   "status":  "…",               // required. Current state in one or two sentences.
-  "changed": "2026-07-23"       // YYYY-MM-DD, or "" if it has never moved. Rendered as "—" when empty.
+  "changed": "2026-07-23",      // YYYY-MM-DD, or "" if it has never moved. Rendered as "—" when empty.
+  "topic":   "evaluation-incidents",  // optional. A topic id from topics.json; see below.
+  "items":   ["item-id", "…"]        // optional. Board items that belong to this thread.
 }
 ```
+
+`topic` lists the thread on that topic's page; a thread with no topic is listed under "Also
+watching" on the Watchlist page. An unknown topic id is a hard error. `items` is what a reader
+sees when they open a thread there: each item's headline, linking to its card, and its original
+source. A thread with no `items` shows its `status` instead. An item id no longer on the board is
+a warning.
 
 Watchlist threads persist. When nothing moved, carry the entry forward with its old `changed`
 date rather than deleting it — the point of the panel is that it survives quiet days.

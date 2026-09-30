@@ -43,6 +43,10 @@ from datetime import datetime, timedelta
 from html import escape
 from pathlib import Path
 
+import forecasts as fcast
+import insights as ins_mod
+import layers as lay_mod
+
 # ---------------------------------------------------------------------------
 # Configuration — edit these for your deployment
 # ---------------------------------------------------------------------------
@@ -191,9 +195,14 @@ LEGACY_PATHS = {
     "archive.html": ARCHIVE_URL, "about.html": ABOUT_URL,
 }
 
-LANDING = "explore"
+# "home" is the front page in layers.py: This week, the topics, a search box and
+# a card per week, with Explore at EXPLORE_PAGE as the search view.
+LANDING = "home"
 
-EXPLORE_PAGE = "explore.html"      # where Explore lives when it is NOT the landing page
+# Explore was retired on 2026-09-30: the Watchlist (the six topics) and the
+# header search box replaced it, and /explore.html now redirects. Set this back
+# to "explore.html" to publish it again; board.js and its payload are intact.
+EXPLORE_PAGE = ""
 EXPLORE_NAV = "Explore"
 # Where the pre-rendered board is published when Explore is the landing page.
 # Empty means it is not published at all — and that is the default, because it is
@@ -261,6 +270,18 @@ SUBSTACK_NAV = "Newsletter"             # sits in the destinations group, betwee
 # let same_site() decide again.
 SUBSTACK_NEW_TAB = True
 
+# Pages held back from the live site while they are reviewed. False leaves the
+# page, its nav link and its sitemap entry out of the build; the code and the
+# data behind them are untouched, so flipping these back is the whole change.
+SHOW_FINDINGS = False
+SHOW_FORECASTS = False
+
+# How the open dataset asks to be cited, on the Data page and in items.json.
+# CITATION.cff and .zenodo.json in the repo root say the same thing for GitHub
+# and Zenodo; keep the three in step. Add the DOI here once Zenodo issues one.
+CITATION = ("Bahrami, D. (2026). Machine Speed: a source-verified AI-cyber "
+            "intelligence board [Data set]. https://machinespeed.techpointe.org/data/")
+
 
 def home_of(kind: str) -> str:
     """The path a view is written to, given the landing-page choice.
@@ -270,7 +291,7 @@ def home_of(kind: str) -> str:
     """
     if kind == "explore":
         return "index.html" if LANDING == "explore" and EXPLORE_PAGE else EXPLORE_PAGE
-    if LANDING == "explore" and EXPLORE_PAGE:
+    if LANDING in ("explore", "home") and EXPLORE_PAGE:
         return BOARD_PAGE          # "" when the pre-rendered board is not published
     return "index.html"
 
@@ -699,6 +720,19 @@ class Site:
                              key=lambda x: x.get("updated", ""), reverse=True)
         # Acts fold in board items by id; this is the lookup that resolves them.
         self.by_id = {i["id"]: i for i in data.get("items", []) if i.get("id")}
+        # Forecasts are optional too (forecasts.py). build() sets these; with no
+        # forecasts.json, or an empty one, the page and its nav link do not exist.
+        self.fc, self.fc_lock = None, None
+        # The findings layer (insights.py). build() sets it; None leaves every
+        # page it adds, and every link to them, out of the build.
+        self.ins = None
+        # The reading layers (layers.py): the weekly picks and the thread views.
+        self.lay = None
+        self.lanes_meta = LANES
+
+    @property
+    def has_forecasts(self) -> bool:
+        return SHOW_FORECASTS and bool(self.fc and self.fc.get("forecasts"))
 
     def lane_sections(self, key: str, items=None, group=None) -> str:
         """Item cards for a lane, optionally split under week headings."""
@@ -781,7 +815,11 @@ class Site:
         a wall on a phone. So the site nav keeps the destinations and the lane
         bar below it carries the taxonomy, each lane in its own colour.
         """
-        if LANDING == "explore" and EXPLORE_PAGE:
+        if LANDING == "home":
+            links = [("index.html", "The Board")]
+            if self.lay:
+                links.append((lay_mod.TOPICS_URL, "Watchlist"))
+        elif LANDING == "explore" and EXPLORE_PAGE:
             links = [("index.html", "Board")]
             if BOARD_PAGE:
                 links.append((BOARD_PAGE, BOARD_NAV))
@@ -791,11 +829,16 @@ class Site:
                 links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
             links.append((BRIEFS_URL, "Briefs"))
+        if self.ins and SHOW_FINDINGS:
+            links.append((ins_mod.FINDINGS_URL, "Findings"))
+        if self.has_forecasts:
+            links.append((fcast.FORECASTS_URL, "Forecasts"))
         # The newsletter sits with the things people read, ahead of the reference
         # pages — an absolute URL here is the marker that it renders differently.
         if SUBSTACK_URL:
             links.append((SUBSTACK_URL, SUBSTACK_NAV))
-        links += [(ARCHIVE_URL, "Archive"), (ABOUT_URL, "About")]
+        # With the week cards on the front page, Archive moves to the footer.
+        links += ([] if LANDING == "home" else [(ARCHIVE_URL, "Archive")]) + [(ABOUT_URL, "About")]
         out = ['<nav class="nav" aria-label="Site">',
                f'<a class="logo" href="{self.home}"><b>Machine&nbsp;Speed</b>'
                f'<span>{escape(SITE_TAGLINE)}</span></a>']
@@ -814,6 +857,8 @@ class Site:
             url = self.home if href == "index.html" else self.prefix + href
             out.append(f'<a class="{cls}" href="{url}"{aria}>{label}</a>')
         out.append('<span class="spacer"></span>')
+        if self.lay:
+            out.append(lay_mod.nav_search(self.prefix))
         out.append(f'<a class="link" href="{self.prefix}feed.xml">RSS</a>')
         out.append('<button class="themebtn" type="button" data-theme-toggle hidden>'
                    '<span class="ico">☀</span> <span class="lbl">Light</span></button>')
@@ -936,7 +981,13 @@ class Site:
                 if SHOW_INTERNAL_NOTE and internal else "")
         tag = f" · {escape(FOOTER_NOTE)}" if FOOTER_NOTE else ""
         mark = f'<span class="tm">{escape(SITE_MARK)}</span>' if SITE_MARK else ""
-        return (f'<footer><div class="legend">{legend}</div>{note}'
+        refs = ""
+        if self.ins:
+            refs = ('<p class="footlinks">' + " · ".join(
+                f'<a href="{self.prefix}{u}">{t}</a>' for u, t in (
+                    (ARCHIVE_URL, "Archive"), (ins_mod.ENTITIES_URL, "Entities"), (ins_mod.DATA_URL, "Data"),
+                    (ins_mod.METHOD_URL, "Methodology"), (ins_mod.CORRECTIONS_URL, "Corrections"))) + "</p>")
+        return (f'<footer><div class="legend">{legend}</div>{refs}{note}'
                 f'<p style="margin-top:8px">{SITE_NAME}{mark}{tag} · © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
@@ -1629,10 +1680,15 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             "conf": CONF,
             "watchlist": [{"thread": w.get("thread", ""), "status": w.get("status", ""),
                            "changed": w.get("changed", "")} for w in self.d.get("watchlist", [])],
+            # The front page carries its own banner, so Explore drops its carousel.
+            "carousel": LANDING != "home",
+            "topics": ([{"id": t["id"], "name": t["name"], "url": f'{self.prefix}topic/{t["id"]}/'}
+                        for t in self.lay.topics if t["items"]] if self.lay else []),
             "items": [{"id": i["id"], "lane": i["lane"], "date": i["date"],
                        "headline": i["headline"], "core": i["core"],
                        "confidence": i["confidence"], "outlet": i["outlet"],
-                       "url": i["url"], "page": LANES[i["lane"]]["page"]}
+                       "url": i["url"], "page": LANES[i["lane"]]["page"],
+                       "topics": i.get("topics", [])}
                       for i in sorted(self.d["items"], key=lambda x: x["date"], reverse=True)],
         }
         # "<" is escaped so the payload can never close the script element early.
@@ -1708,6 +1764,16 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         if self.briefs:
             urls.append((BRIEFS_URL, "weekly", "0.7"))
             urls += [(f'brief/{x["slug"]}/', "weekly", "0.7") for x in self.briefs]
+        if self.has_forecasts:
+            urls.append((fcast.FORECASTS_URL, "weekly", "0.6"))
+        if self.lay:
+            urls.append((lay_mod.TOPICS_URL, "weekly", "0.7"))
+            urls += [(f'topic/{t["id"]}/', "daily", "0.7") for t in self.lay.topics if t["items"]]
+        if self.ins:
+            urls += ([(ins_mod.FINDINGS_URL, "daily", "0.8")] if SHOW_FINDINGS else []) + [(ins_mod.ENTITIES_URL, "daily", "0.5"),
+                     (ins_mod.DATA_URL, "daily", "0.5"), (ins_mod.METHOD_URL, "monthly", "0.4"),
+                     (ins_mod.CORRECTIONS_URL, "weekly", "0.3")]
+            urls += [(f'entity/{e["id"]}/', "weekly", "0.4") for e in self.ins.live_entities]
         out = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
         for loc, freq, pri in urls:
@@ -1783,6 +1849,21 @@ def build(out_dir: Path):
     data = json.loads((root / "data.json").read_text(encoding="utf-8"))
 
     errors, warnings = validate(data)
+    # Forecasts live in their own file and carry their own integrity lock; a
+    # tampered or malformed forecast stops the build exactly as a bad item does.
+    fc, fc_lock = fcast.load(root)
+    entities = ins_mod.load_entities(root)
+    topics = ins_mod.load_topics(root)
+    if not errors:
+        fe, fw = fcast.validate(fc, fc_lock, data["items"], LANES)
+        errors += fe
+        warnings += fw
+        ie, iw = ins_mod.validate(data, entities, LANES, topics)
+        errors += ie
+        warnings += iw
+        le, lw = lay_mod.validate(data, topics)
+        errors += le
+        warnings += lw
     for w in warnings:
         print(f"  warning: {w}")
     if errors:
@@ -1793,6 +1874,10 @@ def build(out_dir: Path):
         sys.exit(1)
 
     site = Site(data, sync_ledger(Path(__file__).resolve().parent, data))
+    site.fc = fc
+    site.fc_lock = fcast.sync_lock(root, fc, fc_lock, data["items"], site.entered)
+    site.ins = ins_mod.Insights(data, entities, site.entered, LANES, topics)
+    site.lay = lay_mod.Layers(data, LANES, site.ins, topics, site.weeks)
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -1817,6 +1902,12 @@ def build(out_dir: Path):
     if EXPLORE_PAGE:
         shutil.copy(root / "assets" / "board.css", out_dir / "board.css")
         shutil.copy(root / "assets" / "board.js", out_dir / "board.js")
+    # The front page's This week banner borrows Explore's carousel styles
+    # (board.css) and runs on its own small script.
+    if LANDING == "home":
+        shutil.copy(root / "assets" / "board.css", out_dir / "board.css")
+        shutil.copy(root / "assets" / "home.js", out_dir / "home.js")
+        shutil.copy(root / "assets" / "search.js", out_dir / "search.js")
     og = og_image_path()
     if og:
         shutil.copy(og, out_dir / OG_IMAGE)
@@ -1847,7 +1938,7 @@ def build(out_dir: Path):
         write(explore_path, site.page(
             path=explore_path,
             title=(f"{SITE_NAME} — AI-Cyber Intelligence" if explore_path == "index.html"
-                   else f"Explore — {SITE_NAME}"),
+                   else f"{'Watchlist' if LANDING == 'home' else 'Explore'} — {SITE_NAME}"),
             description=(SITE_DESCRIPTION if explore_path == "index.html" else
                          "Filter the Machine Speed board by lane and week, follow a "
                          "running story across weeks, and see what is new since your "
@@ -1855,6 +1946,22 @@ def build(out_dir: Path):
             body=site.explore_body(),
             extra_head=site.explore_head()
                        + (site.home_jsonld() if not board_path else "")))
+
+    # Explore is retired: /explore.html is kept as a redirect so bookmarks and
+    # shared searches still land somewhere useful — a ?q= goes on to Search,
+    # anything else to the Watchlist.
+    if not EXPLORE_PAGE and LANDING == "home":
+        write("explore.html",
+              '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+              f'<title>Watchlist — {escape(SITE_NAME)}</title>\n'
+              f'<link rel="canonical" href="{SITE_URL}/{lay_mod.TOPICS_URL}">\n'
+              '<meta name="robots" content="noindex">\n'
+              f'<meta http-equiv="refresh" content="1; url=./{lay_mod.TOPICS_URL}">\n'
+              '<script>(function(){var q=new URLSearchParams(location.search).get("q");'
+              f'location.replace(q?"./{lay_mod.SEARCH_URL}?q="+encodeURIComponent(q):"./{lay_mod.TOPICS_URL}");}})();</script>\n'
+              '</head>\n'
+              f'<body><p>Explore is now the <a href="./{lay_mod.TOPICS_URL}">Watchlist</a> and '
+              f'<a href="./{lay_mod.SEARCH_URL}">Search</a>.</p></body>\n</html>\n')
 
     # /explore.html existed for a day and may be linked or bookmarked, so when it
     # becomes the landing page the old URL is kept as a redirect rather than a 404.
@@ -1927,6 +2034,94 @@ def build(out_dir: Path):
         asset_prefix="../"))
     site.prefix = ""
 
+    # forecasts — one page at /forecasts/, only when there is something on it
+    if site.has_forecasts:
+        site.prefix = "../"
+        write(fcast.FORECASTS_URL + "index.html", site.page(
+            path=fcast.FORECASTS_URL + "index.html", title=f"Forecasts — {SITE_NAME}",
+            description=("Probabilistic calls on AI-cyber capability, policy, defense, "
+                         "attacks and markets, logged before the fact and scored."),
+            body=fcast.body(site, site.fc, site.fc_lock, LANES, fmt_date),
+            asset_prefix="../"))
+        site.prefix = ""
+
+    # findings layer — insights.py. One level down, except entity pages at two.
+    ins = site.ins
+    site.prefix = "../"
+    for url, title, desc, body in (
+        (ins_mod.FINDINGS_URL, "Findings",
+         "What the Machine Speed board shows when it is counted: response lag by topic, "
+         "weekly trends, the confidence mix and how fast the board learns.",
+         ins_mod.findings_body(site, ins, LANES, CONF)),
+        (ins_mod.ENTITIES_URL, "Entities",
+         "Every organisation, model family and platform the board's items name.",
+         ins_mod.entities_body(site, ins)),
+        (ins_mod.DATA_URL, "Data",
+         "The Machine Speed board as open data: CSV and JSON, rebuilt with every update.",
+         ins_mod.data_body(site, ins, CITATION)),
+        (ins_mod.METHOD_URL, "Methodology",
+         "How items get on the Machine Speed board, and what each confidence label means.",
+         ins_mod.methodology_body(site, CONF, SHOW_FINDINGS)),
+        (ins_mod.CORRECTIONS_URL, "Corrections",
+         "Every material change to a published Machine Speed item.",
+         ins_mod.corrections_body(site, LANES)),
+    ):
+        if url == ins_mod.FINDINGS_URL and not SHOW_FINDINGS:
+            continue
+        write(url + "index.html", site.page(path=url + "index.html", title=f"{title} — {SITE_NAME}",
+                                            description=desc, body=body, asset_prefix="../"))
+    site.prefix = "../../"
+    for e in ins.live_entities:
+        write(f'entity/{e["id"]}/index.html', site.page(
+            path=f'entity/{e["id"]}/index.html', title=f'{e["name"]} — {SITE_NAME}',
+            description=f'Every Machine Speed item naming {e["name"]}.',
+            body=ins_mod.entity_body(site, ins, e, LANES), asset_prefix="../../"))
+    site.prefix = ""
+
+    # front page and topic pages — layers.py
+    lay = site.lay
+    if LANDING == "home":
+        write("index.html", site.page(
+            path="index.html", title=f"{SITE_NAME} — AI-Cyber Intelligence",
+            description=SITE_DESCRIPTION,
+            body=lay_mod.home_body(site, lay, EXPLORE_PAGE, CONF),
+            extra_head=(f'<link rel="stylesheet" href="board.css{asset_version("board.css")}">\n'
+                        f'<script src="home.js{asset_version("home.js")}" defer></script>\n'
+                        + site.home_jsonld())))
+    site.prefix = "../"
+    write(lay_mod.TOPICS_URL + "index.html", site.page(
+        path=lay_mod.TOPICS_URL + "index.html", title=f"Watchlist — {SITE_NAME}",
+        description="The six stories the Machine Speed board is following, each with its latest development.",
+        body=lay_mod.topics_body(site, lay), asset_prefix="../"))
+    write(lay_mod.SEARCH_URL + "index.html", site.page(
+        path=lay_mod.SEARCH_URL + "index.html", title=f"Search — {SITE_NAME}",
+        description="Search every item on the Machine Speed board.",
+        body=lay_mod.search_body(site, LANES, topics),
+        extra_head=(f'<meta name="robots" content="noindex">\n'
+                    f'<script src="../search.js{asset_version("search.js")}" defer></script>\n'),
+        asset_prefix="../"))
+    site.prefix = "../../"
+    for t in lay.topics:
+        if not t["items"]:
+            continue
+        write(f'topic/{t["id"]}/index.html', site.page(
+            path=f'topic/{t["id"]}/index.html', title=f'{t["name"]} — {SITE_NAME}',
+            description=t["definition"], body=lay_mod.topic_body(site, lay, t),
+            asset_prefix="../../"))
+    site.prefix = ""
+
+    # The open dataset, next to the Data page that describes it.
+    meta = {"title": f"{SITE_NAME} — AI-cyber intelligence board", "url": SITE_URL,
+            "license": ins_mod.DATA_LICENSE, "licenseUrl": ins_mod.DATA_LICENSE_URL,
+            "citation": CITATION, "updated": data.get("updatedISO", ""),
+            "coverage": [site.cov_start, site.cov_end], "lanes": {k: v["name"] for k, v in LANES.items()},
+            "confidence": CONF}
+    write(ins_mod.DATA_URL + "items.json", ins.items_json(meta))
+    # With a byte-order mark, so Excel on Windows reads the dashes and curly
+    # quotes as UTF-8 instead of garbling them.
+    write(ins_mod.DATA_URL + "items.csv", "\ufeff" + ins.items_csv())
+    write(ins_mod.DATA_URL + "topics.json", ins.threads_json())
+
     # Redirect stubs at the old flat paths. Permanent: the frozen snapshots in
     # archive/ link to them and are never rewritten.
     for old, new in LEGACY_PATHS.items():
@@ -1975,6 +2170,20 @@ def build(out_dir: Path):
         draft = news_dir / f"machine-speed-{snap_date}.md"
         draft.write_text(site.newsletter_draft(), encoding="utf-8")
         print(f"  wrote newsletter/{draft.name}  (draft only — nothing is sent)")
+
+    # Weekly one-pager and quarterly report — drafts for a human, like the
+    # newsletter draft above. Rewritten on every build until their period ends.
+    if snap_date:
+        for rel, text in [ins_mod.weekly_draft(ins, LANES, SITE_URL, CONF),
+                          *ins_mod.quarterly_drafts(ins, LANES, SITE_URL, CONF)]:
+            (root / rel).write_text(text, encoding="utf-8")
+            print(f"  wrote {rel}  (draft only — nothing is sent)")
+
+    landing = out_dir / "index.html"
+    if landing.exists() and landing.stat().st_size > ins_mod.PAGE_WEIGHT_WARN:
+        print(f"  warning: the landing page is {landing.stat().st_size:,} bytes — past "
+              f"{ins_mod.PAGE_WEIGHT_WARN:,}, consider loading Explore's items from "
+              f"data/items.json instead of inlining them (see explore_payload)")
 
     counts = " · ".join(f"{v['name'].lower()} {len(site.lane_items(k))}"
                         for k, v in LANES.items())
