@@ -47,6 +47,18 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 `self-reported` for benchmark/capability claims.
 
 - **OpenAI** — News index https://openai.com/news/ · individual posts under https://openai.com/index/ · watch Preparedness / safety and security posts. `cap` `def`
+  - _Note added 2026-09-30, and it reverses the standing assumption above it. **`openai.com` itself opened on this
+    run** — `openai.com/news/` returned the dated post list, and four individual `openai.com/index/` posts opened
+    directly, one of them only on a second attempt. Every `openai.com` path had been provenance-blocked on every
+    unattended run for weeks, which is why this board's OpenAI disclosures were carried at `press`. Try the news
+    index first on every run, diff the dated list against the previous run, and retry once before falling back —
+    a blocked first attempt no longer means the host is closed._
+  - **OpenAI Deployment Safety Hub** — https://deploymentsafety.openai.com/. `cap`
+  - _Added 2026-09-30. Per-model system cards and addenda, each with a Preparedness Framework capability
+    designation and the cyber evaluation tables behind it, plus a per-model change log at
+    `<model>/change-log` that dates every revision. This is where the Critical cybersecurity designation
+    for GPT-6.1 Sol appeared on Sep 29 while the model's own launch post never mentioned it — **the launch
+    page and the safety card routinely disagree by omission, so read the card.** Opens first try._
   - **OpenAI Alignment — misalignment reports index** — https://alignment.openai.com/misalignment-reports/. `cap`
   - _Added 2026-09-29, and it is the highest-value entry this list has gained. Every `openai.com` path has been
     provenance-blocked on every unattended run for weeks, which is why the board's OpenAI disclosures have been carried at
@@ -114,6 +126,12 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     fixed versions, Citrix's bulletin number and the KEV listing date in one page._
 - **Okta Threat Intelligence** — https://sec.okta.com/. `atk`
 - **Hunt.io** — https://hunt.io/blog. `atk`
+- **Huntress** — https://www.huntress.com/blog. `atk` `def`
+  - _Added 2026-09-30. Managed-detection telemetry rather than lab research, which is why it catches what
+    end users actually run into: it found the malicious Custom GPT hosted on `chatgpt.com` that fed a
+    ClickFix lure into a RAT, and it gives its own SOC incident counts and its vendor-notification dates
+    (reported to OpenAI, taken down Sep 25, a replacement found Sep 27). Opens on a second attempt —
+    retry before falling back. It assigns no CVEs._
 - **GreyNoise** — https://www.greynoise.io/blog (internet-scanning telemetry; forged-crawler and
   mass-exploitation observations). `atk` `def`
 - **Gambit Security** — https://gambit.security/blog-posts. `atk`
@@ -351,6 +369,10 @@ fresh window.
     rather than the index._
 - **The Hacker News** — https://thehackernews.com/ · AI label https://thehackernews.com/search/label/artificial%20intelligence.
 - **BleepingComputer** — https://www.bleepingcomputer.com/. Fastest on active exploitation and vendor advisories.
+  - _Note added 2026-09-30: its **article** pages open on the first try even when the index is provenance-blocked,
+    which it has been on five consecutive runs. Find the slugs with `site:bleepingcomputer.com` plus the date or
+    the story, then open the article itself. It is also the only outlet this run found carrying DIVD's fuller
+    account of the agent-run intrusion against it, which DIVD published on LinkedIn and nowhere openable._
 - **The Record (Recorded Future News)** — https://therecord.media/. Strong on government, nation-state and policy.
 - **CyberScoop** — https://cyberscoop.com/. Strong on US federal and agency action.
 - **Cybersecurity Dive** — https://www.cybersecuritydive.com/.
