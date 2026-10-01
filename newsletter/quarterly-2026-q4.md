@@ -1,6 +1,6 @@
-# State of AI-Cyber — Q3 2026
+# State of AI-Cyber — Q4 2026
 
-> DRAFT (complete). Every number below is computed from the board; the sections marked
+> DRAFT (to date — the quarter closes 2026-12-31). Every number below is computed from the board; the sections marked
 > WRITE are for you. Nothing here is published by the build.
 
 ## Summary
@@ -9,14 +9,14 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## By the numbers
 
-- 362 source-verified items, 2026-07-01 to 2026-09-30.
-  - Capability: 92
-  - Policy: 60
-  - Defense: 84
-  - Attacks: 97
-  - Markets: 29
-- Confirmed by the affected organisation: 10 of 362 (3%).
-- Resting on self-reported, untested claims: 48 (13%).
+- 0 source-verified items, 2026-10-01 to 2026-10-01.
+  - Capability: 0
+  - Policy: 0
+  - Defense: 0
+  - Attacks: 0
+  - Markets: 0
+- Confirmed by the affected organisation: 0 of 0 (—).
+- Resting on self-reported, untested claims: 0 (—).
 - Median policy response lag, since the board began, among topics policy has answered: 13 days (5 of 6 topics have a policy response; 1 still open).
 - Median defense response lag, since the board began, among topics defense has answered: 23 days (6 of 6 topics have a defense response; 0 still open).
 
@@ -31,18 +31,6 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## Most-named entities
 
-- OpenAI: 74
-- Anthropic: 49
-- Claude (Anthropic): 47
-- GPT and ChatGPT (OpenAI): 36
-- Google and Google DeepMind: 30
-- Microsoft: 27
-- CISA: 22
-- GitHub: 22
-- Hugging Face: 20
-- Gemini (Google): 18
-- DeepSeek: 13
-- UK AI Security Institute: 13
 
 ## Three stories that defined the quarter
 
