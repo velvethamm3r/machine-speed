@@ -53,6 +53,11 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     unattended run for weeks, which is why this board's OpenAI disclosures were carried at `press`. Try the news
     index first on every run, diff the dated list against the previous run, and retry once before falling back —
     a blocked first attempt no longer means the host is closed._
+  - _Note added 2026-10-01, and it narrows the note above. `openai.com/news/` was provenance-blocked on **both**
+    attempts on this run, one day after the note above was written. **`openai.com/news/security/` opened first try**
+    and returned the dated security-post list, which is where OpenAI's Sep 30 disclosure naming Moonshot AI was
+    found; the individual `openai.com/index/` post then opened too. So: **try the security sub-index first** and diff
+    its dated list, and treat `openai.com/news/` as unreliable rather than open._
   - **OpenAI Deployment Safety Hub** — https://deploymentsafety.openai.com/. `cap`
   - _Added 2026-09-30. Per-model system cards and addenda, each with a Preparedness Framework capability
     designation and the cyber evaluation tables behind it, plus a per-model change log at
@@ -70,12 +75,27 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Anthropic** — News https://www.anthropic.com/news · security, Mythos/Frontier Red Team, disclosures. `cap` `def` `atk`
 - **xAI (Grok)** — News https://x.ai/news. `cap` `def`
 - **Google DeepMind** — Blog https://deepmind.google/discover/blog/ · CodeMender, Big Sleep, frontier safety. `cap` `def`
+  - _Note added 2026-10-01. The frontier-model announcements are not on the discover blog: they are at
+    `https://blog.google/innovation-and-ai/models-and-research/gemini-models/<model>/`, dated and bylined, and that
+    host opens first try — it carried Gemini 4 Argon on Sep 30, including the statement that Google is “releasing
+    Argon without cyber guardrails” to the defenders in its Fairwind Program. Two companion pages are worth knowing:
+    **https://deepmind.google/models/gemini/cyber/** carries the cyber-model page with its own evaluation table
+    (CyberGym pass@1, real-world discovery across 20 languages, CWE-Bench pass@1, Gray Swan attack-success rate)
+    though it is **undated**, so take dates from the announcement rather than from it; and the gating programme has
+    its own page at **https://deepmind.google/fairwind-program/**._
 - **Meta AI** — Blog https://ai.meta.com/blog/ (also open-weight, §4). `cap`
 
 ## 2. Big-tech platforms & their threat-intel arms — `def` `atk` `cap`
 
 - **Google Security Blog** — https://security.googleblog.com/. `def` `atk`
 - **Google Threat Intelligence Group / Mandiant** — https://cloud.google.com/blog/topics/threat-intelligence/ · Mandiant https://www.mandiant.com/resources/blog · GTIG AI Threat Tracker, AVDH. `atk` `cap` `def`
+  - _Note added 2026-10-01, reversing the standing assumption that this host could not be reached (recorded
+    2026-09-03). **`cloud.google.com/blog/topics/threat-intelligence/` opens**, and the individual post opens too.
+    Its Sep 30 vulnerability-trends report is the kind of thing only the primary carries: the headline finding that
+    half of AI-discovered vulnerabilities yield remote code execution against 26% of the wider CVE pool, **and the
+    report's own two caveats** — that only 0.23% of 2026 disclosures were ever seen exploited, and that public data
+    undercounts AI-found flaws for want of standardised metadata and because of silent first-party patching. A press
+    summary of this report keeps the first number and drops both caveats._
 - **Google Project Zero** — https://googleprojectzero.blogspot.com/. `cap` `def`
 - **GitHub Security Lab** — https://securitylab.github.com/ · write-ups on https://github.blog/security/. `cap` `def`
   - _Added 2026-09-29. Publisher of the Taskflow Agent results — an open-source AI audit framework its own researchers used to
@@ -339,6 +359,15 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
 - **VulnCheck** — https://vulncheck.com/blog (exploitation-in-the-wild data).
 - **OpenCVE** — https://app.opencve.io/cve/ (record, description, affected version range, assigning CNA). Added 2026-09-13. cve.org and nvd.nist.gov had been unreachable to this board's fetcher for six consecutive runs, so no CVE had been checked against any registry in that time; OpenCVE mirrors the same records and opens normally. Use it as the fallback registry, not the first choice — it carries no CVSS where none has been assigned, and it is a mirror, so a discrepancy with cve.org is resolved in cve.org's favour.
 - **CERT/CC Vulnerability Notes** — https://www.kb.cert.org/vuls/. Added 2026-09-13. The coordination record rather than the registry entry: it names the reporter, states whether the vendor responded and whether a patch exists, and is often the only account of a flaw in an unmaintained project. Opens normally. It is a primary, so prefer it to a press write-up of the same note.
+- **DIVD CSIRT — case files** — https://csirt.divd.nl/cases/ (individual cases at `/cases/<CASE-ID>/`). Added
+  2026-10-01. The coordination record rather than the registry entry, in the same role as CERT/CC above: each case
+  page carries the CVE IDs, the affected and explicitly **non-exploitable** version ranges, a dated disclosure
+  timeline and the credited researchers. DIVD is a CNA, so the case page is the assigning party's own record.
+  **The `/cases/` index is provenance-blocked while individual case pages open first try** — the same
+  index-blocked-article-open shape as BleepingComputer, so find the case ID with a `site:csirt.divd.nl` search and
+  open the case page directly. This is what let the board move its DIVD intrusion card off press onto
+  `DIVD-2026-00014`, and source the two Zammad zero-days to `DIVD-2026-00015`. Note it gives a patch *status* and
+  upgrade advice but not always a fixed version number.
 
 ## 11. Markets / cyber-insurance — `mkt`
 
