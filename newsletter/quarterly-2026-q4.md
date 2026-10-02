@@ -9,14 +9,14 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## By the numbers
 
-- 0 source-verified items, 2026-10-01 to 2026-10-01.
-  - Capability: 0
-  - Policy: 0
+- 6 source-verified items, 2026-10-01 to 2026-10-02.
+  - Capability: 1
+  - Policy: 1
   - Defense: 0
-  - Attacks: 0
-  - Markets: 0
-- Confirmed by the affected organisation: 0 of 0 (—).
-- Resting on self-reported, untested claims: 0 (—).
+  - Attacks: 2
+  - Markets: 2
+- Confirmed by the affected organisation: 0 of 6 (0%).
+- Resting on self-reported, untested claims: 1 (17%).
 - Median policy response lag, since the board began, among topics policy has answered: 13 days (5 of 6 topics have a policy response; 1 still open).
 - Median defense response lag, since the board began, among topics defense has answered: 23 days (6 of 6 topics have a defense response; 0 still open).
 
@@ -31,6 +31,14 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## Most-named entities
 
+- Microsoft: 2
+- Claude (Anthropic): 1
+- Anthropic: 1
+- CISA: 1
+- White House: 1
+- US Congress: 1
+- Mandiant / Google Threat Intelligence: 1
+- Fortinet: 1
 
 ## Three stories that defined the quarter
 
