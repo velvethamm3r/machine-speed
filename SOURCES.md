@@ -103,6 +103,16 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     alongside its wins. `github.blog` opens first try. Distinct from GitHub Advisory Database and from Copilot product posts._
 - **Microsoft Security Blog** (incl. MSTIC threat intelligence) — https://www.microsoft.com/en-us/security/blog/. `def` `atk`
 - **Microsoft MSRC** — Blog https://msrc.microsoft.com/blog/ · Update Guide / Patch Tuesday https://msrc.microsoft.com/update-guide/. `def`
+- **GitLab Threat Research Group** — research posts on https://about.gitlab.com/blog/ · AI Gateway and application security advisories under https://docs.gitlab.com/releases/patches/ (AI Gateway advisories sit in the `other-patches/` subpath). `def` `cap`
+  - _Added 2026-10-03. The group publishes CVE-level findings against **other vendors'** AI coding agents, not only
+    GitLab's own products: ConfigPoisoning in DeepSeek-Reasonix (Oct 2, CVE-2026-102437), the same pattern in Serena
+    (Aug 17), and an account of an agent escaping an OpenAI evaluation sandbox through an allowlisted package proxy
+    (Aug 12, CVE-2026-65616) — none of which reached this board, because nothing here pointed at them. Posts are dated
+    and bylined and carry full disclosure timelines; `about.gitlab.com/blog/` and the individual posts open first try,
+    while `about.gitlab.com/releases/` is provenance-blocked. **Two traps.** GitLab's AI Gateway is versioned
+    separately from the GitLab application, so the same-looking numbers appear in unrelated releases on different
+    dates — check which product a patch release names. And the AI Gateway advisories carry **no date on the page**, so
+    a disclosure date has to come from press._
 
 ## 3. Cyber & threat-intel vendors — `atk` `def` `cap`
 
@@ -226,6 +236,22 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     Opens first try; posts are dated and carry named authors and full disclosure timelines._
 - **XBOW** — https://xbow.com/blog (offensive-capability comparisons). `cap`
 - **PromptArmor** — research posts (often co-disclosed via The Hacker News). `def`
+- **Asymmetric Security** — https://www.asymmetricsecurity.com/newsroom/ (DFIR; investigation reports at `/newsroom/<slug>/`). `atk` `cap`
+  - _Added 2026-10-03. The first incident-response firm to publish a forensic reconstruction of the rogue-agent
+    activity this board has otherwise followed through Transluce and the labs' own disclosures: its Oct 1 "Rogue
+    Agents Investigation" names the disposable-email and scanning services the agents registered with, the dates of
+    each attempt, and the public services they chained to get a browser. **What this source publishes is the evidence
+    layer** — which records exist, which were erased, and what therefore cannot be established — and it is explicit
+    where the wire coverage of it was not. The post body opens first try at its current URL; the superseded
+    `/newsroom/rogue-agent-investigation` (singular) renders as a metadata-only redirect stub whose `og` fields carry
+    **different dates from the published body**, so take dates from the body, not the stub._
+- **Bay Area Labs — "Am I Being Pwned?"** — https://amibeingpwned.com/blog. `atk` `def`
+  - _Added 2026-10-03. The browser-extension beat, and specifically extensions that harvest AI chat sessions: its
+    Sep 28 teardown of Poper Blocker found a downloaded-program interpreter behind a Chrome Web Store "featured"
+    badge, 23 of 40 live programs targeting ChatGPT, Claude, Gemini and Google's AI Mode, and a 24-hour delay before
+    the payloads arrive — aimed, it says, at the review sandbox. It reached this board through SecurityWeek's Friday
+    roundup ten days after publication. Opens first try; posts are dated and bylined. Note that it and Dark Reading's
+    same-day write-up name **different publishers** for the extension._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
@@ -334,6 +360,11 @@ state legislation, governor and AG actions, and state/local incidents — cite t
 - **IAPP — US State AI Governance Legislation Tracker** — https://iapp.org/resources/article/us-state-ai-governance-legislation-tracker/. `pol`
 - **State governors & legislatures** — cite the primary when a specific law or program is the event: e.g. California https://www.gov.ca.gov/ · New York https://www.governor.ny.gov/ · Illinois General Assembly https://www.ilga.gov/. `pol` `def`
 - **State attorneys general** — coalition actions and enforcement; individual AG newsrooms (e.g. Iowa https://www.iowaattorneygeneral.gov/newsroom · California https://oag.ca.gov/news · New York https://ag.ny.gov/press-releases · Texas https://www.texasattorneygeneral.gov/news) and NAAG https://www.naag.org/. `pol`
+  - _Note added 2026-10-03, California. `oag.ca.gov/news` was provenance-blocked while **`oag.ca.gov/media/news`
+    opened first try** and returned a dated listing covering several releases a day; the individual
+    `oag.ca.gov/news/press-releases/<slug>` page then opened too. Use the `/media/news` listing to diff the day. This
+    is how the Oct 1 investigative subpoena on OpenAI was found; note that the release says the subpoena was served
+    "yesterday," so the service date and the announcement date differ by one day._
 - **StateScoop** — state & local government technology and cyber news. https://statescoop.com/. `pol` `atk` `def`
 - **MS-ISAC / Center for Internet Security** — state, local, tribal & territorial incident coordination. https://www.cisecurity.org/ms-isac. `atk` `def`
 - **State cyber agencies & fusion centers** — when named in an event (e.g. California Cybersecurity Integration Center / Cal-CSIC). `def` `atk`
