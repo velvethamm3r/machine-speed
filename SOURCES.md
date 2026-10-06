@@ -73,6 +73,17 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     the split GitHub token — became three `on-record` cards that would otherwise have been press. Sweep the index every run and
     diff the count against the last one; a new entry here is a board item. It may also open only on a second attempt._
 - **Anthropic** — News https://www.anthropic.com/news · security, Mythos/Frontier Red Team, disclosures. `cap` `def` `atk`
+  - **Anthropic Frontier Red Team — coordinated vulnerability disclosure dashboard** — https://red.anthropic.com/2026/cvd/. `cap` `def`
+  - _Added 2026-10-06, and it is the most useful Anthropic entry this list has gained. **`red.anthropic.com` opens
+    first try while every `anthropic.com` path remains provenance-blocked**, which is why this board's Anthropic
+    disclosures have been carried at `press` for weeks. It is a live dashboard rather than a post: a running count
+    of the open-source flaws Anthropic's own models have found, with the funnel from candidate findings through
+    external-firm triage to CVEs and GHSAs, and with its own caveats printed next to the numbers. **Two traps.** It
+    carries no publication date or byline — only a `Last updated <timestamp> UTC` stamp, which is the only date a
+    run can honestly use. And the funnel has **two** reporting channels, "Reported to maintainers" and "Reported
+    direct to maintainers by Anthropic", which sum to the headline total; reading the first against "Acknowledged by
+    maintainer" produces a funnel that runs backwards. Note also `red.anthropic.com/2026/attack-navigator`, which
+    302s to `anthropic.com` and therefore cannot be opened. Diff the counts every run._
 - **xAI (Grok)** — News https://x.ai/news. `cap` `def`
 - **Google DeepMind** — Blog https://deepmind.google/discover/blog/ · CodeMender, Big Sleep, frontier safety. `cap` `def`
   - _Note added 2026-10-01. The frontier-model announcements are not on the discover blog: they are at
@@ -88,6 +99,17 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 ## 2. Big-tech platforms & their threat-intel arms — `def` `atk` `cap`
 
 - **Google Security Blog** — https://security.googleblog.com/. `def` `atk`
+- **Google security posts on `blog.google` · Google Bug Hunters** — https://blog.google/security/ · programme rules and blog at https://bughunters.google.com/. `cap` `def`
+  - _Added 2026-10-06. Two separate gaps, both of which cost this board days. **`blog.google/security/` opens first
+    try, is dated and bylined, and is where Google's AI-security research actually lands** — its Sep 24 PageBreak
+    post, with the agent's own false-positive and hardened-framework results, took twelve days to reach this board
+    because nothing here pointed at that path; §1 already lists `blog.google` for Gemini model announcements, but
+    not for security. **`bughunters.google.com` renders as metadata only to this fetcher** — the blog index, the
+    individual blog posts and the programme rules pages all return headers with no body — so changes to Google's
+    bug-bounty programmes have to be read through press and flagged for upgrade. That is how the Oct 1 closure of
+    OSS VRP product-vulnerability intake was carried: the notice lives on the **rules** page
+    (`/about/rules/open-source/google-open-source-software-vulnerability-reward-program-rules#product-vulnerabilities`),
+    not in an announcement, so there is no post date to cite and a run must say so._
 - **Google Threat Intelligence Group / Mandiant** — https://cloud.google.com/blog/topics/threat-intelligence/ · Mandiant https://www.mandiant.com/resources/blog · GTIG AI Threat Tracker, AVDH. `atk` `cap` `def`
   - _Note added 2026-10-01, reversing the standing assumption that this host could not be reached (recorded
     2026-09-03). **`cloud.google.com/blog/topics/threat-intelligence/` opens**, and the individual post opens too.
@@ -130,6 +152,22 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
   - _Note added 2026-09-14: when `www.sysdig.com` is provenance-blocked, the same post is reachable at
     `https://webflow.sysdig.com/blog/<slug>`. It is a Sysdig-owned host serving the identical article, so it is still
     a first-party citation; prefer the `www` URL whenever it opens._
+- **Cleafy Labs** — https://www.cleafy.com/cleafy-labs. `atk`
+  - _Added 2026-10-06. The mobile banking-malware beat, and the one source on this list watching where the model
+    sits inside a criminal operation rather than only whether one was used. Its Sep 28 teardown of the RatHat C2
+    panel found the implant calling Gemini flash models **from the infected phone** with an API key in its own
+    configuration, the operator console using a model to estimate victims' balances from collected SMS and bucket
+    devices by value, and an earlier build offering a provider selector naming Alibaba, Anthropic, DeepSeek, Google,
+    OpenAI and Z.ai before V6 narrowed it to Gemini. **It reached this board eight days late, through a weekly press
+    recap** — the source-gap signature the 2026-09-09 measurement identified. Opens first try; posts are dated and
+    bylined, assign no CVEs, and state plainly what the analysed samples do not do._
+- **Netskope Threat Labs** — https://www.netskope.com/blog. `atk` `def`
+  - _Added 2026-10-06 as a known gap rather than a working entry. It publishes malware analysis that asks whether
+    code was written with AI assistance — its Python NodeStealer write-up is the case in point — but the host was
+    **provenance-blocked on every attempt across two runs**, and the only date available for that post came from a
+    scraper copy, which is not a date. The item was **held rather than carried** for exactly that reason. Expect to
+    need an attended fetch, and treat stylistic indicators of AI authorship (emoji use, repetitive structure) as a
+    claim to attribute, not a finding._
 - **Zscaler ThreatLabz** — https://www.zscaler.com/blogs/security-research. `atk`
 - **Cisco Talos** — https://blog.talosintelligence.com/. `atk` `def`
 - **Check Point Research** — https://research.checkpoint.com/ · **corporate blog https://blog.checkpoint.com/** `atk` `def`
@@ -259,6 +297,16 @@ The open-weight developers and the "open-weight cyber gap" storyline: model rele
 benchmark claims, and hold-backs for cyber-safety review.
 
 - **Hugging Face** — Blog https://huggingface.co/blog · Papers https://huggingface.co/papers · security/incident disclosures. `cap` `def` `atk`
+- **Wikimedia Foundation** — Diff (the movement blog) https://diff.wikimedia.org/ · Foundation news https://wikimediafoundation.org/news/. `atk` `def`
+  - _Added 2026-10-06. Filed here because it sits alongside Hugging Face as open-knowledge infrastructure that
+    publishes its own incident accounts: its Oct 5 post is the first disclosure this board has carried from a major
+    non-profit website operator describing agent activity on its own services — sandbox edits, citation-tool
+    configuration changes it reads as proxy attempts, failed attempts on its public Etherpad, and API and Wikidata
+    Query Service load it says may have contributed to an outage. **Use `diff.wikimedia.org`: the
+    `wikimediafoundation.org` copy of the same post is cache-only and cannot be fetched.** Two cautions. The Diff
+    render carries **no visible byline or publication date**, so the date has to come from the URL path (identical
+    on both hosts) and from same-day press, and a run should say so. And every attribution to a named AI company is
+    hedged on the page as a belief ("we believe", "likely"); keep the hedge._
 - **Meta (Llama / Muse)** — https://ai.meta.com/blog/ · https://www.llama.com/. `cap`
 - **Z.ai (GLM)** — https://z.ai/blog. `cap`
 - **Moonshot AI (Kimi)** — https://platform.moonshot.ai/blog. `cap`
@@ -406,6 +454,11 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
 - **AM Best** — https://news.ambest.com/. `mkt`
 - **Carrier / broker / reinsurer primaries** when cited (Munich Re, Swiss Re, Lloyd's, CFC, Coalition, Chaucer/Armilla, AIG, Berkley) — use the primary; carrier/broker marketing is `self-reported` unless a regulator, court or loss report says otherwise. `mkt`
 - **Research reports** — IBM Cost of a Data Breach, ISO filings/endorsements. `mkt`
+- **SiliconANGLE — security** — https://siliconangle.com/category/security/. `mkt`
+  - _Added 2026-10-06. Carried Hadrian's $40 million agentic-pentesting round on the day it was announced, with the
+    co-leads, the cumulative total and — usefully — the company's own statistics explicitly flagged as the
+    company's ("the company claims", "by its count"), which is the attribution the Markets-lane rule needs. Opens
+    first try; posts are dated and bylined. It names no round letter or valuation when the company does not._
 - **Funding & M&A trackers** — Crunchbase News cybersecurity https://news.crunchbase.com/sections/cybersecurity/ · TechCrunch security https://techcrunch.com/category/security/. The lane's capital half (rounds, valuations, acquisitions) arrives here first and rarely reaches a carrier or broker primary at all; without a standing sweep these land on the board four to six days late, as Upwind's $300M did on 2026-09-08. `mkt`
 
 ## 12. Press — the discovery pass (cross-lane)
@@ -440,6 +493,8 @@ fresh window.
 - **Industrial Cyber** — https://industrialcyber.co/. The OT/ICS beat, including a daily OT news roundup. This is the outlet that surfaced the DOE/Sandia item the government sweep had missed.
 - **Axios** — https://www.axios.com/technology. Frequently first on AI-lab governance and policy moves.
 - **Reuters** — technology and cyber desks. _Note: reuters.com has refused automated fetchers on every run that tried it; expect to reach its reporting through a syndicating outlet._
+- **The Korea Times** — https://www.koreatimes.co.kr/ (economy and banking-finance desks). _Added 2026-10-06. The scan list had no route to Korean financial-sector cyber at all, and the Oct 3–6 run of bank breaches is the second-largest national incident this board has carried. It publishes in English within hours, prints KST timestamps, carries the FSC chair and the presidential spokesperson directly, and names smaller affected institutions the wires leave out. Opens first try. Press, so still a fallback: the FSC's own `fsc.go.kr` releases are the primary and were not openable here._
+- **ABC News (Australia)** — https://www.abc.net.au/news/. _Added 2026-10-06. The route to Australian parliamentary proceedings while `aph.gov.au` committee pages are provenance-blocked, which they were on this run. It covered the Joint Select Committee on AI sitting of Oct 6 with dated and bylined takeaways. **Read it carefully on venue and setting:** it named no city for that sitting and said the committee's next hearing is in Sydney, and it distinguishes what a witness told the committee from what the same witness told the ABC "as he left" — a distinction a run can easily flatten into "testified."_
 - **South China Morning Post** — https://www.scmp.com/tech · China politics https://www.scmp.com/news/china/politics. _Added 2026-09-14. The scan list had no route to Chinese official statements at all: §1–§11 cover Chinese labs but no Chinese state or Party channel, and the Cyberspace Administration of China's own journal `China Cyberspace` is not openable to this fetcher. SCMP reports those statements in English within a day and opens first try — it is how the state security minister's naming of Claude Mythos and GPT-5.5-Cyber reached this board. Press, so still a fallback: cite the Chinese primary whenever one can be opened._
 
 Two cautions carried over from `RUNBOOK.md`. Watch for content-farm embellishment, which shows up
