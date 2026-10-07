@@ -123,6 +123,20 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
   - _Added 2026-09-29. Publisher of the Taskflow Agent results — an open-source AI audit framework its own researchers used to
     find 24 Android vulnerabilities — and one of the few first-party posts that states its agent's false-positive behaviour
     alongside its wins. `github.blog` opens first try. Distinct from GitHub Advisory Database and from Copilot product posts._
+- **IBM Newsroom / Red Hat press releases** — https://newsroom.ibm.com/ · https://www.redhat.com/en/about/press-releases. `def` `cap`
+  - _Added 2026-10-07. The scan list reached IBM only through "IBM Cost of a Data Breach" under Markets, and so had no route
+    to IBM and Red Hat's AI-assisted remediation work: the Oct 6 Lightwell release — more than 400 previously unknown flaws
+    in widely used Java libraries, the Clearinghouse going generally available, and the Red Hat GM's framing that "AI agents
+    shifted the threat landscape overnight, exploiting old dependencies at machine speed" — had no path here. **Both hosts
+    open first try and are dated**; the Red Hat mirror of a joint release is the easier read. Note what these releases
+    consistently omit and a run must therefore say is missing: which libraries, how many CVE identifiers were issued, and
+    how much of the discovery was model-driven as against human._
+- **Apple — Developer News and Updates** — https://developer.apple.com/news/. `def`
+  - _Added 2026-10-07. Where Apple announces platform permission changes, which is now where agent containment on macOS is
+    decided: its Oct 2 post said Full Disk Access will be granted only by explicit user action because "as AI agents become
+    increasingly capable and autonomous, the risks associated with this level of access will grow substantially."
+    **Provenance-blocked to this fetcher**, so read it through MacRumors (§12) for the date and The Hacker News for the
+    quotations. Apple names no macOS version and no effective date for changes announced this way._
 - **Microsoft Security Blog** (incl. MSTIC threat intelligence) — https://www.microsoft.com/en-us/security/blog/. `def` `atk`
 - **Microsoft MSRC** — Blog https://msrc.microsoft.com/blog/ · Update Guide / Patch Tuesday https://msrc.microsoft.com/update-guide/. `def`
 - **GitLab Threat Research Group** — research posts on https://about.gitlab.com/blog/ · AI Gateway and application security advisories under https://docs.gitlab.com/releases/patches/ (AI Gateway advisories sit in the `other-patches/` subpath). `def` `cap`
@@ -290,6 +304,22 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     the payloads arrive — aimed, it says, at the review sandbox. It reached this board through SecurityWeek's Friday
     roundup ten days after publication. Opens first try; posts are dated and bylined. Note that it and Dark Reading's
     same-day write-up name **different publishers** for the extension._
+- **Salt Labs (Salt Security)** — https://salt.security/blog. `atk` `cap`
+  - _Added 2026-10-07. The API- and agent-integration beat. Its single-email hijack of the agentic platform Manus is the
+    fullest first-party account this board has carried of a prompt injection reaching code execution: a JSFuck-encoded
+    payload run by a Node.js runtime, a reverse shell out of the sandbox, and the victim's Gmail MCP OAuth token sitting
+    in the environment alongside other integration tokens — including the detail that the platform's own warning fired
+    only **after** the payload had already executed. Opens first try. **Two cautions.** The posts carry no visible
+    publication date, so a date has to come from the outlet that was given the findings (Dark Reading, Sep 24, exclusive).
+    And that write-up attributes the triage and fix to Meta, which does not own Manus — the vendor attribution in press
+    coverage of this research is unreliable, so take the technical account from Salt and name no fixer._
+- **Island** — https://www.island.io/blog. `atk` `def`
+  - _Added 2026-10-07. The enterprise-browser vendor's research arm, and the source on phishing that impersonates AI
+    products rather than using AI: its "fake AI ads" campaign write-up covers browser-in-the-browser sign-in windows
+    posing as the advertising consoles of Gemini, Claude, ChatGPT, Perplexity, Muse and Manus, with the registration
+    dates of each lookalike domain. **`island.io` is provenance-blocked to this fetcher** — The Hacker News carried the
+    research with Island's researchers named and quoted, so expect to cite it through press and flag it for upgrade.
+    Island also appears on the board as a Markets item (its $400 million Series F), which is a different thing entirely._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
@@ -495,6 +525,8 @@ fresh window.
 - **Reuters** — technology and cyber desks. _Note: reuters.com has refused automated fetchers on every run that tried it; expect to reach its reporting through a syndicating outlet._
 - **The Korea Times** — https://www.koreatimes.co.kr/ (economy and banking-finance desks). _Added 2026-10-06. The scan list had no route to Korean financial-sector cyber at all, and the Oct 3–6 run of bank breaches is the second-largest national incident this board has carried. It publishes in English within hours, prints KST timestamps, carries the FSC chair and the presidential spokesperson directly, and names smaller affected institutions the wires leave out. Opens first try. Press, so still a fallback: the FSC's own `fsc.go.kr` releases are the primary and were not openable here._
 - **ABC News (Australia)** — https://www.abc.net.au/news/. _Added 2026-10-06. The route to Australian parliamentary proceedings while `aph.gov.au` committee pages are provenance-blocked, which they were on this run. It covered the Joint Select Committee on AI sitting of Oct 6 with dated and bylined takeaways. **Read it carefully on venue and setting:** it named no city for that sitting and said the committee's next hearing is in Sydney, and it distinguishes what a witness told the committee from what the same witness told the ABC "as he left" — a distinction a run can easily flatten into "testified."_
+- **amNewYork** — https://www.amny.com/news/. _Added 2026-10-07. The route to New York City Council proceedings, which have become a venue for frontier-AI oversight: it is the only account of the Oct 5 Committee of the Whole sitting that opened to this fetcher, and it carries the witnesses' names and titles, Speaker Menin's questions and the companies' answers verbatim, which the wire summaries do not. The Council's own `council.nyc.gov/press/` opens and is worth checking first, but it published announcements before the hearing and no release after it; cnbc.com returns 403. Press, so still a fallback — and on a single-outlet sitting, say so on the card._
+- **MacRumors** — https://www.macrumors.com/. _Added 2026-10-07. Narrow use only: the dating route for Apple developer-news and platform announcements while `developer.apple.com/news/` is provenance-blocked, which it was on this run. It links the Apple post, states the date Apple published it, and paraphrases where it does not quote — so take the date from here and the quotations from an outlet that quotes Apple directly. Not a general cyber source and not to be swept for one._
 - **South China Morning Post** — https://www.scmp.com/tech · China politics https://www.scmp.com/news/china/politics. _Added 2026-09-14. The scan list had no route to Chinese official statements at all: §1–§11 cover Chinese labs but no Chinese state or Party channel, and the Cyberspace Administration of China's own journal `China Cyberspace` is not openable to this fetcher. SCMP reports those statements in English within a day and opens first try — it is how the state security minister's naming of Claude Mythos and GPT-5.5-Cyber reached this board. Press, so still a fallback: cite the Chinese primary whenever one can be opened._
 
 Two cautions carried over from `RUNBOOK.md`. Watch for content-farm embellishment, which shows up
