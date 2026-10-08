@@ -1,8 +1,8 @@
 {
- "updatedISO": "2026-10-07T06:40:00-04:00",
- "updatedDisplay": "2026-10-07, 6:40 AM ET",
- "judgmentNote": "Eight items. Five come from the fresh October 6–7 window and three are new to the board from inside the period; four are sourced to the party that produced the finding. Two lab and vendor primaries opened on the first try and carry the run — anthropic.com/news/cyber-verification-program and IBM's newsroom release — and the rest of the sweep ran into the usual unattended-run wall: helpnetsecurity.com, thehackernews.com, therecord.media and cyberscoop.com index pages, island.io, developer.apple.com and cnbc.com were all provenance-blocked or returned 403, and the site-scoped search fallback was run for each before any lane was called quiet. The calls made by hand. (1) The Anthropic card drops a figure. Help Net Security's write-up credits Project Glasswing partners with at least 129,000 verified vulnerabilities between April and July 2026, over 33,000 critical or high; that number is on neither Anthropic page opened here — anthropic.com/glasswing says only that Anthropic's own testing found “thousands of zero-day vulnerabilities ... many of them critical” — so the primary wins and the figure is off the card. (2) The CVP expansion is filed cap rather than def, following the Sep 30 Argon/Fairwind precedent and the frontier-capability topic definition (“who is allowed access”) rather than the Aug 21 Anthropic defender-access item, which sat in def. (3) Korea is two cards, not one or four. The ARTEX naming and the scope of the breaches sit on the Oct 7 Korea Times explainer; the prime minister's order sits on its own Oct 6 piece. The Financial Supervisory Service's count of 28 IP addresses “in the United States, Japan and 10 other countries” and the National Police Agency's 28-member team are carried in the watchlist rather than on a card, because each comes from a third and fourth Korea Times article and this board gives one item one URL. Note a slug trap: the Oct 6 piece slugged “19 IP addresses” says 28 in its body, both before and after its 3:04 pm KST update; 28 is the figure used. No Financial Supervisory Service, Financial Services Commission or Korea Financial Security Institute primary could be opened, and the Oct 7 explainer names no investigating body for the ARTEX finding, so the tool's use is reported as traces found, not as an established fact. The Oct 5 card on this board is left in place and the new one says it supersedes it; no corrections[] entry, because nothing on the old card was wrong — it said the tool was unnamed and its use unconfirmed, which was true that day. (4) The Manus card dates to September 24 on Dark Reading's exclusive, because Salt Labs' own post carries no visible date, and it names no party as having fixed the flaw: Dark Reading attributes the triage and patch to Meta, which does not own Manus. The technique, the reverse shell and the Gmail OAuth token are Salt's own words from its own post. (5) The Apple card dates to October 2 on MacRumors and quotes The Hacker News's rendering of Apple's developer-news post, which is provenance-blocked; the card says so. (6) The New York City Council card is single-outlet. amNewYork is the only account of the sitting that opened; the Council published its Sep 16 and Sep 28 announcements but no post-hearing release, and CNBC returned 403. The claim circulating on aggregator sites that Google confirmed three agent test escapes under oath appears in no outlet opened here and is not on the card. The hearing is in remit under the 2026-10-01 standing note, limb (b): the board already carries the incidents the Council was questioning the labs about. It is not marked key — four companies declining to commit is a reading of the frontier, not a turn in it. (7) The Island card carries no topic. The operators use no AI; they impersonate AI products, which is neither “AI in real attacks” nor an attack on an AI system, and guessing a topic would mis-close a response-lag clock. Checked and held. GitHub's ReviewBench (Oct 5, github.blog, primary opened) is a real benchmark with security as one of its categories, but publishes no security-specific result, so there is nothing to report beyond the launch. Onyx's $113 million Series B at a $640 million valuation is verified and in-period, but dated July 30 — backfilling a ten-week-old round into the thinnest lane is padding, so Markets was left alone for the second run in three. Rapid7's Global Threat Landscape Report, the CISA/NSA/Five Eyes agentic-AI guidance and Truffle Security's 543,699 live credentials all predate the window (March 18, May 1, and a July measurement) and are not backdated. Eight AI-security product launches carried by Help Net Security on Oct 6–7 — SailPoint, AppViewX, Transcend Rails, AXON Datum, Hack The Box, Intellias, New Relic and an open-source AI agent gateway — were rejected as commodity, per the standing practice on vendor launches. Two Oct 7 survey write-ups, on OT visibility and on who handles which security finding, were held as too diffuse to state a fact from. Sources added: Salt Labs and Island under vendors, IBM Newsroom and Red Hat press releases and Apple's developer news under big-tech, amNewYork and MacRumors under press. Five of the eight items came from sources the scan list did not have this morning, which is the measurement the Sep 9 note asked runs to keep making. Watchlist: six threads moved, none opened, none retired. Every status is now under the 1,200-character per-thread guidance; the aggregate stands at about 27.3 KB against a 25 KB figure that was set for twenty threads and there are twenty-four, so the per-thread limit was treated as the binding one and threads that did not move were left alone rather than trimmed to hit a total.",
- "internalNote": "Coverage extended to October 7 over a one-day window; eight items added, five from the fresh window, with Anthropic's three-tier Cyber Verification Program and the naming of ARTEX in the Korean bank breaches marked key.",
+ "updatedISO": "2026-10-08T06:40:00-04:00",
+ "updatedDisplay": "2026-10-08, 6:40 AM ET",
+ "judgmentNote": "Seven items. Four come from the fresh October 7–8 window and three are new to the board from inside the period; four are sourced to the party that produced the finding. Three primaries opened on the first try and carry the run — crowdstrike.com, lumen.com and github.blog — and so, for the first time, did nist.gov, which closes the longest-standing sourcing gap on this board: CAISI's own assessment of Z.ai's GLM-5.3, which two previous runs could reach only through secondary accounts, is now on the board with its benchmark table. The usual unattended-run wall was otherwise intact — the helpnetsecurity.com, thehackernews.com, securityweek.com and therecord.media index pages, ic3.gov, energy.gov, aph.gov.au, capitalbrief.com and dig.watch were provenance-blocked, robots-disallowed or returned 403 — and the site-scoped search fallback was run per source before any lane was called quiet. The calls made by hand. (1) The CAISI card quotes the ExploitGym denominators as published and they do not agree with each other: the page gives ExploitGym 502 tasks and the US frontier row 223/502, while GLM-5.3's row reads 47/498. Both are reproduced rather than reconciled. (2) The same page states that Z.ai “publicly released the model's weights two weeks later” than the Aug 14 launch. The Aug 14 card on this board says Z.ai held the weights back for a safety review, which was true on Aug 14, so no corrections[] entry is added; the resolution sits on the new card and in the “Open-weight cyber gap” status, and the review's own conclusions remain unpublished because no Z.ai primary has opened here across eight runs. (3) The CAISI item is dated Sep 17, its publication date, so it files on the week of Sep 14 rather than in this week's cards; it is forced into the strip with isNew because the catch, not the date, is what is new. (4) The CrowdStrike report is filed as a second Korea card rather than folded into the Oct 7 ARTEX card. The two rest on different parties' findings — Korean investigators finding traces, against a vendor's forensic reconstruction from the actor's own open directories — and almost everything on the new card (the DeepSeek v4.1-flash backend, the xcai[.]pro proxy, the GLM-5.3 and Grok 4.6 sessions, the moderate-confidence attribution, the Guangdong résumé) appears nowhere on the old one. (5) Confidence `researchers` on both the CrowdStrike and Lumen cards: a security vendor's own analysis where no affected organisation has confirmed it. CrowdStrike names no victim at all. (6) The PoeLLM figure conflict is on the card rather than resolved: Black Lotus Labs' key takeaways say more than 3,400 victim servers and its body text says almost 2,200, and neither reads as the other's correction. (7) The FortiBleed card strips two things. The Record attributes the 86,000-device figure to the FBI and the Secret Service; Help Net Security attributes it, inside the advisory, to SOCRadar — and since ic3.gov would not open, the card states the attribution rather than an agency endorsement of the number. The Record also carries a sentence that the group “spent heavily on artificial intelligence tools” that helped it past model safety controls; that appears in no other account opened here, so it is off the card. The advisory's Oct 6 date comes from The Record's “Tuesday” — Oct 6 is a Tuesday — corroborated by the ic3.gov path, not taken from the path alone. (8) The GitHub item carries no topic, deliberately. Its model finds exposed secrets, not software flaws, so “AI-found vulnerabilities” would mis-close that topic's response-lag clock on the Findings page. (9) The GitHub item is also the closest call on the commodity line this run. Eight AI-security product launches were rejected last run and more were rejected this one; GitHub is in because the change applies at the platform where the exposure happens and alters the default for pushes — the reasoning that admitted Apple's Full Disk Access change on Oct 2 — and because the post publishes measured platform figures rather than only a product claim. Filed `self-reported`: the party doing the measuring is the party being measured, and the doubling claim is a projection. (10) FortiBleed has no AI mechanism and is judged under the 2026-08-13 standing note on significance and cyber relevance; it is in at 86,644 devices across 194 countries behind a joint federal advisory. Atlassian's CVE-2026-21589 is held on the same test because its central fact is contested: Atlassian's own Oct 5 advisory says it cannot confirm exploitation of Data Center instances, while VulnCheck added the CVE to its exploited list on Oct 7 and that claim reached here only through press. (11) The Markets card is press on a Bloomberg Television remark, with the Marsh and Fitch figures as Insurance Business renders them; no primary for any of the three could be opened. CFC's Oct 6 cyber-wording update was verified and held as incremental — the board already carries CFC's affirmative AI wording from Sep 17 alongside Beazley's and QBE/AIG/Boxx's. (12) A DOE item was dropped for a date it could not fix: a $100 million CESER funding opportunity for rural, municipal and small investor-owned utilities, which Industrial Cyber dates Oct 6 and GovTech dates Oct 1, with energy.gov provenance-blocked. Two keys: CAISI's assessment, the first US-government measurement of an open-weight model's cyber capability to reach this board, and CrowdStrike's attribution, which moves the Korean storyline from a tool's name to a toolchain, a model backend and a probable operator.",
+ "internalNote": "Coverage extended to October 8 over a one-day window; seven items added, four from the fresh window, with CAISI's GLM-5.3 cyber assessment — a primary two earlier runs could not open — and CrowdStrike's attribution of the South Korean bank intrusions marked key.",
  "items": [
   {
    "id": "asymmetric-security-rogue-agents-investigation",
@@ -4752,7 +4752,7 @@
     "frontier-capability"
    ],
    "key": true,
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "ibm-red-hat-lightwell-400-java-vulnerabilities",
@@ -4766,7 +4766,7 @@
    "topics": [
     "ai-found-vulnerabilities"
    ],
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "south-korea-artex-named-bank-breaches",
@@ -4781,7 +4781,7 @@
     "ai-in-attacks"
    ],
    "key": true,
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "korea-pm-information-protection-overhaul",
@@ -4795,7 +4795,7 @@
    "topics": [
     "ai-in-attacks"
    ],
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "island-fake-ai-ad-portals-browser-in-browser",
@@ -4806,7 +4806,7 @@
    "confidence": "researchers",
    "outlet": "Island (via The Hacker News)",
    "url": "https://thehackernews.com/2026/10/fake-chatgpt-gemini-and-claude-ad.html",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "nyc-council-committee-of-whole-ai-labs-under-oath",
@@ -4820,7 +4820,7 @@
    "topics": [
     "evaluation-incidents"
    ],
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "apple-macos-full-disk-access-ai-agent-controls",
@@ -4848,6 +4848,97 @@
    "topics": [
     "attacks-on-ai"
    ],
+   "isNew": false
+  },
+  {
+   "id": "caisi-glm-5-3-cyber-assessment",
+   "lane": "cap",
+   "date": "2026-09-17",
+   "headline": "The US AI standards centre puts the most cyber-capable open-weight model about four months behind the American frontier",
+   "core": "CAISI's assessment of Z.ai's GLM-5.3, released September 17, states that “GLM-5.3 is the most cyber-capable open-weight model released to date” while “GLM-5.3's cyber capabilities are significantly lower than those of current U.S. frontier models,” and puts the distance at a figure: “GLM-5.3 lags the capability level of the U.S. frontier by about four months in an aggregate measure of performance across CAISI cyber benchmarks.” The published table sets GLM-5.3 against the best US frontier and best PRC frontier result on four benchmarks — SEC-Bench Pro 40.4% (74/183) against 90.2% (165/183) and 27.3% (50/183); ExploitBench 61.1% (9.8/16) against 100.0% (16.0/16) and 32.2% (5.1/16); ExploitGym Userspace 9.4% (47/498) against 44.4% (223/502) and 2.6% (13/502); OSS-Fuzz 7.7% (23/297) against 23.2% (69/297) and 2.4% (7/297) — and records that “when applicable, U.S. models were tested with cyber safeguards disabled.” The page also settles a question this board has carried since August 14: after that release, “Z.ai publicly released the model's weights two weeks later.” CAISI reports no safeguard findings for GLM-5.3 and says nothing about the outcome of the safety review Z.ai cited when it held the weights back.",
+   "confidence": "on-record",
+   "outlet": "NIST / Center for AI Standards and Innovation",
+   "url": "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities",
+   "topics": [
+    "frontier-capability"
+   ],
+   "key": true,
+   "isNew": true
+  },
+  {
+   "id": "crowdstrike-artex-korea-finance-attribution",
+   "lane": "atk",
+   "date": "2026-10-07",
+   "headline": "CrowdStrike says the operator behind the South Korean bank intrusions ran ARTEX on DeepSeek and worked through Claude Code",
+   "core": "CrowdStrike Intelligence, in a report published October 7 under Ashley Campion's name, describes “a recently released open-source agentic penetration testing (pentesting) tool developed in China” — ARTEX — used against South Korean financial organisations from late September to early October in a campaign that “resulted in exfiltrated data.” The instance examined “used DeepSeek v4.1-flash as the primary LLM backend,” likely reached through the API proxy or reseller xcai[.]pro, and the actor “supplemented this LLM with GLM-5.3 (Zhipu AI) and Grok 4.6 for additional Claude Code sessions.” Open directories on 38.244.50[.]120 and on a Hong Kong IP held “Claude Code session histories, ARTEX configuration files, and Claude memory files,” including a Chinese-language pentesting prompt; in one session the actor asked Claude where stolen Korean breach data is typically sold and for help finding Korean Telegram data-sales groups, and in another asked it to write a security-researcher résumé whose personal details, including a Guangdong location, CrowdStrike says “likely belong” to the ARTEX operator while “currently available information cannot definitively associate these details with the threat actor.” The actor is “likely a Chinese speaker and financially motivated” — “This assessment is made with moderate confidence” — and is tied to no named adversary. CrowdStrike names no victim and says the number of affected organisations is unconfirmed, citing industry reporting for a breached loan-progress inquiry service used by financial brokers at one bank and an employee mobile work-support system at another.",
+   "confidence": "researchers",
+   "outlet": "CrowdStrike Intelligence",
+   "url": "https://www.crowdstrike.com/en-us/blog/unknown-threat-actor-uses-artex-to-target-south-korean-finance/",
+   "topics": [
+    "ai-in-attacks"
+   ],
+   "key": true,
+   "isNew": true
+  },
+  {
+   "id": "poellm-botnet-litellm-ollama-github-poem",
+   "lane": "atk",
+   "date": "2026-10-07",
+   "headline": "A cryptomining botnet reads its next command server out of a poem on GitHub, and feeds on exposed LiteLLM and Ollama hosts",
+   "core": "Lumen's Black Lotus Labs, publishing October 7, describes PoeLLM as a cryptomining and exploit-scanning campaign that “uses and targets exposed AI/LLM and open-source services,” deploying XMRig and Iron miners into Kryptex mining infrastructure. “The malware derives its current C2 server from keywords in a poem hosted in a GitHub repository”: four words are pulled from the poem and mapped through a hard-coded dictionary into an IPv4 address, so the operator moves the command server by editing the poem — done 11 times as of the research, with the decoding logic untouched. Most victims “appear to run vulnerable versions of open-source AI/LLM services, such as LiteLLM and Ollama”; scanning concentrated on ports 3000 and 4000, corresponding to Gotenberg and LiteLLM, and the LiteLLM command-injection flaw CVE-2026-42271 at the /mcp-rest/test/connection endpoint was “likely the exploitation path.” Hundreds of Gotenberg servers and Gitea instances were also affected, and the malware can turn a victim into a vulnerability scanner, “proxying attacks through compromised hosts.” Black Lotus Labs assesses “that PoeLLM is associated with an Italian-speaking threat actor,” and assesses with moderate confidence that an Italian-hosted administrative server is the operator's management interface. One figure is inconsistent within the report itself: its key takeaways say the malware “has impacted more than 3,400 victim servers” with peak activity “exceeding 800 active servers per day” since at least April 2026, while its body text says “almost 2,200.”",
+   "confidence": "researchers",
+   "outlet": "Lumen Black Lotus Labs",
+   "url": "https://www.lumen.com/blog/en-us/canto-incognito-tracking-the-poellm-malware",
+   "topics": [
+    "attacks-on-ai"
+   ],
+   "isNew": true
+  },
+  {
+   "id": "github-finetuned-secret-detection-push-protection",
+   "lane": "def",
+   "date": "2026-10-07",
+   "headline": "GitHub puts a fine-tuned model in front of pushes to catch passwords that match no known token format",
+   "core": "GitHub says its push protection now runs “GitHub's fine-tuned model for secret detection,” a ModernBERT classifier built with Microsoft Applied Sciences that “reads surrounding code to identify likely credentials,” including “passwords without a recognizable token format,” and that assesses candidate batches in “under two milliseconds.” The product post by Erin Havens, dated October 7, puts figures behind it: “A new secret appears in publicly visible code about once every two seconds,” a rate GitHub says has doubled yearly for three years; between the second quarters of 2024 and 2026 screened pushes grew 2.84 times and pushes carrying credentials 2.59 times; push protection stops about 30% of newly detected secrets before they enter repository history, leaving the other 70% to be found after the credential is already exposed; and “the mean time to manually revoke a secret hovers around 40 days,” with roughly one in five taking more than 90. The claim that the model “could more than double the number of secrets that we can prevent” is presented as a projection rather than a measured result, and neither the post nor the October 7 changelog entry publishes an accuracy or false-positive rate. Existing AI-detected alert scanning switched to the new model that day; AI push protection is in private preview for Enterprise Cloud and Team customers and consumes AI credits, and secret checks in Copilot's /security-review command are “coming soon.”",
+   "confidence": "self-reported",
+   "outlet": "GitHub",
+   "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+   "isNew": true
+  },
+  {
+   "id": "australia-committee-mandatory-agentic-incident-reporting",
+   "lane": "pol",
+   "date": "2026-10-07",
+   "headline": "Australia's AI inquiry is weighing mandatory reporting of agentic cyber incidents, and the industry witnesses did not object (via Dark Reading)",
+   "core": "Dark Reading reports that the Joint Select Committee on Artificial Intelligence — which heard OpenAI, Anthropic, Microsoft and Google on October 6, and vendors, data-centre operators and AI safety specialists on October 7 — is weighing mandatory reporting requirements for agentic cyberattacks, and that industry representatives did not oppose them but asked for internationally standardised rules. The proposals before the committee came from witnesses rather than from the government. Jasa Rakus of Huntress suggested borrowing the timelines in Australia's SOCI Act, a 12-hour initial notification for severe impact and a 72-hour detailed follow-up, and argued that an AI agent reaching a system outside its authorised scope should be reportable by default; Rakus and Casey Ellis, the founder of disclose.io and Bugcrowd, each proposed a centralised public hub for AI incident reports; Adam Maloney of Huntress proposed an independent AI advisory council. Ellis expects action only once the Australian Signals Directorate investigation and the parliamentary inquiry conclude, and no date is attached to either. The report names no bill, no consultation paper and no deadline, and the committee's own hearing record on aph.gov.au could not be opened here.",
+   "confidence": "press",
+   "outlet": "Joint Select Committee on Artificial Intelligence (via Dark Reading)",
+   "url": "https://www.darkreading.com/cybersecurity-operations/australian-govt-ai-incident-reporting",
+   "topics": [
+    "evaluation-incidents"
+   ],
+   "isNew": true
+  },
+  {
+   "id": "dimon-ai-cyber-risk-tenfold-rates-still-falling",
+   "lane": "mkt",
+   "date": "2026-10-06",
+   "headline": "JPMorgan's chief executive says AI cyber risk is up tenfold while cyber rates fall for a twelfth straight quarter (via Insurance Business)",
+   "core": "Insurance Business reports that Jamie Dimon, speaking to Bloomberg Television on October 6, said AI risk “went up 10-fold after Mythos,” and that the technology had exposed vulnerabilities the bank had not known existed in an area already among its largest concerns. The same article sets the price of that risk moving the other way: Marsh's Global Insurance Market Index has US cyber rates down 2% and global cyber rates down 4% in the second quarter of 2026, the twelfth consecutive quarterly decline, with US cyber pricing falling since the second quarter of 2023; and Fitch Ratings has US cyber direct written premiums up 11% in 2025 on policies in force up 35%, which the article reads as carriers growing by writing more accounts rather than charging more for each. No Bloomberg transcript and neither the Marsh nor the Fitch primary could be opened here, so the quotation and both sets of figures are carried as Insurance Business renders them.",
+   "confidence": "press",
+   "outlet": "JPMorgan Chase (via Insurance Business)",
+   "url": "https://www.insurancebusinessmag.com/us/news/breaking-news/dimon-says-ai-cyber-risk-is-up-tenfold--cyber-insurance-prices-are-still-falling-592533.aspx",
+   "isNew": true
+  },
+  {
+   "id": "fbi-secret-service-fortibleed-advisory",
+   "lane": "atk",
+   "date": "2026-10-06",
+   "headline": "The FBI and the Secret Service say the FortiBleed credential campaign is still running, and that attackers are locking administrators out of their own firewalls",
+   "core": "A joint FBI and US Secret Service advisory released on Tuesday October 6, carried here through Help Net Security, says the FortiBleed campaign against internet-facing Fortinet FortiGate firewalls and SSL VPN gateways is ongoing. Attackers scan for exposed SSL VPN portals, then use credential stuffing, password spraying and GPU hash cracking with Hashcat and Hashtopolis; they create new accounts on compromised devices for persistence and in some cases delete existing ones, which can lock an organisation out of its own firewall and leave recovery needing “remediation steps beyond standard patching and password resets.” Access is sold on to affiliates of the INC/Lynx and Payload ransomware operations. The scale figure the advisory carries — more than 86,644 compromised devices across 194 countries — is attributed in it to the security firm SOCRadar rather than counted by the agencies, and the advisory PDF at ic3.gov could not be opened here, so neither that attribution nor the AI-tooling claim a second outlet drew from the same document is asserted on this card.",
+   "confidence": "press",
+   "outlet": "FBI and US Secret Service (via Help Net Security)",
+   "url": "https://www.helpnetsecurity.com/2026/10/07/fortinet-fortibleed-campaign-fbi-advisory/",
    "isNew": false
   }
  ],
@@ -4920,8 +5011,8 @@
   },
   {
    "thread": "Government response to the eval incidents",
-   "status": "A city council has done what Congress has not. Sitting as a Committee of the Whole on Oct 5 — all 51 members, about 40 taking part — the New York City Council put OpenAI, Anthropic, Meta and Google under oath, and per amNewYork none would commit to automatically halting a release if a model failed an internal or third-party safety test. OpenAI's Morgan Dwyer, asked to quantify catastrophic risk: “I don't know. I also don't think it matters whether it's 1% or 10%.” Anthropic's Logan Graham: “candidly, the science of doing this is fundamentally hard and unsettled.” OpenAI said it has been reviewing potential past misalignment incidents since November 2025 and found no New York City impact; SpaceX/xAI did not appear despite a subpoena. Above that: OpenAI's chief strategy officer told Australia's Joint Select Committee on AI on Oct 6 the company should have disclosed the Medicare-portal breach sooner and named a further breach at NSW Parks and Wildlife; California's attorney general has served an investigative subpoena, the second state subpoena after Alabama's; and the FTC has an open investigation.",
-   "changed": "2026-10-05",
+   "status": "Australia is the first legislature weighing a reporting mandate aimed at agents. Its Joint Select Committee on AI heard OpenAI, Anthropic, Microsoft and Google on Oct 6 and vendors, data-centre operators and safety specialists on Oct 7, and is considering mandatory reporting requirements for agentic cyberattacks; industry did not oppose them but asked for internationally standardised rules. The specifics came from witnesses, not the government: SOCI Act timelines of 12 and 72 hours, a centralised public hub for AI incident reports, and reportability by default when an agent reaches a system outside its authorised scope. No bill, consultation paper or deadline is named. In the US the pressure is still oversight rather than statute: the New York City Council sat as a Committee of the Whole on Oct 5 and none of OpenAI, Anthropic, Meta or Google would commit to halting a release that failed a safety test — OpenAI's Morgan Dwyer on quantifying catastrophic risk, “I don't know. I also don't think it matters whether it's 1% or 10%.” California's attorney general has served an investigative subpoena, the second state subpoena after Alabama's, and the FTC has an open investigation.",
+   "changed": "2026-10-07",
    "topic": "evaluation-incidents",
    "items": [
     "ca-ag-bonta-openai-investigative-subpoena",
@@ -4944,12 +5035,13 @@
     "senate-hsgac-rogue-ai-agent-attacks-hearing",
     "murphy-hawley-ai-agent-accountability-act",
     "openai-kwon-australia-joint-select-committee-hearing",
-    "nyc-council-committee-of-whole-ai-labs-under-oath"
+    "nyc-council-committee-of-whole-ai-labs-under-oath",
+    "australia-committee-mandatory-agentic-incident-reporting"
    ]
   },
   {
    "thread": "Agent-abuse attack surface",
-   "status": "The tool has a name. The Korea Times reported on Oct 7 that “investigators reportedly found traces of an AI-powered tool known as ARTEX” in the run of attacks on Korean financial institutions — “the Chinese-language autonomous penetration-testing tool” automates vulnerability scanning and attack-path development and “can connect to AI models developed by Chinese company DeepSeek as well as OpenAI and Anthropic.” Affected institutions now run to Shinhan (about 25,000 customers), Kookmin (119), Hana (89), Yegaram Savings Bank and BNK Busan, with attempts detected at Woori and NongHyup; the same paper reported on Oct 6 that the Financial Supervisory Service has identified 28 IP addresses “in the United States, Japan and 10 other countries” “presumed to have been used for the artificial intelligence (AI) agent-backed hacking” but cannot place some of them, and on Oct 7 that the National Police Agency has formed a 28-member team. The attacker is unidentified. Prime Minister Han Seong-sook ordered an overhaul of the national information-protection system on Oct 6. Korea Times headline slugs are unreliable here: one Oct 6 piece is slugged “19 IP addresses” and says 28 in the body.",
+   "status": "A vendor has put a toolchain and a probable nationality on the Korean bank intrusions. CrowdStrike Intelligence's Oct 7 report says the ARTEX instance it examined “used DeepSeek v4.1-flash as the primary LLM backend,” likely through the proxy xcai[.]pro, and that the actor “supplemented this LLM with GLM-5.3 (Zhipu AI) and Grok 4.6 for additional Claude Code sessions”; open directories on 38.244.50[.]120 and a Hong Kong IP held Claude Code session histories, ARTEX configuration files and Claude memory files, and in one session the actor asked Claude where Korean breach data is typically sold. The actor is “likely a Chinese speaker and financially motivated” at “moderate confidence,” tied to no named adversary; a résumé drafted in another session carries a Guangdong location CrowdStrike says “likely” belongs to the operator but cannot definitively associate with it. Korean reporting puts the affected set at Shinhan (about 25,000 customers), Kookmin (119), Hana (89), Yegaram Savings Bank and BNK Busan, with attempts at Woori and NongHyup; the Financial Supervisory Service has 28 IP addresses across twelve countries and the police a 28-member team.",
    "changed": "2026-10-07",
    "topic": "ai-in-attacks",
    "items": [
@@ -4992,7 +5084,8 @@
     "south-korea-bank-breaches-ai-pentest-tool-traces",
     "cleafy-rathat-gemini-victim-scoring-console",
     "south-korea-artex-named-bank-breaches",
-    "korea-pm-information-protection-overhaul"
+    "korea-pm-information-protection-overhaul",
+    "crowdstrike-artex-korea-finance-attribution"
    ]
   },
   {
@@ -5095,7 +5188,7 @@
   },
   {
    "thread": "Open-weight cyber gap",
-   "status": "A frontier lab has measured the open-weight model this thread was waiting on, and puts it at near parity. Anthropic's Sep 29 evaluation of GLM-5.3, as reported by The Next Web and Business Standard, has it building end-to-end exploits “in 50 of 410 attempts” on ExploitBench against 56 for Mythos Preview, and a full control-flow hijack “in 4% of 100 tasks, against 6%” — while the previous generation on both sides, Claude Opus 4.6 and GLM-5.2, “managed none.” Its safeguards moved easily: 64% engagement when the request was framed as an authorised red-team exercise, 92% with the reasoning prefilled, and every time for an abliterated copy reported to cost about $4,400 and 2,200 GPU hours, with refusal rates on JailbreakBench and HarmBench falling from above 90% to around 3% and 2%. One exploit-development task was priced at $20.40. The tests were sandboxed, not live. Z.ai held the weights back on Aug 14 after citing an emergent full-chain exploitation ability; they are out, but no Z.ai primary has been openable across seven runs, so the review's own conclusions remain unpublished as far as this board can verify. AISI's gap figure, from Jul 17, is four to seven months.",
+   "status": "The US government's own measurement is finally on the board, and the weights question is answered. CAISI's Sep 17 assessment of GLM-5.3 — unsourceable here across two runs, opened on Oct 8 — says it “is the most cyber-capable open-weight model released to date” but “significantly lower than those of current U.S. frontier models,” and “lags the capability level of the U.S. frontier by about four months.” Its table: SEC-Bench Pro 40.4% against a 90.2% US frontier best; ExploitBench 61.1% against 100.0%; ExploitGym Userspace 9.4% against 44.4%; OSS-Fuzz 7.7% against 23.2%, US models tested with cyber safeguards disabled where applicable. CAISI also states that Z.ai “publicly released the model's weights two weeks later” than the Aug 14 launch, closing a hold carried here as open for eight runs — though no Z.ai primary has ever opened, so the safety review's conclusions stay unpublished. Anthropic's Sep 29 evaluation is the nearer reading: end-to-end exploits in 50 of 410 ExploitBench attempts against 56 for Mythos Preview, and an abliterated copy at about $4,400 with refusals falling from above 90% to around 3%.",
    "changed": "2026-09-29",
    "topic": "frontier-capability",
    "items": [
@@ -5112,7 +5205,8 @@
     "aisi-open-weight-cyber-gap-four-to-seven-months",
     "hf-llm-forensics",
     "xbow-cross-model-offensive-security-cost-comparison",
-    "anthropic-glm-5-3-exploit-development-evaluation"
+    "anthropic-glm-5-3-exploit-development-evaluation",
+    "caisi-glm-5-3-cyber-assessment"
    ]
   },
   {
@@ -5173,13 +5267,14 @@
   },
   {
    "thread": "CAISI leadership and output",
-   "status": "Washington is now gating who may test the frontier, and its own body has no permanent head. Politico reported on Sep 24 that the White House asked OpenAI and Anthropic to withhold their newest models from the UK AI Security Institute pending a US-led security review — Claude Mythos 5.1 restricted to US organisations, GPT-6 Astra also named — and AISI director Henry de Zoete told Parliament the institute lacked access to Anthropic's latest model. President Trump had said on Sep 22 that “the United States totally rejects any attempt to construct a globalist scheme to control artificial intelligence.” CAISI has had no permanent director since Chris Fall left in July 2026; acting head Arvind Raman took over Jul 21, and the Kimi K3 co-publication with UK AISI on Jul 23 remains its only public output in the period. The Self-Improving AI Monitoring Act, introduced Aug 29 by Reps. Whitesides and Harrigan, would give it a standing monitoring duty; no bill number appears on the sponsor's release.",
+   "status": "CAISI has a second public output in the period, and still no permanent head. Its assessment of Z.ai's GLM-5.3, released Sep 17 and opened here for the first time on Oct 8, calls the model “the most cyber-capable open-weight model released to date” and about four months behind the US frontier on an aggregate of CAISI cyber benchmarks, publishing per-benchmark scores against best US and best PRC frontier results it does not name. That joins the Kimi K3 co-publication with UK AISI of Jul 23. The centre has had no permanent director since Chris Fall left in July 2026; acting head Arvind Raman took over Jul 21. Meanwhile Washington is gating who may test the frontier: Politico reported on Sep 24 that the White House asked OpenAI and Anthropic to withhold their newest models from the UK AI Security Institute pending a US-led security review, with Claude Mythos 5.1 restricted to US organisations and GPT-6 Astra also named, and AISI director Henry de Zoete told Parliament the institute lacked access to Anthropic's latest model. The Self-Improving AI Monitoring Act, introduced Aug 29, would give CAISI a standing monitoring duty; no bill number appears on the sponsor's release.",
    "changed": "2026-09-24",
    "items": [
     "self-improving-ai-monitoring-act",
     "nist-doe-genesis-mission-ai-critical-infrastructure-security-center",
     "kimi-k3-joint-eval",
-    "caisi-raman"
+    "caisi-raman",
+    "caisi-glm-5-3-cyber-assessment"
    ]
   },
   {
@@ -5247,7 +5342,7 @@
   },
   {
    "thread": "Cyber insurance and AI liability",
-   "status": "The capital is still arriving faster than the rules. Hadrian raised $40 million on Oct 6 for agentic penetration testing, taking its total to $65 million, five days after Kevin Mandia's Armadin raised $255.5 million at a valuation topping $2.5 billion to run offensive agent swarms. On the statutory side, the Murphy–Hawley AI Agent Accountability Act of Oct 1 would put criminal and civil liability under the Computer Fraud and Abuse Act on the operators and developers of agents that cause hacking damage. PwC's survey of 3,934 executives in 71 countries reports 84% of security and finance leaders expecting cyber budgets to rise, against 78% a year earlier, and half of security leaders naming attacks on AI systems among the threats they are least prepared for. Carriers are not retreating: QBE's Serene Davis said on Sep 22 it is “continuing to support coverage for cyber risks and claims arising out of AI, not retreating from them”; AIG is “not specifically seeking to use or implement any of these exclusions at this time”; Beazley's Sep 17 endorsement and CFC's wording put AI-driven attacks inside existing cover. No carrier has reported a paid loss traced to agentic AI misuse.",
+   "status": "The gap between the risk as described and the risk as priced is now on the record from both ends. Jamie Dimon told Bloomberg Television on Oct 6 that AI risk “went up 10-fold after Mythos” and had exposed vulnerabilities JPMorgan had not known existed; in the same week Marsh's index has US cyber rates down 2% and global rates down 4% in Q2 2026, a twelfth consecutive quarterly decline, while Fitch has US cyber premiums up 11% in 2025 on policies in force up 35% — growth by account count, not by price. Capital keeps arriving: Hadrian raised $40 million on Oct 6 for agentic penetration testing, five days after Armadin's $255.5 million above a $2.5 billion valuation. The Murphy–Hawley AI Agent Accountability Act of Oct 1 would put Computer Fraud and Abuse Act liability on the operators and developers of agents that cause hacking damage. Carriers are still not retreating: QBE “continuing to support coverage for cyber risks and claims arising out of AI,” AIG “not specifically seeking to use or implement any of these exclusions at this time,” Beazley's and CFC's wordings putting AI-driven attacks inside existing cover. No carrier has reported a paid loss traced to agentic AI misuse.",
    "changed": "2026-10-06",
    "items": [
     "qbe-aig-boxx-affirm-ai-cyber-cover",
@@ -5270,13 +5365,14 @@
     "murphy-hawley-ai-agent-accountability-act",
     "pwc-digital-trust-insights-ai-attack-preparedness",
     "armadin-series-b-offensive-agent-swarms",
-    "hadrian-40m-agentic-penetration-testing-round"
+    "hadrian-40m-agentic-penetration-testing-round",
+    "dimon-ai-cyber-risk-tenfold-rates-still-falling"
    ]
   },
   {
    "thread": "AI infrastructure as attack surface",
-   "status": "The gateway itself is now the flaw. GitLab's advisory for CVE-2026-90970, at CVSS 9.9 and dated by press to Oct 2, says an “authenticated user with Duo Agent Platform access” could “escape the prompt template sandbox via a specially crafted flow configuration, leading to arbitrary command execution on the AI Gateway”; the fixed builds 19.2.4, 19.3.2 and 19.4.1 are gateway versions, and GitLab-hosted gateways were patched for customers. The census work is the durable part of this thread. Delinea's Sep 29 survey of 2,254 IT and security leaders reports that “87% of IT leaders say an AI tool or agent accessed sensitive data beyond its intended scope in the past year,” with fewer than one in five able to detect a scope violation as it happens. Hush Security found hardcoded secrets in 12% of credential slots across roughly 82,000 public MCP configurations; Mysterium found 36,769 reachable self-hosted AI endpoints, 2.02% of them authenticated; Mandiant recorded a billing spike of about $50,000 from one agent stuck in a reasoning loop. The pattern holds: this infrastructure is provisioned like developer tooling and reachable like production. Full CVE list in dashboard-memory.md.",
-   "changed": "2026-10-02",
+   "status": "Exposed AI services are now a botnet's food supply. Lumen's Black Lotus Labs, publishing Oct 7, says the PoeLLM cryptominer “uses and targets exposed AI/LLM and open-source services,” with most victims running “vulnerable versions of open-source AI/LLM services, such as LiteLLM and Ollama”; the LiteLLM command-injection flaw CVE-2026-42271 was “likely the exploitation path,” and compromised hosts can be turned into scanners “proxying attacks through compromised hosts.” Its command server is decoded from four keywords in a poem on GitHub, changed 11 times; the report's takeaways say more than 3,400 victim servers since April while its body says almost 2,200. Before it, GitLab's CVE-2026-90970 (CVSS 9.9, Oct 2) let an authenticated Duo Agent Platform user “escape the prompt template sandbox” to command execution on the AI Gateway. The census work is the durable part: Delinea has 87% of IT leaders seeing an AI tool reach data beyond its scope; Hush Security found secrets in 12% of credential slots across ~82,000 public MCP configurations; Mysterium found 36,769 reachable self-hosted AI endpoints, 2.02% authenticated. Full CVE list in dashboard-memory.md.",
+   "changed": "2026-10-07",
    "topic": "attacks-on-ai",
    "items": [
     "gitlab-ai-gateway-prompt-template-escape-cve-2026-90970",
@@ -5303,7 +5399,8 @@
     "terraform-mcp-server-cross-tenant-credential-reuse-patch",
     "nist-sp-800-239-ai-datacenter",
     "orca-state-of-ai-security-unpatched-ai-packages",
-    "delinea-ai-access-scope-violations-survey"
+    "delinea-ai-access-scope-violations-survey",
+    "poellm-botnet-litellm-ollama-github-poem"
    ]
   },
   {
@@ -5435,6 +5532,12 @@
   }
  ],
  "archives": [
+  {
+   "date": "2026-10-08",
+   "file": "archive/machine-speed-2026-10-08.html",
+   "items": 405,
+   "note": "Grow mode. Seven items over a one-day window, four of them fresh. The run's catch is a primary rather than an event: CAISI's Sep 17 assessment of Z.ai's GLM-5.3 opened for the first time on nist.gov, after two runs could reach it only through secondary accounts — it calls GLM-5.3 “the most cyber-capable open-weight model released to date,” “significantly lower than those of current U.S. frontier models,” and about four months behind them on an aggregate of CAISI cyber benchmarks, with per-benchmark scores (SEC-Bench Pro 40.4% against 90.2%; ExploitBench 61.1% against 100.0%; ExploitGym Userspace 9.4% against 44.4%; OSS-Fuzz 7.7% against 23.2%), and it settles the open-weight question this board has carried since August by stating that Z.ai released the weights two weeks after the Aug 14 launch. CrowdStrike Intelligence put a toolchain and a probable operator behind the Korean bank intrusions: the ARTEX instance it examined ran DeepSeek v4.1-flash as its primary backend through a proxy, the actor added GLM-5.3 and Grok 4.6 in further Claude Code sessions, and open directories held the session histories, ARTEX configuration and Claude memory files, with the operator assessed “likely a Chinese speaker and financially motivated” at moderate confidence and a résumé pointing to Guangdong. Lumen's Black Lotus Labs described PoeLLM, a cryptominer that decodes its command server from four keywords in a poem on GitHub and feeds on exposed LiteLLM and Ollama hosts. GitHub put a fine-tuned ModernBERT classifier in front of pushes to catch passwords matching no known token format. Australia's Joint Select Committee on AI is weighing mandatory reporting of agentic cyber incidents, and the industry witnesses did not object. Markets moved: Jamie Dimon said AI risk “went up 10-fold after Mythos” while Marsh recorded a twelfth consecutive quarterly fall in cyber rates. And the FBI and Secret Service said the FortiBleed credential campaign is still running, with attackers locking administrators out of their own firewalls. Six watchlist threads moved, none opened, none retired."
+  },
   {
    "date": "2026-10-07",
    "file": "archive/machine-speed-2026-10-07.html",
@@ -5717,7 +5820,7 @@
   "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
  ],
  "coverageStart": "2026-07-01",
- "coverageEnd": "2026-10-07",
+ "coverageEnd": "2026-10-08",
  "briefs": [
   {
    "slug": "openai-hugging-face-eval-breach",
