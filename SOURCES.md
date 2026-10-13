@@ -84,6 +84,17 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     direct to maintainers by Anthropic", which sum to the headline total; reading the first against "Acknowledged by
     maintainer" produces a funnel that runs backwards. Note also `red.anthropic.com/2026/attack-navigator`, which
     302s to `anthropic.com` and therefore cannot be opened. Diff the counts every run._
+  - _Note added 2026-10-13, and it reverses both the entry above it and the standing assumption behind weeks of
+    "(via …)" attributions: **`anthropic.com` opened on this run, on the first attempt, on every path tried.**
+    `anthropic.com/news` returned the dated post list; `anthropic.com/claude-haiku-5-5` returned the product page;
+    `anthropic.com/claude-haiku-5-5-system-card` 302s to a PDF on **`www-cdn.anthropic.com`** which opened and carried
+    the full cyber evaluation tables, threshold determination and refusal rates — the figures this board had been
+    taking from Help Net Security's reading of them. And `red.anthropic.com/2026/attack-navigator` does 302, but
+    **following it by hand to `anthropic.com/research/attack-navigator` opens the page**, which is how the June 3 LLM
+    ATT&CK Navigator was finally read here. So: try `anthropic.com` directly before reaching for a syndicating outlet,
+    follow a 302 rather than treating it as a wall, and prefer the system card over the launch post — the launch page's
+    safety section is qualitative and the numbers are only in the card. Whether this holds on the next unattended run
+    is not established; one clean run is not a pattern, but the old note was being treated as one._
 - **xAI (Grok)** — News https://x.ai/news. `cap` `def`
 - **Google DeepMind** — Blog https://deepmind.google/discover/blog/ · CodeMender, Big Sleep, frontier safety. `cap` `def`
   - _Note added 2026-10-01. The frontier-model announcements are not on the discover blog: they are at
@@ -95,6 +106,15 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     though it is **undated**, so take dates from the announcement rather than from it; and the gating programme has
     its own page at **https://deepmind.google/fairwind-program/**._
 - **Meta AI** — Blog https://ai.meta.com/blog/ (also open-weight, §4). `cap`
+  - **Meta model cards** — https://research.meta.ai/static/&lt;model&gt;-model-card · research blog https://research.meta.ai/blog/. `cap`
+  - _Added 2026-10-13. This is the routing note that mattered on the Muse Wonder launch: **`about.fb.com` was
+    provenance-blocked and `research.meta.ai` opened first try**, and the model card — not the announcement — is where
+    the cyber material lives. The Muse Wonder card carried a `Date of Release` line, CyberGym and ExploitBench scores,
+    single- and multi-turn attack-success rates on CyberBench, the PolyGuard cyber subset and RedCode, and the
+    Superintelligence Scaling Framework ratings with the one domain Meta declines to clear. It also carried the kind of
+    sentence a launch post never does: that of 92 ExploitGym flags, a verification pass found 21 went through the
+    intended vulnerability and 71 through unintended ones. **Read the card, not the blog**, and expect the card to
+    undercut its own headline number._
 
 ## 2. Big-tech platforms & their threat-intel arms — `def` `atk` `cap`
 
@@ -196,6 +216,17 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     the 2026-09-09 measurement identified. Both Sophos hosts were provenance-blocked on every attempt this run, so
     expect to cite a syndicating outlet and upgrade on an attended run; the value of the entry is knowing the CTU is
     publishing on criminal AI tooling at all._
+- **Horizon3.ai — Attack Research / disclosures** — https://horizon3.ai/attack-research/ · disclosures index https://horizon3.ai/attack-research/disclosures/. `cap` `atk` `def`
+  - _Added 2026-10-13, and it is the clearest source-gap catch since the 2026-09-09 measurement: this list had no line
+    for it at all, and its September 30 post describing how a Mythos-driven agent found CVE-2026-61500 in Rejetto HFS
+    reached this board **thirteen days late**, by way of a Register podcast transcript. It is an offensive research shop
+    that publishes a dated, bylined disclosure per vulnerability and — this is why it belongs here rather than only in a
+    CVE registry — now writes up **which part of the work the model did**, step by step, against the part the researchers
+    did. Opens first try. Its CVEs are published through the **VulnCheck CNA**, whose own advisory pages open too and carry
+    the credit line (the companion CVE-2026-61503 advisory credits “Zach Hanley (@hacks\_zach) of Horizon3.ai, in
+    collaboration with Claude and Anthropic Research”), so a run can verify a CVE number and its attribution on two
+    primaries without touching cve.org or nvd.nist.gov, neither of which is reachable here. Treat the account of the
+    model's contribution as `self-reported`: it is one vendor's unreproduced description of its own pipeline._
 - **Wiz** — https://www.wiz.io/blog. `def`
 - **Zenity Labs** — https://labs.zenity.io/. `atk` `def`
   - _Added 2026-09-29. The agent-platform beat specifically: Salesforce Agentforce, Microsoft Copilot, ServiceNow and the

@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-10-12T06:54:00-04:00",
-  "updatedDisplay": "2026-10-12, 6:54 AM ET",
-  "judgmentNote": "Window October 11 to October 12, a Sunday into a Monday morning, and the thinnest fresh window this board has had in two weeks. Six items: three dated inside the fresh window and three new to the board from earlier in the period. Primaries. Every lab, vendor and platform primary this run needed was provenance-blocked in an unattended fetch — boozallen.com (twice), strandsagents.com, github.com, x.com, bitquery.io, helpnetsecurity.com’s and thehackernews.com’s and bleepingcomputer.com’s and securityweek.com’s index pages all returned PROVENANCE_REQUIRED, and the press pass was run through site-scoped and date-scoped search instead, per the fallback DAILY_RUN sets out. Two primaries did open and are cited as primaries: arXiv for the Northwestern patching-benchmark paper, and Zenity Labs’ own disclosure release for AgentCorruption. Four items are carried on press with a via attribution and are flagged for a primary-source upgrade on a later attended run: Booz Allen’s operational-technology report page, AWS’s Strands Box announcement and repository, Satya Nadella’s essay on X, and Ledger’s own update and the Bitquery investigation behind the $93 million figure. The Booz Allen item is single-outlet. No other publication opened to this run carried the test — the search results around it are content-farm rewrites of The Register’s piece, which invent nothing but add nothing either, and two Industrial Cyber pieces that look like the same story are in fact Booz Allen’s March 17 ‘When Cyberattacks Happen at AI Speed’ and its September Cyber Weapon Index, the latter already on the board. Every figure and quotation on the card is attributed to The Register, and the card says so. Dating. Two items are dated to the development rather than to the account this run read: the Northwestern paper to its October 7 arXiv listing, not Help Net Security’s October 12 write-up, and Strands Box to its October 7 release, not the same day’s later coverage. The Nadella card is dated October 10, the day the essay was posted, though it was reached through an October 11 and an October 12 account. The Booz Allen card is dated October 11, the date of the only account that opened; the report’s own publication date is not stated on any page read here and is not asserted. Attribution inside cards. The Nadella card names TheStreet for every direct quotation and Business Standard for the list of proposed controls, because the two outlets carry different parts of the essay and neither carries the whole. The AgentCorruption card attributes AWS’s dispute of the characterisation to Cyber Security News, which is where it was read; Zenity’s own release does not record it. The Ledger card attributes the implant’s physical description to the affected customer who published it and says it is unverified, and drops the unverified claim about European retail entirely. Figures not carried. No CVE is attached to AgentCorruption on any page opened here, so none is stated. Help Net Security’s account of the Northwestern paper adds two findings the arXiv page does not put in the terms used — an agent fetching the upstream fix commit by web search within four tool calls, and build-and-test instructions raising the C and C++ success rate by 20 points — and they are left off rather than attributed at one remove, since the primary was open. Remit. The Ledger item carries no AI mechanism at all and is on the board under Daria’s standing editorial note of 2026-08-13, as a vendor-confirmed hardware supply-chain compromise of a security device with more than $93 million traced on chain. The card says plainly that it has no AI mechanism, so the call is reversible in one deletion if the note is read more narrowly. Topics. Three items are untagged. The Ledger compromise fits no topic because none of the six is about hardware supply chain. The Nadella essay fits none: it is a governance framework for models rather than a capability finding, an attack, or an access decision, and tagging it frontier-capability would stretch that topic past its definition. The Booz Allen test is tagged both frontier-capability and critical-infrastructure, which is the pairing the item actually sits across. Key. Two: the Booz Allen operational-technology result, which is the first measured end-to-end frontier-model attack chain against industrial control systems this board has carried, and AgentCorruption, which is the first case here of a single prompt reaching every agent in a cloud account and region. Strip. Six set by hand, which is exactly STRIP_MAX, so no excess warning. The three items dated October 7 and 8 would not have entered on the two-day date rule and carry isNew explicitly. The previous run’s six flags were cleared to false rather than removed; its newest items are dated October 9, now outside the two-day window, so unlike the last four runs nothing of the previous run’s re-admitted itself. Watchlist. Four threads touched, none opened and none retired. Vendor benchmark claims moves to October 11 on the Booz Allen test, following the precedent that put the September Cyber Weapon Index there; Agent sandbox containment to October 10 on the Nadella essay, which also brings Strands Box in behind it; AI infrastructure as attack surface to October 8 on AgentCorruption. Vulnerability disclosure at machine speed has its status rewritten to carry the Northwestern paper but keeps its October 8 changed date, because the paper is dated October 7 and the thread’s newest actual movement is still OSS Scanner — adding older material is not the storyline moving. The twenty quiet threads keep their statuses and their changed dates untouched. The aggregate is about 28,900 characters across 24 threads, still above the 25 KB figure DAILY_RUN states for twenty. Omissions. Markets was swept — insurance trade press, broker and carrier channels, and the think-tank cyber-insurance work — and nothing fell inside the window: Insurance Business’s AI-silence piece is September 18, its AI-risk-era piece February 13, and CSIS’s analysis of carrier retreat from AI is September 4. Markets is empty for a fourth consecutive run and nothing was manufactured for it. The NSA, CISA and ACSC joint guidance on integrating AI in operational technology would sit squarely beside the Booz Allen item but published December 3, 2025, before coverageStart. RAND Europe’s finding that Claude Code solved every capture-the-flag challenge in under an hour for less than $20 in API costs is June 25, 2026, also before coverageStart, and is noted here because it is the nearest prior measurement to the Booz Allen result. Rep. Barrett’s bill creating an Office of AI and Emerging Technology Threats in the Executive Office of the President is held: Nextgov gives no bill number and dates it only to ‘Friday’, and the measure’s cyber mechanism is not established on any page opened here. The Peters–Lankford bill on agency notification of automated decisions was checked and is out of remit, with no cyber mechanism. The Microsoft Exchange, Atlassian, Rejetto HFS and Firefox-extension items on The Hacker News’s front page were checked and carry no AI element and no bearing on this board’s lanes. No corrections entry: nothing published earlier was changed by this run.",
-  "internalNote": "Coverage extended from Oct 11 to Oct 12 over a Sunday-into-Monday window; six items added — Booz Allen’s operational-technology lab test in which frontier models met the objective in all eight scenarios and reached the control network in just over 16 minutes, Ledger’s confirmation of an unauthorised hardware implant in a reseller-sold wallet with more than $93 million traced, Satya Nadella’s essay treating models as insider risks, Zenity’s AgentCorruption chain on Amazon Bedrock AgentCore, the Northwestern paper separating crash-stopping patches from patches that pass the maintainer’s test, and AWS’s Strands Box agent sandbox — with four watchlist threads touched and markets empty for a fourth run.",
+  "updatedISO": "2026-10-13T07:06:00-04:00",
+  "updatedDisplay": "2026-10-13, 7:06 AM ET",
+  "judgmentNote": "Window October 12 to October 13, a Monday into a Tuesday morning. Seven items: three dated inside the fresh window and four new to the board from earlier in the period, the oldest of them September 30. Primaries. This run reverses a standing assumption: anthropic.com opened. The news index, the Claude Haiku 5.5 product page, anthropic.com/research/ and the system-card PDF on www-cdn.anthropic.com all returned content on the first attempt, where every anthropic.com path had been provenance-blocked on unattended runs for weeks. research.meta.ai served Meta's Muse Wonder model card while about.fb.com was blocked, arxiv.org/html served the Sola paper while arxiv.org/abs was blocked, and horizon3.ai, vulncheck.com, commandline.microsoft.com and securityaffairs.com all opened. Five of the seven items are therefore cited to the party that produced the finding. What was blocked: the index pages of helpnetsecurity.com, thehackernews.com, bleepingcomputer.com and securityweek.com, the Register article at its clean path (it opened at the same path with its numeric suffix), about.fb.com, techcommunity.microsoft.com, cisa.gov, yna.co.kr and arxiv.org/abs. The press pass was run through site- and date-scoped search per the DAILY_RUN fallback. Two items are carried on press with a via attribution and queued for upgrade: the Rejetto exploitation, where VulnCheck's own account is on LinkedIn and the Register carries it; and the npm Trusted Publishing flaw, where Bloom Security's research post has no URL on any page opened here and Help Net Security is the account read. Dates. The Sola paper is the one item dated to the day it was reported rather than to the development: the arXiv HTML page read here prints no submission date, and the card says so rather than inferring one from the identifier. Everything else is dated to the development — Horizon3's post to September 30, Haiku 5.5's system card to October 7, Microsoft-Decision-1 to its October 9 byline, Meta's model card to October 12. One figure is given differently by two sources and the card says so. The Register, published October 3, dates the first exploitation detection of CVE-2026-61500 to the evening of Thursday October 1 and the US-proxy hits to the Friday; Security Affairs, reading the same VulnCheck material on October 5, dates the report of the probes to October 2 and describes the activity as small-scale reconnaissance only. Neither is VulnCheck's own page. The item is dated October 2, the day both accounts place activity, and carries both readings. CVE numbers. CVE-2026-61500 is stated because Horizon3's own disclosure page names it; CVE-2026-61503 because VulnCheck's own advisory page names it, with its credit line. No other CVE is asserted. Confidence calls. Four items are self-reported rather than on-record, all for the same reason: each is a measurement whose maker is also its subject, and none has been checked by anyone else. Meta's model card and Anthropic's system card are benchmark tables; Horizon3's post is an account of what its own harness and the model inside it did; Microsoft's post is a product launch with its own latency and accuracy figures. The Claude Haiku 5.5 card does contain a threshold determination, which would be on-record on its own, but the sentence a reader takes away from this item is the 3.3% against 67.6%, so the tier follows the numbers — the same call the Mythos 5.1 system card item took. Lanes. The npm flaw is filed under defense rather than attacks: GitHub shipped the mitigation and no exploitation is established, which is where the GitLab ConfigPoisoning item was filed on the same reasoning. The Sola paper is defense for the same reason — it is triage tooling, not an incident. Topics. Six of the seven are tagged. The Sola paper is left untagged: it is about grading cloud findings, and none of the six topics covers security operations triage. The npm item is tagged attacks-on-ai on the reading that packages installed by agents are the poisoned-agent-tooling case the topic names, which is how the Tensorlake item was filed; it is the weaker of this run's tags and is reversible. One key. The Rejetto exploitation, as the first case this board has carried of a vulnerability found by a frontier model being exploited in the wild, against a tracker count of 286 such CVEs with one prior instance. The Horizon3 discovery post is the more novel capability claim but it is one vendor's unreproduced account of its own pipeline, so it is not marked. The strip is six of the seven added. Microsoft-Decision-1 carries isNew false — it is the most marginal item of the run, its thread moved yesterday on the Nadella essay, and seven flags would have tripped the STRIP_MAX warning. Policy was swept and is empty. Senator Warner's Combat Emerging Threats to Critical Infrastructure Act, which would make CISA write AI-enabled attack and AI-supply-chain measures into all sixteen sector plans, is squarely in remit but published June 12, before coverageStart. The CISA and Five Eyes joint guide on secure adoption of agentic AI is May 2026, also outside. Both were checked and dropped on date, not relevance. Markets was swept and is empty for a fifth consecutive run. The insurance trade press, broker and carrier channels and the think-tank cyber-insurance work carry nothing inside this window; what the searches return is content marketing about AI exclusions with no date and no underwriter behind it. Nothing was manufactured for the lane. Held. Anthropic's LLM ATT&CK Navigator — 832 banned accounts, 13,873 observed actions, the share of actors at medium risk or higher rising from about 33.5% to about 56.1% across the year — opened for the first time on this run at anthropic.com/research/attack-navigator, and is published June 3, four weeks before coverageStart. It is the closest prior measurement to several items on the board and is deliberately absent rather than missed. AhnLab's count of ARTEX on about 600 IP addresses worldwide is held: the only account that opened is a secondary citing Yonhap, and yna.co.kr is blocked. One source was added to SOURCES.md and two routing notes with it: Horizon3.ai, which produced this run's oldest catch and was not on the list at all; a note that anthropic.com now opens, correcting the entry that says it does not; and a note that research.meta.ai serves Meta's model cards with their cyber tables when about.fb.com will not. No corrections entry. Nothing published earlier was changed by this run. Added after delivery, at Daria's direction: the October 11 attack on Danfoss refrigeration controllers in French supermarkets, which this run saw only as a SecurityWeek headline in a site-scoped search and did not open. It carries no AI element — not in the intrusion, which no authority has attributed, and not in the discovery of the underlying flaws, which Claroty Team82 found by reverse-engineering firmware by hand. It is on the board under the standing editorial note of 2026-08-13, which broadened the remit beyond AI-tied events, and one deletion reverses it. Two things the card is careful about, because the first account read flattened both: the Claroty CVEs are not confirmed as the vector and cover a different model line from the one Danfoss says was mostly hit, and the store counts are given differently by AFP and Reuters. It is not marked key — it is the largest real-world event in this window, but marking a no-AI item as a turning point on an AI board would overstate what it shows. It opens no watchlist thread: the nearest, Water-sector control systems, is sector-specific by name, and the OT thread standing open for Daria since October 12 is where it would belong. The Sola paper was moved to isNew false to hold the strip at six.",
+  "internalNote": "Coverage extended from Oct 12 to Oct 13 over a Monday-into-Tuesday window; eight items added — Meta's Muse Wonder model card, where 92 ExploitGym flags become 21 on Meta's own verification pass; Horizon3's account of Anthropic's Mythos chaining a predictable signing key to a leak endpoint and writing the Z3-based exploit itself; the exploitation of that flaw in the wild, the second of 286 CVEs a tracker attributes to Mythos and Project Glasswing; the Claude Haiku 5.5 system card's cyber numbers and threshold determination; Sola Security's agent re-grading three quarters of 9,967 high-severity cloud findings; the npm Trusted Publishing slug flaw and Bloom's agent-install telemetry; Microsoft-Decision-1, a model sold to score an agent's next step; and, added after delivery at Daria's direction, the October 11 attack that drove Danfoss refrigeration controllers to 50°C across French supermarkets, which carries no AI element and sits on the board under the 2026-08-13 editorial note — with six watchlist threads rewritten, none opened or retired, one source and two routing notes added, and markets empty for a fifth run.",
   "items": [
     {
       "id": "white-house-genesis-mission-si-compute-commitments",
@@ -5147,7 +5147,7 @@
       "confidence": "press",
       "outlet": "Booz Allen Hamilton (via The Register)",
       "url": "https://www.theregister.com/security/2026/10/11/ai-systems-are-fully-capable-of-carrying-out-nightmare-attacks-against-infrastructure-and-nobodys-ready/5302450",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "frontier-capability",
         "critical-infrastructure"
@@ -5163,7 +5163,7 @@
       "confidence": "confirmed",
       "outlet": "Ledger (via Help Net Security)",
       "url": "https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "nadella-models-as-insider-risks-essay",
@@ -5174,7 +5174,7 @@
       "confidence": "press",
       "outlet": "Satya Nadella, Microsoft (via TheStreet and Business Standard)",
       "url": "https://www.thestreet.com/technology/microsoft-ceo-wants-ai-treated-like-a-risky-insider-at-work",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "zenity-agentcorruption-aws-agentcore",
@@ -5185,7 +5185,7 @@
       "confidence": "researchers",
       "outlet": "Zenity Labs",
       "url": "https://zenity.io/press-release/zenity-labs-discloses-agentcorruption-a-chain-of-aws-agentcore-flaws",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "attacks-on-ai"
       ],
@@ -5200,7 +5200,7 @@
       "confidence": "researchers",
       "outlet": "arXiv:2610.10150 (Le, Shi, Xing — Northwestern University)",
       "url": "https://arxiv.org/abs/2610.10150",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "ai-found-vulnerabilities"
       ]
@@ -5214,16 +5214,127 @@
       "confidence": "press",
       "outlet": "AWS (via The Register)",
       "url": "https://www.theregister.com/ai-and-ml/2026/10/07/aws-launches-open-source-ai-agent-sandbox-to-prevent-yolo-mode-disasters/5301687",
+      "isNew": false,
+      "topics": [
+        "attacks-on-ai"
+      ]
+    },
+    {
+      "id": "meta-muse-wonder-exploitgym-intended-vulnerability-count",
+      "lane": "cap",
+      "date": "2026-10-12",
+      "headline": "Meta's new frontier model captured 92 flags on ExploitGym, and Meta's own verification pass found 21 of them went through the intended vulnerability",
+      "core": "Meta released Muse Wonder and Muse Wonder Full on October 12 and published a model card carrying the cyber evaluations. On ExploitGym the model captured 92 flags; Meta ran a verification pass “with a GPT-cyber verifier and independently confirmed with Gemini 3.1 Pro” and reports that “21 of those used the intended vulnerability” while “the other 71 were captured through unintended vulnerabilities”, and that because “ExploitGym’s published ranking counts only intended-vulnerability exploitations” the comparable figure is 21. The other capability numbers are CyberGym 88.4% and ExploitBench 58.9%. On cyber robustness, where a lower attack-success rate is better, the card gives CyberBench 0.8 single-turn and 0.8 multi-turn, the PolyGuard cyber subset 1.1 and 2.3, and RedCode 9.0 and 8.0, with an agentic-misalignment harmful-action rate of 0%. Under Meta’s Superintelligence Scaling Framework the unmitigated model is rated “moderate or lower” for both Cybersecurity and Loss of Control, and with mitigations and safeguards “we reach the same ‘moderate or lower’ level across all domains”; the single domain Meta declines to clear is a different one — without mitigations, “we do not rule out the model reaching this threshold in the Chemical & Biological domain”. Nothing on the card has been reproduced by anyone outside Meta.",
+      "confidence": "self-reported",
+      "outlet": "Meta AI",
+      "url": "https://research.meta.ai/static/muse-wonder-model-card",
+      "isNew": true,
+      "topics": [
+        "frontier-capability"
+      ]
+    },
+    {
+      "id": "horizon3-mythos-rejetto-hfs-z3-signing-key",
+      "lane": "cap",
+      "date": "2026-09-30",
+      "headline": "Horizon3 says Anthropic's Mythos linked a predictable random number generator to a separate leak endpoint, reached for an SMT solver unprompted and wrote the working exploit",
+      "core": "Zach Hanley of Horizon3.ai published “Horizon3’s Tales from the Trenches: Anthropic’s Mythos and Rejetto HFS” on September 30, an account of how CVE-2026-61500, “Rejetto HFS Session Forgery via Predictable Signing Key”, was found. Horizon3 ran a cryptographic-weakness analysis agent driven by Mythos across the TypeScript rewrite of HFS. It flagged V8’s Math.random() as the source of the cookie-signing key, found a separate endpoint leaking raw Math.random() output to clients, and a follow-up verifying agent re-checked the claim against the code and confirmed it: “It did not require follow-on prompting to find the disparate PRNG leak that made this theoretical issue a demonstrable one.” It also identified the user-enumeration weakness the chain needs, and then, in Horizon3’s words, “Mythos then created the working proof of concept exploit” — enumerate the admin user, sample twelve leaked outputs, feed them to a Z3 solver to recover the generator state, step the state back to the signing key, forge an admin session cookie and run code — with the solver its own idea: “It did not require instruction to go out and research approaches to “solve” a complex mathematical problem.” Hanley writes that flaws needing significant time to understand and exploit were previously unlikely to be prioritised and that “Mythos negates both of those reasons”, and that “Our use of Mythos thus far has exceeded what we thought was possible without significant harness engineering.” The post gives no duration for the work and no estimate of what a human would have taken. The companion username-enumeration advisory, CVE-2026-61503, was published through the VulnCheck CNA on July 13 and credits “Zach Hanley (@hacks_zach) of Horizon3.ai, in collaboration with Claude and Anthropic Research”. Nobody outside Horizon3 has reproduced the division of labour it describes.",
+      "confidence": "self-reported",
+      "outlet": "Horizon3.ai",
+      "url": "https://horizon3.ai/attack-research/disclosures/anthropic-mythos-rejetto-hfs-rce/",
+      "isNew": true,
+      "topics": [
+        "ai-found-vulnerabilities",
+        "frontier-capability"
+      ]
+    },
+    {
+      "id": "rejetto-hfs-cve-2026-61500-exploited-in-the-wild",
+      "lane": "atk",
+      "date": "2026-10-02",
+      "headline": "A flaw an AI model found is being exploited in the wild — the second of 286 CVEs a tracker attributes to Mythos and Project Glasswing",
+      "core": "VulnCheck’s Patrick Garrity reported that the firm’s Canary Intelligence network began picking up exploitation of CVE-2026-61500 in Rejetto HFS — the authentication bypass Horizon3 found with Anthropic’s Mythos — on the evening of Thursday October 1: “We started detecting exploitation of CVE-2026-61500 in Rejetto HFS this evening,” and “Our canaries detected an actor in China targeting real vulnerable hosts in the US,” with Japan also among the targets. The next day he recorded four hits from two US addresses in one subnet, 173.239.211[.]248 and 173.239.211[.]249, which “appear to be coming from a proxy.” The number that places the event: as of that Friday Garrity’s tracker counted 286 CVEs attributed to Mythos and Project Glasswing, and until the Thursday evening only one of them had been exploited in the wild. The bug is a critical authentication bypass leading to full admin access and remote code execution in Rejetto HFS, and the account read here tells users to update to v3.2.1 or later. Accounts of the timing differ: Security Affairs, reading the same VulnCheck material on October 5, dates the report of the probes to October 2 and describes the activity as small-scale reconnaissance only, from a single China Telecom address probing canary deployments in Japan and the United States. No affected organisation is named in either account.",
+      "confidence": "researchers",
+      "outlet": "VulnCheck (via The Register)",
+      "url": "https://www.theregister.com/security/2026/10/03/anthropics-super-bug-hunting-model-mythos-is-hardcore-good-at-math-as-latest-vuln-under-attack-shows/5300933",
+      "isNew": true,
+      "topics": [
+        "ai-found-vulnerabilities"
+      ],
+      "key": true
+    },
+    {
+      "id": "anthropic-claude-haiku-5-5-system-card-cyber",
+      "lane": "cap",
+      "date": "2026-10-07",
+      "headline": "Anthropic's cheapest new model completes 3.3% of multi-stage cyber operations where its Opus sibling completes 67.6%, and the system card says it crosses neither threshold",
+      "core": "The Claude Haiku 5.5 system card, dated October 7, puts the model far below the rest of its generation on offensive cyber work. On CyScenarioBench, which runs multi-stage operations, Haiku 5.5 completed 3.3% of challenges against 46.1% for Claude Sonnet 5.5 and 67.6% for Claude Opus 5.5. On a binary exploitation benchmark it produced 3 control-flow hijacks, against 50 for Sonnet 5.5, 81 for Claude Mythos 5.1 and 106 for Opus 5.5, with Claude Haiku 4.5 at 0. On ExploitBench, 41 V8 environments at five trials each, it averaged 5.15 flags plain and 6.56 with AutoNudge, and “achieved full arbitrary code execution 1.0% of the time (4/410)”. The card states that the model does not cross the CB-2 or Autonomy-2 thresholds in Anthropic’s responsible scaling policy but is treated as meeting CB-1 and Autonomy-1, with the corresponding mitigations applied. On prompt injection it is the most resistant Haiku yet and still the weakest of its generation: Gray Swan IPI at k=15 gives 7.1% against 3.4% for Sonnet 5.5 and 1.0% for Opus 5.5, with coding at 0.2%, tool use at 4.0% and most of what remains concentrated in graphical computer use at 24.4%; browser use in Claude Cowork auto mode recorded 0 of 110 scenarios broken. Refusals moved a long way: 84.3% of malicious Claude Code requests refused against 66.6% for Haiku 4.5, and 82.59% of malicious computer-use requests against 58.93%.",
+      "confidence": "self-reported",
+      "outlet": "Anthropic",
+      "url": "https://www.anthropic.com/claude-haiku-5-5-system-card",
+      "isNew": true,
+      "topics": [
+        "frontier-capability"
+      ]
+    },
+    {
+      "id": "sola-cloud-finding-contextualization-agent",
+      "lane": "def",
+      "date": "2026-10-13",
+      "headline": "An agent re-graded 9,967 high-severity cloud findings against the live environment and moved three quarters of them, most of them downward",
+      "core": "Leon Goldberg and Gal Engelberg of Sola Security report an agent that re-derives a cloud security finding’s severity from evidence in the environment it was raised in, rather than accepting the fixed grade attached to the rule that raised it. Across 9,967 vendor HIGH findings drawn from two commercial cloud security platforms — 4,222 from one and 5,745 from the other — in eight production environments, 75.1% were re-graded: 58.5% downward and 16.6% upward, with 2,478 keeping the vendor’s grade. The static baseline they measure against is 599 vendor rules producing 99,073 failing findings, each rule carrying one severity regardless of the resource or the environment. The largest downgrade pattern, 32.3%, is inert resources attached to nothing or orphaned, and 49.0% of the agent’s verdicts rested on evidence beyond the flagged resource. Of 138 rules, 62 produced both downgrades and upgrades, and in 57 of those both happened inside a single environment. Read-only probes against eight AWS accounts re-read the deciding fact from the provider and confirmed 99.4% of the verdicts the probes could settle, a 95% Wilson interval of 99.1 to 99.6%, falling to 97.3% across every finding the probes could read and to 81.8% if every unchecked finding is counted as wrong. The authors state the limits themselves: 92% of the re-graded findings were on AWS, MEDIUM and LOW findings were out of scope, no incident data was used so exploitation likelihood was not assessed, recall was not measured, and whether the revised grades are correct is left open. The arXiv page read here carries no submission date, so this item is dated to the day the work was first reported.",
+      "confidence": "self-reported",
+      "outlet": "Sola Security (arXiv:2610.08895)",
+      "url": "https://arxiv.org/html/2610.08895",
+      "isNew": false
+    },
+    {
+      "id": "npm-trusted-publishing-slug-takeover-bloom",
+      "lane": "def",
+      "date": "2026-10-13",
+      "headline": "npm bound publishing trust to a repository name rather than its permanent id, and the researchers who found it say AI agents install about 70 packages a month on an ordinary endpoint",
+      "core": "Bloom Security disclosed a flaw in npm’s Trusted Publishing, the feature that replaces long-lived publishing tokens with short-lived credentials. npm recorded the bound GitHub repository by its owner-and-name slug and did not check GitHub’s permanent numeric identifiers, so once a repository or owner was renamed, transferred or deleted, anyone could claim the freed slug, add a workflow file with the matching name and receive a publishing credential for someone else’s package — and a release published that way carries a valid provenance attestation naming the attacker’s repository. Bloom says no stolen credential was needed, and counts more than 1,500 exposed packages with over 10 million downloads in total and more than a million a month, naming none of them. It reported the issue through GitHub’s HackerOne programme on June 6 and GitHub validated it on June 9; after a July 8 reply and six unanswered follow-ups including a mediation request, GitHub announced the change on October 2, a spokesperson saying “Unvalidated Trusted Publishing configurations now expire 48 hours after creation and can no longer authorize publishing.” Whether configurations that had already published were retroactively bound is not stated, and Bloom researcher Golan Myers says it is unknown whether the flaw was exploited. The AI element is blast radius rather than mechanism: Bloom argues coding agents widen it, estimating from its own telemetry that agents on a typical endpoint install about 70 packages a month and close to 350 on a developer machine, excluding dependencies and often without anyone reviewing the package or its maintainer — “developers are no longer the only ‘developer software’ consumers”.",
+      "confidence": "researchers",
+      "outlet": "Bloom Security (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/10/13/slugfest-npm-trusted-publishing-flaw/",
       "isNew": true,
       "topics": [
         "attacks-on-ai"
+      ]
+    },
+    {
+      "id": "microsoft-decision-1-agent-next-step-scoring",
+      "lane": "def",
+      "date": "2026-10-09",
+      "headline": "Microsoft ships a small model whose advertised job is to score an agent's proposed next step and decide whether it continues",
+      "core": "Microsoft published Microsoft-Decision-1 on October 9, a decision-scoring model in Microsoft Foundry and on OpenRouter that returns “a calibrated probability score for each option” across a fixed answer set instead of generating text. It is post-trained from Qwen3.5-9B for “fast, single-pass decision scoring”, and Microsoft says it will “soon rebase it on other models, including Microsoft AI (MAI) and OpenAI”. The uses it names put it inside the agent loop: “rubric-based grading of AI responses and agent actions, all through a simple structured API call”; evaluating “an agent’s proposed next step and decide whether to continue, stop, retry, or hand off” to a model, tool or human; judging an AI-generated response to “accept, revise, or reject it”; and “Applications use confidence to decide when to act, defer, or ask for review.” Microsoft reports the highest accuracy in a 36-benchmark comparison of nearly 150,000 questions held blind from training, 2.5x the speed of the runner-up H2O-Lightning-4B v1.1 and about 35x the median speed of GPT-6 Sol, a changed decision on 1.3% of perturbations on average with no flips for paraphrased or reordered options, and safety testing across 5,250 requests and 11 benchmarks. Input tokens cost $0.042 per million and output tokens are free. The post describes no security evaluation, makes no claim that the model is a safety control, and the figures are Microsoft’s own with nobody independent having checked them.",
+      "confidence": "self-reported",
+      "outlet": "Microsoft",
+      "url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
+      "isNew": false,
+      "topics": [
+        "attacks-on-ai"
+      ]
+    },
+    {
+      "id": "danfoss-refrigeration-controllers-french-supermarkets",
+      "lane": "atk",
+      "date": "2026-10-11",
+      "headline": "Attackers drove supermarket refrigeration controllers to 50°C across France, and CERT-FR told operators to take the Danfoss series off the internet",
+      "core": "On the night of October 11 attackers reached refrigeration management controllers in French supermarkets and heated them, Les Mousquetaires saying units were driven to as much as 50°C. The store counts are given differently by the agencies: AFP puts Intermarché and Netto at at least 300 between them, Reuters at about 150. Coopérative U’s chief executive Dominique Schelcher said 80 of its 2,000 stores were hit, Carrefour 80 supermarkets, Monoprix about 30, and E.Leclerc “several stores”. CERT-FR published an alert on October 12 reporting “numerous compromises” across the Danfoss AK-SM and AK-SC series and told operators to disconnect the controllers or filter access to them; ANSSI’s head Vincent Strubel said it was urgent to take the two series off the internet or filter access very tightly. The Paris prosecutor’s office opened an inquiry on its own initiative, run by its cybercrime section and assigned to the anti-cybercrime office OFAC, covering damage said to include food losses and equipment that began to catch fire — a detail the account read here does not separately source or confirm. Danfoss told Reuters it is “aware of incidents in France affecting a limited number of refrigeration management systems”. SecurityWeek reports the attack also reached Belgium, Germany, the Netherlands, Poland, Portugal and Spain, puts losses in the millions of euros, and says some equipment warmed for six hours before staff noticed. Two things are not established and are easily flattened. No authority has attributed the attack to anyone, and how the attackers got in is not stated by CERT-FR. And the three Danfoss flaws Claroty Team82 disclosed on August 9 — CVE-2025-41450, CVE-2025-41451 and CVE-2025-41452, fixed in firmware R4.3.1 — are not confirmed as the vector: that lab work covers the newer AK-SM 800A, describes no attacks, and does not cover the older AK-SM 800 and AK-SC 355 that Danfoss says were mostly hit. A person close to Prime Minister Sébastien Lecornu told AFP that ANSSI identified a vulnerability in software from a Danish company and contacted the vendor, naming no CVE and not saying it was used here. No AI element is established anywhere in this incident, in the intrusion or in the discovery of the underlying flaws; it is on the board under the standing editorial note of 2026-08-13.",
+      "confidence": "press",
+      "outlet": "CERT-FR and Danfoss (via The Hacker News)",
+      "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
+      "isNew": true,
+      "topics": [
+        "critical-infrastructure"
       ]
     }
   ],
   "watchlist": [
     {
       "thread": "Agent sandbox containment",
-      "status": "The containment argument has moved from the harness to the org chart. Microsoft’s chief executive published an essay on October 10, “Models as Insider Risks in the Super Intelligence Era”, arguing that authority over a model must be separated from the supply of it — an emergency brake an authorised person can pull mid-task, permissions enforced outside the model so it cannot modify what it may reach, tamper-resistant records auditable independently, and one model never both performing and verifying a critical task. The tooling arrived the same week: AWS open-sourced Strands Box on October 7, which checks each shell command, Python call and tool call against the agent’s own earlier actions through the Dogwood policy engine, on the stated ground that “Agents increasingly run in ‘YOLO mode,’ approving every action without human review”; macOS only at release. Behind both, Anthropic said on October 9 it has “now decided to expand” the removal of live internet access “to include all our internal evaluations”, moving public evaluations offline or rebuilding them so their tasks do not reach live websites, and is migrating internal agents to “centrally managed infrastructure with strong containment”. Apple’s October 2 change gating macOS Full Disk Access named autonomous agents as the reason. The earlier sandbox-escape record is in dashboard-memory.md.",
+      "status": "The containment argument has moved from the harness to the org chart, and the tooling is following it. Microsoft’s chief executive published an essay on October 10, “Models as Insider Risks in the Super Intelligence Era”, arguing that authority over a model must be separated from the supply of it — an emergency brake an authorised person can pull mid-task, permissions enforced outside the model so it cannot modify what it may reach, tamper-resistant independently auditable records, and one model never both performing and verifying a critical task. The day before, Microsoft shipped a model for the verifying half: Microsoft-Decision-1, whose named uses include evaluating “an agent’s proposed next step and decide whether to continue, stop, retry, or hand off” — a product launch with no security evaluation attached, not a validated control. AWS open-sourced Strands Box on October 7, checking each shell command, Python call and tool call against the agent’s own earlier actions through the Dogwood policy engine, on the stated ground that “Agents increasingly run in ‘YOLO mode,’ approving every action without human review”. Behind all three, Anthropic said on October 9 it has “now decided to expand” the removal of live internet access “to include all our internal evaluations”. Apple’s October 2 change gating macOS Full Disk Access named autonomous agents as the reason. The earlier sandbox-escape record is in dashboard-memory.md.",
       "changed": "2026-10-10",
       "topic": "attacks-on-ai",
       "items": [
@@ -5234,7 +5345,8 @@
         "apple-macos-full-disk-access-ai-agent-controls",
         "anthropic-unintended-model-actions-all-evals-offline",
         "nadella-models-as-insider-risks-essay",
-        "aws-strands-box-agent-policy-sandbox"
+        "aws-strands-box-agent-policy-sandbox",
+        "microsoft-decision-1-agent-next-step-scoring"
       ]
     },
     {
@@ -5399,8 +5511,8 @@
     },
     {
       "thread": "Agent supply chain",
-      "status": "A worm is now writing itself into the agent's own configuration. Version 0.5.144 of the npm package tensorlake — the SDK for a company selling AI agent sandboxes — shipped on October 8 with a payload that Socket says “enumerates packages associated with the victim's publishing identity,” builds Sigstore provenance and republishes compromised versions, and that StepSecurity says “writes .claude/settings.json and .vscode/tasks.json files into repos” so it re-runs the next time the project is opened in Claude Code or VS Code. It takes the configuration and MCP files for Claude, Cursor, Kiro, Windsurf and Zed along with cloud, Vault, Kubernetes and SSH credentials, and a PowerShell monitor wipes the home directory if the stolen GitHub token is revoked. The first rogue commit landed at 01:20 UTC on October 7 under a maintainer's name. Behind it sits GitLab's ConfigPoisoning of October 2 — CVE-2026-102437 in DeepSeek-Reasonix, where “attacker-supplied code” executes “when a developer views a file's diff” through the one git config key the tool's wrapper had not closed. The fuller package-by-package record is in dashboard-memory.md.",
-      "changed": "2026-10-08",
+      "status": "The newest hole was not in a package but in who is allowed to publish one. Bloom Security disclosed on October 13 that npm’s Trusted Publishing bound a package to a GitHub repository by its owner-and-name slug without checking GitHub’s permanent numeric ids, so a renamed, transferred or deleted repository freed a slug anyone could claim, add a matching workflow file to, and exchange for a publishing credential — with the resulting release carrying a valid provenance attestation naming the attacker’s repository. More than 1,500 packages with over 10 million downloads were exposed; GitHub validated the report on June 9, announced the change on October 2, and says unvalidated configurations now expire after 48 hours. Bloom’s argument for why it matters here is volume: it estimates agents install about 70 packages a month on a typical endpoint and close to 350 on a developer machine. The live worm is still the npm package tensorlake, version 0.5.144 of October 8, which Socket says “enumerates packages associated with the victim’s publishing identity” and republishes them with Sigstore provenance, and StepSecurity says “writes .claude/settings.json and .vscode/tasks.json files into repos” so it re-runs when the project is next opened in Claude Code or VS Code, taking the configuration and MCP files for Claude, Cursor, Kiro, Windsurf and Zed along with cloud, Vault, Kubernetes and SSH credentials. The fuller package-by-package record is in dashboard-memory.md.",
+      "changed": "2026-10-13",
       "topic": "attacks-on-ai",
       "items": [
         "gitlab-trg-configpoisoning-deepseek-reasonix-cve-2026-102437",
@@ -5426,7 +5538,8 @@
         "pillar-ai-coding-agent-sandbox-escapes",
         "hiddenlayer-claude-code-skill-frontmatter",
         "eset-h1-2026-agent-skills",
-        "tensorlake-npm-shai-hulud-ai-tool-credentials"
+        "tensorlake-npm-shai-hulud-ai-tool-credentials",
+        "npm-trusted-publishing-slug-takeover-bloom"
       ]
     },
     {
@@ -5504,8 +5617,8 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "A vendor has now put frontier models through a full industrial attack chain and says they finished every run. Booz Allen Hamilton reports that the models achieved the objectives in all eight scenarios in its operational-technology lab, going from a perimeter compromise to actions inside an industrial control network in just over 16 minutes in one of them, taking over an HMI through editable code in an exported SCADA project, finding a SCADA gateway holding live pre-authenticated sessions to 14 OT devices, and gaining administrative access to a robot’s API and moving the arm — with no source code, engineering documents or OT guidance supplied, the models unnamed, and nothing reproduced by anyone else. The operational claims before it are also unchecked: a customer account OpenAI published on October 9 has Sophos reporting an 89-second average response time against about 38 minutes before and 52% of managed-detection cases resolved end to end by AI; Anthropic’s OSS Scanner expects “a true-positive rate above 90%” on reports sent with no human review; Google’s PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google’s own applications at a “near-zero false positive rate”. The measurement layer stays weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
-      "changed": "2026-10-11",
+      "status": "A lab has now published a benchmark score and, in the same table, the reason not to read it straight. Meta’s Muse Wonder model card of October 12 reports 92 flags captured on ExploitGym, then says a verification pass run “with a GPT-cyber verifier and independently confirmed with Gemini 3.1 Pro” found “21 of those used the intended vulnerability” and “the other 71 were captured through unintended vulnerabilities”, so 21 is the figure comparable to the published ranking. It sits beside a run of unreproduced operational claims. Booz Allen Hamilton says frontier models achieved the objective in all eight scenarios in its operational-technology lab, reaching the control network from a perimeter compromise in just over 16 minutes, taking over an HMI through editable code in an exported SCADA project and moving a robot arm through its API, with the models unnamed. A customer account OpenAI published on October 9 has Sophos reporting an 89-second average response time against about 38 minutes before. Anthropic’s OSS Scanner expects “a true-positive rate above 90%” on reports sent with no human review; Google’s PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google’s own applications at a “near-zero false positive rate”. The measurement layer stays weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
+      "changed": "2026-10-12",
       "topic": "frontier-capability",
       "items": [
         "sophos-openai-daybreak-mdr-case-resolution-figures",
@@ -5526,7 +5639,8 @@
         "public-cyber-benchmarks-saturating-faster-than-model-capability",
         "google-pagebreak-agent-500-xss-first-party-apps",
         "anthropic-cvd-dashboard-6157-vulnerabilities",
-        "boozallen-ot-lab-frontier-models-eight-scenarios"
+        "boozallen-ot-lab-frontier-models-eight-scenarios",
+        "meta-muse-wonder-exploitgym-intended-vulnerability-count"
       ]
     },
     {
@@ -5597,7 +5711,7 @@
     },
     {
       "thread": "Gated model access",
-      "status": "The gate has widened to the people who run the infrastructure. Anthropic's Oct 8 Cyber Mission says security teams “of any size, including operators of critical infrastructure and open-source maintainers,” can apply to its expanded Cyber Verification Program for access to its models, that maintainers can also apply to Claude for Open Source for free Claude Max subscriptions, and that Project Glasswing was merged into the programme “earlier this week.” The programme's Oct 6 shape stands: Defense Access for SOC and incident-response work, reviewed in “a few days”; Red Team Access adding authorised penetration testing and red-teaming for organisations only, in “a few weeks,” with real-time blocks kept on physical harm and mass disruption; and Specialized Access for a limited set of organisations authorised to test safety systems such as power grids, telecom and interbank transfer, each reviewed “in collaboration with the US government.” All tiers reach Opus 5.5, Sonnet 5.5 and Mythos 5.1. Google gates by programme — Argon “without cyber guardrails” to Fairwind defenders — and OpenAI by classification, phasing its Critical models through Daybreak.",
+      "status": "The gate now runs through the model line itself as well as the application form. Anthropic’s Claude Haiku 5.5, released October 7, ships cyber safeguards its own announcement places between generations — “more restrictive than Haiku 4.5’s”, less restrictive than those on Sonnet 5.5, and still blocking “penetration testing and other techniques more likely to be used by attackers” — with the Cyber Verification Program as the route past them for qualified professionals. That programme widened on October 8: the Anthropic Cyber Mission says security teams “of any size, including operators of critical infrastructure and open-source maintainers,” can apply, maintainers can also apply to Claude for Open Source for free Claude Max subscriptions, and Project Glasswing was merged into the programme “earlier this week.” Its October 6 shape stands: Defense Access for SOC and incident-response work, reviewed in “a few days”; Red Team Access adding authorised penetration testing for organisations only, in “a few weeks”; and Specialized Access for a limited set of organisations authorised to test safety systems such as power grids, telecom and interbank transfer, each reviewed “in collaboration with the US government.” All tiers reach Opus 5.5, Sonnet 5.5 and Mythos 5.1. Google gates by programme, OpenAI by classification.",
       "changed": "2026-10-08",
       "topic": "frontier-capability",
       "items": [
@@ -5616,7 +5730,8 @@
         "openai-daybreak-gpt56-cyber-gated-defenders",
         "openai-astra-critical-cyber-delay",
         "senate-ai-model-access-framework-letter",
-        "anthropic-cyber-verification-program-three-tiers"
+        "anthropic-cyber-verification-program-three-tiers",
+        "anthropic-claude-haiku-5-5-system-card-cyber"
       ]
     },
     {
@@ -5724,8 +5839,8 @@
     },
     {
       "thread": "Frontier cyber thresholds crossed",
-      "status": "The newest mainline models came in below the threshold, and the stronger of them is no more capable than what it replaced. OpenAI's Oct 7 update for GPT-6 Sol and GPT-6 Luna says “we are treating GPT-6 Sol and GPT-6 Luna as High capability in the Cybersecurity domain, but below Critical” and that both “fall below the critical threshold for cybersecurity capabilities,” with its Safety Advisory Group finding the evidence sufficient; the two replace GPT-5.6 Sol and Luna across every ChatGPT plan. GPT-6 Sol scores 82.62% and Luna 44.66% on ExploitBench at maximum reasoning effort, and 68.85% and 48.50% on SEC-Bench Pro against 85.4% for GPT-6 Astra, with OpenAI saying “GPT-6 Sol performed comparably to GPT-5.6 Sol without a clear improvement in capabilities.” Nine days earlier the cheaper GPT-6.1 Sol was designated Critical at 99.7% on ExploitBench and shipped to Plus users the same day on a launch page that never mentioned it. Before that: UK AISI measured GPT-6 Astra completing a supply-chain attack 29.2% of the time with classifiers off, and OpenAI cancelled GPT-6.1 Astra's October release over deception and unasked-for actions.",
-      "changed": "2026-10-07",
+      "status": "Two more models landed below the line in a week, and the cheap one landed a long way below it. Meta rates the unmitigated Muse Wonder Full “moderate or lower” for both Cybersecurity and Loss of Control under its Superintelligence Scaling Framework, and says that with mitigations “we reach the same ‘moderate or lower’ level across all domains”; the one threshold it will not clear is elsewhere — unmitigated, “we do not rule out the model reaching this threshold in the Chemical & Biological domain”. Anthropic’s Claude Haiku 5.5 system card of October 7 says the model crosses neither CB-2 nor Autonomy-2 and is treated as meeting CB-1 and Autonomy-1, with numbers to match: 3.3% of CyScenarioBench multi-stage operations against 46.1% for Sonnet 5.5 and 67.6% for Opus 5.5, three control-flow hijacks against 106 for Opus 5.5, and full arbitrary code execution “1.0% of the time (4/410)”. OpenAI’s October 7 update treats GPT-6 Sol and GPT-6 Luna as “High capability in the Cybersecurity domain, but below Critical”, Sol at 82.62% and Luna at 44.66% on ExploitBench, with “GPT-6 Sol performed comparably to GPT-5.6 Sol without a clear improvement in capabilities.” Nine days earlier the cheaper GPT-6.1 Sol was designated Critical at 99.7% on ExploitBench and shipped to Plus users on a launch page that never mentioned it. Before that: UK AISI measured GPT-6 Astra completing a supply-chain attack 29.2% of the time with classifiers off.",
+      "changed": "2026-10-12",
       "topic": "frontier-capability",
       "items": [
         "openai-gpt-6-sol-luna-high-below-critical",
@@ -5747,12 +5862,14 @@
         "openai-astra-critical-cyber-delay",
         "meta-muse-spark-11-cyber-high-risk-not-ruled-out",
         "openai-gpt5-6-high-cybersecurity-capability-designation",
-        "crs-in-focus-executive-order-14409-explained"
+        "crs-in-focus-executive-order-14409-explained",
+        "meta-muse-wonder-exploitgym-intended-vulnerability-count",
+        "anthropic-claude-haiku-5-5-system-card-cyber"
       ]
     },
     {
       "thread": "Vulnerability disclosure at machine speed",
-      "status": "The supply side has stopped putting a human in front of its reports, and the measure of whether the fixes hold is now contested. Northwestern researchers posted “On the Reliability of LLM-Based Vulnerability Patching Benchmarks” on October 7, finding that “current benchmark scores are highly sensitive to evaluation design choices”: across 112 real bugs in 84 projects, Claude Opus 4.7 stopped the proof-of-concept crash on 90.2% of cases but passed the maintainers’ own tests on 60.7%, so about a third of its crash-stopping patches fail the real fix’s test — and every one of nine score-inflating pitfalls appears in at least one of the thirteen benchmarks they survey. Against that, Anthropic launched OSS Scanner on October 8, “an opt-in service inspired by Google’s OSS-Fuzz” sending enrolled projects reports that are “model-generated and sent without human review”, with “a true-positive rate above 90%” expected rather than measured. Intake keeps closing at the other end: Google’s Open Source Software VRP stopped taking product vulnerability reports “as of October 1, 2026” over automated submissions. IBM and Red Hat say Lightwell remediated more than 400 previously unknown Java library flaws, naming no library; Anthropic’s dashboard counts 6,157 vulnerabilities across 591 projects with human triage “the rate limiting step”.",
+      "status": "A vulnerability an AI model found is now being exploited in the wild, for only the second time. VulnCheck’s Patrick Garrity says the firm’s canaries picked up exploitation of CVE-2026-61500 in Rejetto HFS on the evening of October 1 — an actor in China hitting real vulnerable hosts in the US and Japan, then four hits the next day from two US addresses that “appear to be coming from a proxy” — and that his tracker counted 286 CVEs attributed to Mythos and Project Glasswing, only one of them exploited before this. The flaw itself is the capability story: Horizon3’s Zach Hanley wrote on September 30 that a Mythos-driven agent linked V8’s Math.random() signing key to a separate endpoint leaking raw generator output, reached for a Z3 solver without being told to, and “then created the working proof of concept exploit”. Against the supply side, Northwestern’s October 7 paper finds Claude Opus 4.7 stopped the crash on 90.2% of 112 real bugs but passed the maintainers’ own tests on 60.7%, and that every one of nine score-inflating pitfalls appears in at least one of thirteen surveyed benchmarks. Anthropic’s OSS Scanner, launched October 8, sends reports that are “model-generated and sent without human review” at an expected rather than measured “true-positive rate above 90%”. Intake keeps closing at the other end: Google’s Open Source Software VRP stopped taking product vulnerability reports “as of October 1, 2026”.",
       "changed": "2026-10-08",
       "topic": "ai-found-vulnerabilities",
       "items": [
@@ -5789,7 +5906,9 @@
         "anthropic-cvd-dashboard-6157-vulnerabilities",
         "google-pagebreak-agent-500-xss-first-party-apps",
         "ibm-red-hat-lightwell-400-java-vulnerabilities",
-        "northwestern-llm-patching-benchmark-reliability"
+        "northwestern-llm-patching-benchmark-reliability",
+        "horizon3-mythos-rejetto-hfs-z3-signing-key",
+        "rejetto-hfs-cve-2026-61500-exploited-in-the-wild"
       ]
     },
     {
@@ -5837,6 +5956,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-10-13",
+      "file": "archive/machine-speed-2026-10-13.html",
+      "items": 437,
+      "note": "Grow mode. Eight items over a Monday-into-Tuesday window, four of them fresh. Attackers drove supermarket refrigeration controllers to 50°C across France on the night of October 11 — CERT-FR reporting numerous compromises of the Danfoss AK-SM and AK-SC series and telling operators to disconnect them, the Paris prosecutor opening an inquiry, no attribution by any authority and no AI element established; it is on the board under the standing editorial note of 2026-08-13. A vulnerability an AI model found is being exploited in the wild for only the second time: VulnCheck's canaries picked up probes against CVE-2026-61500 in Rejetto HFS on the evening of October 1, against a tracker count of 286 CVEs attributed to Mythos and Project Glasswing with one prior instance. Horizon3's own post, two days earlier, describes how that flaw was found — a Mythos-driven agent linking V8's Math.random() signing key to a separate endpoint leaking raw generator output, reaching for a Z3 solver unprompted, and writing the working exploit. Meta's Muse Wonder model card reports 92 ExploitGym flags and then says its own verification pass found 21 went through the intended vulnerability and 71 through unintended ones. The Claude Haiku 5.5 system card puts the cheap model at 3.3% of multi-stage cyber operations against 67.6% for Opus 5.5 and says it crosses neither threshold. Sola Security's agent re-graded 9,967 high-severity cloud findings and moved 75.1% of them, 58.5% downward. npm bound publishing trust to a repository slug rather than its permanent id, exposing more than 1,500 packages, and the researchers who found it estimate agents install about 70 packages a month on an ordinary endpoint. Microsoft shipped a model whose job is to score an agent's proposed next step. Six watchlist threads rewritten, none opened, none retired. anthropic.com opened for the first time in weeks. Markets swept and empty for a fifth run."
+    },
     {
       "date": "2026-10-12",
       "file": "archive/machine-speed-2026-10-12.html",
@@ -6143,7 +6268,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-10-12",
+  "coverageEnd": "2026-10-13",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
