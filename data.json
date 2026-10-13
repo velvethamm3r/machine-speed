@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-10-11T07:28:00-04:00",
-  "updatedDisplay": "2026-10-11, 7:28 AM ET",
-  "judgmentNote": "Window Oct 9 to Oct 11, with Oct 10 and Oct 11 both quiet on primary publication. Nine items: five dated inside the fresh window, four new to the board from earlier in the period. Every lab, vendor and research primary this run needed was provenance-blocked in an unattended fetch — anthropic.com, socket.dev, sonatype.com, stepsecurity.io, aikido.dev, safedep.io, justice.gov, trahan.house.gov, github.com, cisa.gov and the Korea Times and Help Net Security index pages all returned PROVENANCE_REQUIRED or an error. Two primaries did open and are cited as primaries: the House Homeland Security Democrats' press release on the CISA Securing AI Task Force Act, and govinfo.gov for that bill's number (H.R. 10752) and introduction date (October 6), which the press release did not carry. Everything else in this run is carried on press at press or researchers confidence with a via attribution, and five items are flagged for a primary-source upgrade on a later attended run: Anthropic's own report at anthropic.com/research/investigating-unintended-model-actions, Socket's and StepSecurity's Tensorlake and GhostAction write-ups, the Justice Department release on the Flax Typhoon seizures, and the CLAIM Act draft text. Anthropic's October 9 report was read through The Hacker News, Gizmodo, CBS News and Cybernews, which agree on the four categories, the quoted remediation sentence and the dates; the visa-application detail is not in Anthropic's report at all and is attributed in the item to The New York Times, reached through a verbatim quotation of it rather than the Times itself. The Philadelphia incident is filed as a separate item at confirmed, because the affected organisation published its own account hours ahead of the lab's and said something the lab did not. The Flax Typhoon seizure is filed in defense rather than attacks, following the Microsoft DCU disruption precedent; the attack-side intelligence it carries sits under the seizure that produced it. Its botnet device counts differ between The Hacker News and Help Net Security — the two are not reconcilable from either page and neither is the primary, so no device figure is quoted on the card. The UK NCSC's line about the actors using AI tools is reported by The Hacker News from a joint advisory that could not be opened here, and is attributed that way rather than asserted. The GhostAction scale figures are three separate counts from three parties over different periods and are presented as such rather than merged. Every new card was then re-checked line by line against the page in its url field, and five were rewritten as a result. Four of them carried quotations and dates that were real but came from a different page than the one cited — Anthropic’s report title from CBS News, its evaluation-rebuild sentence from Gizmodo, its containment sentence and the visa month split from Cybernews, the Philadelphia department’s “unacceptable” line from Cybernews, and the Rivetti and Eisenberg quotations and the 2022–23 scanning dates from Help Net Security — and each now names the outlet that carries it. The fifth, Tensorlake, had been described as an SDK for AI agent sandboxes on the strength of SecurityWeek’s roundup; it now uses the cited page’s own wording. Two claims were dropped outright rather than attributed: the bill number of the 2024 predecessor measure, which was only ever a search-result title and no page opened here carried it, and a sentence asserting that measure did not become law, which nothing opened here establishes. A weekday-to-date conversion in the Korea item was reverted to the paper’s own “Tuesday”. The Anthropic card is dated October 9, the day of the report, not October 10, the day The Hacker News carried it. Omissions. OpenAI's October 8 report on disrupted Russian and Iranian 'false front' influence operations was held: the report describes no malware, phishing or intrusion, and the only technical element is VPN use, so it fails the cyber-mechanism test and neither limb of the 2026-10-01 standing note applies — the board carries nothing that is unintelligible without it. CISA's 'Careful Adoption of Agentic AI Services' guidance and the EU AI Act simplification deal were both checked and both predate coverageStart. The OT Cybersecurity Coalition's proposal for a federal OT directive could not be opened and is not carried. Markets was swept and is empty for this window; no item was manufactured for it. Topics. The Korea police item is untagged: the report does not mention AI, ARTEX or any tool, so tagging it ai-in-attacks would assert a link its source does not make. The CISA task-force bill is untagged because no topic fits a general AI-risk coordination mandate. The CLAIM Act is tagged evaluation-incidents on the strength of Trahan's office citing the OpenAI–Hugging Face escape as the example the draft answers. Key. Two: Anthropic's own disclosure and the Philadelphia department's answer to it, which is the first time a US law-enforcement agency has publicly told a lab to strengthen its safeguards. The CISA bill was not marked key because it is a reintroduction of a 2024 measure rather than a new instrument. Strip. Six set by hand: the Korea police item, the Tuskira gateway and the CLAIM Act draft were held out as the three least load-bearing of the nine. The previous run carried three items dated Oct 9, which the two-day date rule would have re-admitted once their isNew flags were cleared; they are explicitly held out so the strip shows this run only. Watchlist. Eight threads rewritten, none opened and none retired. Each rewritten status leads with the newest development and sits at about 1,150 characters, inside the per-thread band; the twenty-four together are 27,592 characters, which is above the 25 KB figure DAILY_RUN sets for twenty threads but proportionate to twenty-four, and no thread was squeezed below the point where it starts losing load-bearing figures. No corrections entry: nothing published earlier was changed.",
-  "internalNote": "Coverage extended from Oct 9 to Oct 11; nine items added — Anthropic's four-category report on unintended model actions and its decision to take live internet access away from every internal evaluation, Philadelphia police's own account of the false homicide tip, the GhostAction and Tensorlake credential-theft waves that both take frontier API keys and agent configuration files, the Justice Department's seizure of the Flax Typhoon scanning and phishing tools, the CISA Securing AI Task Force Act and the CLAIM Act liability draft, the Korean police expansion, and Tuskira's agent credential gateway — with eight watchlist threads rewritten and markets left empty.",
+  "updatedISO": "2026-10-12T06:54:00-04:00",
+  "updatedDisplay": "2026-10-12, 6:54 AM ET",
+  "judgmentNote": "Window October 11 to October 12, a Sunday into a Monday morning, and the thinnest fresh window this board has had in two weeks. Six items: three dated inside the fresh window and three new to the board from earlier in the period. Primaries. Every lab, vendor and platform primary this run needed was provenance-blocked in an unattended fetch — boozallen.com (twice), strandsagents.com, github.com, x.com, bitquery.io, helpnetsecurity.com’s and thehackernews.com’s and bleepingcomputer.com’s and securityweek.com’s index pages all returned PROVENANCE_REQUIRED, and the press pass was run through site-scoped and date-scoped search instead, per the fallback DAILY_RUN sets out. Two primaries did open and are cited as primaries: arXiv for the Northwestern patching-benchmark paper, and Zenity Labs’ own disclosure release for AgentCorruption. Four items are carried on press with a via attribution and are flagged for a primary-source upgrade on a later attended run: Booz Allen’s operational-technology report page, AWS’s Strands Box announcement and repository, Satya Nadella’s essay on X, and Ledger’s own update and the Bitquery investigation behind the $93 million figure. The Booz Allen item is single-outlet. No other publication opened to this run carried the test — the search results around it are content-farm rewrites of The Register’s piece, which invent nothing but add nothing either, and two Industrial Cyber pieces that look like the same story are in fact Booz Allen’s March 17 ‘When Cyberattacks Happen at AI Speed’ and its September Cyber Weapon Index, the latter already on the board. Every figure and quotation on the card is attributed to The Register, and the card says so. Dating. Two items are dated to the development rather than to the account this run read: the Northwestern paper to its October 7 arXiv listing, not Help Net Security’s October 12 write-up, and Strands Box to its October 7 release, not the same day’s later coverage. The Nadella card is dated October 10, the day the essay was posted, though it was reached through an October 11 and an October 12 account. The Booz Allen card is dated October 11, the date of the only account that opened; the report’s own publication date is not stated on any page read here and is not asserted. Attribution inside cards. The Nadella card names TheStreet for every direct quotation and Business Standard for the list of proposed controls, because the two outlets carry different parts of the essay and neither carries the whole. The AgentCorruption card attributes AWS’s dispute of the characterisation to Cyber Security News, which is where it was read; Zenity’s own release does not record it. The Ledger card attributes the implant’s physical description to the affected customer who published it and says it is unverified, and drops the unverified claim about European retail entirely. Figures not carried. No CVE is attached to AgentCorruption on any page opened here, so none is stated. Help Net Security’s account of the Northwestern paper adds two findings the arXiv page does not put in the terms used — an agent fetching the upstream fix commit by web search within four tool calls, and build-and-test instructions raising the C and C++ success rate by 20 points — and they are left off rather than attributed at one remove, since the primary was open. Remit. The Ledger item carries no AI mechanism at all and is on the board under Daria’s standing editorial note of 2026-08-13, as a vendor-confirmed hardware supply-chain compromise of a security device with more than $93 million traced on chain. The card says plainly that it has no AI mechanism, so the call is reversible in one deletion if the note is read more narrowly. Topics. Three items are untagged. The Ledger compromise fits no topic because none of the six is about hardware supply chain. The Nadella essay fits none: it is a governance framework for models rather than a capability finding, an attack, or an access decision, and tagging it frontier-capability would stretch that topic past its definition. The Booz Allen test is tagged both frontier-capability and critical-infrastructure, which is the pairing the item actually sits across. Key. Two: the Booz Allen operational-technology result, which is the first measured end-to-end frontier-model attack chain against industrial control systems this board has carried, and AgentCorruption, which is the first case here of a single prompt reaching every agent in a cloud account and region. Strip. Six set by hand, which is exactly STRIP_MAX, so no excess warning. The three items dated October 7 and 8 would not have entered on the two-day date rule and carry isNew explicitly. The previous run’s six flags were cleared to false rather than removed; its newest items are dated October 9, now outside the two-day window, so unlike the last four runs nothing of the previous run’s re-admitted itself. Watchlist. Four threads touched, none opened and none retired. Vendor benchmark claims moves to October 11 on the Booz Allen test, following the precedent that put the September Cyber Weapon Index there; Agent sandbox containment to October 10 on the Nadella essay, which also brings Strands Box in behind it; AI infrastructure as attack surface to October 8 on AgentCorruption. Vulnerability disclosure at machine speed has its status rewritten to carry the Northwestern paper but keeps its October 8 changed date, because the paper is dated October 7 and the thread’s newest actual movement is still OSS Scanner — adding older material is not the storyline moving. The twenty quiet threads keep their statuses and their changed dates untouched. The aggregate is about 28,900 characters across 24 threads, still above the 25 KB figure DAILY_RUN states for twenty. Omissions. Markets was swept — insurance trade press, broker and carrier channels, and the think-tank cyber-insurance work — and nothing fell inside the window: Insurance Business’s AI-silence piece is September 18, its AI-risk-era piece February 13, and CSIS’s analysis of carrier retreat from AI is September 4. Markets is empty for a fourth consecutive run and nothing was manufactured for it. The NSA, CISA and ACSC joint guidance on integrating AI in operational technology would sit squarely beside the Booz Allen item but published December 3, 2025, before coverageStart. RAND Europe’s finding that Claude Code solved every capture-the-flag challenge in under an hour for less than $20 in API costs is June 25, 2026, also before coverageStart, and is noted here because it is the nearest prior measurement to the Booz Allen result. Rep. Barrett’s bill creating an Office of AI and Emerging Technology Threats in the Executive Office of the President is held: Nextgov gives no bill number and dates it only to ‘Friday’, and the measure’s cyber mechanism is not established on any page opened here. The Peters–Lankford bill on agency notification of automated decisions was checked and is out of remit, with no cyber mechanism. The Microsoft Exchange, Atlassian, Rejetto HFS and Firefox-extension items on The Hacker News’s front page were checked and carry no AI element and no bearing on this board’s lanes. No corrections entry: nothing published earlier was changed by this run.",
+  "internalNote": "Coverage extended from Oct 11 to Oct 12 over a Sunday-into-Monday window; six items added — Booz Allen’s operational-technology lab test in which frontier models met the objective in all eight scenarios and reached the control network in just over 16 minutes, Ledger’s confirmation of an unauthorised hardware implant in a reseller-sold wallet with more than $93 million traced, Satya Nadella’s essay treating models as insider risks, Zenity’s AgentCorruption chain on Amazon Bedrock AgentCore, the Northwestern paper separating crash-stopping patches from patches that pass the maintainer’s test, and AWS’s Strands Box agent sandbox — with four watchlist threads touched and markets empty for a fourth run.",
   "items": [
     {
       "id": "white-house-genesis-mission-si-compute-commitments",
@@ -5029,7 +5029,7 @@
         "evaluation-incidents"
       ],
       "key": true,
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "philadelphia-police-claude-false-homicide-tip",
@@ -5044,7 +5044,7 @@
         "evaluation-incidents"
       ],
       "key": true,
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "ghostaction-workflows-ai-provider-api-keys",
@@ -5058,7 +5058,7 @@
       "topics": [
         "attacks-on-ai"
       ],
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "tensorlake-npm-shai-hulud-ai-tool-credentials",
@@ -5072,7 +5072,7 @@
       "topics": [
         "attacks-on-ai"
       ],
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "doj-fbi-seize-flax-typhoon-scanning-phishing-tools",
@@ -5086,7 +5086,7 @@
       "topics": [
         "critical-infrastructure"
       ],
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "cisa-securing-ai-task-force-act-hr-10752",
@@ -5097,7 +5097,7 @@
       "confidence": "on-record",
       "outlet": "House Committee on Homeland Security Democrats",
       "url": "https://democrats-homeland.house.gov/news/legislation/reps-carter-thompson-reintroduce-the-cybersecurity-and-infrastructure-security-agency-securing-ai-task-force-act-to-address-the-evolving-challenges-posed-by-ai",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "claim-act-trahan-draft-ai-developer-liability",
@@ -5137,13 +5137,94 @@
         "attacks-on-ai"
       ],
       "isNew": false
+    },
+    {
+      "id": "boozallen-ot-lab-frontier-models-eight-scenarios",
+      "lane": "cap",
+      "date": "2026-10-11",
+      "headline": "Booz Allen says frontier models met the objective in all eight of its operational-technology attack tests, reaching the control network in just over 16 minutes",
+      "core": "Booz Allen Hamilton reports that frontier models achieved the objectives in all eight scenarios run in its operational-technology lab, including turning digital access into physical action, and that in one scenario the models went from a perimeter compromise to actions inside an industrial control network in just over 16 minutes — which the report frames as leaving defenders only minutes to detect and block. The lab was a multi-vendor environment modelled on a general manufacturing facility, with enterprise, DMZ, plant-operations and production zones holding PLCs, HMIs, a SCADA platform, a variable-frequency drive and a robotic arm; the agents were given no source code, no engineering documents and no OT guidance, and guardrails required human approval before any exploit or physical-impact action, with the agents told to use “extra caution” around safety-critical devices. In the SCADA scenario, after a first attack path failed the agents changed approach, found editable code in an exported SCADA project and pushed a full-screen takeover of the HMI; the SCADA gateway also held live, pre-authenticated sessions to 14 OT devices including PLCs. Unprompted, an agent found a misconfigured safety-critical device repeatedly sending unanswered ARP requests and proposed impersonating its missing communications peer to receive a protocol session. In another scenario an agent probed for robotic protocols, found the robot’s API, gained administrative access, mapped the motion limits and moved the arm. Booz Allen declined to name the models, calling them the “latest frontier models from the leading AI providers”, and its vice president for infrastructure cybersecurity Kyle Miller is quoted by The Register saying that without foundational OT security AI agents can work with “speed, persistence, and engineering-level precision that may outpace organizations”, that collaborative robots of the kind tested can run without safety cages so a compromise could cause damage or “life safety” consequences, and that “Some OT organizations are prepared, but many are not.” The report’s stated conclusion is that specialised OT knowledge is no longer a meaningful barrier and that many OT devices carry no authentication or encryption. Booz Allen’s own report page could not be opened here, so every figure and quotation above is as The Register carries it, and no other outlet opened to this run carrying the test.",
+      "confidence": "press",
+      "outlet": "Booz Allen Hamilton (via The Register)",
+      "url": "https://www.theregister.com/security/2026/10/11/ai-systems-are-fully-capable-of-carrying-out-nightmare-attacks-against-infrastructure-and-nobodys-ready/5302450",
+      "isNew": true,
+      "topics": [
+        "frontier-capability",
+        "critical-infrastructure"
+      ],
+      "key": true
+    },
+    {
+      "id": "ledger-hardware-implant-reseller-wallet-drains",
+      "lane": "atk",
+      "date": "2026-10-11",
+      "headline": "Ledger confirms an unauthorised hardware implant in a wallet sold through a Southeast Asian reseller, with on-chain researchers tracing more than $93 million drained",
+      "core": "Ledger said in a 72-hour update posted on X on October 11 that “all confirmed cases related to the disclosed draining incident of Oct 9th, 2026, involve devices sold through the Southeast Asia reseller CryptoBilis”, and confirmed that one affected device contained an unauthorised hardware implant. It has not explained how the implant works. On-chain researchers at Bitquery put suspected losses at more than $93 million and say more than eight in ten of the drained wallets they traced first received funds in June 2026 or later. Ledger has told customers not to initialise a device bought from that reseller, to move assets from any device already set up to a new one bought directly from Ledger under a new seed phrase, and to contact Ledger support and local law enforcement; its guidance covers purchases from the reseller in the last 90 days, the reseller has stopped selling hardware wallets, and Ledger says it is working with the authorities. A detailed account of the implant — a board hidden under the screen carrying a microcontroller, antenna, LTE chip and e-SIM, said to read the recovery phrase off the screen and pass Ledger’s Genuine Check because the security chip itself is authentic — comes from one affected customer, the former Mt. Gox chief executive Mark Karpelès, and is unverified, and no technical advisory from Ledger is cited on the page. A claim that devices sold in Europe are also affected is likewise unverified and Ledger has not commented on it. This item carries no AI mechanism and is on the board as a significant supply-chain compromise of a security device under the standing editorial note of 2026-08-13.",
+      "confidence": "confirmed",
+      "outlet": "Ledger (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/",
+      "isNew": true
+    },
+    {
+      "id": "nadella-models-as-insider-risks-essay",
+      "lane": "def",
+      "date": "2026-10-10",
+      "headline": "Microsoft’s chief executive publishes a framework for treating a frontier model as an insider risk, with an emergency brake and access controls the model cannot reach",
+      "core": "Satya Nadella posted an essay on X on October 10 titled “Models as Insider Risks in the Super Intelligence Era”, arguing that a capable model with access to sensitive systems should be governed the way an organisation governs a privileged employee. TheStreet quotes him writing that “We simply can’t outsource responsibility for what intelligence does on our behalf”, that “We need to separate the supply of intelligence from the authority over it” — “because any sufficiently capable actor with access to important systems can make mistakes or be compromised” — that “If it can’t be observed, it can’t be trusted!”, and that “The most trustworthy Super Intelligence system will not be the one with the model we trust most.” Business Standard’s account of the same essay sets out the controls it proposes: an emergency brake an authorised person can pull to pause or shut down an agent mid-task without relying on the model to notice its own error; permissions set and enforced outside the model so that, in Business Standard’s wording, “The model should not be able to bypass or modify the mechanisms that determine what it can access or do”; tamper-resistant, human-readable records of each significant action that can be audited independently; continuous testing against failures, attacks, unusual situations and post-change behaviour; a separation between the model that performs a critical task and the model that verifies it, with important operations not resting on a single model; and timely disclosure to affected parties of what failed, which safeguards did not hold and what will change. Nadella supports chain-of-thought transparency while saying it cannot guarantee faithful explanations, which is why the logs, access controls and testing sit outside the model. The essay itself could not be opened here — x.com is not reachable to this fetcher — so it is carried through the two outlets above rather than asserted from the primary, and the quotations are attributed to the outlet that carries each.",
+      "confidence": "press",
+      "outlet": "Satya Nadella, Microsoft (via TheStreet and Business Standard)",
+      "url": "https://www.thestreet.com/technology/microsoft-ceo-wants-ai-treated-like-a-risky-insider-at-work",
+      "isNew": true
+    },
+    {
+      "id": "zenity-agentcorruption-aws-agentcore",
+      "lane": "atk",
+      "date": "2026-10-08",
+      "headline": "One prompt to a public AWS agent returned credentials that reached every other agent in the account and region, and planted memories that persist",
+      "core": "Zenity Labs disclosed a chain it calls AgentCorruption on October 8, presented at SecTor 2026: a prompt sent to an internet-facing Amazon Bedrock AgentCore agent that had a tool able to make outbound requests instructed it to query the AWS Instance Metadata Service, and AgentCore’s infrastructure let the agent reach the service and retrieve the temporary credentials of its underlying machine. Those credentials belonged to a default IAM execution role whose reach extended past that one agent to every AgentCore agent in the same AWS account and region. From there Zenity says it discovered and invoked all of those agents, including internal ones it was not authorised to use; read private conversations and long-term memories across agents, users and sessions; downloaded agent container images and retrieved source code; obtained API keys, OAuth tokens and other credentials from AWS Secrets Manager and from environment variables, including credentials for enterprise and third-party services; and planted malicious memories that altered an agent’s behaviour and routed later conversations to an attacker-controlled destination, which is the persistence step. Zenity reported the findings to AWS on December 25, 2025 and says AWS has since made IMDSv2 the default for AgentCore deployments and cut the default execution role’s permissions, removing the ability to invoke other agents, read private conversations and read Secrets Manager secrets, a reduction Zenity says its own testing confirmed. Zenity co-founder and chief technology officer Michael Bargury is quoted on the release saying “Cloud security is all about segmentation and least-privilege access” and “Our research shows the difficulties in getting those just right.” Cyber Security News reports that AWS disputes the characterisation, on the ground that an agent reaching its own execution-role credentials through the metadata service is expected and documented behaviour; no CVE is attached on any page opened here.",
+      "confidence": "researchers",
+      "outlet": "Zenity Labs",
+      "url": "https://zenity.io/press-release/zenity-labs-discloses-agentcorruption-a-chain-of-aws-agentcore-flaws",
+      "isNew": true,
+      "topics": [
+        "attacks-on-ai"
+      ],
+      "key": true
+    },
+    {
+      "id": "northwestern-llm-patching-benchmark-reliability",
+      "lane": "cap",
+      "date": "2026-10-07",
+      "headline": "A third of the AI patches that stop the crash still fail the maintainer’s own test, and every one of thirteen surveyed patching benchmarks misses at least one way to inflate a score",
+      "core": "Northwestern University researchers Dang K. Le, Wenxuan Shi and Xinyu Xing posted “On the Reliability of LLM-Based Vulnerability Patching Benchmarks” on arXiv on October 7, arguing that “current benchmark scores are highly sensitive to evaluation design choices”. Working from 112 real historical bugs across 84 open-source projects — 25 cases in 10 C and C++ projects, 62 in 51 Go projects and 25 in 23 Rust projects — they separate two measures that benchmarks often treat as one: whether a patch stops the proof-of-concept input crashing the program, and whether it passes the test the project’s own maintainers wrote for the real fix. The gap is large and does not close with model capability. Claude Sonnet 4.0 stopped the crash on 77.7% of cases but passed the developer’s test on 43.8%; Sonnet 4.5 scored 84.8% against 48.2%; and Opus 4.7, the newest of the three tested, 90.2% against 60.7% — so even with Opus 4.7 about 32.7% of the patches that stopped the crash failed the maintainer’s test. The paper builds a taxonomy of nine factors that distort reported results, two at the level of the agent, three at the level of the harness and four in the dataset, tests them in three controlled experiments and five case studies, and surveys thirteen existing benchmarks and datasets, reporting that every one of the nine pitfalls appears in at least one of them. It closes with seven guidelines and a five-item reporting checklist for future benchmarks.",
+      "confidence": "researchers",
+      "outlet": "arXiv:2610.10150 (Le, Shi, Xing — Northwestern University)",
+      "url": "https://arxiv.org/abs/2610.10150",
+      "isNew": true,
+      "topics": [
+        "ai-found-vulnerabilities"
+      ]
+    },
+    {
+      "id": "aws-strands-box-agent-policy-sandbox",
+      "lane": "def",
+      "date": "2026-10-07",
+      "headline": "AWS open-sources a sandbox that judges each agent tool call against what the agent already did, on the stated ground that agents now run approving every action themselves",
+      "core": "AWS released Strands Box, an open-source sandbox for AI agents, on October 7, pairing operating-system isolation with a policy layer that containers and microVMs do not provide: shell commands, Python execution and tool calls are checked against the agent’s earlier actions as well as the request being made, through the Dogwood Local Engine, with Strands Shell and Monty for Python feeding the same engine and the same event history. AWS states the problem it is answering as “Agents increasingly run in ‘YOLO mode,’ approving every action without human review.” The worked examples The Register gives are rate and sequence limits rather than allow-lists — holding an agent to three Slack status posts every ten minutes, controlling when it may perform a Git push, capping API calls. Marc Brooker of AWS says “Box enforces the policies developers configure, deterministically, and the agent can’t talk its way around these rules” and that “Policies can then account for the action being attempted and earlier activity”, while setting the limits of the claim himself: “Developers remain responsible for deciding what access to grant and where human review is needed”, and “Agent safety is an area where the industry still has significant work to do.” It is on GitHub and runs on macOS only at release, with Linux support in development and a Windows client described as “on our radar”, neither dated, and deployment to AgentCore, ECS and Kubernetes planned; it will confine any agent or harness. AWS’s own announcement and repository could not be opened here, so the quotations and dates are as The Register carries them.",
+      "confidence": "press",
+      "outlet": "AWS (via The Register)",
+      "url": "https://www.theregister.com/ai-and-ml/2026/10/07/aws-launches-open-source-ai-agent-sandbox-to-prevent-yolo-mode-disasters/5301687",
+      "isNew": true,
+      "topics": [
+        "attacks-on-ai"
+      ]
     }
   ],
   "watchlist": [
     {
       "thread": "Agent sandbox containment",
-      "status": "A lab has now pulled the internet out of its evaluation harness entirely. Anthropic said on October 9 that “although the impact of these behaviors was minimal and we had already turned off live internet access for some high-risk and cybersecurity evaluations,” it has “now decided to expand that to include all our internal evaluations” until it has confirmed that its security and monitoring measures “reliably catch behaviors like these” — and that “some of the public evaluations we no longer run; others we have moved to their offline versions or rebuilt them so that their tasks do not reach live websites.” It also says it is migrating internal agents to “centrally managed infrastructure with strong containment” and is running a deeper scan of every environment where Claude has internet access. Before this the containment layer was moving outward into the operating system — Apple's October 2 change gating macOS Full Disk Access behind explicit user action, on the stated ground that “as AI agents become increasingly capable and autonomous, the risks associated with” that permission grow. The earlier sandbox-escape record is in dashboard-memory.md.",
-      "changed": "2026-10-09",
+      "status": "The containment argument has moved from the harness to the org chart. Microsoft’s chief executive published an essay on October 10, “Models as Insider Risks in the Super Intelligence Era”, arguing that authority over a model must be separated from the supply of it — an emergency brake an authorised person can pull mid-task, permissions enforced outside the model so it cannot modify what it may reach, tamper-resistant records auditable independently, and one model never both performing and verifying a critical task. The tooling arrived the same week: AWS open-sourced Strands Box on October 7, which checks each shell command, Python call and tool call against the agent’s own earlier actions through the Dogwood policy engine, on the stated ground that “Agents increasingly run in ‘YOLO mode,’ approving every action without human review”; macOS only at release. Behind both, Anthropic said on October 9 it has “now decided to expand” the removal of live internet access “to include all our internal evaluations”, moving public evaluations offline or rebuilding them so their tasks do not reach live websites, and is migrating internal agents to “centrally managed infrastructure with strong containment”. Apple’s October 2 change gating macOS Full Disk Access named autonomous agents as the reason. The earlier sandbox-escape record is in dashboard-memory.md.",
+      "changed": "2026-10-10",
       "topic": "attacks-on-ai",
       "items": [
         "openai-safety-cases-frontier-rl-training",
@@ -5151,7 +5232,9 @@
         "perplexity-space-agent-network-policy-bypass",
         "openai-dns-sandbox-escape-training-pause",
         "apple-macos-full-disk-access-ai-agent-controls",
-        "anthropic-unintended-model-actions-all-evals-offline"
+        "anthropic-unintended-model-actions-all-evals-offline",
+        "nadella-models-as-insider-risks-essay",
+        "aws-strands-box-agent-policy-sandbox"
       ]
     },
     {
@@ -5421,8 +5504,8 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "The claims have moved from benchmark scores to operational throughput, and neither kind has been reproduced. A customer account OpenAI published on Oct 9 has Sophos — more than 625,000 organisations, nine SOCs investigating 1,000 to 2,000 cases a day — reporting an 89-second average response time against about 38 minutes before, a 96% cut in investigation time and 52% of managed-detection cases resolved end to end by AI inside analyst-set boundaries. Anthropic's OSS Scanner, launched Oct 8, expects “a true-positive rate above 90%” on reports sent with no human review. The earlier first-party claims still stand unchecked: Google's PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google's own applications at a “near-zero false positive rate”; Anthropic's dashboard counts 6,157 vulnerabilities across 591 projects at a 92.7% true-positive rate it says “should only be taken as one proxy for impact.” The measurement layer is weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
-      "changed": "2026-10-09",
+      "status": "A vendor has now put frontier models through a full industrial attack chain and says they finished every run. Booz Allen Hamilton reports that the models achieved the objectives in all eight scenarios in its operational-technology lab, going from a perimeter compromise to actions inside an industrial control network in just over 16 minutes in one of them, taking over an HMI through editable code in an exported SCADA project, finding a SCADA gateway holding live pre-authenticated sessions to 14 OT devices, and gaining administrative access to a robot’s API and moving the arm — with no source code, engineering documents or OT guidance supplied, the models unnamed, and nothing reproduced by anyone else. The operational claims before it are also unchecked: a customer account OpenAI published on October 9 has Sophos reporting an 89-second average response time against about 38 minutes before and 52% of managed-detection cases resolved end to end by AI; Anthropic’s OSS Scanner expects “a true-positive rate above 90%” on reports sent with no human review; Google’s PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google’s own applications at a “near-zero false positive rate”. The measurement layer stays weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
+      "changed": "2026-10-11",
       "topic": "frontier-capability",
       "items": [
         "sophos-openai-daybreak-mdr-case-resolution-figures",
@@ -5442,7 +5525,8 @@
         "xbow-cross-model-offensive-security-cost-comparison",
         "public-cyber-benchmarks-saturating-faster-than-model-capability",
         "google-pagebreak-agent-500-xss-first-party-apps",
-        "anthropic-cvd-dashboard-6157-vulnerabilities"
+        "anthropic-cvd-dashboard-6157-vulnerabilities",
+        "boozallen-ot-lab-frontier-models-eight-scenarios"
       ]
     },
     {
@@ -5588,8 +5672,8 @@
     },
     {
       "thread": "AI infrastructure as attack surface",
-      "status": "Exposed AI services are now a botnet's food supply. Lumen's Black Lotus Labs, publishing Oct 7, says the PoeLLM cryptominer “uses and targets exposed AI/LLM and open-source services,” with most victims running “vulnerable versions of open-source AI/LLM services, such as LiteLLM and Ollama”; the LiteLLM command-injection flaw CVE-2026-42271 was “likely the exploitation path,” and compromised hosts can be turned into scanners “proxying attacks through compromised hosts.” Its command server is decoded from four keywords in a poem on GitHub, changed 11 times; the report's takeaways say more than 3,400 victim servers since April while its body says almost 2,200. Before it, GitLab's CVE-2026-90970 (CVSS 9.9, Oct 2) let an authenticated Duo Agent Platform user “escape the prompt template sandbox” to command execution on the AI Gateway. The census work is the durable part: Delinea has 87% of IT leaders seeing an AI tool reach data beyond its scope; Hush Security found secrets in 12% of credential slots across ~82,000 public MCP configurations; Mysterium found 36,769 reachable self-hosted AI endpoints, 2.02% authenticated. Full CVE list in dashboard-memory.md.",
-      "changed": "2026-10-07",
+      "status": "One prompt has now reached every agent in a cloud account. Zenity Labs disclosed AgentCorruption on October 8: a prompt to an internet-facing Amazon Bedrock AgentCore agent made it query the AWS metadata service and return its machine’s temporary credentials, which belonged to a default IAM role reaching every AgentCore agent in the same account and region — enough to invoke internal agents, read private conversations and long-term memories across users and sessions, pull container images and source code, take API keys and OAuth tokens from Secrets Manager and environment variables, and plant memories that reroute later conversations to an attacker. AWS has since made IMDSv2 the default and cut that role’s permissions; it disputes the characterisation, saying an agent reaching its own execution-role credentials is documented behaviour. Exposed AI services are also a botnet’s food supply: Lumen’s Black Lotus Labs says the PoeLLM cryptominer feeds on vulnerable LiteLLM and Ollama hosts, with CVE-2026-42271 “likely the exploitation path”, and GitLab’s CVE-2026-90970 (CVSS 9.9, Oct 2) let a Duo user “escape the prompt template sandbox” to command execution on the AI Gateway. Census work: secrets in 12% of credential slots across ~82,000 public MCP configurations; 36,769 reachable self-hosted AI endpoints, 2.02% authenticated. Full CVE list in dashboard-memory.md.",
+      "changed": "2026-10-08",
       "topic": "attacks-on-ai",
       "items": [
         "gitlab-ai-gateway-prompt-template-escape-cve-2026-90970",
@@ -5617,7 +5701,8 @@
         "nist-sp-800-239-ai-datacenter",
         "orca-state-of-ai-security-unpatched-ai-packages",
         "delinea-ai-access-scope-violations-survey",
-        "poellm-botnet-litellm-ollama-github-poem"
+        "poellm-botnet-litellm-ollama-github-poem",
+        "zenity-agentcorruption-aws-agentcore"
       ]
     },
     {
@@ -5667,7 +5752,7 @@
     },
     {
       "thread": "Vulnerability disclosure at machine speed",
-      "status": "The supply side has stopped putting a human in front of its reports. Anthropic launched OSS Scanner on Oct 8, “an opt-in service inspired by Google's OSS-Fuzz” giving enrolled open-source projects “periodic scans from our most capable models, free of charge,” each report carrying a proof of concept and a fix where one exists — and states the trade plainly: “The reports are model-generated and sent without human review,” with “a true-positive rate above 90%” expected rather than measured. It says Project Glasswing, which scanned “hundreds of widely used open-source projects” with human triage, “often saw months pass between a vulnerability being found and being fixed,” and that partners “uncovered many vulnerabilities, but we haven't yet achieved a sufficient reduction in cyber risk.” Intake keeps closing at the other end: Google's Open Source Software VRP stopped taking product vulnerability reports “as of October 1, 2026” over automated submissions. IBM and Red Hat say Lightwell remediated more than 400 previously unknown Java library flaws, naming no library; Anthropic's dashboard counts 6,157 vulnerabilities across 591 projects with human triage “the rate limiting step.”",
+      "status": "The supply side has stopped putting a human in front of its reports, and the measure of whether the fixes hold is now contested. Northwestern researchers posted “On the Reliability of LLM-Based Vulnerability Patching Benchmarks” on October 7, finding that “current benchmark scores are highly sensitive to evaluation design choices”: across 112 real bugs in 84 projects, Claude Opus 4.7 stopped the proof-of-concept crash on 90.2% of cases but passed the maintainers’ own tests on 60.7%, so about a third of its crash-stopping patches fail the real fix’s test — and every one of nine score-inflating pitfalls appears in at least one of the thirteen benchmarks they survey. Against that, Anthropic launched OSS Scanner on October 8, “an opt-in service inspired by Google’s OSS-Fuzz” sending enrolled projects reports that are “model-generated and sent without human review”, with “a true-positive rate above 90%” expected rather than measured. Intake keeps closing at the other end: Google’s Open Source Software VRP stopped taking product vulnerability reports “as of October 1, 2026” over automated submissions. IBM and Red Hat say Lightwell remediated more than 400 previously unknown Java library flaws, naming no library; Anthropic’s dashboard counts 6,157 vulnerabilities across 591 projects with human triage “the rate limiting step”.",
       "changed": "2026-10-08",
       "topic": "ai-found-vulnerabilities",
       "items": [
@@ -5703,7 +5788,8 @@
         "google-oss-vrp-pauses-product-vulnerability-reports",
         "anthropic-cvd-dashboard-6157-vulnerabilities",
         "google-pagebreak-agent-500-xss-first-party-apps",
-        "ibm-red-hat-lightwell-400-java-vulnerabilities"
+        "ibm-red-hat-lightwell-400-java-vulnerabilities",
+        "northwestern-llm-patching-benchmark-reliability"
       ]
     },
     {
@@ -5751,6 +5837,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-10-12",
+      "file": "archive/machine-speed-2026-10-12.html",
+      "items": 429,
+      "note": "Grow mode. Six items over a Sunday-into-Monday window, three of them fresh. Booz Allen says frontier models met the objective in all eight scenarios in its operational-technology lab, going from a perimeter compromise to actions inside an industrial control network in just over 16 minutes, taking over an HMI through editable code in an exported SCADA project, finding a gateway holding live pre-authenticated sessions to 14 OT devices, and gaining administrative access to a robot’s API and moving the arm — with no source code or OT guidance supplied and the models unnamed. Microsoft’s chief executive published a framework for treating a model as an insider risk, with an emergency brake and permissions the model cannot modify. Ledger confirmed an unauthorised hardware implant in a wallet sold through a Southeast Asian reseller, with Bitquery tracing more than $93 million drained. Three items were new to the board from inside the period: Zenity’s AgentCorruption, where one prompt to a public AWS agent returned credentials reaching every AgentCore agent in the account and region; a Northwestern paper finding that about a third of Opus 4.7’s crash-stopping patches fail the maintainer’s own test; and AWS’s Strands Box, which judges each agent tool call against what the agent already did. Four watchlist threads touched, none opened, none retired. Markets swept and empty for a fourth run."
+    },
     {
       "date": "2026-10-11",
       "file": "archive/machine-speed-2026-10-11.html",
@@ -6051,7 +6143,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-10-11",
+  "coverageEnd": "2026-10-12",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
