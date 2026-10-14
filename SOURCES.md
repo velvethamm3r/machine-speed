@@ -209,6 +209,24 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     attempt since 2026-09-03; `blog.checkpoint.com` carries the same research, dated and bylined, and opens first try.
     It is Check Point's own site, so an item sourced there is primary, not press. Two board items came from it this
     run after four blocked attempts on the research host._
+- **Trend Micro — Zero Day Initiative** — https://www.zerodayinitiative.com/blog (mirror https://www.thezdi.com/blog). `def` `cap`
+  - _Added 2026-10-14, and the gap it closes is three items wide. ZDI publishes a **monthly security-update review**
+    on Patch Tuesday — `/blog/YYYY/MM/DD/the-<month>-<year>-security-update-review` — carrying its own CVE tally,
+    a wormability count, the exploited and publicly-known entries, and the Adobe bulletins in the same post. This
+    board had carried the Microsoft release three times (Jul 14, Sep 8, Oct 13) and every time from press, because
+    the list had no line for ZDI and `msrc.microsoft.com` is provenance-blocked to this fetcher. It also carries
+    the AI reading a run needs: Dustin Childs's October post asks "Is AI to blame? Partly" and argues discovery is
+    scaling faster than exploitation. Opens first try, dated and bylined. Its count can differ from the press
+    tallies by a handful — it flags at least one non-Microsoft CVE inside its own table — so cite ZDI's figure as
+    ZDI's and say what the outlets said._
+- **Tencent Zhuque Lab** — https://matrix.tencent.com/en (dated post paths, `/en/YYYY/MM/DD/<slug>`). `cap` `def`
+  - _Added 2026-10-14. A corporate research lab publishing AI-found kernel vulnerabilities under its own name, and
+    the list had no route to Chinese vendor security research at all — §1 and §4 cover Chinese model developers, not
+    their security labs. Its October 12 Vghost disclosure (CVE-2026-74580, Linux vhost, CVSS 8.8 from the kernel.org
+    CNA) credits the find to its own multi-agent system, "Corvus AI", and reached this board two days late because
+    the source was missing; it surfaced through The Hacker News. Opens first try. **Read it for what it does not
+    say:** the Vghost post names Corvus AI in its summary and then describes none of the method, no agent count, no
+    duration and no model role, so an item can assert the attribution and not the mechanism._
 - **SentinelOne Labs** — https://www.sentinelone.com/labs/. `atk` `def`
 - **Sophos — Counter Threat Unit / Sophos News** — https://news.sophos.com/en-us/category/threat-research/ · corporate https://www.sophos.com/en-us/blog. `atk` `def`
   - _Added 2026-09-16. The CTU found Luciferus, the uncensored-LLM subscription sold on the Exploit forum, and the
@@ -443,6 +461,14 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 
 - **CISA** — Cybersecurity Advisories https://www.cisa.gov/news-events/cybersecurity-advisories · Known Exploited Vulnerabilities (KEV) https://www.cisa.gov/known-exploited-vulnerabilities-catalog · News https://www.cisa.gov/news-events/news. `pol` `def` `atk`
   - _Note: cisa.gov blocks automated fetchers (HTTP 403), so an unattended run usually cannot open a CISA page directly. To source a KEV entry, open the CVE on **NVD** (§10) — the NVD record carries the CISA KEV "Date Added" and "Due Date," so it confirms the KEV determination on a government primary. IC3 advisory PDFs (ic3.gov) and the co-sealed agency pages are often reachable when cisa.gov is not._
+- **Department of Justice** — Office of Public Affairs press releases https://www.justice.gov/opa/pressreleases · US Attorney offices, e.g. Northern District of California https://www.justice.gov/usao-ndca/pr (the district covering the frontier labs). `atk` `pol`
+  - _Added 2026-10-14. The list had no DOJ line, and `justice.gov` had been sitting on the primary-source upgrade
+    queue as presumed blocked since the Flax Typhoon domain seizures. **It opens.** The October 13 release charging
+    an OpenAI engineer over a recording device hidden in an executive conference room returned in full on the first
+    attempt, with the complaint's allegations, the dates, the chatbot-prompt detail and the DNI, FBI and US Attorney
+    quotations — all of which the press accounts paraphrase. Charging releases are `on-record` for the fact that
+    charges exist and nothing more: they are allegations, and a card built from one has to say so. Both the OPA and
+    the district office publish the same release at different URLs; either is primary._
 - **NSA** — Cybersecurity Advisories & Guidance https://www.nsa.gov/Cybersecurity/Cybersecurity-Advisories-Guidance/. `def` `atk`
 - **FBI IC3** — https://www.ic3.gov/ · Industry alerts / PSAs https://www.ic3.gov/Home/IndustryAlerts. `atk`
 - **NIST** — AI https://www.nist.gov/artificial-intelligence · CAISI (Center for AI Standards & Innovation) https://www.nist.gov/caisi · CSRC news https://csrc.nist.gov/news. `pol` `def`
