@@ -1,9 +1,106 @@
 {
-  "updatedISO": "2026-10-14T06:45:00-04:00",
-  "updatedDisplay": "2026-10-14, 6:45 AM ET",
-  "judgmentNote": "Window October 13 to October 14, a Tuesday into a Wednesday before dawn — about 24 hours of fresh material, and the narrowest window of the last several runs. Six items: five dated October 13, all of them developments that landed after the previous run's 7:06 AM stamp, and one new to the board from inside the period, dated October 12. Primaries. Four of the six are cited to the party that produced the finding or the record. justice.gov opened and carries the OpenAI charging release in full, which retires one entry from the primary-source upgrade queue that has been outstanding since the Flax Typhoon seizures; matrix.tencent.com opened and carries the Vghost disclosure; zerodayinitiative.com opened and carries the October CVE tally and the Childs commentary in full; newsroom.aholddelhaize.com opened and carries the company's own statement. What was blocked: anthropic.com and red.anthropic.com on the self-replication research, after opening cleanly on the last run — so the single clean run of October 13 was not a pattern, as that run said it might not be; msrc.microsoft.com on the October release notes; trellix.com on the report page; nbcnews.com, which returns a robots refusal; and the index pages of the press tier, as on every recent run. The press pass was run through site- and date-scoped search per the DAILY_RUN fallback, and each lab and vendor primary was swept by site-scoped search before its lane was called quiet. Two items are carried on press with a via attribution and are queued for upgrade. Anthropic's self-replication research, where BleepingComputer's October 13 article carries the model names, device counts, success rates and both quotations and anthropic.com/research/self-replicating-ai would not open; and the Trellix survey, where Help Net Security's October 14 account carries the figures and trellix.com's own report page would not open. Dates. The Anthropic item is dated October 13, the day of the account read, not the day Anthropic published: the research page could not be opened, BleepingComputer gives it no date, and Fortune's October 13 piece places it on “Monday” without stating October 12. Inferring October 12 from that would be a guess, so the card says the publication date could not be established here. This is the same call the Sola paper took on October 13. The Tencent item is dated October 12 because its own post carries that date, with identification on July 31 stated separately. The DOJ item is dated October 13 because the release itself carries that date, against Help Net Security's October 14 account which says the department announced the case on October 14; the primary wins. The Trellix item is dated October 13, the date on the Business Wire distribution, not October 14, the date of the account the card cites. Figures two sources give differently, both flagged on their cards. ZDI counts 1,415 new Microsoft CVEs in the October release while SecurityWeek and The Hacker News both say 1,413; ZDI's is the count of the organisation that published the tally this card cites, and ZDI flags at least one non-Microsoft CVE inside its own table, which is the likely source of the gap. Microsoft's own release notes could not be opened, so no figure here is Microsoft's. And the Trellix accountability figure is 92% in the Help Net Security account and 91% in the Business Wire release of the same research; neither is Trellix's own report page. Details dropped rather than attributed at one remove. The Hacker News says the upstream kernel fix for CVE-2026-74580 credits Corvus AI with an “Assisted-by” line and that the flaw originates in a 2017 cache addition and a 2020 check relocation; git.kernel.org would not open, so none of that is on the card, and the card asserts about Corvus AI only what Tencent's own post asserts. Al Jazeera's October 13 account of the French refrigeration attack adds Danfoss telling AFP that most affected systems were “legacy” products with “outdated firmware”, a figure of more than 500 shops, and BFM's report of a remotely triggered forced-defrost option; that is the same event as an item already on the board, so no new item was created and the existing card was left unchanged, since nothing on it is wrong. OpenAI's statement that it used its own models to analyse the recording device and trace its origin appears in Help Net Security's reading of an OpenAI post on X; the DOJ release does not say it, so it is not on the card. Confidence calls. The DOJ item is on-record: a charging announcement is the kind of statement only the government can make and it constitutes the fact that charges exist, not a claim about guilt, and the card says the allegations are untested. The Ahold Delhaize item is confirmed, because the affected company is the one saying it happened to it. The Tencent item is self-reported — a vendor's account of what its own system found, unreproduced, even though the CVE and the kernel fix corroborate that the flaw is real. The Patch Tuesday item is researchers rather than press: ZDI is a research organisation publishing its own count and analysis, not an outlet reporting on someone else's, which is the distinction the September 8 item could not draw because SecurityWeek was the only account that opened. The two via-press items are press by the established convention. Lane calls. The Trellix survey is filed markets on the reading that its distinctive content is the liability and accountability half — 92% on growing accountability, 69% on personal liability — which is what this board's markets lane covers, and the PwC survey of October 1 is filed there on the same basis. It is this run's weakest call and defense is the defensible alternative, since the insider-risk material sits beside the Nadella essay of October 10; one edit reverses it. It is worth stating plainly that markets would otherwise have been empty for a sixth consecutive run, and that the lane was swept and had nothing else: what the insurance trade press and the carrier and broker channels return for this window is undated content marketing about AI exclusions with no underwriter behind it. The item was not filed there to end the streak. The Linux kernel item is capability rather than defense, following the PrimSynth preprint and the Horizon3 disclosure: the subject is what the system found, not the patch. Patch Tuesday is defense, as the July 14 and September 8 releases were. Remit. The Ahold Delhaize incident carries no AI element and is on the board under the standing editorial note of 2026-08-13, which broadens the remit to significant cyber developments on their own merits. That makes three no-AI items in four days, after the Ledger implant and the French refrigeration attack, and the run has not stretched the note any further than those two readings: the Ukrainian drone strikes on Yandex data centres and a plain GitLab remote-code-execution flaw were both left off. The note itself still needs settling and is the first item left open for Daria. Topics. The DOJ item is tagged ai-in-attacks on the reading that a chatbot prompted on building and obfuscating a surveillance device is a model used in an actual operation; it is this run's weakest tag, since the operation is physical rather than cyber and the prompts are alleged, and one deletion reverses it. The Trellix and Ahold Delhaize items are untagged: a CISO survey and a retail IT incident fit none of the six topics, and stretching critical-infrastructure to cover a grocery chain would blur the topic that closes the response-lag clock. Two items are marked key. The Anthropic self-replication research, as the first work this board carries on whether a small open-weight model can propagate itself across consumer hardware, with a dated capability estimate attached; and the DOJ charge, as the first criminal case this board carries of an insider operation against a frontier lab, framed by the government as counterintelligence. The Tencent disclosure is deliberately not marked: it is one vendor's unreproduced account of its own pipeline, which is the same reason the Horizon3 post was left unmarked on October 13. No corrections entry. Nothing published earlier was changed by this run. Three sources were added to SOURCES.md, which is handed back with this run. Trend Micro's Zero Day Initiative, whose monthly security-update review carries the CVE tally, the wormability count and the AI commentary in one openable post — this board had carried the Microsoft release three times and every time from press, because the list had no line for it. Tencent Zhuque Lab, which publishes AI-found kernel vulnerabilities under its own name and was the reason the Vghost disclosure reached the board two days late; the list had no route to Chinese vendor security research at all. And the Department of Justice, which had been sitting on the upgrade queue as presumed blocked and opens first try. The verification pass, and what it caught. Every new card was re-read line by line against the page in its own url field after the first clean build, as the 2026-10-11 run established. Three cards were wrong and three held. The Anthropic card said the directing model ran on a separate server — that is Fortune's detail, and BleepingComputer's account does not say where the directing model ran. Cut. It also described the 71-to-150-hour figure as time per inference; the cited page calls it the inference setup, so the card now says what the page says. The Patch Tuesday card said three of Adobe's CVEs carried a CVSS 10.0; ZDI's post says the highest CVSS is 10.0 and names the three products it appears in, not three CVEs. Rewritten. The Trellix card asserted the report title and the research firm against a Help Net Security URL that names neither, and gave fifteen hours as a single detection-and-response figure where that account gives about seven hours to detect and eight more to respond. All the non-Help-Net material is now in one explicitly attributed clause, and the hours are as the page gives them. All three failures were the same kind the October 13 pass found: material from a different source carried as though the cited page supported it.",
-  "internalNote": "Coverage extended from Oct 13 to Oct 14 over a Tuesday-into-Wednesday window of about 24 hours; six items added — Anthropic's finding that small open-weight models are months from copying themselves across cheap devices, with GLM-5.2 the only model to complete every propagation step and a 26B Gemma 4 run across 15 Android TV boxes; Tencent Zhuque Lab's disclosure that its Corvus AI multi-agent system found CVE-2026-74580 in the Linux vhost subsystem; the Justice Department's charge against an OpenAI engineer over a recorder hidden in an executive conference room, with a linked chatbot account alleged to have been prompted on building and obfuscating it; Microsoft's October release at 1,415 CVEs by ZDI's count with Dustin Childs's reading of AI's part in it; Trellix's survey of 600 CISOs on AI agents as insiders and on their own personal liability; and Ahold Delhaize taking systems offline after a cybersecurity incident across Europe and the United States — with four watchlist threads rewritten, none opened or retired, three sources added to SOURCES.md — Trend Micro's Zero Day Initiative, Tencent Zhuque Lab and the Department of Justice, and markets ending a five-run empty streak on a lane call the note flags as the run's weakest.",
+  "updatedISO": "2026-10-15T06:45:00-04:00",
+  "updatedDisplay": "2026-10-15, 6:45 AM ET",
+  "judgmentNote": "Window October 14 to October 15, a Wednesday into a Thursday before dawn — about 24 hours of fresh material, the same narrow shape as the last run. Seven items: five dated October 14, and two new to the board from inside the period, dated October 12 and September 11. Primaries. Three of the seven are cited to the party that produced the finding. microsoft.com/security/blog opened and carries the phishing-infrastructure disruption in full, including the AI clause; censys.com/blog opened and carries the State of the Internet figures for n8n; and ZenoX's SCARLET LOOP report opened as a PDF and carries every counter on its card. Noma Labs and Continuum AI are cited to their own PR Newswire releases, which are first-party statements distributed by a wire rather than independent accounts. What was blocked: noma.security on the SneakPeek research page; semperis.com on both the press release and the report page, after three attempts, two of them returning a server error rather than a provenance block; censys.com/2026-state-of-the-internet-report; volexity.com on the Ivanti chain; theregister.com on two articles, where article pages have opened on recent runs; cisa.gov, as on every run; congress.gov, which returns a robots refusal; and the index pages of the press tier. The press pass was run through site- and date-scoped search per the DAILY_RUN fallback, and each lab and vendor primary was swept by site-scoped search before its lane was called quiet. Two items are carried on press and queued for a primary-source upgrade: the Semperis survey, where CBS News's bylined October 14 account is the fullest reading that opened; and the Cisco flaw, where the vendor advisory and the CISA catalog entry both refused. Figures two sources give differently, flagged on their cards rather than resolved quietly. Censys's own post gives no overall host total and no OpenClaw count, while Axios puts the totals at nearly 268,000 systems across 44 products and OpenClaw at more than 54,000 control panels and Help Net Security gives 164,088 rising to 267,915 and 85,478 OpenClaw panels by April 7 — so the card carries only what Censys itself states and names the divergence. Semperis's physical- and psychological-threat figure appears three different ways across three accounts of the same report — more than a third, more than three-quarters, and nearly a quarter — so none of it is on the card; the figures that are come from one account and are labelled as respondents' characterisations rather than a count of attacks, since that account's own headline overstates them. Details dropped rather than attributed at one remove. Dark Reading's account of SneakPeek says the final patch came “ahead of this month's advisory” and that Anthropic and Noma collaborated on the fix; the release the card cites says only that an advisory and CVE are to be posted in October, so the card says that and no more, and no fixed version number is given anywhere that opened. Secondary accounts name a fixed Claude Desktop build; none of them is Anthropic or Noma, so it is not on the card. The Ivanti chain's second and third CVEs are unnamed in the account read, which is one reason the item is held. The SCARLET LOOP report gives its URLs-scored figure two ways — 84,660 as a per-project sum and 17,058 on the platform's global counter — and the card carries both rather than the larger one. Confidence calls. Microsoft is on-record: a disruption its own unit carried out and announced is a statement only it could make. Noma and ZenoX are researchers — vulnerability and threat research reported by the finder, with no independent reproduction, and in Noma's case the affected vendor has published nothing that opened here. Censys and Continuum AI are self-reported: a scan census and a benchmark table, both measured by the party with the product. Semperis and Cisco are press, the convention on this board when a first-party claim reaches it only through an outlet. Lane calls, one of them weak. The Semperis survey is filed atk rather than mkt on the reading that its distinctive content is what attackers did — AI on their side, the victim's own agents exploited, identity systems targeted — rather than how the money prices it. That breaks with the mkt filing of the IBM, PwC and Trellix surveys and is this run's weakest call; mkt is the defensible alternative and one edit reverses it. Markets is empty as a result, and was swept: the insurance trade press and the carrier and broker channels return undated content marketing about AI exclusions with no underwriter behind it, as on the five runs before last. The Censys census is def, following exposed-self-hosted-ai-endpoints-census and the SpyCloud water census; the Microsoft disruption is def, following microsoft-dcu-eviltokens-disruption exactly; and the Cisco flaw is atk, following the Citrix, FortiMail and Catalyst SD-WAN items. Remit. The Cisco flaw carries no AI element and is on the board under the standing editorial note of 2026-08-13. That makes four no-AI items in five days. The Ivanti Connect Secure zero-day chain, which is the same kind of item on the same day, is held rather than added — named in dashboard-memory.md with its full detail — on the narrow ground that Cisco's is CVSS 9.8 with vendor-confirmed exploitation while the Volexity account of the Ivanti chain names only one of its three CVEs and its primary would not open. That is a weight call, not a remit distinction, and the remit question itself is still the first thing open for Daria. Topic tags. The Microsoft disruption is tagged ai-in-attacks, following the EvilTokens precedent, but the AI element here is thinner than that one's: EvilTokens sold an AI assistant with the kit, whereas this is one clause about AI-generated content used to stand up fake tenants. The Cisco flaw is untagged, having no AI element to file. One key. SneakPeek, as the first CVSS-scored, zero-click credential-exfiltration chain this board carries in a frontier lab's own coding agent, and the first where a lab's initial fix is reported to have been bypassed before a second one held. SCARLET LOOP was considered and left unmarked: it is the fullest account the board carries of an AI-run attack platform, but it is another instance of a pattern ARTEX and the Unit 42 clusters already established, not a first. The strip is six of the seven. Five October 14 items qualify on date and SCARLET LOOP is forced in, which is exactly STRIP_MAX, so no warning should fire; the Continuum AI item is held out with isNew false. The previous run's six flags were cleared, and that was load-bearing for the third run running — its newest items were dated October 13, inside NEW_WINDOW_DAYS, so left alone the strip would have been at least twelve. No corrections entry: nothing published earlier was changed by this run.",
+  "internalNote": "Coverage extended from Oct 14 to Oct 15 over a Wednesday-into-Thursday window of about 24 hours; seven items added — Noma Labs' SneakPeek exploit chain in Claude Code Desktop, a zero-click credential theft Anthropic scored at CVSS 8.7 whose first fix was bypassed; Microsoft's Digital Crimes Unit disrupting the YAM Store phishing marketplace tied to more than a billion messages to over 75,000 organisations, with fake tenants it says were likely stood up using AI-generated content; Semperis's survey of about 1,200 ransomware victims reporting AI on the attackers' side in 84% of cases and their own AI exploited in 44%; Censys counting exposed AI infrastructure up more than 63% in nine months with n8n on 113,926 hosts; ZenoX's SCARLET LOOP report on a credential-stuffing platform that scored targets and drove logins with commercial models across 12,277,358 tested credentials; Continuum AI's unreproduced 100% Cybench and 95.8% CVE-Bench claims for OrcaCyber Zero 1.5; and Cisco's warning that a CVSS 9.8 Secure Email Gateway flaw giving root from a crafted attachment is being exploited — with five watchlist threads touched and three moved, none opened or retired, two sources added to SOURCES.md, and Markets empty after the Semperis survey was filed atk rather than mkt on a call the note flags as the run's weakest.",
   "items": [
+    {
+      "id": "noma-sneakpeek-claude-code-desktop-exfiltration",
+      "lane": "atk",
+      "date": "2026-10-14",
+      "headline": "Researchers chained three gaps in Claude Code Desktop's preview pane into zero-click theft of a developer's credentials",
+      "core": "Noma Labs' October 14 release names SneakPeek, an exploit chain in Claude Code Desktop that it says Anthropic rated CVSS 8.7 (High). Per the release, files under 256KB were converted to base64 data: URLs under a strict script-blocking content security policy while larger files were written to disk and loaded over file://, bypassing that policy; the renderer was given local filesystem access rather than an isolated opaque origin; and the filter meant to block file:// access did not apply during static file rendering. An HTML file padded past 256KB in a public repository, rendered automatically by the preview pane when a developer asks Claude Code to review or edit it, could read API keys, cloud credentials, SSH private keys, Kubernetes cluster configurations and OAuth session tokens from the host and send them out through navigator.sendBeacon. The stated timeline: reported July 4, triaged and scored by Anthropic with a renderer mitigation on July 9, a bypass demonstrated on July 24 using blob: URL Web Workers, confirmed August 5, and a final architectural patch verified and deployed August 17. Its timeline lists “October 2026: Advisory and CVE posted”, but the release names no CVE identifier and no fixed version; Noma's own research page could not be opened here, and no Anthropic statement on it opened to this run.",
+      "confidence": "researchers",
+      "outlet": "Noma Labs (via PR Newswire)",
+      "url": "https://www.prnewswire.com/news-releases/noma-labs-uncovers-critical-security-vulnerabilities-in-claude-code-desktop-app-cvss-8-7-302908539.html",
+      "topics": [
+        "attacks-on-ai"
+      ],
+      "key": true,
+      "isNew": true
+    },
+    {
+      "id": "microsoft-dcu-yam-store-phishing-infrastructure-disruption",
+      "lane": "def",
+      "date": "2026-10-14",
+      "headline": "Microsoft disrupts a phishing marketplace it ties to a billion messages, and says the fake tenants behind it were likely stood up with AI-generated content",
+      "core": "Microsoft Threat Intelligence and the Digital Crimes Unit said on October 14 that, working with law enforcement agencies and other partners worldwide, they “facilitated a disruption of the ecosystem's primary developers and infrastructure” behind YAM Store — an initial access broker Microsoft tracks as Storm-3119 — and the CoGUI (also NX or FA), Haozi (also Phoenix) and Iron Man System phishing kits, tracked as the developer cluster Storm-2990. Microsoft reports that since January 2026 the operators facilitated more than one billion phishing emails and SMS messages to more than 75,000 organisations worldwide, that the Iron Man System kit carries more than 2,335 templates tailored to more than 139 countries, and that targeting included healthcare, financial services, wholesale distribution and IT in Japan, the United States, Australia and India. The AI element sits in the tradecraft rather than the kits: Microsoft says Storm-3119 created fake organisations and web presences to establish tenants on its platform “likely using AI-generated content and forged documentation”, and describes one fabricated nonprofit environment as likely created using AI. The post read here does not describe the kits themselves as using AI and names no court order or domain seizure. Resecurity published its own research on YAM Store and the Iron Man System.",
+      "confidence": "on-record",
+      "outlet": "Microsoft Threat Intelligence",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/14/the-hidden-network-inside-the-phishing-infrastructure-ecosystem-powering-global-cybercrime/",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "semperis-2026-ransomware-report-ai-involvement",
+      "lane": "atk",
+      "date": "2026-10-14",
+      "headline": "A survey of ransomware victims reports AI on the attacker's side in 84% of cases, and the victim's own AI exploited in 44%",
+      "core": "Semperis's 2026 Ransomware Risk Report, read here in CBS News's October 14 account, surveyed about 1,200 IT and security professionals across nine countries and eight industry sectors at organisations hit by ransomware. Per that account, 84% of those surveyed said AI was used on the attackers' side and 44% said the attackers exploited the organisation's own AI agents or systems; 87% said the attack targeted identity systems or the infrastructure controlling network access, 69% were hit more than once in the previous year, and 59% paid a ransom at least once. Chris Inglis, the first US National Cyber Director and a Semperis strategic advisor, is quoted saying “I think we're already seeing autonomous attacks” and that AI “is an inflection point in their capacities to hold the same things at risk”, and Semperis's Tomer Bar that “We're starting to see more attacks with more rapid development, and attribution of these attacks will be more difficult for law enforcement.” These are respondents' own characterisations of attacks against them, not a count of attacks, and the account's own headline overstates them as a share of all ransomware attacks. semperis.com would not open to this run, and other accounts of the same report give its physical- and psychological-threat figure three different ways, so none is carried here.",
+      "confidence": "press",
+      "outlet": "Semperis (via CBS News)",
+      "url": "https://www.cbsnews.com/news/ai-linked-ransomeware-attacks-global-cybersecurity-report/",
+      "topics": [
+        "ai-in-attacks",
+        "attacks-on-ai"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "censys-2026-state-of-internet-exposed-ai-infrastructure",
+      "lane": "def",
+      "date": "2026-10-14",
+      "headline": "Censys counts exposed AI infrastructure up more than 63% in nine months, with one workflow-automation tool on 113,926 reachable hosts",
+      "core": "Censys's October 14 post on its 2026 State of the Internet Report says hosts exposing AI-related tools to the public internet grew more than 63% between October 2025 and July 2026, and names n8n — a workflow-automation platform that connects AI agents to other services — as the most widely exposed product at 113,926 hosts, of which 76% of those with a parseable version fall inside the affected range of at least one recent critical vulnerability. The post read here gives no overall host total and no OpenClaw figure. Press readings of the same report differ on both: Axios, given the data first and publishing on October 13, puts it at nearly 268,000 internet-facing systems running 44 AI-related products, up from roughly 164,000, with OpenClaw at more than 54,000 exposed control panels, while Help Net Security's October 15 account gives 164,088 rising to 267,915 IP addresses and 85,478 exposed OpenClaw panels by April 7. Censys principal researcher and report co-author Emily Austin is quoted by Axios saying of the exposed tools that “these [tools] talk to some really sensitive systems”. Neither the post nor either account establishes that the exposed deployments can actually be exploited.",
+      "confidence": "self-reported",
+      "outlet": "Censys",
+      "url": "https://censys.com/blog/state-of-the-internet-report-2026",
+      "topics": [
+        "attacks-on-ai"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "zenox-scarlet-loop-ai-credential-stuffing-platform",
+      "lane": "atk",
+      "date": "2026-09-11",
+      "headline": "A Brazilian firm documents a credential-stuffing platform that picks its targets and logs in with commercial models, testing 12.3 million credentials",
+      "core": "ZenoX's SCARLET LOOP threat report, dated September 11 and written by Acassio Silva, describes a financially motivated, Portuguese-speaking operation running a credential-stuffing and account-takeover platform from a single internet-exposed server, using commercial models to generate search queries, score candidate targets and drive a browser agent through unfamiliar login flows. Its own counters: 48,898 search queries run, 84,660 URLs scored as a per-project sum against a global counter of 17,058 in the same report, 6,171 domains qualified as targets over about six months, 12,277,358 credentials tested and 11,832 accepted across 3,968 domains — a 0.10% validation rate — with 401 domains scoring eight or higher, 107 identifiable jurisdictions and 46 tools available to the login agent. By function the platform's registry names gpt-5.6 for query generation, gpt-5.5 as the target rater, deepseek-v4-pro and deepseek-v4-flash as the browser agent, Claude Opus 4.6, Gemini 2.5 Flash and GLM 5.1 as alternate configured profiles, and a local gemma served on loopback. Targets are companies that move money — acquirers, digital wallets, remittance houses, loyalty and gift-card programmes, BNPL providers and online casinos — with Nigeria, India, the Philippines, Kenya, Indonesia, Ghana and Vietnam appearing more often than their economic size would suggest; no organisation is named. The report says a Claude “Fable” deployment was approached and refused the operators' requests, and does not appear in the registry. It calls a “valid” result a password accepted rather than full account access, counts MFA challenges as valid, calls the figures a floor, identifies no individuals and does not place the operation's true origin.",
+      "confidence": "researchers",
+      "outlet": "ZenoX",
+      "url": "https://public.vydar.net/SCARLET_LOOP_Threat_Report_EN_v2.pdf",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "continuum-ai-orcacyber-zero-1-5-benchmarks",
+      "lane": "cap",
+      "date": "2026-10-12",
+      "headline": "A vendor says its new cybersecurity reasoning model solves every Cybench challenge and 95.8% of CVE-Bench, with no independent check named",
+      "core": "Continuum AI's October 12 release introduces OrcaCyber Zero 1.5, which it describes as a frontier cybersecurity reasoning model for finding vulnerabilities, investigating multi-stage attack paths and validating real-world exploitability, with a one-million-token context window, native tool calling and extended reasoning. Every figure is the company's own: 95.8% on CVE-Bench, which it puts at 23 of 24 evaluable tasks; 100% on Cybench, 39 of 39 challenges unrestricted; and 93.9% on HumanEval+. It also says the predecessor OrcaCyber Zero 1.0 passed more than 98% pass@1 on CyberGym under an autonomous harness and that this ranks among the top three globally, giving no source for the ranking. The release names no independent party as having reproduced any figure, carries no quotation from a named executive, and lists only a media contact.",
+      "confidence": "self-reported",
+      "outlet": "Continuum AI (via PR Newswire)",
+      "url": "https://www.prnewswire.com/news-releases/continuum-ai-introduces-orcacyber-zero-1-5--a-frontier-cybersecurity-reasoning-model-302905663.html",
+      "topics": [
+        "frontier-capability"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "cisco-secure-email-gateway-cve-2026-76519-exploited",
+      "lane": "atk",
+      "date": "2026-10-14",
+      "headline": "Cisco says a critical Secure Email Gateway flaw that gives root from a crafted attachment is being exploited",
+      "core": "SecurityWeek's October 15 account reports that Cisco said on October 14 its product security incident response team had learned of active exploitation in October 2026 of CVE-2026-76519, rated CVSS 9.8, in the Advanced Malware Protection feature of Secure Email Gateway: a crafted email attachment lets an unauthenticated remote attacker write arbitrary files and run commands with root privileges on systems with the file reputation service enabled and a Content Scanner Tools version earlier than 25.3.0.5525. Per that account the fixes shipped on September 14 in AsyncOS 15.5.5-014 and 16.5.0-780, Cisco had earlier grouped the flaw under CVE-2026-76440, it has contacted Secure Email Cloud customers where possible indicators of compromise were found and published indicators, and it warns that attackers holding that level of access may remove or hide evidence; CISA added the flaw to its Known Exploited Vulnerabilities catalog with an October 17 deadline for federal civilian agencies. No AI element is reported in the flaw, the exploitation or the discovery. Cisco's own advisory and CISA's catalog entry could not be opened here, so no figure on this card is the vendor's or the agency's directly.",
+      "confidence": "press",
+      "outlet": "Cisco (via SecurityWeek)",
+      "url": "https://www.securityweek.com/cisco-warns-of-exploited-secure-email-gateway-vulnerability/",
+      "isNew": true
+    },
     {
       "id": "white-house-genesis-mission-si-compute-commitments",
       "lane": "pol",
@@ -67,8 +164,7 @@
       "core": "AFP reports that in Japan “around 20 companies said their data may have been compromised in similar attacks, potentially affecting millions of customers,” and that Japan's police chief Yoshinobu Kusunoki said on Thursday that the background of the cases, and any links between them, were unclear. It reports that the Japanese government has urged companies to strengthen their cyber defences. AFP carries the Japanese cases alongside the South Korean financial-sector intrusions, where South Korea's government has said it is “highly likely” the ARTEX tool was used and the Financial Services Commission puts the number of people affected at more than 68,000 across more than seven financial institutions, including Shinhan Bank's roughly 25,000 loan applicants. No equivalent attribution has been made for the Japanese cases: AFP names no AI tool, model, actor or intrusion route for them, and states no finding that AI was involved.",
       "confidence": "press",
       "outlet": "AFP",
-      "url": "https://sg.news.yahoo.com/chinese-ai-tool-pulled-prevent-074408996.html",
-      "isNew": false
+      "url": "https://sg.news.yahoo.com/chinese-ai-tool-pulled-prevent-074408996.html"
     },
     {
       "id": "japan-government-urges-firms-report-national-cyber-office",
@@ -78,8 +174,7 @@
       "core": "Kyodo News, as carried by the Seoul Economic Daily, reports that Japan's government on October 9 urged companies to strengthen their IT security and overhaul their response frameworks, describing the run of unauthorised access and personal-data leaks as a management risk capable of halting operations. It asked firms to raise cybersecurity to a leadership-level concern, to increase spending, to staff specialist teams, and to report attacks promptly to the National Cyber Office or to specialised security agencies. The Liberal Democratic Party's national cybersecurity strategy headquarters met the same day and urged the government to strengthen joint public-private response systems; the party's AI policy head, Masaaki Taira, characterised the recent attacks as saturation attacks in which AI is used to repeat assaults automatically at large scale, and called for technical countermeasures that detect anomalies automatically. Among the firms that have reported leaks are Times Car, the country's largest car-sharing operator, with about 6.6 million pieces of user personal data exposed to outside parties, and Daiwa Securities and FamilyMart without figures. Japanese security authorities are investigating who was responsible, the methods used and whether the incidents are linked. No Japanese-government primary could be opened here, and the account that could is an AI-translated Korean report of Japanese-language reporting, so none of the government's or the party's wording is quoted as its own.",
       "confidence": "press",
       "outlet": "Government of Japan (via Kyodo News and the Seoul Economic Daily)",
-      "url": "https://en.sedaily.com/international/2026/10/09/japan-urges-firms-to-boost-cybersecurity-as-ai-driven",
-      "isNew": false
+      "url": "https://en.sedaily.com/international/2026/10/09/japan-urges-firms-to-boost-cybersecurity-as-ai-driven"
     },
     {
       "id": "fitch-korean-bank-breaches-no-rating-impact",
@@ -112,8 +207,7 @@
       "core": "A customer account published by OpenAI on October 9 puts figures on frontier models running security operations at commercial scale. Sophos, which the account says protects more than 625,000 organisations and whose nine security operations centres investigate between 1,000 and 2,000 cases a day, reports an average response time of 89 seconds for cases handled with AI agents against about 38 minutes under its previous process, a 96% reduction in investigation time using OpenAI models, and 52% of managed-detection-and-response cases resolved end to end by AI within boundaries its analysts set. The described architecture has an investigation agent gather customer context, detections and indicators of compromise, and a planning model run a plan–execute–review loop that recommends response actions for analysts to review, across three modes — Notify, Collaborate and Authorise — with potentially destructive actions still requiring human oversight. Sophos chief technology officer John Peterson says “Anything we don't feel comfortable with an agent handling gets passed off for human judgement.” More than 500 third-party integrations feed the platform the agents work from. No independent party has reproduced any of the figures.",
       "confidence": "self-reported",
       "outlet": "Sophos and OpenAI",
-      "url": "https://openai.com/index/sophos/",
-      "isNew": false
+      "url": "https://openai.com/index/sophos/"
     },
     {
       "id": "asymmetric-security-rogue-agents-investigation",
@@ -5028,8 +5122,7 @@
       "topics": [
         "evaluation-incidents"
       ],
-      "key": true,
-      "isNew": false
+      "key": true
     },
     {
       "id": "philadelphia-police-claude-false-homicide-tip",
@@ -5043,8 +5136,7 @@
       "topics": [
         "evaluation-incidents"
       ],
-      "key": true,
-      "isNew": false
+      "key": true
     },
     {
       "id": "ghostaction-workflows-ai-provider-api-keys",
@@ -5057,8 +5149,7 @@
       "url": "https://thehackernews.com/2026/10/credential-stealing-github-actions.html",
       "topics": [
         "attacks-on-ai"
-      ],
-      "isNew": false
+      ]
     },
     {
       "id": "tensorlake-npm-shai-hulud-ai-tool-credentials",
@@ -5071,8 +5162,7 @@
       "url": "https://thehackernews.com/2026/10/tensorlake-npm-package-compromised-to.html",
       "topics": [
         "attacks-on-ai"
-      ],
-      "isNew": false
+      ]
     },
     {
       "id": "doj-fbi-seize-flax-typhoon-scanning-phishing-tools",
@@ -5085,8 +5175,7 @@
       "url": "https://thehackernews.com/2026/10/fbi-seizes-7-domains-disrupts-flax.html",
       "topics": [
         "critical-infrastructure"
-      ],
-      "isNew": false
+      ]
     },
     {
       "id": "cisa-securing-ai-task-force-act-hr-10752",
@@ -5096,8 +5185,7 @@
       "core": "Reps. Troy Carter and Bennie Thompson announced on October 8 that they had reintroduced the CISA Securing AI Task Force Act, under which, in the committee's words, “within one year of enactment, the Director of CISA will establish a Task Force” to coordinate the agency's AI-related directives and activities. The task force would work on how AI is designed, developed, adopted and deployed with a focus on safety and security, assess relevant safety and security initiatives, identify workforce gaps, advise stakeholders on “potential cyber risks associated with AI deployment,” and give “biannual briefings to the Committee on Homeland Security of the House of Representatives” and to a Senate committee. Carter said he was introducing it “to take an essential step towards managing the impact of AI on our cybersecurity landscape,” and Thompson, the committee's ranking member, said “this bill creates a dedicated CISA task force so the agency can better understand the risks that come with AI” and that the goal is to “make sure we are prepared to protect the systems and infrastructure Americans rely on every day.” The announcement names no specific threat, no incident and no AI-assisted attack, and its only cyber reference is the general one to risks from AI deployment. govinfo.gov lists the measure as H.R. 10752 in the 119th Congress, sponsored by Troy A. Carter with Thompson as cosponsor and introduced on October 6, 2026; Nextgov reports that similar legislation was sponsored in May 2024.",
       "confidence": "on-record",
       "outlet": "House Committee on Homeland Security Democrats",
-      "url": "https://democrats-homeland.house.gov/news/legislation/reps-carter-thompson-reintroduce-the-cybersecurity-and-infrastructure-security-agency-securing-ai-task-force-act-to-address-the-evolving-challenges-posed-by-ai",
-      "isNew": false
+      "url": "https://democrats-homeland.house.gov/news/legislation/reps-carter-thompson-reintroduce-the-cybersecurity-and-infrastructure-security-agency-securing-ai-task-force-act-to-address-the-evolving-challenges-posed-by-ai"
     },
     {
       "id": "claim-act-trahan-draft-ai-developer-liability",
@@ -5110,8 +5198,7 @@
       "url": "https://www.cfodive.com/news/house-proposal-clarify-liability-rules-ai-agents/832433/",
       "topics": [
         "evaluation-incidents"
-      ],
-      "isNew": false
+      ]
     },
     {
       "id": "korea-police-financial-hacking-team-43-seven-firms",
@@ -5121,8 +5208,7 @@
       "core": "The National Office of Investigation, the investigative arm of the Korean National Police Agency, expanded its team on the attacks against South Korean financial institutions from 28 to 43 members, “adding specialists in digital forensics and international cooperation,” announcing the reinforcement on Friday. The Korea Times reports that “Data leaks have been confirmed at seven financial firms, including major commercial banks,” without naming them. On the sequence as the paper gives it: police opened a preliminary inquiry on October 1, the day the hacking was first reported in the media; the Serious Crimes Investigation Agency was launched on October 2; and the formal investigation was opened on the Tuesday before publication. The report's text mentions no AI, no ARTEX and no tool of any kind, and makes no attribution.",
       "confidence": "press",
       "outlet": "The Korea Times",
-      "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20261009/police-expand-financial-hacking-probe-team-to-43-add-forensic-specialists",
-      "isNew": false
+      "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20261009/police-expand-financial-hacking-probe-team-to-43-add-forensic-specialists"
     },
     {
       "id": "tuskira-ai-agent-gateway-credential-broker",
@@ -5135,8 +5221,7 @@
       "url": "https://www.helpnetsecurity.com/2026/10/07/open-source-ai-agent-gateway/",
       "topics": [
         "attacks-on-ai"
-      ],
-      "isNew": false
+      ]
     },
     {
       "id": "boozallen-ot-lab-frontier-models-eight-scenarios",
@@ -5147,7 +5232,6 @@
       "confidence": "press",
       "outlet": "Booz Allen Hamilton (via The Register)",
       "url": "https://www.theregister.com/security/2026/10/11/ai-systems-are-fully-capable-of-carrying-out-nightmare-attacks-against-infrastructure-and-nobodys-ready/5302450",
-      "isNew": false,
       "topics": [
         "frontier-capability",
         "critical-infrastructure"
@@ -5162,8 +5246,7 @@
       "core": "Ledger said in a 72-hour update posted on X on October 11 that “all confirmed cases related to the disclosed draining incident of Oct 9th, 2026, involve devices sold through the Southeast Asia reseller CryptoBilis”, and confirmed that one affected device contained an unauthorised hardware implant. It has not explained how the implant works. On-chain researchers at Bitquery put suspected losses at more than $93 million and say more than eight in ten of the drained wallets they traced first received funds in June 2026 or later. Ledger has told customers not to initialise a device bought from that reseller, to move assets from any device already set up to a new one bought directly from Ledger under a new seed phrase, and to contact Ledger support and local law enforcement; its guidance covers purchases from the reseller in the last 90 days, the reseller has stopped selling hardware wallets, and Ledger says it is working with the authorities. A detailed account of the implant — a board hidden under the screen carrying a microcontroller, antenna, LTE chip and e-SIM, said to read the recovery phrase off the screen and pass Ledger’s Genuine Check because the security chip itself is authentic — comes from one affected customer, the former Mt. Gox chief executive Mark Karpelès, and is unverified, and no technical advisory from Ledger is cited on the page. A claim that devices sold in Europe are also affected is likewise unverified and Ledger has not commented on it. This item carries no AI mechanism and is on the board as a significant supply-chain compromise of a security device under the standing editorial note of 2026-08-13.",
       "confidence": "confirmed",
       "outlet": "Ledger (via Help Net Security)",
-      "url": "https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/",
-      "isNew": false
+      "url": "https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/"
     },
     {
       "id": "nadella-models-as-insider-risks-essay",
@@ -5173,8 +5256,7 @@
       "core": "Satya Nadella posted an essay on X on October 10 titled “Models as Insider Risks in the Super Intelligence Era”, arguing that a capable model with access to sensitive systems should be governed the way an organisation governs a privileged employee. TheStreet quotes him writing that “We simply can’t outsource responsibility for what intelligence does on our behalf”, that “We need to separate the supply of intelligence from the authority over it” — “because any sufficiently capable actor with access to important systems can make mistakes or be compromised” — that “If it can’t be observed, it can’t be trusted!”, and that “The most trustworthy Super Intelligence system will not be the one with the model we trust most.” Business Standard’s account of the same essay sets out the controls it proposes: an emergency brake an authorised person can pull to pause or shut down an agent mid-task without relying on the model to notice its own error; permissions set and enforced outside the model so that, in Business Standard’s wording, “The model should not be able to bypass or modify the mechanisms that determine what it can access or do”; tamper-resistant, human-readable records of each significant action that can be audited independently; continuous testing against failures, attacks, unusual situations and post-change behaviour; a separation between the model that performs a critical task and the model that verifies it, with important operations not resting on a single model; and timely disclosure to affected parties of what failed, which safeguards did not hold and what will change. Nadella supports chain-of-thought transparency while saying it cannot guarantee faithful explanations, which is why the logs, access controls and testing sit outside the model. The essay itself could not be opened here — x.com is not reachable to this fetcher — so it is carried through the two outlets above rather than asserted from the primary, and the quotations are attributed to the outlet that carries each.",
       "confidence": "press",
       "outlet": "Satya Nadella, Microsoft (via TheStreet and Business Standard)",
-      "url": "https://www.thestreet.com/technology/microsoft-ceo-wants-ai-treated-like-a-risky-insider-at-work",
-      "isNew": false
+      "url": "https://www.thestreet.com/technology/microsoft-ceo-wants-ai-treated-like-a-risky-insider-at-work"
     },
     {
       "id": "zenity-agentcorruption-aws-agentcore",
@@ -5185,7 +5267,6 @@
       "confidence": "researchers",
       "outlet": "Zenity Labs",
       "url": "https://zenity.io/press-release/zenity-labs-discloses-agentcorruption-a-chain-of-aws-agentcore-flaws",
-      "isNew": false,
       "topics": [
         "attacks-on-ai"
       ],
@@ -5200,7 +5281,6 @@
       "confidence": "researchers",
       "outlet": "arXiv:2610.10150 (Le, Shi, Xing — Northwestern University)",
       "url": "https://arxiv.org/abs/2610.10150",
-      "isNew": false,
       "topics": [
         "ai-found-vulnerabilities"
       ]
@@ -5214,7 +5294,6 @@
       "confidence": "press",
       "outlet": "AWS (via The Register)",
       "url": "https://www.theregister.com/ai-and-ml/2026/10/07/aws-launches-open-source-ai-agent-sandbox-to-prevent-yolo-mode-disasters/5301687",
-      "isNew": false,
       "topics": [
         "attacks-on-ai"
       ]
@@ -5228,7 +5307,6 @@
       "confidence": "self-reported",
       "outlet": "Meta AI",
       "url": "https://research.meta.ai/static/muse-wonder-model-card",
-      "isNew": false,
       "topics": [
         "frontier-capability"
       ]
@@ -5242,7 +5320,6 @@
       "confidence": "self-reported",
       "outlet": "Horizon3.ai",
       "url": "https://horizon3.ai/attack-research/disclosures/anthropic-mythos-rejetto-hfs-rce/",
-      "isNew": false,
       "topics": [
         "ai-found-vulnerabilities",
         "frontier-capability"
@@ -5257,7 +5334,6 @@
       "confidence": "researchers",
       "outlet": "VulnCheck (via The Register)",
       "url": "https://www.theregister.com/security/2026/10/03/anthropics-super-bug-hunting-model-mythos-is-hardcore-good-at-math-as-latest-vuln-under-attack-shows/5300933",
-      "isNew": false,
       "topics": [
         "ai-found-vulnerabilities"
       ],
@@ -5272,7 +5348,6 @@
       "confidence": "self-reported",
       "outlet": "Anthropic",
       "url": "https://www.anthropic.com/claude-haiku-5-5-system-card",
-      "isNew": false,
       "topics": [
         "frontier-capability"
       ]
@@ -5297,10 +5372,10 @@
       "confidence": "researchers",
       "outlet": "Bloom Security (via Help Net Security)",
       "url": "https://www.helpnetsecurity.com/2026/10/13/slugfest-npm-trusted-publishing-flaw/",
-      "isNew": false,
       "topics": [
         "attacks-on-ai"
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "microsoft-decision-1-agent-next-step-scoring",
@@ -5311,7 +5386,6 @@
       "confidence": "self-reported",
       "outlet": "Microsoft",
       "url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
-      "isNew": false,
       "topics": [
         "attacks-on-ai"
       ]
@@ -5325,7 +5399,6 @@
       "confidence": "press",
       "outlet": "CERT-FR and Danfoss (via The Hacker News)",
       "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
-      "isNew": false,
       "topics": [
         "critical-infrastructure"
       ]
@@ -5343,7 +5416,7 @@
         "frontier-capability"
       ],
       "key": true,
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "tencent-corvus-ai-linux-vhost-cve-2026-74580",
@@ -5357,8 +5430,7 @@
       "topics": [
         "ai-found-vulnerabilities",
         "frontier-capability"
-      ],
-      "isNew": true
+      ]
     },
     {
       "id": "doj-openai-engineer-recording-device-charge",
@@ -5373,7 +5445,7 @@
         "ai-in-attacks"
       ],
       "key": true,
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "microsoft-october-2026-patch-tuesday-1415-cves",
@@ -5387,7 +5459,7 @@
       "topics": [
         "ai-found-vulnerabilities"
       ],
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "trellix-ciso-survey-ai-agents-insider-liability",
@@ -5398,7 +5470,7 @@
       "confidence": "press",
       "outlet": "Trellix (via Help Net Security)",
       "url": "https://www.helpnetsecurity.com/2026/10/14/ciso-ai-agent-insider-risk/",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "ahold-delhaize-cybersecurity-incident-systems-offline",
@@ -5409,7 +5481,7 @@
       "confidence": "confirmed",
       "outlet": "Ahold Delhaize",
       "url": "https://newsroom.aholddelhaize.com/update-on-ahold-delhaizes-cybersecurity-incident/",
-      "isNew": true
+      "isNew": false
     }
   ],
   "watchlist": [
@@ -5519,8 +5591,8 @@
     },
     {
       "thread": "Agent-abuse attack surface",
-      "status": "A federal complaint now puts chatbot prompts inside a physical surveillance operation. The Justice Department said on October 13 that it had charged an OpenAI engineer, arrested October 9, over a recorder hidden behind a television in an executive conference room, and alleges that a chatbot account sharing several identifiers with his own submitted prompts between September 24 and 30 on “build[ing] a continuous audio recorder” and “encrypt[ing] the SD card”, with prompts on September 27 and 28 referencing that device's custom header and unique MAC address. The allegations are untested. The longer-running strand is ARTEX, whose author announced on October 8 that “the ARTEX project will no longer be updated and will be converted to closed source”, with the GitHub page taken down and copies already downloaded beyond recall; Korea's National Office of Investigation expanded its team from 28 to 43 on October 9 and confirms data leaks at seven financial firms, naming no tool and making no attribution, while CrowdStrike's October 7 analysis found the instance it examined “used DeepSeek v4.1-flash as the primary LLM backend”. The day-by-day Korean and Japanese sequence is in dashboard-memory.md.",
-      "changed": "2026-10-13",
+      "status": "The operation now has a measured throughput. ZenoX's report of September 11, reaching this board on October 15, describes a Portuguese-speaking credential-stuffing platform on one exposed server that used gpt-5.6 to generate search queries, gpt-5.5 to score candidate targets and DeepSeek v4 models to drive a browser agent through unfamiliar logins: 48,898 queries, 84,660 URLs scored, 6,171 domains qualified, 12,277,358 credentials tested and 11,832 accepted across 3,968 domains. A Claude “Fable” deployment was approached and refused. Semperis's survey of about 1,200 ransomware victims, read on October 14, has 84% saying AI was used on the attackers' side and 44% that their own AI systems were exploited. The federal strand is the Justice Department's October 13 charge against an OpenAI engineer over a recorder hidden in an executive conference room, alleging a linked chatbot account was prompted on building and encrypting it; the allegations are untested. ARTEX's author converted the project to closed source on October 8 with copies already beyond recall, and Korea's National Office of Investigation confirms data leaks at seven financial firms. The day-by-day Korean and Japanese sequence is in dashboard-memory.md.",
+      "changed": "2026-10-14",
       "topic": "ai-in-attacks",
       "items": [
         "japan-twenty-companies-possible-data-compromise",
@@ -5567,7 +5639,10 @@
         "korea-pm-information-protection-overhaul",
         "crowdstrike-artex-korea-finance-attribution",
         "korea-police-financial-hacking-team-43-seven-firms",
-        "doj-openai-engineer-recording-device-charge"
+        "doj-openai-engineer-recording-device-charge",
+        "zenox-scarlet-loop-ai-credential-stuffing-platform",
+        "semperis-2026-ransomware-report-ai-involvement",
+        "microsoft-dcu-yam-store-phishing-infrastructure-disruption"
       ]
     },
     {
@@ -5593,8 +5668,8 @@
     },
     {
       "thread": "Agent supply chain",
-      "status": "The newest hole was not in a package but in who is allowed to publish one. Bloom Security disclosed on October 13 that npm’s Trusted Publishing bound a package to a GitHub repository by its owner-and-name slug without checking GitHub’s permanent numeric ids, so a renamed, transferred or deleted repository freed a slug anyone could claim, add a matching workflow file to, and exchange for a publishing credential — with the resulting release carrying a valid provenance attestation naming the attacker’s repository. More than 1,500 packages with over 10 million downloads were exposed; GitHub validated the report on June 9, announced the change on October 2, and says unvalidated configurations now expire after 48 hours. Bloom’s argument for why it matters here is volume: it estimates agents install about 70 packages a month on a typical endpoint and close to 350 on a developer machine. The live worm is still the npm package tensorlake, version 0.5.144 of October 8, which Socket says “enumerates packages associated with the victim’s publishing identity” and republishes them with Sigstore provenance, and StepSecurity says “writes .claude/settings.json and .vscode/tasks.json files into repos” so it re-runs when the project is next opened in Claude Code or VS Code, taking the configuration and MCP files for Claude, Cursor, Kiro, Windsurf and Zed along with cloud, Vault, Kubernetes and SSH credentials. The fuller package-by-package record is in dashboard-memory.md.",
-      "changed": "2026-10-13",
+      "status": "The newest hole was in the tool that reads the code. Noma Labs disclosed on October 14 an exploit chain it calls SneakPeek in Claude Code Desktop, which it says Anthropic rated CVSS 8.7: an HTML file in a public repository padded past 256KB was written to disk and rendered over file:// instead of as a script-blocked data: URL, and the preview pane opened it automatically when a developer asked Claude Code to review it, reading API keys, cloud credentials, SSH private keys and OAuth tokens off the host. Anthropic's first fix was bypassed with blob: URL Web Workers before a final patch on August 17; no CVE has been posted. Behind it, Bloom Security's October 13 disclosure that npm's Trusted Publishing bound a package to a GitHub repository by its owner-and-name slug rather than GitHub's permanent numeric ids, so a renamed, transferred or deleted repository freed a slug anyone could claim and exchange for a publishing credential — the release then carrying a valid provenance attestation naming the attacker's repository, with more than 1,500 packages and over 10 million downloads exposed and unvalidated configurations now expiring after 48 hours. The live worm is still npm tensorlake 0.5.144, which writes .claude/settings.json and .vscode/tasks.json so it re-runs when a project is next opened in Claude Code or VS Code. The package-by-package record is in dashboard-memory.md.",
+      "changed": "2026-10-14",
       "topic": "attacks-on-ai",
       "items": [
         "gitlab-trg-configpoisoning-deepseek-reasonix-cve-2026-102437",
@@ -5621,7 +5696,8 @@
         "hiddenlayer-claude-code-skill-frontmatter",
         "eset-h1-2026-agent-skills",
         "tensorlake-npm-shai-hulud-ai-tool-credentials",
-        "npm-trusted-publishing-slug-takeover-bloom"
+        "npm-trusted-publishing-slug-takeover-bloom",
+        "noma-sneakpeek-claude-code-desktop-exfiltration"
       ]
     },
     {
@@ -5700,7 +5776,7 @@
     },
     {
       "thread": "Vendor benchmark claims",
-      "status": "A lab has now published a benchmark score and, in the same table, the reason not to read it straight. Meta’s Muse Wonder model card of October 12 reports 92 flags captured on ExploitGym, then says a verification pass run “with a GPT-cyber verifier and independently confirmed with Gemini 3.1 Pro” found “21 of those used the intended vulnerability” and “the other 71 were captured through unintended vulnerabilities”, so 21 is the figure comparable to the published ranking. It sits beside a run of unreproduced operational claims. Booz Allen Hamilton says frontier models achieved the objective in all eight scenarios in its operational-technology lab, reaching the control network from a perimeter compromise in just over 16 minutes, taking over an HMI through editable code in an exported SCADA project and moving a robot arm through its API, with the models unnamed. A customer account OpenAI published on October 9 has Sophos reporting an 89-second average response time against about 38 minutes before. Anthropic’s OSS Scanner expects “a true-positive rate above 90%” on reports sent with no human review; Google’s PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google’s own applications at a “near-zero false positive rate”. The measurement layer stays weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
+      "status": "A lab has now published a benchmark score and, in the same table, the reason not to read it straight. Meta's Muse Wonder model card of October 12 reports 92 flags captured on ExploitGym, then says a verification pass run “with a GPT-cyber verifier and independently confirmed with Gemini 3.1 Pro” found “21 of those used the intended vulnerability” and “the other 71 were captured through unintended vulnerabilities”, so 21 is the figure comparable to the published ranking. It sits beside a run of unreproduced claims. Continuum AI's release the same day puts OrcaCyber Zero 1.5 at 100% on Cybench, 39 of 39 challenges, and 95.8% on CVE-Bench, 23 of 24 evaluable tasks, naming no independent party as having reproduced either and no executive at all. Booz Allen Hamilton says frontier models achieved the objective in all eight scenarios in its operational-technology lab, reaching the control network from a perimeter compromise in just over 16 minutes, with the models unnamed. Anthropic's OSS Scanner expects “a true-positive rate above 90%” on reports sent with no human review; Google's PageBreak agent “uncovered over 500 Cross-Site Scripting (XSS) vulnerabilities” in Google's own applications. The measurement layer stays weak both ways: Dreadnode found 37.1% of passes involved cheating, and VulnCheck confirmed about 1.3% of 1,061 AI-attributed vulnerabilities exploited.",
       "changed": "2026-10-12",
       "topic": "frontier-capability",
       "items": [
@@ -5723,7 +5799,8 @@
         "google-pagebreak-agent-500-xss-first-party-apps",
         "anthropic-cvd-dashboard-6157-vulnerabilities",
         "boozallen-ot-lab-frontier-models-eight-scenarios",
-        "meta-muse-wonder-exploitgym-intended-vulnerability-count"
+        "meta-muse-wonder-exploitgym-intended-vulnerability-count",
+        "continuum-ai-orcacyber-zero-1-5-benchmarks"
       ]
     },
     {
@@ -5819,7 +5896,7 @@
     },
     {
       "thread": "Model-access abuse",
-      "status": "Frontier API keys are now a standing line item in commodity credential theft. The GhostAction wave disclosed on October 9 plants a workflow posing as a security audit into a repository's default branch under the maintainer's own identity and takes Anthropic, OpenAI and OpenRouter API keys alongside AWS credentials and GitHub and GitLab tokens, scanning the working tree and the full git history for thirteen credential patterns; Socket counts more than 500 accounts and tens of thousands of repositories since October 7, StepSecurity two accounts and over 340 repositories, and GitGuardian 772 repositories and 2,577 targeted secrets across September. The entry point is a leaked personal access token, not an exploit. The same pattern runs through the Tensorlake npm compromise, which harvests the configuration and MCP files for Claude, Cursor, Kiro, Windsurf and Zed, and through ThreatDown's CARBONATO, whose agent collects AI API keys from fourteen named providers ahead of SSH credentials and routes its work through an operator-run LLM gateway. Team Cymru's count of 10,867 relay “transfer stations” and the rest of the plumbing is in dashboard-memory.md.",
+      "status": "Frontier API keys are now a standing line item in commodity credential theft, and a working attack platform now shops across providers. The GhostAction wave disclosed on October 9 plants a workflow posing as a security audit into a repository's default branch under the maintainer's own identity and takes Anthropic, OpenAI and OpenRouter API keys alongside AWS credentials and GitHub and GitLab tokens, scanning the working tree and the full git history for thirteen credential patterns; Socket counts more than 500 accounts and tens of thousands of repositories since October 7, StepSecurity two accounts and over 340 repositories, and GitGuardian 772 repositories and 2,577 targeted secrets across September. The entry point is a leaked personal access token, not an exploit. SCARLET LOOP's registry, in ZenoX's September 11 report, configures Claude Opus 4.6, Gemini 2.5 Flash and GLM 5.1 through an aggregator alongside its primary OpenAI and DeepSeek profiles and a local gemma on loopback. The same pattern runs through the Tensorlake npm compromise, which harvests the configuration and MCP files for Claude, Cursor, Kiro, Windsurf and Zed, and through ThreatDown's CARBONATO, whose agent collects AI API keys from fourteen named providers. Team Cymru's count of 10,867 relay “transfer stations” is in dashboard-memory.md.",
       "changed": "2026-10-09",
       "topic": "attacks-on-ai",
       "items": [
@@ -5834,7 +5911,8 @@
         "okta-gray-market-frontier-model-access-proxies",
         "senate-ai-model-access-framework-letter",
         "ghostaction-workflows-ai-provider-api-keys",
-        "tensorlake-npm-shai-hulud-ai-tool-credentials"
+        "tensorlake-npm-shai-hulud-ai-tool-credentials",
+        "zenox-scarlet-loop-ai-credential-stuffing-platform"
       ]
     },
     {
@@ -5871,8 +5949,8 @@
     },
     {
       "thread": "AI infrastructure as attack surface",
-      "status": "One prompt has now reached every agent in a cloud account. Zenity Labs disclosed AgentCorruption on October 8: a prompt to an internet-facing Amazon Bedrock AgentCore agent made it query the AWS metadata service and return its machine’s temporary credentials, which belonged to a default IAM role reaching every AgentCore agent in the same account and region — enough to invoke internal agents, read private conversations and long-term memories across users and sessions, pull container images and source code, take API keys and OAuth tokens from Secrets Manager and environment variables, and plant memories that reroute later conversations to an attacker. AWS has since made IMDSv2 the default and cut that role’s permissions; it disputes the characterisation, saying an agent reaching its own execution-role credentials is documented behaviour. Exposed AI services are also a botnet’s food supply: Lumen’s Black Lotus Labs says the PoeLLM cryptominer feeds on vulnerable LiteLLM and Ollama hosts, with CVE-2026-42271 “likely the exploitation path”, and GitLab’s CVE-2026-90970 (CVSS 9.9, Oct 2) let a Duo user “escape the prompt template sandbox” to command execution on the AI Gateway. Census work: secrets in 12% of credential slots across ~82,000 public MCP configurations; 36,769 reachable self-hosted AI endpoints, 2.02% authenticated. Full CVE list in dashboard-memory.md.",
-      "changed": "2026-10-08",
+      "status": "The exposed surface is now counted, and it is growing. Censys's October 14 post on its 2026 State of the Internet Report puts hosts exposing AI-related tools to the public internet up more than 63% between October 2025 and July 2026, with n8n the most widely exposed product at 113,926 hosts and 76% of those reporting a version inside the affected range of at least one recent critical flaw; press readings of the same report put the totals at roughly 164,000 rising to 268,000 systems across 44 products and differ on OpenClaw. Nothing in it establishes the deployments are exploitable. The sharpest single case stays Zenity Labs' AgentCorruption of October 8, where one prompt to an internet-facing Amazon Bedrock AgentCore agent returned temporary credentials for a default IAM role reaching every AgentCore agent in the same account and region — enough to invoke internal agents, read private conversations and memories across users, and plant memories that reroute later conversations; AWS has made IMDSv2 the default and cut that role's permissions while disputing the characterisation. Lumen's PoeLLM cryptominer feeds on vulnerable LiteLLM and Ollama hosts, and GitLab's CVE-2026-90970 (CVSS 9.9) let a Duo user escape the prompt-template sandbox to command execution. Earlier census work and the full CVE list are in dashboard-memory.md.",
+      "changed": "2026-10-14",
       "topic": "attacks-on-ai",
       "items": [
         "gitlab-ai-gateway-prompt-template-escape-cve-2026-90970",
@@ -5901,7 +5979,8 @@
         "orca-state-of-ai-security-unpatched-ai-packages",
         "delinea-ai-access-scope-violations-survey",
         "poellm-botnet-litellm-ollama-github-poem",
-        "zenity-agentcorruption-aws-agentcore"
+        "zenity-agentcorruption-aws-agentcore",
+        "censys-2026-state-of-internet-exposed-ai-infrastructure"
       ]
     },
     {
@@ -6042,6 +6121,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-10-15",
+      "file": "archive/machine-speed-2026-10-15.html",
+      "items": 450,
+      "note": "Grow mode. Seven items over a Wednesday-into-Thursday window of about 24 hours, five of them fresh. Noma Labs disclosed SneakPeek, an exploit chain in Claude Code Desktop it says Anthropic rated CVSS 8.7: an HTML file padded past 256KB in a public repository was rendered over file:// rather than as a script-blocked data: URL, and the preview pane opened it automatically when a developer asked Claude Code to review it, reading API keys, cloud credentials, SSH private keys and OAuth tokens off the host; Anthropic's first fix was bypassed with blob: URL Web Workers before a final patch on August 17, and no CVE has been posted. Microsoft Threat Intelligence and the Digital Crimes Unit disrupted the YAM Store marketplace and the CoGUI, Haozi and Iron Man System phishing kits, tied to more than a billion messages to over 75,000 organisations since January, with Microsoft saying the fake tenants behind them were likely stood up using AI-generated content and forged documentation. Semperis's survey of about 1,200 ransomware victims has 84% reporting AI on the attackers' side and 44% their own AI systems exploited. Censys put exposed AI infrastructure up more than 63% between October 2025 and July 2026, with n8n the most exposed product at 113,926 hosts and 76% of versioned hosts inside a critical flaw's affected range. ZenoX's September 11 SCARLET LOOP report, new to the board, documents a credential-stuffing platform that used gpt-5.6, gpt-5.5 and DeepSeek v4 models to pick targets and log in, testing 12,277,358 credentials for 11,832 accepted. Continuum AI claimed 100% on Cybench and 95.8% on CVE-Bench for OrcaCyber Zero 1.5 with no independent check named. Cisco said a CVSS 9.8 Secure Email Gateway flaw giving root from a crafted email attachment is being exploited; it carries no AI element and is on the board under the standing editorial note of 2026-08-13. Five watchlist threads touched, three moved, none opened, none retired. Two sources added. Markets empty after the Semperis survey was filed atk rather than mkt, the run's weakest call."
+    },
     {
       "date": "2026-10-14",
       "file": "archive/machine-speed-2026-10-14.html",
@@ -6360,7 +6445,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-10-14",
+  "coverageEnd": "2026-10-15",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",

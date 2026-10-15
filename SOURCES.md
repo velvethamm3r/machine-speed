@@ -369,6 +369,31 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     dates of each lookalike domain. **`island.io` is provenance-blocked to this fetcher** — The Hacker News carried the
     research with Island's researchers named and quoted, so expect to cite it through press and flag it for upgrade.
     Island also appears on the board as a Markets item (its $400 million Series F), which is a different thing entirely._
+- **Censys** — https://censys.com/blog. `def` `atk`
+  - _Added 2026-10-15. The internet-scanning census, and the only recurring measurement this board has of how much AI
+    infrastructure is actually reachable. The list had **no exposure-census source at all**: the Sep 11 self-hosted-AI-endpoint
+    count reached the board through Security Affairs, and the 2026 State of the Internet Report reached it a day late and only
+    because a press write-up surfaced it. **The blog opens first try; `censys.com/2026-state-of-the-internet-report/` is
+    provenance-blocked**, so take the figures from the blog post and expect the report landing page to refuse. Read it carefully
+    on scope: the Oct 14 post gives the growth percentage and the n8n count but **no overall total and no OpenClaw figure**, and
+    the press readings that do carry those totals disagree with each other, so cite the post for what it states and name the
+    divergence rather than picking a number._
+- **Noma Security (Noma Labs)** — https://noma.security/noma-labs. `atk` `def`
+  - _Added 2026-10-15. The AI-security research arm whose beat is flaws in the agent and coding-assistant clients themselves,
+    which is the gap between Salt Labs (platform APIs) and Pillar (the supply chain). Its SneakPeek chain in Claude Code Desktop
+    is the first CVSS-scored, zero-click credential-exfiltration flaw in a frontier lab's own developer client this board carries.
+    **`noma.security` is provenance-blocked to this fetcher**, but its PR Newswire releases open first try and carry the full
+    technical timeline, the vendor-assigned score and the disclosure dates — so cite the wire release and queue the research page
+    for an attended run. Read the dates carefully: the release's timeline can list an advisory or CVE as "posted" in a month
+    without naming a CVE identifier or a fixed version anywhere._
+- **ZenoX** — https://zenox.ai (reports published at `public.vydar.net`). `atk`
+  - _Added 2026-10-15. The route to Latin American threat research, which the list had no line for at all. Its SCARLET LOOP
+    report on an AI-run credential-stuffing platform reached this board **five weeks late**, on 2026-10-15 for a September 11
+    report, and only as a footnote in a Hacker News article about a different campaign. The reports are PDFs on
+    `public.vydar.net` and **open first try**, carry a named author and a date, and name the models by function with per-stage
+    counters — the fullest primary this board has on how such a platform is actually wired. Two cautions: the same report can
+    give a counter two ways (a per-project sum and a global counter), so carry both; and it names no victim organisation and
+    places no origin, so do not let press summaries add either._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
