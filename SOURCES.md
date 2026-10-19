@@ -394,6 +394,22 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     counters — the fullest primary this board has on how such a platform is actually wired. Two cautions: the same report can
     give a counter two ways (a per-project sum and a global counter), so carry both; and it names no victim organisation and
     places no origin, so do not let press summaries add either._
+- **Bitsight** — https://www.bitsight.com/blog · underground research at https://www.bitsight.com/underground. `atk` `cap`
+  - _Added 2026-10-19. The list had **no underground-forum intelligence source at all**; the closest was an August Trellix
+    item on criminal AI tooling, reached through press. Its October 15 review of thousands of posts across sixteen
+    underground communities is the fullest account this board carries of how criminal buyers obtain frontier model access —
+    bring-your-own-key attack platforms billed to the victim, flat-rate model resellers — and it reached the board **the day
+    it published**. The blog opens first try; the gated report landing pages do not. Two cautions: the post carries
+    percentage changes rather than absolute counts, and press readings of the same report differ from it on at least three
+    figures (phishing, branded malicious LLMs, jailbreaking), so take every number from the post itself._
+- **SOCRadar** — https://socradar.io/blog. `atk`
+  - _Added 2026-10-19. The list had no entry for SOCRadar even though the October 6 FortiBleed card already depended on a
+    SOCRadar attribution reached at one remove through Help Net Security. Its CyberXero report — a Russian-speaking access
+    broker running Claude Code as a cluster of fifty-one agents — reached this board **seven days late** and only through
+    The Hacker News, and its companion Operation Master report has not reached it at all. **`socradar.io` is
+    provenance-blocked to this fetcher** while The Hacker News carries its research in full with per-figure detail, so sweep
+    it by `site:socradar.io` search and expect to cite press until an attended run can open it. Note its reports do not
+    carry a visible publication date in the press accounts, so a card sourced this way cannot state one._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
@@ -560,6 +576,16 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
   open the case page directly. This is what let the board move its DIVD intrusion card off press onto
   `DIVD-2026-00014`, and source the two Zammad zero-days to `DIVD-2026-00015`. Note it gives a patch *status* and
   upgrade advice but not always a fixed version number.
+- **Previdian** — per-CVE telemetry pages at https://previdian.com/CVE-YYYY-NNNNN. Added 2026-10-19. The verification
+  tier had **no exploitation-telemetry source that opens to this fetcher**: cisa.gov, nvd.nist.gov and cve.org have all
+  been unreachable for months and VulnCheck was the only comparable entry. Each page **opens first try** and gives the
+  CVSS score and full vector, the affected and fixed versions, the vulnerability class with CWE, a live attempt counter
+  with unique attacker IP and country counts, the **first-observed date set beside the CVE publication date** — which is
+  how the Langflow CVE-2026-105740 card could state that exploitation began sixteen days before publication — and,
+  uniquely among sources that open here, an explicit statement of **whether the CVE is in CISA KEV**. Two cautions: the
+  counters are **live**, so any figure quoted from a page needs the date it was read, and a press account of the same
+  telemetry will lag it rather than contradict it; and the page is a sensor operator's own record, so it is
+  `researchers`, not an agency confirmation.
 
 ## 11. Markets / cyber-insurance — `mkt`
 
