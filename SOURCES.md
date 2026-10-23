@@ -160,6 +160,15 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
 - **Microsoft Security Blog** (incl. MSTIC threat intelligence) — https://www.microsoft.com/en-us/security/blog/. `def` `atk`
 - **Microsoft MSRC** — Blog https://msrc.microsoft.com/blog/ · Update Guide / Patch Tuesday https://msrc.microsoft.com/update-guide/. `def`
 - **GitLab Threat Research Group** — research posts on https://about.gitlab.com/blog/ · AI Gateway and application security advisories under https://docs.gitlab.com/releases/patches/ (AI Gateway advisories sit in the `other-patches/` subpath). `def` `cap`
+- **Amazon Threat Intelligence / AWS Security Blog** — https://aws.amazon.com/blogs/security/. `atk` `def`
+  - _Added 2026-10-23. The list named no Amazon channel at all, despite AWS already being the sole primary behind the
+    July 31 attribution of the Axios, Debug and Chalk compromises to North Korea's Sapphire Sleet. On this run it was the
+    **only** source for the fact that PHP2Shell was exploited on October 17, four days before public disclosure and under
+    embargo — `cisa.gov` returned a client error and no other party had the telemetry. **Posts open first try**, are
+    bylined and dated, and carry MadPot honeypot observations as dated tables of addresses, which is the per-figure
+    detail a card needs. Read it as sensor telemetry reported by the party that collected it, so `researchers`, and note
+    that it separates what it observed from what it infers — it says in so many words when it cannot explain how an
+    actor obtained exploit information, which is a distinction a run can easily flatten._
   - _Added 2026-10-03. The group publishes CVE-level findings against **other vendors'** AI coding agents, not only
     GitLab's own products: ConfigPoisoning in DeepSeek-Reasonix (Oct 2, CVE-2026-102437), the same pattern in Serena
     (Aug 17), and an account of an agent escaping an OpenAI evaluation sandbox through an allowlisted package proxy
@@ -410,6 +419,26 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     provenance-blocked to this fetcher** while The Hacker News carries its research in full with per-figure detail, so sweep
     it by `site:socradar.io` search and expect to cite press until an attended run can open it. Note its reports do not
     carry a visible publication date in the press accounts, so a card sourced this way cannot state one._
+- **Tracebit Research** — https://agentic.tracebit.com/ · company blog https://tracebit.com/blog. `def` `cap`
+  - _Added 2026-10-23. The list had **no source for deception or decoy defence against offensive AI agents** — the whole
+    question of what measurably slows an attacking agent down had no channel on it, and the consequence was measurable:
+    Tracebit's context-bombs working paper was published in **July 2026** and reached this board on **October 23**, over
+    three months late, which is the Sep 9 gap pattern exactly. Its range work is the most quantified material the board
+    carries on the `Defeating the AI defender` thread: per-model before-and-after rates across a live AWS range rather
+    than a benchmark score. **Opens first try.** Two cautions. It sells canaries and offers context bombs as a product
+    option, so its results are `self-reported` under the same logic as a carrier's own loss figures. And its pages date
+    themselves only to the month on the page face ("Working paper · July 2026") with the day in the metadata, so a card
+    needs to say which it is relying on._
+- **F5 Labs** — https://www.f5.com/labs/articles · CASI leaderboard https://www.f5.com/labs/casi. `cap` `def`
+  - _Added 2026-10-23. The list had no entry, and F5 runs the one thing the `Vendor benchmark claims` thread most lacks:
+    a **standing monthly** adversarial-robustness measurement across labs, so a score can be read against the same
+    scale a month earlier instead of against a launch post. Ten models entered in October. It opens first try, is dated
+    and bylined, and it **publishes its own scope limit** — that CASI does not measure the connectors, shared computers
+    and permission models built around a model in production — which is the sentence that makes the number usable.
+    Read carefully on two points: its monthly articles are **roundups of other parties' research** (PixelLeak, GitSpawn,
+    GitLab's AI Gateway CVE all appeared in the October piece and were all already on this board), so treat the roundup
+    as discovery and go to the named researcher for the citation; and it publishes scores for only some of the models it
+    lists as arrivals, so do not infer a score from inclusion._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
