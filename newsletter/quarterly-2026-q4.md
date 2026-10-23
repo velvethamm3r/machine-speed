@@ -9,40 +9,40 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## By the numbers
 
-- 88 source-verified items, 2026-10-01 to 2026-10-19.
-  - Capability: 19
+- 97 source-verified items, 2026-10-01 to 2026-10-23.
+  - Capability: 23
   - Policy: 11
-  - Defense: 21
-  - Attacks: 30
-  - Markets: 7
-- Confirmed by the affected organisation: 4 of 88 (5%).
-- Resting on self-reported, untested claims: 15 (17%).
+  - Defense: 22
+  - Attacks: 33
+  - Markets: 8
+- Confirmed by the affected organisation: 5 of 97 (5%).
+- Resting on self-reported, untested claims: 18 (19%).
 - Median policy response lag, since the board began, among topics policy has answered: 13 days (5 of 6 topics have a policy response; 1 still open).
-- Median defense response lag, since the board began, among topics defense has answered: 23 days (6 of 6 topics have a defense response; 0 still open).
+- Median defense response lag, since the board began, among topics defense has answered: 21 days (6 of 6 topics have a defense response; 0 still open).
 
 ## The lag, topic by topic (since the board began, 2026-07-01)
 
 - **AI in real attacks** — starts 2026-07-01; policy 70 days; defense 50 days.
 - **Attacks on AI systems** — starts 2026-07-02; policy 32 days; defense 5 days.
-- **Frontier model capability** — starts 2026-07-07; policy 2 days; defense 9 days.
+- **Frontier model capability** — starts 2026-07-07; policy 2 days; defense 5 days.
 - **AI-found vulnerabilities** — starts 2026-07-09; policy 5 days; defense 5 days.
 - **Lab evaluation incidents** — starts 2026-07-21; policy 13 days; defense 37 days.
 - **Critical infrastructure** — starts 2026-07-22; policy none yet; defense 40 days.
 
 ## Most-named entities
 
-- OpenAI: 24
+- OpenAI: 26
 - Anthropic: 23
-- Claude (Anthropic): 13
+- Claude (Anthropic): 14
 - Google and Google DeepMind: 10
+- GitHub: 10
+- GPT and ChatGPT (OpenAI): 9
 - Microsoft: 9
-- GitHub: 9
-- GPT and ChatGPT (OpenAI): 6
 - CISA: 6
+- Claude Code: 6
+- Gemini (Google): 5
 - FBI: 5
 - US Congress: 5
-- Claude Code: 5
-- Meta: 4
 
 ## Three stories that defined the quarter
 
