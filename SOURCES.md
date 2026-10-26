@@ -439,6 +439,27 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     GitLab's AI Gateway CVE all appeared in the October piece and were all already on this board), so treat the roundup
     as discovery and go to the named researcher for the citation; and it publishes scores for only some of the models it
     lists as arrivals, so do not infer a score from inclusion._
+- **Symantec Threat Hunter Team** — https://www.security.com/blog-post (research posts) · threat-intelligence index https://www.security.com/threat-intelligence. `atk` `cap`
+  - _Added 2026-10-26. The list had **no Symantec or Broadcom entry of any kind**, which is a conspicuous hole: Symantec
+    runs an **AI honeypot** that imitates an unprotected internet-facing AI service, and on this run that honeypot was the
+    only source anywhere for a captured attack tool built to run up to 100,000 actions without human approval across about
+    74 tools. Nothing else on the list covers the capture of an offensive agent's complete instruction set; every other
+    agent-abuse source on this board reconstructs behaviour from telemetry, open directories or victim reports.
+    **`security.com` is provenance-blocked to this fetcher** — two attempts on the research post returned
+    `PROVENANCE_REQUIRED` — while **Infosecurity Magazine carries the research with per-figure detail and the report's own
+    quotations**, so sweep it by `site:security.com` search and expect to cite press until an attended run can open it.
+    Two cautions. Its report titles carry terms the press account does not explain — the "Skynet" in the report slug is not
+    glossed anywhere in the secondary coverage, so do not import it onto a card as the tool's name. And the honeypot
+    **does not execute** what it captures, so a captured instruction set establishes design intent, not observed effect:
+    "designed to run up to 100,000 actions" is the claim, and a card must not upgrade it to actions taken._
+- **V12** — https://v12.sh/blog. `def` `atk`
+  - _Added 2026-10-26. The list had **no source for the agent-payment layer** — the SDKs that let an agent pay for an API
+    call inside the HTTP request — and that layer is now a distinct attack surface with money directly behind it. V12's
+    October 22 review of x402 found 25 flaws, three critical, including a default client that would hand a hostile API an
+    agent's entire token balance. **`v12.sh` is provenance-blocked**; The Hacker News carries the research flaw by flaw
+    with the fix PRs, so find the post by `site:v12.sh` search and cite press until an attended run can open it. Read it
+    carefully on one point: its Solana facilitator result came from a **local test that sent no live transaction**, so the
+    "complete payment bypass" framing has to be carried with that limit attached._
 
 ## 4. Open-source / open-weight AI — `cap` `def`
 
@@ -548,6 +569,21 @@ Groups that evaluate and report on AI/cyber independently of the labs.
 - **National laboratories** — Sandia https://newsreleases.sandia.gov/ · Idaho National Laboratory https://inl.gov/news/ (the ICS/OT-security lab). Both publish cyber work directly rather than only through DOE. `def` `cap`
 - **White House** — Presidential actions https://www.whitehouse.gov/presidential-actions/ · Executive orders https://www.whitehouse.gov/presidential-actions/executive-orders/ (memoranda, EOs; OSTP / ONCD releases appear here too) · **Fact sheets** https://www.whitehouse.gov/fact-sheets/. `pol`
   - _Fact sheets added 2026-10-09, after the Oct 8 fact sheet announcing $2.4B of industry SI compute for the Genesis Mission Consortium was missed by that morning's sweep. The presidential-actions path alone is not enough: the orders carry the directives, but the money, the partner lists and the agency counts are announced in fact sheets, which are filed under science or economy rather than security and so surface in no cyber search. Read them against what the board already carries — the Oct 8 sheet never mentions cybersecurity, and is in remit only because Genesis Mission is the programme NIST joined on Aug 4 for an AI critical-infrastructure security centre._
+
+- **Federal Register (via govinfo.gov)** — daily issue PDFs at `https://www.govinfo.gov/content/pkg/FR-YYYY-MM-DD/pdf/<FR-doc-number>.pdf` · issue index `https://www.govinfo.gov/app/collection/fr` · bill text at `https://www.govinfo.gov/app/details/BILLS-<congress><chamber><number>is`. `pol` `def`
+  - _Added 2026-10-26. This is the gap that mattered most on this run. The list routed every federal instrument through an
+    agency's own site or `congress.gov`, and **both of those fail here**: `cisa.gov` blocks automated fetchers,
+    `congress.gov` returns `robots_disallowed`, and the agency press release is not the instrument. **govinfo.gov opens,
+    including PDFs**, and it is the authoritative text. On this run it was the only way to read the DHS order excluding
+    DeepSeek from federal civilian IT — a FASCSA exclusion order that appears in the Federal Register and nowhere else
+    this fetcher can reach, and which the secondary accounts described inconsistently (one called it a ban on new
+    purchases; the notice calls it an exclusion from procurements). It also carries introduced bill text, which is the
+    route around `congress.gov` when a sponsor's press release gives no bill number. **Three cautions learned here.**
+    Find the FR document number from a search result or the issue index rather than guessing a URL. A notice's own text and
+    the **signed order in its appendix are different documents** — the appendix is often reproduced as page images, so a
+    date or deadline absent from the notice text may simply be unreadable here, and a card must say which it relied on.
+    And read the signature line carefully: the notice may be signed by a General Counsel while the order itself is the
+    Secretary's act._
 
 ## 7. Congress & policy — `pol`
 
