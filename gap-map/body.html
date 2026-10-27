@@ -1,0 +1,675 @@
+<!-- site-nav -->
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* Scoped to .gapmap on integration. The page now sits between the site's
+   shared nav and footer, so its global rules must not reach them: the
+   originals styled body, a, button and input at the document level and
+   would have recoloured the shared chrome and forced a white background in
+   dark mode. The h1 and a resets neutralise assets/style.css's own
+   bare-element rules, which make h1 a display-serif flex container and give
+   every link the site accent colour. Nothing else about the page changed. */
+.gapmap{-webkit-font-smoothing:antialiased}
+.gapmap h1{display:block;font-family:inherit}
+.gapmap a{color:#0a0a0b;text-decoration:none}
+.gapmap a:hover{color:#1d4ed8;text-decoration:none}
+.gapmap button{font:inherit;color:inherit}
+.gapmap button:focus-visible,.gapmap a:focus-visible,.gapmap input:focus-visible{outline:2px solid #2563eb;outline-offset:2px;border-radius:0}
+.gapmap input[type=range]{accent-color:#0a0a0b}
+.gapmap .ctl{position:sticky;top:0;z-index:10}
+@media (max-width:760px){.gapmap .ctl{position:static}}
+</style>
+</helmet>
+<div class="gapmap" style="min-height:100vh;background:#ffffff;color:#0a0a0b;font-family:'Geist',system-ui,sans-serif;font-feature-settings:'tnum' 1;">
+
+  <header style="max-width:1280px;margin:0 auto;padding:clamp(40px,7vw,88px) clamp(16px,4vw,48px) 40px;display:flex;flex-direction:column;gap:20px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#52525b;">Gap Map</span>
+      <span style="width:1px;height:12px;background:#d4d4d8;"></span>
+      <span style="display:flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:12px;color:#52525b;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></span>{{ sourceLabel }}</span>
+    </div>
+    <h1 style="margin:0;font-size:clamp(36px,6vw,72px);font-weight:600;letter-spacing:-0.045em;line-height:0.98;max-width:900px;">Is defense keeping pace?</h1>
+    <p style="margin:0;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:#52525b;max-width:760px;text-wrap:balance;">We count each reported AI attack or capability jump as a <span style="color:#c2410c;font-weight:500;">problem</span>, and the next defense or policy on the same topic as its <span style="color:#1d4ed8;font-weight:500;">answer</span>. When problems come in faster than answers, the backlog grows.</p>
+  </header>
+
+  <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,48px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1px solid #0a0a0b;border-bottom:1px solid #e7e7ea;">
+      <div style="display:flex;flex-direction:column;gap:6px;padding:20px 20px 22px 0;">
+        <span style="font-size:13px;color:#52525b;">Topics falling behind</span>
+        <span style="font-size:40px;font-weight:600;letter-spacing:-0.03em;line-height:1;"><span style="color:#c2410c;">{{ kpi.behind }}</span><span style="color:#a1a1aa;font-weight:500;"> / 6</span></span>
+        <span style="font-size:12px;color:#6b6b73;">as of {{ asOfLabel }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:20px 20px 22px 0;">
+        <span style="font-size:13px;color:#52525b;">Widest gap</span>
+        <span style="font-size:40px;font-weight:600;letter-spacing:-0.03em;line-height:1;">{{ kpi.worstRatio }}</span>
+        <span style="font-size:12px;color:#6b6b73;">{{ kpi.worstName }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:20px 20px 22px 0;">
+        <span style="font-size:13px;color:#52525b;">Cases still open</span>
+        <span style="font-size:40px;font-weight:600;letter-spacing:-0.03em;line-height:1;">{{ kpi.open }}</span>
+        <span style="font-size:12px;color:#6b6b73;">of {{ kpi.total }} across six topics</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0 22px 0;">
+        <span style="font-size:13px;color:#52525b;">Answered within a month</span>
+        <span style="font-size:40px;font-weight:600;letter-spacing:-0.03em;line-height:1;">{{ kpi.cov }}</span>
+        <span style="font-size:12px;color:#6b6b73;">{{ kpi.covN }}</span>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <div class="ctl" style="background:rgba(255,255,255,0.9);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);border-top:1px solid #e7e7ea;border-bottom:1px solid #e7e7ea;margin-top:32px;">
+    <div style="max-width:1280px;margin:0 auto;padding:16px clamp(16px,4vw,48px) 14px;display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">
+          <span style="font-size:12px;font-weight:600;">Timeline</span>
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#52525b;white-space:nowrap;">{{ weekLabel }}</span>
+        </div>
+      <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+        <button type="button" onClick="{{ togglePlay }}" aria-label="{{ playLabel }} timeline" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px 0 14px;border-radius:999px;border:none;background:#0a0a0b;color:#ffffff;font-size:13px;font-weight:500;cursor:pointer;flex:none;">
+          <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9" rx="0.6" style="fill:#ffffff;"></rect><rect x="7.4" y="1.5" width="2.6" height="9" rx="0.6" style="fill:#ffffff;"></rect></svg>
+          </sc-if>
+          <sc-if value="{{ paused }}" hint-placeholder-val="{{ true }}">
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5 L10.5 6 L3 10.5 Z" style="fill:#ffffff;"></path></svg>
+          </sc-if>
+          {{ playLabel }}
+        </button>
+        <label style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Week</span>
+          <input type="range" min="0" max="{{ maxWeek }}" step="1" value="{{ week }}" onChange="{{ onWeek }}" style="flex:1;min-width:80px;height:40px;margin:0;">
+        </label>
+      </div>
+        <p style="margin:0;font-size:12px;line-height:1.45;color:#6b6b73;text-wrap:pretty;">Step through each week since Jun 29.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px 32px;padding-top:14px;border-top:1px solid #f0f0f2;">
+      <div role="group" aria-labelledby="lbl-rule" style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+        <span id="lbl-rule" style="font-size:12px;font-weight:600;">Link rule</span>
+        <div style="display:flex;gap:2px;padding:3px;background:#f4f4f5;border-radius:10px;">
+          <button type="button" onClick="{{ setNext }}" style="{{ segNext }}">Same topic</button>
+          <button type="button" onClick="{{ setEnt }}" style="{{ segEnt }}">Same actor</button>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.45;color:#6b6b73;text-wrap:pretty;">{{ ruleHelp }}</p>
+      </div>
+      <div role="group" aria-labelledby="lbl-set" style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+        <span id="lbl-set" style="font-size:12px;font-weight:600;">Answers that count</span>
+        <div style="display:flex;gap:2px;padding:3px;background:#f4f4f5;border-radius:10px;">
+          <button type="button" onClick="{{ setAll }}" style="{{ segAll }}">Any response</button>
+          <button type="button" onClick="{{ setBind }}" style="{{ segBind }}">Binding only</button>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.45;color:#6b6b73;text-wrap:pretty;">{{ setHelp }}</p>
+      </div>
+      <div role="group" aria-labelledby="lbl-src" style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+        <span id="lbl-src" style="font-size:12px;font-weight:600;">Sourcing</span>
+        <div style="display:flex;gap:2px;padding:3px;background:#f4f4f5;border-radius:10px;">
+          <button type="button" onClick="{{ setW }}" style="{{ segW }}">Weighted</button>
+          <button type="button" onClick="{{ setU }}" style="{{ segU }}">Unweighted</button>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.45;color:#6b6b73;text-wrap:pretty;">{{ wHelp }}</p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1280px;margin:0 auto;padding:80px clamp(16px,4vw,48px);font-family:'Geist Mono',monospace;font-size:13px;color:#6b6b73;">Loading items.json…</div>
+  </sc-if>
+
+  <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1280px;margin:0 auto;padding:40px clamp(16px,4vw,48px) 0;display:flex;flex-direction:column;gap:72px;">
+
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:48px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+          <h2 style="margin:0;font-size:15px;font-weight:600;">Pace by topic</h2>
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#6b6b73;">4-week averages · {{ asOfLabel }}</span>
+        </div>
+        <div ref="{{ mapRef }}" style="position:relative;">
+          <svg viewBox="0 0 560 430" role="img" aria-label="Scatter of new problems per week against problems answered per week, one bubble per topic" style="width:100%;height:auto;display:block;overflow:visible;">
+            <polygon points="{{ zonePts }}" style="fill:#ea580c;fill-opacity:0.045;"></polygon>
+            <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="5">
+              <line x1="{{ t.x }}" y1="16" x2="{{ t.x }}" y2="388" style="stroke:#f0f0f2;stroke-width:1;"></line>
+              <line x1="52" y1="{{ t.y }}" x2="544" y2="{{ t.y }}" style="stroke:#f0f0f2;stroke-width:1;"></line>
+            </sc-for>
+            <line x1="52" y1="388" x2="544" y2="388" style="stroke:#0a0a0b;stroke-width:1;"></line>
+            <line x1="52" y1="388" x2="544" y2="16" style="stroke:#0a0a0b;stroke-width:1;stroke-dasharray:3 4;stroke-opacity:0.55;"></line>
+            <text x="536" y="34" style="font-family:'Geist',sans-serif;font-size:11px;fill:#1d4ed8;text-anchor:end;">Keeping up</text>
+            <text x="536" y="376" style="font-family:'Geist',sans-serif;font-size:11px;fill:#c2410c;text-anchor:end;">Falling behind</text>
+            <polyline points="{{ trail }}" style="fill:none;stroke:#0a0a0b;stroke-width:1;stroke-opacity:0.25;stroke-dasharray:1 3;stroke-linecap:round;"></polyline>
+            <sc-for list="{{ bubbles }}" as="b" hint-placeholder-count="6">
+              <g style="{{ b.st }}" onClick="{{ b.pick }}">
+                <circle cx="0" cy="0" r="{{ b.r }}" style="{{ b.cs }}"></circle>
+                <circle cx="0" cy="0" r="2.5" style="{{ b.dot }}"></circle>
+              </g>
+            </sc-for>
+            <text x="298" y="426" style="font-family:'Geist',sans-serif;font-size:11px;fill:#52525b;text-anchor:middle;">New problems per week →</text>
+            <text x="12" y="202" transform="rotate(-90 12 202)" style="font-family:'Geist',sans-serif;font-size:11px;fill:#52525b;text-anchor:middle;">Answered per week →</text>
+          </svg>
+          <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="5">
+            <div style="{{ t.xs }}">{{ t.v }}</div>
+            <div style="{{ t.ys }}">{{ t.v }}</div>
+          </sc-for>
+          <sc-for list="{{ bubbles }}" as="b" hint-placeholder-count="6">
+            <button type="button" onClick="{{ b.pick }}" style="{{ b.ls }}">{{ b.short }}</button>
+          </sc-for>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:#6b6b73;text-wrap:pretty;">Above the dashed line, answers keep pace with new problems. Bubble size shows open cases. The dotted line traces the selected topic up to this week.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:32px;min-width:0;">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <h2 style="margin:0;font-size:15px;font-weight:600;">Topics, widest gap first</h2>
+            <p style="margin:0;font-size:13px;line-height:1.5;color:#52525b;text-wrap:pretty;">Select a topic to see its detail and response map below.</p>
+          </div>
+        <div style="overflow-x:auto;">
+          <div style="min-width:540px;display:flex;flex-direction:column;">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 64px 104px 104px;gap:16px;padding:0 12px 10px;align-items:end;border-bottom:1px solid #0a0a0b;font-size:12px;font-weight:600;white-space:nowrap;">
+              <span>Topic</span>
+              <span style="text-align:right;">Cases</span>
+              <span style="text-align:right;">Pace gap</span>
+              <span style="text-align:right;">Median wait</span>
+            </div>
+            <sc-for list="{{ ranked }}" as="r" hint-placeholder-count="6">
+              <button type="button" onClick="{{ r.pick }}" style="{{ r.rowStyle }}">
+                <span style="display:flex;align-items:center;gap:10px;font-size:14px;min-width:0;"><span style="{{ r.dotStyle }}"></span>{{ r.name }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:13px;text-align:right;color:#52525b;">{{ r.n }}</span>
+                <span style="{{ r.ratioStyle }}">{{ r.ratioLabel }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:13px;text-align:right;color:#52525b;">{{ r.med }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+          <dl aria-label="Table legend" style="margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 20px;padding:14px 16px;background:#fafafa;border:1px solid #f0f0f2;border-radius:10px;font-size:12px;line-height:1.5;">
+            <dt style="font-weight:600;color:#0a0a0b;">Cases</dt><dd style="margin:0;color:#52525b;">Attacks and capability jumps reported since Jul 1.</dd>
+            <dt style="font-weight:600;color:#0a0a0b;">Pace gap</dt><dd style="margin:0;color:#52525b;">New problems for every one answered, averaged over the past 4 weeks.</dd>
+            <dt style="font-weight:600;color:#0a0a0b;">Median wait</dt><dd style="margin:0;color:#52525b;">Days until half of cases got a first public response.</dd>
+            <dt style="font-weight:600;color:#0a0a0b;">Color</dt><dd style="margin:0;color:#52525b;display:flex;flex-wrap:wrap;gap:4px 16px;"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#ea580c;"></span>Falling behind (gap above 1 : 1)</span><span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>Keeping up</span></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Topic detail" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:28px 48px;align-items:start;border-top:1px solid #0a0a0b;padding-top:28px;margin-top:-24px;">
+        <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;">
+            <h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.03em;">{{ d.name }}</h2>
+            <sc-if value="{{ d.lowN }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:12px;color:#52525b;border:1px solid #e7e7ea;padding:4px 10px;border-radius:999px;">Fewer than 20 cases</span>
+            </sc-if>
+          </div>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#3f3f46;text-wrap:pretty;max-width:600px;">{{ d.verdict }}</p>
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:12px;border-top:1px solid #f0f0f2;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;">
+              <span style="font-size:13px;font-weight:600;">How sure is this? <span style="{{ d.robStyle }}">{{ d.robGrade }}</span></span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                <sc-for list="{{ d.robCells }}" as="x" hint-placeholder-count="8">
+                  <span title="{{ x.label }}" style="{{ x.style }}">{{ x.ratio }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.5;color:#52525b;text-wrap:pretty;">{{ d.robSentence }} Each chip is one combination; the outlined chip is your current setting.</p>
+          </div>
+        </div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#e7e7ea;border:1px solid #e7e7ea;border-radius:12px;overflow:hidden;">
+            <div style="background:#ffffff;padding:16px;display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:12px;color:#52525b;">Pace gap</span>
+              <span style="{{ d.ratioStyle }}">{{ d.ratioLabel }}</span>
+              <span style="font-size:11px;color:#6b6b73;">{{ d.rates }}</span>
+            </div>
+            <div style="background:#ffffff;padding:16px;display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:12px;color:#52525b;">Still unanswered</span>
+              <span style="font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;">{{ d.open }}</span>
+              <span style="font-size:11px;color:#6b6b73;">of {{ d.n }} since Jul 1</span>
+            </div>
+            <div style="background:#ffffff;padding:16px;display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:12px;color:#52525b;">Median wait</span>
+              <span style="font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;">{{ d.med }}</span>
+              <span style="font-size:11px;color:#6b6b73;">{{ d.ci }}</span>
+            </div>
+            <div style="background:#ffffff;padding:16px;display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:12px;color:#52525b;">Answered within a month</span>
+              <span style="font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;">{{ d.cov }}</span>
+              <span style="font-size:11px;color:#6b6b73;">{{ d.covN }}</span>
+            </div>
+          </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:20px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;border-top:1px solid #0a0a0b;padding-top:24px;">
+        <div style="display:flex;flex-direction:column;gap:8px;max-width:680px;">
+          <h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.03em;">Response map · {{ d.name }}</h2>
+          <p style="margin:0;font-size:14px;line-height:1.55;color:#52525b;text-wrap:pretty;">Cases are on the left, by date. Defense and policy items that answer them under the current link rule are on the right. Select a row to highlight its links.</p>
+        </div>
+        <div role="group" aria-label="Time window" style="display:flex;gap:2px;padding:3px;background:#f4f4f5;border-radius:10px;">
+          <button type="button" onClick="{{ setRecent }}" style="{{ segRecent }}">Last 6 weeks</button>
+          <button type="button" onClick="{{ setWinAll }}" style="{{ segWinAll }}">Since Jul 1</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-size:12px;color:#52525b;">
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:20px;border-top:2px solid #2563eb;"></span>Defense</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:20px;border-top:2.5px solid #7c3aed;"></span>Binding policy</span>
+        <span style="display:flex;align-items:center;gap:6px;"><svg width="20" height="4" aria-hidden="true" style="display:block;"><line x1="0" y1="2" x2="20" y2="2" style="stroke:#7c3aed;stroke-width:2;stroke-dasharray:8 3 1.5 3;"></line></svg>Bill</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:20px;border-top:2px dashed #a78bfa;"></span>Other proposal</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:20px;border-top:2px dashed #a1a1aa;"></span>Statement</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#c2410c;background:#fff4ed;padding:2px 7px;border-radius:999px;">OPEN</span>No response yet</span>
+        <span style="margin-left:auto;font-family:'Geist Mono',monospace;color:#6b6b73;">{{ rm.summary }}</span>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <div style="min-width:760px;">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);">
+            <div style="font-size:12px;color:#6b6b73;padding:0 8px 10px;">Cases · attacks and capabilities</div>
+            <div></div>
+            <div style="font-size:12px;color:#6b6b73;padding:0 8px 10px;">Responses · defense and policy</div>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);">
+            <div style="{{ rm.colStyle }}">
+              <sc-for list="{{ rm.cases }}" as="x" hint-placeholder-count="8">
+                <button type="button" onClick="{{ x.pick }}" title="{{ x.title }}" style="{{ x.style }}">
+                  <span style="{{ x.chipStyle }}">{{ x.chip }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#6b6b73;">{{ x.date }}</span>
+                  <span style="font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;">{{ x.headline }}</span>
+                  <span style="{{ x.badgeStyle }}">{{ x.badge }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <svg width="120" height="{{ rm.h }}" viewBox="{{ rm.vb }}" aria-hidden="true" style="display:block;overflow:visible;">
+              <sc-for list="{{ rm.links }}" as="l" hint-placeholder-count="6">
+                <path d="{{ l.d }}" style="{{ l.st }}"></path>
+              </sc-for>
+            </svg>
+            <div style="{{ rm.colStyle }}">
+              <sc-for list="{{ rm.resps }}" as="x" hint-placeholder-count="5">
+                <button type="button" onClick="{{ x.pick }}" title="{{ x.title }}" style="{{ x.style }}">
+                  <span style="{{ x.chipStyle }}">{{ x.chip }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#6b6b73;">{{ x.date }}</span>
+                  <span style="{{ x.hlStyle }}">{{ x.headline }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#52525b;white-space:nowrap;">{{ x.count }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ fx.some }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ fx.popStyle }}">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#6b6b73;line-height:1.5;letter-spacing:0.02em;">{{ fx.meta }}</span>
+                  <button type="button" onClick="{{ closePop }}" aria-label="Close" style="display:flex;align-items:center;justify-content:center;background:#f4f4f5;border:none;border-radius:999px;width:32px;height:32px;cursor:pointer;flex:none;">
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1 L9 9 M9 1 L1 9" style="stroke:#0a0a0b;stroke-width:1.5;stroke-linecap:round;"></path></svg>
+                  </button>
+                </div>
+                <a href="{{ fx.href }}" target="_blank" style="font-size:16px;font-weight:500;line-height:1.4;text-wrap:pretty;">{{ fx.title }}</a>
+                <span style="font-size:12px;font-weight:500;color:#52525b;">{{ fx.linkHead }}</span>
+                <sc-for list="{{ fx.links }}" as="l" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:4px;padding:10px 0 0;border-top:1px solid #f0f0f2;">
+                    <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#6b6b73;">{{ l.tag }}</span>
+                    <a href="{{ l.href }}" target="_blank" style="font-size:14px;line-height:1.45;text-wrap:pretty;">{{ l.headline }}</a>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ fx.isOpen }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:13px;color:#c2410c;font-weight:500;">No qualifying response yet · open {{ fx.openDays }} days</span>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{ rm.empty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:24px 0;font-size:14px;color:#52525b;">No cases in this window. Switch to “Since Jul 1”.</div>
+      </sc-if>
+    </section>
+
+
+    <section style="display:flex;flex-direction:column;gap:28px;border-top:1px solid #0a0a0b;padding-top:24px;">
+      <h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.03em;">Method</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 56px;font-size:14px;line-height:1.6;color:#3f3f46;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <h3 style="margin:0;font-size:14px;font-weight:600;color:#0a0a0b;">Cases and links</h3>
+          <p style="margin:0;text-wrap:pretty;">Each Attacks or Capability item tagged with the topic opens a case. Under “Same topic”, the first Defense or Policy item in the same topic, dated on or after the case, closes it. Under “Same actor”, the response must also share an entity tag (such as langflow or openai); up to 3 matching responses are shown and the first closes the case.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <h3 style="margin:0;font-size:14px;font-weight:600;color:#0a0a0b;">Policy types</h3>
+          <p style="margin:0;text-wrap:pretty;">A fixed keyword rule on the headline sets the type. “voluntary / explainer / probably wait / blocks” means Statement. “would / introduce / draft / calls for / letter / study / asks” means Proposed, and a Bill if the headline names a bill or act. Otherwise “signs / orders / requires / enforces / deadline / excluded / subpoena / mandate” means Binding. Anything else is a Statement. A stage field makes an item a Bill at that stage. Current split: {{ polSplit }}.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <h3 style="margin:0;font-size:14px;font-weight:600;color:#0a0a0b;">Weights and statistics</h3>
+          <p style="margin:0;text-wrap:pretty;">Weights apply to rates and backlog: Confirmed and On the record 1.0, Researchers 0.8, Press 0.6, Attacker claim 0.5, Self-reported 0.4. Rates are 4-week trailing means. Median time to response is a Kaplan–Meier estimate with a 95% bootstrap interval (200 resamples, fixed seed). Topics with fewer than 20 cases are flagged.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <h3 style="margin:0;font-size:14px;font-weight:600;color:#0a0a0b;">Known limits</h3>
+          <p style="margin:0;text-wrap:pretty;">{{ untagged }} Links are inferred from timing and tags, not editorial judgment; a responds_to field on the board would replace them. Cases opened before July 1, 2026 are not counted, and neither are responses that go unreported.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+</div>
+</x-dc>
+<!-- site-footer -->
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  state = { items: null, source: '', updated: '', week: 0, sel: 'attacks-on-ai', rule: 'next', set: 'all', wtd: true, playing: false, win: 'recent', focus: null };
+  DAY = 864e5;
+  START = Date.UTC(2026, 5, 29);
+  ATK = '#ea580c'; RSP = '#2563eb'; ATKT = '#c2410c'; RSPT = '#1d4ed8'; INK = '#0a0a0b';
+  TOPICS = [
+    ['evaluation-incidents', 'Lab evaluation incidents', 'Eval incidents'],
+    ['frontier-capability', 'Frontier model capability', 'Frontier capability'],
+    ['ai-in-attacks', 'AI in real attacks', 'AI in attacks'],
+    ['attacks-on-ai', 'Attacks on AI systems', 'Attacks on AI'],
+    ['ai-found-vulnerabilities', 'AI-found vulnerabilities', 'AI-found vulns'],
+    ['critical-infrastructure', 'Critical infrastructure', 'Critical infra']
+  ];
+  WT = { confirmed: 1, 'on-record': 1, researchers: 0.8, press: 0.6, claimed: 0.5, 'self-reported': 0.4 };
+  CONF = { confirmed: 'Confirmed by org', claimed: 'Claimed by attacker', researchers: 'Reported by researchers', press: 'Reported by press', 'on-record': 'On the record', 'self-reported': 'Self-reported' };
+  LANE = { cap: 'capability', pol: 'policy', def: 'defense', atk: 'attacks', mkt: 'markets' };
+  PROPOSED = /\b(would|introduc\w*|draft\w*|calls? (on|for)|urg\w*|demand\w*|letter|propos\w*|weigh\w*|stud(y|ies)|request for information|asks?|recommend\w*)\b/i;
+  BINDING = /\b(signs?|signed|enacted|orders?|ordered|requires|required|enforc\w*|until|deadline|excluded|subpoena\w*|injunction|authoriz\w*|bars?|mandat\w*)\b/i;
+  STMT = /\b(voluntary|explainer|in focus|probably wait|blocks?)\b/i;
+  BILLRX = /\b(bill|act|S\.\s?\d+|H\.R\.\s?\d+|legislation|discussion draft)\b/i;
+  memo = {};
+
+  componentDidMount() {
+    const use = (j, source) => {
+      const arr = v => Array.isArray(v) ? v : (v ? String(v).split(/;\s*/).filter(Boolean) : []);
+      const items = j.items.map(x => {
+        const it = { ...x, t: Date.parse(x.date + 'T00:00:00Z'), topics: arr(x.topics), entities: arr(x.entities) };
+        const h = it.headline;
+        it.pclass = it.lane !== 'pol' ? null : it.stage ? 'Bill' : this.STMT.test(h) ? 'Statement' : this.PROPOSED.test(h) ? (this.BILLRX.test(h) ? 'Bill' : 'Proposed') : this.BINDING.test(h) ? 'Binding' : 'Statement';
+        return it;
+      }).sort((a, b) => a.t - b.t);
+      this.maxT = Math.max(...items.map(i => i.t));
+      this.nW = Math.floor((this.maxT - this.START) / (7 * this.DAY)) + 1;
+      this.memo = {}; this.MAX = null;
+      this.setState({ items, source, updated: j.updated || '', week: this.nW - 1 });
+    };
+    const get = u => fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(j => { if (!j || !Array.isArray(j.items)) throw new Error('bad'); return j; });
+    get('/data/items.json').then(j => use(j, 'live'))
+      .catch(() => get('./data/items-snapshot.json').then(j => use(j, 'snapshot')));
+  }
+  componentWillUnmount() { clearInterval(this.timer); this.ro && this.ro.disconnect(); }
+  mapRef = el => {
+    if (!el || this.mapEl === el) return;
+    this.mapEl = el; this.ro && this.ro.disconnect();
+    this.ro = new ResizeObserver(() => { const w = el.getBoundingClientRect().width; if (w && Math.abs(w - (this.state.plotW || 0)) > 4) this.setState({ plotW: w }); });
+    this.ro.observe(el);
+  };
+  wk(t) { return Math.min(this.nW - 1, Math.max(0, Math.floor((t - this.START) / (7 * this.DAY)))); }
+  endOf(w) { return Math.min(this.maxT, this.START + (w * 7 + 6) * this.DAY); }
+
+  base(tid, rule, set, wtd) {
+    const key = [tid, rule, set, wtd].join('|');
+    if (this.memo[key]) return this.memo[key];
+    const I = this.state.items, nW = this.nW, D = this.DAY;
+    const cases = I.filter(i => (i.lane === 'atk' || i.lane === 'cap') && i.topics.includes(tid));
+    const resp = I.filter(i => i.topics.includes(tid) && (set === 'all' ? (i.lane === 'def' || i.lane === 'pol') : (i.lane === 'pol' && i.pclass === 'Binding')));
+    const arr = cases.map(a => {
+      const matches = resp.filter(r => r.t >= a.t && (rule === 'next' || r.entities.some(e => a.entities.includes(e))));
+      const links = rule === 'next' ? matches.slice(0, 1) : matches.slice(0, 3);
+      const r = matches[0];
+      return { a, w: wtd ? (this.WT[a.confidence] ?? 0.6) : 1, r, links, closeT: r ? r.t : null, lag: r ? (r.t - a.t) / D : null };
+    });
+    const arrW = Array(nW).fill(0), clsW = Array(nW).fill(0);
+    arr.forEach(c => { arrW[this.wk(c.a.t)] += c.w; if (c.closeT != null) clsW[this.wk(c.closeT)] += c.w; });
+    const avg = (x, w) => { let s = 0, n = 0; for (let k = Math.max(0, w - 3); k <= w; k++) { s += x[k]; n++; } return s / n; };
+    const va = [], vr = [], cumA = [], cumC = [], backlog = [];
+    let ca = 0, cc = 0;
+    for (let w = 0; w < nW; w++) {
+      va.push(avg(arrW, w)); vr.push(avg(clsW, w)); ca += arrW[w]; cc += clsW[w]; cumA.push(ca); cumC.push(cc);
+      const e = this.endOf(w);
+      backlog.push(arr.reduce((s, c) => s + (c.a.t <= e && (c.closeT == null || c.closeT > e) ? c.w : 0), 0));
+    }
+    return (this.memo[key] = { arr, va, vr, cumA, cumC, backlog });
+  }
+  km(list, asOf) {
+    const D = this.DAY;
+    const obs = list.filter(c => c.a.t <= asOf).map(c => {
+      const ev = c.closeT != null && c.closeT <= asOf;
+      return { d: ev ? c.lag : (asOf - c.a.t) / D, ev };
+    }).sort((a, b) => a.d - b.d);
+    let S = 1, i = 0, median = null; const pts = [[0, 1]];
+    const n0 = obs.length;
+    while (i < obs.length) {
+      const t = obs[i].d; let ev = 0, tot = 0;
+      while (i < obs.length && obs[i].d === t) { if (obs[i].ev) ev++; tot++; i++; }
+      const atRisk = n0 - (i - tot);
+      if (ev > 0) { S *= 1 - ev / atRisk; pts.push([t, S]); if (median == null && S <= 0.5) median = t; }
+    }
+    const maxD = obs.length ? obs[obs.length - 1].d : 0;
+    return { pts, median, n: n0, events: obs.filter(o => o.ev).length, maxD };
+  }
+  bootCI(list, asOf) {
+    let s = 12345; const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const L = list.filter(c => c.a.t <= asOf); if (L.length < 3) return null;
+    const meds = [];
+    for (let b = 0; b < 200; b++) { const smp = L.map(() => L[Math.floor(rnd() * L.length)]); const m = this.km(smp, asOf).median; meds.push(m == null ? Infinity : m); }
+    meds.sort((a, b) => a - b);
+    return [meds[5], meds[194]];
+  }
+  cov(list, asOf) {
+    const el = list.filter(c => (asOf - c.a.t) / this.DAY >= 30);
+    const hit = el.filter(c => c.closeT != null && c.closeT <= asOf && c.lag <= 30).length;
+    return { n: el.length, hit };
+  }
+  seg(active) {
+    return { flex: '1 1 0', fontFamily: "'Geist',sans-serif", fontSize: 13, height: 34, padding: '0 12px', borderRadius: 7, border: 'none', cursor: 'pointer', fontWeight: 500, whiteSpace: 'nowrap', background: active ? '#ffffff' : 'transparent', color: active ? '#0a0a0b' : '#52525b', boxShadow: active ? '0 0 0 1px #e4e4e7, 0 1px 2px rgba(10,10,11,0.06)' : 'none', transition: 'background 150ms, color 150ms' };
+  }
+  togglePlay = () => {
+    if (this.state.playing) { clearInterval(this.timer); this.setState({ playing: false }); return; }
+    if (this.state.week >= this.nW - 1) this.setState({ week: 0 });
+    this.setState({ playing: true });
+    this.timer = setInterval(() => this.setState(s => {
+      if (s.week >= this.nW - 1) { clearInterval(this.timer); return { playing: false }; }
+      return { week: s.week + 1 };
+    }), 650);
+  };
+  rtype(r) { return r.lane === 'def' ? 'def' : r.pclass === 'Binding' ? 'bind' : r.pclass === 'Bill' ? 'bill' : r.pclass === 'Proposed' ? 'prop' : 'stmt'; }
+
+  renderVals() {
+    const { items, week, sel, rule, set, wtd, playing, source, updated, win, focus } = this.state;
+    const ctl = {
+      togglePlay: this.togglePlay, playLabel: playing ? 'Pause' : 'Play', playing, paused: !playing, week, maxWeek: (this.nW || 1) - 1,
+      onWeek: e => this.setState({ week: +e.target.value }),
+      setNext: () => this.setState({ rule: 'next' }), setEnt: () => this.setState({ rule: 'entity' }),
+      setAll: () => this.setState({ set: 'all' }), setBind: () => this.setState({ set: 'binding' }),
+      setW: () => this.setState({ wtd: true }), setU: () => this.setState({ wtd: false }),
+      setRecent: () => this.setState({ win: 'recent' }), setWinAll: () => this.setState({ win: 'all' }),
+      segNext: this.seg(rule === 'next'), segEnt: this.seg(rule === 'entity'),
+      segAll: this.seg(set === 'all'), segBind: this.seg(set === 'binding'),
+      segW: this.seg(wtd), segU: this.seg(!wtd),
+      segRecent: this.seg(win === 'recent'), segWinAll: this.seg(win === 'all'),
+      ruleHelp: rule === 'next' ? 'Any later defense or policy on the same topic answers a case.' : 'The response must also name the same product, company or group.',
+      setHelp: set === 'all' ? 'Defenses, bills, proposals and statements all count.' : 'Only signed, ordered or enforced rules count.',
+      wHelp: wtd ? 'Unconfirmed claims count less than confirmed reports.' : 'Every report counts equally.'
+    };
+    if (!items) return { ...ctl, loading: true, ready: false, sourceLabel: 'Loading data…', weekLabel: '—' };
+    const ATK = this.ATK, RSP = this.RSP, ATKT = this.ATKT, RSPT = this.RSPT, INK = this.INK, D = this.DAY;
+    const L = 52, TP = 16, W = 492, H = 372;
+    const asOf = this.endOf(week);
+    const fmtD = t => new Date(t).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    if (!this.MAX) {
+      const vals = [];
+      this.TOPICS.forEach(([tid]) => ['next', 'entity'].forEach(r => ['all', 'binding'].forEach(st => [true, false].forEach(wt => {
+        const b = this.base(tid, r, st, wt); b.va.forEach(v => vals.push(v)); b.vr.forEach(v => vals.push(v));
+      }))));
+      vals.sort((a, b) => a - b);
+      this.MAX = Math.max(2, Math.ceil(vals[Math.floor(vals.length * 0.95)] || 2));
+    }
+    const MAX = this.MAX;
+    const sc = v => Math.min(Math.max(v, 0), MAX) / MAX;
+    const px = v => L + sc(v) * W, py = v => TP + H - sc(v) * H;
+    const ratioOf = (va, vr) => vr < 0.01 ? (va < 0.01 ? null : Infinity) : va / vr;
+    const fmtR = r => r == null ? '—' : r === Infinity ? '∞' : r >= 10 ? '>10×' : r.toFixed(1) + '×';
+    const fmtMed = k => k.median == null ? (k.n ? '>' + Math.floor(k.maxD) + 'd' : '—') : Math.round(k.median) + 'd';
+    const rows = this.TOPICS.map(([tid, name, short]) => {
+      const b = this.base(tid, rule, set, wtd), va = b.va[week], vr = b.vr[week], ratio = ratioOf(va, vr);
+      return { tid, name, short, b, va, vr, ratio, bl: b.backlog[week], k: this.km(b.arr, asOf), col: ratio == null || ratio <= 1 ? RSP : ATK };
+    });
+    const kS = (this.state.plotW || 560) / 560;
+    const objs = rows.map(r => ({ r, x: px(r.va), y: py(r.vr), rad: Math.min(44, 6 + Math.sqrt(r.bl) * 3) }));
+    const placed = objs.map(o => ({ id: o.r.tid, x0: o.x - o.rad, x1: o.x + o.rad, y0: o.y - o.rad, y1: o.y + o.rad })), place = {};
+    [...objs].sort((a, b) => a.y - b.y).forEach(o => {
+      const w = (o.r.short.length * 6.6 + 10) / kS, hh = 10 / kS, off = o.rad * 0.8 + 4 / kS, cands = [];
+      [0, -1, 1, -2, 2, -3, 3].forEach(s => { cands.push({ side: 'r', dy: s * 18 / kS }); cands.push({ side: 'l', dy: s * 18 / kS }); });
+      const box = c => { const x0 = c.side === 'r' ? o.x + off : o.x - off - w; return { x0, x1: x0 + w, y0: o.y + c.dy - hh, y1: o.y + c.dy + hh }; };
+      const hit = bx => bx.x0 < 50 || bx.x1 > 560 || bx.y0 < 0 || bx.y1 > 392 || placed.some(p => p.id !== o.r.tid && bx.x0 < p.x1 && bx.x1 > p.x0 && bx.y0 < p.y1 && bx.y1 > p.y0);
+      const c = cands.find(c => !hit(box(c))) || cands[0];
+      placed.push(box(c)); place[o.r.tid] = { ...c, offPx: off * kS, dyPx: c.dy * kS, rad: o.rad };
+    });
+    const pickT = tid => () => this.setState({ sel: tid, focus: null });
+    const bubbles = rows.map(r => {
+      const on = r.tid === sel, pl = place[r.tid];
+      return {
+        st: { transform: `translate(${px(r.va)}px, ${py(r.vr)}px)`, transition: 'transform 600ms cubic-bezier(.2,.7,.2,1)', cursor: 'pointer' },
+        r: pl.rad, cs: { fill: r.col, fillOpacity: on ? 0.22 : 0.08, stroke: r.col, strokeWidth: on ? 2 : 1, strokeOpacity: on ? 1 : 0.7, transition: 'r 600ms, fill-opacity 200ms' },
+        dot: { fill: on ? INK : r.col },
+        short: r.short,
+        ls: { position: 'absolute', left: `calc(${px(r.va) / 560 * 100}% ${pl.side === 'r' ? '+' : '-'} ${pl.offPx}px)`, top: `calc(${py(r.vr) / 430 * 100}% + ${pl.dyPx}px)`, transform: pl.side === 'r' ? 'translateY(-50%)' : 'translate(-100%,-50%)', fontFamily: "'Geist',sans-serif", fontSize: 12, fontWeight: on ? 600 : 400, color: on ? INK : '#52525b', background: 'transparent', border: 'none', padding: '2px 3px', whiteSpace: 'nowrap', cursor: 'pointer', textShadow: '0 0 3px #ffffff, 0 0 3px #ffffff, 0 0 3px #ffffff', transition: 'left 600ms cubic-bezier(.2,.7,.2,1), top 600ms cubic-bezier(.2,.7,.2,1)' },
+        pick: pickT(r.tid)
+      };
+    });
+    const mono = { fontFamily: "'Geist Mono',monospace", fontSize: 11, color: '#6b6b73', position: 'absolute' };
+    const ticks = [];
+    [0, 0.25, 0.5, 1, 2, 3, 4, 6, 8, 12, 16].filter(v => v <= MAX).concat(MAX).filter((v, i, a) => a.indexOf(v) === i).filter(v => MAX <= 4 || v >= 1 || v === 0).forEach(v => ticks.push({ v, x: px(v), y: py(v),
+      xs: { ...mono, left: `${px(v) / 560 * 100}%`, top: `${398 / 430 * 100}%`, transform: 'translateX(-50%)' },
+      ys: { ...mono, right: `${(1 - 44 / 560) * 100}%`, top: `${py(v) / 430 * 100}%`, transform: 'translateY(-50%)' } }));
+    const cur = rows.find(r => r.tid === sel), b = cur.b;
+    const trail = b.va.slice(0, week + 1).map((v, w) => `${px(v)},${py(b.vr[w])}`).join(' ');
+    const rk = r => r === Infinity ? 99 : r ?? -1;
+    const sorted = [...rows].sort((a, c) => rk(c.ratio) - rk(a.ratio));
+    const ranked = sorted.map(r => ({
+      name: r.name, n: r.k.n, ratioLabel: r.ratio == null ? '—' : r.ratio === Infinity ? 'none answered' : r.ratio >= 10 ? '>10 : 1' : r.ratio.toFixed(1) + ' : 1',
+      med: r.k.median != null ? (Math.round(r.k.median) === 1 ? '1 day' : Math.round(r.k.median) + ' days') : r.k.n ? 'not yet' : '—',
+      dotStyle: { width: 8, height: 8, borderRadius: '50%', flex: 'none', background: r.col },
+      ratioStyle: { fontFamily: "'Geist Mono',monospace", fontSize: 13, textAlign: 'right', color: r.col === ATK ? ATKT : RSPT, fontWeight: 500 },
+      rowStyle: { display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 64px 104px 104px', gap: 16, whiteSpace: 'nowrap', padding: '0 12px', minHeight: 48, width: '100%', boxSizing: 'border-box', textAlign: 'left', alignItems: 'center', cursor: 'pointer', border: 'none', borderBottom: '1px solid #f0f0f2', borderRadius: 0, background: r.tid === sel ? '#f4f4f5' : 'transparent', fontWeight: r.tid === sel ? 600 : 400, transition: 'background 150ms' },
+      pick: pickT(r.tid)
+    }));
+    const km0 = cur.k;
+    const ci = this.bootCI(b.arr, asOf), cv = this.cov(b.arr, asOf);
+
+    const combos = [];
+    ['next', 'entity'].forEach(r => ['all', 'binding'].forEach(st => [true, false].forEach(wt => {
+      const bb = this.base(sel, r, st, wt), rr = ratioOf(bb.va[week], bb.vr[week]), g = rr != null && rr > 1, isCur = r === rule && st === set && wt === wtd;
+      combos.push({ rr, g, ratio: fmtR(rr), label: `${r === 'next' ? 'Same topic' : 'Same actor'} · ${st === 'all' ? 'Any response' : 'Binding only'} · ${wt ? 'weighted' : 'unweighted'}`,
+        style: { fontFamily: "'Geist Mono',monospace", fontSize: 12, fontWeight: 500, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 8px', minWidth: 44, boxSizing: 'border-box', borderRadius: 6, cursor: 'help', background: g ? '#fff4ed' : '#eff4ff', color: g ? ATKT : RSPT, boxShadow: isCur ? `inset 0 0 0 1.5px ${INK}` : 'none' } });
+    })));
+    const curGrow = cur.ratio != null && cur.ratio > 1;
+    const holds = combos.filter(x => x.g === curGrow).length;
+
+    const href = it => `https://machinespeed.techpointe.org/${this.LANE[it.lane]}/#${it.id}`;
+    const ROW = 32;
+    const since = win === 'recent' ? asOf - 42 * D : 0;
+    const shown = b.arr.filter(x => x.a.t <= asOf && x.a.t >= since);
+    const rIdx = {}, respList = [];
+    shown.forEach((x, i) => x.links.filter(r => r.t <= asOf).forEach(r => { if (!rIdx[r.id]) { rIdx[r.id] = { r, cases: [] }; respList.push(rIdx[r.id]); } rIdx[r.id].cases.push(i); }));
+    respList.forEach(o => { o.want = o.cases.reduce((s, i) => s + i * ROW + ROW / 2, 0) / o.cases.length; });
+    respList.sort((a, z) => a.want - z.want || a.r.t - z.r.t);
+    const RH = 64;
+    let prev = -Infinity; respList.forEach(o => { o.y = Math.max(o.want, prev + RH, RH / 2); prev = o.y; });
+    const mapH = Math.max(shown.length * ROW, respList.length ? respList[respList.length - 1].y + RH / 2 : 0, 40);
+    const isFocus = id => focus === id;
+    const fCase = shown.find(x => x.a.id === focus), fResp = rIdx[focus];
+    const linked = new Set();
+    if (fCase) { linked.add(fCase.a.id); fCase.links.forEach(r => linked.add(r.id)); }
+    if (fResp) { linked.add(fResp.r.id); fResp.cases.forEach(i => linked.add(shown[i].a.id)); }
+    const dim = id => focus && !linked.has(id);
+    const TC = { def: RSP, bind: '#7c3aed', bill: '#7c3aed', prop: '#a78bfa', stmt: '#a1a1aa' };
+    const TL = { def: 'DEF', bind: 'BIND', bill: 'BILL', prop: 'PROP', stmt: 'STMT' };
+    const TD = { def: 'none', bind: 'none', bill: '8 3 1.5 3', prop: '4 3', stmt: '4 3' };
+    const rowBase = { height: ROW, width: '100%', boxSizing: 'border-box', display: 'grid', alignItems: 'center', gap: 8, padding: '0 8px', cursor: 'pointer', border: 'none', borderBottom: '1px solid #f0f0f2', borderRadius: 0, textAlign: 'left', fontFamily: "'Geist',sans-serif", color: INK, transition: 'opacity 200ms, background 150ms' };
+    const rmCases = shown.map((x, i) => {
+      const closed = x.closeT != null && x.closeT <= asOf;
+      return { chip: x.a.lane === 'atk' ? 'ATK' : 'CAP', date: fmtD(x.a.t), headline: x.a.headline, title: x.a.headline,
+        chipStyle: { fontFamily: "'Geist Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: '0.04em', color: x.a.lane === 'atk' ? ATKT : '#52525b' },
+        badge: closed ? Math.round(x.lag) + 'd' : 'OPEN ' + Math.round((asOf - x.a.t) / D) + 'd',
+        badgeStyle: closed ? { fontFamily: "'Geist Mono',monospace", fontSize: 11, color: RSPT, textAlign: 'right', whiteSpace: 'nowrap' } : { fontFamily: "'Geist Mono',monospace", fontSize: 10, color: ATKT, background: '#fff4ed', borderRadius: 999, padding: '2px 7px', whiteSpace: 'nowrap', justifySelf: 'end' },
+        style: { ...rowBase, gridTemplateColumns: '32px 46px minmax(0,1fr) auto', opacity: dim(x.a.id) ? 0.28 : 1, background: isFocus(x.a.id) ? '#f4f4f5' : 'transparent' },
+        pick: () => this.setState(s => ({ focus: s.focus === x.a.id ? null : x.a.id })) };
+    });
+    const rmResps = respList.map(o => {
+      const ty = this.rtype(o.r);
+      return { chip: TL[ty], date: fmtD(o.r.t), headline: o.r.headline, title: o.r.headline, count: o.cases.length > 1 ? '×' + o.cases.length : '',
+        chipStyle: { fontFamily: "'Geist Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: '0.04em', color: ty === 'def' ? RSPT : ty === 'stmt' ? '#6b6b73' : '#6d28d9' },
+        hlStyle: { fontSize: 13, lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', minWidth: 0, textWrap: 'pretty' },
+        style: { ...rowBase, height: RH - 4, position: 'absolute', left: 0, right: 0, top: o.y - (RH - 4) / 2, gridTemplateColumns: '36px 46px minmax(0,1fr) auto', borderBottom: 'none', borderTop: '1px solid #f0f0f2', opacity: dim(o.r.id) ? 0.28 : 1, background: isFocus(o.r.id) ? '#f4f4f5' : '#ffffff' },
+        pick: () => this.setState(s => ({ focus: s.focus === o.r.id ? null : o.r.id })) };
+    });
+    const links = [];
+    shown.forEach((x, i) => x.links.filter(r => r.t <= asOf).forEach((r, j) => {
+      const y1 = i * ROW + ROW / 2, y2 = rIdx[r.id].y, ty = this.rtype(r), on = focus && linked.has(x.a.id) && linked.has(r.id) && (isFocus(x.a.id) || isFocus(r.id));
+      links.push({ d: `M0,${y1} C60,${y1} 60,${y2} 120,${y2}`, st: { fill: 'none', stroke: TC[ty], strokeWidth: (ty === 'bind' ? 2.25 : 1.5) * (j === 0 ? 1 : 0.6), strokeDasharray: TD[ty], strokeOpacity: focus ? (on ? 1 : 0.06) : (j === 0 ? 0.55 : 0.25), transition: 'stroke-opacity 200ms' } });
+    }));
+    const openN = shown.filter(x => !(x.closeT != null && x.closeT <= asOf)).length;
+    const rm = { cases: rmCases, resps: rmResps, links, h: mapH, vb: `0 0 120 ${mapH}`, colStyle: { position: 'relative', height: mapH, borderTop: '1px solid #e7e7ea', minWidth: 0 },
+      empty: shown.length === 0, summary: `${shown.length} cases · ${openN} open · ${respList.length} responses` };
+    let fx = { none: true, some: false, links: [] };
+    const popAt = (y, side) => {
+      const half = (side === 'case' ? ROW : RH - 4) / 2 + 6;
+      const up = y > mapH - 220 && y > 240;
+      return { position: 'absolute', zIndex: 5, width: 'min(460px, 92%)', boxSizing: 'border-box', [side === 'case' ? 'left' : 'right']: side === 'case' ? 8 : 0,
+        ...(up ? { bottom: mapH - y + half } : { top: y + half }),
+        background: '#ffffff', border: '1px solid #e7e7ea', borderRadius: 14, boxShadow: '0 1px 2px rgba(10,10,11,0.04), 0 16px 40px rgba(10,10,11,0.12)', padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10 };
+    };
+    if (fCase) {
+      const closed = fCase.closeT != null && fCase.closeT <= asOf;
+      fx = { none: false, some: true, meta: `${fCase.a.lane === 'atk' ? 'ATTACK' : 'CAPABILITY'} · ${fmtD(fCase.a.t)} · ${this.CONF[fCase.a.confidence] || fCase.a.confidence}`, title: fCase.a.headline, href: href(fCase.a),
+        popStyle: popAt(shown.indexOf(fCase) * ROW + ROW / 2, 'case'),
+        linkHead: closed ? 'Answered by' : '', isOpen: !closed, openDays: Math.round((asOf - fCase.a.t) / D),
+        links: fCase.links.filter(r => r.t <= asOf).map((r, j) => ({ tag: `${TL[this.rtype(r)]} · +${Math.round((r.t - fCase.a.t) / D)}d${j === 0 ? ' · closes' : ''}`, headline: r.headline, href: href(r) })) };
+    } else if (fResp) {
+      const r = fResp.r;
+      fx = { none: false, some: true, meta: `${r.lane === 'def' ? 'DEFENSE' : 'POLICY · ' + (r.pclass || '').toUpperCase() + (r.stage ? ' · ' + String(r.stage).toUpperCase() : r.pclass === 'Bill' ? ' · STAGE NOT RECORDED' : '')} · ${fmtD(r.t)} · ${this.CONF[r.confidence] || r.confidence}`, title: r.headline, href: href(r),
+        popStyle: popAt(fResp.y, 'resp'),
+        linkHead: `Answers ${fResp.cases.length} case${fResp.cases.length > 1 ? 's' : ''}`, isOpen: false, openDays: 0,
+        links: fResp.cases.map(i => shown[i]).map(x => ({ tag: `${x.a.lane === 'atk' ? 'ATK' : 'CAP'} · ${fmtD(x.a.t)} · ${Math.round((r.t - x.a.t) / D)}d before`, headline: x.a.headline, href: href(x.a) })) };
+    }
+
+    const live = b.arr.filter(x => x.a.t <= asOf);
+    const pols = items.filter(i => i.lane === 'pol'), cnt = cl => pols.filter(p => p.pclass === cl).length;
+    const dp = items.filter(i => i.lane === 'def' || i.lane === 'pol'), untag = dp.filter(i => !i.topics.length).length;
+    const d = {
+      name: cur.name, lowN: km0.n < 20, n: km0.n,
+      ratioLabel: fmtR(cur.ratio), rates: `${cur.va.toFixed(1)} new vs ${cur.vr.toFixed(1)} answered / wk`,
+      verdict: (cur.ratio == null ? 'No new problems in the past 4 weeks. ' : cur.ratio === Infinity ? 'New problems arrived in the past 4 weeks and none were answered. ' : curGrow ? `New problems are arriving ${cur.ratio.toFixed(1)}× faster than they are answered. ` : 'Answers are keeping up with new problems. ')
+        + `${km0.n - live.filter(x => x.closeT != null && x.closeT <= asOf).length} of ${km0.n} cases since Jul 1 are still open. `
+        + (km0.median != null ? `Median wait for a first response: ${Math.round(km0.median) === 1 ? '1 day' : Math.round(km0.median) + ' days'}.` : 'Fewer than half have had a response.'),
+      ratioStyle: { fontSize: 28, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, color: curGrow ? ATKT : RSPT },
+      open: km0.n - live.filter(x => x.closeT != null && x.closeT <= asOf).length,
+      med: fmtMed(km0), ci: ci ? `likely ${Math.round(ci[0])}–${ci[1] === Infinity ? 'never' : Math.round(ci[1]) + ' days'}` : 'too few for a range',
+      cov: cv.n ? Math.round(cv.hit / cv.n * 100) + '%' : '—', covN: cv.n ? `of ${cv.n} at least a month old` : 'none a month old yet',
+      robCells: combos,
+      robGrade: holds >= 7 ? 'Solid' : holds >= 5 ? 'Fairly solid' : 'Uncertain',
+      robSentence: `${holds} of 8 setting combinations show this topic ${curGrow ? 'falling behind' : 'keeping up'}. ` + (holds >= 7 ? 'The result holds across settings.' : holds >= 5 ? 'A stricter definition of a response could change it.' : 'The result depends on the settings.'),
+      robStyle: { fontWeight: 500, marginLeft: 6, color: holds >= 7 ? RSPT : ATKT }
+    };
+
+    let kOpen = 0, kTot = 0, kHit = 0, kEl = 0;
+    rows.forEach(r => { kOpen += r.k.n - r.k.events; kTot += r.k.n; const v = this.cov(r.b.arr, asOf); kHit += v.hit; kEl += v.n; });
+    const worst = sorted[0];
+    const kpi = {
+      behind: rows.filter(r => r.ratio != null && r.ratio > 1).length,
+      worstRatio: worst && worst.ratio != null ? (worst.ratio === Infinity ? '∞' : worst.ratio >= 10 ? '>10×' : worst.ratio.toFixed(1) + '×') : '—',
+      worstName: worst ? worst.name : '',
+      open: kOpen, total: kTot,
+      cov: kEl ? Math.round(kHit / kEl * 100) + '%' : '—', covN: kEl ? `of ${kEl} cases at least 30 days old` : 'none 30 days old yet'
+    };
+
+    const upd = updated ? fmtD(Date.parse(updated)) : '';
+    return {
+      ...ctl, loading: false, ready: true, mapRef: this.mapRef, kpi,
+      sourceLabel: `${source === 'live' ? 'Live' : 'Snapshot'} · ${items.length} items${upd ? ' · updated ' + upd : ''}`,
+      weekLabel: 'Week of ' + fmtD(this.START + week * 7 * D), asOfLabel: fmtD(asOf),
+      zonePts: `${L},${TP + H} ${L + W},${TP + H} ${L + W},${TP}`,
+      ticks, bubbles, trail, ranked, d, rm, fx, closePop: () => this.setState({ focus: null }),
+      polSplit: `${cnt('Binding')} binding, ${cnt('Bill')} bills, ${cnt('Proposed')} other proposals, ${cnt('Statement')} statements of ${pols.length} policy items`,
+      untagged: `${untag} of ${dp.length} Defense and Policy items have no topic tag, so they cannot close a case.`
+    };
+  }
+}
+</script>
+</body>
+</html>
