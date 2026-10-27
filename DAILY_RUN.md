@@ -54,6 +54,11 @@ Concretely:
 - **Edit `data.json` only** (and append to `dashboard-memory.md`). Do not edit `build.py`,
   anything under `assets/` — including `board.css` and `board.js`, which render the
      landing page — `README.md`, `RUNBOOK.md`, `SCHEMA.md`, or any file in `dist/`.
+  **`gap-map/` is off-limits on the same terms**, with one narrow exception: `body.html`
+  and `support.js` are the Gap Map page and its runtime, `README.md` there is its handoff
+  doc, and `data/topic-tag-suggestions.csv` is a review aid a run never applies. The
+  exception is `gap-map/data/items-snapshot.json`, which a run refreshes when it has
+  drifted — see "The Gap Map" below.
   **The one exception, since 2026-09-09: a run may add an entry to `SOURCES.md`** when a source
   proves worth keeping — that file is documentation the build never reads, and step 3 now asks a
   run to close a coverage gap in the same run that finds it. Adding a source is in scope; a
@@ -321,9 +326,15 @@ instruction and the behaviour cannot drift apart again.
    - **Tag each new item's `topics`** with the ids from `topics.json` it belongs to (see
      `SCHEMA.md`). Most capability and attacks items fit one; many policy, defense and markets
      items fit none, and that is fine. A response filed under the topic it answers is what closes
-     that topic's lag on the Findings page. When unsure, leave it untagged and say so in the
+     that topic's lag on the Findings page **and what lets the Gap Map count it as an answer at
+     all** — an untagged Defense or Policy item closes nothing there, however plainly it answers
+     the case. When unsure, leave it untagged and say so in the
      closing note rather than guess. **A run never adds, renames or removes a topic** — that is
      Daria's call.
+   - **Set `stage` on an item that is a bill** — `introduced`, `committee`, `passed-chamber`
+     or `enacted` (see `SCHEMA.md`). It is optional, it changes no page the board renders,
+     and it exists so the Gap Map stops guessing. Read the trap in "The Gap Map" below
+     before setting it on anything that is not a bill.
    - **Mark `key: true`** on an item that moves a story — a first confirmed case, a bill
      introduced, a lab's own disclosure — not on items that add detail. Usually zero to two per
      run. Key items lead the week cards on the front page.
@@ -409,7 +420,89 @@ The Findings, Entities, Data, Methodology and Corrections pages are all generate
 `topics`, `key` and `corrections[]` above. **A run does not edit `entities.json`** — if a new item names something
 the registry misses, say so in the closing note for Daria. The weekly and quarterly drafts the
 build writes into `newsletter/` are rewritten and committed by the GitHub Action on every deploy,
-so a run does not hand them back.
+so a run does not hand them back. The Gap Map at `/gap-map/` is likewise generated — the build
+wraps the shared nav and footer around it and copies its runtime — and reads the board's data at
+load time, so a normal run hands nothing back for it either. See "The Gap Map" below for the
+three fields that now reach it and the one file that is occasionally refreshed.
+---
+
+## The Gap Map — what a run owes it
+
+`/gap-map/` measures whether Defense and Policy keep pace with Attacks and Capability. It reads
+`/data/items.json` on every page load, so **a normal run does nothing for it**: add the day's
+items, and the page's numbers move on the next deploy. No rebuild step, nothing extra to write,
+no file to hand back. What follows is the short list of places where a run's ordinary choices
+now land on a second surface, plus the one file a run occasionally refreshes.
+
+The page itself is off-limits (Guarantee 1). Do not edit `gap-map/body.html` or
+`gap-map/support.js`, and **never apply `gap-map/data/topic-tag-suggestions.csv`** — it is a
+review aid listing Defense and Policy items with no topic tag, and applying it is Daria's call
+after review, not a run's.
+
+### Three ordinary fields now carry a second consequence
+
+- **`topics` decides what the page can count.** A *case* is an `atk` or `cap` item tagged with
+  one of the six topics. An *answer* is a `def` or `pol` item in the same topic, dated on or
+  after the case. An untagged Defense or Policy item is invisible to the page — it closes
+  nothing, and the topic goes on looking unanswered. Step 4 already asks for topic tags for the
+  Findings page's response lag; this is the second reason, and the more visible one.
+- **`confidence` sets the weight behind the rates and the backlog**: `confirmed` and `on-record`
+  1.0, `researchers` 0.8, `press` 0.6, `claimed` 0.5, `self-reported` 0.4. Choosing the tier by
+  the shape of the claim was always the rule. It now also moves a published figure, which is an
+  argument for the rule rather than against it.
+- **`entities` drives the page's "Same actor" rule**, which joins a case to an answer only when
+  they share an entity tag. Tags are derived on every build from `entities.json`, which **a run
+  still never edits** — but it is why the closing note's list of names the registry misses
+  matters more than it used to.
+
+### Policy items: set `stage` on bills, and only on bills
+
+The Gap Map sorts every `pol` item into Binding, Bill, Proposed or Statement, and the
+"Answers that count → Binding only" setting counts **only** the Binding ones. Without a `stage`
+field it sorts by keywords in the headline — which means **the wording a run chooses silently
+decides whether an item counts as an answer.** That is not hypothetical: on the 2026-10-27
+board, 36 of 77 policy items classed as Statement, among them seven whose headlines name a bill
+or an act outright. The Harrigan bill of October 22 classed as a Statement because its headline
+contains the word "voluntary".
+
+Setting `stage` fixes that for bills: any value makes the item a Bill, regardless of headline.
+So:
+
+- **Set it on bills**, at whatever point they have reached: `introduced`, `committee`,
+  `passed-chamber`, `enacted`. Update it when a bill moves.
+- **Do not set it on anything that is not a bill.** An executive order, an agency directive, a
+  Federal Register notice, a court order: any `stage` value at all turns these into "Bill" and
+  takes them *out* of the Binding count. Leave them without the field and let the headline rule
+  classify them, which it does well for the plainly binding ones.
+- **An enacted bill is the sharp edge.** `stage: "enacted"` still classes as Bill, not Binding,
+  so a law that passed would stop counting under "Binding only" the moment a run marks it
+  enacted. Until that is resolved (open question below), **leave `stage` off a bill that has
+  become law** and let the headline rule reach Binding on its own.
+
+**Open for Daria, not for a run:** `gap-map/README.md` recommends `stage` with `enacted` among
+its values, while the implemented rule reads any stage as "Bill". Either the rule should map
+`enacted` to Binding, or the README should say that an enacted bill drops the field. The page's
+classification rule is not a run's to change.
+
+### The fallback snapshot
+
+If `/data/items.json` fails to load, the page falls back to `gap-map/data/items-snapshot.json`
+and the source pill reads **Snapshot** instead of **Live**. That file is a frozen copy, so it
+goes stale on its own.
+
+**On every run, check it; refresh it when it is more than about 30 days behind.** Read the
+`updated` stamp at the top of `gap-map/data/items-snapshot.json`; if today is more than ~30 days
+later, refresh it after the build exits 0:
+
+```sh
+cp dist/data/items.json gap-map/data/items-snapshot.json
+```
+
+Then hand the file back with the rest and say so in the closing note. This lands on about one
+run a month. Refresh it out of turn if the board's item schema changes — a new field the page
+reads, or a change to `topics.json` — since the fallback should not describe a shape the live
+file no longer has.
+
 
 ---
 
@@ -453,6 +546,8 @@ publishes; automation does not.
   5. `newsletter/machine-speed-YYYY-MM-DD.md` → **`newsletter/`** (new file; unpublished draft).
   6. **`SOURCES.md`** → repo **root**, *only on a run that added a source* (see step 3). Most runs
      do not change it and do not hand it back.
+  7. **`gap-map/data/items-snapshot.json`** → **`gap-map/data/`**, *only on a run that refreshed
+     it* (see "The Gap Map"). About one run a month.
 - Close with **one sentence on what changed since the previous run**, and name anything notable you
   omitted or held.
 - If the research turned up nothing worth adding, **say so and deliver nothing** rather than
@@ -484,6 +579,7 @@ minute). That upload is a human step, on purpose.
 | `WEB_ANALYTICS_TOKEN` | set | Cloudflare Web Analytics beacon, injected before `</body>` on every generated page. The token is a public site identifier, not a secret. Empty it and the beacon and its request vanish. Redirect stubs are excluded (they would double-count their destination) and frozen snapshots already in `archive/` are never rewritten, so each keeps whatever the site carried on its own day. A run never touches this. |
 | `SUBSTACK_URL` | `https://newsletter.techpointe.org` | The newsletter moved to its own subdomain on 2026-09-03. It sits in the nav's destinations group, between Briefs and Archive. |
 | `SUBSTACK_NEW_TAB` | `True` | Forces the newsletter link and subscribe button to open in a new tab even though the URL is now same-site. Without it `same_site()` would keep them in the same tab, which is right for a page of this site but wrong for a subscription flow — a reader part-way down the board should not lose their place. Set `False` to let `same_site()` decide again. |
+| `GAP_MAP_URL` | `"gap-map/"` | Where the Gap Map is published. The build wraps `gap-map/body.html` in the site's head, nav and footer, and copies `support.js` and the fallback snapshot next to it. Empty removes the page, its nav link, its sitemap entry and the copied files. A run never changes this. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |
 | `SHOW_INTERNAL_NOTE` | `False` | `internalNote` stays in the data, off the page. |
 | `NOTE_PLACEMENT` | `"none"` | `judgmentNote` is kept in the data and newsletter, off the board face. |

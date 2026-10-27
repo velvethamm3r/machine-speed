@@ -35,9 +35,22 @@ A daily run rewrites this file and nothing else.
   "url":        "https://…",            // required. https only. A page you actually opened.
   "isNew":      true,                   // optional. Forces into / out of the 48h strip. Omit for the date rule.
   "topics":     ["evaluation-incidents"],  // optional. Topic ids from topics.json. See below.
+  "stage":      "introduced",           // optional, pol items that are bills only. See below.
   "key":        true                    // optional. A turning point; see below.
 }
 ```
+
+`stage` marks how far a bill has got: `introduced`, `committee`, `passed-chamber` or `enacted`.
+It is optional, nothing the board renders reads it, and `validate()` does not check it — it
+exists for the Gap Map at `/gap-map/`, which sorts policy items into Binding, Bill, Proposed and
+Statement and otherwise has to guess that from keywords in the headline. Set it on `pol` items
+that are bills and update it as they move.
+
+**Any value makes the item a Bill there, so do not set it on anything that is not one.** An
+executive order, an agency directive or a Federal Register notice carrying a `stage` is counted
+as a bill and drops out of the Gap Map's "Binding only" view — and so does a bill marked
+`enacted`, which is why an enacted bill is better left without the field until that rule is
+reconciled. `DAILY_RUN.md` → "The Gap Map" has the full account.
 
 `topics` files an item under the questions readers follow, using the ids in `topics.json`
 (six at present: lab evaluation incidents, frontier model capability, AI in real attacks,
