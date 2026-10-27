@@ -188,6 +188,33 @@ WEB_ANALYTICS_TOKEN = "0907e6f1cbb74105841c3cb74d580d7f"
 ARCHIVE_URL = "archive/"
 BRIEFS_URL = "briefs/"
 ABOUT_URL = "about/"
+
+# -- Gap Map ---------------------------------------------------------------
+# A standalone interactive page that measures whether defense and policy keep
+# pace with attacks and capability jumps. It is not generated from data.json
+# like every other page: the markup and the logic live in gap-map/body.html
+# and render in the browser, reading /data/items.json (which this build writes)
+# with gap-map/data/items-snapshot.json as the offline fallback. What the build
+# does is wrap that body in the site's own head, nav and footer so the page
+# cannot drift from the rest of the site, and copy its two runtime files into
+# dist/. Set GAP_MAP_URL to "" and the page, its nav link, its sitemap entry
+# and its copied files all disappear.
+#
+# The body carries <!-- site-nav --> and <!-- site-footer --> markers where the
+# shared partials go; everything between them is the handoff page, unchanged
+# except that its own nav and footer were removed and its global CSS scoped to
+# .gapmap (see the comment in body.html).
+#
+# Known difference, deliberate: the content between the partials is light-only,
+# so a reader in dark mode gets the site's dark nav above a white panel. The
+# shared chrome follows the theme exactly as it does everywhere else; making
+# the content theme-aware means rewriting the page's own design tokens, which
+# is a design task, not an integration one.
+GAP_MAP_URL = "gap-map/"
+GAP_MAP_NAV = "Gap Map"
+GAP_MAP_TITLE = "Gap Map"
+GAP_MAP_DESC = ("Is defense keeping pace with AI attacks and capability jumps? "
+                "A topic-by-topic measure of the response gap.")
 LEGACY_PATHS = {
     "capability.html": "capability/", "policy.html": "policy/",
     "defense.html": "defense/", "attacks.html": "attacks/",
@@ -829,6 +856,10 @@ class Site:
                 links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
             links.append((BRIEFS_URL, "Briefs"))
+        # Gap Map reads the board rather than adding to it, so it sits with the
+        # other things to read, after Briefs and before the newsletter.
+        if GAP_MAP_URL:
+            links.append((GAP_MAP_URL, GAP_MAP_NAV))
         if self.ins and SHOW_FINDINGS:
             links.append((ins_mod.FINDINGS_URL, "Findings"))
         if self.has_forecasts:
@@ -1034,7 +1065,11 @@ class Site:
 
     # -- page shell ---------------------------------------------------------
     def page(self, *, path: str, title: str, description: str, body: str,
-             extra_head: str = "", asset_prefix: str = "") -> str:
+             extra_head: str = "", asset_prefix: str = "", wrap: bool = True) -> str:
+        # wrap=False drops the .wrap container for a page that lays itself out
+        # edge to edge (the Gap Map). Such a page is responsible for its own
+        # max-width, and puts the shared nav and footer in their own .wrap so
+        # they still line up with every other page on the site.
         # Directory-style pages (week/YYYY-MM-DD/index.html) are canonically the
         # directory URL — the server serves the same bytes either way, and one
         # canonical keeps search engines and shared links from splitting.
@@ -1082,11 +1117,11 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 <link rel="icon" href="{asset_prefix}icon.svg{asset_version('icon.svg')}" type="image/svg+xml">
 {extra_head}</head>
 <body>
-<div class="wrap">
+{'<div class="wrap">' if wrap else ''}
 
   {body}
 
-</div>
+{'</div>' if wrap else ''}
 <script src="{asset_prefix}theme.js{asset_version('theme.js')}" defer></script>
 {analytics}</body>
 </html>
@@ -1752,6 +1787,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         day = (self.as_of or "")[:10]
         urls = [("", "daily", "1.0"), (ARCHIVE_URL, "daily", "0.6"),
                 (ABOUT_URL, "monthly", "0.3")]
+        if GAP_MAP_URL:
+            # Daily: the page's numbers move with every item the board adds.
+            urls.append((GAP_MAP_URL, "daily", "0.7"))
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         if EXPLORE_PAGE:
             # Whichever of the two is not the landing page needs its own entry — unless
@@ -2033,6 +2071,48 @@ def build(out_dir: Path):
         description=SITE_DESCRIPTION, body=site.about_body(),
         asset_prefix="../"))
     site.prefix = ""
+
+    # Gap Map — the one page whose markup is authored by hand rather than
+    # generated from data.json. The build supplies the shared head, nav and
+    # footer and copies the runtime next to it; everything inside is the
+    # handoff page. See the GAP_MAP_URL block at the top of this file.
+    if GAP_MAP_URL:
+        gm_src = root / "gap-map" / "body.html"
+        if not gm_src.exists():
+            print(f"  error:   GAP_MAP_URL is set but {gm_src.name} is missing "
+                  f"from gap-map/ — set GAP_MAP_URL = \"\" to drop the page",
+                  file=sys.stderr)
+            sys.exit(1)
+        gm = gm_src.read_text(encoding="utf-8")
+        for marker in ("<!-- site-nav -->", "<!-- site-footer -->"):
+            if gm.count(marker) != 1:
+                print(f"  error:   gap-map/body.html must contain {marker} exactly once",
+                      file=sys.stderr)
+                sys.exit(1)
+        site.prefix = "../"
+        # The shared partials keep the site's own measure; the page between
+        # them runs edge to edge on its own.
+        gm = gm.replace("<!-- site-nav -->",
+                        '<div class="wrap" style="padding-bottom:0">\n  '
+                        + site.nav(GAP_MAP_URL) + "\n</div>")
+        gm = gm.replace("<!-- site-footer -->",
+                        '<div class="wrap" style="padding-top:0">\n  '
+                        + site.footer() + "\n</div>")
+        write(GAP_MAP_URL + "index.html", site.page(
+            path=GAP_MAP_URL + "index.html",
+            title=f"{GAP_MAP_TITLE} — {SITE_NAME}",
+            description=GAP_MAP_DESC, body=gm, wrap=False,
+            extra_head='<script src="support.js"></script>\n',
+            asset_prefix="../"))
+        site.prefix = ""
+        # The runtime and the offline fallback copy, served from the page's own
+        # directory. The tag-suggestion CSV and the README stay in the repo:
+        # they are editorial inputs, not part of the published page.
+        (out_dir / GAP_MAP_URL / "data").mkdir(parents=True, exist_ok=True)
+        shutil.copy(root / "gap-map" / "support.js", out_dir / GAP_MAP_URL / "support.js")
+        shutil.copy(root / "gap-map" / "data" / "items-snapshot.json",
+                    out_dir / GAP_MAP_URL / "data" / "items-snapshot.json")
+        print(f"  wrote {GAP_MAP_URL}support.js, {GAP_MAP_URL}data/items-snapshot.json")
 
     # forecasts — one page at /forecasts/, only when there is something on it
     if site.has_forecasts:
