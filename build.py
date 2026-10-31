@@ -225,7 +225,7 @@ GAP_MAP_DESC = ("Is defense keeping pace with AI attacks and capability jumps? "
 # hand, wrapped by the build in the shared chrome exactly as the Gap Map is,
 # and listed on /so-what/ and on the front page.
 #
-# SO_WHAT_PAGES is the registry. Order is display order. "lane" colours the
+# SO_WHAT_PAGES is the registry. Order is display order. "lane" colors the
 # kicker. Set SO_WHAT_URL to "" and the index page and its nav link go; the
 # pages themselves still build at their own URLs.
 SO_WHAT_URL = "so-what/"
@@ -901,7 +901,7 @@ class Site:
         five lanes, Briefs, Archive, About, RSS and the theme button is
         eleven controls, which wraps into an unreadable block on a laptop and
         a wall on a phone. So the site nav keeps the destinations and the lane
-        bar below it carries the taxonomy, each lane in its own colour.
+        bar below it carries the taxonomy, each lane in its own color.
         """
         if LANDING == "home":
             links = [("index.html", "The Board")]
@@ -1220,7 +1220,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
             items = self.front_items(k)
             total = len(self.lane_items(k))
             # A lane with nothing in it prints no box. A new lane is empty on the
-            # day it is added, and an empty labelled box reads as a gap in the
+            # day it is added, and an empty labeled box reads as a gap in the
             # reporting rather than as a lane waiting for its first verified item.
             if not total:
                 continue
@@ -1482,7 +1482,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         return ('<section class="block"><h2 class="blockhead">Briefs — incidents in stages</h2>'
                 '<p class="lede">Some stories are not a single item. A brief lays one out in '
                 'dated stages, each stage carrying its own sources and its own confidence label, '
-                'so what an organisation confirmed on day one stays distinguishable from what was '
+                'so what an organization confirmed on day one stays distinguishable from what was '
                 'reconstructed afterwards.</p>'
                 f'<div class="dgrid">{cards}</div>{more}</section>')
 
@@ -1516,7 +1516,7 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
   <header class="pagehead">
     <h1>Briefs</h1>
     <div class="sub wide">Some stories are not a single item. A brief lays one out in dated stages, each
-      stage with its own sources and its own confidence label, so what an organisation confirmed on day
+      stage with its own sources and its own confidence label, so what an organization confirmed on day
       one stays distinguishable from what was reconstructed afterwards.</div>
   </header>
 
@@ -2242,7 +2242,7 @@ def build(out_dir: Path):
          "weekly trends, the confidence mix and how fast the board learns.",
          ins_mod.findings_body(site, ins, LANES, CONF)),
         (ins_mod.ENTITIES_URL, "Entities",
-         "Every organisation, model family and platform the board's items name.",
+         "Every organization, model family and platform the board's items name.",
          ins_mod.entities_body(site, ins)),
         (ins_mod.DATA_URL, "Data",
          "The Machine Speed board as open data: CSV and JSON, rebuilt with every update.",

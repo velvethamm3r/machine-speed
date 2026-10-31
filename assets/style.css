@@ -955,7 +955,9 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 /* Text wrapping, site-wide: headings balance their lines, running text avoids
    orphans, and no paragraph runs past a readable measure on a wide screen. */
 h1,h2,h3{text-wrap:balance}
-p,li,.sub,.lede{text-wrap:pretty}
+p,li{text-wrap:pretty}
+/* Short blocks (up to about five lines) balance: every line about the same length, no runt last line. */
+.pagehead .sub,.lede,.lead .lh,.lead .ls,.two .th,.sw .swt,.sw .swd,.story .sn,.story .why,.brow .bt,.brow .bs,.way .wd,.swhead,.dateline span{text-wrap:balance}
 .pagehead .sub,.pagehead .sub.wide,.lede{max-width:78ch}
 
 /* Grids with a fixed count get fixed columns; auto-fill is for open-ended

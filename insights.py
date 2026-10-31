@@ -9,7 +9,7 @@ do not advocate or forecast.
 
     /findings/            weekly trends, the confidence mix, how fast items
                           reach the board, and the response lag by topic
-    /entities/            every tracked organisation, model and platform
+    /entities/            every tracked organization, model and platform
     /entity/<id>/         one entity's items
     /data/                the open dataset: items.json, items.csv, topics.json
     /methodology/         sourcing rules and confidence tiers, in public
@@ -43,9 +43,9 @@ METHOD_URL = "methodology/"
 CORRECTIONS_URL = "corrections/"
 ENTITIES_FILE = "entities.json"
 
-# The dataset's licence. CC BY 4.0 lets anyone reuse the data with credit,
+# The dataset's license. CC BY 4.0 lets anyone reuse the data with credit,
 # which is what makes it citable; change both strings together if you choose
-# another licence.
+# another license.
 DATA_LICENSE = "CC BY 4.0"
 DATA_LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/"
 
@@ -365,7 +365,7 @@ def multiples(ins: Insights, lanes: dict) -> str:
 
     Columns rather than a stacked chart: five series stacked hide every lane
     but the bottom one. The last week is usually still in progress and is
-    drawn faded and labelled so, rather than read as a fall.
+    drawn faded and labeled so, rather than read as a fall.
     """
     wk = ins.weeks()
     if not wk:
@@ -472,7 +472,7 @@ def findings_body(site, ins: Insights, lanes: dict, conf_labels: dict) -> str:
     ls = ins.lag_summary()
     tiles = [
         _tile(h["n"], "Items on the board", site.coverage),
-        _tile(_pct(h["confirmed"], h["n"]), "Confirmed by the affected organisation",
+        _tile(_pct(h["confirmed"], h["n"]), "Confirmed by the affected organization",
               f'{h["confirmed"]} of {h["n"]}'),
         _tile(_pct(h["cap_self"], h["cap"]), "Capability items resting on self-reported claims",
               f'{h["cap_self"]} of {h["cap"]}'),
@@ -559,7 +559,7 @@ def entities_body(site, ins: Insights) -> str:
 
   <header class="pagehead">
     <h1>Entities</h1>
-    <div class="sub">Every organisation, model family and platform the board's items name,
+    <div class="sub">Every organization, model family and platform the board's items name,
       with the items that name it. Tagged automatically from each item's headline and summary.</div>
   </header>
 
@@ -608,7 +608,7 @@ def data_body(site, ins: Insights, citation: str) -> str:
     </div>
   </section>
 
-  <section class="block"><h2 class="blockhead">Licence and citation</h2>
+  <section class="block"><h2 class="blockhead">License and citation</h2>
     <div class="prose">
       <p>Released under <a href="{DATA_LICENSE_URL}" target="_blank" rel="noopener">{DATA_LICENSE} ↗</a>:
         reuse it for anything, with credit. Each item's summary is the board's own wording; the
@@ -635,7 +635,7 @@ def data_body(site, ins: Insights, citation: str) -> str:
 
 def methodology_body(site, conf_labels: dict, show_findings: bool = True) -> str:
     tiers = {
-        "confirmed": "The organisation that was affected says it happened to them.",
+        "confirmed": "The organization that was affected says it happened to them.",
         "claimed": "The attacker says they did it, and nobody else has stood behind it.",
         "researchers": "Security researchers reported it and the victim has not confirmed.",
         "press": "Established press reported it and no primary source could be opened.",
@@ -794,7 +794,7 @@ def quarterly_draft(ins: Insights, lanes: dict, site_url: str, conf_labels: dict
              f"- {n} source-verified items, {qs.isoformat()} to {min(run, qe).isoformat()}."]
     for k, v in lanes.items():
         lines.append(f"  - {v['name']}: {sum(1 for i in its if i['lane'] == k)}")
-    lines += [f"- Confirmed by the affected organisation: {conf.get('confirmed', 0)} of {n} ({_pct(conf.get('confirmed', 0), n)}).",
+    lines += [f"- Confirmed by the affected organization: {conf.get('confirmed', 0)} of {n} ({_pct(conf.get('confirmed', 0), n)}).",
               f"- Resting on self-reported, untested claims: {conf.get('self-reported', 0)} ({_pct(conf.get('self-reported', 0), n)})."]
     for lane, word in (("pol", "policy"), ("def", "defense")):
         s = ls.get(lane, {})

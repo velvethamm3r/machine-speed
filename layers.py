@@ -295,7 +295,7 @@ def _words(n: int) -> str:
 
 
 def _lane_kick(L, k, when: str = "") -> str:
-    """The small uppercase lane label in its lane colour, with an optional date."""
+    """The small uppercase lane label in its lane color, with an optional date."""
     v = L.lanes[k]
     t = f' <time datetime="{when}">{_short(_d(when))}</time>' if when else ""
     return f'<span class="kick" style="color:var({v["var"]})">{escape(v["name"])}{t}</span>'
@@ -369,9 +369,9 @@ def so_what_cards(site) -> str:
     """The So What pages, as the front page and /so-what/ both show them."""
     cards = []
     for p in site.so_what:
-        colour = f' style="color:var(--{p["lane"]})"' if p.get("lane") else ""
+        color = f' style="color:var(--{p["lane"]})"' if p.get("lane") else ""
         cards.append(f'<a class="sw" href="{site.prefix}{p["url"]}">'
-                     f'<span class="kick"{colour}>{escape(p["kicker"])}</span>'
+                     f'<span class="kick"{color}>{escape(p["kicker"])}</span>'
                      f'<span class="swt">{escape(p["title"])}</span>'
                      f'<span class="swd">{escape(p["blurb"])}</span></a>')
     return "".join(cards)
@@ -521,7 +521,7 @@ def reading(L, t) -> dict:
 
 
 def face(level: int, cx: float, cy: float, s: float = 1.0) -> str:
-    """Eyes, brows and mouth for a reading, centred on (cx, cy), scaled by s."""
+    """Eyes, brows and mouth for a reading, centered on (cx, cy), scaled by s."""
     r = 3.3 * s
     dx = 5.2 * s
     lx, rx = cx - dx, cx + dx
@@ -592,10 +592,10 @@ def emblem(L, t, level: int) -> str:
     for i in t["items"]:
         counts[i["lane"]] = counts.get(i["lane"], 0) + 1
     lane = max(counts, key=counts.get) if counts else lane
-    colour = f'var({L.lanes[lane]["var"]})'
+    color = f'var({L.lanes[lane]["var"]})'
     fc = face(level, *anchor) if anchor else ""
     return (f'<svg class="emblem lv{level}" viewBox="0 0 64 64" role="img" '
-            f'aria-label="{SCALE[level][0]}" style="--em:{colour}">{art}{fc}</svg>')
+            f'aria-label="{SCALE[level][0]}" style="--em:{color}">{art}{fc}</svg>')
 
 
 def scale_strip(L) -> str:
@@ -710,7 +710,7 @@ def search_body(site, lanes: dict, topics: list) -> str:
 
   <header class="pagehead">
     <h1>Search</h1>
-    <div class="sub">Every item on the board: headlines, summaries, sources, organisations and topics.</div>
+    <div class="sub">Every item on the board: headlines, summaries, sources, organizations and topics.</div>
   </header>
 
   <form class="bigsearch" action="" method="get" role="search">
