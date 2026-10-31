@@ -1,8 +1,8 @@
 # Water · So What page
 
-`health/body.html` is the Water page: seventeen US water failures, Flint to the
+`body.html` is the Water page: seventeen US water failures, Flint to the
 2026 cyberattacks, set against community income, the repair money, the policy
-lag and what prevention would have cost. It builds to `/water/health/` and is
+lag and what prevention would have cost. It builds to `/water/` and is
 listed on `/so-what/` and the front page (build.py's `SO_WHAT_PAGES`).
 
 ## How it is built
@@ -18,7 +18,7 @@ the shared head, nav and footer where the `<!-- site-nav -->` and
 - Its measure (`.water main`) copies `.wrap` breakpoint for breakpoint.
 - d3, topojson-client and the Schibsted Grotesk face load from `WATER_HEAD` in
   `build.py`. The US state shapes come from jsDelivr at run time; drop
-  `us-atlas@3.0.1`'s `states-10m.json` into `water/health/` and copy it to
+  `us-atlas@3.0.1`'s `states-10m.json` into `water/` and copy it to
   `dist/` in `build.py` if the site ever needs to work without that CDN.
 
 ## Editing
@@ -34,7 +34,7 @@ incidents" in section 7 is typed by hand: bump it when you add one.
 - Median incomes for all 17 incidents are checked (Census QuickFacts; Braham
   via Census Reporter / Data USA). Poverty and race percentages for the eight
   small towns marked `incOnly:true` in `DEM` are still approximate and say so.
-- Nine cyber incidents cite "Machine Speed water record" at `/water/`, which
-  does not exist on the site. Replace those `src` entries with the original
-  articles, or build that record page.
+- Nine cyber incidents cite the board's Critical infrastructure story as their
+  source (`/topic/critical-infrastructure/`). Replace those `src` entries with
+  the original articles when you have them.
 - Milwaukee's "about a week" boil-water advisory is not checked against a source.

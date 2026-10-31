@@ -35,7 +35,7 @@ SEARCH_URL = "search/"
 PICKS_MAX = 5          # This week is a short read by design; more warns
 LATEST_WHEN_NO_PICKS = 5
 CARD_HEADLINES = 3
-FRONT_WEEK_CARDS = 4   # week cards on the front page, in a fixed four-up; the Archive has them all
+FRONT_WEEK_CARDS = 3   # week cards on the front page, in a fixed three-up; the Archive has them all
 LEAD_FOLLOWERS = 4     # items set two-up under this week's lead
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

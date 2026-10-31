@@ -916,7 +916,6 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .way .wb{display:flex; flex-direction:column; gap:3px}
 .way .wt{font-family:var(--display); font-size:21px; line-height:1.15; color:var(--ink)}
 .way .wd{font-size:13px; line-height:1.5; color:var(--ink-2)}
-.waysnote{margin:14px 0 0; font-size:12px; line-height:1.5; color:var(--ink-3)}
 
 .frontlead{display:flex; flex-direction:column; gap:28px; min-width:0}
 .frontlead .lede{margin:0}
@@ -952,3 +951,75 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .sw .swd{font-size:14px; line-height:1.55; color:var(--ink-2)}
 .blockhead.rw{display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap}
 .blockhead.rw a{font-size:13px; text-transform:none; letter-spacing:0; font-weight:500}
+
+/* Text wrapping, site-wide: headings balance their lines, running text avoids
+   orphans, and no paragraph runs past a readable measure on a wide screen. */
+h1,h2,h3{text-wrap:balance}
+p,li,.sub,.lede{text-wrap:pretty}
+.pagehead .sub,.pagehead .sub.wide,.lede{max-width:78ch}
+
+/* Grids with a fixed count get fixed columns; auto-fill is for open-ended
+   lists only. Three week cards on the front page, 3 / 1, with room to read. */
+.wgrid.front{grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; align-items:stretch}
+@media(max-width:900px){.wgrid.front{grid-template-columns:1fr}}
+.wgrid.front .wcard{padding:18px 20px; gap:11px}
+.wgrid.front .wcard li{font-size:13.5px; line-height:1.55}
+.wgrid.front .wcard .wgo{margin-top:auto}
+
+/* Watchlist: the stories as entries, three across, each led by its emblem
+   (layers.EMBLEMS): one drawing per story in one hand, lane colour as the
+   accent. The eye goes to the drawing, then the name. */
+.stories{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 40px; border-top:2px solid var(--ink); margin-bottom:36px}
+@media(max-width:1000px){.stories{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.stories{grid-template-columns:1fr}}
+.story{display:flex; flex-direction:column; gap:8px; padding:22px 0 24px; border-bottom:1px solid var(--line); color:inherit; min-width:0}
+.story:hover{text-decoration:none} .story:hover .sn{color:var(--accent)}
+/* The cast's bodies take the reading's tint, 0 (quiet) to 4 (unanswered). */
+:root{--lv0:#e9edf3; --lv1:#d6efe5; --lv2:#f6ead0; --lv3:#f8dcc9; --lv4:#f5cfcf}
+:root[data-theme="dark"]{--lv0:#242c37; --lv1:#1d3a30; --lv2:#3a3120; --lv3:#3f2a20; --lv4:#45232a}
+.emblem{display:block; fill:none; stroke:var(--ink); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round}
+.emblem .bd{fill:var(--ems)} .emblem .lens{fill:var(--panel)}
+.emblem.lv0 .bd{fill:var(--lv0)} .emblem.lv1 .bd{fill:var(--lv1)} .emblem.lv2 .bd{fill:var(--lv2)} .emblem.lv3 .bd{fill:var(--lv3)} .emblem.lv4 .bd{fill:var(--lv4)}
+.emblem .ac{stroke:var(--em)} .emblem .af{fill:var(--em); stroke:none} .emblem .af.ac{stroke:var(--em)}
+.emblem .sc{fill:var(--panel); stroke:var(--ink); stroke-width:2} .emblem .pu{fill:var(--ink); stroke:none}
+.emblem .hl{fill:var(--panel); stroke:none}
+.emblem .mo{fill:none; stroke:var(--ink); stroke-width:2.4} .emblem ellipse.mo{fill:var(--ink); stroke:none}
+.emblem .sw{fill:var(--def); stroke:none}
+.story .emblem{width:96px; height:96px; margin-bottom:8px; transition:transform .15s}
+.story:hover .emblem{transform:translateY(-2px)}
+.story .kick .rd{color:var(--ink); font-weight:700}
+.story .why{font-size:13.5px; line-height:1.5; color:var(--ink); margin:-2px 0 2px}
+.story .why em{font-style:normal; color:var(--ink-3)}
+.story .smeta{font-size:11px; color:var(--ink-3); letter-spacing:.3px}
+.story.lv3 .kick .rd,.story.lv4 .kick .rd{color:var(--atk)}
+
+/* The legend strip under the Watchlist headline: the five readings. */
+.scale{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:0 0 28px}
+@media(max-width:800px){.scale{grid-template-columns:1fr}}
+.sc-cell{display:grid; grid-template-columns:44px auto minmax(0,1fr); grid-template-rows:auto auto; column-gap:10px; align-items:center; padding:12px 14px; background:var(--panel)}
+.sc-cell .emblem{width:44px; height:44px; grid-row:1 / 3}
+.sc-cell .sc-n{font-family:var(--display); font-size:18px; color:var(--ink-3); grid-row:1 / 3; padding-right:2px}
+.sc-cell .sc-name{font-size:13px; font-weight:700; color:var(--ink)}
+.sc-cell .sc-what{font-size:12px; line-height:1.4; color:var(--ink-2)}
+@media(max-width:800px){.sc-cell{grid-template-columns:44px auto minmax(0,1fr)}}
+.story .kick{display:flex; justify-content:space-between; gap:10px; color:var(--ink-3); font-weight:600; letter-spacing:.8px; font-size:10.5px}
+.story .kick time{margin-left:0; color:var(--ink-2)}
+.story .sn{font-family:var(--display); font-size:24px; line-height:1.15; letter-spacing:-.3px; color:var(--ink)}
+.story .sd{font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.story .st{font-size:13px; line-height:1.5; color:var(--ink-2); padding-top:8px; border-top:1px solid var(--line); margin-top:2px}
+.story .st b{color:var(--ink); font-weight:600}
+.alsow .blockhead{margin-bottom:6px}
+
+/* Briefs: one full-width entry per brief (build.brief_row). */
+.briefrows{display:flex; flex-direction:column; border-top:2px solid var(--ink)}
+.brow{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:40px; padding:24px 0 26px; border-bottom:1px solid var(--line); color:inherit; min-width:0}
+@media(max-width:800px){.brow{grid-template-columns:1fr; gap:14px}}
+.brow:hover{text-decoration:none} .brow:hover .bt{color:var(--accent)}
+.brow .bl,.brow .br{display:flex; flex-direction:column; gap:8px; min-width:0}
+.brow .bk{display:flex; align-items:center; gap:10px}
+.brow .bt{font-family:var(--display); font-size:28px; line-height:1.15; letter-spacing:-.4px; color:var(--ink)}
+.brow .bm{font-size:12.5px; color:var(--ink-3)}
+.brow .bs{font-size:15px; line-height:1.6; color:var(--ink-2); max-width:70ch}
+.brow .blast{font-size:13.5px; line-height:1.55; color:var(--ink-2); max-width:70ch; padding-top:8px; border-top:1px solid var(--line)}
+.brow .blast b{color:var(--ink); font-weight:600}
+.brow .bgo{font-size:13px; font-weight:600; color:var(--accent); margin-top:2px}

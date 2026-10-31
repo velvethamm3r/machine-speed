@@ -1,0 +1,689 @@
+<!-- water/body.html — authored by hand, wrapped by build.py.
+
+     This is the Water page handoff (water-health/index.html) with its own
+     header removed and the site's shared nav and footer put where the two
+     markers are. All of the page's CSS is scoped under .water (every selector
+     is prefixed) so it cannot restyle the chrome around it; its colour tokens
+     live on .water, with the dark set keyed to :root[data-theme="dark"] so the
+     page follows the site's theme button rather than the OS setting. -->
+<!-- site-nav -->
+<div class="water">
+<style>
+.water{
+  --paper:#f5f7f6; --surface:#ffffff; --ink:#15202b; --ink-2:#47535f; --ink-3:#6f7a86; --rule:#dde3e4; --land:#e6eceb;
+  --atk:#c4314b; --atk-soft:#f6dde1; --heal:#21778a; --heal-soft:#d8ecef; --pol:#b07316; --pol-soft:#f5e8d2;
+  --l0:#e6eceb; --l1:#c6dfe3; --l2:#8fc2cc; --l3:#4f97a6; --l4:#1d5f6e;
+  --display:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif; --serif:"Newsreader",Georgia,serif;
+}
+:root[data-theme="dark"] .water{
+  --paper:#0f1519; --surface:#161e24; --ink:#e7edf0; --ink-2:#a9b5bd; --ink-3:#8793a0; --rule:#27323a; --land:#1f2a31;
+  --atk:#f0697e; --atk-soft:#3a1c23; --heal:#5bb7ca; --heal-soft:#173039; --pol:#e0a84d; --pol-soft:#33281a;
+  --l0:#1f2a31; --l1:#1d3a42; --l2:#28606d; --l3:#3d8b9b; --l4:#7cc6d4; color-scheme:dark}
+.water *{box-sizing:border-box}
+.water [hidden]{display:none!important}
+.water{background:var(--paper);color:var(--ink);font:400 18px/1.6 var(--serif);-webkit-font-smoothing:antialiased;padding-top:28px}
+.water a{color:var(--heal);text-underline-offset:3px;text-decoration-thickness:1px}
+.water a:hover{color:var(--ink)}
+.water button{font-family:var(--display)}
+.water :focus-visible{outline:2px solid var(--heal);outline-offset:3px;border-radius:3px}
+.water main{max-width:1180px;margin:0 auto;padding-inline:22px}
+@media(max-width:600px){.water main{padding-inline:16px}}
+@media(min-width:1400px){.water main{max-width:1340px;padding-inline:32px}}
+@media(min-width:1750px){.water main{max-width:1560px}}
+.water .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;font:600 14px/1 var(--display)}
+.water .top .mark{color:var(--ink);text-decoration:none;letter-spacing:-.2px}
+.water .top .mark span{color:var(--ink-3);font-weight:500}
+.water .top nav{display:flex;gap:18px;flex-wrap:wrap}
+.water .top nav a{color:var(--ink-2);text-decoration:none}
+.water .top nav a:hover{color:var(--ink)}
+.water .col{max-width:none}
+.water .col p,.water .col ul{max-width:960px}
+.water h1,.water h2,.water h3{font-family:var(--display);text-wrap:pretty;margin:0}
+.water h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;font-weight:800;letter-spacing:-1.6px;margin:24px 0 18px;max-width:1100px}
+.water h2{font-size:clamp(26px,3.6vw,36px);line-height:1.12;font-weight:750;letter-spacing:-.8px;margin:0 0 14px}
+.water .lede{font-size:20px;color:var(--ink-2);margin:0 0 28px;text-wrap:pretty}
+.water p{text-wrap:pretty}
+.water .col p{margin:0 0 16px}
+.water .col p strong{font-weight:500;background:linear-gradient(transparent 62%,var(--heal-soft) 0)}
+.water .col p strong.a{background:linear-gradient(transparent 62%,var(--atk-soft) 0)}
+.water .kicker{font:600 14px/1 var(--display);color:var(--ink-3);margin:0 0 12px;display:flex;gap:10px;align-items:center}
+.water .kicker i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink-3);font-size:12px}
+.water section.ch{padding-top:76px}
+.water .cap{font:400 14px/1.5 var(--display);color:var(--ink-3);margin:10px 0 0;max-width:960px}
+.water .panel{background:var(--surface);border-radius:16px}
+.water .grid2{display:grid;gap:2px;background:var(--rule);border-radius:16px;overflow:hidden}
+.water .grid2 > *{background:var(--surface)}
+.water /* snapshot */
+.snap{grid-template-columns:repeat(4,minmax(0,1fr))}
+.water .kpi{padding:18px 20px 20px;font-family:var(--display)}
+.water .kpi .k{font:500 13px/1.3 var(--display);color:var(--ink-3)}
+.water .kpi .v{font:800 38px/1.05 var(--display);letter-spacing:-1px;font-variant-numeric:tabular-nums;margin-top:6px}
+.water .kpi .s{font:400 13.5px/1.45 var(--display);color:var(--ink-2);margin-top:6px}
+.water .kpi .src{font:400 12px/1.4 var(--display);color:var(--ink-3);margin-top:8px}
+.water .kpi .src a{color:var(--ink-3)}
+.water /* who: income vs severity */
+.who{grid-template-columns:minmax(0,1fr) 340px;margin-top:8px}
+.water .whofig{padding:16px 18px 10px}
+.water #whosvg{display:block;width:100%;height:auto}
+.water #whosvg .gl{stroke:var(--rule);stroke-width:1}
+.water #whosvg .med{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:4 4}
+.water #whosvg .band{fill:var(--atk-soft);opacity:.55}
+.water #whosvg .ax{font:400 12px var(--display);fill:var(--ink-3)}
+.water #whosvg .ax.t{font-weight:500;fill:var(--ink-2)}
+.water #whosvg .ry{font:600 12.5px var(--display);fill:var(--ink)}
+.water #whosvg .rs{font:400 11px var(--display);fill:var(--ink-3)}
+.water #whosvg .pt{cursor:pointer;stroke:var(--surface);stroke-width:1.5;fill-opacity:.85}
+.water #whosvg .pt:hover,.water #whosvg .pt.sel{stroke:var(--ink);stroke-width:2.5;fill-opacity:1}
+.water #whosvg .lab{font:700 12px var(--display);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;pointer-events:none}
+.water .whoside{padding:20px 22px 22px;font-family:var(--display);display:flex;flex-direction:column;gap:16px}
+.water .vs2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.water .vs2 > div{background:var(--surface);padding:12px 14px}
+.water .vs2 .k{font:500 12px/1.3 var(--display);color:var(--ink-3)}
+.water .vs2 .v{font:800 30px/1.05 var(--display);letter-spacing:-.8px;font-variant-numeric:tabular-nums;margin-top:4px}
+.water .vs2 .s{font:400 12px/1.4 var(--display);color:var(--ink-2);margin-top:4px}
+.water .whoside .lead{font:400 15px/1.5 var(--serif);color:var(--ink);margin:0}
+.water .whoside .lead b{font-weight:500;background:linear-gradient(transparent 62%,var(--atk-soft) 0)}
+.water .evid{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.water .evid li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;font:400 13px/1.45 var(--display);color:var(--ink-2);padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.water .evid li:last-child{border-bottom:0;padding-bottom:0}
+.water .evid b{font:800 20px/1 var(--display);letter-spacing:-.5px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.water .evid a{color:var(--ink-3)}
+.water /* map */
+.atlas{grid-template-columns:minmax(0,1fr) 340px;margin-top:8px}
+.water .mapbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px 0;font-family:var(--display);flex-wrap:wrap}
+.water .seg{display:inline-grid;grid-auto-flow:column;background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:3px;gap:3px}
+.water .seg button{font:600 13px/1 var(--display);border:0;background:none;color:var(--ink-2);padding:9px 13px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.water .seg button:hover{color:var(--ink)}
+.water .seg button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.water .legend{display:flex;gap:14px;flex-wrap:wrap;font:500 12.5px/1 var(--display);color:var(--ink-2);align-items:center}
+.water .legend span{display:inline-flex;align-items:center;gap:6px}
+.water .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.water .legend i.sq{border-radius:2px;width:14px}
+.water .mapwrap{position:relative;padding:6px 10px 10px}
+.water #map{display:block;width:100%;height:auto}
+.water #map .st{stroke:var(--surface);stroke-width:.9}
+.water #map .st.hov{stroke:var(--ink);stroke-width:1.5}
+.water #map .ev{cursor:pointer;stroke:var(--surface);stroke-width:1.5;fill-opacity:.85}
+.water #map .ev:hover,.water #map .ev.sel{stroke:var(--ink);stroke-width:2.5;fill-opacity:1}
+.water #map .lab{font:700 12px var(--display);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;pointer-events:none}
+.water .tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:9px 12px;font:400 13px/1.45 var(--display);color:var(--ink-2);box-shadow:0 6px 20px rgba(0,0,0,.14);max-width:260px;opacity:0;transition:opacity .12s;z-index:5}
+.water .tip b{color:var(--ink);display:block}
+.water .detail{padding:20px 22px 22px;font-family:var(--display);display:flex;flex-direction:column;gap:14px}
+.water .detail .when{font:600 13px/1 var(--display);color:var(--ink-3)}
+.water .detail h3{font-size:22px;line-height:1.2;font-weight:750;letter-spacing:-.4px}
+.water .detail .place{font:400 14px/1.4 var(--display);color:var(--ink-3);margin-top:4px}
+.water .pills{display:flex;gap:6px;flex-wrap:wrap}
+.water .pill{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--display);padding:5px 9px;border-radius:20px;background:var(--paper);color:var(--ink-2);border:1px solid var(--rule)}
+.water .pill i{width:8px;height:8px;border-radius:50%}
+.water .mets{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin:0}
+.water .mets > div{background:var(--surface);padding:11px 13px}
+.water .mets dt{font:500 12px/1.25 var(--display);color:var(--ink-3)}
+.water .mets dd{margin:3px 0 0;font:750 19px/1.15 var(--display);font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.water .mets dd small{display:block;font:400 11.5px/1.35 var(--display);color:var(--ink-3);letter-spacing:0;margin-top:2px}
+.water .mets dd.na{color:var(--ink-3);font-weight:500;font-size:14px}
+.water .detail .saw{font:400 15px/1.5 var(--serif);color:var(--ink-2);margin:0}
+.water .detail .srcs{font:400 12.5px/1.5 var(--display);color:var(--ink-3)}
+.water .detail .srcs a{color:var(--ink-2)}
+.water .incbar{position:relative;height:12px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;margin:8px 0 4px}
+.water .incbar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px 0 0 6px}
+.water .incbar b{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
+.water .inclab{display:flex;justify-content:space-between;font:400 12px/1.3 var(--display);color:var(--ink-3)}
+.water .find{display:grid;gap:8px;margin:0;padding:12px 14px;list-style:none;background:var(--paper);border-radius:12px;font:400 13px/1.45 var(--display);color:var(--ink-2)}
+.water .find b{color:var(--ink);font-weight:700}
+.water .find a{color:var(--ink-3)}
+.water .ramp{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.water .ramp li{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;font:400 13.5px/1.4 var(--display);color:var(--ink-2)}
+.water .ramp li i{width:18px;height:14px;border-radius:3px;margin-top:2px}
+.water .ramp li b{color:var(--ink);font-weight:600}
+.water /* loss chart */
+.metric-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:8px 0 0}
+.water .lossfig{padding:18px 20px 16px;margin-top:10px}
+.water .lrow{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:center;padding:7px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.water .lrow:last-child{border-bottom:0}
+.water .lrow:hover .ln b{color:var(--heal)}
+.water .ln b{display:block;font:600 14.5px/1.25 var(--display)}
+.water .ln span{font:400 12.5px/1.3 var(--display);color:var(--ink-3)}
+.water .lt{position:relative;height:22px;margin-right:170px}
+.water .lt i{position:absolute;left:0;top:3px;bottom:3px;border-radius:0 5px 5px 0;transition:width .35s ease}
+.water .lt em{position:absolute;top:1px;margin-left:10px;font:700 14.5px/1.4 var(--display);font-style:normal;white-space:nowrap;font-variant-numeric:tabular-nums;transition:left .35s ease}
+.water .lt em small{font-weight:500;color:var(--ink-3);margin-left:6px}
+.water .lt em.na{color:var(--ink-3);font-weight:500}
+.water .laxis{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;margin-top:4px}
+.water .laxis div{position:relative;height:18px;margin-right:170px;border-top:1px solid var(--ink-3)}
+.water .laxis div span{position:absolute;top:4px;transform:translateX(-50%);font:400 12px/1 var(--display);color:var(--ink-3)}
+.water .lgroup{font:700 12px/1 var(--display);color:var(--ink-3);letter-spacing:.3px;padding:16px 0 6px}
+.water .lgroup:first-child{padding-top:2px}
+.water /* severity ladder */
+.ladder{padding:8px 0}
+.water .rung{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start;padding:12px 20px;border-bottom:1px solid var(--rule)}
+.water .rung:last-child{border-bottom:0}
+.water .rung .rl{font-family:var(--display)}
+.water .rung .rl b{display:flex;align-items:center;gap:9px;font:700 15px/1.25 var(--display)}
+.water .rung .rl b em{font-style:normal;display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:6px;font-size:12.5px;color:#fff}
+.water .rung .rl span{display:block;font:400 12.5px/1.35 var(--display);color:var(--ink-3);margin:4px 0 0 33px}
+.water .chips{display:flex;flex-wrap:wrap;gap:6px}
+.water .chip{display:inline-flex;align-items:center;gap:7px;font:600 13px/1 var(--display);padding:7px 11px;border-radius:20px;background:var(--paper);border:1px solid var(--rule);color:var(--ink);cursor:pointer}
+.water .chip:hover{border-color:var(--ink-3)}
+.water .chip i{width:8px;height:8px;border-radius:50%}
+.water .chip small{font-weight:500;color:var(--ink-3)}
+.water .rung .none{font:400 13px/1.5 var(--display);color:var(--ink-3);padding-top:5px}
+.water /* policy */
+.lagfig{padding:18px 20px 14px;margin-top:8px}
+.water .lagkey{display:flex;gap:16px;flex-wrap:wrap;font:500 12.5px/1 var(--display);color:var(--ink-2);margin-bottom:6px}
+.water .lagkey span{display:inline-flex;align-items:center;gap:6px}
+.water .lagkey span:last-child{margin-left:auto;color:var(--ink-3)}
+.water .dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);background:var(--surface);display:inline-block}
+.water .dot.on{background:var(--ink)}
+.water .sw{width:14px;height:10px;border-radius:2px;display:inline-block}
+.water .lb{position:relative;padding-top:2px;margin-right:150px}
+.water .lb .bar{height:16px;border-radius:0 4px 4px 0}
+.water .lb .bar.open{background:repeating-linear-gradient(90deg,var(--atk) 0 7px,transparent 7px 12px)!important}
+.water .lb .n{position:absolute;top:-1px;margin-left:10px;font:800 15px/1.3 var(--display);white-space:nowrap;font-variant-numeric:tabular-nums}
+.water .lb .tk{position:absolute;top:0;width:9px;height:9px;margin-top:5.5px;border-radius:50%;border:1.5px solid var(--ink);background:var(--surface);transform:translateX(-50%)}
+.water .lb .rule{font:400 13px/1.45 var(--display);color:var(--ink-2);margin-top:6px;margin-right:-150px}
+.water .lb .rule b{color:var(--ink);font-weight:600}
+.water .lag{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.water .lag:last-child{border-bottom:0}
+.water .lag .lh b{display:block;font:700 14.5px/1.25 var(--display)}
+.water .lag .lh span{display:block;font:400 12.5px/1.35 var(--display);color:var(--ink-3);margin-top:3px}
+.water .lag .lh em{display:block;font:500 12.5px/1.35 var(--display);font-style:normal;color:var(--ink-2);margin-top:5px}
+.water .ltrack{position:relative;height:18px;margin-top:2px}
+.water .ltrack .base{position:absolute;left:0;right:0;top:8px;height:2px;background:var(--rule)}
+.water .ltrack .run{position:absolute;left:0;top:6px;height:6px;border-radius:3px}
+.water .ltrack .open{position:absolute;top:8px;height:0;border-top:2px dashed var(--atk)}
+.water .ltrack .dot{position:absolute;top:3px;transform:translateX(-50%)}
+.water .ltrack .yrs{position:absolute;top:-1px;margin-left:12px;font:800 14px/1.4 var(--display);white-space:nowrap;font-variant-numeric:tabular-nums}
+.water .lms{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:3px;font:400 13px/1.4 var(--display);color:var(--ink-2)}
+.water .lms li{display:grid;grid-template-columns:14px 52px 1fr;gap:6px;align-items:baseline}
+.water .lms .dot{width:9px;height:9px;border-width:1.5px}
+.water .lms b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.water .lagaxis{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}
+.water .lagaxis div{position:relative;height:18px;border-top:1px solid var(--ink-3);margin-right:150px}
+.water .lagaxis div span{position:absolute;top:4px;transform:translateX(-50%);font:400 12px/1 var(--display);color:var(--ink-3)}
+.water .prev{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
+.water .prev > div{padding:20px 22px}
+.water .prev .when{font:600 13px/1 var(--display);color:var(--ink-3)}
+.water .pv{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:start;margin-top:10px}
+.water .pv .big{font:800 30px/1.1 var(--display);letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.water .pv p{margin:6px 0 0;font:400 14px/1.45 var(--display);color:var(--ink-2)}
+.water .pv .vs{font:600 13px/1 var(--display);color:var(--ink-3);padding-top:12px}
+.water .prev .src{font:400 12px/1.4 var(--display);color:var(--ink-3);margin-top:12px}
+.water .prev .src a{color:var(--ink-3)}
+@media (max-width:820px){.water .prev{grid-template-columns:1fr}
+.water .lag,.water .lagaxis{grid-template-columns:1fr;gap:8px}
+.water .lagaxis > span{display:none}
+.water .lagkey span:last-child{margin-left:0}
+}
+.water /* underneath */
+.under{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:8px}
+.water .under > div{padding:20px 22px}
+.water .under h3{font-size:16px;font-weight:700;margin:0 0 4px}
+.water .under .big{font:800 30px/1.1 var(--display);letter-spacing:-.6px;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.water .under p{margin:0;font:400 14.5px/1.5 var(--display);color:var(--ink-2)}
+.water .under .src{font:400 12px/1.4 var(--display);color:var(--ink-3);margin-top:10px}
+.water .under .src a{color:var(--ink-3)}
+.water .meter{height:10px;border-radius:5px;background:var(--paper);border:1px solid var(--rule);overflow:hidden;margin:10px 0 4px}
+.water .meter i{display:block;height:100%;background:var(--heal)}
+.water /* table */
+.tbl{overflow-x:auto;border-radius:16px;margin-top:8px}
+.water table{width:100%;min-width:1080px;border-collapse:collapse;font:400 13.5px/1.45 var(--display);background:var(--surface)}
+.water th,.water td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+.water thead th{font-size:12px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+.water tbody tr:last-child td{border-bottom:0}
+.water tbody tr{cursor:pointer}
+.water tbody tr:hover td{background:var(--paper)}
+.water td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.water td.w{white-space:nowrap;color:var(--ink-3)}
+.water td .sub{display:block;color:var(--ink-3);font-size:12px}
+.water td .na{color:var(--ink-3)}
+.water .sev{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font:700 12px/1 var(--display);color:#fff}
+.water .limits{font-size:16px;color:var(--ink-2)}
+.water .limits ul{padding-left:20px}
+.water .limits li{margin-bottom:8px}
+.water .papers{font:400 14px/1.6 var(--display);color:var(--ink-3);border-top:1px solid var(--rule);padding-top:18px;margin:40px 0 80px}
+.water .papers p{margin:0 0 8px}
+@media (max-width:1000px){.water .atlas,.water .who{grid-template-columns:1fr}
+.water .snap,.water .under{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+}
+@media (max-width:560px){.water .under{grid-template-columns:1fr}
+}
+@media (max-width:680px){.water{padding-inline:14px;font-size:17px}
+.water h1{letter-spacing:-.6px}
+.water .top nav a.hs{display:none}
+.water .kpi .v{font-size:30px}
+.water .lrow,.water .laxis{grid-template-columns:1fr;gap:4px}
+.water .laxis > span{display:none}
+.water .lt,.water .laxis div{margin-right:130px}
+.water .rung{grid-template-columns:1fr;gap:10px;padding:12px 16px}
+.water .seg button{padding:8px 9px;font-size:12px}
+.water .seg{display:flex;flex-wrap:wrap}
+.water .whofig{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.water #whosvg{min-width:620px}
+.water .grid2 > *{min-width:0}
+.water .lt,.water .laxis div{margin-right:110px}
+.water .lb{margin-right:120px}
+.water .lb .rule{margin-right:-120px}
+.water .lagaxis div{margin-right:120px}
+
+}
+</style>
+<main>
+  <div class="col">
+    <h1>America's water fails most where people can least afford it.</h1>
+    <p class="lede">The country has let its water systems run down, and when one gives out it is usually in a poor town. Every failure on this record that left residents without safe water happened in a community earning under three-quarters of the national median.
+      The repair money and the rules have gone elsewhere. And the one threat that is still getting worse, cyberattacks on the plants themselves, has no federal rule at all. This page counts what that neglect has cost, and makes the case for paying to end it.</p>
+  </div>
+
+  <section class="grid2 snap" aria-label="The scale of neglect">
+    <div class="kpi"><div class="k">Needed to keep drinking water safe, next 20 years</div><div class="v">$625B</div>
+      <div class="s">EPA's own figure. Two-thirds of it, $423 billion, is for replacing pipe that has already worn out.</div>
+      <div class="src"><a href="https://www.epa.gov/dwsrf/epas-7th-drinking-water-infrastructure-needs-survey-and-assessment">EPA, 7th DWINSA (2023)</a></div></div>
+    <div class="kpi"><div class="k">Systems with a health-based violation, 2024</div><div class="v" style="color:var(--atk)">10,769</div>
+      <div class="s">7% of the country's 147,252 public water systems. Most are small, and most serve low-income rural areas.</div>
+      <div class="src"><a href="https://www.epa.gov/compliance/providing-safe-drinking-water-america-national-public-water-systems-compliance-report">EPA compliance report</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5834717">Allaire et al. 2018</a></div></div>
+    <div class="kpi"><div class="k">Lead service lines still in the ground</div><div class="v">4.0M</div>
+      <div class="s">3 million known, plus another million EPA expects will turn out to be lead. Most are in older industrial cities.</div>
+      <div class="src"><a href="https://www.epa.gov/system/files/documents/2025-11/fact-sheet-2025-7th-dwinsa-update.pdf">EPA, 2025 DWINSA update</a></div></div>
+    <div class="kpi"><div class="k">People whose water bill is unaffordable</div><div class="v" style="color:var(--atk)">28.3M</div>
+      <div class="s">In the 787 communities served by the biggest utilities, 17% of households pay more than a day's minimum wage each month for water.</div>
+      <div class="src"><a href="https://journals.plos.org/water/article?id=10.1371/journal.pwat.0000123">Patterson et al., PLOS Water 2023</a></div></div>
+  </section>
+
+
+  <section class="ch" id="under" style="padding-top:56px">
+    <div class="col"><p class="kicker"><i>1</i>What neglect looks like</p>
+      <h2>Old pipes, small systems, no money</h2>
+      <p>A water system doesn't fail on the day the taps run dry. It fails over decades, and the systems with the least money fall furthest behind.</p></div>
+    <div class="grid2 under">
+      <div><h3>Pipes past their useful life</h3><div class="big">20%</div><div class="meter"><i style="width:20%"></i></div>
+        <p>Roughly 450,000 miles of water main should already have been replaced. Fixing breaks costs about $2.6 billion a year. ASCE's grade: C−, same as in 2021.</p>
+        <div class="src"><a href="https://infrastructurereportcard.org/cat-item/drinking-water-infrastructure/">ASCE 2025 Report Card</a></div></div>
+      <div><h3>Most systems are small</h3><div class="big">81%</div><div class="meter"><i style="width:81%"></i></div>
+        <p>Of the country's roughly 50,000 community water systems serve fewer than 3,300 people. They account for most violations, because a town that small can't pay for the staff or the upgrades.</p>
+        <div class="src"><a href="https://www.everycrsreport.com/files/2022-11-22_R47315_db8f8f0bb94c82bac811e0f20adc9a385cbac619.html">CRS R47315</a></div></div>
+      <div><h3>Rates pay for repairs</h3><div class="big">17%</div><div class="meter"><i style="width:17%"></i></div>
+        <p>Of households served by the biggest utilities already can't afford their water bill. Repairs are paid for through rates, so the poorest towns are the ones that can't raise the money.</p>
+        <div class="src"><a href="https://journals.plos.org/water/article?id=10.1371/journal.pwat.0000123">Patterson et al. 2023</a></div></div>
+      <div><h3>Basic cyber requirements unmet</h3><div class="big" style="color:var(--atk)">70%+</div><div class="meter"><i style="width:70%;background:var(--atk)"></i></div>
+        <p>Of systems EPA inspected since September 2023 violated basic cybersecurity requirements. 97 large systems had critical or high-risk flaws.</p>
+        <div class="src"><a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">EPA enforcement alert</a> · <a href="https://www.epa.gov/office-inspector-general/report-management-implication-report-cybersecurity-concerns-related">EPA OIG</a></div></div>
+    </div>
+  </section>
+
+  <section class="ch" id="who">
+    <div class="col"><p class="kicker"><i>2</i>Who pays for it</p>
+      <h2>The worst failures happened in the poorest places</h2>
+      <p>The chart puts each incident on two scales: how much the affected community earns compared with the typical American household, and how bad things got for residents.
+        The failures that made people sick or shut off safe water for weeks are all on the left side, in towns earning <strong class="a">between a third and two-thirds</strong> of the national median.</p></div>
+    <div class="grid2 who">
+      <div class="whofig" id="whofig" style="position:relative"><svg id="whosvg" viewBox="0 0 900 400" role="img" aria-label="Chart of water incidents by community median income and severity. Incidents that cost residents safe water cluster in low-income communities."></svg><div class="tip" id="tip2"></div></div>
+      <div class="whoside" id="whoside"></div>
+    </div>
+    <p class="cap">Incomes are Census estimates for the city or county (ACS five-year via QuickFacts; Braham via Census Reporter), checked for every incident. The US median is $80,734. American Water and California Water Service cover too many towns to place.
+      Fifteen incidents can't prove a correlation on their own, which is why the national studies sit next to the chart. Hackers pick water plants by what's exposed to the internet, not by what the town earns.</p>
+  </section>
+
+  <section class="ch" id="atlas">
+    <div class="col"><p class="kicker"><i>3</i>Where it happened</p>
+      <h2>Where the water failed, and where the lead pipes still are</h2>
+      <p>Bigger circles mean bigger systems. The color shows whether the town earns more or less than the typical American household. The other layers show the incidents by cause, or how many lead pipes each state still has. Click a circle for the full record.</p></div>
+    <div class="grid2 atlas">
+      <div>
+        <div class="mapbar">
+          <div class="seg" id="layer"><button data-l="ev">Incidents</button><button data-l="lead">Lead pipes by state</button><button data-l="dem">Income &amp; demographics</button></div>
+          <div class="legend" id="legEv"><span><i style="background:var(--pol)"></i>Contamination or failure</span><span><i style="background:var(--atk)"></i>Cyber: controls</span><span><i style="background:var(--heal)"></i>Cyber: business systems</span></div>
+          <div class="legend" id="legLead" hidden><span><i class="sq" style="background:var(--l1)"></i>20k</span><span><i class="sq" style="background:var(--l2)"></i>40k</span><span><i class="sq" style="background:var(--l3)"></i>150k</span><span><i class="sq" style="background:var(--l4)"></i>300k+</span></div>
+          <div class="legend" id="legDem" hidden><span>State income</span><span><i class="sq" style="background:var(--l1)"></i>&lt;$65k</span><span><i class="sq" style="background:var(--l2)"></i>$65–80k</span><span><i class="sq" style="background:var(--l3)"></i>$80–95k</span><span><i class="sq" style="background:var(--l4)"></i>$95k+</span><span style="margin-left:6px">Town vs US median</span><span><i style="background:var(--atk)"></i>Under 75%</span><span><i style="background:var(--pol)"></i>75–100%</span><span><i style="background:var(--ink-3)"></i>Above</span></div>
+        </div>
+        <div class="mapwrap" id="mapwrap"><svg id="map" viewBox="0 0 975 610" role="img" aria-label="Map of the United States with water incidents and lead service lines by state"></svg><div class="tip" id="tip"></div></div>
+      </div>
+      <div class="detail" id="detail" aria-live="polite"></div>
+    </div>
+    <p class="cap">Circles sit at the utility's location; the Minnesota campaign hit more than 30 systems and is placed at Braham. The lead layer uses the bands EPA used to split FY2025 funding, which count lead lines plus galvanized lines that need replacing. State incomes come from the 2023 Census ACS one-year survey; town incomes are described above. Puerto Rico is inset.</p>
+  </section>
+
+  <section class="ch" id="loss">
+    <div class="col"><p class="kicker"><i>4</i>What it cost</p>
+      <h2>Neglect costs more than any attack</h2>
+      <p>Pick a measure. Flint, Jackson and Milwaukee come out on top of every one, and all three started with a decision to save money on treatment or upkeep. The cyberattacks hit utilities serving <strong>millions of people</strong>,
+        but only one of them, Clayton County, actually cost residents safe water, and that was for a few hours.</p></div>
+    <div class="metric-bar">
+      <div class="seg" id="metric" style="flex-wrap:wrap">
+        <button data-m="served">People served</button><button data-m="days">Days without safe water</button><button data-m="ill">Illnesses</button><button data-m="deaths">Deaths</button><button data-m="cost">Disclosed cost</button><button data-m="fema">Lost-service value</button>
+      </div>
+    </div>
+    <div class="panel lossfig"><div id="lossRows"></div><div class="laxis"><span></span><div id="lossAxis"></div></div></div>
+    <p class="cap" id="metricNote"></p>
+  </section>
+
+  <section class="ch" id="policy">
+    <div class="col"><p class="kicker"><i>5</i>Where the money and the rules go</p>
+      <h2>Rules come fast for security threats and slow for poor towns</h2>
+      <p>Each bar starts at a disaster and ends at the first federal rule that was binding and addressed its cause. When Washington treated something as a national security problem, a rule came within weeks or months.
+        When the problem was contaminated water, it took years, even after people died. Flint waited ten and a half years for a rule on lead pipes.</p>
+      <p>The clock on water cyberattacks started in February 2021 and is still running: <strong class="a">5.7 years, no binding rule</strong>.</p></div>
+    <div class="panel lagfig">
+      <div class="lagkey"><span><i class="sw" style="background:var(--ink-3)"></i>Security threat</span><span><i class="sw" style="background:var(--pol)"></i>Water contamination</span><span><i class="sw" style="background:var(--atk)"></i>Water cyberattacks</span><span>Years to first binding rule</span></div>
+      <div id="lagRows"></div>
+      <div class="lagaxis"><span></span><div id="lagAxis"></div></div>
+    </div>
+    <p class="cap">Start dates: Colonial Pipeline May 7, 2021; September 11, 2001; Milwaukee April 1993; the 1969 federal Community Water Supply Study; Flint's April 2014 switch; Oldsmar February 2021, the first widely reported attack on a US water plant's controls. Hollow dots mark funding, proposals and reversed rules.</p>
+
+    <div class="col" style="margin-top:44px"><h3 style="font-size:22px;letter-spacing:-.4px;margin-bottom:10px">What prevention would have cost</h3>
+      <p>In both cases, the fix would have cost almost nothing compared with the failure.</p></div>
+    <div class="grid2 prev">
+      <div><div class="when">Flint, 2014</div>
+        <div class="pv"><div><div class="big" style="color:var(--heal)">~$100</div><p>a day for corrosion control, the widely reported estimate. About $55,000 over 18 months.</p></div>
+        <div class="vs">vs</div><div><div class="big" style="color:var(--atk)">$626M</div><p>settlement alone, before pipe replacement and federal aid.</p></div></div>
+        <div class="src"><a href="https://cbsnews.com/news/flint-water-crisis-settlement-626-million">CBS News</a> · <a href="https://www.nrdc.org/stories/flint-water-crisis-everything-you-need-know">NRDC</a></div></div>
+      <div><div class="when">Water cyberattacks</div>
+        <div class="pv"><div><div class="big" style="color:var(--heal)">Staff time</div><p>to change default passwords and take controls off the open internet, CISA's first advice after Aliquippa.</p></div>
+        <div class="vs">vs</div><div><div class="big" style="color:var(--atk)">87 days</div><p>run by hand at Arkansas City, and $163,751 in response costs.</p></div></div>
+        <div class="src"><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-335a">CISA AA23-335A</a> · 70%+ of inspected systems still fail basic requirements (<a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">EPA</a>)</div></div>
+    </div>
+    <div class="col" style="margin-top:44px"><h3 style="font-size:22px;letter-spacing:-.4px;margin-bottom:10px">Who the repair money reaches</h3>
+      <p>The main federal program for fixing water systems is a loan fund. The towns with the worst water have been the least likely to get it.</p></div>
+    <div class="grid2 prev">
+      <div><div class="when">Drinking Water State Revolving Fund, 2011–2020</div>
+        <div class="pv"><div><div class="big" style="color:var(--atk)">Less likely</div><p>Smaller communities and communities with more residents of color were statistically less likely to get a loan from the $45 billion program.</p></div>
+        <div class="vs">and</div><div><div class="big">26%</div><p>of the money went out as grants or forgiven loans. Federal law allows 35%. The rest was debt, which a poor town has to repay through rates.</p></div></div>
+        <div class="src"><a href="https://eenews.net/articles/report-racial-disparities-afflict-epa-drinking-water-funds">EPIC and University of Michigan, 2021</a> · <a href="https://www.nrdc.org/resources/will-funds-water-infrastructure-flow-fairly">NRDC, A Fairer Funding Stream, 2022</a></div></div>
+      <div><div class="when">Enforcement, 2016–2019</div>
+        <div class="pv"><div><div class="big" style="color:var(--atk)">Slower</div><p>Violations in counties with more residents of color and lower incomes were more likely to go unresolved for years. Towns under 3,300 people account for 80% of all violations.</p></div>
+        <div class="vs">vs</div><div><div class="big" style="color:var(--heal)">Weeks</div><p>from the Colonial Pipeline attack to a binding federal security directive, in the chart above.</p></div></div>
+        <div class="src"><a href="https://www.nrdc.org/resources/watered-down-justice">NRDC, Watered Down Justice</a></div></div>
+    </div>
+  </section>
+
+  <section class="ch" id="severity">
+    <div class="col"><p class="kicker"><i>6</i>The threat that is climbing</p>
+      <h2>Cyber is the one failure that keeps getting worse</h2>
+      <p>Every incident gets a score for the worst thing residents went through. Contamination and broken infrastructure have already reached the top rung. Cyber started at the bottom and has climbed one rung at a time: the early attacks did nothing residents could notice, later ones forced plants to run by hand,
+        then caused overflows and pressure drops, and in July 2026 one led to a <strong class="a">boil-water advisory</strong>. None has made anyone sick yet. More than 70% of inspected systems still fail basic cyber requirements, and there is still no binding federal rule.</p></div>
+    <div class="panel ladder" id="ladder"></div>
+  </section>
+
+  <section class="ch" id="record">
+    <div class="col"><p class="kicker"><i>7</i>Every incident</p>
+      <h2>All 17 incidents, with the numbers behind each one</h2>
+      <p>Click a row to find it on the map.</p></div>
+    <div class="tbl"><table><thead><tr><th>When</th><th>Incident</th><th>Cause</th><th>Severity</th><th style="text-align:right">People served</th><th style="text-align:right">Days without safe water</th><th style="text-align:right">Ill</th><th style="text-align:right">Deaths</th><th style="text-align:right">Disclosed cost</th><th>Boil notice</th><th style="text-align:right">Town median income</th></tr></thead><tbody id="recT"></tbody></table></div>
+    <p class="cap">US incidents only. Cyber incidents from the Machine Speed water record, as of Oct 13, 2026; most utilities have no duty to report, so this is a floor. “—” means not published.</p>
+  </section>
+
+  <section class="ch" id="case">
+    <div class="col"><p class="kicker"><i>8</i>What this adds up to</p>
+      <h2>We can't keep ignoring this</h2>
+      <p>The record on this page says four things.</p>
+      <p><strong>The country has let its water systems run down.</strong> EPA puts the repair bill at $625 billion, a fifth of the pipe is already past its life, and 10,769 systems broke a health standard last year.</p>
+      <p><strong class="a">The people who pay for it are the people with the least.</strong> Every failure here that left residents without safe water happened in a community earning under three-quarters of the national median. The national studies say the same thing at scale.</p>
+      <p><strong>The money and the rules go elsewhere.</strong> A pipeline attack got a binding federal rule in weeks. Flint waited ten and a half years. The federal repair fund was least likely to reach the small, poor, diverse towns whose water is worst, and most of what it sent was debt.</p>
+      <p><strong class="a">Cyber is the one that is still getting worse.</strong> Five and a half years after Oldsmar, attacks have climbed from no effect to a boil-water advisory, most systems still fail basic requirements, and there is no rule.</p>
+      <p>In 2010 the UN General Assembly voted 122 to 0 to recognize safe drinking water as a human right. The United States abstained. Sixteen years later, 28 million Americans can't afford their water bill and four million lead pipes still carry water into homes.
+        Water security is not a luxury to fund when there is money left over. It is the thing the rest depends on, and it is time to pay for it.</p>
+      <p class="cap" style="margin-top:14px">UN General Assembly resolution 64/292, July 28, 2010: 122 in favor, none against, 41 abstentions. <a href="https://digitallibrary.un.org/record/687002">UN record</a> · <a href="https://www.undispatch.com/why-the-united-states-did-not-support-water-as-a-human-right-resolution/">US statement</a></p></div>
+  </section>
+
+  <section class="ch" id="method">
+    <div class="col"><p class="kicker"><i>9</i>How to read this page</p>
+      <h2>What each number means</h2>
+      <p><b>People served</b> is the population of the system hit, not the number harmed. <b>Days without safe water</b> counts outages and boil-water or do-not-drink periods; Flint counts from the April 2014 switch to late 2016, when lead tested below the federal action level.
+        <b>Disclosed cost</b> is what was published: a settlement, an aid package or a response bill. <b>Lost-service value</b> applies FEMA's $138 per person per day (2022 dollars) to people who lost drinkable water, and is an estimate, not a measured loss.</p></div>
+    <div class="col limits"><p><b style="font-family:var(--display)">Limits</b></p><ul>
+      <li>Costs are not comparable across incidents: Flint's is a legal settlement, Jackson's federal aid, Milwaukee's the cost of illness in 1993 dollars.</li>
+      <li>Flint's lead harm is not in the illness count: 6,000 to 12,000 children were exposed to lead.</li>
+      <li>Clayton County's advisory length was not published; its lost-service value assumes about six hours, the record's convention for “within hours.”</li>
+      <li>Town incomes are Census estimates for the city or county; poverty and race figures for the eight smallest towns are approximate. They describe the community, not the people who lost water. State incomes are rounded to the nearest $1,000.</li>
+      <li>The income chart is fifteen data points: a pattern, not a correlation you can put a number on. Poverty and race figures for eight small towns are approximate (incomes are checked), and hackers choose targets by what's reachable online, not by income. The evidence that poorer communities get more violations and slower fixes comes from the national studies cited next to the chart: Allaire 2018 and 2022, NRDC 2019, Mueller and Gasteyer 2021.</li>
+      <li>Milwaukee's income is today's; the city was poorer in 1993. For Puerto Rico, the island-wide figure stands in for PRASA's customers, who are about 97% of residents.</li>
+      <li>Legionnaires' clusters from building cooling towers, such as New York City's in July 2026, are excluded: the source was not the public water supply, and tap water stayed safe to drink.</li>
+      <li>Lead bands are read from EPA's published map; exact state counts are in EPA's 2025 service line projections.</li></ul></div>
+    <div class="papers col">
+      <p>Sources: EPA compliance report (CY2024), EPA Report on the Environment, Healthy People 2030, EPA 2025 DWINSA update, ASCE 2025 Report Card, CRS R47315, FEMA BCA, Corso et al. (CDC <em>Emerging Infectious Diseases</em>, 2003), and press and agency reports linked in each incident.</p></div>
+  </section>
+</main>
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+const $=id=>document.getElementById(id);
+const FEMA=138;
+const C={fail:'var(--pol)',ot:'var(--atk)',it:'var(--heal)'}, CL={fail:'Contamination or failure',ot:'Cyber: controls',it:'Cyber: business systems'};
+const SEV=[['No effect reported','Breach found or contained'],['Plant run by hand','Operators took over; water safe'],['Service degraded','Overflow, flooding or pressure loss'],['Boil-water advisory','Residents told not to drink untreated tap water'],['Illness','Residents made sick'],['Deaths','Residents died']];
+const SC=['var(--ink-3)','#6f8a93','var(--pol)','var(--atk)','#9c2338','#5e1424'];
+// served, days, ill, deaths, cost, fema: number | null (not published). 0 = none.
+const EV=[
+ {id:'flint',name:'Flint water crisis',place:'Flint, Michigan',when:'Apr 2014 – Dec 2016',y:2014,k:'fail',lon:-83.69,lat:43.01,sev:5,boil:true,
+  served:100000,servedN:'city residents',days:980,daysN:'from the switch until lead tested below the federal action level (Jul–Dec 2016)',ill:91,illN:"Legionnaires' cases, Genesee County, 2014–15; about half linked to one Flint hospital. 6,000–12,000 children exposed to lead",deaths:12,deathsN:"Legionnaires'; one study estimates about 70 excess pneumonia deaths",cost:626250000,costN:'settlement, 2021',fema:null,femaN:'water kept flowing',
+  saw:'A cost-saving switch to the Flint River without corrosion control leached lead into homes. A Legionnaires\' outbreak followed. Boil-water advisories were issued in 2014. The last known lead service line was replaced on July 31, 2026: about 11,600 lines and roughly $140 million, twelve years after the switch.',
+  src:[['NRDC','https://www.nrdc.org/stories/flint-water-crisis-everything-you-need-know'],['CBS News','https://cbsnews.com/news/flint-water-crisis-settlement-626-million'],['Cohen Milstein','https://www.cohenmilstein.com/case-study/flint-water-crisis-class-action-litigation/'],['MDHHS, Apr 2016','https://www.michigan.gov/mdhhs/inside-mdhhs/newsroom/2016/04/11/mdhhs-issues-update-to-2015-legionnaires-disease-report-for-genesee-county_2'],['Excess deaths study','https://www.medrxiv.org/content/10.1101/19005942v1.full'],['EGLE, Feb 2026','https://www.michigan.gov/egle/newsroom/press-releases/2026/02/05/flint-water-enters-10th-year-of-lead-testing-compliance'],['City of Flint, Aug 2026','https://www.cityofflint.com/flint-reaches-historic-milestone-final-active-lead-service-line-replaced/']]},
+ {id:'jackson',name:'Jackson water crisis',place:'Jackson, Mississippi',when:'Jul – Sep 2022',y:2022,k:'fail',lon:-90.18,lat:32.30,sev:3,boil:true,
+  served:150000,servedN:'residents',days:48,daysN:'boil-water notice, Jul 29 – Sep 15',ill:null,deaths:null,cost:600000000,costN:'federal aid, Dec 2022',fema:150000*48*FEMA,femaN:'150,000 × 48 days × $138',
+  saw:'Flooding on the Pearl River knocked out the O.B. Curtis treatment plant. Most customers lost pressure for days; some could not flush or shower.',
+  src:[['NPR','https://www.npr.org/2022/09/15/1123264927/jackson-miss-boil-water-lifted'],['Clarion Ledger','https://news.yahoo.com/clarion-ledger-covered-jackson-water-205244259.html'],['Fast Company','https://www.fastcompany.com/91116929/jackson-mississippi-water-crisis']]},
+ {id:'milw',name:'Milwaukee Cryptosporidium outbreak',place:'Milwaukee, Wisconsin',when:'Apr 1993',y:1993,k:'fail',lon:-87.91,lat:43.04,sev:5,boil:true,
+  served:1610000,servedN:'greater Milwaukee area, both treatment plants',days:7,daysN:'about a week under a boil-water advisory',ill:403000,illN:'estimated; about 4,400 hospitalized',deaths:69,deathsN:'mostly people with AIDS',cost:96200000,costN:'illness cost, 1993 dollars',fema:1610000*7*FEMA,femaN:'at today\'s FEMA rate',
+  saw:'Cryptosporidium passed through a treatment plant. The largest waterborne outbreak in US history. A filtration failure, not an attack.',
+  src:[['Corso et al., CDC EID 2003','https://wwwnc.cdc.gov/eid/article/9/4/02-0417_article']]},
+ {id:'pr',name:'Hurricane Maria water outage',place:'Puerto Rico (PRASA)',when:'Sep 2017 – Jun 2018',y:2017,k:'fail',lon:-66.55,lat:18.2,sev:3,boil:true,
+  served:3300000,servedN:'about 97% of 3.4 million residents',days:150,daysN:'parts of the island; over half of customers lost service',ill:null,deaths:null,deathsN:'not attributed to water',cost:null,fema:null,femaN:'outage length varied too widely',
+  saw:'The storm took down the power grid that pumps and treats the water, cutting service to over half of PRASA customers. A week later only 40–45% had drinkable water. 96% were restored after nine months. Even before Maria, 69.4% of residents got water from systems that violated health standards (2015).',
+  src:[['NBC News','https://www.nbcnews.com/storyline/puerto-rico-crisis/half-hurricane-ravaged-puerto-rico-faces-lack-fresh-water-n805346'],['The Conversation','https://theconversation.com/puerto-rico-is-rationing-water-but-many-residents-stopped-trusting-the-tap-long-before-the-drought-290044'],['NRDC, Threats on Tap','https://www.nrdc.org/sites/default/files/threats-on-tap-drinking-water-puerto-rico-ip.pdf']]},
+ {id:'prd',name:'Puerto Rico drought rationing',place:'San Juan and six other cities',when:'Aug 2026',y:2026,k:'fail',lon:-66.06,lat:18.45,sev:2,boil:false,
+  served:180000,servedN:'customers on rotating cuts',days:null,daysN:'48 hours at a time, on a rotating schedule',ill:0,deaths:0,cost:null,fema:null,femaN:'rotation too irregular to total',
+  saw:'July 2026 was San Juan\'s driest month in more than 120 years. The governor declared an emergency and activated the National Guard to move and purify water. Thousands already had shortages for up to a year from crumbling pipes, and San Juan\'s mayor sued the water authority in May.',
+  src:[['PBS / AP, Aug 2026','https://www.pbs.org/newshour/nation/u-s-declares-drought-disaster-for-parts-of-puerto-rico-after-driest-month-on-record-for-san-juan']]},
+ {id:'mn',name:'Minnesota campaign, 30+ systems',place:'Braham, Minnesota (shown)',when:'Jul 2026',y:2026,k:'ot',lon:-93.17,lat:45.72,sev:2,boil:false,
+  served:1700,servedN:'Braham only',days:0,daysN:'plant offline about 2 hours; fed from its tower',ill:0,deaths:0,cost:null,fema:0,
+  saw:'Controls disabled and passwords changed on internet-facing PLCs. Pressure loss and flooding elsewhere; Maple Plain declared a local emergency.',
+  src:[['FBI/EPA PSA','https://www.ic3.gov/PSA/2026/PSA260730.pdf'],['Valley News Live','https://www.valleynewslive.com/2026/07/28/cyberattack-hits-more-than-30-minnesota-community-water-systems/']]},
+ {id:'clay',name:'Clayton County Water Authority',place:'Georgia',when:'Jul 2026',y:2026,k:'ot',lon:-84.36,lat:33.54,sev:3,boil:true,
+  served:300000,servedN:'customers',days:.25,daysN:'service back "within hours"; advisory length not published',ill:0,deaths:0,cost:null,fema:300000*.25*FEMA,femaN:'assumes about 6 hours',
+  saw:'Cyber activity caused a pressure drop and a boil-water advisory. Officials suspect Iran-backed hackers; unconfirmed.',
+  src:[['CBS News','https://www.cbsnews.com/news/more-states-water-systems-cyberattacks-iran-backed-hackers/']]},
+ {id:'calw',name:'California Water Service',place:'California',when:'Jun 2026',y:2026,k:'it',lon:-121.89,lat:37.33,sev:0,boil:false,
+  served:2000000,servedN:'whole utility',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'A few accounts on two outside vendor platforms. No service disruption reported.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'minot',name:'Minot water treatment plant',place:'North Dakota',when:'Mar 2026',y:2026,k:'ot',lon:-101.30,lat:48.23,sev:1,boil:false,
+  served:80000,servedN:'incl. regional supply',days:0,daysN:'plant run by hand about 16 hours',ill:0,deaths:0,cost:null,fema:0,saw:'Ransomware on the SCADA server. Water safe throughout; no ransom paid.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'stp',name:'City of Saint Paul',place:'Minnesota',when:'Jul 2025',y:2025,k:'it',lon:-93.09,lat:44.95,sev:0,boil:false,
+  served:307000,servedN:'city residents',days:0,daysN:'water treatment and delivery not affected',ill:0,deaths:0,cost:null,fema:0,saw:'Ransomware on city networks took down online payments, including water bills, for weeks. The governor activated the National Guard. The city refused the ransom; attackers published 43 GB of stolen data.',src:[['MPR News','https://www.mprnews.org/'],['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'midd',name:'City of Middletown water billing',place:'Ohio',when:'Aug 2025',y:2025,k:'it',lon:-84.40,lat:39.52,sev:0,boil:false,
+  served:24000,servedN:'customers',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Billing offline for 155 days: five cycles with no bills, then catch-up bills. Late fees waived.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'amw',name:'American Water',place:'24 states (HQ Camden, New Jersey)',when:'Oct 2024',y:2024,k:'it',lon:-75.12,lat:39.94,sev:0,boil:false,
+  served:14000000,servedN:'whole utility',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Customer portal and billing paused for 7 days. Facilities not affected.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'ark',name:'Arkansas City water treatment',place:'Kansas',when:'Sep 2024',y:2024,k:'ot',lon:-97.04,lat:37.06,sev:1,boil:false,
+  served:null,days:0,daysN:'plant run by hand for 87 days',ill:0,deaths:0,cost:163751,costN:'repairs, upgrades, legal, investigation',fema:0,saw:'Ransomware on the plant\'s primary server. Run by hand around the clock with retired and outside operators.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'tip',name:'Tipton wastewater plant',place:'Indiana',when:'Apr 2024',y:2024,k:'ot',lon:-86.04,lat:40.28,sev:2,boil:false,
+  served:5000,days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Minor disruptions at the wastewater plant; drinking water never at risk.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'mule',name:'Muleshoe and Abernathy',place:'Texas',when:'Jan 2024',y:2024,k:'ot',lon:-102.72,lat:34.23,sev:2,boil:false,
+  served:null,days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Attackers changed a setpoint through an operator screen; a tank overflowed, losing tens of thousands of gallons.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]},
+ {id:'ali',name:'Municipal Water Authority of Aliquippa',place:'Pennsylvania',when:'Nov 2023',y:2023,k:'ot',lon:-80.24,lat:40.62,sev:1,boil:false,
+  served:7000,days:0,ill:0,deaths:0,cost:null,fema:0,saw:'A booster-station PLC defaced; one of at least 34 US water-sector devices reached. Station run by hand.',src:[['CISA AA23-335A','https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-335a']]},
+ {id:'olds',name:'Oldsmar water treatment plant',place:'Florida',when:'Feb 2021',y:2021,k:'ot',lon:-82.67,lat:28.03,sev:0,boil:false,
+  served:15000,days:0,ill:0,deaths:0,cost:null,fema:0,saw:'A sodium hydroxide setpoint was raised and reverted at once. The FBI could not confirm an intrusion.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.org/topic/critical-infrastructure/']]}];
+const BY=Object.fromEntries(EV.map(e=>[e.id,e]));
+const LEAD={4:['Illinois','Ohio','New York'],3:['Wisconsin','Michigan','Indiana','Pennsylvania','New Jersey'],2:['Minnesota','Iowa','Missouri','Nebraska','Kansas','Texas','Tennessee','Alabama','Georgia','Florida','Massachusetts'],1:['Colorado','Kentucky','Louisiana','Mississippi','South Carolina']};
+const LB={0:'0 – 20,000',1:'20,001 – 40,000',2:'40,001 – 150,000',3:'150,001 – 300,000',4:'300,001 – 640,000'};
+const USINC=80734;
+const STINC={"District of Columbia":108.2,"Massachusetts":99.9,"New Jersey":99.8,"Maryland":98.7,"New Hampshire":96.8,"California":95.5,"Hawaii":95.3,"Washington":94.6,"Utah":93.4,"Colorado":92.9,"Connecticut":91.7,"Virginia":89.9,"Alaska":86.6,"Minnesota":85.1,"Rhode Island":85,"New York":82.1,"Delaware":81.4,"Vermont":81.2,"Illinois":80.3,"Oregon":80.2,"Arizona":77.3,"North Dakota":76.5,"Nevada":76.4,"Texas":75.8,"Idaho":74.9,"Georgia":74.6,"Wisconsin":74.6,"Nebraska":74.6,"Pennsylvania":73.8,"Maine":73.7,"Florida":73.3,"Wyoming":72.4,"South Dakota":71.8,"Iowa":71.4,"Montana":70.8,"North Carolina":70.8,"Kansas":70.3,"Indiana":69.5,"Michigan":69.2,"Missouri":68.5,"South Carolina":67.8,"Ohio":67.8,"Tennessee":67.6,"New Mexico":62.3,"Alabama":62.2,"Oklahoma":62.1,"Kentucky":61.1,"Arkansas":58.7,"Louisiana":58.2,"West Virginia":55.9,"Mississippi":54.2,"Puerto Rico":25.6};
+const incFill=n=>{const v=STINC[n];if(!v)return 'var(--land)';return 'var(--l'+(v<65?1:v<80?2:v<95?3:4)+')'};
+const DEM={flint:{inc:37646,pov:34.1,blk:56.1,his:4.5,area:'City of Flint',v:'https://www.census.gov/quickfacts/flintcitymichigan'},jackson:{inc:42071,pov:27.9,blk:81.7,his:2.4,area:'City of Jackson',v:'https://www.census.gov/quickfacts/fact/table/jacksoncitymississippi/PST045224'},
+ pr:{inc:25621,pov:null,blk:null,his:null,area:'Puerto Rico (territory-wide)',note:'PRASA serves about 97% of the island, so territory-wide figures describe its customers. Income from the 2023 ACS.',v:'https://www2.census.gov/library/publications/2024/demo/acsbr-023.pdf'},
+ milw:{inc:54234,pov:22.8,blk:38.5,his:20.9,area:'City of Milwaukee',v:'https://www.census.gov/quickfacts/fact/table/milwaukeecitywisconsin/RHI125224',note:'Present-day figures; the city was poorer and less diverse in 1993.'},
+ mn:{inc:59375,pov:12,blk:1,his:2,area:'Braham',incOnly:true,v:'https://censusreporter.org/',note:'The 30+ affected systems were mostly small rural towns.'},clay:{inc:59806,pov:17.4,blk:71.3,his:14.5,area:'Clayton County',v:'https://www.census.gov/quickfacts/claytoncountygeorgia'},
+ stp:{inc:73394,pov:15.6,blk:15.8,his:9.5,area:'City of Saint Paul',v:'https://www.census.gov/quickfacts/stpaulcityminnesota'},calw:null,minot:{inc:73219,pov:10,blk:4,his:5,area:'City of Minot',incOnly:true,v:'https://www.census.gov/quickfacts/minotcitynorthdakota'},midd:{inc:57102,pov:18,blk:12,his:4,area:'City of Middletown',incOnly:true,v:'https://www.census.gov/quickfacts/middletowncityohio'},amw:null,
+ ark:{inc:49629,pov:16,blk:4,his:19,area:'Arkansas City',incOnly:true,v:'https://www.census.gov/quickfacts/arkansascitycitykansas'},tip:{inc:59828,pov:11,blk:1,his:4,area:'City of Tipton',incOnly:true,v:'https://www.census.gov/quickfacts/tiptoncityindiana'},mule:{inc:69097,pov:20,blk:1,his:72,area:'Muleshoe',incOnly:true,v:'https://www.census.gov/quickfacts/muleshoecitytexas'},
+ ali:{inc:50188,pov:28,blk:38,his:2,area:'City of Aliquippa',incOnly:true,v:'https://www.census.gov/quickfacts/aliquippacitypennsylvania'},olds:{inc:88333,pov:9,blk:4,his:15,area:'City of Oldsmar',incOnly:true,v:'https://www.census.gov/quickfacts/oldsmarcityflorida'}};
+DEM.prd=DEM.pr;
+const DEMNA={calw:'Serves about 100 communities across California.',amw:'Serves communities in 24 states.'};
+const evInc=e=>{const d=DEM[e.id];if(!d)return 'var(--surface)';const r=d.inc/USINC;return r<.75?'var(--atk)':r<1?'var(--pol)':'var(--ink-3)'};
+const leadOf=n=>{for(const k of [4,3,2,1])if(LEAD[k].includes(n))return k;return 0};
+
+const num=v=>Math.round(v).toLocaleString('en-US');
+const big=v=>v>=1e9?(v/1e9).toFixed(1)+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+'M':v>=1e4?Math.round(v/1e3)+'k':num(v);
+const money=v=>v>=1e9?'$'+(v/1e9).toFixed(2)+'B':v>=1e6?'$'+(v/1e6).toFixed(v>=1e8?0:1)+'M':v>=1e3?'$'+Math.round(v/1e3)+'k':'$'+Math.round(v);
+const days=v=>v===0?'0':v<1?Math.round(v*24)+' hours':num(v)+(v===1?' day':' days');
+const M={served:['People served',big],days:['Days without safe water',days],ill:['Illnesses',big],deaths:['Deaths',num],cost:['Disclosed cost',money],fema:['Lost-service value',money]};
+const NOTE={served:'Population of the system hit, not the number harmed. American Water and California Water Service are whole-utility figures.',
+  days:'Outage plus boil-water or do-not-drink periods. Every cyber incident except Clayton County kept safe water flowing.',
+  ill:"Milwaukee's count is an estimate from surveys. Flint's is Legionnaires' cases only; lead exposure is not counted.",
+  deaths:"Flint: Legionnaires' deaths counted by Michigan's health department. No cyberattack on water has caused a death.",
+  cost:'What was published, by type: Flint a settlement, Jackson federal aid, Milwaukee the cost of illness (1993 dollars), Arkansas City its whole response bill.',
+  fema:"FEMA's $138 per person per day, applied to people who lost drinkable water. An estimate; Flint is excluded because water kept flowing."};
+let S={layer:'dem',sel:'flint',metric:'served'};
+
+/* map */
+const prProj=d3.geoMercator().center([-66.45,18.22]).scale(3400).translate([870,566]),prPath=d3.geoPath(prProj);
+const svg=d3.select('#map'),proj=d3.geoAlbersUsa().scale(1300).translate([487.5,305]),path=d3.geoPath(proj);
+let gSt=null,gEv=null;
+const P=ll=>(ll[0]>-68&&ll[0]<-65&&ll[1]<19)?prProj(ll):proj(ll);
+const rS=d3.scaleSqrt().domain([0,14e6]).range([5,34]);
+const rOf=e=>e.id==='pr'?9:e.served?Math.max(6,rS(e.served)):6;
+// Local copy first (drop us-atlas states-10m.json next to this page for CSP-strict or offline use), CDN fallback.
+const ATLAS=['states-10m.json','https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json'];
+const loadAtlas=i=>fetch(ATLAS[i]).then(r=>{if(!r.ok)throw 0;return r.json()}).catch(e=>i+1<ATLAS.length?loadAtlas(i+1):Promise.reject(e));
+loadAtlas(0).then(us=>{
+  const st=topojson.feature(us,us.objects.states).features;
+  gSt=svg.append('g').selectAll('path').data(st).join('path').attr('class','st').attr('d',f=>f.id==='72'?prPath(f):path(f))
+    .on('mousemove',function(ev,f){if(S.layer==='ev')return;d3.select(this).classed('hov',true).raise();const n=f.properties.name;tip(ev,S.layer==='lead'?`<b>${n}</b>${n==='Puerto Rico'?'Lead projection not shown':LB[leadOf(n)]+' projected lead lines'}`:`<b>${n}</b>Median household income $${STINC[n]||'—'}k`)})
+    .on('mouseleave',function(){d3.select(this).classed('hov',false);untip()});
+  svg.append('text').attr('x',870).attr('y',528).attr('text-anchor','middle').style('font','600 11px var(--display)').attr('fill','var(--ink-3)').text('Puerto Rico');
+  gEv=svg.append('g');
+  const evs=EV.filter(e=>P([e.lon,e.lat])).sort((a,b)=>rOf(b)-rOf(a));
+  const g=gEv.selectAll('g').data(evs).join('g');
+  g.append('circle').attr('class','ev').style('fill-opacity',e=>e.served>1e6?.45:null).attr('cx',e=>P([e.lon,e.lat])[0]).attr('cy',e=>P([e.lon,e.lat])[1]).attr('r',rOf).attr('fill',e=>C[e.k])
+    .on('mousemove',(ev,e)=>tip(ev,S.layer==='dem'?`<b>${e.name}</b>${DEM[e.id]?'Median income ~$'+Math.round(DEM[e.id].inc/1000)+'k · '+(DEM[e.id].pov!=null?DEM[e.id].pov+'% in poverty':''):DEMNA[e.id]}`:`<b>${e.name}</b>${e.when} · ${CL[e.k]}<br>Severity: ${SEV[e.sev][0]}`)).on('mouseleave',untip).on('click',(ev,e)=>{S.sel=e.id;render()});
+  g.filter(e=>e.k==='fail'&&e.id!=='pr'&&e.id!=='prd').append('text').attr('class','lab').attr('text-anchor',e=>e.id==='milw'?'end':'start').attr('x',e=>P([e.lon,e.lat])[0]+(e.id==='milw'?-1:1)*(rOf(e)+5)).attr('y',e=>P([e.lon,e.lat])[1]+(e.id==='flint'?rOf(e)+12:4)).text(e=>e.place.split(',')[0]);
+  render();
+}).catch(()=>{svg.append('text').attr('x',20).attr('y',40).attr('fill','currentColor').text('Map data could not load.')});
+function tip(ev,h){const t=$('tip'),b=$('mapwrap').getBoundingClientRect();t.innerHTML=h;t.style.opacity=1;let x=ev.clientX-b.left+14,y=ev.clientY-b.top+14;if(x>b.width-270)x-=284;t.style.left=x+'px';t.style.top=y+'px'}
+function untip(){$('tip').style.opacity=0;$('tip2').style.opacity=0}
+
+function met(label,v,fmt,note){const na=v===null||v===undefined;return `<div><dt>${label}</dt><dd class="${na?'na':''}">${na?'Not published':fmt(v)}${note?`<small>${note}</small>`:''}</dd></div>`}
+function detailEv(e){
+  return `<div><div class="when">${e.when}</div><h3>${e.name}</h3><div class="place">${e.place}</div></div>
+  <div class="pills"><span class="pill"><i style="background:${C[e.k]}"></i>${CL[e.k]}</span><span class="pill"><i style="background:${SC[e.sev]}"></i>${SEV[e.sev][0]}</span>${e.boil?'<span class="pill">Boil-water notice</span>':''}</div>
+  <dl class="mets">${met('People served',e.served,big,e.servedN)}${met('Days without safe water',e.days,days,e.daysN)}${met('Illnesses',e.ill,big,e.illN)}${met('Deaths',e.deaths,num,e.deathsN)}${met('Disclosed cost',e.cost,money,e.costN)}${met('Lost-service value',e.fema,money,e.femaN)}</dl>
+  <p class="saw">${e.saw}</p><div class="srcs">Sources: ${e.src.map(s=>`<a href="${s[1]}" rel="noopener">${s[0]}</a>`).join(' · ')}</div>`;
+}
+function detailDem(e){
+  const d=DEM[e.id],pct=v=>v+'%';
+  const head=`<div><div class="when">${e.when}</div><h3>${e.name}</h3><div class="place">${d?d.area:e.place}</div></div>`;
+  const find=`<ul class="find"><li><b>What research finds.</b> Poorer communities and communities of color get more health violations, and their systems take longer to fix them. <a href="#who">See the evidence</a>.</li>
+   <li>No study yet links income or race to cyberattack recovery; there are too few incidents.</li></ul>`;
+  if(!d)return head+`<p class="saw">${DEMNA[e.id]} One town's demographics would not describe it.</p>`+find;
+  const w=Math.min(100,d.inc/120000*100),m=USINC/120000*100;
+  return head+`<div><div style="font:500 12px/1.25 var(--display);color:var(--ink-3)">Median household income</div>
+   <div style="font:800 26px/1.1 var(--display);letter-spacing:-.5px;margin-top:3px">${d.v?'$'+num(d.inc):'~$'+Math.round(d.inc/1000)+'k'} <small style="font:500 13px var(--display);color:var(--ink-3);letter-spacing:0">${Math.round(d.inc/USINC*100)}% of US median</small></div>
+   <div class="incbar"><i style="width:${w}%;background:${evInc(e)}"></i><b style="left:${m}%"></b></div><div class="inclab"><span>$0</span><span>US median $81k</span><span>$120k</span></div></div>
+  <dl class="mets">${met('In poverty',d.pov,pct,'US: 10.6%')}${met('Black residents',d.blk,pct,'US: 13.7%')}${met('Hispanic residents',d.his,pct,'')}${met('Days without safe water',e.days,days,'')}</dl>
+  ${d.note?`<p class="saw" style="font-size:14px">${d.note}</p>`:''}`+find+(d.incOnly?`<div class="srcs">Median income: ${d.v.includes('census.gov')?'Census QuickFacts':'Census Reporter / Data USA'} (<a href="${d.v}">source</a>). Poverty and race figures approximate.</div>`:d.v?`<div class="srcs">Census Bureau, ACS 2020–2024 five-year estimates. <a href="${d.v}">Source</a></div>`:`<div class="srcs">Approximate; not yet checked against Census QuickFacts.</div>`);
+}
+function detailLead(){
+  return `<div><div class="when">EPA, 2025 update</div><h3>4.0 million lead service lines</h3><div class="place">Projected lead and galvanized lines requiring replacement</div></div>
+  <ul class="ramp">${[4,3,2,1].map(k=>`<li><i style="background:var(--l${k})"></i><span><b>${LB[k]}</b><br>${LEAD[k].join(', ')}</span></li>`).join('')}<li><i style="background:var(--l0);border:1px solid var(--rule)"></i><span><b>${LB[0]}</b><br>All other states</span></li></ul>
+  <p class="saw">Lead lines are the pipes that poisoned Flint. They sit mostly in the older cities of the Midwest and Northeast, plus Florida and Texas.</p>
+  <div class="srcs">Source: <a href="https://www.epa.gov/system/files/documents/2025-11/fact-sheet-2025-7th-dwinsa-update.pdf">EPA 2025 DWINSA fact sheet</a></div>`;
+}
+
+/* who: income vs severity */
+const goMap=id=>{S.sel=id;if(S.layer==='lead')S.layer='dem';render();document.scrollingElement.scrollTo({top:$('atlas').offsetTop-10,behavior:'smooth'})};
+const median=a=>{const s=a.slice().sort((x,y)=>x-y),n=s.length;return n?(n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2):null};
+function drawWho(){
+  const W=900,H=400,ML=210,MR=24,MT=16,MB=40;
+  const pts=EV.filter(e=>DEM[e.id]).map(e=>({e,x:DEM[e.id].inc/USINC*100}));
+  const x=d3.scaleLinear().domain([20,120]).range([ML,W-MR]);
+  const y=d3.scaleBand().domain([5,4,3,2,1,0]).range([MT,H-MB]).paddingInner(0);
+  const r=d3.scaleSqrt().domain([0,3.3e6]).range([6,20]);
+  const svg=d3.select('#whosvg');svg.selectAll('*').remove();
+  svg.append('rect').attr('class','band').attr('x',x(20)).attr('y',MT).attr('width',x(75)-x(20)).attr('height',H-MB-MT);
+  svg.append('text').attr('class','ax').attr('x',x(20)+8).attr('y',MT+14).text('Under 75% of US median');
+  y.domain().forEach((k,i)=>{const yy=y(k);if(i)svg.append('line').attr('class','gl').attr('x1',ML).attr('x2',W-MR).attr('y1',yy).attr('y2',yy);
+    svg.append('text').attr('class','ry').attr('x',ML-12).attr('y',yy+y.bandwidth()/2-2).attr('text-anchor','end').text(SEV[k][0]);
+    svg.append('text').attr('class','rs').attr('x',ML-12).attr('y',yy+y.bandwidth()/2+13).attr('text-anchor','end').text(SEV[k][1].length>34?SEV[k][1].slice(0,32)+'…':SEV[k][1]);
+  });
+  [25,50,75,100].forEach(v=>{svg.append('line').attr('class','gl').attr('x1',x(v)).attr('x2',x(v)).attr('y1',MT).attr('y2',H-MB);
+    svg.append('text').attr('class','ax').attr('x',x(v)).attr('y',H-MB+16).attr('text-anchor','middle').text(v+'%')});
+  svg.append('line').attr('class','med').attr('x1',x(100)).attr('x2',x(100)).attr('y1',MT).attr('y2',H-MB);
+  svg.append('text').attr('class','ax t').attr('x',x(100)).attr('y',H-MB+32).attr('text-anchor','middle').text('US median household income');
+  svg.append('text').attr('class','ax').attr('x',ML).attr('y',H-MB+32).attr('text-anchor','start').text('Circle size: people served');
+  // spread dots that share a row and sit close together
+  const byRow={};pts.forEach(p=>{(byRow[p.e.sev]=byRow[p.e.sev]||[]).push(p)});
+  Object.values(byRow).forEach(row=>{row.sort((a,b)=>a.x-b.x);row.forEach((p,i)=>{p.cy=y(p.e.sev)+y.bandwidth()/2;p.cx=x(p.x);
+    for(let j=0;j<i;j++){const q=row[j],d=Math.abs(p.cx-q.cx),need=r(p.e.served||0)+r(q.e.served||0)+2;if(d<need&&Math.abs(p.cy-q.cy)<4)p.cy+=(i%2?-1:1)*Math.min(14,need-d)}})});
+  const g=svg.append('g').selectAll('g').data(pts.sort((a,b)=>r(b.e.served||0)-r(a.e.served||0))).join('g');
+  g.append('circle').attr('class','pt').attr('data-id',p=>p.e.id).attr('cx',p=>p.cx).attr('cy',p=>p.cy).attr('r',p=>r(p.e.served||0)).attr('fill',p=>C[p.e.k])
+    .on('mousemove',(ev,p)=>tipAt(ev,'whofig',`<b>${p.e.name}</b>${p.e.when} · ${CL[p.e.k]}<br>Median income ${DEM[p.e.id].v?'$'+num(DEM[p.e.id].inc):'~$'+Math.round(DEM[p.e.id].inc/1000)+'k'}, ${Math.round(p.x)}% of US<br>${SEV[p.e.sev][0]}${p.e.days?' · '+days(p.e.days)+' without safe water':''}`))
+    .on('mouseleave',untip).on('click',(ev,p)=>goMap(p.e.id));
+  g.filter(p=>p.e.k==='fail'||p.e.id==='clay').append('text').attr('class','lab').attr('text-anchor',p=>p.e.id==='pr'?'middle':'start').attr('x',p=>p.e.id==='pr'?p.cx:p.cx+r(p.e.served||0)+5).attr('y',p=>p.e.id==='pr'?p.cy-r(p.e.served||0)-4:p.cy+4).text(p=>p.e.id==='pr'?'Puerto Rico, Maria':p.e.id==='prd'?'Puerto Rico, drought':p.e.id==='clay'?'Clayton County, GA':p.e.place.split(',')[0]);
+  // side panel: the comparison, computed from the data
+  const lost=pts.filter(p=>p.e.sev>=3),kept=pts.filter(p=>p.e.sev<3);
+  const mL=median(lost.map(p=>p.x)),mK=median(kept.map(p=>p.x)),hi=Math.max(...lost.map(p=>p.x)),lo=Math.min(...lost.map(p=>p.x));
+  $('whoside').innerHTML=`<p class="lead">In <b>${lost.length} of these incidents</b>, residents lost safe water. All ${lost.length} happened in communities earning between ${Math.round(lo)}% and ${Math.round(hi)}% of the US median.</p>
+   <div class="vs2"><div><div class="k">Lost safe water (severity 3+)</div><div class="v" style="color:var(--atk)">${Math.round(mL)}%</div><div class="s">of US median income, median of the ${lost.length}</div></div>
+   <div><div class="k">Water stayed safe (0–2)</div><div class="v">${Math.round(mK)}%</div><div class="s">median of the other ${kept.length}</div></div></div>
+   <ul class="evid">
+    <li><b>21M</b><span>Americans were served by a system that broke a health standard in 2015. Low-income rural areas had the most violations, and the same systems kept failing year after year. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5834717">Allaire, Wu &amp; Lall, PNAS 2018</a></span></li>
+    <li><b>13% vs 2%</b><span>share of systems with a health violation in 2018: those serving very low-income communities, against everyone else. <a href="https://awwa.onlinelibrary.wiley.com/doi/full/10.1002/aws2.1274">Allaire 2022</a></span></li>
+    <li><b>40%</b><span>higher odds of a violation that drags on for years, in counties with more residents of color, 2016–2019. <a href="https://www.nrdc.org/resources/watered-down-justice">NRDC</a> · <a href="https://journals.sagepub.com/doi/10.1177/21533687231189854">Bae et al.</a></span></li>
+    <li><b>490k</b><span>households have no complete plumbing. The ones that don't are disproportionately poor, rural and Native. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8219686">Mueller &amp; Gasteyer, Nature Communications 2021</a></span></li>
+   </ul>`;
+}
+function tipAt(ev,wrapId,h){const t=$('tip2'),w=$(wrapId),b=w.getBoundingClientRect();t.innerHTML=h;t.style.opacity=1;let x=ev.clientX-b.left+14,y=ev.clientY-b.top+14;if(x>b.width-270)x-=284;t.style.left=x+'px';t.style.top=y+'px'}
+
+/* loss rows */
+function drawLoss(){
+  const m=S.metric,[lab,fmt]=M[m];
+  const vals=EV.map(e=>e[m]).filter(v=>v>0),mx=Math.max(...vals),mn=Math.min(...vals,1);
+  const lo=Math.floor(Math.log10(Math.max(mn,m==='days'?.1:1))),hi=Math.ceil(Math.log10(mx));
+  const pct=v=>v>0?Math.max(1.5,(Math.log10(v)-lo)/(hi-lo)*100):0;
+  const rows=EV.slice().sort((a,b)=>(b[m]??-1)-(a[m]??-1));
+  const groups=[['fail','Contamination and infrastructure failures'],['cyber','Cyberattacks']];
+  let h='';groups.forEach(([g,gl])=>{h+=`<div class="lgroup">${gl}</div>`;rows.filter(e=>g==='fail'?e.k==='fail':e.k!=='fail').forEach(e=>{
+    const v=e[m],na=v===null||v===undefined,p=na?0:pct(v);
+    h+=`<div class="lrow" data-id="${e.id}"><div class="ln"><b>${e.name}</b><span>${e.when}</span></div><div class="lt"><i style="width:${p}%;background:${C[e.k]}"></i><em class="${na?'na':''}" style="left:${p}%">${na?'Not published':v===0?'None':fmt(v)}</em></div></div>`})});
+  $('lossRows').innerHTML=h;
+  let ax='';for(let k=lo;k<=hi;k++){const v=Math.pow(10,k);ax+=`<span style="left:${(k-lo)/(hi-lo)*100}%">${m==='cost'||m==='fema'?money(v):m==='days'?(v<1?'2 hrs':days(v)):big(v)}</span>`}
+  $('lossAxis').innerHTML=ax;
+  $('metricNote').textContent=lab+', log scale. '+NOTE[m];
+  document.querySelectorAll('.lrow').forEach(r=>r.onclick=()=>{S.sel=r.dataset.id;S.layer='ev';render();document.scrollingElement.scrollTo({top:$('atlas').offsetTop-10,behavior:'smooth'})});
+}
+function drawLadder(){
+  $('ladder').innerHTML=SEV.map((s,i)=>i).reverse().map(i=>{const es=EV.filter(e=>e.sev===i).sort((a,b)=>b.y-a.y);
+    return `<div class="rung"><div class="rl"><b><em style="background:${SC[i]}">${i}</em>${SEV[i][0]}</b><span>${SEV[i][1]}</span></div><div class="chips">${es.length?es.map(e=>`<button class="chip" data-id="${e.id}"><i style="background:${C[e.k]}"></i>${e.name.replace(/ water treatment plant| water treatment| Water Authority/,'')}<small>${e.y}</small></button>`).join(''):(EV.some(e=>e.sev>i)?`<span class="none">No incident stopped at this level. ${EV.filter(e=>e.sev>i&&e.k==='fail'&&e.sev===5).map(e=>e.name.split(' ')[0]).join(' and ')} caused illness and went on to deaths.</span>`:'<span class="none">No incident on record</span>')}</div></div>`}).join('');
+  document.querySelectorAll('#ladder .chip').forEach(b=>b.onclick=()=>{S.sel=b.dataset.id;S.layer='ev';render();document.scrollingElement.scrollTo({top:$('atlas').offsetTop-10,behavior:'smooth'})});
+}
+function drawTable(){
+  const n=(v,f)=>v===null||v===undefined?'<span class="na">—</span>':v===0?'0':f(v);
+  $('recT').innerHTML=EV.slice().sort((a,b)=>b.y-a.y).map(e=>`<tr data-id="${e.id}"><td class="w">${e.when}</td><td><b>${e.name}</b><span class="sub">${e.place}</span></td><td><span class="pill" style="white-space:nowrap"><i style="background:${C[e.k]}"></i>${CL[e.k]}</span></td><td><span class="sev" style="background:${SC[e.sev]}" title="${SEV[e.sev][0]}">${e.sev}</span></td><td class="n">${n(e.served,big)}</td><td class="n">${n(e.days,days)}</td><td class="n">${n(e.ill,big)}</td><td class="n">${n(e.deaths,num)}</td><td class="n">${n(e.cost,money)}</td><td>${e.boil?'Yes':'No'}</td><td class="n">${DEM[e.id]?(DEM[e.id].v?'$'+num(DEM[e.id].inc):'~$'+Math.round(DEM[e.id].inc/1000)+'k'):'<span class="na">Many towns</span>'}</td></tr>`).join('');
+  document.querySelectorAll('#recT tr').forEach(r=>r.onclick=()=>{S.sel=r.dataset.id;S.layer='ev';render();document.scrollingElement.scrollTo({top:$('atlas').offsetTop-10,behavior:'smooth'})});
+}
+function render(){
+  document.querySelectorAll('#layer button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===S.layer));
+  document.querySelectorAll('#metric button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.metric));
+  const lead=S.layer==='lead',dem=S.layer==='dem';$('legEv').hidden=S.layer!=='ev';$('legLead').hidden=!lead;$('legDem').hidden=!dem;
+  if(gSt){gSt.attr('fill',f=>lead?`var(--l${leadOf(f.properties.name)})`:dem?incFill(f.properties.name):'var(--land)');gEv.style('display',lead?'none':null);gEv.selectAll('circle').classed('sel',e=>e.id===S.sel).attr('fill',e=>dem?evInc(e):C[e.k]).style('stroke',e=>dem&&!DEM[e.id]?'var(--ink-3)':null)}
+  $('detail').innerHTML=lead?detailLead():dem?detailDem(BY[S.sel]):detailEv(BY[S.sel]);
+  document.querySelectorAll('#whosvg .pt').forEach(c=>c.classList.toggle('sel',c.dataset.id===S.sel));
+  drawLoss();
+}
+document.querySelectorAll('#layer button').forEach(b=>b.onclick=()=>{S.layer=b.dataset.l;render()});
+document.querySelectorAll('#metric button').forEach(b=>b.onclick=()=>{S.metric=b.dataset.m;render()});
+const LAG=[
+ {k:'Colonial Pipeline ransomware',y:'May 2021',harm:'Fuel shortages across the Southeast',c:'var(--ink-3)',t:.055,rule:'TSA security directive for pipelines'},
+ {k:'September 11 attacks',y:'Sep 2001',harm:'2,977 killed; water systems were not attacked',c:'var(--ink-3)',t:.75,rule:'Bioterrorism Act: larger water systems must assess vulnerabilities'},
+ {k:'Milwaukee outbreak',y:'Apr 1993',harm:'About 403,000 ill, 69 deaths',c:'var(--pol)',t:3.3,rule:'Safe Drinking Water Act amendments'},
+ {k:'Federal water supply survey',y:'1969',harm:'Widespread substandard water',c:'var(--pol)',t:5,rule:'Safe Drinking Water Act',ticks:[[4.9,'New Orleans findings make national news']]},
+ {k:'Flint',y:'Apr 2014',harm:'12 deaths; 6,000–12,000 children exposed to lead',c:'var(--pol)',t:10.5,rule:'All lead pipes must be replaced',ticks:[[2.7,'Emergency funding'],[7.6,'$15B for lead pipes']]},
+ {k:'Water cyberattacks',y:'Feb 2021, Oldsmar',harm:'No illness or deaths; one boil-water notice',c:'var(--atk)',t:5.7,open:true,rule:'None yet',ticks:[[2.05,'EPA adds cyber to inspections'],[2.65,'Withdrawn after lawsuit'],[5.5,'Water Cyber Shield Act introduced']]}];
+(function(){const MX=12,p=v=>v/MX*100,yr=v=>v<1?(v<.1?Math.round(v*52)+' weeks':Math.round(v*12)+' months'):v.toFixed(1).replace('.0','')+' years';
+ $('lagRows').innerHTML=LAG.map(r=>`<div class="lag"><div class="lh"><b>${r.k}</b><span>${r.y}</span><em>${r.harm}</em></div>
+  <div class="lb"><div class="bar${r.open?' open':''}" style="width:${Math.max(.6,p(r.t))}%;background:${r.c}"></div>
+   ${(r.ticks||[]).map(x=>`<i class="tk" style="left:${p(x[0])}%" title="${x[1]}, ${yr(x[0])}"></i>`).join('')}
+   <span class="n" style="left:${p(r.t)}%;${r.open?'color:var(--atk)':''}">${r.open?yr(r.t)+' and counting':yr(r.t)}</span>
+   <div class="rule"><b>Rule:</b> ${r.rule}${r.ticks?'<br>'+r.ticks.map(x=>`${x[1]} (${yr(x[0])})`).join(' · '):''}</div></div></div>`).join('');
+ let ax='';for(let k=0;k<=MX;k+=2)ax+=`<span style="left:${p(k)}%">${k}${k?'':' yrs'}</span>`;$('lagAxis').innerHTML=ax;})();
+drawLadder();drawTable();drawWho();render();
+});
+</script>
+</div>
+<!-- site-footer -->

@@ -234,7 +234,7 @@ SO_WHAT_TITLE = "So What"
 SO_WHAT_DESC = ("What the Machine Speed record adds up to: where the money and the "
                 "rules go, what has precedent, and which failures are still getting worse.")
 
-WATER_URL = "water/health/"
+WATER_URL = "water/"
 WATER_TITLE = "America's water fails most where people can least afford it"
 WATER_DESC = ("Seventeen US water failures, from Flint to the 2026 cyberattacks, set "
               "against community income, the repair money, the policy lag and what "
@@ -816,7 +816,7 @@ class Site:
         root = Path(__file__).parent
         self.so_what = [p for p in SO_WHAT_PAGES if p["url"] and (
             (p["url"] == GAP_MAP_URL and (root / "gap-map" / "body.html").exists()) or
-            (p["url"] == WATER_URL and (root / "water" / "health" / "body.html").exists()))]
+            (p["url"] == WATER_URL and (root / "water" / "body.html").exists()))]
 
     @property
     def has_forecasts(self) -> bool:
@@ -2170,7 +2170,7 @@ def build(out_dir: Path):
         The body carries <!-- site-nav --> and <!-- site-footer --> markers
         where the partials go. The partials keep the site's own measure; the
         page between them runs edge to edge on its own. `url` may be any
-        depth (gap-map/, water/health/); the prefix follows it.
+        depth (gap-map/, water/); the prefix follows it.
         """
         if not src.exists():
             print(f"  error:   {url} is switched on but {src.relative_to(root)} is missing",
@@ -2211,7 +2211,7 @@ def build(out_dir: Path):
     # Water — the second So What page. Hand-authored like the Gap Map; it
     # needs nothing copied beside it (d3 and the map shapes load from CDNs).
     if WATER_URL:
-        hand_page(root / "water" / "health" / "body.html", WATER_URL, WATER_TITLE, WATER_DESC,
+        hand_page(root / "water" / "body.html", WATER_URL, WATER_TITLE, WATER_DESC,
                   extra_head=WATER_HEAD)
 
     # So What — the index of the pages above. One level down.
