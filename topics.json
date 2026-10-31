@@ -1,5 +1,5 @@
 {
-  "_readme": "The topics readers browse by. Each item lists its topic ids in items[].topics. Keep the list short and the definitions plain; a topic is a question a reader follows, not a filing category — lanes already do that.",
+  "_readme": "The topics readers browse by. Each item lists its topic ids in items[].topics. Keep the list short and the definitions plain; a topic is a question a reader follows, not a filing category — lanes already do that. | reading (optional, per topic): the editor's call on the story, shown as its face on the Watchlist: {\"level\": 0-4 (0 quiet, 1 keeping up, 2 slipping, 3 falling behind, 4 unanswered), \"asOf\": \"YYYY-MM-DD\", \"why\": one sentence}. Without it the face follows the board's own four-week count of problems against answers, which is printed under the face either way.",
   "topics": [
     {
       "id": "evaluation-incidents",
@@ -29,7 +29,12 @@
     {
       "id": "critical-infrastructure",
       "name": "Critical infrastructure",
-      "definition": "AI-linked threats to water, power and other industrial control systems."
+      "definition": "AI-linked threats to water, power and other industrial control systems.",
+      "reading": {
+        "level": 3,
+        "asOf": "2026-10-31",
+        "why": "Most inspected water systems still fail basic cyber requirements and there is no binding federal rule; this month's answers on the board are a taxonomy update and arrests, not fixes for exposed water plants."
+      }
     }
   ]
 }

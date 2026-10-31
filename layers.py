@@ -35,7 +35,7 @@ SEARCH_URL = "search/"
 PICKS_MAX = 5          # This week is a short read by design; more warns
 LATEST_WHEN_NO_PICKS = 5
 CARD_HEADLINES = 3
-FRONT_WEEK_CARDS = 3   # week cards on the front page; the Archive has them all
+FRONT_WEEK_CARDS = 4   # week cards on the front page, in a fixed four-up; the Archive has them all
 LEAD_FOLLOWERS = 4     # items set two-up under this week's lead
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -60,6 +60,19 @@ def _monday(dt: date) -> date:
 def validate(d: dict, topics: list = ()):
     errors, warnings = [], []
     known = {t.get("id") for t in topics}
+    for t in topics:
+        r = t.get("reading")
+        if r is None:
+            continue
+        if not isinstance(r, dict) or not isinstance(r.get("level"), int) or not 0 <= r["level"] <= 4:
+            errors.append(f"topic '{t.get('id')}': reading.level must be an integer 0-4")
+        elif not r.get("why"):
+            warnings.append(f"topic '{t.get('id')}': reading has no 'why' — the face will show a level with no reason")
+        if isinstance(r, dict) and r.get("asOf"):
+            try:
+                _d(r["asOf"])
+            except ValueError:
+                errors.append(f"topic '{t.get('id')}': reading.asOf is not a YYYY-MM-DD date")
     ids = {i.get("id") for i in d.get("items", [])}
     for w in d.get("watchlist", []):
         for iid in w.get("items", []):
@@ -319,8 +332,7 @@ def contents_column(site, L, w) -> str:
         out.append(f'<a class="way{last}" href="{href}"><span class="wn">{n}</span>'
                    f'<span class="wb"><span class="wt">{name}</span>'
                    f'<span class="wd">{escape(what)}</span></span></a>')
-    out.append('<p class="waysnote">Each is built from the one above it. The board is the raw record; '
-               'So What is what it means.</p></nav>')
+    out.append('</nav>')
     return "".join(out)
 
 
@@ -395,7 +407,7 @@ def home_body(site, L, explore_page: str, conf_labels: dict) -> str:
 
   <section class="block"><p class="blockhead rw">Recent weeks
     <a href="{site.prefix}{ARCHIVE}">All {len(L.weeks)} weeks in the Archive &#8594;</a></p>
-    <div class="wgrid">{cards}</div>
+    <div class="wgrid front">{cards}</div>
   </section>
 
   {site.subscribe_block(compact=True)}
@@ -455,20 +467,191 @@ def also_watching(site, L, rows) -> str:
     return f'<div class="awlist">{"".join(out)}</div>'
 
 
+# Emblems: a cast of six, one character per story, all drawn in the same hand:
+# a rounded body filled with the lane's soft tint, a thick ink outline, dot
+# eyes and a mouth that says how the story is going. Keyed by topic id; a story
+# without one gets a plain mark. All drawn here, nothing loaded. Classes:
+# .bd body fill, .ac accent stroke, .af accent fill, .ey eyes, .mo mouth.
+# -- The scale ---------------------------------------------------------------
+# Each story's face is a reading, not a decoration. It follows the Gap Map's
+# own measure: over the trailing four weeks, new problems (capability and
+# attack items) against answers (policy, defense, markets). Same bands as the
+# Gap Map's verdicts, so the face never says anything the rest of the site
+# does not. Level 0 is a story with no new problems at all.
+PACE_WEEKS = 4
+PROBLEM_LANES = ("cap", "atk")
+ANSWER_LANES = ("pol", "def", "mkt")
+SCALE = [
+    ("Quiet", "No new problems in the last four weeks."),
+    ("Keeping up", "Answers are arriving as fast as problems."),
+    ("Slipping", "Problems are arriving up to twice as fast as answers."),
+    ("Falling behind", "Problems are arriving more than twice as fast as answers."),
+    ("Unanswered", "New problems, and not one answer yet."),
+]
+
+
+def pace_count(L, t):
+    """Problems and answers the board logged on this story in the window."""
+    since = (L.run - timedelta(days=7 * PACE_WEEKS)).isoformat()
+    recent = [i for i in t["items"] if i["date"] >= since]
+    return (sum(1 for i in recent if i["lane"] in PROBLEM_LANES),
+            sum(1 for i in recent if i["lane"] in ANSWER_LANES))
+
+
+def pace_level(L, t) -> int:
+    p, a = pace_count(L, t)
+    if p == 0:
+        return 0
+    if a == 0:
+        return 4 if p >= 3 else 3
+    r = p / a
+    return 1 if r <= 1 else 2 if r <= 2 else 3
+
+
+def reading(L, t) -> dict:
+    """What the face shows. The editor's call from topics.json when there is
+    one (level, asOf, why); otherwise the board's own count. Either way the
+    count is returned too, so the page can print it as the evidence."""
+    p, a = pace_count(L, t)
+    r = t.get("reading")
+    if r and isinstance(r.get("level"), int) and 0 <= r["level"] <= 4:
+        return {"level": r["level"], "editor": True, "asOf": r.get("asOf", ""),
+                "why": r.get("why", ""), "p": p, "a": a}
+    return {"level": pace_level(L, t), "editor": False, "asOf": "", "why": "", "p": p, "a": a}
+
+
+def face(level: int, cx: float, cy: float, s: float = 1.0) -> str:
+    """Eyes, brows and mouth for a reading, centred on (cx, cy), scaled by s."""
+    r = 3.3 * s
+    dx = 5.2 * s
+    lx, rx = cx - dx, cx + dx
+    def eye(x, look, pr=0.5, lid=False):
+        px, py = x + look[0] * r * 0.5, cy + look[1] * r * 0.5
+        out = f'<circle class="sc" cx="{x:.1f}" cy="{cy:.1f}" r="{r:.1f}"/>'
+        out += f'<circle class="pu" cx="{px:.1f}" cy="{py:.1f}" r="{r * pr:.1f}"/>'
+        out += f'<circle class="hl" cx="{px - r * 0.2:.1f}" cy="{py - r * 0.22:.1f}" r="{r * 0.17:.1f}"/>'
+        if lid:
+            out += (f'<path class="bd" d="M{x - r:.1f} {cy:.1f}a{r:.1f} {r:.1f} 0 0 1 {2 * r:.1f} 0z"/>'
+                    f'<path d="M{x - r:.1f} {cy:.1f}h{2 * r:.1f}"/>')
+        return out
+    my = cy + 7.5 * s
+    by = cy - 5.5 * s
+    if level == 0:    # half asleep
+        return (eye(lx, (0, 0.6), 0.45, True) + eye(rx, (0, 0.6), 0.45, True)
+                + f'<path class="mo" d="M{cx - 3 * s:.1f} {my:.1f}h{6 * s:.1f}"/>')
+    if level == 1:    # content
+        return (eye(lx, (0.4, 0.2)) + eye(rx, (0.4, 0.2))
+                + f'<path class="mo" d="M{cx - 4.5 * s:.1f} {my - s:.1f}q{4.5 * s:.1f} {4 * s:.1f} {9 * s:.1f} 0"/>')
+    if level == 2:    # unsure: a glance sideways, one brow up, flat mouth
+        return (eye(lx, (0.8, 0.1)) + eye(rx, (0.8, 0.1))
+                + f'<path d="M{rx - 3.5 * s:.1f} {by - 1.5 * s:.1f}l{7 * s:.1f} -{1.5 * s:.1f}"/>'
+                + f'<path class="mo" d="M{cx - 3.5 * s:.1f} {my:.1f}h{7 * s:.1f}"/>')
+    if level == 3:    # worried: brows up at the inside, a frown
+        return (eye(lx, (0.2, -0.2), 0.55) + eye(rx, (0.2, -0.2), 0.55)
+                + f'<path d="M{lx - 3.5 * s:.1f} {by:.1f}l{7 * s:.1f} -{2 * s:.1f}M{rx + 3.5 * s:.1f} {by:.1f}l-{7 * s:.1f} -{2 * s:.1f}"/>'
+                + f'<path class="mo" d="M{cx - 4 * s:.1f} {my + s:.1f}q{4 * s:.1f} -{3.5 * s:.1f} {8 * s:.1f} 0"/>')
+    # alarmed: wide eyes, small pupils, open mouth, a bead of sweat
+    return (eye(lx, (0, 0), 0.35) + eye(rx, (0, 0), 0.35)
+            + f'<path d="M{lx - 3.5 * s:.1f} {by - s:.1f}l{7 * s:.1f} -{1.5 * s:.1f}M{rx + 3.5 * s:.1f} {by - s:.1f}l-{7 * s:.1f} -{1.5 * s:.1f}"/>'
+            + f'<ellipse class="mo" cx="{cx:.1f}" cy="{my:.1f}" rx="{2.4 * s:.1f}" ry="{3 * s:.1f}"/>'
+            + f'<path class="sw" d="M{rx + 9 * s:.1f} {cy - 4 * s:.1f}q{2.5 * s:.1f} {4 * s:.1f} 0 {6 * s:.1f}q-{2.5 * s:.1f} -{2 * s:.1f} 0 -{6 * s:.1f}z"/>')
+
+
+# The cast: one object per story, drawn in one hand, with the point where its
+# face goes. The expression and the body tint come from the reading above.
+# Keyed by topic id; a story without one gets a plain round face.
+EMBLEMS = {
+    # a flask with a crack, contents getting out
+    "evaluation-incidents": ("""<path class="bd" d="M25 6h14M28 6v14L14 46a5 5 0 0 0 4.5 7h27a5 5 0 0 0 4.5-7L36 20V6"/>
+<path class="af" d="M20 40h24l4 8a3 3 0 0 1-3 3h-26a3 3 0 0 1-3-3z" opacity=".9"/>
+<path class="ac" d="M42 30l-3 5 4 4-2 5"/><circle class="af" cy="54" cx="48" r="2"/><circle class="af" cy="58" cx="43" r="1.4"/>""", (31.5, 28, 0.95)),
+    # a mountain, flag already above the old record line
+    "frontier-capability": ("""<path class="bd" d="M4 56L22 18l9 13 7-9 22 34z"/><path class="ac" d="M4 36h56" stroke-dasharray="3 3"/>
+<path d="M38 22V5"/><path class="af" d="M38 5h13l-4 4 4 4H38z"/>""", (24.5, 45, 0.95)),
+    # a window with a bolt for a cowlick: the agent at the keyboard
+    "ai-in-attacks": ("""<rect class="bd" x="8" y="16" width="48" height="38" rx="6"/><path d="M8 26h48"/>
+<circle class="af" cx="15" cy="21" r="1.6"/><circle class="af" cx="21" cy="21" r="1.6"/>
+<path class="af ac" d="M35 2l-7 11h6l-3 8 9-11h-6l3-8z"/>""", (32, 38, 1.1)),
+    # a shield with a bite out of it
+    "attacks-on-ai": ("""<path class="bd" d="M32 5l20 7v17c0 13-9 22-20 27C21 51 12 42 12 29V12z"/>
+<path class="ac" d="M40 20a7 7 0 1 1 1 14"/><circle class="af" cx="56" cy="28" r="5"/>""", (29, 33, 1.0)),
+    # a magnifying glass over a cracked plate; the lens is its one big eye
+    "ai-found-vulnerabilities": ("""<rect class="bd" x="4" y="12" width="36" height="40" rx="4"/><path class="ac" d="M12 30l6 4-4 6 7 4"/>
+<circle class="lens" cx="42" cy="36" r="13"/><circle class="pu" cx="40" cy="38" r="5"/><circle class="hl" cx="38" cy="36" r="1.6"/>
+<path d="M51 46l9 9"/><path d="M31 25q11-6 22 0"/>""", None),
+    # a water tower on its legs: the old thing underneath everything
+    "critical-infrastructure": ("""<path class="bd" d="M17 14h30l-2 18H19z"/><path d="M13 14h38"/><path class="af" d="M22 14q10-7 20 0z"/>
+<path d="M22 32L14 58M42 32l8 26M18 46h28M32 32v26"/>""", (32, 23, 0.85)),
+}
+
+
+def emblem(L, t, level: int) -> str:
+    art, anchor = EMBLEMS.get(t["id"], ('<circle class="bd" cx="32" cy="32" r="22"/>', (32, 32, 1.2)))
+    lane = t["items"][0]["lane"] if t["items"] else "cap"
+    counts = {}
+    for i in t["items"]:
+        counts[i["lane"]] = counts.get(i["lane"], 0) + 1
+    lane = max(counts, key=counts.get) if counts else lane
+    colour = f'var({L.lanes[lane]["var"]})'
+    fc = face(level, *anchor) if anchor else ""
+    return (f'<svg class="emblem lv{level}" viewBox="0 0 64 64" role="img" '
+            f'aria-label="{SCALE[level][0]}" style="--em:{colour}">{art}{fc}</svg>')
+
+
+def scale_strip(L) -> str:
+    """The legend: five readings, each with its face on a plain round body."""
+    cells = []
+    for n, (name, what) in enumerate(SCALE):
+        cells.append(f'<div class="sc-cell"><svg class="emblem lv{n}" viewBox="0 0 64 64" aria-hidden="true">'
+                     f'<circle class="bd" cx="32" cy="32" r="24"/>{face(n, 32, 31, 1.3)}</svg>'
+                     f'<span class="sc-n">{n}</span><span class="sc-name">{name}</span><span class="sc-what">{what}</span></div>')
+    return (f'<div class="scale" role="img" aria-label="The scale: {"; ".join(f"{n} {a}" for n, (a, _) in enumerate(SCALE))}">'
+            + "".join(cells) + "</div>")
+
+
+def story_entry(site, L, t) -> str:
+    """One of the six stories on the Watchlist page: its emblem, its name, one
+    line on what it is, and the latest thing that moved."""
+    latest = t["watch"][0] if t["watch"] else None
+    moved = (f'last moved <time datetime="{latest["changed"]}">{_short(_d(latest["changed"]))}</time>'
+             if latest and latest.get("changed") else "")
+    status = (f'<span class="st"><b>{escape(latest["thread"])}.</b> {escape(_clip(latest["status"], 150))}</span>'
+              if latest else "")
+    rd = reading(L, t)
+    level = rd["level"]
+    who = (f'editor, {_short(_d(rd["asOf"]))}' if rd["editor"] and rd["asOf"] else "editor" if rd["editor"]
+           else "board count")
+    count = (f'Board, last {PACE_WEEKS} weeks: {rd["p"]} problem{"" if rd["p"] == 1 else "s"}, '
+             f'{rd["a"]} answer{"" if rd["a"] == 1 else "s"}.')
+    why = f'<span class="why">{escape(rd["why"])} <em>{count}</em></span>' if rd["why"] else f'<span class="why"><em>{count}</em></span>'
+    return (f'<a class="story lv{level}" href="{site.prefix}topic/{t["id"]}/">'
+            f'{emblem(L, t, level)}'
+            f'<span class="kick"><span class="rd">{level} · {SCALE[level][0]}</span><span>{who}</span></span>'
+            f'<span class="sn">{escape(t["name"])}</span>'
+            f'{why}'
+            f'<span class="sd">{escape(t["definition"])}</span>{status}'
+            f'<span class="smeta">{len(t["items"])} items{" · " + moved if moved else ""}</span></a>')
+
+
 def topics_body(site, L) -> str:
-    cards = "".join(topic_chip(site, t) for t in L.topics if t["items"])
+    live = [t for t in L.topics if t["items"]]
+    live.sort(key=lambda t: (reading(L, t)["level"], t["watch"][0].get("changed", "") if t["watch"] else ""), reverse=True)
+    entries = "".join(story_entry(site, L, t) for t in live)
     other = also_watching(site, L, L.other_watch)
     return f"""{site.nav(TOPICS_URL)}
 
   <header class="pagehead">
     <h1>Watchlist</h1>
-    <div class="sub">The six stories the board is following. Open one for its latest status and
-      everything on it, week by week.</div>
+    <div class="sub wide">The {_words(len(live))} stories the board is following, worst first. Each face is a reading of
+      whether the answers are keeping up with the problems: the editor's call where there is one, dated, and the
+      board's own four-week count otherwise. The count is printed under every face. Open a story for everything on it.</div>
   </header>
 
-  <div class="topics wide">{cards}</div>
+  {scale_strip(L)}
 
-  {f'<section class="block"><h2 class="blockhead">Also watching</h2><p class="lede">Running threads outside the six topics. Open one for its items and their original sources.</p>{other}</section>' if other else ""}
+  <div class="stories">{entries}</div>
+
+  {f'<section class="block alsow"><p class="blockhead">Also watching</p><p class="lede">Running threads outside the {_words(len(live))} stories. Open one for its items and their original sources.</p>{other}</section>' if other else ""}
 
   {site.footer()}"""
 

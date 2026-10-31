@@ -336,8 +336,13 @@ CNAME = SITE_URL.split("//", 1)[1]
 # *.substack.com and the nav link stops behaving like an outbound one — see
 # same_site() below.
 SUBSTACK_URL = "https://newsletter.techpointe.org"
-SUBSTACK_CTA = "Get the board in your inbox"
+SUBSTACK_CTA = "The analysis, on Substack"
 SUBSTACK_NAV = "Newsletter"             # sits in the destinations group, between Briefs and Archive.
+# One line under the subscribe heading. Keep it true to what actually goes out:
+# the board updates daily, the Substack is an occasional longer analysis.
+SUBSTACK_BLURB = ("About once a month, a longer piece in the editor's own words on what the board "
+                  "adds up to. It is not an emailed copy of this site; the board lives here and updates daily.")
+SUBSTACK_BUTTON = "Subscribe to the analysis ↗"
 
 # Force the newsletter link to open in a new tab even though it is now on our own
 # subdomain. same_site() would otherwise keep it in the same tab, which is right
@@ -1042,23 +1047,18 @@ class Site:
         own = same_site(SUBSTACK_URL)
         newtab = SUBSTACK_NEW_TAB or not own
         tab = ' target="_blank" rel="noopener"' if newtab else ""
-        if own:
-            label = "Subscribe ↗" if newtab else "Subscribe"
-        else:
-            label = "Subscribe on Substack ↗"
+        label = SUBSTACK_BUTTON
         if compact:
             # The board is a page of dense cards; the stacked heading-paragraph-button
             # block reads as three loose elements at the end of it. Same content, one row.
             return (f'<section class="block subscribe compact">'
                     f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
-                    f'<p>The same reporting, written up and sent to your inbox.</p>'
+                    f'<p>{escape(SUBSTACK_BLURB)}</p>'
                     f'<a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"{tab}>{label}</a>'
                     f'</section>')
         return (f'<section class="block subscribe">'
                 f'<h2 class="blockhead">{escape(SUBSTACK_CTA)}</h2>'
-                f'<p>The board updates daily on the web. The newsletter is the same '
-                f'reporting, written up and sent to your inbox — same sourcing rules, '
-                f'same corrections policy.</p>'
+                f'<p>{escape(SUBSTACK_BLURB)} Same sourcing rules, same corrections policy.</p>'
                 f'<p><a class="subbtn" href="{escape(SUBSTACK_URL, quote=True)}"'
                 f'{tab}>{label}</a></p>'
                 f'</section>')
@@ -1486,19 +1486,42 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
                 'reconstructed afterwards.</p>'
                 f'<div class="dgrid">{cards}</div>{more}</section>')
 
+    def brief_row(self, dos) -> str:
+        """A brief on the Briefs page: one full-width entry, the title and its
+        shape on the left, the summary and the latest stage on the right."""
+        v = LANES.get(dos.get("lane", ""), {"name": "", "pill": "", "var": "--accent"})
+        status = dos.get("status", "")
+        open_cls = " open" if status.lower().startswith(("open", "active", "live")) else ""
+        stat = f'<span class="dstatus{open_cls}">{escape(status)}</span>' if status else ""
+        kick = (f'<span class="kick" style="color:var({v["var"]})">{escape(v["name"])}</span>{stat}'
+                if v["name"] else stat)
+        span = fmt_span(dos.get("opened", ""), dos.get("updated", ""))
+        stages = dos.get("stages", [])
+        last = ""
+        if stages:
+            s = max(stages, key=lambda x: x.get("date", ""))
+            last = (f'<span class="blast"><b>Latest stage · {fmt_date(s["date"])}.</b> '
+                    f'{escape(s.get("label", ""))}</span>')
+        return (f'<a class="brow" href="{self.prefix}brief/{escape(dos["slug"], quote=True)}/">'
+                f'<span class="bl"><span class="bk">{kick}</span><span class="bt">{escape(dos["title"])}</span>'
+                f'<span class="bm">{len(stages)} stages · {escape(span)}</span></span>'
+                f'<span class="br"><span class="bs">{escape(dos["summary"])}</span>{last}'
+                f'<span class="bgo">Read the brief &#8594;</span></span></a>')
+
     def briefs_body(self) -> str:
-        cards = "".join(self.brief_card(x) for x in self.briefs)
+        rows = "".join(self.brief_row(x) for x in self.briefs)
+        n = len(self.briefs)
         return f"""{self.nav(BRIEFS_URL)}
 
   <header class="pagehead">
     <h1>Briefs</h1>
-    <div class="sub">Standout, complex incidents that require dedicated space,
-      outlined chronologically.</div>
+    <div class="sub wide">Some stories are not a single item. A brief lays one out in dated stages, each
+      stage with its own sources and its own confidence label, so what an organisation confirmed on day
+      one stays distinguishable from what was reconstructed afterwards.</div>
   </header>
 
-  <section class="block"><h2 class="blockhead">{len(self.briefs)} brief{
-      "" if len(self.briefs) == 1 else "s"}</h2>
-    <div class="dgrid">{cards}</div>
+  <section class="block"><p class="blockhead">{n} brief{"" if n == 1 else "s"}</p>
+    <div class="briefrows">{rows}</div>
   </section>
 
   {self.footer()}"""
