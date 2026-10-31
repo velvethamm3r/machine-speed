@@ -15,7 +15,7 @@ WRITE: three sentences — what changed this quarter, and why it matters.
   - Defense: 30
   - Attacks: 55
   - Markets: 10
-- Confirmed by the affected organisation: 8 of 149 (5%).
+- Confirmed by the affected organization: 8 of 149 (5%).
 - Resting on self-reported, untested claims: 20 (13%).
 - Median policy response lag, since the board began, among topics policy has answered: 13 days (5 of 6 topics have a policy response; 1 still open).
 - Median defense response lag, since the board began, among topics defense has answered: 21 days (6 of 6 topics have a defense response; 0 still open).
