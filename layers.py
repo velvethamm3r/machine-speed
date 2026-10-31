@@ -5,9 +5,15 @@ The board holds every item at the same weight, which makes it a good record and
 a hard read. This module gives readers a way in that is short at the top and
 complete underneath:
 
-    /                 This week (the editor's picks, or the newest items until
-                      picks are chosen), the topics, a search box, then one
-                      card per week, newest first
+    /                 the front page, set like a broadsheet: a dateline, a
+                      contents column that says what each layer of the site is
+                      for (the board, the weeks, the Watchlist, the Briefs, So
+                      What), this week's lead item and the next few, the So What
+                      pages, then the newest weeks as cards with the rest in
+                      the Archive
+    /so-what/         the pages that step back from the record (build.py's
+                      SO_WHAT_PAGES), with the same descriptions the front page
+                      uses
     /watchlist/       the six topics, each with its latest watchlist status,
                       plus the watchlist threads no topic covers
     /topic/<id>/      one topic: its watchlist threads, then its items week by
@@ -29,6 +35,8 @@ SEARCH_URL = "search/"
 PICKS_MAX = 5          # This week is a short read by design; more warns
 LATEST_WHEN_NO_PICKS = 5
 CARD_HEADLINES = 3
+FRONT_WEEK_CARDS = 3   # week cards on the front page; the Archive has them all
+LEAD_FOLLOWERS = 4     # items set two-up under this week's lead
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -273,34 +281,88 @@ def _words(n: int) -> str:
             if 0 <= n <= 10 else str(n))
 
 
-def guide_bar(site, L, w) -> str:
-    """The strip under the banner that says where to go next and what each
-    place is: the rest of this week, the Watchlist, the Briefs."""
-    cells = []
-    lo, hi = w["items"][-1]["date"], w["items"][0]["date"]
-    cells.append(
-        f'<a class="gcell" href="{_week_link(site, w)}"><span class="gl">This week</span>'
-        f'<span class="gd">Everything the board logged, by lane.</span>'
-        f'<span class="gm">{len(w["items"])} items · {_short(_d(lo))} – {_short(_d(hi))}</span>'
-        f'<span class="ga">&#8594;</span></a>')
+def _lane_kick(L, k, when: str = "") -> str:
+    """The small uppercase lane label in its lane colour, with an optional date."""
+    v = L.lanes[k]
+    t = f' <time datetime="{when}">{_short(_d(when))}</time>' if when else ""
+    return f'<span class="kick" style="color:var({v["var"]})">{escape(v["name"])}{t}</span>'
+
+
+def contents_column(site, L, w) -> str:
+    """The front page's contents column: what each layer of the site is for,
+    in the reader's terms, not the site's. The numbers stay small and at the
+    end; the reason to click comes first."""
     live = [t for t in L.topics if t["items"]]
     moved = sorted((x for t in live for x in t["watch"] if x.get("changed")),
                    key=lambda x: x["changed"], reverse=True)
-    meta = (f'Last moved: {escape(moved[0]["thread"])} · {_short(_d(moved[0]["changed"]))}'
-            if moved else f'{len(live)} topics')
-    cells.append(
-        f'<a class="gcell" href="{site.prefix}{TOPICS_URL}"><span class="gl">Watchlist</span>'
-        f'<span class="gd">The {_words(len(live))} running stories the board follows, from lab evaluation '
-        f'incidents to attacks on AI systems.</span>'
-        f'<span class="gm">{meta}</span><span class="ga">&#8594;</span></a>')
+    rows = [
+        ("I", _week_link(site, w), "The Board",
+         "What happened, and who said so. Every claim traced to a source you can open."),
+        ("II", f'{site.prefix}{ARCHIVE}', "Weeks",
+         "What a week of this actually looks like, lane by lane."),
+        ("III", f'{site.prefix}{TOPICS_URL}', "Watchlist",
+         f"The {_words(len(live))} stories that keep moving. Check here to know what changed."
+         + (f" Last moved {_short(_d(moved[0]['changed']))}." if moved else "")),
+    ]
     if site.briefs:
-        b = site.briefs[0]
-        cells.append(
-            f'<a class="gcell" href="{site.prefix}briefs/"><span class="gl">Briefs</span>'
-            f'<span class="gd">Major incidents laid out stage by stage, every stage sourced.</span>'
-            f'<span class="gm">{len(site.briefs)} briefs · latest: {escape(_clip(b["title"], 60))}</span>'
-            f'<span class="ga">&#8594;</span></a>')
-    return f'<nav class="guide" aria-label="Where to go next">{"".join(cells)}</nav>'
+        rows.append(("IV", f'{site.prefix}briefs/', "Briefs",
+                     "How one incident unfolded, stage by stage, every stage sourced."))
+    if site.so_what:
+        rows.append(("V" if site.briefs else "IV", f'{site.prefix}so-what/', "So What",
+                     "Step back. What the record adds up to, where the money and the rules go, "
+                     "and what has precedent."))
+    out = ['<nav class="ways" aria-label="Where to go">',
+           '<p class="waysin">Five ways in, from the ground up.</p>'
+           if len(rows) == 5 else '<p class="waysin">Ways in, from the ground up.</p>']
+    for n, href, name, what in rows:
+        last = " last" if name == "So What" else ""
+        out.append(f'<a class="way{last}" href="{href}"><span class="wn">{n}</span>'
+                   f'<span class="wb"><span class="wt">{name}</span>'
+                   f'<span class="wd">{escape(what)}</span></span></a>')
+    out.append('<p class="waysnote">Each is built from the one above it. The board is the raw record; '
+               'So What is what it means.</p></nav>')
+    return "".join(out)
+
+
+ARCHIVE = "archive/"
+
+
+def lead_block(site, L, w, picked, conf_labels) -> str:
+    """This week's lead, set large, with the next few items two-up under a rule.
+
+    The picks decide the order when the editor has chosen them; otherwise the
+    newest items lead. Nothing here needs JavaScript."""
+    if picked:
+        rows = [L.by_id[p["item"]] for p in picked["picks"]]
+    else:
+        rows = w["items"][:1 + LEAD_FOLLOWERS]
+    lead, rest = rows[0], rows[1:1 + LEAD_FOLLOWERS]
+    link = _item_link(site, lead)
+    conf = escape(conf_labels.get(lead["confidence"], lead["confidence"]))
+    out = [f'<a class="lead" href="{link}">{_lane_kick(L, lead["lane"], lead["date"])}'
+           f'<span class="lh">{escape(lead["headline"])}</span>'
+           f'<span class="ls">{escape(_clip(lead["core"], 300))}</span>'
+           f'<span class="lm">{conf} · {escape(lead["outlet"])} &#8599; · on the board &#8594;</span></a>']
+    if rest:
+        out.append('<div class="twoup">')
+        for it in rest:
+            out.append(f'<a class="two" href="{_item_link(site, it)}">{_lane_kick(L, it["lane"])}'
+                       f'<span class="th">{escape(it["headline"])}</span></a>')
+        out.append('</div>')
+    out.append(f'<a class="more" href="{_week_link(site, w)}">Everything this week, by lane &#8594;</a>')
+    return "".join(out)
+
+
+def so_what_cards(site) -> str:
+    """The So What pages, as the front page and /so-what/ both show them."""
+    cards = []
+    for p in site.so_what:
+        colour = f' style="color:var(--{p["lane"]})"' if p.get("lane") else ""
+        cards.append(f'<a class="sw" href="{site.prefix}{p["url"]}">'
+                     f'<span class="kick"{colour}>{escape(p["kicker"])}</span>'
+                     f'<span class="swt">{escape(p["title"])}</span>'
+                     f'<span class="swd">{escape(p["blurb"])}</span></a>')
+    return "".join(cards)
 
 
 def home_body(site, L, explore_page: str, conf_labels: dict) -> str:
@@ -308,31 +370,49 @@ def home_body(site, L, explore_page: str, conf_labels: dict) -> str:
     if not w:
         return f'{site.nav("index.html", lanes=False)}<p class="lede">Nothing on the board yet.</p>{site.footer()}'
     picked = L.picks.get(w["monday"])
-    top = this_week_banner(site, L, w, picked, conf_labels)
     note = f'<p class="lede">{escape(picked["note"])}</p>' if picked and picked.get("note") else ""
-    more = guide_bar(site, L, w)
-    cards = "".join(week_card(site, L, x) for x in L.weeks)
-    topics = "".join(topic_chip(site, t) for t in L.topics if t["items"])
+    counts = {k: sum(1 for i in w["items"] if i["lane"] == k) for k in L.lanes}
+    lanes = " · ".join(f'<span style="color:var({L.lanes[k]["var"]})">{L.lanes[k]["name"]} {n}</span>'
+                       for k, n in counts.items() if n)
+    cards = "".join(week_card(site, L, x) for x in L.weeks[:FRONT_WEEK_CARDS])
+    sowhat = (f'<section class="block sowhat"><p class="swhead"><a href="{site.prefix}so-what/">So What</a>'
+              f'<em>what the record adds up to, and what has precedent</em></p>'
+              f'<div class="swgrid">{so_what_cards(site)}</div></section>') if site.so_what else ""
     return f"""{site.nav("index.html", lanes=False)}
 
-  <header class="pagehead board nohead">
-    <p class="thesis">AI cyber capability against the defense and policy lag, tracked daily.</p>
-    <p class="stampline"><span class="dot"></span>Updated
+  <p class="dateline"><span><span class="dot"></span>Updated
       <time datetime="{site.as_of}">{escape(site.d.get("updatedDisplay", ""))}</time>
       &nbsp;&middot;&nbsp; {len(site.d["items"])} source-verified items since
-      <time datetime="{site.cov_start}">{_short(_d(site.cov_start))}</time></p>
-  </header>
+      <time datetime="{site.cov_start}">{_short(_d(site.cov_start))}</time></span>
+    <span>Week of {_short(_d(w["monday"]))} &middot; {len(w["items"])} items &middot; {lanes}</span></p>
 
-  <section class="block thisweek">
-    {note}{top}{more}
+  <section class="front">
+    {contents_column(site, L, w)}
+    <div class="frontlead">{note}{lead_block(site, L, w, picked, conf_labels)}</div>
   </section>
 
-  <section class="block"><h2 class="blockhead">Every week</h2>
+  {sowhat}
+
+  <section class="block"><p class="blockhead rw">Recent weeks
+    <a href="{site.prefix}{ARCHIVE}">All {len(L.weeks)} weeks in the Archive &#8594;</a></p>
     <div class="wgrid">{cards}</div>
   </section>
 
   {site.subscribe_block(compact=True)}
 
+  {site.footer()}"""
+
+
+def so_what_body(site) -> str:
+    """/so-what/: the pages that step back from the record."""
+    return f"""{site.nav("so-what/", lanes=False)}
+  <header class="pagehead">
+    <h1>So What</h1>
+    <p class="sub wide">The board, the weeks, the Watchlist and the Briefs are the record: an item, a week,
+      a story, an incident. These pages step back from it and ask what it adds up to, where the money and
+      the rules actually go, and what has precedent.</p>
+  </header>
+  <div class="swgrid tall">{so_what_cards(site)}</div>
   {site.footer()}"""
 
 

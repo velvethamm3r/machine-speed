@@ -891,3 +891,64 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .ga{position:absolute; right:16px; top:14px; color:var(--accent); font-size:15px}
 .gcell:hover .ga{transform:translateX(2px)}
 @media(prefers-reduced-motion:reduce){.gcell:hover .ga{transform:none}}
+
+/* The front page, set like a broadsheet (layers.home_body).
+
+   A dateline under the nav; a contents column on the left that says what each
+   layer of the site is for; this week's lead set large on the right with the
+   next few items two-up under a rule; then the So What pages, then the newest
+   week cards. Rules and type do the work, not boxes. */
+.dateline{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:-8px 0 32px;
+  padding-bottom:8px; border-bottom:1px solid var(--line); font-size:12px; color:var(--ink-3)}
+.dateline .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--cap); margin-right:6px; vertical-align:middle}
+.dateline time{color:var(--ink-2); font-weight:600}
+.front{display:grid; grid-template-columns:300px minmax(0,1fr); gap:56px; align-items:start; margin-bottom:44px}
+@media(max-width:860px){.front{grid-template-columns:1fr; gap:28px} .ways{order:2}}  /* on a phone the news comes first */
+
+.ways{display:flex; flex-direction:column}
+.waysin{margin:0 0 12px; font-family:var(--display); font-style:italic; font-size:17px; color:var(--ink-2)}
+.way{display:grid; grid-template-columns:28px minmax(0,1fr); gap:10px; padding:14px 0; border-top:1px solid var(--line); color:inherit}
+.way:first-of-type{border-top-color:var(--ink)}
+.way.last{border-bottom:1px solid var(--ink); padding-bottom:18px}
+.way:hover{text-decoration:none} .way:hover .wt{color:var(--accent)}
+.way .wn{font-family:var(--display); font-size:15px; color:var(--ink-3); padding-top:3px}
+.way.last .wn,.way.last .wt{color:var(--accent)}
+.way .wb{display:flex; flex-direction:column; gap:3px}
+.way .wt{font-family:var(--display); font-size:21px; line-height:1.15; color:var(--ink)}
+.way .wd{font-size:13px; line-height:1.5; color:var(--ink-2)}
+.waysnote{margin:14px 0 0; font-size:12px; line-height:1.5; color:var(--ink-3)}
+
+.frontlead{display:flex; flex-direction:column; gap:28px; min-width:0}
+.frontlead .lede{margin:0}
+.kick{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px}
+.kick time{font-weight:600; color:var(--ink-3); margin-left:8px; letter-spacing:.8px}
+.lead{display:flex; flex-direction:column; gap:12px; color:inherit}
+.lead:hover{text-decoration:none} .lead:hover .lh{color:var(--accent)}
+.lead .lh{font-family:var(--display); font-weight:500; font-size:40px; line-height:1.08; letter-spacing:-.6px; color:var(--ink); text-wrap:pretty}
+@media(max-width:600px){.lead .lh{font-size:30px}}
+.lead .ls{font-family:var(--display); font-size:18px; line-height:1.5; color:var(--ink-2); max-width:62ch}
+.lead .lm{font-size:12.5px; color:var(--ink-3)}
+.twoup{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 36px; border-top:1px solid var(--ink); padding-top:18px}
+@media(max-width:600px){.twoup{grid-template-columns:1fr}}
+.two{display:flex; flex-direction:column; gap:6px; padding:0 0 18px; color:inherit}
+.two:nth-child(n+3){padding-top:18px; border-top:1px solid var(--line)}
+@media(max-width:600px){.two:nth-child(n+2){padding-top:18px; border-top:1px solid var(--line)}}
+.two:hover{text-decoration:none} .two:hover .th{color:var(--accent)}
+.two .th{font-family:var(--display); font-size:21px; line-height:1.25; color:var(--ink)}
+.frontlead .more{font-size:13.5px; font-weight:600; align-self:flex-start}
+
+.sowhat{border-top:2px solid var(--ink); padding-top:20px}
+.swhead{margin:0 0 20px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.swhead a{font-family:var(--display); font-size:24px; color:var(--ink)}
+.swhead em{font-family:var(--display); font-style:italic; font-size:16px; color:var(--ink-3)}
+.swgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:36px}
+.swgrid.tall{margin-top:8px}
+.sw{display:flex; flex-direction:column; gap:8px; color:inherit; min-width:0}
+.sw + .sw{padding-left:36px; border-left:1px solid var(--line)}
+@media(max-width:700px){.sw + .sw{padding-left:0; border-left:0; padding-top:18px; border-top:1px solid var(--line)}}
+.sw:hover{text-decoration:none} .sw:hover .swt{color:var(--accent)}
+.sw .kick{color:var(--ink-3)}
+.sw .swt{font-family:var(--display); font-size:26px; line-height:1.15; letter-spacing:-.3px; color:var(--ink)}
+.sw .swd{font-size:14px; line-height:1.55; color:var(--ink-2)}
+.blockhead.rw{display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap}
+.blockhead.rw a{font-size:13px; text-transform:none; letter-spacing:0; font-weight:500}

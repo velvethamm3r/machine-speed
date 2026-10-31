@@ -215,6 +215,55 @@ GAP_MAP_NAV = "Gap Map"
 GAP_MAP_TITLE = "Gap Map"
 GAP_MAP_DESC = ("Is defense keeping pace with AI attacks and capability jumps? "
                 "A topic-by-topic measure of the response gap.")
+
+# -- So What ---------------------------------------------------------------
+# The board, the weeks, the Watchlist and the Briefs all sit at ground level:
+# an item, a week, a story, an incident. So What is the altitude above them,
+# the pages that step back from the record and ask what it adds up to, where
+# the money and the rules actually go, and what has precedent. The Gap Map
+# was the first of these; the Water page is the second. Each is authored by
+# hand, wrapped by the build in the shared chrome exactly as the Gap Map is,
+# and listed on /so-what/ and on the front page.
+#
+# SO_WHAT_PAGES is the registry. Order is display order. "lane" colours the
+# kicker. Set SO_WHAT_URL to "" and the index page and its nav link go; the
+# pages themselves still build at their own URLs.
+SO_WHAT_URL = "so-what/"
+SO_WHAT_NAV = "So What"
+SO_WHAT_TITLE = "So What"
+SO_WHAT_DESC = ("What the Machine Speed record adds up to: where the money and the "
+                "rules go, what has precedent, and which failures are still getting worse.")
+
+WATER_URL = "water/health/"
+WATER_TITLE = "America's water fails most where people can least afford it"
+WATER_DESC = ("Seventeen US water failures, from Flint to the 2026 cyberattacks, set "
+              "against community income, the repair money, the policy lag and what "
+              "prevention would have cost.")
+# The page draws its map and charts with d3 in the browser; these load in the
+# head. Schibsted Grotesk is the page's own display face; Newsreader is already
+# loaded site-wide.
+WATER_HEAD = (
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+    'family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">\n'
+    '<script defer src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" '
+    'integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" '
+    'crossorigin="anonymous"></script>\n'
+    '<script defer src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" '
+    'integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" '
+    'crossorigin="anonymous"></script>\n')
+
+SO_WHAT_PAGES = [
+    dict(url=WATER_URL, lane="atk", kicker="Critical infrastructure · new",
+         title=WATER_TITLE,
+         blurb=("Seventeen incidents, Flint to the 2026 cyberattacks, set against what "
+                "the community earns, where the repair money went, and how long each "
+                "disaster took to produce a rule. Cyber is the one failure still getting worse.")),
+    dict(url=GAP_MAP_URL, lane="", kicker="Across all six topics",
+         title="Is defense keeping pace?",
+         blurb=("Every attack or capability jump as a problem; the next defense or policy "
+                "item as its answer. The Gap Map scores each topic on whether the answers "
+                "are keeping up, and how long the first one takes.")),
+]
 LEGACY_PATHS = {
     "capability.html": "capability/", "policy.html": "policy/",
     "defense.html": "defense/", "attacks.html": "attacks/",
@@ -756,6 +805,13 @@ class Site:
         # The reading layers (layers.py): the weekly picks and the thread views.
         self.lay = None
         self.lanes_meta = LANES
+        # The So What pages that actually build this run, in display order.
+        # A page is listed only when its URL is switched on and its hand-authored
+        # body exists, so the index never links to a 404.
+        root = Path(__file__).parent
+        self.so_what = [p for p in SO_WHAT_PAGES if p["url"] and (
+            (p["url"] == GAP_MAP_URL and (root / "gap-map" / "body.html").exists()) or
+            (p["url"] == WATER_URL and (root / "water" / "health" / "body.html").exists()))]
 
     @property
     def has_forecasts(self) -> bool:
@@ -856,9 +912,14 @@ class Site:
                 links.append((EXPLORE_PAGE, EXPLORE_NAV))
         if self.briefs:
             links.append((BRIEFS_URL, "Briefs"))
-        # Gap Map reads the board rather than adding to it, so it sits with the
-        # other things to read, after Briefs and before the newsletter.
-        if GAP_MAP_URL:
+        # So What reads the board rather than adding to it, so it sits with the
+        # other things to read, after Briefs and before the newsletter. Its
+        # pages (the Gap Map, the Water page) light the same tab up.
+        if SO_WHAT_URL and self.so_what:
+            links.append((SO_WHAT_URL, SO_WHAT_NAV))
+            if active in {p["url"] for p in self.so_what}:
+                active = SO_WHAT_URL
+        elif GAP_MAP_URL:
             links.append((GAP_MAP_URL, GAP_MAP_NAV))
         if self.ins and SHOW_FINDINGS:
             links.append((ins_mod.FINDINGS_URL, "Findings"))
@@ -1790,6 +1851,10 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         if GAP_MAP_URL:
             # Daily: the page's numbers move with every item the board adds.
             urls.append((GAP_MAP_URL, "daily", "0.7"))
+        if WATER_URL:
+            urls.append((WATER_URL, "monthly", "0.7"))
+        if SO_WHAT_URL and self.so_what:
+            urls.append((SO_WHAT_URL, "weekly", "0.7"))
         urls += [(v["page"], "daily", "0.8") for v in LANES.values()]
         if EXPLORE_PAGE:
             # Whichever of the two is not the landing page needs its own entry — unless
@@ -2076,35 +2141,41 @@ def build(out_dir: Path):
     # generated from data.json. The build supplies the shared head, nav and
     # footer and copies the runtime next to it; everything inside is the
     # handoff page. See the GAP_MAP_URL block at the top of this file.
-    if GAP_MAP_URL:
-        gm_src = root / "gap-map" / "body.html"
-        if not gm_src.exists():
-            print(f"  error:   GAP_MAP_URL is set but {gm_src.name} is missing "
-                  f"from gap-map/ — set GAP_MAP_URL = \"\" to drop the page",
+    def hand_page(src: Path, url: str, title: str, desc: str, extra_head: str = ""):
+        """Wrap a hand-authored body in the shared head, nav and footer.
+
+        The body carries <!-- site-nav --> and <!-- site-footer --> markers
+        where the partials go. The partials keep the site's own measure; the
+        page between them runs edge to edge on its own. `url` may be any
+        depth (gap-map/, water/health/); the prefix follows it.
+        """
+        if not src.exists():
+            print(f"  error:   {url} is switched on but {src.relative_to(root)} is missing",
                   file=sys.stderr)
             sys.exit(1)
-        gm = gm_src.read_text(encoding="utf-8")
+        body = src.read_text(encoding="utf-8")
         for marker in ("<!-- site-nav -->", "<!-- site-footer -->"):
-            if gm.count(marker) != 1:
-                print(f"  error:   gap-map/body.html must contain {marker} exactly once",
+            if body.count(marker) != 1:
+                print(f"  error:   {src.relative_to(root)} must contain {marker} exactly once",
                       file=sys.stderr)
                 sys.exit(1)
-        site.prefix = "../"
-        # The shared partials keep the site's own measure; the page between
-        # them runs edge to edge on its own.
-        gm = gm.replace("<!-- site-nav -->",
-                        '<div class="wrap" style="padding-bottom:0">\n  '
-                        + site.nav(GAP_MAP_URL) + "\n</div>")
-        gm = gm.replace("<!-- site-footer -->",
-                        '<div class="wrap" style="padding-top:0">\n  '
-                        + site.footer() + "\n</div>")
-        write(GAP_MAP_URL + "index.html", site.page(
-            path=GAP_MAP_URL + "index.html",
-            title=f"{GAP_MAP_TITLE} — {SITE_NAME}",
-            description=GAP_MAP_DESC, body=gm, wrap=False,
-            extra_head='<script src="support.js"></script>\n',
-            asset_prefix="../"))
+        depth = url.count("/")
+        site.prefix = "../" * depth
+        body = body.replace("<!-- site-nav -->",
+                            '<div class="wrap" style="padding-bottom:0">\n  '
+                            + site.nav(url) + "\n</div>")
+        body = body.replace("<!-- site-footer -->",
+                            '<div class="wrap" style="padding-top:0">\n  '
+                            + site.footer() + "\n</div>")
+        write(url + "index.html", site.page(
+            path=url + "index.html", title=f"{title} — {SITE_NAME}",
+            description=desc, body=body, wrap=False,
+            extra_head=extra_head, asset_prefix=site.prefix))
         site.prefix = ""
+
+    if GAP_MAP_URL:
+        hand_page(root / "gap-map" / "body.html", GAP_MAP_URL, GAP_MAP_TITLE, GAP_MAP_DESC,
+                  extra_head='<script src="support.js"></script>\n')
         # The runtime and the offline fallback copy, served from the page's own
         # directory. The tag-suggestion CSV and the README stay in the repo:
         # they are editorial inputs, not part of the published page.
@@ -2113,6 +2184,20 @@ def build(out_dir: Path):
         shutil.copy(root / "gap-map" / "data" / "items-snapshot.json",
                     out_dir / GAP_MAP_URL / "data" / "items-snapshot.json")
         print(f"  wrote {GAP_MAP_URL}support.js, {GAP_MAP_URL}data/items-snapshot.json")
+
+    # Water — the second So What page. Hand-authored like the Gap Map; it
+    # needs nothing copied beside it (d3 and the map shapes load from CDNs).
+    if WATER_URL:
+        hand_page(root / "water" / "health" / "body.html", WATER_URL, WATER_TITLE, WATER_DESC,
+                  extra_head=WATER_HEAD)
+
+    # So What — the index of the pages above. One level down.
+    if SO_WHAT_URL and site.so_what:
+        site.prefix = "../"
+        write(SO_WHAT_URL + "index.html", site.page(
+            path=SO_WHAT_URL + "index.html", title=f"{SO_WHAT_TITLE} — {SITE_NAME}",
+            description=SO_WHAT_DESC, body=lay_mod.so_what_body(site), asset_prefix="../"))
+        site.prefix = ""
 
     # forecasts — one page at /forecasts/, only when there is something on it
     if site.has_forecasts:
