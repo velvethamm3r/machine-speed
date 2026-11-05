@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-11-02T06:45:00-05:00",
-  "updatedDisplay": "2026-11-02, 6:45 AM ET",
-  "judgmentNote": "Twenty-seven items over a Saturday-to-Monday window of about two days (the previous run stamped 6:26 AM ET on October 31): seventeen dated October 27 to November 1 and ten new to the board from earlier inside the period (July 10 to October 23). Grow mode: coverageStart stays at 2026-07-01 and nothing rolled off. Nine are cited to the party that produced the finding: Zscaler ThreatLabz, Epoch AI (twice), the UK AI Security Institute (twice), Mistral AI, Google DeepMind's Gemini 4 Argon model card, HM Treasury's Budget 2026 document and the New York State Senate; the NSA/CISA/NIST practices card was also upgraded from Cyber Security News to NIST's own PDF, with the same facts and the authoring centres named, so no correction is logged. Every other card is press with a named originator because the primary was provenance-blocked or failed in this unattended run: chainalysis.com, binance.com, trmlabs.com, fbi.gov, dreamgroup.com, security.paloaltonetworks.com, trendaisecurity.com, lumen.com, parameter.ai, mongodb.com, Symantec and research.checkpoint.com, openai.com (including alignment.openai.com and deploymentsafety.openai.com), anthropic.com research pages, protectivesecurity.gov.au, sec.gov, asia.nikkei.com, upwind.io, wired.com, securityweek.com and darkreading.com. Two items are keyed. Chainalysis is keyed as a named company disclosing in its own name that an attacker used \"offensive agentic techniques\" against it; the card says the company gave no technical detail of what made them agentic. Epoch's Firefox result is keyed because it measures an open-weight model exploiting a shipping browser inside the patch window, at a stated cost per version; it is filed researchers, and the card keeps Epoch's own caveat that the failed Chrome attempts are not strong evidence such attacks could not succeed. Binance is in remit as a significant non-AI incident under the 2026-08-13 note and carries no AI claim. Its card is sourced to Help Net Security after BleepingComputer failed twice in the verification pass; that page carries TRM Labs' TraderTraitor attribution but not the FBI's, so the FBI attribution reported by CBS News and The Hacker News is not on the card. Figures differ: about $6.3 billion (Binance and headlines), $6.36 billion (TRM), $6.4 billion (Chainalysis) and $6.43 billion (The Hacker News); frozen amounts close to $3 billion (Binance), about $2.7 billion (TRM) and $2.85 billion (The Hacker News, November 1). The card uses Binance's and TRM's. The verification pass re-opened 28 of the 29 drafted URLs and changed seventeen cards, the Binance card re-sourced among them: the Dream and Palo Alto cards no longer call the PHP flaws AI-found, since neither page says so (the board's October 21 Wiz card is where that rests); TrendAI's card no longer says one operator ran the tool, since TrendAI says there is no evidence the incidents share one; AISI's 100 scenarios belong to its broader analysis, not the Mythos 5 finding, and were dropped; ANI describes three monitoring layers in a simulation, not four in a replay, and dates the account October 30; Cyera's card lost a quote that is not on TechCrunch's page; Man Group's card says five of six bonds are per-occurrence and no longer calls Man an investor in them. Dating is the earliest date each card's url asserts. Mistral's release page carries no date; October 29 is from Hugging Face's blog and Reuters' report of the same release. The NSA/CISA/NIST practices keep October 16 from NIST's file path; the document itself says only October 2026. The Unsloth card uses September 28, the CVE's publication; Pillar disclosed privately on August 22. Figures two sources give differently: Mistral Large 4 scores 51% on the Artificial Analysis Cyber Index on Mistral's page and 82% on Hugging Face's blog, which on Mistral's October 6 preview page is a reproduce-and-patch figure; the primary's 51% is used. Upwind: the September 2 card's roughly $300 million (CTech) against the company's own October 28 release of a $400 million close at the same $3.8 billion valuation; a corrections entry records it and the new close is a separate item. Australia's direction: iTnews gives an end-of-March 2027 deadline, MLex adds an earlier December 31 deadline for the most critical services; iTnews is used. Lanes and topics. The UK budget and New York bill are tagged evaluation-incidents as responses to rogue-agent incidents; the Korean regulators' meeting and the SEC's exam priorities ai-in-attacks; Lumen's Silent Train critical-infrastructure. New York carries stage introduced. Untagged by choice: Binance, Australia's direction, Upwind, Travelers, Cyera. The Unsloth flaw is filed def as a fixed flaw with no exploitation reported. Held: the Super Intelligence Force (October 4) - the standing note of 2026-10-01 asks for an actual order or a named office, and the only openable account (CBS News) describes a Truth Social post naming a body and its members with no order; it carries no cyber mechanism, so it is left for Daria. Also held: Japan's request to Anthropic and OpenAI for model access, reported by Nikkei (October 30) and readable only through relays; Wired's account of an Accenture contractor's personal Claude agent on a Pentagon network, on anonymous sources, denied by Accenture and readable only through TechRadar; Mistral's reported evaluation escape attempt (The New Stack, October 6), with no detail and on neither Mistral page; WARP PANDA's VMware ESX zero-day and the Ivanti chain, as lower-priority non-AI items; NIST's post-quantum roadmap; Liberty and WTW comment on the S-1. JFrog's testmetest worm could not be found and is dropped. Strip: six of twenty-seven - Chainalysis, Binance, the Epoch Firefox result, Mistral Large 4, the UK budget and the Korean regulators' meeting. Every other addition carries isNew false; the previous run's six flags were cleared.",
-  "internalNote": "Coverage extended to November 2 over a Saturday-to-Monday window of about two days: twenty-seven items added (cap 6, atk 10, def 2, pol 5, mkt 4), nine watchlist threads rewritten, led by Chainalysis disclosing an intrusion by an attacker using offensive agentic techniques and Epoch AI showing an open-weight model exploiting Firefox inside the patch window.",
+  "updatedISO": "2026-11-05T06:27:00-05:00",
+  "updatedDisplay": "2026-11-05, 6:27 AM ET",
+  "judgmentNote": "Seventeen items over a Monday-to-Thursday window of about three days (the previous run stamped 6:45 AM ET on November 2): twelve dated November 2 to 5 and five new to the board from earlier inside the period (September 24 to October 31). Grow mode: coverageStart stays at 2026-07-01 and nothing rolled off. Six are cited to the party that produced the finding: Chainalysis, Acronis's Threat Research Unit, Wiz, Kaspersky, Moonshot AI and the UK National Cyber Security Centre; the Check Point and Chubb remarks are on-record from third-party earnings-call transcripts. Every other card is press with a named originator because the primary was provenance-blocked or failed in this unattended run, including openai.com (the kernel-exploit post, the security index, alignment and deploymentsafety), gitbook.com, workos.com, chainstack.com, fbi.gov, crowdstrike.com, wsj.com, cloud.google.com, asia.nikkei.com, huggingface.co and irregular.com. Two existing cards were moved to their own primaries: Chainalysis's October 30 card now cites Chainalysis and is confirmed, and Dream's PHP2Shell card now cites Dream, is dated October 26 rather than October 28, and drops a quotation that is not on Dream's page; both changes are logged as corrections. Three items are keyed. OpenAI's kernel run is keyed as a lab's own count of working root exploits for 948 distinct Linux kernel flaws from one run; it is carried at press via Help Net Security because OpenAI's post did not open, the model is described only as upcoming and unnamed, and outlets differ on what 948 counts (The Hacker News says 948 exploits; Help Net Security says 1,169 exploits grouping into 948 flaws; the per-exploit cost of $1,279 divides into 948), so the card follows Help Net Security. Acronis is keyed as researchers attributing a 12-agent intrusion platform to a single operator and confirming access to emergency-service records. The NCSC review is keyed as a national authority putting a date, 2028, on AI-powered ransomware against critical infrastructure; it is filed once, under Policy, though it also reads as defensive guidance, and its 2028 autonomous-attacker scenario (an actor \"no longer under its operator's control\" that could \"self-replicate\") sits on a separate NCSC page and is left off the card, whose source is the news release. Wiz's count is carried as at least nine platforms, with three further incidents noted separately, because Wiz does not call the later three AI developer platforms; SecurityWeek's link between the WorkOS and Chainstack breaches and the ARTEX framework is SecurityWeek's own wording and is not carried. GitBook has not said how the attacker used AI agents, and the card says so. The Korean meeting card does not say AI caused the breaches, because SBS does not; reports of the November 5 meeting list association heads, the Financial Supervisory Service and the Financial Security Institute rather than the five bank heads the November 1 card described from SBS's advance report. Japan's request is a Nikkei report relayed by Reuters, not a published package; the package itself is expected as early as November 6. China's NDRC remarks were made at a briefing, with no document cited. Moonshot's page carries no date; October 23 is the release date given by TechTimes, and the card says the weights were committed, not released, because no openable page confirmed the release. Scan for Good is dated to its September 24 launch from The Register; Google said on November 5, via Help Net Security, that it now uses Gemini 4 Argon and helped more than 50 organisations in its first month, which differs from the model and the \"several months\" The Register gave at launch, so those figures are not on the card. The cPGuard compromise carries no AI mechanism beyond the vendor's general remark and is on the board under the significant-cyber remit. Defense is thin: the one Defense item is a catch, and CrowdStrike's AI Kill Switch was held as product marketing under the board's standing call on Falcon Guardian. Left off: a business-group letter on renewing the Cybersecurity Information Sharing Act (the letter itself was not opened), Fortinet's October 28 call (garbled transcript, low value), a single-source report that Binance had no cyber insurance, Sentra's funding round (only an AI-written outlet opened) and the UK cyber resilience bill's Lords Third Reading, for which no official record opened.",
+  "internalNote": "Coverage extended to November 5 over a Monday-to-Thursday window of about three days: seventeen items added (cap 2, atk 7, pol 4, def 1, mkt 3), twelve from the fresh window and five catches, three watchlist threads rewritten, two cards moved to their own primaries with corrections logged, led by OpenAI's 948 Linux kernel root exploits and Acronis's one-operator, 12-agent BOSSAI mesh.",
   "items": [
     {
       "id": "noma-sneakpeek-claude-code-desktop-exfiltration",
@@ -6501,11 +6501,11 @@
       "lane": "atk",
       "date": "2026-10-30",
       "headline": "Chainalysis says an attacker using \"offensive agentic techniques\" got into its systems and internal tools",
-      "core": "The Hacker News reports that Chainalysis disclosed \"an external actor using offensive agentic techniques to gain unauthorized access to Chainalysis systems and internal tools,\" and that \"some non-sensitive customer data, such as user IDs, full names, email addresses\" and organisation role labels was accessed, while investigation content, authentication credentials and session tokens were not. The company gives no technical detail of what made the techniques agentic, and adds: \"We are seeing an industry-wide rise in AI-driven cyber attacks.\"",
-      "confidence": "press",
-      "outlet": "Chainalysis (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/10/chainalysis-confirms-intrusion-into.html",
-      "isNew": true,
+      "core": "Chainalysis disclosed on October 30 \"an external actor using offensive agentic techniques to gain unauthorized access to Chainalysis systems and internal tools,\" and said some non-sensitive customer data, \"such as user IDs, full names, email addresses, and organization role labels,\" was accessed; at the time it said it had found no evidence of access to investigation content, authentication credentials or session tokens, though a November 4 update said an \"on-path attack\" exposed a subset of customer passwords. The company gives no technical detail of what made the techniques agentic, and adds: \"We are seeing an industry-wide rise in AI-driven cyberattacks.\"",
+      "confidence": "confirmed",
+      "outlet": "Chainalysis",
+      "url": "https://www.chainalysis.com/blog/security-incident-october-30/",
+      "isNew": false,
       "key": true,
       "topics": [
         "ai-in-attacks"
@@ -6514,12 +6514,12 @@
     {
       "id": "dream-php2shell-fragnesia-25-firewalls-rooted",
       "lane": "atk",
-      "date": "2026-10-28",
-      "headline": "Dream says a suspected China-nexus actor chained the PHP2Shell flaws with a kernel bug to root 25 firewall systems, with Claude Code in its attack infrastructure",
-      "core": "The Hacker News reports that the security firm Dream found \"a custom, non-public build\" of an exploit chain pairing PHP2Shell (CVE-2026-109618 and CVE-2026-109619) with Fragnesia (CVE-2026-46300) that rooted 25 systems running a large vendor's firewall software in the US, Japan, Taiwan and South Korea, three in a US government-affiliated environment, before the attacker tunnelled to an internal firewall management server. Dream found Claude Code installed in the attack infrastructure and an AI offensive platform, aiscan, configured with DeepSeek and Kimi models, and says the code's structure suggests \"the use of AI to augment the development process.\"",
-      "confidence": "press",
-      "outlet": "Dream (via The Hacker News)",
-      "url": "https://thehackernews.com/2026/10/php2shell-attack-roots-25-servers.html",
+      "date": "2026-10-26",
+      "headline": "Dream says a suspected China-nexus actor chained the PHP2Shell flaws with a kernel bug to root 25 PAN-OS firewall and management servers, with Claude Code in its attack infrastructure",
+      "core": "Dream says an attacker used \"a custom, non-public build\" of the PHP2Shell exploit chain (CVE-2026-109618 and CVE-2026-109619), paired with the Fragnesia kernel privilege escalation (CVE-2026-46300), to root 25 PAN-OS firewall and management servers in the US, Japan, Taiwan and South Korea. In a US government-affiliated environment, the attacker zeroed in on three servers: two firewalls and an internal firewall management server reached through a reverse SSH tunnel. Dream found Claude Code installed on the attack infrastructure and an AI offensive platform, aiscan, configured with DeepSeek and Kimi models. It says the code's structure and style across about 40 scripts \"suggest AI-assisted development\" but that it has no direct evidence that AI tools wrote the exploit or scripts.",
+      "confidence": "researchers",
+      "outlet": "Dream",
+      "url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers",
       "topics": [
         "ai-in-attacks",
         "ai-found-vulnerabilities"
@@ -6633,7 +6633,7 @@
       "confidence": "researchers",
       "outlet": "Epoch AI",
       "url": "https://epoch.ai/publications/open-weight-models-patch-gap",
-      "isNew": true,
+      "isNew": false,
       "key": true,
       "topics": [
         "frontier-capability",
@@ -6664,7 +6664,7 @@
       "confidence": "on-record",
       "outlet": "Mistral AI",
       "url": "https://mistral.ai/news/mistral-large-4-oss/",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "frontier-capability"
       ]
@@ -6720,7 +6720,7 @@
       "confidence": "on-record",
       "outlet": "HM Treasury",
       "url": "https://www.gov.uk/government/publications/budget-2026-document/budget-2026-html",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "evaluation-incidents"
       ]
@@ -6760,7 +6760,7 @@
       "confidence": "press",
       "outlet": "Financial Services Commission (via SBS)",
       "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008824842",
-      "isNew": true,
+      "isNew": false,
       "topics": [
         "ai-in-attacks"
       ]
@@ -6835,7 +6835,7 @@
       "confidence": "press",
       "outlet": "Binance and TRM Labs (via Help Net Security)",
       "url": "https://www.helpnetsecurity.com/2026/10/30/binance-crypto-hack/",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "openai-layered-monitoring-hf-incident-simulation-30-minutes",
@@ -6863,6 +6863,233 @@
       "topics": [
         "evaluation-incidents"
       ],
+      "isNew": false
+    },
+    {
+      "id": "openai-unreleased-cyber-model-948-linux-kernel-root-exploits",
+      "lane": "cap",
+      "date": "2026-11-04",
+      "headline": "OpenAI says an upcoming model produced working root exploits for 948 distinct Linux kernel flaws in a single run, for about $1.2 million in API credits",
+      "core": "Help Net Security reports that OpenAI's Cyber team ran a pipeline built on an upcoming, unnamed OpenAI model against the latest Linux kernel in mid-October 2026: it flagged 2,308 candidate bugs, reproduced 1,724, and produced 1,169 working root exploits that group into 948 distinct vulnerabilities, at $1,213,430 in API credits, or $1,279 per exploit. By the time the scan and manual analysis wrapped up after 10 days, 61 of the privilege-escalation bugs had been patched upstream and 43 had staging patches. The figures come from OpenAI's own research post.",
+      "confidence": "press",
+      "outlet": "OpenAI (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/11/05/openai-linux-kernel-root-exploits/",
+      "topics": [
+        "frontier-capability",
+        "ai-found-vulnerabilities"
+      ],
+      "isNew": true,
+      "key": true
+    },
+    {
+      "id": "moonshot-kimi-k3-1-pro-cyber-data-removed-before-open-weights",
+      "lane": "cap",
+      "date": "2026-10-23",
+      "headline": "Moonshot says it removed cyber data from Kimi K3.1 Pro's training before releasing the weights, and that doing so cut its own exploit-benchmark score from 90.5% to 81.0%",
+      "core": "Moonshot AI says it identified and removed cyber-related data from both the mid-training and reinforcement-learning stages of Kimi K3.1 Pro, and that on its in-house xdev-bench-hard vulnerability discovery and exploitation set a checkpoint without those measures solved 90.5% at pass@3 against 81.0% for the released model. It says it aims \"not to release open weights that would extend the absolute frontier of cyber capability\" and that full weights would be released by November 4, 2026.",
+      "confidence": "on-record",
+      "outlet": "Moonshot AI",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "topics": [
+        "frontier-capability"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "chainalysis-on-path-attack-customer-passwords-kyt-offline",
+      "lane": "atk",
+      "date": "2026-11-04",
+      "headline": "Chainalysis says an \"on-path attack\" exposed some customer passwords, and takes KYT and its login page offline over abnormal activity",
+      "core": "In updates to its October 30 disclosure of an intrusion by an actor using \"offensive agentic techniques,\" Chainalysis said on November 2 it had taken products including Reactor and Data Solutions offline, and on November 4 that an \"on-path attack\" exposed a subset of customer passwords and that \"abnormal activity\" led it to take KYT, other address-screening products and the login page offline.",
+      "confidence": "confirmed",
+      "outlet": "Chainalysis",
+      "url": "https://www.chainalysis.com/blog/security-incident-october-30/",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "acronis-bossai-12-agent-mesh-taiwan-emergency-services",
+      "lane": "atk",
+      "date": "2026-11-04",
+      "headline": "Acronis says one operator in Taiwan ran a mesh of 12 AI agents against hundreds of organisations, reaching Taipei emergency-service records",
+      "core": "Acronis's Threat Research Unit says a single individual, whom it places in Hualien City with high confidence, ran a 12-agent platform it calls BOSSAI against hundreds of organisations in eleven countries, with confirmed access or exfiltration at roughly ten targets in three countries, among them a Taipei fire-department patient-care records platform and case records from a city 119 dispatch system. The attack agents mainly ran an abliterated DeepSeek-V4 variant, with Grok 4.5 and MiniMax M3 used for infrastructure work.",
+      "confidence": "researchers",
+      "outlet": "Acronis Threat Research Unit",
+      "url": "https://www.acronis.com/en/tru/posts/bossai-inside-the-ai-attack-mesh-that-targeted-taiwans-emergency-services/",
+      "topics": [
+        "ai-in-attacks",
+        "critical-infrastructure"
+      ],
+      "isNew": true,
+      "key": true
+    },
+    {
+      "id": "gitbook-targeted-attack-using-ai-agents-api-tokens",
+      "lane": "atk",
+      "date": "2026-11-03",
+      "headline": "GitBook says a \"highly targeted attack using AI agents\" may have exposed customer API tokens and integration secrets",
+      "core": "Decrypt reports that the documentation platform GitBook disclosed a \"sophisticated, highly targeted attack using AI agents\" that gained access at 7 p.m. CET on November 2, potentially exposing API tokens, integration and Git Sync secrets and questions submitted to its AI assistant, and that it invalidated customer API tokens and told customers to rotate connected secrets. GitBook has not said how the attacker used AI agents.",
+      "confidence": "press",
+      "outlet": "GitBook (via Decrypt)",
+      "url": "https://decrypt.co/382465/crypto-docs-gitbook-ai-agent-security-breach",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "wiz-black-october-ai-developer-platforms-bedrock-keys",
+      "lane": "atk",
+      "date": "2026-10-30",
+      "headline": "Wiz says at least nine AI developer platforms disclosed incidents in October, with attackers hunting the environment variables that grant AI access",
+      "core": "Wiz says at least nine AI developer platforms disclosed incidents in October, and later notes through November 3 add three more publicly reported incidents (Brev, Trigger.dev and Chainstack). It says all public reports describe targeted exploitation \"explicitly hunting stored environment variables, with a focus on those granting AI access\"; in two cases it traced approximately 800,000 and 1.7 million Amazon Bedrock calls made with stolen keys. Wiz finds no single vulnerability or dependency linking the attacks and does not attribute them to one actor.",
+      "confidence": "researchers",
+      "outlet": "Wiz",
+      "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms",
+      "topics": [
+        "attacks-on-ai"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "kaspersky-cyberstrikeai-education-latin-america-africa",
+      "lane": "atk",
+      "date": "2026-11-02",
+      "headline": "Kaspersky says attackers used the CyberStrikeAI framework against schools and universities in Latin America and Africa",
+      "core": "Kaspersky says attackers used the open-source CyberStrikeAI framework against educational organisations in Latin America and Africa between September and October 2026, with the AI running on the attackers' own server rather than on compromised machines, and reached domain administrator accounts within three to four days of deploying their implant. It does not link the activity to a known group.",
+      "confidence": "researchers",
+      "outlet": "Kaspersky",
+      "url": "https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-ai-driven-attacks-on-educational-organizations-in-latin-america-and-africa",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "fbi-binance-theft-tradertraitor-628-addresses",
+      "lane": "atk",
+      "date": "2026-10-31",
+      "headline": "The FBI attributes the Binance theft to North Korea's TraderTraitor and lists 628 addresses to block",
+      "core": "Help Net Security reports that the FBI said in an October 31 alert that North Korea was responsible for the theft of more than $6 billion in virtual assets from Binance, linked it to TraderTraitor, and urged providers to block 628 listed addresses; Binance began restoring withdrawals on November 1 and says it has replaced about 95% of the stolen assets with its own funds.",
+      "confidence": "press",
+      "outlet": "FBI and Binance (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/11/02/fbi-north-korea-binance-hack/",
+      "isNew": false
+    },
+    {
+      "id": "cpguard-poisoned-updates-2950-hosting-servers",
+      "lane": "atk",
+      "date": "2026-11-04",
+      "headline": "An attacker pushed poisoned cPGuard updates that about 2,950 web-hosting servers installed",
+      "core": "Help Net Security reports that an attacker breached the update system of OPSShield's cPGuard hosting-security suite and on November 2 uploaded fake versions 5.88.12 through 5.88.19 that ran as root and sent password hashes and SSH keys to the attacker; about 2,950 customer servers installed them, and billing records for about 7,900 customers were taken. OPSShield says generally, \"Attackers now use AI tools to scan for weak points,\" but does not describe a specific AI role in this attack.",
+      "confidence": "press",
+      "outlet": "OPSShield (via Help Net Security)",
+      "url": "https://www.helpnetsecurity.com/2026/11/04/cpguard-update-supply-chain-compromised/",
+      "isNew": false
+    },
+    {
+      "id": "ncsc-annual-review-2026-ai-ransomware-cni-cyber-shield",
+      "lane": "pol",
+      "date": "2026-11-03",
+      "headline": "The UK NCSC judges AI-powered malware highly likely to be used in a ransomware attack on UK critical infrastructure by 2028, as the government funds a Cyber Shield and a vulnerability centre",
+      "core": "The National Cyber Security Centre's Annual Review 2026 says AI-powered malware is highly likely to be used in a ransomware attack on Britain's critical national infrastructure by 2028, and the government is putting £60 million into the first phase of a national Cyber Shield and £70 million into a National Exposure and Real-Time Vulnerability (NERV) Centre.",
+      "confidence": "on-record",
+      "outlet": "UK National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/news/cyber-chief-uk-facing-ai-powered-attacks-on-critical-infrastructure-in-two-years",
+      "topics": [
+        "critical-infrastructure",
+        "ai-in-attacks"
+      ],
+      "isNew": true,
+      "key": true
+    },
+    {
+      "id": "japan-seek-undisclosed-vulnerability-information-us-ai-firms",
+      "lane": "pol",
+      "date": "2026-11-05",
+      "headline": "Japan plans to ask US AI developers for earlier access to undisclosed software vulnerabilities, Nikkei reports",
+      "core": "Reuters, citing Nikkei, reports that Japan plans to seek \"earlier access to information on undisclosed software vulnerabilities\" from US AI developers and other overseas technology firms so government agencies and critical infrastructure operators can respond before public disclosure, as part of an emergency cybersecurity package that may be presented at a ministerial meeting as early as Friday; it says Japan had recently sought expanded access to advanced AI models from US developers including Anthropic and OpenAI.",
+      "confidence": "press",
+      "outlet": "Nikkei (via Reuters / KFGO)",
+      "url": "https://kfgo.com/2026/11/04/japan-to-seek-software-vulnerability-data-from-us-ai-firms-amid-cyberattack-surge-nikkei-reports/",
+      "topics": [
+        "ai-found-vulnerabilities"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "korea-fsc-ai-era-security-meeting-580-firms-ceo-accountability",
+      "lane": "pol",
+      "date": "2026-11-05",
+      "headline": "South Korea's financial regulator orders security inspections of about 580 firms after 40 breach reports at 37 financial companies since September 30",
+      "core": "SBS reports that at a November 5 meeting on security in the AI era the Financial Services Commission said 40 breach reports had been filed by 37 financial firms between September 30 and November 3, with about 473,000 leaked records and about 1 billion won stolen. The commission will inspect about 580 firms, with listed systems due by November 30 and unlisted systems and internal controls by year-end, and will hold management including CEOs accountable for serious negligence; planned measures include a one-stop AI defence service from the Financial Security Institute and a task force on lifting network-separation rules. SBS does not say AI caused the breaches.",
+      "confidence": "press",
+      "outlet": "Financial Services Commission (via SBS)",
+      "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008831581",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "china-ndrc-accelerate-ai-legislation-incident-disclosure",
+      "lane": "pol",
+      "date": "2026-11-03",
+      "headline": "China's state planner says it will accelerate AI-related legislation and wants developers to disclose safety incidents and vulnerabilities",
+      "core": "Bloomberg, as carried by The Star, reports that National Development and Reform Commission official Wang Ruomeng said at a November 3 briefing that China will accelerate legislation to support core AI enablers and establish safety standards covering the full life cycle of AI, called for developers and operators to disclose safety risks, incidents and vulnerabilities, and called on countries to coordinate vulnerability disclosures. No formal document was cited.",
+      "confidence": "press",
+      "outlet": "NDRC (via Bloomberg / The Star)",
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/11/03/china-plans-broad-ai-guardrails-after-global-security-lapses",
+      "isNew": false
+    },
+    {
+      "id": "google-wiz-scan-for-good-critical-infrastructure",
+      "lane": "def",
+      "date": "2026-09-24",
+      "headline": "Google and Wiz launch Scan for Good, running AI vulnerability scans for public services and critical infrastructure with a human validating every finding",
+      "core": "The Register reports that Google and Wiz launched Scan for Good, which uses Google's Gemini 3.8 Flash Cyber and Wiz's Red Agent to look for exposures in the publicly facing websites, APIs and applications of public services, critical infrastructure and nonprofits, when organisations apply for an assessment or under bug bounty and disclosure policies, with every potential finding reviewed and validated by a human; Wiz said CISA provided guidance and that the programme had been active for several months before the launch.",
+      "confidence": "press",
+      "outlet": "Google and Wiz (via The Register)",
+      "url": "https://www.theregister.com/a/5298685",
+      "topics": [
+        "critical-infrastructure",
+        "ai-found-vulnerabilities"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "crowdstrike-to-acquire-fiddler-ai-dreadnode",
+      "lane": "mkt",
+      "date": "2026-11-02",
+      "headline": "CrowdStrike moves to buy agent-monitoring firm Fiddler AI and AI-testing firm Dreadnode, reported at about $495 million combined",
+      "core": "CyberScoop reports that CrowdStrike will acquire Fiddler AI, which monitors AI agents, and Dreadnode, which tests AI systems, with both deals expected to close in its fiscal fourth quarter of 2027; CrowdStrike did not disclose prices, and the Wall Street Journal put them at $400 million and $95 million.",
+      "confidence": "press",
+      "outlet": "CrowdStrike (via CyberScoop)",
+      "url": "https://cyberscoop.com/crowdstrike-acquires-fiddler-dreadnode-ai-security/",
+      "isNew": false
+    },
+    {
+      "id": "check-point-q3-call-vulnerability-apocalypse",
+      "lane": "mkt",
+      "date": "2026-11-02",
+      "headline": "Check Point's chief executive tells analysts \"what we are seeing is a vulnerability apocalypse\"",
+      "core": "On Check Point's third-quarter earnings call, chief executive Nadav Zafrir said \"what we are seeing is a vulnerability apocalypse\" and that staying in reactive mode would lose, said phishing is now written by AI and attackers can hide instructions in it aimed at the AI assistants that read it, and cited the PHP2Shell vulnerability as a case where the company says its customers were protected before they needed to act.",
+      "confidence": "on-record",
+      "outlet": "Check Point (via Motley Fool transcript)",
+      "url": "https://www.fool.com/earnings/call-transcripts/2026/11/02/check-point-chkp-q3-2026-earnings-call-transcript/",
+      "isNew": false
+    },
+    {
+      "id": "chubb-greenberg-ai-liability-not-contemplated-exclusions",
+      "lane": "mkt",
+      "date": "2026-10-21",
+      "headline": "Chubb's chief executive says AI liability is not contemplated in casualty underwriting and expects exclusions and separate AI covers",
+      "core": "Asked on Chubb's third-quarter call about coverage for AI liability, chief executive Evan Greenberg said \"AI liability is a growing and emerging exposure that is not contemplated in casualty underwriting really to date\" and that he imagined \"a combination of coverage clarifications, ultimately exclusions, and separate AI-related liability coverages.\"",
+      "confidence": "on-record",
+      "outlet": "Chubb (via Motley Fool transcript)",
+      "url": "https://www.fool.com/earnings/call-transcripts/2026/10/21/chubb-cb-q3-2026-earnings-call-transcript/",
       "isNew": false
     }
   ],
@@ -6994,8 +7221,8 @@
     },
     {
       "thread": "Agent-abuse attack surface",
-      "status": "A blockchain-analytics company now says an agentic attacker got into its own systems. Chainalysis disclosed on October 30 that \"an external actor using offensive agentic techniques\" reached its systems and internal tools and some customer identity data, without saying what made the techniques agentic. Around it: TrendAI found the open-source CyberStrikeAI tool, delegating among 44 agents, run against at least 19 organisations, 16 of them in Japan, in October; Dream found Claude Code and a DeepSeek- and Kimi-configured platform on the infrastructure of an actor that rooted 25 firewall systems; and Zscaler puts the earlier ARTEX campaign against Korean financial firms at data on about 67,000 people, with Korea's regulators calling the five largest banks to an AI-hacking meeting on November 5. CrowdStrike says China-nexus VAPOR PANDA ran ARTEX against more than 200 organisations from October 17, confirming post-exploitation at nine; whether it is Microsoft's Storm-0940 is not stated. SOCRadar's n0n operator and Talos's NIK C2 carry the criminal side. The earlier platforms and unit costs are in dashboard-memory.md.",
-      "changed": "2026-10-30",
+      "status": "One operator can now run a dozen agents against hundreds of targets. Acronis says a single individual it places in Hualien City ran BOSSAI, a 12-agent mesh running mostly on an abliterated DeepSeek-V4 variant, against hundreds of organisations in eleven countries, with confirmed access at about ten, among them a Taipei fire-department patient-care platform and a city 119 dispatch system (November 4). Named victims keep disclosing: GitBook says a \"highly targeted attack using AI agents\" got in on November 2, and Chainalysis, which reported an attacker using \"offensive agentic techniques\" on October 30, said on November 4 that an on-path attack exposed some customer passwords and took KYT offline. Kaspersky found the CyberStrikeAI framework used against schools and universities in Latin America and Africa; TrendAI found it, with 44 agents, against at least 19 organisations, mostly in Japan. Korea's financial regulator counted 40 breach reports at 37 firms since September 30 and ordered inspections of about 580, without saying AI caused them. VAPOR PANDA/ARTEX, Dream's PHP2Shell actor, n0n and NIK C2 are in dashboard-memory.md.",
+      "changed": "2026-11-04",
       "topic": "ai-in-attacks",
       "items": [
         "japan-twenty-companies-possible-data-compromise",
@@ -7062,7 +7289,12 @@
         "trendai-cyberstrikeai-44-agents-japan",
         "dream-php2shell-fragnesia-25-firewalls-rooted",
         "zscaler-artex-korea-finance-67000-records",
-        "korea-fsc-ai-hacking-inspection-meeting-five-banks"
+        "korea-fsc-ai-hacking-inspection-meeting-five-banks",
+        "chainalysis-on-path-attack-customer-passwords-kyt-offline",
+        "gitbook-targeted-attack-using-ai-agents-api-tokens",
+        "acronis-bossai-12-agent-mesh-taiwan-emergency-services",
+        "kaspersky-cyberstrikeai-education-latin-america-africa",
+        "korea-fsc-ai-era-security-meeting-580-firms-ceo-accountability"
       ]
     },
     {
@@ -7178,7 +7410,8 @@
         "open-secure-ai-alliance",
         "white-house-gold-eagle-ai-vulnerability-clearinghouse",
         "uk-ncsc-cyber-shield-agentic-defence",
-        "cisa-anthropic-mythos-federal-code-audit"
+        "cisa-anthropic-mythos-federal-code-audit",
+        "google-wiz-scan-for-good-critical-infrastructure"
       ]
     },
     {
@@ -7209,7 +7442,8 @@
         "cloudflare-workers-ai-glm-5-3-kv-cache-cross-customer",
         "epoch-glm-5-3-firefox-patch-gap-exploits",
         "mistral-large-4-open-weights-uplift-real-attacks",
-        "epoch-open-closed-cyber-gap-six-seven-months"
+        "epoch-open-closed-cyber-gap-six-seven-months",
+        "moonshot-kimi-k3-1-pro-cyber-data-removed-before-open-weights"
       ]
     },
     {
@@ -7337,8 +7571,8 @@
     },
     {
       "thread": "Model-access abuse",
-      "status": "The keys are now being found in bulk and stolen at the desktop. A scan of 7.25 million public Gitee repositories found 26,400 working credentials, among them 3,170 DeepSeek, 1,489 Zhipu and 1,348 OpenAI keys, with no revocation confirmed; Symantec's Aoki infostealer targets the saved sessions of Claude, ChatGPT, Codex, Cursor, Copilot, Gemini, JetBrains AI and Kiro - \"Like card data, a stolen AI key can be cashed in directly.\" LiteLLM says the actor who reached its internal platform through an unrevoked master key harvested credentials \"with a primary focus on upstream inference API tokens\", and Symantec's honeypot caught an attack tool hunting exposed LLM endpoints and gateways to shift its compute cost onto victims. Wiz saw the stolen LiteLLM AWS credentials used for Bedrock model-listing calls; OpenCode said an intruder may have exposed provider keys saved by 1.4% of its Console users. Bitsight's October 15 review shows the resale market: bring-your-own-key panels and flat-rate resellers near ten cents per million tokens.",
-      "changed": "2026-10-28",
+      "status": "Stolen AI keys are now the target across a whole class of platforms. Wiz says at least nine AI developer platforms disclosed incidents in October, with three more reported through November 3, and that public reports describe attackers \"explicitly hunting stored environment variables, with a focus on those granting AI access\"; in two cases it traced about 800,000 and 1.7 million Amazon Bedrock calls made with stolen keys, and it finds no single vulnerability or dependency linking the attacks. Behind that: a scan of 7.25 million public Gitee repositories found 26,400 working credentials, among them 3,170 DeepSeek, 1,489 Zhipu and 1,348 OpenAI keys; Symantec's Aoki infostealer targets the saved sessions of Claude, ChatGPT, Codex, Cursor and other coding tools; LiteLLM's intruder harvested credentials \"with a primary focus on upstream inference API tokens\"; and OpenCode said provider keys saved by 1.4% of its Console users may have been exposed. Bitsight's October 15 review shows the resale market: bring-your-own-key panels and flat-rate resellers near ten cents per million tokens.",
+      "changed": "2026-10-30",
       "topic": "attacks-on-ai",
       "items": [
         "carbonato-docker-botnet-hermes-agent",
@@ -7360,7 +7594,8 @@
         "symantec-llmjacking-skynet-autonomous-attack-agent",
         "litellm-postmortem-exposed-master-key-entry-point",
         "gitee-26400-valid-cloud-ai-credentials",
-        "aoki-infostealer-ai-coding-tool-sessions"
+        "aoki-infostealer-ai-coding-tool-sessions",
+        "wiz-black-october-ai-developer-platforms-bedrock-keys"
       ]
     },
     {
@@ -7399,7 +7634,8 @@
         "naic-2026-cyber-insurance-market-report",
         "anthropic-s1-ai-losses-exceed-insurance-capacity",
         "travelers-q3-call-ai-models-adding-cyber-exposure",
-        "man-group-cyber-cat-bonds-mythos-insulation"
+        "man-group-cyber-cat-bonds-mythos-insulation",
+        "chubb-greenberg-ai-liability-not-contemplated-exclusions"
       ]
     },
     {
@@ -7504,8 +7740,8 @@
     },
     {
       "thread": "Vulnerability disclosure at machine speed",
-      "status": "The patch gap is now being measured from the attacker's side. Epoch AI says an open-weight model turned Firefox fixes that were published but not yet shipped into working exploits for six releases, at about $1,000 each, before Firefox 159 closed the bypass on October 27 - the release whose advisory credits 34 of 167 fixes to OpenAI's Codex Security agent. The AI-found PHP flaws are now exploited on firewalls: Palo Alto Networks confirmed active exploitation against exposed management interfaces on October 28, CISA listed the Fragnesia kernel flaw that chains with them, and Dream says one actor rooted 25 firewall systems with the chain. Anthropic said an unreleased Claude model wrote exploit chains across five platforms with 62 Chrome CVEs assigned; ELLIO saw in-the-wild traffic against the AI-found Brotli flaw. Japan's prime minister ordered AI-assisted vulnerability assessments on October 26. Against the trend, Rapid7 puts AI as an operational component in 8% of tracked incidents. The earlier record is in dashboard-memory.md.",
-      "changed": "2026-10-29",
+      "status": "A lab now counts AI-built kernel exploits in the hundreds. OpenAI says a pipeline on an upcoming, unnamed model produced 1,169 working root exploits grouping into 948 distinct Linux kernel flaws in one mid-October run, at $1,279 per exploit, with 61 patched upstream and 43 in staging when the work wrapped up (via Help Net Security, November 4). Governments are reaching for the pre-disclosure window: Japan plans to ask US AI developers for earlier access to undisclosed vulnerabilities (Nikkei, November 5), and the UK NCSC's annual review of November 3 judges AI-assisted vulnerability discovery and exploit development highly likely to pose a significant threat and tells defenders to prepare for a \"vulnerability patch wave\". Epoch AI showed an open-weight model turning published-but-unshipped Firefox fixes into exploits for six releases at about $1,000 each; the AI-found PHP flaws are exploited on firewalls, with Palo Alto confirming exploitation on October 28 and Dream saying one actor rooted 25 PAN-OS servers. Against the trend, Rapid7 puts AI as an operational component in 8% of tracked incidents. The earlier record is in dashboard-memory.md.",
+      "changed": "2026-11-05",
       "topic": "ai-found-vulnerabilities",
       "items": [
         "anthropic-cyber-mission-critical-infrastructure-oss-scanner",
@@ -7563,7 +7799,10 @@
         "japan-first-ministerial-cyber-meeting-aisi-ai-vulnerability",
         "epoch-glm-5-3-firefox-patch-gap-exploits",
         "palo-alto-pan-os-php2shell-active-exploitation",
-        "dream-php2shell-fragnesia-25-firewalls-rooted"
+        "dream-php2shell-fragnesia-25-firewalls-rooted",
+        "openai-unreleased-cyber-model-948-linux-kernel-root-exploits",
+        "japan-seek-undisclosed-vulnerability-information-us-ai-firms",
+        "ncsc-annual-review-2026-ai-ransomware-cni-cyber-shield"
       ]
     },
     {
@@ -7626,6 +7865,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-11-05",
+      "file": "archive/machine-speed-2026-11-05.html",
+      "items": 571,
+      "note": "Grow mode. OpenAI says an upcoming model built root exploits for 948 Linux kernel flaws in one run; Acronis finds one operator in Taiwan running 12 AI agents into Taipei emergency-service records; the UK NCSC's annual review and its 2028 AI-ransomware judgement; GitBook and Chainalysis disclose agent-linked intrusions; Japan seeks early vulnerability data from US AI firms; Korea orders 580 financial firms inspected; CrowdStrike buys Fiddler and Dreadnode; and catches from inside the period - Kimi K3.1 Pro's cyber-data removal, Scan for Good, Chubb on AI liability."
+    },
     {
       "date": "2026-11-02",
       "file": "archive/machine-speed-2026-11-02.html",
@@ -7992,7 +8237,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-11-02",
+  "coverageEnd": "2026-11-05",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
@@ -8834,6 +9079,16 @@
       "date": "2026-08-24",
       "item": "cisa-kev-ray-ai-framework-cve-2025-62593-exploited",
       "text": "A sentence tying this CVE to Oligo Security's ShadowRay 2.0 campaign was removed. ShadowRay 2.0 exploits a different, older Ray flaw (CVE-2023-48022); the sources do not link the two. Source moved from press to the NIST NVD record."
+    },
+    {
+      "date": "2026-11-05",
+      "item": "dream-php2shell-fragnesia-25-firewalls-rooted",
+      "text": "Moved from The Hacker News to Dream's own post. The date is now October 26, the post's own publication date, not October 28. The quotation \"the use of AI to augment the development process\" was removed because it is not on Dream's page; Dream says the code's structure and style \"suggest AI-assisted development\" and that it has no direct evidence AI tools wrote the exploit or scripts. The 25 rooted machines are now described as PAN-OS firewall and management servers, and the three in the US government-affiliated environment as two firewalls and the internal management server."
+    },
+    {
+      "date": "2026-11-05",
+      "item": "chainalysis-intrusion-offensive-agentic-techniques",
+      "text": "Moved from The Hacker News to Chainalysis's own disclosure. The card had said investigation content, authentication credentials and session tokens were not accessed; Chainalysis's October 30 wording was that it had found no evidence of such access, and its November 4 update says an on-path attack exposed a subset of customer passwords. The card now says both."
     }
   ],
   "weekly": [

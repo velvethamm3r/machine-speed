@@ -268,6 +268,14 @@ capability and safety findings. Their own posts are `on-record` for disclosures 
     primaries without touching cve.org or nvd.nist.gov, neither of which is reachable here. Treat the account of the
     model's contribution as `self-reported`: it is one vendor's unreproduced description of its own pipeline._
 - **Wiz** — https://www.wiz.io/blog. `def`
+- **Acronis Threat Research Unit** — https://www.acronis.com/en/tru/posts/. `atk`
+  - _Added 2026-11-05. Published the BOSSAI investigation (one operator, a 12-agent mesh, Taipei emergency-service
+    records) on Nov 4 with infrastructure, model and victim detail no outlet had yet carried. The post opened once a
+    search surfaced it; the index was not tried directly. Dated and specific about its confidence levels._
+- **Kaspersky press releases / Securelist** — https://www.kaspersky.com/about/press-releases · https://securelist.com/. `atk`
+  - _Added 2026-11-05. Carried the CyberStrikeAI campaign against education in Latin America and Africa (Nov 2) on its
+    press-release page, which opened; the Securelist technical write-up was not found this run. Regions the rest of the
+    list rarely reaches._
 - **Zenity Labs** — https://labs.zenity.io/. `atk` `def`
   - _Added 2026-09-29. The agent-platform beat specifically: Salesforce Agentforce, Microsoft Copilot, ServiceNow and the
     enterprise assistants no general vendor blog covers at this depth. Publisher of SalesBleed, the zero-click Agentforce
@@ -506,6 +514,11 @@ benchmark claims, and hold-backs for cyber-safety review.
 - **Meta (Llama / Muse)** — https://ai.meta.com/blog/ · https://www.llama.com/. `cap`
 - **Z.ai (GLM)** — https://z.ai/blog. `cap`
 - **Moonshot AI (Kimi)** — https://platform.moonshot.ai/blog. `cap`
+  - _Note added 2026-11-05. **Moonshot now publishes model posts at https://www.kimi.ai/blog**, which opened first try;
+    the entry point above did not carry the Kimi K3.1 Pro post. That post — Moonshot's account of removing cyber data from
+    the model's training before an open-weight release, with its own before-and-after exploit-benchmark scores — reached
+    this board thirteen days late (released Oct 23, carried Nov 5). The page shows no date; take it from a dated account
+    and say whose date it is. Sweep both addresses._
 - **DeepSeek** — https://www.deepseek.com/ (news/updates). `cap`
 - **Mistral AI** — https://mistral.ai/news/. `cap`
 - **Alibaba Qwen** — https://qwenlm.github.io/blog/. `cap`
@@ -702,6 +715,12 @@ Used to verify — never invent — a CVE, its CVSS or its status before it goes
     company's ("the company claims", "by its count"), which is the attribution the Markets-lane rule needs. Opens
     first try; posts are dated and bylined. It names no round letter or valuation when the company does not._
 - **Funding & M&A trackers** — Crunchbase News cybersecurity https://news.crunchbase.com/sections/cybersecurity/ · TechCrunch security https://techcrunch.com/category/security/. The lane's capital half (rounds, valuations, acquisitions) arrives here first and rarely reaches a carrier or broker primary at all; without a standing sweep these land on the board four to six days late, as Upwind's $300M did on 2026-09-08. `mkt`
+- **Earnings-call transcripts** — Motley Fool https://www.fool.com/earnings/call-transcripts/ (paths carry `/YYYY/MM/DD/`) · Investing.com transcripts. `mkt`
+  - _Added 2026-11-05. The quarterly route to what carriers and security vendors tell analysts about AI and cyber risk
+    in their own executives' words — Chubb's Oct 21 call on AI liability reached this board fifteen days late because no
+    source on the list carried transcripts. Motley Fool opened first try for Chubb, Check Point and AIG. Executives'
+    statements are `on-record` from a third-party transcript; check speaker-name spellings against the company's own
+    pages, and treat a vendor's claims about its own products as `self-reported`._
 
 - **NAIC — cybersecurity insurance market report** — https://content.naic.org/ (report landing page at
   `/resource-center/2026-report-cybersecurity-insurance-market`). `mkt`
