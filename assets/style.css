@@ -921,12 +921,12 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .frontlead .lede{margin:0}
 .kick{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px}
 .kick time{font-weight:600; color:var(--ink-3); margin-left:8px; letter-spacing:.8px}
-.lead{display:flex; flex-direction:column; gap:12px; color:inherit}
-.lead:hover{text-decoration:none} .lead:hover .lh{color:var(--accent)}
-.lead .lh{font-family:var(--display); font-weight:500; font-size:40px; line-height:1.08; letter-spacing:-.6px; color:var(--ink); text-wrap:pretty}
-@media(max-width:600px){.lead .lh{font-size:30px}}
-.lead .ls{font-family:var(--display); font-size:18px; line-height:1.5; color:var(--ink-2)}
-.lead .lm{font-size:12.5px; color:var(--ink-3)}
+.frontlead .lead{display:flex; flex-direction:column; gap:12px; color:inherit}
+.frontlead .lead:hover{text-decoration:none} .frontlead .lead:hover .lh{color:var(--accent)}
+.frontlead .lead .lh{font-family:var(--display); font-weight:500; font-size:40px; line-height:1.08; letter-spacing:-.6px; color:var(--ink); text-wrap:pretty}
+@media(max-width:600px){.frontlead .lead .lh{font-size:30px}}
+.frontlead .lead .ls{font-family:var(--display); font-size:18px; line-height:1.5; color:var(--ink-2)}
+.frontlead .lead .lm{font-size:12.5px; color:var(--ink-3)}
 .twoup{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 36px; border-top:1px solid var(--ink); padding-top:18px}
 @media(max-width:600px){.twoup{grid-template-columns:1fr}}
 .two{display:flex; flex-direction:column; gap:6px; padding:0 0 18px; color:inherit}
@@ -957,8 +957,8 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 h1,h2,h3{text-wrap:balance}
 p,li{text-wrap:pretty}
 /* Headlines balance so no line is left with a single word; running text fills its column. */
-.lead .lh,.two .th,.sw .swt,.story .sn,.brow .bt{text-wrap:balance}
-.pagehead .sub,.lede,.lead .ls,.sw .swd,.story .why,.brow .bs,.way .wd{text-wrap:pretty}
+.frontlead .lead .lh,.two .th,.sw .swt,.story .sn,.brow .bt{text-wrap:balance}
+.pagehead .sub,.lede,.frontlead .lead .ls,.sw .swd,.story .why,.brow .bs,.way .wd{text-wrap:pretty}
 
 /* Grids with a fixed count get fixed columns; auto-fill is for open-ended
    lists only. Three week cards on the front page, 3 / 1, with room to read. */
