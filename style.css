@@ -921,12 +921,12 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .frontlead .lede{margin:0}
 .kick{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px}
 .kick time{font-weight:600; color:var(--ink-3); margin-left:8px; letter-spacing:.8px}
-.lead{display:flex; flex-direction:column; gap:12px; color:inherit}
-.lead:hover{text-decoration:none} .lead:hover .lh{color:var(--accent)}
-.lead .lh{font-family:var(--display); font-weight:500; font-size:40px; line-height:1.08; letter-spacing:-.6px; color:var(--ink); text-wrap:pretty}
-@media(max-width:600px){.lead .lh{font-size:30px}}
-.lead .ls{font-family:var(--display); font-size:18px; line-height:1.5; color:var(--ink-2); max-width:62ch}
-.lead .lm{font-size:12.5px; color:var(--ink-3)}
+.frontlead .lead{display:flex; flex-direction:column; gap:12px; color:inherit}
+.frontlead .lead:hover{text-decoration:none} .frontlead .lead:hover .lh{color:var(--accent)}
+.frontlead .lead .lh{font-family:var(--display); font-weight:500; font-size:40px; line-height:1.08; letter-spacing:-.6px; color:var(--ink); text-wrap:pretty}
+@media(max-width:600px){.frontlead .lead .lh{font-size:30px}}
+.frontlead .lead .ls{font-family:var(--display); font-size:18px; line-height:1.5; color:var(--ink-2)}
+.frontlead .lead .lm{font-size:12.5px; color:var(--ink-3)}
 .twoup{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 36px; border-top:1px solid var(--ink); padding-top:18px}
 @media(max-width:600px){.twoup{grid-template-columns:1fr}}
 .two{display:flex; flex-direction:column; gap:6px; padding:0 0 18px; color:inherit}
@@ -955,15 +955,18 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 /* Text wrapping, site-wide: headings balance their lines, running text avoids
    orphans, and no paragraph runs past a readable measure on a wide screen. */
 h1,h2,h3{text-wrap:balance}
-p,li,.sub,.lede{text-wrap:pretty}
-.pagehead .sub,.pagehead .sub.wide,.lede{max-width:78ch}
+p,li{text-wrap:pretty}
+/* Headlines balance so no line is left with a single word; running text fills its column. */
+.frontlead .lead .lh,.two .th,.sw .swt,.story .sn,.brow .bt{text-wrap:balance}
+.pagehead .sub,.lede,.frontlead .lead .ls,.sw .swd,.story .why,.brow .bs,.way .wd{text-wrap:pretty}
 
 /* Grids with a fixed count get fixed columns; auto-fill is for open-ended
-   lists only. Four week cards on the front page: 4 / 2 / 1. */
-.wgrid.front{grid-template-columns:repeat(4,minmax(0,1fr)); align-items:stretch}
+   lists only. Three week cards on the front page, 3 / 1, with room to read. */
+.wgrid.front{grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; align-items:stretch}
+@media(max-width:900px){.wgrid.front{grid-template-columns:1fr}}
+.wgrid.front .wcard{padding:18px 20px; gap:11px}
+.wgrid.front .wcard li{font-size:13.5px; line-height:1.55}
 .wgrid.front .wcard .wgo{margin-top:auto}
-@media(max-width:1180px){.wgrid.front{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){.wgrid.front{grid-template-columns:1fr}}
 
 /* Watchlist: the stories as entries, three across, each led by its emblem
    (layers.EMBLEMS): one drawing per story in one hand, lane colour as the
@@ -1018,7 +1021,7 @@ p,li,.sub,.lede{text-wrap:pretty}
 .brow .bk{display:flex; align-items:center; gap:10px}
 .brow .bt{font-family:var(--display); font-size:28px; line-height:1.15; letter-spacing:-.4px; color:var(--ink)}
 .brow .bm{font-size:12.5px; color:var(--ink-3)}
-.brow .bs{font-size:15px; line-height:1.6; color:var(--ink-2); max-width:70ch}
-.brow .blast{font-size:13.5px; line-height:1.55; color:var(--ink-2); max-width:70ch; padding-top:8px; border-top:1px solid var(--line)}
+.brow .bs{font-size:15px; line-height:1.6; color:var(--ink-2)}
+.brow .blast{font-size:13.5px; line-height:1.55; color:var(--ink-2); padding-top:8px; border-top:1px solid var(--line)}
 .brow .blast b{color:var(--ink); font-weight:600}
 .brow .bgo{font-size:13px; font-weight:600; color:var(--accent); margin-top:2px}
