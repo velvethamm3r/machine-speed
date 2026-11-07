@@ -9,14 +9,14 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## By the numbers
 
-- 188 source-verified items, 2026-10-01 to 2026-11-05.
-  - Capability: 43
-  - Policy: 27
+- 207 source-verified items, 2026-10-01 to 2026-11-07.
+  - Capability: 46
+  - Policy: 30
   - Defense: 31
-  - Attacks: 72
-  - Markets: 15
-- Confirmed by the affected organization: 10 of 188 (5%).
-- Resting on self-reported, untested claims: 21 (11%).
+  - Attacks: 80
+  - Markets: 20
+- Confirmed by the affected organization: 12 of 207 (6%).
+- Resting on self-reported, untested claims: 22 (11%).
 - Median policy response lag, since the board began, among topics policy has answered: 22.5 days (6 of 6 topics have a policy response; 0 still open).
 - Median defense response lag, since the board began, among topics defense has answered: 21 days (6 of 6 topics have a defense response; 0 still open).
 
@@ -31,13 +31,13 @@ WRITE: three sentences — what changed this quarter, and why it matters.
 
 ## Most-named entities
 
-- OpenAI: 42
-- Anthropic: 34
-- Claude (Anthropic): 24
-- GPT and ChatGPT (OpenAI): 19
-- Google and Google DeepMind: 15
-- GitHub: 15
-- Microsoft: 12
+- OpenAI: 44
+- Anthropic: 35
+- Claude (Anthropic): 25
+- GPT and ChatGPT (OpenAI): 20
+- Google and Google DeepMind: 16
+- GitHub: 16
+- Microsoft: 14
 - CISA: 12
 - DeepSeek: 10
 - Claude Code: 10
