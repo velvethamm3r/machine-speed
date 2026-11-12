@@ -126,6 +126,29 @@ SHOW_INTERNAL_NOTE = False
 # project, it does not govern how a run behaves.
 FOOTER_NOTE = ""
 
+# The practice this board belongs to. The footer of every page carries one
+# family line -- Techpointe, Machine Speed, Newsletter -- so a reader on any of
+# the three sites can reach the other two, and the About page gains one sentence
+# saying who publishes the board. The same line sits in the footer of the
+# advisory site. It is deliberately quiet: a footer line and an About sentence,
+# nothing beside the items, so the board does not read as marketing. Empty
+# PARENT_URL removes the footer line and the About sentence together.
+PARENT_NAME = "Techpointe"
+PARENT_URL = "https://techpointe.ai/"
+PARENT_ABOUT = ("Machine Speed is published by {parent}, Daria Bahrami's advisory "
+                "practice for venture-backed AI and security companies. Every item "
+                "on the board follows the same sourcing rules and corrections policy.")
+# The hammer from the Techpointe mark, drawn in the text colour so it sits in
+# the footer in both themes.
+PARENT_MARK = ('<svg width="17" height="13" viewBox="-38 -53 138 106" aria-hidden="true" '
+               'style="vertical-align:-2px;margin-right:5px"><g transform="rotate(-23)" fill="currentColor">'
+               '<rect x="14" y="-6" width="9" height="12" rx="2"/>'
+               '<rect x="22" y="-3.5" width="62" height="7" rx="3.5"/>'
+               '<circle cx="90" cy="0" r="7"/>'
+               '<rect x="-15" y="-40" width="30" height="80"/>'
+               '<rect x="-18.5" y="-46" width="37" height="14" rx="5"/>'
+               '<rect x="-18.5" y="32" width="37" height="14" rx="5"/></g></svg>')
+
 # Symbol printed immediately after the site name in the footer. "™" asserts an
 # unregistered common-law claim to the name and needs no filing; "®" is only
 # lawful once the mark is actually registered, so it stays a deliberate edit
@@ -1079,7 +1102,14 @@ class Site:
                 f'<a href="{self.prefix}{u}">{t}</a>' for u, t in (
                     (ARCHIVE_URL, "Archive"), (ins_mod.ENTITIES_URL, "Entities"), (ins_mod.DATA_URL, "Data"),
                     (ins_mod.METHOD_URL, "Methodology"), (ins_mod.CORRECTIONS_URL, "Corrections"))) + "</p>")
-        return (f'<footer><div class="legend">{legend}</div>{refs}{note}'
+        family = ""
+        if PARENT_URL:
+            links = [f'<a href="{escape(PARENT_URL, quote=True)}">{escape(PARENT_NAME)}</a>',
+                     f'<a href="{self.prefix or "./"}">{escape(SITE_NAME)}</a>']
+            if SUBSTACK_URL:
+                links.append(f'<a href="{escape(SUBSTACK_URL, quote=True)}">Newsletter</a>')
+            family = f'<p class="footlinks">{PARENT_MARK}' + " · ".join(links) + "</p>"
+        return (f'<footer><div class="legend">{legend}</div>{refs}{note}{family}'
                 f'<p style="margin-top:8px">{SITE_NAME}{mark}{tag} · © {year}</p></footer>')
 
     # -- charts (pure HTML/CSS, computed at build time) ---------------------
@@ -1694,6 +1724,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
     # -- about --------------------------------------------------------------
     def about_body(self) -> str:
         paras = "".join(f"<p>{escape(p)}</p>" for p in self.d.get("about", []))
+        if PARENT_URL:
+            link = f'<a href="{escape(PARENT_URL, quote=True)}">{escape(PARENT_NAME)}</a>'
+            paras += "<p>" + escape(PARENT_ABOUT).replace("{parent}", link) + "</p>"
         return f"""{self.nav(ABOUT_URL)}
 
   <header class="pagehead"><h1>About {escape(SITE_NAME)}</h1></header>
