@@ -1,7 +1,7 @@
 # Machine Speed — daily run runbook
 
 Everything the site shows comes from one file. A run edits `data.json`, commits, and
-GitHub Actions does the rest. Live at **https://machinespeed.techpointe.org**.
+GitHub Actions does the rest. Live at **https://machinespeed.techpointe.ai**.
 
 ## The 5-minute version
 
@@ -170,8 +170,8 @@ All at the top of `build.py`:
 | `LANDING` | Which view answers the bare domain: `"explore"` (default) or `"board"`. |
 | `BOARD_PAGE` | Where the pre-rendered board is published when Explore is home. Empty by default — it is not published at all, since the lane and week pages already pre-render every item. Its markup is generated regardless, because the dated snapshots are copies of it. |
 | `DISPLAY_FONT_URL` | The headline face, loaded on every page. Empty falls the whole site back to the UI sans with no request. Applied by `--display` in `assets/style.css`, on headline text only. |
-| `SITE_URL` | `https://machinespeed.techpointe.org`. Drives canonical URLs, Open Graph, JSON-LD, RSS, and `dist/CNAME`. |
-| `SUBSTACK_URL` | Set to `https://newsletter.techpointe.org` since 2026-09-03, which puts the newsletter link in the nav on every page and a subscribe block on the board. Empty it and every Substack element disappears. The link sits in the nav's destinations group, between Briefs and Archive, in the accent colour. |
+| `SITE_URL` | `https://machinespeed.techpointe.ai`. Drives canonical URLs, Open Graph, JSON-LD, RSS, and `dist/CNAME`. |
+| `SUBSTACK_URL` | Set to `https://newsletter.techpointe.ai` since 2026-09-03, which puts the newsletter link in the nav on every page and a subscribe block on the board. Empty it and every Substack element disappears. The link sits in the nav's destinations group, between Briefs and Archive, in the accent colour. |
 | `SUBSTACK_NEW_TAB` | `True`. Moving the newsletter onto a subdomain of this site made `same_site()` treat it as internal and drop the new-tab behaviour; this puts it back deliberately. Subscribing is a flow a reader leaves the board for, so it opens in a new tab and the button reads `Subscribe ↗`. Set `False` and `same_site()` decides again — same tab, plain `Subscribe`. |
 | `SUBSTACK_NAV` | The nav label. `"Subscribe"` by default; `"Newsletter"` reads as a section of the site rather than an ask, which is the better label once the newsletter lives on your own subdomain. |
 | `SUBSTACK_CTA` | Heading text on the subscribe block. |
@@ -267,7 +267,7 @@ Substack can serve the publication from a subdomain of this site, which is what 
 newsletter read as part of the property rather than a link off it. Substack charges a one-time
 $50 fee, requires a subdomain rather than a bare root domain, and issues the CNAME target from
 Settings → Domain once you enter the hostname; allow up to 36 hours to configure. Pick a host
-that is not `machinespeed` — `newsletter.techpointe.org` — because that name already has a
+that is not `machinespeed` — `newsletter.techpointe.ai` — because that name already has a
 `CNAME` pointing at GitHub Pages and one hostname cannot serve two sites. Then set
 `SUBSTACK_URL` to the new host and rebuild: the nav link and the subscribe button drop their
 `target="_blank"` automatically. Note the limit of the approach — Substack renders Substack's

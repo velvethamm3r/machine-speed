@@ -560,7 +560,7 @@ class Component extends DCLogic {
     const curGrow = cur.ratio != null && cur.ratio > 1;
     const holds = combos.filter(x => x.g === curGrow).length;
 
-    const href = it => `https://machinespeed.techpointe.org/${this.LANE[it.lane]}/#${it.id}`;
+    const href = it => `https://machinespeed.techpointe.ai/${this.LANE[it.lane]}/#${it.id}`;
     const ROW = 32;
     const since = win === 'recent' ? asOf - 42 * D : 0;
     const shown = b.arr.filter(x => x.a.t <= asOf && x.a.t >= since);

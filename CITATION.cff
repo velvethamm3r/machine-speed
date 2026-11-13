@@ -5,7 +5,7 @@ type: dataset
 authors:
   - family-names: Bahrami
     given-names: Daria
-url: "https://machinespeed.techpointe.org/data/"
+url: "https://machinespeed.techpointe.ai/data/"
 repository-code: "https://github.com/velvethamm3r/machine-speed"
 license: CC-BY-4.0
 keywords:

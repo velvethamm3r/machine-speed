@@ -3,7 +3,7 @@
 A daily, source-verified intelligence board tracking AI cyber
 capability against the defense and policy lag.
 
-Live at **https://machinespeed.techpointe.org**.
+Live at **https://machinespeed.techpointe.ai**.
 
 Five lanes — capability, policy, defense, attacks and markets — plus *briefs*:
 pages that lay a single incident out in dated stages, each stage separately

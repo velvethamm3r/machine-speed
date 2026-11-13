@@ -11,7 +11,7 @@ before touching anything. It sits on top of four references and does not replace
 
 A run reads those three, edits **one data file**, rebuilds, and hands the changed
 files back to a human. It never publishes and never pushes. Live board:
-**https://machinespeed.techpointe.org**.
+**https://machinespeed.techpointe.ai**.
 
 ---
 
@@ -155,7 +155,7 @@ A dated snapshot of state, so a run knows what it is inheriting. **Live numbers 
 | Archives | 22 entries, newest `2026-09-03` |
 | Landing page | Explore, 272 KB, of which ~215 KB is the inlined payload |
 | Social card | `assets/og.png`, 1200×630, emitted on every page as `summary_large_image` |
-| Newsletter | `newsletter.techpointe.org` (Substack, custom domain, live 2026-09-03). Sits in the nav between Briefs and Archive and opens in a **new tab** (`SUBSTACK_NEW_TAB`). |
+| Newsletter | `newsletter.techpointe.ai` (Substack, custom domain, live 2026-09-03). Sits in the nav between Briefs and Archive and opens in a **new tab** (`SUBSTACK_NEW_TAB`). |
 | Analytics | Cloudflare Web Analytics beacon on all 22 live pages; a floor, not a count |
 
 Standing context worth carrying into a run: Markets is the thinnest lane and moved for the first
@@ -577,7 +577,7 @@ minute). That upload is a human step, on purpose.
 | `OG_IMAGE_W` / `OG_IMAGE_H` | `1200` / `630` | Declared dimensions. They must match the real file — platforms trust the tag, and a mismatch crops the card wrong. |
 | `OG_IMAGE_ALT` | text | Alt text on the card. Describes the image, not the site. |
 | `WEB_ANALYTICS_TOKEN` | set | Cloudflare Web Analytics beacon, injected before `</body>` on every generated page. The token is a public site identifier, not a secret. Empty it and the beacon and its request vanish. Redirect stubs are excluded (they would double-count their destination) and frozen snapshots already in `archive/` are never rewritten, so each keeps whatever the site carried on its own day. A run never touches this. |
-| `SUBSTACK_URL` | `https://newsletter.techpointe.org` | The newsletter moved to its own subdomain on 2026-09-03. It sits in the nav's destinations group, between Briefs and Archive. |
+| `SUBSTACK_URL` | `https://newsletter.techpointe.ai` | The newsletter moved to its own subdomain on 2026-09-03. It sits in the nav's destinations group, between Briefs and Archive. |
 | `SUBSTACK_NEW_TAB` | `True` | Forces the newsletter link and subscribe button to open in a new tab even though the URL is now same-site. Without it `same_site()` would keep them in the same tab, which is right for a page of this site but wrong for a subscription flow — a reader part-way down the board should not lose their place. Set `False` to let `same_site()` decide again. |
 | `GAP_MAP_URL` | `"gap-map/"` | Where the Gap Map is published. The build wraps `gap-map/body.html` in the site's head, nav and footer, and copies `support.js` and the fallback snapshot next to it. Empty removes the page, its nav link, its sitemap entry and the copied files. A run never changes this. |
 | `SHOW_RUN_SNAPSHOTS` | `False` | Snapshots are built and validated but not linked in nav. |

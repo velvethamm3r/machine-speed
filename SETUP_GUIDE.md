@@ -58,7 +58,7 @@ GitHub is.
 **On GitHub:**
 
 1. **Settings → Pages → Custom domain**: type your domain, e.g.
-   `machinespeed.techpointe.org`. Click **Save**.
+   `machinespeed.techpointe.ai`. Click **Save**.
 2. Once the domain check passes (may take a few minutes to a few hours),
    tick **Enforce HTTPS**.
 
@@ -66,7 +66,7 @@ GitHub is.
 the same everywhere; the menu is usually called "DNS", "DNS settings", or
 "Manage DNS". On Squarespace it's **Domains → your domain → DNS**):
 
-3. Add a single **CNAME** record on `techpointe.org`:
+3. Add a single **CNAME** record on `techpointe.ai`:
    - Host/Name: `machinespeed`
    - Value/Target: `YOUR-USERNAME.github.io` (your GitHub username, then
      `.github.io` — nothing else, no `https://`, no path)
@@ -80,7 +80,7 @@ DNS changes usually take effect within an hour but can take up to 24.
 **Last step — tell the site its own address:**
 
 5. Already done — `SITE_URL` at the top of `build.py` is set to
-   `https://machinespeed.techpointe.org`, and every build writes that domain
+   `https://machinespeed.techpointe.ai`, and every build writes that domain
    into `dist/CNAME` so a deploy can never silently drop it.
 
 That's it. The site rebuilds itself and you're live.

@@ -51,7 +51,7 @@ import layers as lay_mod
 # Configuration — edit these for your deployment
 # ---------------------------------------------------------------------------
 
-SITE_URL = "https://machinespeed.techpointe.org"   # no trailing slash
+SITE_URL = "https://machinespeed.techpointe.ai"   # no trailing slash
 SITE_NAME = "Machine Speed"
 SITE_TAGLINE = "AI-Cyber Intel"
 SITE_DESCRIPTION = ("A daily, source-verified intelligence board on AI cyber "
@@ -355,10 +355,10 @@ CNAME = SITE_URL.split("//", 1)[1]
 
 # Substack. Set SUBSTACK_URL to the publication home (no trailing slash) to turn
 # on the subscribe links; leave it empty and every Substack element disappears.
-# Point it at a subdomain of this site (newsletter.techpointe.org) rather than
+# Point it at a subdomain of this site (newsletter.techpointe.ai) rather than
 # *.substack.com and the nav link stops behaving like an outbound one — see
 # same_site() below.
-SUBSTACK_URL = "https://newsletter.techpointe.org"
+SUBSTACK_URL = "https://newsletter.techpointe.ai"
 SUBSTACK_CTA = "The analysis, on Substack"
 SUBSTACK_NAV = "Newsletter"             # sits in the destinations group, between Briefs and Archive.
 # One line under the subscribe heading. Keep it true to what actually goes out:
@@ -384,7 +384,7 @@ SHOW_FORECASTS = False
 # CITATION.cff and .zenodo.json in the repo root say the same thing for GitHub
 # and Zenodo; keep the three in step. Add the DOI here once Zenodo issues one.
 CITATION = ("Bahrami, D. (2026). Machine Speed: a source-verified AI-cyber "
-            "intelligence board [Data set]. https://machinespeed.techpointe.org/data/")
+            "intelligence board [Data set]. https://machinespeed.techpointe.ai/data/")
 
 
 def home_of(kind: str) -> str:
@@ -403,7 +403,7 @@ def home_of(kind: str) -> str:
 def same_site(url: str) -> bool:
     """True when url sits under the same registrable domain as SITE_URL.
 
-    A link to newsletter.techpointe.org from machinespeed.techpointe.org is a
+    A link to newsletter.techpointe.ai from machinespeed.techpointe.ai is a
     move within one property, not a departure from it, so it should not get
     the new-tab-and-arrow treatment reserved for leaving the site. Compares the
     last two host labels, which is right for .org/.com and wrong for the

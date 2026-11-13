@@ -1,6 +1,6 @@
 # Machine Speed · Gap Map: handoff (v2, redesign)
 
-An interactive page that measures whether defenses and policy keep pace with AI attacks and capability jumps. It is meant to live on machinespeed.techpointe.org, and the suggested path is `/gap-map/`.
+An interactive page that measures whether defenses and policy keep pace with AI attacks and capability jumps. It is meant to live on machinespeed.techpointe.ai, and the suggested path is `/gap-map/`.
 
 ## Files
 
@@ -19,7 +19,7 @@ An interactive page that measures whether defenses and policy keep pace with AI 
    - If that request fails, it falls back to `./data/items-snapshot.json`.
    - The source pill under the header shows which one loaded ("Live" or "Snapshot").
 3. Navigation:
-   - The site nav links to `https://machinespeed.techpointe.org/gap-map/` as the current page (marked with `aria-current`). Update that link if the page lives elsewhere.
+   - The site nav links to `https://machinespeed.techpointe.ai/gap-map/` as the current page (marked with `aria-current`). Update that link if the page lives elsewhere.
    - Add "Gap Map" to the site-wide nav if you want it reachable from other pages.
 4. Fonts: the page uses Geist and Geist Mono from Google Fonts. Both are loaded in the page's `<helmet>`.
 5. Head tags: canonical, Open Graph and Twitter tags point to `/gap-map/` and the site's `og.png`. Update them if the path changes.
@@ -160,4 +160,4 @@ The board's own `/data/topics.json` also publishes response lags. Its numbers us
 
 If the site uses a framework, port the logic class's `base()`, `km()`, `bootCI()` and `cov()` methods as they are. They are pure functions over the items array. The markup is plain HTML with inline styles.
 
-Data: Bahrami, D. (2026). Machine Speed: a source-verified AI-cyber intelligence board [Data set]. https://machinespeed.techpointe.org/data/, CC BY 4.0. Framework: Bahrami, Chang et al., "The End of the Gray Zone?" (2026), §3.4 Va/Vr.
+Data: Bahrami, D. (2026). Machine Speed: a source-verified AI-cyber intelligence board [Data set]. https://machinespeed.techpointe.ai/data/, CC BY 4.0. Framework: Bahrami, Chang et al., "The End of the Gray Zone?" (2026), §3.4 Va/Vr.
