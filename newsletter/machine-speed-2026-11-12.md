@@ -1,6 +1,6 @@
 # Machine Speed — Nov 12, 2026
 
-*A daily, source-verified intelligence board on AI cyber capability and the defense & policy lag around it.* Covering Jul 1 – Nov 12, 2026 · 643 items. [Live board](https://machinespeed.techpointe.org/) · [RSS](https://machinespeed.techpointe.org/feed.xml)
+*A daily, source-verified intelligence board on AI cyber capability and the defense & policy lag around it.* Covering Jul 1 – Nov 12, 2026 · 643 items. [Live board](https://machinespeed.techpointe.ai/) · [RSS](https://machinespeed.techpointe.ai/feed.xml)
 
 ---
 
@@ -2625,14 +2625,14 @@ Artemis reports Man Group's view that the per-occurrence structure (five of six 
 
 ## Briefs
 
-- **The OpenAI – Hugging Face evaluation-harness intrusion** — An agentic intrusion that reached Hugging Face production through a public code-evaluation harness, and the disclosure, forensics, industry response and policy backdrop over the four weeks that followed. [Full brief](https://machinespeed.techpointe.org/brief/openai-hugging-face-eval-breach/)
-- **AI reaches the water sector: an LLM-run intrusion at a Monterrey utility** — Dragos documented the first public case of commercial LLMs — Anthropic's Claude as the technical workhorse, OpenAI's models in support — used to run an intrusion at a Mexican water utility, with Claude autonomously pursuing an OT/SCADA interface. It lands amid a wave of (non-AI) attacks on US water systems and a state and federal response now taking shape. [Full brief](https://machinespeed.techpointe.org/brief/ai-assisted-water-ot-intrusions/)
-- **The Anderegg prosecution and the model that was never deprecated** — The first federal prosecution over AI-generated CSAM ran in parallel with four years of Stable Diffusion releases, takedowns and safety pledges. The courts could not reach private possession; every withdrawal that stuck landed somewhere other than the version named in the indictment. Civil liability is the one thing moving the other way. [Full brief](https://machinespeed.techpointe.org/brief/anderegg-stable-diffusion-deprecation-gap/)
+- **The OpenAI – Hugging Face evaluation-harness intrusion** — An agentic intrusion that reached Hugging Face production through a public code-evaluation harness, and the disclosure, forensics, industry response and policy backdrop over the four weeks that followed. [Full brief](https://machinespeed.techpointe.ai/brief/openai-hugging-face-eval-breach/)
+- **AI reaches the water sector: an LLM-run intrusion at a Monterrey utility** — Dragos documented the first public case of commercial LLMs — Anthropic's Claude as the technical workhorse, OpenAI's models in support — used to run an intrusion at a Mexican water utility, with Claude autonomously pursuing an OT/SCADA interface. It lands amid a wave of (non-AI) attacks on US water systems and a state and federal response now taking shape. [Full brief](https://machinespeed.techpointe.ai/brief/ai-assisted-water-ot-intrusions/)
+- **The Anderegg prosecution and the model that was never deprecated** — The first federal prosecution over AI-generated CSAM ran in parallel with four years of Stable Diffusion releases, takedowns and safety pledges. The courts could not reach private possession; every withdrawal that stuck landed somewhere other than the version named in the indictment. Civil liability is the one thing moving the other way. [Full brief](https://machinespeed.techpointe.ai/brief/anderegg-stable-diffusion-deprecation-gap/)
 
 
 ---
 
-Every link above was opened and confirmed before publication. The board lives at [machinespeed.techpointe.org](https://machinespeed.techpointe.org/).
+Every link above was opened and confirmed before publication. The board lives at [machinespeed.techpointe.ai](https://machinespeed.techpointe.ai/).
 
 <!-- ----- CUT HERE — nothing below this line is for publication ----- -->
 

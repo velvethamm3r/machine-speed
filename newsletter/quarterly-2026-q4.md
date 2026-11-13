@@ -52,4 +52,4 @@ WRITE: pick three topics above; for each, one paragraph and the key items.
 
 WRITE: point to open forecasts on the Forecasts page rather than forecasting here.
 
-Data: https://machinespeed.techpointe.org/data/ (CC BY 4.0)
+Data: https://machinespeed.techpointe.ai/data/ (CC BY 4.0)
