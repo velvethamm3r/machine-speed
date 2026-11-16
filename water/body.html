@@ -315,7 +315,7 @@
     <div class="col"><p class="kicker"><i>2</i>Who pays for it</p>
       <h2>The worst failures happened in the poorest places</h2>
       <p>The chart puts each incident on two scales: how much the affected community earns compared with the typical American household, and how bad things got for residents.
-        The failures that made people sick or shut off safe water for weeks are all on the left side, in towns earning <strong class="a">between a third and two-thirds</strong> of the national median.</p></div>
+        The five incidents where residents lost safe water are all on the left side. The typical one hit a town earning <strong class="a">about half</strong> the national median.</p></div>
     <div class="grid2 who">
       <div class="whofig" id="whofig" style="position:relative"><svg id="whosvg" viewBox="0 0 900 400" role="img" aria-label="Chart of water incidents by community median income and severity. Incidents that cost residents safe water cluster in low-income communities."></svg><div class="tip" id="tip2"></div></div>
       <div class="whoside" id="whoside"></div>
@@ -435,7 +435,7 @@
       <li>Flint's lead harm is not in the illness count: 6,000 to 12,000 children were exposed to lead.</li>
       <li>Clayton County's advisory length was not published; its lost-service value assumes about six hours, the record's convention for “within hours.”</li>
       <li>Town incomes are Census estimates for the city or county; poverty and race figures for the eight smallest towns are approximate. They describe the community, not the people who lost water. State incomes are rounded to the nearest $1,000.</li>
-      <li>The income chart is fifteen data points: a pattern, not a correlation you can put a number on. Poverty and race figures for eight small towns are approximate (incomes are checked), and hackers choose targets by what's reachable online, not by income. The evidence that poorer communities get more violations and slower fixes comes from the national studies cited next to the chart: Allaire 2018 and 2022, NRDC 2019, Mueller and Gasteyer 2021.</li>
+      <li>The income chart is fifteen data points: a pattern, not a correlation you can put a number on, and hackers choose targets by what's reachable online, not by income. The evidence that poorer communities get more violations and slower fixes comes from the national studies cited next to the chart: Allaire 2018 and 2022, NRDC 2019, Mueller and Gasteyer 2021.</li>
       <li>Milwaukee's income is today's; the city was poorer in 1993. For Puerto Rico, the island-wide figure stands in for PRASA's customers, who are about 97% of residents.</li>
       <li>Legionnaires' clusters from building cooling towers, such as New York City's in July 2026, are excluded: the source was not the public water supply, and tap water stayed safe to drink.</li>
       <li>Lead bands are read from EPA's published map; exact state counts are in EPA's 2025 service line projections.</li></ul></div>
@@ -484,10 +484,10 @@ const EV=[
   served:2000000,servedN:'whole utility',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'A few accounts on two outside vendor platforms. No service disruption reported.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
  {id:'minot',name:'Minot water treatment plant',place:'North Dakota',when:'Mar 2026',y:2026,k:'ot',lon:-101.30,lat:48.23,sev:1,boil:false,
   served:80000,servedN:'incl. regional supply',days:0,daysN:'plant run by hand about 16 hours',ill:0,deaths:0,cost:null,fema:0,saw:'Ransomware on the SCADA server. Water safe throughout; no ransom paid.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
- {id:'stp',name:'City of Saint Paul',place:'Minnesota',when:'Jul 2025',y:2025,k:'it',lon:-93.09,lat:44.95,sev:0,boil:false,
-  served:307000,servedN:'city residents',days:0,daysN:'water treatment and delivery not affected',ill:0,deaths:0,cost:null,fema:0,saw:'Ransomware on city networks took down online payments, including water bills, for weeks. The governor activated the National Guard. The city refused the ransom; attackers published 43 GB of stolen data.',src:[['MPR News','https://www.mprnews.org/'],['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
  {id:'midd',name:'City of Middletown water billing',place:'Ohio',when:'Aug 2025',y:2025,k:'it',lon:-84.40,lat:39.52,sev:0,boil:false,
   served:24000,servedN:'customers',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Billing offline for 155 days: five cycles with no bills, then catch-up bills. Late fees waived.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
+ {id:'stp',name:'City of Saint Paul',place:'Minnesota',when:'Jul 2025',y:2025,k:'it',lon:-93.09,lat:44.95,sev:0,boil:false,
+  served:307000,servedN:'city residents',days:0,daysN:'water treatment and delivery not affected',ill:0,deaths:0,cost:null,fema:0,saw:'Ransomware on city networks took down online payments, including water bills, for weeks. The governor activated the National Guard. The city refused the ransom; attackers published 43 GB of stolen data.',src:[['MPR News','https://www.mprnews.org/'],['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
  {id:'amw',name:'American Water',place:'24 states (HQ Camden, New Jersey)',when:'Oct 2024',y:2024,k:'it',lon:-75.12,lat:39.94,sev:0,boil:false,
   served:14000000,servedN:'whole utility',days:0,ill:0,deaths:0,cost:null,fema:0,saw:'Customer portal and billing paused for 7 days. Facilities not affected.',src:[['Machine Speed, critical infrastructure story','https://machinespeed.techpointe.ai/topic/critical-infrastructure/']]},
  {id:'ark',name:'Arkansas City water treatment',place:'Kansas',when:'Sep 2024',y:2024,k:'ot',lon:-97.04,lat:37.06,sev:1,boil:false,
