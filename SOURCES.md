@@ -788,6 +788,16 @@ fresh window.
   a vendor's exact wording when the vendor's own site will not open, but it is marketing copy, so the item is
   `self-reported` and the card has to say whose measurement it is. Check the byline before deciding the tier._
 
+- **Techzine Global** — https://www.techzine.eu/news/security/. _Added 2026-11-20. The only openable route this run to
+  Politico's November 19 exclusive on the ARTEX-linked attack on European Commission staff systems (Politico itself was not
+  reached). Bylined, dated, quotes the Commission spokesperson directly and states what CERT-EU has not
+  disclosed. It relays Politico rather than reporting independently, so say "citing Politico" on the card. Press, so still
+  a fallback: CERT-EU and the Commission's own statements are the primaries._
+- **VentureBeat (security)** — https://venturebeat.com/security/. _Added 2026-11-20. The only openable route this run to
+  OpenAI's GPT-6.2 Astra system card (openai.com blocked), quoting the card's UK AISI jailbreak findings and evaluation-awareness
+  figures, dated and bylined. It also sets those figures beside other labs' cards, and says itself that the evaluations are
+  not directly comparable — keep that caveat if a cross-lab comparison reaches a card. Press, so still a fallback._
+
 Two cautions carried over from `RUNBOOK.md`. Watch for content-farm embellishment, which shows up
 as an oddly precise number attached to a real story — several sites in the search results for any
 given day are AI-generated rewrites of the outlets above, and they invent figures. And where two
