@@ -320,3 +320,68 @@ beacon set by `WEB_ANALYTICS_TOKEN`. `archive/` and `newsletter/` are written ba
 repo (not `dist/`) so history and drafts survive every rebuild. The only requests leaving the
 page are the Google Fonts display face and the analytics beacon; empty `DISPLAY_FONT_URL` and
 `WEB_ANALYTICS_TOKEN` and the site fetches nothing from a CDN at all.
+
+## The weekly layer: editorial/trackers.json, editorial/alerts.json, editorial/editions/
+
+Three small files outside `data.json`, read by `weekly.py`. All three are optional; with none
+of them the Archive page still lists every edition and each edition is built from the week's
+key items.
+
+### editorial/trackers.json
+
+One tracker per topic. A tracker follows *cases* (a flaw, an incident, a model, an operation)
+across the items that mention them, each case drawn as a line with three stops.
+
+```jsonc
+{
+  "topic":  "ai-found-vulnerabilities",   // required. A topic id from topics.json.
+  "title":  "Named flaws and how far each has gone",
+  "tone":   "harm",                        // colour of the third stop: harm, policy or access.
+  "stages": ["Found with AI", "Fix available", "Exploited in the wild"],   // exactly three.
+  "noun": "…", "say2": "…", "say3": "…", "note": "…",   // the summary sentence above the cases.
+  "chipOn": "Exploited", "chipOff": "No exploitation reported",   // filter labels for stop three.
+  "open":   "php2shell",                   // optional. The case whose thread starts open.
+  "figures": [ { "big": "14", "of": "of 1,061", "text": "…", "source": "VulnCheck · Jul 28" } ],  // optional tiles.
+  "cases": [ {
+    "id":   "php2shell",                   // required, unique across the file.
+    "name": "PHP2Shell",
+    "sub":  "CVE-2026-109618, CVE-2026-109619",
+    "reviewed": false,                     // false keeps the case off the site until a person approves it.
+    "changed":  "2026-11-18",              // optional. Set by a run when it edits a live case.
+    "stops": [                             // exactly three, in stage order.
+      { "on": true,  "date": "2026-10-21", "text": "Wiz, with Gemini 4 Argon …" },
+      { "on": true,  "date": "2026-10-21", "text": "Oct 21 · patched PHP releases" },
+      { "on": false, "text": "None reported" }
+    ],
+    "items": ["wiz-php2shell-ai-assisted-php-core-rce", "…"]   // the thread: board item ids.
+  } ]
+}
+```
+
+`date` is the day a stop was reached. It decides which cases appear under "Stories that moved
+this week" in an edition, and how a case is drawn in an older edition (a stop reached later
+shows as "Not yet"). A reached stop with no date counts as reached but never as "moved".
+
+### editorial/alerts.json
+
+```jsonc
+{ "item": "european-commission-artex-attack-sysper-mypmo",   // a board item id.
+  "type": "impact",                                           // impact or novel.
+  "why":  "Staff pay and medical-reimbursement systems taken offline" }
+```
+
+The newest six show on the Archive page; a pick that is also an alert wears the tag in its edition.
+
+### editorial/editions/<monday>.json
+
+The same shape as a `weekly[]` entry, in a file small enough to edit by hand, plus `lanes`:
+
+```jsonc
+{ "week": "2026-10-12", "ready": true,
+  "note": "…", "picks": [ { "item": "…", "why": "…" } ],
+  "lanes": { "atk": "item-id", "cap": "item-id" } }   // "One more from each lane". Optional per lane.
+```
+
+A file wins over the `weekly[]` entry for the same week. `"ready": false` makes the build ignore
+the file, so a half-written edition never breaks a deploy. Keys beginning with `_` are notes for
+the editor and are ignored. `python3 tools/new_edition.py` writes a pre-filled one.

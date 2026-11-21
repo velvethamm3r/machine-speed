@@ -46,7 +46,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-of
 @media(min-width:1750px){.wrap{max-width:1560px}}
 
 /* Top nav */
-.nav{display:flex; align-items:center; gap:18px; padding:14px 0 18px; border-bottom:1px solid var(--line); margin-bottom:22px; flex-wrap:wrap}
+.nav{display:flex; align-items:center; gap:14px; padding:14px 0 18px; border-bottom:1px solid var(--line); margin-bottom:22px; flex-wrap:wrap}
 .nav .logo{display:flex; align-items:baseline; gap:10px; margin-right:6px}
 .nav .logo b{font-size:19px; letter-spacing:-.3px; color:var(--ink)}
 .nav .logo span{font-size:10.5px; text-transform:uppercase; letter-spacing:1.4px; color:var(--ink-3)}
@@ -823,7 +823,7 @@ ul.mini .h{font-family:var(--display); font-weight:500; font-size:15px}
 .hcar .msx-carslide[hidden]{display:none}
 /* Header search and the search page (layers.py, search.js). */
 .navsearch{display:flex; margin-right:4px}
-.navsearch input{width:190px; font:inherit; font-size:13px; padding:6px 10px; color:var(--ink);
+.navsearch input{width:150px; font:inherit; font-size:13px; padding:6px 10px; color:var(--ink);
   background:var(--panel); border:1px solid var(--line); border-radius:20px}
 .navsearch input:focus{outline:2px solid var(--accent); outline-offset:1px; width:240px}
 @media(max-width:700px){.navsearch{order:10; flex-basis:100%; margin:4px 0 0} .navsearch input,.navsearch input:focus{width:100%}}

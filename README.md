@@ -33,9 +33,11 @@ those two stop.
 ├── layers.py            ← the front page (This week banner, topics, search, a card per week) and topic pages
 ├── topics.json          ← the six topics readers browse by, each with a one-line definition
 ├── insights.py          ← findings, entities, open data, methodology, corrections, digest drafts
-├── entities.json        ← entity registry: names and aliases the build tags items with
-├── CITATION.cff         ← how to cite the dataset (GitHub shows a "Cite this repository" button)
-├── .zenodo.json         ← metadata Zenodo uses when it archives a release and issues a DOI
+├── weekly.py            ← the Archive page (alerts, trackers), the weekly editions and the full-record week pages
+├── editorial/           ← everything edited by hand for the weekly layer (see SCHEMA.md)
+│   ├── trackers.json    ← cases followed across items, three stops each
+│   ├── alerts.json      ← items tagged Impact or Novel
+│   └── editions/        ← one small file per week: note, picks, one more per lane (optional)
 ├── build.py      ← generator (Python 3 stdlib only, no dependencies)
 ├── assets/       ← stylesheet, theme toggle, favicon, Explore board (board.css/js), This week banner (home.js)
 ├── archive/      ← dated board snapshots
@@ -43,7 +45,8 @@ those two stop.
 └── dist/         ← build output (generated; not committed)
     ├── index.html          the board — filterable, story-clustered (needs JS)
     ├── <lane>/             one page per lane, holding the whole period
-    ├── week/YYYY-MM-DD/    one page per week
+    ├── week/YYYY-MM-DD/    the full record for a week, lane by lane
+    ├── weekly/<n>/         the edition for the same week: note, picks, the cases that moved
     ├── briefs/             brief index
     ├── brief/<slug>/       one brief, in dated stages
     ├── archive/            week index (snapshots listed only if SHOW_RUN_SNAPSHOTS)

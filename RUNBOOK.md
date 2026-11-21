@@ -290,3 +290,27 @@ carries the taxonomy — because one row stopped fitting at five lanes and would
 GitHub Actions builds and deploys to GitHub Pages on every push to `main`
 (`.github/workflows/deploy.yml`). Settings → Pages → Source must be set to **GitHub Actions**.
 DNS: a `CNAME` record for host `machinespeed` pointing at `<your-username>.github.io`.
+
+## The weekly layer
+
+`weekly.py` builds three pages from the same items: the Archive page (`archive/`: alerts, one
+tracker per topic, every edition), one edition per week (`weekly/<n>/`, numbered from the first
+week on the board) and the full record (`week/<monday>/`, the old week page with summaries
+folded). `assets/weekly.css` and `assets/weekly.js` belong to those pages only; with JavaScript
+off every case, topic and summary is still on the page.
+
+**The weekly routine, about ten minutes:**
+
+1. Open this week's file in `editorial/editions/`. The build writes it for you (and the deploy
+   Action commits it) with five suggested picks and one suggestion per lane. Write a `why` for
+   each pick and a `note` if you want one, swap any item you disagree with, set `"ready": true`.
+   All of it can be done in GitHub's web editor.
+2. Open `newsletter/review-trackers.md`. It lists tracker cases a run changed in the last week
+   and any new case waiting for approval. Fix wording in `editorial/trackers.json` and change
+   that case's `"reviewed": false` to `true` (or run `python3 tools/review_cases.py --approve <case id>`).
+3. Add a line to `editorial/alerts.json` for anything that deserves an Impact or Novel tag.
+4. Commit. The Action builds and deploys; working locally, `python3 build.py` first and look at `dist/weekly/<n>/`.
+
+Skipping the routine is safe: the edition is generated from the week's key items, unreviewed
+cases stay hidden, and nothing fails. `python3 build.py --drafts` previews unreviewed cases
+locally; never deploy a `--drafts` build.

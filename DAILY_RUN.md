@@ -590,3 +590,22 @@ required field; a duplicate `id`; an unknown lane or confidence; a non-`https://
 future-dated item; a watchlist entry with no status; an `archives[]` entry pointing at a missing
 file; **no `archives[]` entry for today**; or a lingering `dossiers` key (renamed to `briefs` on
 2026-08-06). Required item fields: `id, lane, date, headline, core, confidence, outlet, url`.
+
+---
+
+## Trackers — a run proposes, Daria approves
+
+`editorial/trackers.json` follows cases across items (SCHEMA.md, "The weekly layer"). A run keeps it
+current so that nobody has to re-read the board to do it:
+
+- **An item about an existing case:** append its id to that case's `items`. Nothing else.
+- **An item that moves a case to a new stop** (a fix ships, exploitation is confirmed, a
+  government responds): set that stop's `on`, `date` (the day it happened) and `text`
+  (date first, then who, in under fifteen words), and set the case's `changed` to today.
+  Leave `reviewed` as it is.
+- **A new case** (a named flaw, incident, model or operation likely to recur): add it with all
+  three stops and `"reviewed": false`. It stays off the site until Daria approves it.
+
+A stop says only what an item on the board says. If no item states it, the stop stays off with
+"None reported" or "Not stated". Never mark a case `reviewed`, never edit `editorial/alerts.json` or
+`editorial/editions/`: those are Daria's.

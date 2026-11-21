@@ -1,0 +1,181 @@
+/* Machine Speed — the weekly layer: the hub (archive/), the editions (weekly/<n>/)
+   and the full record (week/<monday>/). Loaded only by those pages, on top of
+   style.css, and built from the same theme variables so light and dark both work. */
+
+.wk-col{max-width:820px; margin:0 auto}
+.wk-head{display:flex; flex-direction:column; gap:12px; padding:30px 0 8px; max-width:820px}
+.wk-head.ed{padding:14px 0 26px; border-bottom:2px solid var(--ink); max-width:none}
+.wk-head h1{margin:0; font-family:var(--display); font-weight:500; font-size:44px; line-height:1.06; letter-spacing:-.8px; text-wrap:balance}
+.wk-head p{margin:0; font-size:15.5px; color:var(--ink-2); max-width:640px}
+.wk-eyebrow{font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--accent)}
+.wk-jumps,.wk-crumbs{display:flex; flex-wrap:wrap; gap:4px 20px; font-size:13.5px; font-weight:600}
+.wk-crumbs{justify-content:space-between; font-weight:400; font-size:13px}
+.wk-jumps a,.wk-crumbs a{padding:9px 0}
+@media(max-width:600px){.wk-head h1{font-size:34px}}
+
+.wk-sec{margin-top:48px}
+.wk-sechead{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 24px; margin-bottom:16px}
+.wk-sec > .wk-sechead{padding-bottom:14px; border-bottom:2px solid var(--ink)}
+.wk-sechead > div:first-child{flex:1 1 340px; min-width:0}
+.wk-sechead h2{margin:0; font-family:var(--display); font-weight:500; font-size:29px; letter-spacing:-.4px; line-height:1.15}
+.wk-sechead h4{margin:0; font-family:var(--display); font-weight:500; font-size:23px; letter-spacing:-.3px; line-height:1.2}
+.wk-sechead p{margin:4px 0 0; font-size:13.5px; color:var(--ink-2); max-width:none}
+.wk-sechead p b{color:var(--ink)}
+.wk-go{font-size:13px; font-weight:600; padding:9px 0}
+.wk-label{font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--ink-2)}
+.wk-lane{font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase}
+.wk-dim{font-size:12px; color:var(--ink-3)}
+.wk-h{font-family:var(--display); font-size:19px; line-height:1.28; color:var(--ink); text-wrap:pretty}
+a.wk-h:hover{text-decoration:underline}
+.wk-meta{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; font-size:12.5px; color:var(--ink-3)}
+
+/* chips: written hidden, switched on by weekly.js, so a no-JS reader never sees a dead control */
+.wk-chips{display:flex; flex-wrap:wrap; gap:8px}
+.wk-chips button,.wk-expand{font:inherit; font-size:13px; font-weight:600; padding:10px 15px; border-radius:999px;
+  border:1px solid var(--line); background:var(--panel); color:var(--ink); cursor:pointer}
+.wk-chips button[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+
+/* alerts */
+.wk-alert{font-size:10.5px; font-weight:700; letter-spacing:1.1px; text-transform:uppercase; padding:2px 8px; border-radius:5px}
+.wk-alert.a-impact{background:var(--atk-soft); color:var(--atk)}
+.wk-alert.a-novel{background:var(--accent-soft); color:var(--accent)}
+.wk-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px}
+.wk-card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px 22px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow)}
+.wk-cardtop{display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px}
+.wk-why{margin:0; font-size:14px; font-weight:700; line-height:1.35}
+.wk-why.a-impact{color:var(--atk)} .wk-why.a-novel{color:var(--accent)}
+.wk-card .wk-meta{margin-top:auto}
+
+/* stories */
+.wk-topicnav{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin-bottom:22px}
+.wk-topicnav a{display:flex; flex-direction:column; gap:4px; padding:13px 15px; border-radius:10px; border:2px solid var(--line); background:var(--panel); color:var(--ink)}
+.wk-topicnav a:hover{text-decoration:none; border-color:var(--ink-3)}
+.wk-topicnav a b{font-family:var(--display); font-weight:500; font-size:17.5px; line-height:1.2}
+.wk-topicnav a small{font-size:12px; color:var(--ink-3)}
+.wk-topicnav a[aria-current="true"],.wk-lanenav a[aria-current="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+.wk-topicnav a[aria-current="true"] small,.wk-lanenav a[aria-current="true"] small{color:var(--bg); opacity:.75}
+.wk-topic{display:flex; flex-direction:column; gap:18px; margin-bottom:44px}
+.wk-topic h3{margin:0; font-family:var(--display); font-weight:500; font-size:24px}
+.wk-tabs .wk-topic h3{display:none}
+.wk-tabs .wk-topic{margin-bottom:0}
+.wk-def{margin:0; font-family:var(--display); font-size:21px; line-height:1.36; color:var(--ink); max-width:820px; text-wrap:pretty}
+.wk-figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px}
+.wk-fig{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; display:flex; flex-direction:column; gap:6px}
+.wk-big{font-family:var(--display); font-size:33px; line-height:1.1; letter-spacing:-.5px}
+.wk-big span{font-size:19px; color:var(--ink-3)}
+.wk-fig p{margin:0; font-size:14px; line-height:1.45; max-width:none}
+.wk-fig small{font-size:12px; color:var(--ink-3)}
+.wk-panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px 26px 10px; box-shadow:var(--shadow)}
+.wk-panel > h4{margin:0 0 14px; font-family:var(--display); font-weight:500; font-size:23px}
+.wk-foot{font-size:12px; color:var(--ink-3); margin:12px 0; max-width:none}
+.wk-cases{border-top:1px solid var(--line)}
+
+/* a case: a line with three stops */
+.wk-case{border-bottom:1px solid var(--line)}
+.wk-cases .wk-case:last-child{border-bottom:0}
+.wk-case > summary{list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; gap:14px 28px; align-items:flex-start; padding:18px 4px}
+.wk-case > summary::-webkit-details-marker{display:none}
+.wk-case-id{flex:1 1 210px; min-width:0; display:flex; flex-direction:column; gap:2px}
+.wk-case-id b{font-family:var(--display); font-weight:600; font-size:19px; line-height:1.25}
+.wk-case-id small{font-size:12px; color:var(--ink-3)}
+.wk-case-id .wk-topicname{font-size:10.5px; font-weight:700; letter-spacing:1.1px; text-transform:uppercase; color:var(--ink-2)}
+.wk-toggle{font-style:normal; font-size:12.5px; font-weight:600; color:var(--accent); padding-top:4px}
+.wk-toggle::before{content:"Show the "} .wk-case[open] .wk-toggle::before{content:"Hide the "}
+.wk-stops{flex:3 1 460px; min-width:0; display:flex}
+.wk-stop{position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:6px; --c:var(--ink-3)}
+.wk-stop i{position:relative; display:block; width:16px; height:16px; box-sizing:border-box; border-radius:50%; border:2px solid var(--c); background:var(--panel)}
+.wk-stop.on i{background:var(--c)}
+.wk-stop:not(.last)::before{content:""; position:absolute; top:7px; left:16px; right:0; height:2px; background:var(--line)}
+.wk-stop.to-on:not(.last)::before{background:var(--n, var(--ink))}
+.wk-stop b{font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--ink-3)}
+.wk-stop.on b{color:var(--c)}
+.wk-stop b em{font-style:normal; font-size:9.5px; letter-spacing:.6px; background:var(--ink); color:var(--bg); padding:1px 5px; border-radius:3px; margin-left:6px}
+.wk-stop > span{font-size:13px; line-height:1.4; color:var(--ink-3); padding-right:14px}
+.wk-stop.on > span{color:var(--ink-2)}
+.wk-stop.s1.on{--c:var(--ink)} .wk-stop.s2.on{--c:var(--accent)}
+.t-harm .wk-stop.s3.on{--c:var(--atk)}   .t-harm .wk-stop.s2{--n:var(--atk)}
+.t-policy .wk-stop.s3.on{--c:var(--pol)} .t-policy .wk-stop.s2{--n:var(--pol)}
+.t-access .wk-stop.s3.on{--c:var(--mkt)} .t-access .wk-stop.s2{--n:var(--mkt)}
+@media(max-width:600px){.wk-stops{flex-direction:column; gap:12px} .wk-stop::before{display:none}}
+
+.wk-thread{list-style:none; margin:0 4px 18px; padding:16px 20px; background:var(--panel-2); border-radius:10px; display:grid; gap:11px}
+.wk-thread.big{background:none; padding:0; margin:0 0 14px; gap:0}
+.wk-thread li{display:flex; flex-wrap:wrap; gap:2px 16px; align-items:baseline}
+.wk-thread.big li{padding:12px 0; border-top:1px solid var(--line)}
+.wk-thread time{flex:0 0 52px; font-size:12.5px; font-weight:600}
+.wk-thread .wk-lane{flex:0 0 84px}
+.wk-thread a{flex:999 1 300px; min-width:0; font-size:14.5px; line-height:1.42; color:var(--ink)}
+.wk-thread.big a{font-family:var(--display); font-size:18px; line-height:1.3}
+
+/* editions list */
+.wk-month{border-bottom:1px solid var(--line)}
+.wk-month > summary{list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 16px; padding:17px 4px}
+.wk-month > summary::-webkit-details-marker{display:none}
+.wk-month > summary b{font-family:var(--display); font-weight:500; font-size:23px; letter-spacing:-.3px}
+.wk-month > summary small{font-size:12.5px; color:var(--ink-3)}
+.wk-month > summary::after{content:"Show"; margin-left:auto; font-size:12.5px; font-weight:600; color:var(--accent)}
+.wk-month[open] > summary::after{content:"Hide"}
+.wk-week{display:flex; flex-wrap:wrap; gap:10px 28px; align-items:flex-start; padding:16px 4px; border-top:1px solid var(--line); color:var(--ink)}
+.wk-week:hover{text-decoration:none; background:var(--panel)}
+.wk-when{flex:0 0 150px; display:flex; flex-direction:column; gap:2px}
+.wk-when b{font-family:var(--display); font-weight:600; font-size:16.5px; line-height:1.3}
+.wk-when small{font-size:12px; color:var(--ink-3)}
+.wk-lead{flex:999 1 300px; min-width:0; display:flex; flex-direction:column; gap:5px}
+.wk-also{font-size:13px; color:var(--ink-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.wk-mix{flex:1 1 170px; max-width:220px; display:flex; flex-direction:column; gap:7px; padding-top:6px}
+.wk-bar{display:flex; gap:2px; height:6px} .wk-bar i{border-radius:3px}
+.wk-key{font-size:11.5px; line-height:1.45; color:var(--ink-3)}
+
+/* an edition */
+.wk-note{padding-top:32px; display:flex; flex-direction:column; gap:12px}
+.wk-note p{margin:0; font-family:var(--display); font-size:26px; line-height:1.34; letter-spacing:-.2px; max-width:none; text-wrap:pretty}
+.wk-picks{padding-top:36px}
+.wk-picks > .wk-label{padding-bottom:12px; border-bottom:1px solid var(--line)}
+.wk-pick{display:flex; gap:22px; padding:26px 0; border-bottom:1px solid var(--line)}
+.wk-pick > div:last-child{flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:9px}
+.wk-n{flex:0 0 34px; font-family:var(--display); font-size:40px; line-height:1}
+.wk-pick h3{margin:0; font-family:var(--display); font-weight:500; font-size:25px; line-height:1.2; letter-spacing:-.3px; text-wrap:pretty}
+.wk-pick h3 a{color:var(--ink)}
+.wk-pick p{margin:0; font-size:15.5px; line-height:1.6; color:var(--ink-2); max-width:none}
+.wk-pick p strong{color:var(--ink)}
+.wk-more{display:flex; flex-wrap:wrap; gap:6px 28px; padding:17px 0; border-bottom:1px solid var(--line)}
+.wk-more > div:first-child{flex:0 0 132px; display:flex; flex-direction:column; gap:3px}
+.wk-more > div:first-child a{font-size:12.5px; padding:4px 0}
+.wk-more > div:last-child{flex:999 1 300px; min-width:0; display:flex; flex-direction:column; gap:6px}
+.wk-box{margin-top:44px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 26px; display:flex; flex-wrap:wrap; gap:12px 32px; align-items:center}
+.wk-box > div{flex:999 1 320px; min-width:0; display:flex; flex-direction:column; gap:4px}
+.wk-box b{font-family:var(--display); font-weight:500; font-size:21px; line-height:1.25}
+.wk-box span{font-size:13.5px; color:var(--ink-2)}
+.wk-box > a{font-size:14px; font-weight:600; border:1px solid var(--accent); padding:11px 18px; border-radius:8px}
+.wk-pager{margin:24px 0 8px; display:flex; flex-wrap:wrap; gap:12px 24px}
+.wk-pager a,.wk-pager span{flex:1 1 260px}
+.wk-pager a{padding:15px 18px; border:1px solid var(--line); border-radius:10px; background:var(--panel); color:var(--ink); display:flex; flex-direction:column; gap:2px}
+.wk-pager a.next{text-align:right}
+.wk-pager small{font-size:12px; color:var(--ink-3)}
+.wk-pager b{font-family:var(--display); font-weight:500; font-size:17px}
+
+/* the full record */
+.wk-lanenav{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:8px; padding:22px 0 20px; border-bottom:2px solid var(--ink)}
+.wk-lanenav a{display:flex; flex-wrap:wrap; align-items:center; gap:2px 8px; padding:11px 14px; border-radius:10px; border:2px solid var(--line); background:var(--panel); color:var(--ink)}
+.wk-lanenav a:hover{text-decoration:none; border-color:var(--ink-3)}
+.wk-lanenav i{width:9px; height:9px; border-radius:2px}
+.wk-lanenav b{font-size:14px}
+.wk-lanenav small{flex:1 0 100%; font-size:12px; color:var(--ink-3)}
+.wk-lanesec{padding-top:26px}
+.wk-lanesec .wk-sechead{margin-bottom:0}
+.wk-item{display:flex; flex-wrap:wrap; gap:6px 28px; padding:24px 0; border-bottom:1px solid var(--line); scroll-margin-top:16px}
+.wk-item > .wk-when{flex:0 0 64px; padding-top:4px; gap:5px}
+.wk-item time{font-size:13px; font-weight:700}
+.wk-tag{align-self:flex-start; font-size:10.5px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; background:var(--ink); color:var(--bg); padding:2px 6px; border-radius:4px}
+.wk-item > div:last-child{flex:999 1 400px; min-width:0; display:flex; flex-direction:column; gap:10px}
+.wk-item h3{margin:0; font-family:var(--display); font-weight:500; font-size:23px; line-height:1.22; letter-spacing:-.2px; text-wrap:pretty}
+.wk-item p{margin:0; font-size:15.5px; line-height:1.62; color:var(--ink-2); max-width:none}
+.wk-sum > summary{list-style:none; cursor:pointer; font-size:15.5px; line-height:1.62; color:var(--ink-2)}
+.wk-sum > summary::-webkit-details-marker{display:none}
+.wk-sum[open] .wk-teaser{display:none}
+.wk-readmore{font-size:13px; font-weight:600; color:var(--accent); white-space:nowrap}
+.wk-readmore::after{content:" Read the full summary"} .wk-sum[open] .wk-readmore::after{content:"Show less"}
+.wk-sum[open] > summary{order:2} .wk-sum[open]{display:flex; flex-direction:column; gap:6px}
+
+/* display rules above would otherwise beat the hidden attribute */
+.wk-chips[hidden],.wk-expand[hidden],.wk-topic[hidden],.wk-lanesec[hidden],[data-wk-key][hidden]{display:none}

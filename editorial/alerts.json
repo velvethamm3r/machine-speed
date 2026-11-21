@@ -1,0 +1,35 @@
+{
+  "_readme": "Items flagged on the Archive page and on edition picks. type is impact (the attack had a real-world effect) or novel (a first of its kind); why is the one line printed above the headline. The newest six show on the Archive page.",
+  "alerts": [
+    {
+      "item": "european-commission-artex-attack-sysper-mypmo",
+      "type": "impact",
+      "why": "Staff pay and medical-reimbursement systems taken offline"
+    },
+    {
+      "item": "google-project-zero-full-90-disclosure-policy-llm",
+      "type": "novel",
+      "why": "A disclosure deadline rewritten, with language models given as the reason"
+    },
+    {
+      "item": "palo-alto-pan-os-php2shell-active-exploitation",
+      "type": "impact",
+      "why": "An AI-found flaw, confirmed exploited against live firewalls"
+    },
+    {
+      "item": "xbow-chrome-full-chain-gpt-5-6-sol",
+      "type": "novel",
+      "why": "The first $250,000 Chrome full-chain award, built with agents in six days"
+    },
+    {
+      "item": "danfoss-refrigeration-controllers-french-supermarkets",
+      "type": "impact",
+      "why": "Refrigeration driven to 50°C across French supermarkets"
+    },
+    {
+      "item": "rejetto-hfs-cve-2026-61500-exploited-in-the-wild",
+      "type": "novel",
+      "why": "Only the second Mythos-attributed CVE ever seen exploited"
+    }
+  ]
+}

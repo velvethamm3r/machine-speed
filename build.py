@@ -46,6 +46,7 @@ from pathlib import Path
 import forecasts as fcast
 import insights as ins_mod
 import layers as lay_mod
+import weekly as wk_mod
 
 # ---------------------------------------------------------------------------
 # Configuration — edit these for your deployment
@@ -832,6 +833,8 @@ class Site:
         self.ins = None
         # The reading layers (layers.py): the weekly picks and the thread views.
         self.lay = None
+        # The weekly layer (weekly.py): the hub, the editions and the full record.
+        self.wk = None
         self.lanes_meta = LANES
         # The So What pages that actually build this run, in display order.
         # A page is listed only when its URL is switched on and its hand-authored
@@ -955,6 +958,8 @@ class Site:
             links.append((fcast.FORECASTS_URL, "Forecasts"))
         # The newsletter sits with the things people read, ahead of the reference
         # pages — an absolute URL here is the marker that it renders differently.
+        if self.wk and LANDING == "home":
+            links.append((ARCHIVE_URL, wk_mod.WEEKLY_NAV))
         if SUBSTACK_URL:
             links.append((SUBSTACK_URL, SUBSTACK_NAV))
         # With the week cards on the front page, Archive moves to the footer.
@@ -1904,6 +1909,9 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
         day = (self.as_of or "")[:10]
         urls = [("", "daily", "1.0"), (ARCHIVE_URL, "daily", "0.6"),
                 (ABOUT_URL, "monthly", "0.3")]
+        if self.wk:
+            urls += [(f"{wk_mod.EDITION_URL}{self.wk.number(n)}/", "weekly", "0.6")
+                     for n in range(len(self.weeks))]
         if GAP_MAP_URL:
             # Daily: the page's numbers move with every item the board adds.
             urls.append((GAP_MAP_URL, "daily", "0.7"))
@@ -2003,9 +2011,13 @@ document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();
 # Build
 # ---------------------------------------------------------------------------
 
-def build(out_dir: Path):
+def build(out_dir: Path, drafts: bool = False):
     root = Path(__file__).parent
     data = json.loads((root / "data.json").read_text(encoding="utf-8"))
+    # The weekly layer's three small files. Editions fold into weekly[] before
+    # anything validates, so a pick written in editions/ is held to the same rules.
+    wk_trackers, wk_alerts, wk_editions = wk_mod.load(root)
+    data["weekly"], wk_lanes = wk_mod.merge_weekly(data.get("weekly", []), wk_editions)
 
     errors, warnings = validate(data)
     # Forecasts live in their own file and carry their own integrity lock; a
@@ -2023,6 +2035,9 @@ def build(out_dir: Path):
         le, lw = lay_mod.validate(data, topics)
         errors += le
         warnings += lw
+        we, ww = wk_mod.validate(data, topics, wk_trackers, wk_alerts, wk_lanes, LANES)
+        errors += we
+        warnings += ww
     for w in warnings:
         print(f"  warning: {w}")
     if errors:
@@ -2037,6 +2052,9 @@ def build(out_dir: Path):
     site.fc_lock = fcast.sync_lock(root, fc, fc_lock, data["items"], site.entered)
     site.ins = ins_mod.Insights(data, entities, site.entered, LANES, topics)
     site.lay = lay_mod.Layers(data, LANES, site.ins, topics, site.weeks)
+    site.wk = wk_mod.Weekly(data, site.weeks, LANES, CONF, topics, wk_trackers, wk_alerts,
+                            wk_lanes, drafts=drafts)
+    wk_head = lambda prefix: wk_mod.head(prefix, asset_version("weekly.css"), asset_version("weekly.js"))
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -2052,6 +2070,8 @@ def build(out_dir: Path):
     # static assets
     shutil.copy(root / "assets" / "style.css", out_dir / "style.css")
     shutil.copy(root / "assets" / "theme.js", out_dir / "theme.js")
+    shutil.copy(root / "assets" / "weekly.css", out_dir / "weekly.css")
+    shutil.copy(root / "assets" / "weekly.js", out_dir / "weekly.js")
     # The one request every browser makes without being asked. Without it the
     # server logs a 404 on every first page view — harmless, but it is the kind
     # of noise that hides a real missing asset the day one appears.
@@ -2155,9 +2175,27 @@ def build(out_dir: Path):
             description=(f'{len(w["items"])} source-verified AI-cyber items from '
                          f'{w["label"]}: '
                          + ", ".join(v["name"].lower() for v in LANES.values()) + "."),
-            body=site.week_body(n),
+            body=wk_mod.record_body(site, site.wk, n, ARCHIVE_URL),
+            extra_head=wk_head("../../"),
+            asset_prefix="../../"))
+        # The edition for the same week: the short read in front of the record.
+        no = site.wk.number(n)
+        ed_path = f"{wk_mod.EDITION_URL}{no}/index.html"
+        write(ed_path, site.page(
+            path=ed_path,
+            title=f'Weekly No. {no}: {w["label"]} — {SITE_NAME}',
+            description=wk_mod.edition_description(site.wk, n),
+            body=wk_mod.edition_body(site, site.wk, n, ARCHIVE_URL),
+            extra_head=wk_head("../../"),
             asset_prefix="../../"))
     site.prefix = ""
+    # weekly/ on its own has nothing to show that the Archive page does not.
+    write(wk_mod.EDITION_URL + "index.html",
+          f'<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+          f'<title>Weekly — {SITE_NAME}</title>\n'
+          f'<link rel="canonical" href="{SITE_URL}/{ARCHIVE_URL}">\n'
+          f'<meta http-equiv="refresh" content="0; url=../{ARCHIVE_URL}">\n</head>\n'
+          f'<body><p>The weekly editions are listed on the <a href="../{ARCHIVE_URL}">Archive</a> page.</p></body>\n</html>\n')
 
     # briefs — the index sits at the root, each brief two levels down under
     # /brief/<slug>/, so the prefixes follow the same pattern as the weeks.
@@ -2184,8 +2222,13 @@ def build(out_dir: Path):
     site.prefix = "../"
     write(ARCHIVE_URL + "index.html", site.page(
         path=ARCHIVE_URL + "index.html", title=f"Archive — {SITE_NAME}",
-        description="The Machine Speed board, split into weekly pages.",
-        body=site.archive_body(),
+        description=("Alerts, one staged tracker per topic and every weekly edition of the "
+                     "Machine Speed board."),
+        # The dated-snapshot listing still lives in archive_body(); switching
+        # SHOW_RUN_SNAPSHOTS on brings that older page back in place of the hub.
+        body=(site.archive_body() if SHOW_RUN_SNAPSHOTS
+              else wk_mod.hub_body(site, site.wk, ARCHIVE_URL)),
+        extra_head=wk_head("../"),
         asset_prefix="../"))
     write(ABOUT_URL + "index.html", site.page(
         path=ABOUT_URL + "index.html", title=f"About — {SITE_NAME}",
@@ -2400,6 +2443,18 @@ def build(out_dir: Path):
             (root / rel).write_text(text, encoding="utf-8")
             print(f"  wrote {rel}  (draft only — nothing is sent)")
 
+    # This week's edition file, pre-filled and switched off, for a person to finish.
+    draft = wk_mod.write_edition_draft(root, site.wk)
+    if draft:
+        print(f"  wrote {draft}  (suggestions only — ignored until \"ready\" is true)")
+
+    # Tracker cases waiting for a person — a checklist, never published.
+    (root / "newsletter" / "review-trackers.md").write_text(
+        wk_mod.review_sheet(site.wk, wk_trackers, site.by_id, site.as_of), encoding="utf-8")
+    if site.wk.hidden_cases:
+        print(f"  note: {site.wk.hidden_cases} tracker case(s) are not marked reviewed and are left off "
+              f"the site — see newsletter/review-trackers.md, or preview them with --drafts")
+
     landing = out_dir / "index.html"
     if landing.exists() and landing.stat().st_size > ins_mod.PAGE_WEIGHT_WARN:
         print(f"  warning: the landing page is {landing.stat().st_size:,} bytes — past "
@@ -2427,5 +2482,7 @@ def build(out_dir: Path):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="dist", help="output directory (default: dist)")
+    ap.add_argument("--drafts", action="store_true",
+                    help="local preview: also show tracker cases not yet marked reviewed")
     args = ap.parse_args()
-    build(Path(args.out).resolve())
+    build(Path(args.out).resolve(), drafts=args.drafts)

@@ -1,0 +1,12 @@
+{
+  "week": "2026-10-12",
+  "ready": true,
+  "_readme": "note and picks for this week still live in data.json weekly[]; this file adds the one-more-per-lane choices. Put note and picks here instead and they override the array.",
+  "lanes": {
+    "atk": "doj-openai-engineer-recording-device-charge",
+    "cap": "anthropic-small-model-self-replication-consumer-devices",
+    "def": "nsa-cisa-nist-si-control-incident-practices",
+    "pol": "white-house-super-intelligence-force-charter-early-warning",
+    "mkt": "bank-of-america-mythos-remediation-contractors"
+  }
+}
