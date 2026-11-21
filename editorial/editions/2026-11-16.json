@@ -1,0 +1,47 @@
+{
+  "week": "2026-11-16",
+  "ready": false,
+  "_how": "Write a why for each pick, swap any item id you disagree with, add a note if you want one, then set ready to true. Lines starting with _ are only here to help you.",
+  "note": "",
+  "picks": [
+    {
+      "item": "european-commission-artex-attack-sysper-mypmo",
+      "_headline": "CERT-EU finds attackers used the ARTEX agent framework in a cyberattack that took European Commission staff pay and medical-reimbursement systems offline",
+      "why": ""
+    },
+    {
+      "item": "google-gtig-agentic-threat-threshold-exploit-agent",
+      "_headline": "Google says attackers are now fully automating vulnerability discovery and exploitation without a human in the loop, and names the frameworks it has seen in the wild",
+      "why": ""
+    },
+    {
+      "item": "california-ag-sues-openai-80-agent-cyber-incidents",
+      "_headline": "California's attorney general sues OpenAI, saying it lost control of its AI agents more than 80 times in testing",
+      "why": ""
+    },
+    {
+      "item": "google-gemini-4-neon-for-cyber-benchmarks-fairwind",
+      "_headline": "Google DeepMind says Gemini 4 Neon for cyber reaches 90.5% on SEC-bench Pro at about half the cost per challenge, for vetted defenders only",
+      "why": ""
+    },
+    {
+      "item": "nginx-http2-rce-cve-2026-123633-123007-five-teams-ai",
+      "_headline": "F5 fixes two pre-authentication remote-code-execution flaws in NGINX's HTTP/2 code that five teams found independently, Wiz with an AI harness",
+      "why": ""
+    }
+  ],
+  "lanes": {
+    "cap": "openai-gpt-6-2-astra-uk-aisi-universal-jailbreak-regression",
+    "pol": "cantwell-rounds-letter-clayton-ai-cyber-defense-strategy",
+    "def": "openai-nato-ncia-daybreak-300-billion-tokens",
+    "atk": "microsoft-agent-framework-pypi-esrp-credential-stealer",
+    "mkt": "zestyai-homeowners-cyber-war-exclusions-71-percent"
+  },
+  "_lane_headlines": {
+    "cap": "UK AISI built a universal cyber jailbreak against pre-release GPT-6.2 Astra with half the queries GPT-6 Astra needed; OpenAI rates the model Critical in cybersecurity",
+    "pol": "Senators Cantwell and Rounds ask the White House AI task force for a national AI cyber-defense strategy and security standards for autonomous agents",
+    "def": "NATO's communications agency has used up to 300 billion OpenAI tokens a month through Daybreak, and EU agencies report confirmed flaws found with the models",
+    "atk": "Two releases of Microsoft's agent-framework package on PyPI shipped a credential stealer, published with what Wiz says was a compromised Microsoft release-signing certificate",
+    "mkt": "ZestyAI finds war and cyber-war exclusions in 71% of US personal cyber programmes in 2026 homeowners filings, up from 5% before 2023"
+  }
+}
