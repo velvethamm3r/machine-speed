@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name "machine-speed-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add archive/ newsletter/
+          git add archive/ newsletter/ editorial/editions/
           if ! git diff --cached --quiet; then
             git commit -m "Save archive snapshot + newsletter draft [skip ci]"
             git push
