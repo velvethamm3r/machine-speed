@@ -1,0 +1,15 @@
+{
+  "week": "2026-11-23",
+  "ready": false,
+  "_how": "Write a why for each pick, swap any item id you disagree with, add a note if you want one, then set ready to true. Lines starting with _ are only here to help you.",
+  "note": "",
+  "picks": [
+    {
+      "item": "crowdstrike-to-acquire-zscaler-43-9-billion",
+      "_headline": "CrowdStrike agrees to buy Zscaler in an all-stock deal valued at about $43.9 billion, pitching it as security for AI agents",
+      "why": ""
+    }
+  ],
+  "lanes": {},
+  "_lane_headlines": {}
+}
