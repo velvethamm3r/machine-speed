@@ -44,9 +44,9 @@
         {
           "id": "monai",
           "name": "MONAI Label path traversal",
-          "sub": "No CVE carried · Amazon · Nov 20",
+          "sub": "CVE-2026-133968 · Amazon · Nov 20",
           "reviewed": false,
-          "changed": "2026-11-23",
+          "changed": "2026-11-24",
           "stops": [
             {
               "on": true,
@@ -54,8 +54,9 @@
               "text": "Found by an attacker's Cairn agents, per Amazon"
             },
             {
-              "on": false,
-              "text": "Not stated; outlets disagree on a fixed release"
+              "on": true,
+              "date": "2026-11-23",
+              "text": "Nov 23 · MONAI Label 0.8.6, per CISA's listing (via SecurityOnline)"
             },
             {
               "on": true,
@@ -64,7 +65,8 @@
             }
           ],
           "items": [
-            "amazon-cairn-agents-monai-label-zero-day-university-root"
+            "amazon-cairn-agents-monai-label-zero-day-university-root",
+            "cisa-kev-monai-label-cve-2026-133968-n-able-mail-assure"
           ]
         },
         {
@@ -866,6 +868,31 @@
             "xbow-cross-model-offensive-security-cost-comparison",
             "meta-muse-spark-1-3-cyber-moderate-red-team-runtime"
           ]
+        },
+        {
+          "id": "glm54",
+          "name": "GLM-5.4",
+          "sub": "Z.ai",
+          "reviewed": false,
+          "changed": "2026-11-24",
+          "stops": [
+            {
+              "on": false,
+              "text": "Not stated"
+            },
+            {
+              "on": false,
+              "text": "None reported"
+            },
+            {
+              "on": true,
+              "date": "2026-11-23",
+              "text": "Nov 23 · Z.ai's own apps only; weights and API held for safety work"
+            }
+          ],
+          "items": [
+            "zai-glm-5-4-weights-and-api-held-for-safety-work"
+          ]
         }
       ]
     },
@@ -907,8 +934,10 @@
             }
           ],
           "items": [
-            "european-commission-artex-attack-sysper-mypmo"
-          ]
+            "european-commission-artex-attack-sysper-mypmo",
+            "european-commission-eu-academy-user-data-leak"
+          ],
+          "changed": "2026-11-24"
         },
         {
           "id": "barracuda",
@@ -1082,6 +1111,32 @@
             "crowdstrike-artex-korea-finance-attribution",
             "artex-developer-closed-source-after-korea-hacks",
             "zscaler-artex-korea-finance-67000-records"
+          ]
+        },
+        {
+          "id": "bell",
+          "name": "Bell Canada",
+          "sub": "Nov 20",
+          "reviewed": false,
+          "changed": "2026-11-24",
+          "stops": [
+            {
+              "on": true,
+              "date": "2026-11-20",
+              "text": "Nov 20 · Bell: an \"agentic threat actor\" accessed some systems"
+            },
+            {
+              "on": true,
+              "date": "2026-11-23",
+              "text": "Nov 23 · Bell tells consumer customers personal information was reached"
+            },
+            {
+              "on": false,
+              "text": "Bell: attribution not known"
+            }
+          ],
+          "items": [
+            "bell-canada-agentic-threat-actor-maximo-customer-data"
           ]
         }
       ]
