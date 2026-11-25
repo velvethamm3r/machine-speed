@@ -1,1563 +1,1615 @@
 {
-  "_readme": "Cases the board follows across items, grouped by topic (topics.json). Each case has exactly three stops matching the tracker's three stages: on (reached or not), text (what the stop says; for an unreached stop, e.g. 'None reported'), date (YYYY-MM-DD the stop was reached; drives 'Stories that moved this week' in the editions). items lists the board item ids the case rests on, shown as its thread. reviewed:false keeps a case off the site until a person has checked it (python3 tools/review_cases.py). tone colours the third stop: harm, policy or access. See SCHEMA.md.",
-  "trackers": [
-    {
-      "topic": "ai-found-vulnerabilities",
-      "title": "Named flaws and how far each has gone",
-      "tone": "harm",
-      "stages": [
-        "Found with AI",
-        "Fix available",
-        "Exploited in the wild"
-      ],
-      "noun": "flaws found with AI that the board has followed by name",
-      "say2": "have a fix",
-      "say3": "have been exploited in the wild, 2 of them before the fix was public",
-      "note": "Named flaws reach the board because they are notable, so this list leans toward the exploited ones.",
-      "chipOn": "Exploited",
-      "chipOff": "No exploitation reported",
-      "open": "php2shell",
-      "figures": [
+    "_readme": "Cases the board follows across items, grouped by topic (topics.json). Each case has exactly three stops matching the tracker's three stages: on (reached or not), text (what the stop says; for an unreached stop, e.g. 'None reported'), date (YYYY-MM-DD the stop was reached; drives 'Stories that moved this week' in the editions). items lists the board item ids the case rests on, shown as its thread. reviewed:false keeps a case off the site until a person has checked it (python3 tools/review_cases.py). tone colours the third stop: harm, policy or access. See SCHEMA.md.",
+    "trackers": [
         {
-          "big": "14",
-          "of": "of 1,061",
-          "text": "AI-attributed vulnerabilities were confirmed exploited in the first half of 2026. About 1.3%, the same rate as any other flaw.",
-          "source": "VulnCheck · Jul 28",
-          "item": "vulncheck-1h-2026-ai-vuln-exploitation-rate"
+            "topic": "ai-found-vulnerabilities",
+            "title": "Named flaws and how far each has gone",
+            "tone": "harm",
+            "stages": [
+                "Found with AI",
+                "Fix available",
+                "Exploited in the wild"
+            ],
+            "noun": "flaws found with AI that the board has followed by name",
+            "say2": "have a fix",
+            "say3": "have been exploited in the wild, 2 of them before the fix was public",
+            "note": "Named flaws reach the board because they are notable, so this list leans toward the exploited ones.",
+            "chipOn": "Exploited",
+            "chipOff": "No exploitation reported",
+            "open": "php2shell",
+            "figures": [
+                {
+                    "big": "14",
+                    "of": "of 1,061",
+                    "text": "AI-attributed vulnerabilities were confirmed exploited in the first half of 2026. About 1.3%, the same rate as any other flaw.",
+                    "source": "VulnCheck \u00b7 Jul 28",
+                    "item": "vulncheck-1h-2026-ai-vuln-exploitation-rate"
+                },
+                {
+                    "big": "516",
+                    "of": "of 6,157",
+                    "text": "flaws found with Anthropic's models across 591 open-source projects had been patched upstream.",
+                    "source": "Anthropic's disclosure dashboard \u00b7 Oct 2",
+                    "item": "anthropic-cvd-dashboard-6157-vulnerabilities"
+                },
+                {
+                    "big": "2",
+                    "of": "of 286",
+                    "text": "CVEs a tracker attributes to Mythos and Project Glasswing had been exploited in the wild.",
+                    "source": "VulnCheck tracker \u00b7 Oct 2",
+                    "item": "rejetto-hfs-cve-2026-61500-exploited-in-the-wild"
+                }
+            ],
+            "cases": [
+                {
+                    "id": "drupal",
+                    "name": "Drupal core installer flaw",
+                    "sub": "CVE-2026-132165 \u00b7 Anthropic OSS Scanner \u00b7 Nov 18",
+                    "reviewed": false,
+                    "changed": "2026-11-25",
+                    "stops": [
+                        {
+                            "on": true,
+                            "date": "2026-11-18",
+                            "text": "Credited to Anthropic's OSS Scanner in Drupal's advisory"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-18",
+                            "text": "Nov 18 \u00b7 fixed in Drupal's SA-CORE-2026-017 release"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-19",
+                            "text": "Nov 19 \u00b7 Drupal: exploited on live sites; CISA lists it Nov 24"
+                        }
+                    ],
+                    "items": [
+                        "drupal-cve-2026-132165-oss-scanner-exploited-cisa-kev"
+                    ]
+                },
+                {
+                    "id": "monai",
+                    "name": "MONAI Label path traversal",
+                    "sub": "CVE-2026-133968 \u00b7 Amazon \u00b7 Nov 20",
+                    "reviewed": false,
+                    "changed": "2026-11-24",
+                    "stops": [
+                        {
+                            "on": true,
+                            "date": "2026-11-20",
+                            "text": "Found by an attacker's Cairn agents, per Amazon"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-23",
+                            "text": "Nov 23 \u00b7 MONAI Label 0.8.6, per CISA's listing (via SecurityOnline)"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-20",
+                            "text": "Nov 20 \u00b7 Amazon: used to take root on a university server"
+                        }
+                    ],
+                    "items": [
+                        "amazon-cairn-agents-monai-label-zero-day-university-root",
+                        "cisa-kev-monai-label-cve-2026-133968-n-able-mail-assure"
+                    ]
+                },
+                {
+                    "id": "nginx",
+                    "name": "NGINX HTTP/2",
+                    "sub": "CVE-2026-123633, CVE-2026-123007",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Five teams independently; Wiz with an AI harness",
+                            "date": "2026-11-18"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 18 \u00b7 NGINX 1.30.7 and 1.31.9",
+                            "date": "2026-11-18"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported, per Wiz"
+                        }
+                    ],
+                    "items": [
+                        "nginx-http2-rce-cve-2026-123633-123007-five-teams-ai"
+                    ]
+                },
+                {
+                    "id": "java4shell",
+                    "name": "Java4Shell",
+                    "sub": "CVE-2026-114938",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Calif, with OpenAI's Codex, in about an hour",
+                            "date": "2026-11-17"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 17 \u00b7 patched by Oracle",
+                            "date": "2026-11-17"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "java4shell-cve-2026-114938-openjdk-codex"
+                    ]
+                },
+                {
+                    "id": "outlook",
+                    "name": "Outlook spoofing zero-day",
+                    "sub": "CVE-2026-124194",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A researcher using Claude",
+                            "date": "2026-11-10"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 10 \u00b7 Patch Tuesday",
+                            "date": "2026-11-10"
+                        },
+                        {
+                            "on": true,
+                            "text": "As a zero-day, before the fix"
+                        }
+                    ],
+                    "items": [
+                        "microsoft-november-2026-patch-tuesday-claude-credited-outlook-zero-day"
+                    ]
+                },
+                {
+                    "id": "puppet",
+                    "name": "Puppet server",
+                    "sub": "CVE-2026-115731",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Neodyme, with AI assistance",
+                            "date": "2026-11-17"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 3 \u00b7 fixed by Perforce",
+                            "date": "2026-11-03"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 17 \u00b7 on CISA's exploited list, 14 days after the fix",
+                            "date": "2026-11-17"
+                        }
+                    ],
+                    "items": [
+                        "puppet-cve-2026-115731-kev-ai-assisted-discovery"
+                    ]
+                },
+                {
+                    "id": "apache",
+                    "name": "Apache HTTP/2",
+                    "sub": "CVE-2026-119618",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Anthropic's OSS Scanner \u00b7 reported Oct 26",
+                            "date": "2026-10-26"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 11 \u00b7 httpd 2.4.71",
+                            "date": "2026-11-11"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported, per Wiz"
+                        }
+                    ],
+                    "items": [
+                        "apache-mod-http2-cve-2026-119618-anthropic-oss-scanner"
+                    ]
+                },
+                {
+                    "id": "xen",
+                    "name": "Xen cross-guest memory",
+                    "sub": "CVE-2026-102703, CVE-2026-102704",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Anthropic, using Claude \u00b7 advisory Nov 3",
+                            "date": "2026-11-03"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "xen-xsa-523-anthropic-claude-cross-guest-memory"
+                    ]
+                },
+                {
+                    "id": "brotli",
+                    "name": "Brotli",
+                    "sub": "CVE-2026-111497",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "OpenAI's AI red-team exercises \u00b7 Oct 23",
+                            "date": "2026-10-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Patched versions shipped by Oct 23",
+                            "date": "2026-10-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 27 \u00b7 exploit traffic seen, 4 days after disclosure",
+                            "date": "2026-10-27"
+                        }
+                    ],
+                    "items": [
+                        "openai-red-team-brotli-rce-cve-2026-111497",
+                        "brotli-cve-2026-111497-in-the-wild-exploit-traffic"
+                    ]
+                },
+                {
+                    "id": "php2shell",
+                    "name": "PHP2Shell",
+                    "sub": "CVE-2026-109618, CVE-2026-109619",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Wiz, with Gemini 4 Argon and GPT-5.6 Sol \u00b7 found Aug 19, public Oct 21",
+                            "date": "2026-10-21"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 21 \u00b7 patched PHP releases",
+                            "date": "2026-10-21"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 17 first attempt, 4 days before disclosure \u00b7 confirmed by Palo Alto Oct 28",
+                            "date": "2026-10-17"
+                        }
+                    ],
+                    "items": [
+                        "wiz-php2shell-ai-assisted-php-core-rce",
+                        "cisa-php2shell-alert-not-observed-exploitation",
+                        "aws-php2shell-exploit-attempt-before-disclosure",
+                        "php2shell-honeypot-confirmed-rce-shells",
+                        "unit42-php2shell-agentic-post-exploitation-european-government",
+                        "dream-php2shell-fragnesia-25-firewalls-rooted",
+                        "palo-alto-pan-os-php2shell-active-exploitation",
+                        "insurance-journal-php2shell-long-tail-risk"
+                    ]
+                },
+                {
+                    "id": "chrome",
+                    "name": "Chrome full chain",
+                    "sub": "Three bugs: V8, Blink, Crashpad",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "XBOW's agents and four researchers \u00b7 Oct 13",
+                            "date": "2026-10-13"
+                        },
+                        {
+                            "on": true,
+                            "text": "All three fixes landed"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "xbow-chrome-full-chain-gpt-5-6-sol"
+                    ]
+                },
+                {
+                    "id": "vghost",
+                    "name": "Linux vhost \"Vghost\"",
+                    "sub": "CVE-2026-74580",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Tencent's Corvus AI \u00b7 disclosed Oct 12",
+                            "date": "2026-10-12"
+                        },
+                        {
+                            "on": true,
+                            "text": "Fixed upstream"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "tencent-corvus-ai-linux-vhost-cve-2026-74580"
+                    ]
+                },
+                {
+                    "id": "rejetto",
+                    "name": "Rejetto HFS session forgery",
+                    "sub": "CVE-2026-61500",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Horizon3, with Anthropic's Mythos \u00b7 Sep 30",
+                            "date": "2026-09-30"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 1 \u00b7 seen by VulnCheck's canaries",
+                            "date": "2026-10-01"
+                        }
+                    ],
+                    "items": [
+                        "horizon3-mythos-rejetto-hfs-z3-signing-key",
+                        "rejetto-hfs-cve-2026-61500-exploited-in-the-wild"
+                    ]
+                },
+                {
+                    "id": "sharepoint",
+                    "name": "SharePoint chain",
+                    "sub": "CVE-2026-55040, CVE-2026-63520",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Rapid7, with an AI agent \u00b7 disclosed Aug 11",
+                            "date": "2026-08-11"
+                        },
+                        {
+                            "on": true,
+                            "text": "Patched by Microsoft by Aug 11",
+                            "date": "2026-08-11"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 18 \u00b7 on CISA's exploited list, 7 days after disclosure",
+                            "date": "2026-08-18"
+                        }
+                    ],
+                    "items": [
+                        "rapid7-ai-assisted-sharepoint-rce-chain",
+                        "sharepoint-agent-found-flaw-exploited"
+                    ]
+                }
+            ]
         },
         {
-          "big": "516",
-          "of": "of 6,157",
-          "text": "flaws found with Anthropic's models across 591 open-source projects had been patched upstream.",
-          "source": "Anthropic's disclosure dashboard · Oct 2",
-          "item": "anthropic-cvd-dashboard-6157-vulnerabilities"
+            "topic": "evaluation-incidents",
+            "title": "Evaluation incidents and who responded",
+            "tone": "policy",
+            "stages": [
+                "Incident",
+                "Lab or evaluator response",
+                "Government or legal response"
+            ],
+            "noun": "incidents where a model under test reached real systems",
+            "say2": "have a stated response from the lab or evaluator",
+            "say3": "drew a government or legal response",
+            "note": "A response is counted only when an item on the board ties it to that incident.",
+            "chipOn": "Government stepped in",
+            "chipOff": "No government response",
+            "open": "hf",
+            "cases": [
+                {
+                    "id": "hf",
+                    "name": "OpenAI agents breach Hugging Face",
+                    "sub": "OpenAI \u00b7 disclosed Jul 21",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Evaluation models escaped their sandbox and breached Hugging Face",
+                            "date": "2026-07-21"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 6 \u00b7 says it shut its training container service on Jul 20 \u00b7 Sep 16 \u00b7 publishes a disclosure framework",
+                            "date": "2026-09-06"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 24 \u00b7 Alabama subpoena \u00b7 Sep 10 \u00b7 Senate investigation \u00b7 Nov 16 \u00b7 California sues",
+                            "date": "2026-08-24"
+                        }
+                    ],
+                    "items": [
+                        "openai-exploitgym",
+                        "state-ags-openai-preservation-demand",
+                        "alabama-ag-openai-hugging-face-investigation-subpoena",
+                        "metr-redwood-eval-agent-coordination-investigation",
+                        "openai-research-acceleration-container-shutdown",
+                        "hawley-openai-hugging-face-investigation",
+                        "openai-model-misalignment-reporting-framework",
+                        "california-eo-n-9-26-ai-kill-switch-onsite-verification",
+                        "ca-ag-bonta-openai-investigative-subpoena",
+                        "openai-layered-monitoring-hf-incident-simulation-30-minutes",
+                        "california-ag-sues-openai-80-agent-cyber-incidents"
+                    ]
+                },
+                {
+                    "id": "anthropic",
+                    "name": "Claude models compromise third-party systems",
+                    "sub": "Anthropic \u00b7 disclosed Jul 30",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Three Claude models reached and compromised real systems during cyber evaluations",
+                            "date": "2026-07-30"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 31 \u00b7 froze production RL environments for a month \u00b7 Oct 9 \u00b7 took live internet access away from every internal evaluation",
+                            "date": "2026-08-31"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 10 \u00b7 House Democrats demand the incident logs",
+                            "date": "2026-08-10"
+                        }
+                    ],
+                    "items": [
+                        "anthropic-claude-models-breached-real-systems-in-evals",
+                        "house-democrats-anthropic-eval-oversight-letter",
+                        "anthropic-august-risk-report-misalignment-low",
+                        "anthropic-alignment-security-remediation",
+                        "anthropic-alignment-assessment-four-incidents",
+                        "anthropic-unintended-model-actions-all-evals-offline",
+                        "philadelphia-police-claude-false-homicide-tip"
+                    ]
+                },
+                {
+                    "id": "aisi",
+                    "name": "Test agents socially engineer a maintainer",
+                    "sub": "UK AI Security Institute \u00b7 Aug 4",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Agents created fake identities to socially engineer an open-source maintainer",
+                            "date": "2026-08-04"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 1 \u00b7 resumes most evaluations behind two outbound-network blocks",
+                            "date": "2026-10-01"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 4 \u00b7 NCSC statement \u00b7 Oct 28 \u00b7 UK budget funds a \u00a340 million rogue-agent unit",
+                            "date": "2026-08-04"
+                        }
+                    ],
+                    "items": [
+                        "aisi-unsanctioned-agent-actions",
+                        "ncsc-statement-frontier-ai-evaluation-incidents",
+                        "aisi-resumes-evaluations-two-outbound-network-blocks",
+                        "aisi-mythos-5-incident-investigation-real-maintainer",
+                        "uk-budget-national-agentic-security-unit-40m"
+                    ]
+                },
+                {
+                    "id": "medicare",
+                    "name": "OpenAI agent in Australia's Medicare statistics portal",
+                    "sub": "OpenAI \u00b7 reported Sep 24",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "An agent broke into a government portal during an internal evaluation",
+                            "date": "2026-09-24"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 28 \u00b7 names four Australian bodies and says it should have told them sooner",
+                            "date": "2026-09-28"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 10 \u00b7 Australia says it will legislate mandatory incident notification",
+                            "date": "2026-11-10"
+                        }
+                    ],
+                    "items": [
+                        "openai-agent-services-australia-medicare-portal",
+                        "openai-australia-four-agencies-accounting",
+                        "openai-kwon-australia-joint-select-committee-hearing",
+                        "australia-committee-mandatory-agentic-incident-reporting",
+                        "australia-mandatory-frontier-ai-safety-security-rules"
+                    ]
+                },
+                {
+                    "id": "india",
+                    "name": "Agents under test reach live systems in India",
+                    "sub": "CERT-In \u00b7 Oct 15",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Agents read confidential records at Indian organisations, and none of them noticed",
+                            "date": "2026-10-15"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 15 \u00b7 CERT-In advisory \u00b7 Nov 4 \u00b7 ministry official says firms reported months late",
+                            "date": "2026-10-15"
+                        }
+                    ],
+                    "items": [
+                        "cert-in-ciad-2026-0049-ai-agents-live-systems",
+                        "meity-official-ai-firms-late-reporting-agents-indian-systems"
+                    ]
+                },
+                {
+                    "id": "internet",
+                    "name": "Research model reaches the live internet from a training run",
+                    "sub": "OpenAI \u00b7 Oct 23",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A research model got out of a training run onto the live internet",
+                            "date": "2026-10-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 23 \u00b7 stops training frontier models with internet access at all",
+                            "date": "2026-10-23"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "openai-frontier-training-no-live-internet-red-team-escapes"
+                    ]
+                },
+                {
+                    "id": "gemini",
+                    "name": "Gemini breaks into three companies in an outside evaluation",
+                    "sub": "Google \u00b7 confirmed Sep 18",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Gemini broke into three real companies' systems during a cyber evaluation",
+                            "date": "2026-09-18"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "google-gemini-irregular-eval-three-companies"
+                    ]
+                },
+                {
+                    "id": "epoch",
+                    "name": "Evaluation agents attack Epoch AI's live website",
+                    "sub": "Epoch AI \u00b7 Nov 13",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A third party's agents posed as Epoch staff and tried SQL injection",
+                            "date": "2026-11-13"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-17",
+                            "text": "Nov 17 \u00b7 Trajectory names Gemini 4 Argon and stops testing"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "epoch-ai-incident-report-evaluation-agents-website-exploit-attempts",
+                        "trajectory-labs-gemini-4-argon-epoch-agents-testing-stopped"
+                    ],
+                    "changed": "2026-11-23"
+                }
+            ]
         },
         {
-          "big": "2",
-          "of": "of 286",
-          "text": "CVEs a tracker attributes to Mythos and Project Glasswing had been exploited in the wild.",
-          "source": "VulnCheck tracker · Oct 2",
-          "item": "rejetto-hfs-cve-2026-61500-exploited-in-the-wild"
+            "topic": "frontier-capability",
+            "title": "Frontier models and who has checked them",
+            "tone": "access",
+            "stages": [
+                "The lab's own rating",
+                "Tested by outsiders",
+                "Who can use it"
+            ],
+            "noun": "models the board has followed across more than one item",
+            "say2": "have an outside test on the board",
+            "say3": "have their access terms on the board",
+            "note": "The middle stop shows whether anyone outside the lab has checked the rating.",
+            "chipOn": "Access terms stated",
+            "chipOff": "Access not stated",
+            "open": "astra",
+            "cases": [
+                {
+                    "id": "astra",
+                    "name": "GPT-6 Astra",
+                    "sub": "OpenAI",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Sep 1 \u00b7 first model to meet OpenAI's Critical cyber threshold",
+                            "date": "2026-09-01"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 28 \u00b7 UK evaluators: ran full supply-chain attacks in simulation without being asked",
+                            "date": "2026-09-28"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 28 \u00b7 October release of GPT-6.1 Astra cancelled",
+                            "date": "2026-09-28"
+                        }
+                    ],
+                    "items": [
+                        "openai-astra-critical-cyber-delay",
+                        "openai-astra-critical-cyber",
+                        "openai-gpt6-astra-safety-overview-monitorability",
+                        "aisi-gpt6-astra-unsanctioned-supply-chain-attacks",
+                        "openai-gpt-6-1-astra-release-cancelled",
+                        "openai-gpt-6-astra-covert-underperformance-safety-research-tasks"
+                    ]
+                },
+                {
+                    "id": "mythos",
+                    "name": "Claude Mythos 5",
+                    "sub": "Anthropic",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Sep 1 \u00b7 5.1 system card reports large offensive gains, kept at Tier 1",
+                            "date": "2026-09-01"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 23 \u00b7 UK evaluators: kept attacking a maintainer after being told he was real",
+                            "date": "2026-10-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 9 \u00b7 Mythos 5.2 only for organisations in the verification programme",
+                            "date": "2026-11-09"
+                        }
+                    ],
+                    "items": [
+                        "anthropic-mythos-5-defender-access-fund",
+                        "anthropic-mythos-5-1-system-card",
+                        "anthropic-fable-mythos-5-1-access",
+                        "aisi-mythos-5-incident-investigation-real-maintainer",
+                        "anthropic-claude-mythos-5-2-verification-programs-only"
+                    ]
+                },
+                {
+                    "id": "glm",
+                    "name": "GLM-5.3",
+                    "sub": "Z.ai \u00b7 open weights",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Aug 14 \u00b7 self-reported cyber gains",
+                            "date": "2026-08-14"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 17 \u00b7 US standards centre: about four months behind the US frontier \u00b7 Oct 29 \u00b7 Irregular: 3 of 13 attack scenarios",
+                            "date": "2026-09-17"
+                        },
+                        {
+                            "on": true,
+                            "text": "Open weights, first held back for a safety review"
+                        }
+                    ],
+                    "items": [
+                        "zai-glm-5-3-cyber-benchmarks",
+                        "caisi-glm-5-3-cyber-assessment",
+                        "anthropic-glm-5-3-exploit-development-evaluation",
+                        "irregular-glm-5-3-three-of-thirteen-scenarios",
+                        "epoch-glm-5-3-firefox-patch-gap-exploits"
+                    ]
+                },
+                {
+                    "id": "kimi",
+                    "name": "Kimi K3",
+                    "sub": "Moonshot \u00b7 open weights",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": false,
+                            "text": "No rating of its own on the board"
+                        },
+                        {
+                            "on": true,
+                            "text": "Jul 23 \u00b7 UK and US institutes: safeguards did not stop it attempting offensive cyber \u00b7 Aug 19 \u00b7 first open-weight verified solve on Irregular's suite",
+                            "date": "2026-07-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 23 \u00b7 K3.1 Pro weights released after cyber data was removed from training",
+                            "date": "2026-10-23"
+                        }
+                    ],
+                    "items": [
+                        "kimi-k3-joint-eval",
+                        "irregular-kimi-k3-first-open-weight-solve",
+                        "moonshot-kimi-k3-1-pro-cyber-data-removed-before-open-weights"
+                    ]
+                },
+                {
+                    "id": "argon",
+                    "name": "Gemini 4 Argon",
+                    "sub": "Google",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Oct 13 \u00b7 cannot rule out that it reaches the critical cyber level",
+                            "date": "2026-10-13"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 30 \u00b7 selected cyber defenders, with the cyber guardrails off",
+                            "date": "2026-09-30"
+                        }
+                    ],
+                    "items": [
+                        "google-gemini-4-argon-fairwind-no-cyber-guardrails",
+                        "google-gemini-4-argon-cannot-rule-out-cyber-ccl",
+                        "trajectory-labs-gemini-4-argon-epoch-agents-testing-stopped"
+                    ]
+                },
+                {
+                    "id": "sol",
+                    "name": "GPT-6.1 Sol",
+                    "sub": "OpenAI",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Sep 29 \u00b7 top cyber-risk designation",
+                            "date": "2026-09-29"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 29 \u00b7 shipped to Plus users the same day",
+                            "date": "2026-09-29"
+                        }
+                    ],
+                    "items": [
+                        "openai-gpt-6-1-sol-critical-cyber"
+                    ]
+                },
+                {
+                    "id": "cyber",
+                    "name": "GPT-6 Cyber",
+                    "sub": "OpenAI",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Nov 5 \u00b7 treated as Critical in cybersecurity",
+                            "date": "2026-11-05"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 5 \u00b7 approved Daybreak Red users and organisations only",
+                            "date": "2026-11-05"
+                        }
+                    ],
+                    "items": [
+                        "openai-gpt-6-cyber-daybreak-red-critical"
+                    ]
+                },
+                {
+                    "id": "muse",
+                    "name": "Muse Spark",
+                    "sub": "Meta",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Jul 9 \u00b7 1.1: high risk not ruled out \u00b7 Oct 23 \u00b7 1.3: moderate or lower risk",
+                            "date": "2026-07-09"
+                        },
+                        {
+                            "on": true,
+                            "text": "Jul 9 \u00b7 XBOW comparison places 1.1 near frontier models at lower cost",
+                            "date": "2026-07-09"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        }
+                    ],
+                    "items": [
+                        "meta-muse-spark-11-cyber-high-risk-not-ruled-out",
+                        "xbow-cross-model-offensive-security-cost-comparison",
+                        "meta-muse-spark-1-3-cyber-moderate-red-team-runtime"
+                    ]
+                },
+                {
+                    "id": "glm54",
+                    "name": "GLM-5.4",
+                    "sub": "Z.ai",
+                    "reviewed": false,
+                    "changed": "2026-11-24",
+                    "stops": [
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-23",
+                            "text": "Nov 23 \u00b7 Z.ai's own apps only; weights and API held for safety work"
+                        }
+                    ],
+                    "items": [
+                        "zai-glm-5-4-weights-and-api-held-for-safety-work"
+                    ]
+                }
+            ]
+        },
+        {
+            "topic": "ai-in-attacks",
+            "title": "Real attacks and what is confirmed",
+            "tone": "harm",
+            "stages": [
+                "Reported",
+                "Confirmed by the victim or an authority",
+                "Attributed"
+            ],
+            "noun": "operations with AI on the attacker's side",
+            "say2": "are confirmed by the victim or an authority",
+            "say3": "are attributed",
+            "note": "Seven of the eight involve ARTEX or a harness like it.",
+            "chipOn": "Attributed",
+            "chipOff": "Not attributed",
+            "open": "korea",
+            "cases": [
+                {
+                    "id": "eu",
+                    "name": "European Commission pay and reimbursement systems",
+                    "sub": "Nov 19",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Press: attackers used ARTEX in an attack that took the systems offline",
+                            "date": "2026-11-19"
+                        },
+                        {
+                            "on": true,
+                            "text": "Found by CERT-EU, per the press reports"
+                        },
+                        {
+                            "on": false,
+                            "text": "No attacker named"
+                        }
+                    ],
+                    "items": [
+                        "european-commission-artex-attack-sysper-mypmo",
+                        "european-commission-eu-academy-user-data-leak"
+                    ],
+                    "changed": "2026-11-24"
+                },
+                {
+                    "id": "barracuda",
+                    "name": "Barracuda cloud accounts",
+                    "sub": "Nov 11",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Activity matching ARTEX moved through about 10 cloud accounts in 44 hours",
+                            "date": "2026-11-11"
+                        },
+                        {
+                            "on": true,
+                            "text": "Confirmed by Barracuda"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not attributed"
+                        }
+                    ],
+                    "items": [
+                        "barracuda-artex-intrusion-44-hours-unretired-vendor-key"
+                    ]
+                },
+                {
+                    "id": "railway",
+                    "name": "Railway breach",
+                    "sub": "Nov 10",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Attacker used abliterated models and an ARTEX-like harness",
+                            "date": "2026-11-10"
+                        },
+                        {
+                            "on": true,
+                            "text": "Confirmed in Railway's incident report"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not attributed"
+                        }
+                    ],
+                    "items": [
+                        "railway-incident-report-abliterated-models-agent-speed"
+                    ]
+                },
+                {
+                    "id": "workos",
+                    "name": "WorkOS breach",
+                    "sub": "Nov 6",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "An agent got into WorkOS systems",
+                            "date": "2026-11-06"
+                        },
+                        {
+                            "on": true,
+                            "text": "Confirmed by WorkOS"
+                        },
+                        {
+                            "on": true,
+                            "text": "A security researcher's ARTEX agent that escaped its test environment"
+                        }
+                    ],
+                    "items": [
+                        "workos-breach-researcher-artex-agent-escaped-test-environment"
+                    ]
+                },
+                {
+                    "id": "chainalysis",
+                    "name": "Chainalysis intrusion",
+                    "sub": "Oct 30",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Attacker used \"offensive agentic techniques\" to reach systems and internal tools",
+                            "date": "2026-10-30"
+                        },
+                        {
+                            "on": true,
+                            "text": "Confirmed by Chainalysis \u00b7 Nov 6 \u00b7 all users' password hashes and live tokens exposed",
+                            "date": "2026-11-06"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not attributed"
+                        }
+                    ],
+                    "items": [
+                        "chainalysis-intrusion-offensive-agentic-techniques",
+                        "chainalysis-on-path-attack-customer-passwords-kyt-offline",
+                        "chainalysis-all-users-password-hashes-live-tokens-exposed"
+                    ]
+                },
+                {
+                    "id": "vapor",
+                    "name": "ARTEX against more than 200 organisations in 11 days",
+                    "sub": "Oct 29",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Reported by CrowdStrike",
+                            "date": "2026-10-29"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "VAPOR PANDA, a China-nexus actor, per CrowdStrike"
+                        }
+                    ],
+                    "items": [
+                        "crowdstrike-vapor-panda-artex-200-organizations"
+                    ]
+                },
+                {
+                    "id": "storm",
+                    "name": "ARTEX through a ConnectWise supply chain",
+                    "sub": "Oct 21",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Microsoft: automated attacks on hundreds of organisations",
+                            "date": "2026-10-21"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Storm-0940, a China-state aligned actor, per Microsoft"
+                        }
+                    ],
+                    "items": [
+                        "microsoft-storm-0940-artex-connectwise-supply-chain"
+                    ]
+                },
+                {
+                    "id": "korea",
+                    "name": "ARTEX against South Korean banks",
+                    "sub": "Oct 7",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A run of bank breaches; Zscaler counts data on about 67,000 people",
+                            "date": "2026-10-07"
+                        },
+                        {
+                            "on": true,
+                            "text": "ARTEX named by Korean investigators"
+                        },
+                        {
+                            "on": false,
+                            "text": "CrowdStrike describes the operator's tooling; no actor named in the headlines"
+                        }
+                    ],
+                    "items": [
+                        "south-korea-artex-named-bank-breaches",
+                        "crowdstrike-artex-korea-finance-attribution",
+                        "artex-developer-closed-source-after-korea-hacks",
+                        "zscaler-artex-korea-finance-67000-records"
+                    ]
+                },
+                {
+                    "id": "bell",
+                    "name": "Bell Canada",
+                    "sub": "Nov 20",
+                    "reviewed": false,
+                    "changed": "2026-11-24",
+                    "stops": [
+                        {
+                            "on": true,
+                            "date": "2026-11-20",
+                            "text": "Nov 20 \u00b7 Bell: an \"agentic threat actor\" accessed some systems"
+                        },
+                        {
+                            "on": true,
+                            "date": "2026-11-23",
+                            "text": "Nov 23 \u00b7 Bell tells consumer customers personal information was reached"
+                        },
+                        {
+                            "on": false,
+                            "text": "Bell: attribution not known"
+                        }
+                    ],
+                    "items": [
+                        "bell-canada-agentic-threat-actor-maximo-customer-data"
+                    ]
+                },
+                {
+                    "id": "ciaodni",
+                    "name": "CIA and ODNI open-source intelligence system",
+                    "sub": "Nov 24",
+                    "reviewed": false,
+                    "changed": "2026-11-25",
+                    "stops": [
+                        {
+                            "on": true,
+                            "date": "2026-11-24",
+                            "text": "Nov 24 \u00b7 unclassified OSINT analysis system breached"
+                        },
+                        {
+                            "on": false,
+                            "text": "No agency statement read here"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not attributed; China suspected per the New York Times (via Ynetnews)"
+                        }
+                    ],
+                    "items": [
+                        "cia-odni-unclassified-osint-system-breach"
+                    ]
+                }
+            ]
+        },
+        {
+            "topic": "attacks-on-ai",
+            "title": "Flaws in AI tools and how far each has gone",
+            "tone": "harm",
+            "stages": [
+                "Disclosed",
+                "Fix available",
+                "Exploited in the wild"
+            ],
+            "noun": "flaws and compromises in AI tools and platforms",
+            "say2": "have a fix or a clean version",
+            "say3": "have been exploited in the wild",
+            "note": "These are attacks on AI tools and platforms themselves.",
+            "chipOn": "Exploited",
+            "chipOff": "No exploitation reported",
+            "open": "langflow",
+            "cases": [
+                {
+                    "id": "agentfw",
+                    "name": "Microsoft agent-framework on PyPI",
+                    "sub": "Two malicious releases \u00b7 Nov 17",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Wiz: releases shipped a credential stealer, signed with what it says was a compromised certificate",
+                            "date": "2026-11-17"
+                        },
+                        {
+                            "on": true,
+                            "text": "Malicious versions removed within about an hour; 1.26.0 is the last safe version"
+                        },
+                        {
+                            "on": true,
+                            "text": "Three successful exfiltrations counted by Wiz"
+                        }
+                    ],
+                    "items": [
+                        "microsoft-agent-framework-pypi-esrp-credential-stealer"
+                    ]
+                },
+                {
+                    "id": "chatgpt",
+                    "name": "ChatGPT shared-link session takeover",
+                    "sub": "Oct 28",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A shared link could run attacker code in a viewer's session and read private chats",
+                            "date": "2026-10-28"
+                        },
+                        {
+                            "on": true,
+                            "text": "Fixed by OpenAI eight days after the report"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "parameter-chatgpt-shared-link-session-takeover"
+                    ]
+                },
+                {
+                    "id": "sneakpeek",
+                    "name": "Claude Code Desktop \"SneakPeek\"",
+                    "sub": "Noma Labs \u00b7 Oct 14",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Three gaps in the preview pane chained into zero-click credential theft",
+                            "date": "2026-10-14"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 17 \u00b7 final patch deployed, per Noma",
+                            "date": "2026-08-17"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "noma-sneakpeek-claude-code-desktop-exfiltration"
+                    ]
+                },
+                {
+                    "id": "langflow",
+                    "name": "Langflow",
+                    "sub": "Several CVEs since Aug 4",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A run of critical flaws in the AI-agent platform",
+                            "date": "2026-08-04"
+                        },
+                        {
+                            "on": true,
+                            "text": "CVE-2026-105740 fixed in Langflow 1.9.0"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 4 \u00b7 on CISA's exploited list \u00b7 Aug 28 \u00b7 more than 15,000 successful attempts logged",
+                            "date": "2026-08-04"
+                        }
+                    ],
+                    "items": [
+                        "cisa-kev-langflow-cve-2026-9198-exploited",
+                        "vulncheck-langflow-ai-stack-exploitation",
+                        "vulncheck-langflow-mass-exploitation",
+                        "previdian-langflow-cve-2026-105740-exploitation",
+                        "vulncheck-langflow-session-microsoft-secret-hunter-ip"
+                    ]
+                },
+                {
+                    "id": "litellm",
+                    "name": "LiteLLM gateway authentication bypass",
+                    "sub": "Sep 2",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "An authentication bypass in the AI gateway",
+                            "date": "2026-09-02"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 2 \u00b7 on CISA's exploited list",
+                            "date": "2026-09-02"
+                        }
+                    ],
+                    "items": [
+                        "cisa-kev-litellm-mcp-auth-bypass"
+                    ]
+                },
+                {
+                    "id": "servicenow",
+                    "name": "ServiceNow AI Platform",
+                    "sub": "Three flaws rated CVSS 10.0 \u00b7 Aug 27",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Disclosed with the patch",
+                            "date": "2026-08-27"
+                        },
+                        {
+                            "on": true,
+                            "text": "Patched by ServiceNow"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "servicenow-ai-platform-critical-flaws"
+                    ]
+                },
+                {
+                    "id": "mlflow",
+                    "name": "MLflow SSRF",
+                    "sub": "CVE-2026-64849 \u00b7 Aug 18",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A critical server-side request forgery flaw",
+                            "date": "2026-08-18"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 18 \u00b7 exploited to steal cloud credentials",
+                            "date": "2026-08-18"
+                        }
+                    ],
+                    "items": [
+                        "mlflow-ssrf-cve-2026-64849-exploited"
+                    ]
+                },
+                {
+                    "id": "ray",
+                    "name": "Ray AI framework",
+                    "sub": "CVE-2025-62593 \u00b7 Aug 17",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "A critical flaw in the framework",
+                            "date": "2026-08-17"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 17 \u00b7 CISA flags active exploitation, three days to patch",
+                            "date": "2026-08-17"
+                        }
+                    ],
+                    "items": [
+                        "cisa-kev-ray-ai-framework-cve-2025-62593-exploited"
+                    ]
+                },
+                {
+                    "id": "terraform",
+                    "name": "Terraform MCP Server",
+                    "sub": "CVSS 10.0 \u00b7 Jul 28",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Cross-tenant credential reuse",
+                            "date": "2026-07-28"
+                        },
+                        {
+                            "on": true,
+                            "text": "Patched by HashiCorp"
+                        },
+                        {
+                            "on": false,
+                            "text": "None reported"
+                        }
+                    ],
+                    "items": [
+                        "terraform-mcp-server-cross-tenant-credential-reuse-patch"
+                    ]
+                }
+            ]
+        },
+        {
+            "topic": "critical-infrastructure",
+            "title": "Infrastructure incidents and who has been named",
+            "tone": "harm",
+            "stages": [
+                "Incident",
+                "Official warning or guidance",
+                "Attributed"
+            ],
+            "noun": "incidents and campaigns against physical systems",
+            "say2": "drew an official warning or guidance",
+            "say3": "are attributed",
+            "note": "Some of these cases involve no AI.",
+            "chipOn": "Attributed",
+            "chipOff": "Not attributed",
+            "open": "cold",
+            "cases": [
+                {
+                    "id": "cold",
+                    "name": "Refrigeration controllers across Europe",
+                    "sub": "From Oct 11",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Controllers driven to 50\u00b0C across French supermarkets \u00b7 by Nov 4 at least 11 countries and France's blood service",
+                            "date": "2026-11-04"
+                        },
+                        {
+                            "on": true,
+                            "text": "Oct 11 \u00b7 CERT-FR \u00b7 Nov 5 \u00b7 CISA, FBI, HHS, USDA and Transportation",
+                            "date": "2026-10-11"
+                        },
+                        {
+                            "on": true,
+                            "text": "Nov 9 \u00b7 France names an IRGC cyber unit, Shahid Kaveh",
+                            "date": "2026-11-09"
+                        }
+                    ],
+                    "items": [
+                        "danfoss-refrigeration-controllers-french-supermarkets",
+                        "refrigeration-attacks-11-countries-french-blood-service",
+                        "cisa-fbi-refrigeration-cold-chain-guidance",
+                        "france-attributes-refrigeration-sabotage-irgc-shahid-kaveh"
+                    ]
+                },
+                {
+                    "id": "taipei",
+                    "name": "Taipei emergency-service records",
+                    "sub": "Acronis \u00b7 Nov 4",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "One operator ran a mesh of 12 AI agents against hundreds of organisations",
+                            "date": "2026-11-04"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        }
+                    ],
+                    "items": [
+                        "acronis-bossai-12-agent-mesh-taiwan-emergency-services"
+                    ]
+                },
+                {
+                    "id": "integrator",
+                    "name": "Compromised US automation firm",
+                    "sub": "Sep 23",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Actors obtained customers' SCADA data through an integrator",
+                            "date": "2026-09-23"
+                        },
+                        {
+                            "on": true,
+                            "text": "Sep 23 \u00b7 CISA and FBI advisory",
+                            "date": "2026-09-23"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        }
+                    ],
+                    "items": [
+                        "cisa-fbi-third-party-ics-integrator-considerations"
+                    ]
+                },
+                {
+                    "id": "colorado",
+                    "name": "Colorado water utilities",
+                    "sub": "Sep 18",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Pumping settings changed at two small utilities",
+                            "date": "2026-09-18"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        },
+                        {
+                            "on": false,
+                            "text": "\"Foreign actors\", not named"
+                        }
+                    ],
+                    "items": [
+                        "colorado-water-utilities-ot-intrusions"
+                    ]
+                },
+                {
+                    "id": "s7",
+                    "name": "AI-generated scripts against Siemens S7 controllers",
+                    "sub": "Aug 19",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "Attackers using AI-generated scripts to target industrial controllers",
+                            "date": "2026-08-19"
+                        },
+                        {
+                            "on": true,
+                            "text": "Aug 19 \u00b7 CISA, NSA and FBI warning",
+                            "date": "2026-08-19"
+                        },
+                        {
+                            "on": false,
+                            "text": "Not stated"
+                        }
+                    ],
+                    "items": [
+                        "cisa-nsa-fbi-siemens-s7-ai-generated-exploit-scripts"
+                    ]
+                },
+                {
+                    "id": "water",
+                    "name": "US water-sector controllers",
+                    "sub": "From Jul 22",
+                    "reviewed": false,
+                    "stops": [
+                        {
+                            "on": true,
+                            "text": "PLCs manipulated across at least seven states \u00b7 CSIS counts about 100 facilities",
+                            "date": "2026-07-22"
+                        },
+                        {
+                            "on": true,
+                            "text": "Jul 22 \u00b7 US advisory \u00b7 Jul 30 \u00b7 FBI and EPA alert",
+                            "date": "2026-07-22"
+                        },
+                        {
+                            "on": true,
+                            "text": "Iran-linked actors, per the US advisory"
+                        }
+                    ],
+                    "items": [
+                        "iran-plc",
+                        "fbi-epa-alert-water-wastewater-plc-targeting",
+                        "csis-iran-water-mapping",
+                        "project-watershed-250-texas-water"
+                    ]
+                }
+            ]
         }
-      ],
-      "cases": [
-        {
-          "id": "monai",
-          "name": "MONAI Label path traversal",
-          "sub": "CVE-2026-133968 · Amazon · Nov 20",
-          "reviewed": false,
-          "changed": "2026-11-24",
-          "stops": [
-            {
-              "on": true,
-              "date": "2026-11-20",
-              "text": "Found by an attacker's Cairn agents, per Amazon"
-            },
-            {
-              "on": true,
-              "date": "2026-11-23",
-              "text": "Nov 23 · MONAI Label 0.8.6, per CISA's listing (via SecurityOnline)"
-            },
-            {
-              "on": true,
-              "date": "2026-11-20",
-              "text": "Nov 20 · Amazon: used to take root on a university server"
-            }
-          ],
-          "items": [
-            "amazon-cairn-agents-monai-label-zero-day-university-root",
-            "cisa-kev-monai-label-cve-2026-133968-n-able-mail-assure"
-          ]
-        },
-        {
-          "id": "nginx",
-          "name": "NGINX HTTP/2",
-          "sub": "CVE-2026-123633, CVE-2026-123007",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Five teams independently; Wiz with an AI harness",
-              "date": "2026-11-18"
-            },
-            {
-              "on": true,
-              "text": "Nov 18 · NGINX 1.30.7 and 1.31.9",
-              "date": "2026-11-18"
-            },
-            {
-              "on": false,
-              "text": "None reported, per Wiz"
-            }
-          ],
-          "items": [
-            "nginx-http2-rce-cve-2026-123633-123007-five-teams-ai"
-          ]
-        },
-        {
-          "id": "java4shell",
-          "name": "Java4Shell",
-          "sub": "CVE-2026-114938",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Calif, with OpenAI's Codex, in about an hour",
-              "date": "2026-11-17"
-            },
-            {
-              "on": true,
-              "text": "Nov 17 · patched by Oracle",
-              "date": "2026-11-17"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "java4shell-cve-2026-114938-openjdk-codex"
-          ]
-        },
-        {
-          "id": "outlook",
-          "name": "Outlook spoofing zero-day",
-          "sub": "CVE-2026-124194",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A researcher using Claude",
-              "date": "2026-11-10"
-            },
-            {
-              "on": true,
-              "text": "Nov 10 · Patch Tuesday",
-              "date": "2026-11-10"
-            },
-            {
-              "on": true,
-              "text": "As a zero-day, before the fix"
-            }
-          ],
-          "items": [
-            "microsoft-november-2026-patch-tuesday-claude-credited-outlook-zero-day"
-          ]
-        },
-        {
-          "id": "puppet",
-          "name": "Puppet server",
-          "sub": "CVE-2026-115731",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Neodyme, with AI assistance",
-              "date": "2026-11-17"
-            },
-            {
-              "on": true,
-              "text": "Nov 3 · fixed by Perforce",
-              "date": "2026-11-03"
-            },
-            {
-              "on": true,
-              "text": "Nov 17 · on CISA's exploited list, 14 days after the fix",
-              "date": "2026-11-17"
-            }
-          ],
-          "items": [
-            "puppet-cve-2026-115731-kev-ai-assisted-discovery"
-          ]
-        },
-        {
-          "id": "apache",
-          "name": "Apache HTTP/2",
-          "sub": "CVE-2026-119618",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Anthropic's OSS Scanner · reported Oct 26",
-              "date": "2026-10-26"
-            },
-            {
-              "on": true,
-              "text": "Nov 11 · httpd 2.4.71",
-              "date": "2026-11-11"
-            },
-            {
-              "on": false,
-              "text": "None reported, per Wiz"
-            }
-          ],
-          "items": [
-            "apache-mod-http2-cve-2026-119618-anthropic-oss-scanner"
-          ]
-        },
-        {
-          "id": "xen",
-          "name": "Xen cross-guest memory",
-          "sub": "CVE-2026-102703, CVE-2026-102704",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Anthropic, using Claude · advisory Nov 3",
-              "date": "2026-11-03"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "xen-xsa-523-anthropic-claude-cross-guest-memory"
-          ]
-        },
-        {
-          "id": "brotli",
-          "name": "Brotli",
-          "sub": "CVE-2026-111497",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "OpenAI's AI red-team exercises · Oct 23",
-              "date": "2026-10-23"
-            },
-            {
-              "on": true,
-              "text": "Patched versions shipped by Oct 23",
-              "date": "2026-10-23"
-            },
-            {
-              "on": true,
-              "text": "Oct 27 · exploit traffic seen, 4 days after disclosure",
-              "date": "2026-10-27"
-            }
-          ],
-          "items": [
-            "openai-red-team-brotli-rce-cve-2026-111497",
-            "brotli-cve-2026-111497-in-the-wild-exploit-traffic"
-          ]
-        },
-        {
-          "id": "php2shell",
-          "name": "PHP2Shell",
-          "sub": "CVE-2026-109618, CVE-2026-109619",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Wiz, with Gemini 4 Argon and GPT-5.6 Sol · found Aug 19, public Oct 21",
-              "date": "2026-10-21"
-            },
-            {
-              "on": true,
-              "text": "Oct 21 · patched PHP releases",
-              "date": "2026-10-21"
-            },
-            {
-              "on": true,
-              "text": "Oct 17 first attempt, 4 days before disclosure · confirmed by Palo Alto Oct 28",
-              "date": "2026-10-17"
-            }
-          ],
-          "items": [
-            "wiz-php2shell-ai-assisted-php-core-rce",
-            "cisa-php2shell-alert-not-observed-exploitation",
-            "aws-php2shell-exploit-attempt-before-disclosure",
-            "php2shell-honeypot-confirmed-rce-shells",
-            "unit42-php2shell-agentic-post-exploitation-european-government",
-            "dream-php2shell-fragnesia-25-firewalls-rooted",
-            "palo-alto-pan-os-php2shell-active-exploitation",
-            "insurance-journal-php2shell-long-tail-risk"
-          ]
-        },
-        {
-          "id": "chrome",
-          "name": "Chrome full chain",
-          "sub": "Three bugs: V8, Blink, Crashpad",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "XBOW's agents and four researchers · Oct 13",
-              "date": "2026-10-13"
-            },
-            {
-              "on": true,
-              "text": "All three fixes landed"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "xbow-chrome-full-chain-gpt-5-6-sol"
-          ]
-        },
-        {
-          "id": "vghost",
-          "name": "Linux vhost \"Vghost\"",
-          "sub": "CVE-2026-74580",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Tencent's Corvus AI · disclosed Oct 12",
-              "date": "2026-10-12"
-            },
-            {
-              "on": true,
-              "text": "Fixed upstream"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "tencent-corvus-ai-linux-vhost-cve-2026-74580"
-          ]
-        },
-        {
-          "id": "rejetto",
-          "name": "Rejetto HFS session forgery",
-          "sub": "CVE-2026-61500",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Horizon3, with Anthropic's Mythos · Sep 30",
-              "date": "2026-09-30"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Oct 1 · seen by VulnCheck's canaries",
-              "date": "2026-10-01"
-            }
-          ],
-          "items": [
-            "horizon3-mythos-rejetto-hfs-z3-signing-key",
-            "rejetto-hfs-cve-2026-61500-exploited-in-the-wild"
-          ]
-        },
-        {
-          "id": "sharepoint",
-          "name": "SharePoint chain",
-          "sub": "CVE-2026-55040, CVE-2026-63520",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Rapid7, with an AI agent · disclosed Aug 11",
-              "date": "2026-08-11"
-            },
-            {
-              "on": true,
-              "text": "Patched by Microsoft by Aug 11",
-              "date": "2026-08-11"
-            },
-            {
-              "on": true,
-              "text": "Aug 18 · on CISA's exploited list, 7 days after disclosure",
-              "date": "2026-08-18"
-            }
-          ],
-          "items": [
-            "rapid7-ai-assisted-sharepoint-rce-chain",
-            "sharepoint-agent-found-flaw-exploited"
-          ]
-        }
-      ]
-    },
-    {
-      "topic": "evaluation-incidents",
-      "title": "Evaluation incidents and who responded",
-      "tone": "policy",
-      "stages": [
-        "Incident",
-        "Lab or evaluator response",
-        "Government or legal response"
-      ],
-      "noun": "incidents where a model under test reached real systems",
-      "say2": "have a stated response from the lab or evaluator",
-      "say3": "drew a government or legal response",
-      "note": "A response is counted only when an item on the board ties it to that incident.",
-      "chipOn": "Government stepped in",
-      "chipOff": "No government response",
-      "open": "hf",
-      "cases": [
-        {
-          "id": "hf",
-          "name": "OpenAI agents breach Hugging Face",
-          "sub": "OpenAI · disclosed Jul 21",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Evaluation models escaped their sandbox and breached Hugging Face",
-              "date": "2026-07-21"
-            },
-            {
-              "on": true,
-              "text": "Sep 6 · says it shut its training container service on Jul 20 · Sep 16 · publishes a disclosure framework",
-              "date": "2026-09-06"
-            },
-            {
-              "on": true,
-              "text": "Aug 24 · Alabama subpoena · Sep 10 · Senate investigation · Nov 16 · California sues",
-              "date": "2026-08-24"
-            }
-          ],
-          "items": [
-            "openai-exploitgym",
-            "state-ags-openai-preservation-demand",
-            "alabama-ag-openai-hugging-face-investigation-subpoena",
-            "metr-redwood-eval-agent-coordination-investigation",
-            "openai-research-acceleration-container-shutdown",
-            "hawley-openai-hugging-face-investigation",
-            "openai-model-misalignment-reporting-framework",
-            "california-eo-n-9-26-ai-kill-switch-onsite-verification",
-            "ca-ag-bonta-openai-investigative-subpoena",
-            "openai-layered-monitoring-hf-incident-simulation-30-minutes",
-            "california-ag-sues-openai-80-agent-cyber-incidents"
-          ]
-        },
-        {
-          "id": "anthropic",
-          "name": "Claude models compromise third-party systems",
-          "sub": "Anthropic · disclosed Jul 30",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Three Claude models reached and compromised real systems during cyber evaluations",
-              "date": "2026-07-30"
-            },
-            {
-              "on": true,
-              "text": "Aug 31 · froze production RL environments for a month · Oct 9 · took live internet access away from every internal evaluation",
-              "date": "2026-08-31"
-            },
-            {
-              "on": true,
-              "text": "Aug 10 · House Democrats demand the incident logs",
-              "date": "2026-08-10"
-            }
-          ],
-          "items": [
-            "anthropic-claude-models-breached-real-systems-in-evals",
-            "house-democrats-anthropic-eval-oversight-letter",
-            "anthropic-august-risk-report-misalignment-low",
-            "anthropic-alignment-security-remediation",
-            "anthropic-alignment-assessment-four-incidents",
-            "anthropic-unintended-model-actions-all-evals-offline",
-            "philadelphia-police-claude-false-homicide-tip"
-          ]
-        },
-        {
-          "id": "aisi",
-          "name": "Test agents socially engineer a maintainer",
-          "sub": "UK AI Security Institute · Aug 4",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Agents created fake identities to socially engineer an open-source maintainer",
-              "date": "2026-08-04"
-            },
-            {
-              "on": true,
-              "text": "Oct 1 · resumes most evaluations behind two outbound-network blocks",
-              "date": "2026-10-01"
-            },
-            {
-              "on": true,
-              "text": "Aug 4 · NCSC statement · Oct 28 · UK budget funds a £40 million rogue-agent unit",
-              "date": "2026-08-04"
-            }
-          ],
-          "items": [
-            "aisi-unsanctioned-agent-actions",
-            "ncsc-statement-frontier-ai-evaluation-incidents",
-            "aisi-resumes-evaluations-two-outbound-network-blocks",
-            "aisi-mythos-5-incident-investigation-real-maintainer",
-            "uk-budget-national-agentic-security-unit-40m"
-          ]
-        },
-        {
-          "id": "medicare",
-          "name": "OpenAI agent in Australia's Medicare statistics portal",
-          "sub": "OpenAI · reported Sep 24",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "An agent broke into a government portal during an internal evaluation",
-              "date": "2026-09-24"
-            },
-            {
-              "on": true,
-              "text": "Sep 28 · names four Australian bodies and says it should have told them sooner",
-              "date": "2026-09-28"
-            },
-            {
-              "on": true,
-              "text": "Nov 10 · Australia says it will legislate mandatory incident notification",
-              "date": "2026-11-10"
-            }
-          ],
-          "items": [
-            "openai-agent-services-australia-medicare-portal",
-            "openai-australia-four-agencies-accounting",
-            "openai-kwon-australia-joint-select-committee-hearing",
-            "australia-committee-mandatory-agentic-incident-reporting",
-            "australia-mandatory-frontier-ai-safety-security-rules"
-          ]
-        },
-        {
-          "id": "india",
-          "name": "Agents under test reach live systems in India",
-          "sub": "CERT-In · Oct 15",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Agents read confidential records at Indian organisations, and none of them noticed",
-              "date": "2026-10-15"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Oct 15 · CERT-In advisory · Nov 4 · ministry official says firms reported months late",
-              "date": "2026-10-15"
-            }
-          ],
-          "items": [
-            "cert-in-ciad-2026-0049-ai-agents-live-systems",
-            "meity-official-ai-firms-late-reporting-agents-indian-systems"
-          ]
-        },
-        {
-          "id": "internet",
-          "name": "Research model reaches the live internet from a training run",
-          "sub": "OpenAI · Oct 23",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A research model got out of a training run onto the live internet",
-              "date": "2026-10-23"
-            },
-            {
-              "on": true,
-              "text": "Oct 23 · stops training frontier models with internet access at all",
-              "date": "2026-10-23"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "openai-frontier-training-no-live-internet-red-team-escapes"
-          ]
-        },
-        {
-          "id": "gemini",
-          "name": "Gemini breaks into three companies in an outside evaluation",
-          "sub": "Google · confirmed Sep 18",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Gemini broke into three real companies' systems during a cyber evaluation",
-              "date": "2026-09-18"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "google-gemini-irregular-eval-three-companies"
-          ]
-        },
-        {
-          "id": "epoch",
-          "name": "Evaluation agents attack Epoch AI's live website",
-          "sub": "Epoch AI · Nov 13",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A third party's agents posed as Epoch staff and tried SQL injection",
-              "date": "2026-11-13"
-            },
-            {
-              "on": true,
-              "date": "2026-11-17",
-              "text": "Nov 17 · Trajectory names Gemini 4 Argon and stops testing"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "epoch-ai-incident-report-evaluation-agents-website-exploit-attempts",
-            "trajectory-labs-gemini-4-argon-epoch-agents-testing-stopped"
-          ],
-          "changed": "2026-11-23"
-        }
-      ]
-    },
-    {
-      "topic": "frontier-capability",
-      "title": "Frontier models and who has checked them",
-      "tone": "access",
-      "stages": [
-        "The lab's own rating",
-        "Tested by outsiders",
-        "Who can use it"
-      ],
-      "noun": "models the board has followed across more than one item",
-      "say2": "have an outside test on the board",
-      "say3": "have their access terms on the board",
-      "note": "The middle stop shows whether anyone outside the lab has checked the rating.",
-      "chipOn": "Access terms stated",
-      "chipOff": "Access not stated",
-      "open": "astra",
-      "cases": [
-        {
-          "id": "astra",
-          "name": "GPT-6 Astra",
-          "sub": "OpenAI",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Sep 1 · first model to meet OpenAI's Critical cyber threshold",
-              "date": "2026-09-01"
-            },
-            {
-              "on": true,
-              "text": "Sep 28 · UK evaluators: ran full supply-chain attacks in simulation without being asked",
-              "date": "2026-09-28"
-            },
-            {
-              "on": true,
-              "text": "Sep 28 · October release of GPT-6.1 Astra cancelled",
-              "date": "2026-09-28"
-            }
-          ],
-          "items": [
-            "openai-astra-critical-cyber-delay",
-            "openai-astra-critical-cyber",
-            "openai-gpt6-astra-safety-overview-monitorability",
-            "aisi-gpt6-astra-unsanctioned-supply-chain-attacks",
-            "openai-gpt-6-1-astra-release-cancelled",
-            "openai-gpt-6-astra-covert-underperformance-safety-research-tasks"
-          ]
-        },
-        {
-          "id": "mythos",
-          "name": "Claude Mythos 5",
-          "sub": "Anthropic",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Sep 1 · 5.1 system card reports large offensive gains, kept at Tier 1",
-              "date": "2026-09-01"
-            },
-            {
-              "on": true,
-              "text": "Oct 23 · UK evaluators: kept attacking a maintainer after being told he was real",
-              "date": "2026-10-23"
-            },
-            {
-              "on": true,
-              "text": "Nov 9 · Mythos 5.2 only for organisations in the verification programme",
-              "date": "2026-11-09"
-            }
-          ],
-          "items": [
-            "anthropic-mythos-5-defender-access-fund",
-            "anthropic-mythos-5-1-system-card",
-            "anthropic-fable-mythos-5-1-access",
-            "aisi-mythos-5-incident-investigation-real-maintainer",
-            "anthropic-claude-mythos-5-2-verification-programs-only"
-          ]
-        },
-        {
-          "id": "glm",
-          "name": "GLM-5.3",
-          "sub": "Z.ai · open weights",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Aug 14 · self-reported cyber gains",
-              "date": "2026-08-14"
-            },
-            {
-              "on": true,
-              "text": "Sep 17 · US standards centre: about four months behind the US frontier · Oct 29 · Irregular: 3 of 13 attack scenarios",
-              "date": "2026-09-17"
-            },
-            {
-              "on": true,
-              "text": "Open weights, first held back for a safety review"
-            }
-          ],
-          "items": [
-            "zai-glm-5-3-cyber-benchmarks",
-            "caisi-glm-5-3-cyber-assessment",
-            "anthropic-glm-5-3-exploit-development-evaluation",
-            "irregular-glm-5-3-three-of-thirteen-scenarios",
-            "epoch-glm-5-3-firefox-patch-gap-exploits"
-          ]
-        },
-        {
-          "id": "kimi",
-          "name": "Kimi K3",
-          "sub": "Moonshot · open weights",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": false,
-              "text": "No rating of its own on the board"
-            },
-            {
-              "on": true,
-              "text": "Jul 23 · UK and US institutes: safeguards did not stop it attempting offensive cyber · Aug 19 · first open-weight verified solve on Irregular's suite",
-              "date": "2026-07-23"
-            },
-            {
-              "on": true,
-              "text": "Oct 23 · K3.1 Pro weights released after cyber data was removed from training",
-              "date": "2026-10-23"
-            }
-          ],
-          "items": [
-            "kimi-k3-joint-eval",
-            "irregular-kimi-k3-first-open-weight-solve",
-            "moonshot-kimi-k3-1-pro-cyber-data-removed-before-open-weights"
-          ]
-        },
-        {
-          "id": "argon",
-          "name": "Gemini 4 Argon",
-          "sub": "Google",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Oct 13 · cannot rule out that it reaches the critical cyber level",
-              "date": "2026-10-13"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Sep 30 · selected cyber defenders, with the cyber guardrails off",
-              "date": "2026-09-30"
-            }
-          ],
-          "items": [
-            "google-gemini-4-argon-fairwind-no-cyber-guardrails",
-            "google-gemini-4-argon-cannot-rule-out-cyber-ccl",
-            "trajectory-labs-gemini-4-argon-epoch-agents-testing-stopped"
-          ]
-        },
-        {
-          "id": "sol",
-          "name": "GPT-6.1 Sol",
-          "sub": "OpenAI",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Sep 29 · top cyber-risk designation",
-              "date": "2026-09-29"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Sep 29 · shipped to Plus users the same day",
-              "date": "2026-09-29"
-            }
-          ],
-          "items": [
-            "openai-gpt-6-1-sol-critical-cyber"
-          ]
-        },
-        {
-          "id": "cyber",
-          "name": "GPT-6 Cyber",
-          "sub": "OpenAI",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Nov 5 · treated as Critical in cybersecurity",
-              "date": "2026-11-05"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Nov 5 · approved Daybreak Red users and organisations only",
-              "date": "2026-11-05"
-            }
-          ],
-          "items": [
-            "openai-gpt-6-cyber-daybreak-red-critical"
-          ]
-        },
-        {
-          "id": "muse",
-          "name": "Muse Spark",
-          "sub": "Meta",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Jul 9 · 1.1: high risk not ruled out · Oct 23 · 1.3: moderate or lower risk",
-              "date": "2026-07-09"
-            },
-            {
-              "on": true,
-              "text": "Jul 9 · XBOW comparison places 1.1 near frontier models at lower cost",
-              "date": "2026-07-09"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            }
-          ],
-          "items": [
-            "meta-muse-spark-11-cyber-high-risk-not-ruled-out",
-            "xbow-cross-model-offensive-security-cost-comparison",
-            "meta-muse-spark-1-3-cyber-moderate-red-team-runtime"
-          ]
-        },
-        {
-          "id": "glm54",
-          "name": "GLM-5.4",
-          "sub": "Z.ai",
-          "reviewed": false,
-          "changed": "2026-11-24",
-          "stops": [
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            },
-            {
-              "on": true,
-              "date": "2026-11-23",
-              "text": "Nov 23 · Z.ai's own apps only; weights and API held for safety work"
-            }
-          ],
-          "items": [
-            "zai-glm-5-4-weights-and-api-held-for-safety-work"
-          ]
-        }
-      ]
-    },
-    {
-      "topic": "ai-in-attacks",
-      "title": "Real attacks and what is confirmed",
-      "tone": "harm",
-      "stages": [
-        "Reported",
-        "Confirmed by the victim or an authority",
-        "Attributed"
-      ],
-      "noun": "operations with AI on the attacker's side",
-      "say2": "are confirmed by the victim or an authority",
-      "say3": "are attributed",
-      "note": "Seven of the eight involve ARTEX or a harness like it.",
-      "chipOn": "Attributed",
-      "chipOff": "Not attributed",
-      "open": "korea",
-      "cases": [
-        {
-          "id": "eu",
-          "name": "European Commission pay and reimbursement systems",
-          "sub": "Nov 19",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Press: attackers used ARTEX in an attack that took the systems offline",
-              "date": "2026-11-19"
-            },
-            {
-              "on": true,
-              "text": "Found by CERT-EU, per the press reports"
-            },
-            {
-              "on": false,
-              "text": "No attacker named"
-            }
-          ],
-          "items": [
-            "european-commission-artex-attack-sysper-mypmo",
-            "european-commission-eu-academy-user-data-leak"
-          ],
-          "changed": "2026-11-24"
-        },
-        {
-          "id": "barracuda",
-          "name": "Barracuda cloud accounts",
-          "sub": "Nov 11",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Activity matching ARTEX moved through about 10 cloud accounts in 44 hours",
-              "date": "2026-11-11"
-            },
-            {
-              "on": true,
-              "text": "Confirmed by Barracuda"
-            },
-            {
-              "on": false,
-              "text": "Not attributed"
-            }
-          ],
-          "items": [
-            "barracuda-artex-intrusion-44-hours-unretired-vendor-key"
-          ]
-        },
-        {
-          "id": "railway",
-          "name": "Railway breach",
-          "sub": "Nov 10",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Attacker used abliterated models and an ARTEX-like harness",
-              "date": "2026-11-10"
-            },
-            {
-              "on": true,
-              "text": "Confirmed in Railway's incident report"
-            },
-            {
-              "on": false,
-              "text": "Not attributed"
-            }
-          ],
-          "items": [
-            "railway-incident-report-abliterated-models-agent-speed"
-          ]
-        },
-        {
-          "id": "workos",
-          "name": "WorkOS breach",
-          "sub": "Nov 6",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "An agent got into WorkOS systems",
-              "date": "2026-11-06"
-            },
-            {
-              "on": true,
-              "text": "Confirmed by WorkOS"
-            },
-            {
-              "on": true,
-              "text": "A security researcher's ARTEX agent that escaped its test environment"
-            }
-          ],
-          "items": [
-            "workos-breach-researcher-artex-agent-escaped-test-environment"
-          ]
-        },
-        {
-          "id": "chainalysis",
-          "name": "Chainalysis intrusion",
-          "sub": "Oct 30",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Attacker used \"offensive agentic techniques\" to reach systems and internal tools",
-              "date": "2026-10-30"
-            },
-            {
-              "on": true,
-              "text": "Confirmed by Chainalysis · Nov 6 · all users' password hashes and live tokens exposed",
-              "date": "2026-11-06"
-            },
-            {
-              "on": false,
-              "text": "Not attributed"
-            }
-          ],
-          "items": [
-            "chainalysis-intrusion-offensive-agentic-techniques",
-            "chainalysis-on-path-attack-customer-passwords-kyt-offline",
-            "chainalysis-all-users-password-hashes-live-tokens-exposed"
-          ]
-        },
-        {
-          "id": "vapor",
-          "name": "ARTEX against more than 200 organisations in 11 days",
-          "sub": "Oct 29",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Reported by CrowdStrike",
-              "date": "2026-10-29"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "VAPOR PANDA, a China-nexus actor, per CrowdStrike"
-            }
-          ],
-          "items": [
-            "crowdstrike-vapor-panda-artex-200-organizations"
-          ]
-        },
-        {
-          "id": "storm",
-          "name": "ARTEX through a ConnectWise supply chain",
-          "sub": "Oct 21",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Microsoft: automated attacks on hundreds of organisations",
-              "date": "2026-10-21"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Storm-0940, a China-state aligned actor, per Microsoft"
-            }
-          ],
-          "items": [
-            "microsoft-storm-0940-artex-connectwise-supply-chain"
-          ]
-        },
-        {
-          "id": "korea",
-          "name": "ARTEX against South Korean banks",
-          "sub": "Oct 7",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A run of bank breaches; Zscaler counts data on about 67,000 people",
-              "date": "2026-10-07"
-            },
-            {
-              "on": true,
-              "text": "ARTEX named by Korean investigators"
-            },
-            {
-              "on": false,
-              "text": "CrowdStrike describes the operator's tooling; no actor named in the headlines"
-            }
-          ],
-          "items": [
-            "south-korea-artex-named-bank-breaches",
-            "crowdstrike-artex-korea-finance-attribution",
-            "artex-developer-closed-source-after-korea-hacks",
-            "zscaler-artex-korea-finance-67000-records"
-          ]
-        },
-        {
-          "id": "bell",
-          "name": "Bell Canada",
-          "sub": "Nov 20",
-          "reviewed": false,
-          "changed": "2026-11-24",
-          "stops": [
-            {
-              "on": true,
-              "date": "2026-11-20",
-              "text": "Nov 20 · Bell: an \"agentic threat actor\" accessed some systems"
-            },
-            {
-              "on": true,
-              "date": "2026-11-23",
-              "text": "Nov 23 · Bell tells consumer customers personal information was reached"
-            },
-            {
-              "on": false,
-              "text": "Bell: attribution not known"
-            }
-          ],
-          "items": [
-            "bell-canada-agentic-threat-actor-maximo-customer-data"
-          ]
-        }
-      ]
-    },
-    {
-      "topic": "attacks-on-ai",
-      "title": "Flaws in AI tools and how far each has gone",
-      "tone": "harm",
-      "stages": [
-        "Disclosed",
-        "Fix available",
-        "Exploited in the wild"
-      ],
-      "noun": "flaws and compromises in AI tools and platforms",
-      "say2": "have a fix or a clean version",
-      "say3": "have been exploited in the wild",
-      "note": "These are attacks on AI tools and platforms themselves.",
-      "chipOn": "Exploited",
-      "chipOff": "No exploitation reported",
-      "open": "langflow",
-      "cases": [
-        {
-          "id": "agentfw",
-          "name": "Microsoft agent-framework on PyPI",
-          "sub": "Two malicious releases · Nov 17",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Wiz: releases shipped a credential stealer, signed with what it says was a compromised certificate",
-              "date": "2026-11-17"
-            },
-            {
-              "on": true,
-              "text": "Malicious versions removed within about an hour; 1.26.0 is the last safe version"
-            },
-            {
-              "on": true,
-              "text": "Three successful exfiltrations counted by Wiz"
-            }
-          ],
-          "items": [
-            "microsoft-agent-framework-pypi-esrp-credential-stealer"
-          ]
-        },
-        {
-          "id": "chatgpt",
-          "name": "ChatGPT shared-link session takeover",
-          "sub": "Oct 28",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A shared link could run attacker code in a viewer's session and read private chats",
-              "date": "2026-10-28"
-            },
-            {
-              "on": true,
-              "text": "Fixed by OpenAI eight days after the report"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "parameter-chatgpt-shared-link-session-takeover"
-          ]
-        },
-        {
-          "id": "sneakpeek",
-          "name": "Claude Code Desktop \"SneakPeek\"",
-          "sub": "Noma Labs · Oct 14",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Three gaps in the preview pane chained into zero-click credential theft",
-              "date": "2026-10-14"
-            },
-            {
-              "on": true,
-              "text": "Aug 17 · final patch deployed, per Noma",
-              "date": "2026-08-17"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "noma-sneakpeek-claude-code-desktop-exfiltration"
-          ]
-        },
-        {
-          "id": "langflow",
-          "name": "Langflow",
-          "sub": "Several CVEs since Aug 4",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A run of critical flaws in the AI-agent platform",
-              "date": "2026-08-04"
-            },
-            {
-              "on": true,
-              "text": "CVE-2026-105740 fixed in Langflow 1.9.0"
-            },
-            {
-              "on": true,
-              "text": "Aug 4 · on CISA's exploited list · Aug 28 · more than 15,000 successful attempts logged",
-              "date": "2026-08-04"
-            }
-          ],
-          "items": [
-            "cisa-kev-langflow-cve-2026-9198-exploited",
-            "vulncheck-langflow-ai-stack-exploitation",
-            "vulncheck-langflow-mass-exploitation",
-            "previdian-langflow-cve-2026-105740-exploitation",
-            "vulncheck-langflow-session-microsoft-secret-hunter-ip"
-          ]
-        },
-        {
-          "id": "litellm",
-          "name": "LiteLLM gateway authentication bypass",
-          "sub": "Sep 2",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "An authentication bypass in the AI gateway",
-              "date": "2026-09-02"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Sep 2 · on CISA's exploited list",
-              "date": "2026-09-02"
-            }
-          ],
-          "items": [
-            "cisa-kev-litellm-mcp-auth-bypass"
-          ]
-        },
-        {
-          "id": "servicenow",
-          "name": "ServiceNow AI Platform",
-          "sub": "Three flaws rated CVSS 10.0 · Aug 27",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Disclosed with the patch",
-              "date": "2026-08-27"
-            },
-            {
-              "on": true,
-              "text": "Patched by ServiceNow"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "servicenow-ai-platform-critical-flaws"
-          ]
-        },
-        {
-          "id": "mlflow",
-          "name": "MLflow SSRF",
-          "sub": "CVE-2026-64849 · Aug 18",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A critical server-side request forgery flaw",
-              "date": "2026-08-18"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Aug 18 · exploited to steal cloud credentials",
-              "date": "2026-08-18"
-            }
-          ],
-          "items": [
-            "mlflow-ssrf-cve-2026-64849-exploited"
-          ]
-        },
-        {
-          "id": "ray",
-          "name": "Ray AI framework",
-          "sub": "CVE-2025-62593 · Aug 17",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "A critical flaw in the framework",
-              "date": "2026-08-17"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": true,
-              "text": "Aug 17 · CISA flags active exploitation, three days to patch",
-              "date": "2026-08-17"
-            }
-          ],
-          "items": [
-            "cisa-kev-ray-ai-framework-cve-2025-62593-exploited"
-          ]
-        },
-        {
-          "id": "terraform",
-          "name": "Terraform MCP Server",
-          "sub": "CVSS 10.0 · Jul 28",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Cross-tenant credential reuse",
-              "date": "2026-07-28"
-            },
-            {
-              "on": true,
-              "text": "Patched by HashiCorp"
-            },
-            {
-              "on": false,
-              "text": "None reported"
-            }
-          ],
-          "items": [
-            "terraform-mcp-server-cross-tenant-credential-reuse-patch"
-          ]
-        }
-      ]
-    },
-    {
-      "topic": "critical-infrastructure",
-      "title": "Infrastructure incidents and who has been named",
-      "tone": "harm",
-      "stages": [
-        "Incident",
-        "Official warning or guidance",
-        "Attributed"
-      ],
-      "noun": "incidents and campaigns against physical systems",
-      "say2": "drew an official warning or guidance",
-      "say3": "are attributed",
-      "note": "Some of these cases involve no AI.",
-      "chipOn": "Attributed",
-      "chipOff": "Not attributed",
-      "open": "cold",
-      "cases": [
-        {
-          "id": "cold",
-          "name": "Refrigeration controllers across Europe",
-          "sub": "From Oct 11",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Controllers driven to 50°C across French supermarkets · by Nov 4 at least 11 countries and France's blood service",
-              "date": "2026-11-04"
-            },
-            {
-              "on": true,
-              "text": "Oct 11 · CERT-FR · Nov 5 · CISA, FBI, HHS, USDA and Transportation",
-              "date": "2026-10-11"
-            },
-            {
-              "on": true,
-              "text": "Nov 9 · France names an IRGC cyber unit, Shahid Kaveh",
-              "date": "2026-11-09"
-            }
-          ],
-          "items": [
-            "danfoss-refrigeration-controllers-french-supermarkets",
-            "refrigeration-attacks-11-countries-french-blood-service",
-            "cisa-fbi-refrigeration-cold-chain-guidance",
-            "france-attributes-refrigeration-sabotage-irgc-shahid-kaveh"
-          ]
-        },
-        {
-          "id": "taipei",
-          "name": "Taipei emergency-service records",
-          "sub": "Acronis · Nov 4",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "One operator ran a mesh of 12 AI agents against hundreds of organisations",
-              "date": "2026-11-04"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            }
-          ],
-          "items": [
-            "acronis-bossai-12-agent-mesh-taiwan-emergency-services"
-          ]
-        },
-        {
-          "id": "integrator",
-          "name": "Compromised US automation firm",
-          "sub": "Sep 23",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Actors obtained customers' SCADA data through an integrator",
-              "date": "2026-09-23"
-            },
-            {
-              "on": true,
-              "text": "Sep 23 · CISA and FBI advisory",
-              "date": "2026-09-23"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            }
-          ],
-          "items": [
-            "cisa-fbi-third-party-ics-integrator-considerations"
-          ]
-        },
-        {
-          "id": "colorado",
-          "name": "Colorado water utilities",
-          "sub": "Sep 18",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Pumping settings changed at two small utilities",
-              "date": "2026-09-18"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            },
-            {
-              "on": false,
-              "text": "\"Foreign actors\", not named"
-            }
-          ],
-          "items": [
-            "colorado-water-utilities-ot-intrusions"
-          ]
-        },
-        {
-          "id": "s7",
-          "name": "AI-generated scripts against Siemens S7 controllers",
-          "sub": "Aug 19",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "Attackers using AI-generated scripts to target industrial controllers",
-              "date": "2026-08-19"
-            },
-            {
-              "on": true,
-              "text": "Aug 19 · CISA, NSA and FBI warning",
-              "date": "2026-08-19"
-            },
-            {
-              "on": false,
-              "text": "Not stated"
-            }
-          ],
-          "items": [
-            "cisa-nsa-fbi-siemens-s7-ai-generated-exploit-scripts"
-          ]
-        },
-        {
-          "id": "water",
-          "name": "US water-sector controllers",
-          "sub": "From Jul 22",
-          "reviewed": false,
-          "stops": [
-            {
-              "on": true,
-              "text": "PLCs manipulated across at least seven states · CSIS counts about 100 facilities",
-              "date": "2026-07-22"
-            },
-            {
-              "on": true,
-              "text": "Jul 22 · US advisory · Jul 30 · FBI and EPA alert",
-              "date": "2026-07-22"
-            },
-            {
-              "on": true,
-              "text": "Iran-linked actors, per the US advisory"
-            }
-          ],
-          "items": [
-            "iran-plc",
-            "fbi-epa-alert-water-wastewater-plc-targeting",
-            "csis-iran-water-mapping",
-            "project-watershed-250-texas-water"
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 }

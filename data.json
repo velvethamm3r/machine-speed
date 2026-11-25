@@ -1,8 +1,8 @@
 {
-  "updatedISO": "2026-11-24T06:28:00-05:00",
-  "updatedDisplay": "2026-11-24, 6:28 AM ET",
-  "judgmentNote": "Twenty-six items over a one-day Monday-to-Tuesday window (the previous run stamped 6:31 AM ET on November 23): twelve dated November 22 to 23 and fourteen catches from inside the period dated November 16 to 20, among them the White House's November 18 statement on the US outage wave, which the board had not carried. Grow mode: coverageStart stays at 2026-07-01 and nothing rolled off. Nine items are read at their own primary: NSM, NebuSec, OpenAI's Shirudo post, Google Cloud's documentation, Microsoft's security blog, the White House, the Bank of England, CrowdStrike's SEC filing and Beazley Security's release. Every figure and quotation on the new cards was re-opened in a separate verification pass, which changed eight cards before publication: GLM-5.4 is on Z.ai's Coding Plan, ZCode and Chat, not the Coding Plan alone; the Ghostscript flaw is a -dSAFER bypass, not a use-after-free, and pwn.ai's post is dated only \"over the weekend\"; Google's semantic-governance caveats are quoted from Google's own page, not Help Net Security's paraphrase; CERT-In's advisory concerns technology providers behind payment processes, not payment service providers; Clayton tied the NSA network outage to PHP patching on Fox Business, not at the House hearing, so that is left off; \"first time\" was dropped from the BSI card (the word refers to a new index); a Tillis quotation was dropped (not on the page); and N-able's \"no customer data\" line was replaced by what its statement says, that exploitation was confined to a single hosted server. KEPCO: BleepingComputer has KEPCO attributing the breach to \"advanced technologies such as AI\", while NewDaily presents AI as a general trend; the card states both and is untagged. Bell Canada's \"agentic threat actor\" wording is from its enterprise notice via BleepingComputer; BNN's account of the November 23 consumer email does not use the word. The MONAI Label CVE, CVE-2026-133968, is now carried on the new CISA catalogue card via SecurityOnline and The Hacker News, since CISA's own page did not open; the November 20 Amazon card is left as published. The EU Academy card calls the attack AI-generated only in AP's voice; the Commission's spokesperson does not mention AI. USDA rests on Nextgov; Hackread's named systems and PII quotation, sourced to a DTN article that could not be found, were not used. Peninsula Energy's ASX filing did not open; the card rests on SecurityWeek. Davies's nomination and LoSapio's holds are press only; no White House or Senate primary opened. Arizona's criminal investigation is Reuters only; no attorney-general release was found. BSI's own release did not open; outlets give the earlier time-to-exploit baseline as 61 or 53 days. Allianz's US$100 million is a scenario estimate for its tracked cases, not a recorded loss. Held: SOCRadar's BabidiGhost account and GBHackers' ARTEX-Harvester campaign (no primary, no corroboration); The Insurer's Munich Re and Brit cyber-war stories (not openable); Signal's block on OS AI assistants (privacy, not cyber); the Container Store, Suzlon, Austrian foreign ministry and West Virginia legislature incidents (minor, or no AI or significance case); the UK Cyber Security and Resilience Bill, whose Commons consideration of Lords amendments falls after this run.",
-  "internalNote": "Coverage extended to November 24 over a one-day Monday-to-Tuesday window: twenty-six items added (atk 9, cap 3, pol 6, def 5, mkt 3), led by Bell Canada's account of an \"agentic threat actor\", Norway tying the Equinor and Skagerak attacks to an Azure API Management flaw, OpenAI and Cisco's Shirudo, and the White House's statement that the US outage wave was patching rather than attack; seven watchlist threads rewritten.",
+  "updatedISO": "2026-11-25T09:58:00-05:00",
+  "updatedDisplay": "2026-11-25, 9:58 AM ET",
+  "judgmentNote": "Eleven items over a one-day Tuesday-to-Wednesday window (the previous run stamped 6:28 AM ET on November 24): eight dated November 23 to 24, and three catches from inside the period dated November 19 to 21 (Google's bug-bounty change, the Guadeloupe hospital attack, and the Drupal exploitation history behind the November 24 CISA listing). Grow mode: coverageStart stays at 2026-07-01 and nothing rolled off. Five items are read at their own primary: Drupal's advisory, GreyNoise, the UK AI Security Institute, Google and, for the bill numbers, the congressional bill-status records. Every figure and quotation on the new cards was re-opened in a separate verification pass, which changed six cards before publication: the CyberScoop speaker on the CIA breach is a source familiar with it, not an official, and the Artex line is Ynetnews's own narration with only the China indication tied to the Times; Jesta's 5 minutes 44 seconds is when the agent gave up, not when it found the key; the Guadeloupe hospital cancelled some surgery, not all; FINRA's wording is a penetration testing platform, not a framework; a sentence on Anthropic's September rollout promise was replaced with what SecurityWeek says; and the UK headline now ties frontier AI only to the NIS review. Hand calls: the CIA/ODNI breach is marked key and carried at press, since no agency statement was opened; Ynetnews and Outlook India add the NGA, which CyberScoop and the AP do not, so the card names only the CIA and ODNI. FinCEN is confirmed on its own statement as quoted by ABC News. The Drupal flaw is filed once, in Attacks, dated to the CISA listing, and marked key as the first flaw credited to Anthropic's OSS Scanner the board has seen exploited; the capability and attacks sweeps both surfaced it. The UK Commons outcome rests on two third-party bill trackers because Parliament's division, Hansard and amendment pages returned errors; the Ayes and Noes page contradicts itself on the Noes count (98 in the summary, 100 in its party table) and labels the vote Division 136 where the tracker gives 2496, so the card carries 260 to 98 from both. Google's VRP change is filed in Defense as a disclosure-process change. Anthropic's Enterprise Frontier Safeguards public beta rests on SecurityWeek alone, both claude.com pages being blocked; the 90%-to-28% and 89%-versus-14% figures are earlier Anthropic testing and are not used. Correction: the House Homeland bills card now carries H.R. 11076, 11055, 11046 and 11069 from the bill-status records; the ROOT CAUSE Act was introduced November 17, not November 18. The records carry no short titles for three of the four, so the names remain the committee's. Second correction, after delivery and at Daria's prompt: the November 22 Davies card said she \"is nominated\"; a White House official told The Record (November 23) and MeriTalk that Trump intends to nominate her, with no date given for formal submission to the Senate, so the headline now says \"intends to nominate\" and the card is re-sourced to those two outlets. The November 20 card, which says she was named acting, is accurate to that week and is unchanged; the White House's own release uses only \"named\". Markets is empty: the only window material was Zscaler's results with its call cancelled and broker reports with no AI element. Held: the Senate Commerce telecom cybersecurity bill (S. 5508) and CISA's roughly 100-company hardening workstream (no AI, minor); the OCC's November 4 supervisory framework for \"SI\" in banks (no cyber provision read); Tencent Hy4's training-data filtering (November 4, a late catch reported only by Reuters via The Standard); Google's Mirror Dimension; the Inception leak-site claims; McDonald's Japan; the Port of Santos ransomware (Dark Reading blocked); Claude Ship (a developer product). Topics: FinCEN and Guadeloupe left untagged.",
+  "internalNote": "Coverage extended to November 25 over a one-day Tuesday-to-Wednesday window: eleven items added (atk 7, cap 1, pol 1, def 2, mkt 0), led by the breach of an unclassified CIA and ODNI intelligence system with ARTEX suspected, FinCEN's incident, and a Drupal flaw found by Anthropic's OSS Scanner exploited a day after its fix; the House Homeland bills card gained its bill numbers and the Davies card now says Trump intends to nominate her, with corrections logged for both; four watchlist threads rewritten.",
   "items": [
     {
       "id": "noma-sneakpeek-claude-code-desktop-exfiltration",
@@ -8719,8 +8719,8 @@
       "id": "house-homeland-four-ai-cyber-bills-agents-investigations-board",
       "lane": "pol",
       "date": "2026-11-18",
-      "headline": "House Homeland Security Republicans introduce four AI-cyber bills, including a framework for securing AI agents on federal systems and a cyber and AI investigations board",
-      "core": "The committee says its Republicans introduced the AI INSIGHT Act (Rep. Van Epps), to \"establish a framework for securing AI agents operating on federal civilian information systems\"; the BRIDGE AI Act (Rep. Fong); the ROOT CAUSE Act (Rep. Luttrell, with Rep. Torres), creating a National Cyber and AI Investigations Board within CISA with \"no regulatory or enforcement authority\"; and the SECURE IT Act (Reps. Ogles and Garbarino). No bill numbers are given.",
+      "headline": "House Homeland Security Republicans introduce four AI-cyber bills, two with Democratic cosponsors, including a framework for securing AI agents on federal systems and a cyber and AI investigations board",
+      "core": "The committee says its Republicans introduced the AI INSIGHT Act (Rep. Van Epps; H.R. 11076), to \"establish a framework for securing AI agents operating on federal civilian information systems\"; the BRIDGE AI Act (Rep. Fong, with Rep. Gottheimer; H.R. 11055); the ROOT CAUSE Act (Rep. Luttrell, with Rep. Torres; H.R. 11046, introduced November 17), creating a National Cyber and AI Investigations Board within CISA with \"no regulatory or enforcement authority\"; and the SECURE IT Act (Reps. Ogles and Garbarino; H.R. 11069). Bill numbers and introduction dates are from the congressional bill-status records.",
       "confidence": "on-record",
       "outlet": "House Committee on Homeland Security",
       "url": "https://homeland.house.gov/2026/11/18/homeland-republicans-lead-legislation-to-strengthen-modernize-dhss-cybersecurity-mission-as-ai-reshapes-the-threat-landscape/",
@@ -8904,11 +8904,11 @@
       "confidence": "confirmed",
       "outlet": "Bell Canada (via BleepingComputer, BetaKit and BNN Bloomberg)",
       "url": "https://www.bleepingcomputer.com/news/security/bell-canada-says-agentic-hacker-stole-enterprise-customer-data/",
-      "isNew": true,
       "topics": [
         "ai-in-attacks"
       ],
-      "key": true
+      "key": true,
+      "isNew": false
     },
     {
       "id": "kepco-breach-1-52-million-billing-procurement",
@@ -8930,7 +8930,7 @@
       "confidence": "on-record",
       "outlet": "Norwegian National Security Authority (NSM)",
       "url": "https://nsm.no/aktuelt/nsm-deler-tiltak-mot-sarbarhet-i-azure-api-management",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "european-commission-eu-academy-user-data-leak",
@@ -8941,10 +8941,10 @@
       "confidence": "confirmed",
       "outlet": "European Commission (via AP)",
       "url": "https://abcnews.com/International/wireStory/european-commission-warns-eu-academy-users-data-leak-138374368",
-      "isNew": true,
       "topics": [
         "ai-in-attacks"
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "cisco-expressway-cve-2026-76466-exploited-ai-assisted-scripts",
@@ -9020,10 +9020,10 @@
       "confidence": "press",
       "outlet": "Z.ai (via VentureBeat)",
       "url": "https://venturebeat.com/technology/z-ais-glm-5-4-aims-to-match-models-up-to-four-times-its-size-by-running-28-layers-twice",
-      "isNew": true,
       "topics": [
         "frontier-capability"
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "pwn-ai-ghostscript-upload2shell-cve-2026-125396",
@@ -9062,10 +9062,10 @@
       "confidence": "on-record",
       "outlet": "OpenAI",
       "url": "https://openai.com/index/introducing-shirudo/",
-      "isNew": true,
       "topics": [
         "ai-found-vulnerabilities"
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "google-semantic-governance-policies-agent-tool-calls",
@@ -9142,12 +9142,12 @@
       "id": "davies-nominated-cyber-director-clayton-acting",
       "lane": "pol",
       "date": "2026-11-22",
-      "headline": "Kirsten Davies is nominated as National Cyber Director, and DNI Jay Clayton becomes acting director in her place",
-      "core": "Cybersecurity Dive reports that because a presidential nominee cannot hold the job in an acting capacity, Davies will serve as Clayton's senior adviser in the Office of the National Cyber Director while Clayton, who also leads the president's AI task force, serves as acting director; Clayton said \"I'm excited to work more with Kirsten, who has the experience and capabilities needed\". Newsmax reports Trump announced the nomination on Thursday.",
+      "headline": "Trump intends to nominate Kirsten Davies as National Cyber Director, and DNI Jay Clayton becomes acting director while she awaits confirmation",
+      "core": "A White House official told The Record that Trump \"intends to nominate\" Davies, named acting director the previous week, and \"decided to fill the position permanently\", and told MeriTalk that \"Davies cannot serve in an acting capacity while awaiting Senate confirmation\" and will instead serve as a senior adviser to the Office of the National Cyber Director while Clayton oversees it as acting director; the official did not say when the nomination would be formally submitted to the Senate. Clayton said \"I'm excited to work more with Kirsten\".",
       "confidence": "press",
-      "outlet": "Cybersecurity Dive (via Yahoo News)",
-      "url": "https://www.yahoo.com/news/politics/articles/us-intelligence-chief-gets-additional-191300652.html",
-      "isNew": true
+      "outlet": "White House official (via The Record and MeriTalk)",
+      "url": "https://therecord.media/kirsten-davies-trump-intends-nominate-national-cyber-director",
+      "isNew": false
     },
     {
       "id": "losapio-cisa-nomination-holds-tillis-wyden",
@@ -9237,6 +9237,157 @@
       "outlet": "Allianz Commercial (via Malay Mail)",
       "url": "https://www.malaymail.com/news/money/mediaoutreach/2026/11/19/allianz-reported-ai-losses-understate-the-true-risk-and-are-only-the-tip-of-the-iceberg/502581",
       "isNew": false
+    },
+    {
+      "id": "cia-odni-unclassified-osint-system-breach",
+      "lane": "atk",
+      "date": "2026-11-24",
+      "headline": "An unclassified open-source intelligence analysis system used by the CIA and ODNI is breached; Ynetnews, citing the New York Times, reports investigators suspect the ARTEX tool",
+      "core": "The CIA and ODNI discovered a breach of an unclassified open-source intelligence analysis system, and CyberScoop quotes a source familiar with the breach saying the hack \"did not involve our classified networks or classified information, and no other systems are currently at risk.\" Ynetnews reports that \"Investigators suspect the hackers used an AI tool known as Artex\" and, citing the New York Times, that preliminary indications point to China; the AP says it was not clear what information was compromised or who was responsible.",
+      "confidence": "press",
+      "outlet": "CyberScoop (with AP and the New York Times via Ynetnews)",
+      "url": "https://cyberscoop.com/cia-odni-osint-data-breach/",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "key": true,
+      "isNew": true
+    },
+    {
+      "id": "fincen-cybersecurity-incident-systems-offline",
+      "lane": "atk",
+      "date": "2026-11-24",
+      "headline": "FinCEN says it is investigating unauthorised access to a limited subset of its systems and has taken some offline",
+      "core": "Treasury's Financial Crimes Enforcement Network says it is \"investigating a cybersecurity incident that resulted in unauthorized access to a limited subset of its systems\" and \"has taken some systems offline\" as a precaution; \"The BSA E-Filing website remains operational; however, some services may be temporarily unavailable.\" No cause or attribution has been given.",
+      "confidence": "confirmed",
+      "outlet": "FinCEN (via ABC News and CyberScoop)",
+      "url": "https://abcnews.com/US/treasurys-fincen-cybersecurity-incident-includes-unauthorized-access-systems/story?id=138432822",
+      "isNew": true
+    },
+    {
+      "id": "drupal-cve-2026-132165-oss-scanner-exploited-cisa-kev",
+      "lane": "atk",
+      "date": "2026-11-24",
+      "headline": "A Drupal core installer flaw found by Anthropic's OSS Scanner was exploited on live sites a day after its fix, and CISA lists it as exploited",
+      "core": "Drupal's advisory SA-CORE-2026-017 for CVE-2026-132165, rated \"Highly critical\" (20 of 25) and published November 18, says the flaw was \"Discovered by Anthropic's OSS Scanner\" and that the security team \"has received a report this was exploited on live sites as early as 2026-11-19 19:00 UTC.\" SecurityWeek reports CISA added it to its exploited-vulnerabilities catalogue on November 24, with federal agencies to act by November 27.",
+      "confidence": "on-record",
+      "outlet": "Drupal Security Team (CISA listing via SecurityWeek)",
+      "url": "https://drupal.org/sa-core-2026-017",
+      "topics": [
+        "ai-found-vulnerabilities"
+      ],
+      "key": true,
+      "isNew": true
+    },
+    {
+      "id": "greynoise-gt13-check-point-security-management-servers",
+      "lane": "atk",
+      "date": "2026-11-23",
+      "headline": "GreyNoise says an actor it calls GT13 staged data from 24 Check Point Security Management servers and believes it used LLMs and agentic systems",
+      "core": "GreyNoise says GT13 used 99 IP addresses against at least 22 organisations and staged data from 24 Check Point Security Management Servers, including credentials, internal certificate-authority files and firewall configuration, and that \"we believe that like most modern attacks, the actor used LLMs and agentic systems\"; it expects the campaign is ongoing. Check Point told The Hacker News the activity involves CVE-2026-16232, a previously disclosed and patched flaw, and \"does not represent a new vulnerability or exploitation technique.\"",
+      "confidence": "researchers",
+      "outlet": "GreyNoise (Check Point via The Hacker News)",
+      "url": "https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "jesta-opencode-agent-decoy-key-financial-firm",
+      "lane": "atk",
+      "date": "2026-11-24",
+      "headline": "Jesta says an open-source coding agent pointed at a financial-services customer found a planted decoy access key in under six minutes",
+      "core": "The Register reports that Tel Aviv startup Jesta says someone in Bucharest used the open-source OpenCode agent against an unnamed financial-services customer on November 16; Jesta flagged it as an AI agent and moved it into a decoy environment, where it found a planted fake key and tried to use it, giving up 5 minutes 44 seconds after its first request. Nothing was stolen, the incident was disclosed to law enforcement, and the model used is not known; \"Nothing in OpenCode was built for hacking,\" Jesta's Lior Finkelshtein said.",
+      "confidence": "press",
+      "outlet": "Jesta (via The Register)",
+      "url": "https://www.theregister.com/security/2026/11/24/an-ai-coding-agent-a-browser-and-a-mac-tool-found-a-financial-firms-access-key-in-under-6-minutes/5311922",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "guadeloupe-university-hospital-suspected-ransomware",
+      "lane": "atk",
+      "date": "2026-11-21",
+      "headline": "Guadeloupe's university hospital cancels some surgery and suspends radiotherapy after a suspected ransomware attack",
+      "core": "The Record reports outages at the Guadeloupe University Hospital began on the evening of Saturday November 21; France's cyber agency ANSSI says the incident appeared to involve ransomware and is examining a possible entry through an IT supplier. The hospital cancelled some surgical procedures, consultations and imaging tests through at least Friday, said \"Radiation therapy has been temporarily suspended over safety concerns,\" and said it had not received a ransom demand and ruled out paying one.",
+      "confidence": "confirmed",
+      "outlet": "Guadeloupe University Hospital and ANSSI (via The Record)",
+      "url": "https://therecord.media/guadeloupe-ransomware-hospital-cyber",
+      "isNew": false
+    },
+    {
+      "id": "finra-warns-artex-used-against-two-member-firms",
+      "lane": "atk",
+      "date": "2026-11-24",
+      "headline": "FINRA warns that threat actors have used ARTEX against a range of targets, including two FINRA member firms (via FX News Group)",
+      "core": "FX News Group reports a FINRA warning that threat actors, including \"APT groups believed to be aligned with the Chinese government,\" have used Artex, which it calls a penetration testing platform using several large language models, \"to carry out cyberattacks against a range of targets, including two FINRA member firms.\" The firms are not named and FINRA's own notice was not found.",
+      "confidence": "press",
+      "outlet": "FINRA (via FX News Group)",
+      "url": "https://fxnewsgroup.com/forex-news/regulatory/finra-warns-of-threat-actors-using-artex-to-target-firms-with-cyber-attacks/",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "uk-aisi-attack-policy-monitor-miss-rate",
+      "lane": "cap",
+      "date": "2026-11-23",
+      "headline": "UK AISI finds the way test attacks are generated moved a monitor's measured miss rate from 0.2% to 23%",
+      "core": "The UK AI Security Institute's red team tested a monitor running GPT-5.4 with a retired OpenAI monitoring prompt, watching Qwen 3.8 27B on harmful side tasks such as removing an organisation's multi-factor authentication requirement, and found \"the same monitor missed 0.2% to 23% of successful attacks\" depending on how the attacks were generated. AISI says showing that attack policies represent future, unseen attacks \"is a hard and unsolved problem.\"",
+      "confidence": "researchers",
+      "outlet": "UK AI Security Institute",
+      "url": "https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading",
+      "topics": [
+        "frontier-capability"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "google-vrp-auto-disclosure-15x-duplicate-reports",
+      "lane": "def",
+      "date": "2026-11-19",
+      "headline": "Google's bug bounty will publish qualifying reports automatically, saying duplicate reports are running at 15 times their 2023 level",
+      "core": "Google says it is \"now seeing 15x the number of duplicate reports than what we observed in 2023\" and that average report length has tripled, and that reports submitted on or after December 1, 2026 that were rewarded $10,000 or more will be disclosed once at least 30 days have passed since the fix, with disclosures starting in early 2027.",
+      "confidence": "on-record",
+      "outlet": "Google",
+      "url": "https://blog.google/security/expanding-transparency-google-alphabet-vrp-disclosure-policy-update/",
+      "topics": [
+        "ai-found-vulnerabilities"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "anthropic-enterprise-frontier-safeguards-public-beta",
+      "lane": "def",
+      "date": "2026-11-23",
+      "headline": "Anthropic opens Enterprise Frontier Safeguards, its cross-request misuse detection, to public beta and publishes a guide to securing coding agents (via SecurityWeek)",
+      "core": "SecurityWeek reports Anthropic announced the public beta of Enterprise Frontier Safeguards for zero-data-retention customers, a monitoring layer that \"can detect suspicious patterns across multiple requests\", with Microsoft Foundry integration \"in the works\", alongside \"a guide to securing enterprise coding agents\" that recommends human approval for high-risk actions. SecurityWeek says the system was unveiled in September and tested in private beta by companies including Stripe and Salesforce.",
+      "confidence": "press",
+      "outlet": "Anthropic (via SecurityWeek)",
+      "url": "https://www.securityweek.com/anthropic-expands-enterprise-safeguards-for-detecting-ai-misuse/",
+      "topics": [
+        "ai-in-attacks"
+      ],
+      "isNew": false
+    },
+    {
+      "id": "uk-commons-csr-bill-disagrees-lords-amendments-107-108",
+      "lane": "pol",
+      "date": "2026-11-24",
+      "headline": "MPs remove the Lords' foreign-powers register and the NIS review covering AISI's frontier-AI powers from the UK cyber resilience bill and send it back to the Lords",
+      "core": "Third-party bill trackers report the Commons disagreed with Lords Amendment 108, the register of foreign powers, by 260 votes to 98, and with Lords Amendment 107, the review of the NIS regime that covered \"the powers of the AI Security Institute over frontier AI\", without a vote; an opposition amendment replacing \"AI agent\" with \"autonomous system\" in the agentic-AI power was defeated 93 to 278. The bill returns to the Lords for consideration of Commons reasons; Parliament's own division and Hansard pages could not be opened here.",
+      "confidence": "press",
+      "outlet": "UK Parliament (via cybersecurityandresiliencebill.com and Ayes and Noes)",
+      "url": "https://cybersecurityandresiliencebill.com/timeline",
+      "stage": "passed-chamber",
+      "topics": [
+        "evaluation-incidents"
+      ],
+      "isNew": true
     }
   ],
   "watchlist": [
@@ -9388,8 +9539,8 @@
     },
     {
       "thread": "Agent-abuse attack surface",
-      "status": "A major telecom now says an agent got in. Bell Canada told enterprise customers an \"agentic threat actor accessed some of our systems\" on November 17 through a pre-production Maximo environment, and on November 23 told consumer customers that personal information had been reached; it does not know the attribution. CISA listed the MONAI Label flaw, CVE-2026-133968, as exploited on November 23, three days after Amazon said a China-nexus operator's Cairn agents found it and were writing files on a university server within about 11 minutes; F6 says scripts in the first Cisco Expressway exploitation show an AI assistant's hand. Unit 42 counts 25 operations by CL-STA-1238 on a customised Cairn fork, with access or data at 10 of at least 19 organisations (November 12). CERT-EU warned on November 5 that AI-driven activity against EU institutions \"highly likely\" used ARTEX; the Commission now says EU Academy users' names and emails were taken. Google's November 16 tracker says discovery and exploitation are fully automated \"without a human in the loop\"; the FBI's FLASH-20261113-001 dates ARTEX use to August. The earlier record is in dashboard-memory.md.",
-      "changed": "2026-11-23",
+      "status": "The intelligence community is now among the suspected victims. The CIA and ODNI discovered a breach of an unclassified open-source intelligence analysis system; Ynetnews, citing the New York Times, says investigators suspect the Artex tool and preliminary indications point to China (November 24). FINRA warns Artex has been used against two member firms (via FX News Group). GreyNoise says GT13, which it believes used LLMs and agentic systems, staged data from 24 Check Point management servers; Jesta says an OpenCode agent aimed at a financial firm found a planted key and gave up 5 minutes 44 seconds after its first request. Bell Canada told enterprise customers an \"agentic threat actor accessed some of our systems\" on November 17 and consumer customers on November 23 that personal information had been reached. CISA listed the MONAI Label flaw Amazon says Cairn agents found as exploited on November 23; Unit 42 counts 25 operations by CL-STA-1238 on a Cairn fork. CERT-EU warned on November 5 of activity that \"highly likely\" used ARTEX; the FBI's FLASH-20261113-001 dates ARTEX use to August. The earlier record is in dashboard-memory.md.",
+      "changed": "2026-11-24",
       "topic": "ai-in-attacks",
       "items": [
         "japan-twenty-companies-possible-data-compromise",
@@ -9491,7 +9642,11 @@
         "bell-canada-agentic-threat-actor-maximo-customer-data",
         "cisa-kev-monai-label-cve-2026-133968-n-able-mail-assure",
         "cisco-expressway-cve-2026-76466-exploited-ai-assisted-scripts",
-        "european-commission-eu-academy-user-data-leak"
+        "european-commission-eu-academy-user-data-leak",
+        "cia-odni-unclassified-osint-system-breach",
+        "finra-warns-artex-used-against-two-member-firms",
+        "greynoise-gt13-check-point-security-management-servers",
+        "jesta-opencode-agent-decoy-key-financial-firm"
       ]
     },
     {
@@ -9563,8 +9718,8 @@
     },
     {
       "thread": "Tracked bills",
-      "status": "House Homeland Security Republicans have now introduced four AI-cyber bills. The AI INSIGHT Act would set a framework for securing AI agents on federal civilian systems and the ROOT CAUSE Act would create a National Cyber and AI Investigations Board within CISA with no regulatory or enforcement authority, alongside the BRIDGE AI and SECURE IT Acts (November 18; no bill numbers given). The UK cyber resilience bill left the Lords carrying a power for ministers to regulate how energy suppliers, managed service providers, cloud providers and others deploy and report agentic AI, and the frontier-AI review peers added 202 to 155; it is at Commons consideration of Lords amendments. In Washington, 35 business groups asked on November 1 to keep the House NDAA's 10-year renewal of CISA 2015 (H.R. 8800, Section 1706), which the Senate draft omits; the stopgap runs to December 11. New York's S.10731 would make large developers report models evading controls, with penalties up to $1 million a day. Unchanged: the AI Cyber Defense Act, H.R. 10752, the CLAIM Act draft, Murphy-Hawley's AI Agent Accountability Act and Markey's S.5541. The full ledger is in dashboard-memory.md.",
-      "changed": "2026-11-18",
+      "status": "The UK cyber resilience bill is back with the Lords. Per third-party trackers, MPs on November 24 disagreed with the Lords' foreign-powers register by 260 to 98 and, without a vote, with the NIS review covering AISI's frontier-AI powers, and defeated a move to rename \"AI agent\" as \"autonomous system\" in the agentic-AI power; Parliament's own pages could not be opened here. The four House Homeland AI-cyber bills now have numbers: AI INSIGHT (H.R. 11076), BRIDGE AI (H.R. 11055), ROOT CAUSE (H.R. 11046, introduced November 17, creating a CISA investigations board with no regulatory or enforcement authority) and SECURE IT (H.R. 11069). In Washington, 35 business groups asked on November 1 to keep the House NDAA's 10-year renewal of CISA 2015 (H.R. 8800, Section 1706), which the Senate draft omits; the stopgap runs to December 11. New York's S.10731 would make large developers report models evading controls, with penalties up to $1 million a day. Unchanged: the AI Cyber Defense Act, H.R. 10752, the CLAIM Act draft, Murphy-Hawley's AI Agent Accountability Act and Markey's S.5541. The full ledger is in dashboard-memory.md.",
+      "changed": "2026-11-24",
       "items": [
         "cruz-blocks-ai-risk-management-security-act",
         "markey-cyber-ai-board-of-investigations-act",
@@ -9591,7 +9746,8 @@
         "cisa-2015-renewal-35-groups-ndaa-letter",
         "uk-cyber-resilience-bill-agentic-ai-measures-factsheet",
         "democratic-committee-leads-cisa-staffing-ai-security-priorities",
-        "house-homeland-four-ai-cyber-bills-agents-investigations-board"
+        "house-homeland-four-ai-cyber-bills-agents-investigations-board",
+        "uk-commons-csr-bill-disagrees-lords-amendments-107-108"
       ]
     },
     {
@@ -9934,8 +10090,8 @@
     },
     {
       "thread": "Defeating the AI defender",
-      "status": "The guardrail is now also a defensive weapon, and the same brittleness runs both ways. Tracebit's July working paper plants guardrail-tripping strings in decoy resources — context bombs — and reports average full-account-admin success across five models falling from 57% to 5%, full compromise from 36% to 1% and any-attack-path completion from 91% to 15% over 152 runs, with Opus 4.8 going from 93% to 0%; OpenAI models were not in the range, and Tracebit sells decoy products. Against the defender, Check Point Research's PuzzleMask (Sep 10) hid a policy-violating payload in fluent prose: gpt-4o-mini, gpt-oss-safeguard, claude-3-haiku and llama-guard3 flagged every payload in plain form and missed every crafted prompt, while GPT-5-thinking with code interpreter recovered and acted on it in 17 of 18 trials; Anthropic's Opus-class models were the consistent exception. ESET reported UAC-0099 planting a fake nuclear-weapons request in a VBS script on Aug 31 so a model-based analysis tool stops reading. UK AISI's monitor flaws (Jul 23), the Aug 1 preprint cutting a chain-of-thought monitor from about 95% to under 11%, and Unit 42's refusal neurons are in dashboard-memory.md.",
-      "changed": "2026-09-10",
+      "status": "Measuring the monitor is now shown to be fragile too. UK AISI's red team found the same monitor, GPT-5.4 on a retired OpenAI prompt watching Qwen 3.8 27B, \"missed 0.2% to 23% of successful attacks\" depending on how the attacks were generated, and calls showing that test attacks represent future ones \"a hard and unsolved problem\" (November 23). Tracebit's July working paper plants guardrail-tripping strings in decoy resources and reports full-account-admin success across five models falling from 57% to 5% over 152 runs; Tracebit sells decoy products. Check Point Research's PuzzleMask (Sep 10) hid a policy-violating payload in fluent prose that gpt-4o-mini, gpt-oss-safeguard, claude-3-haiku and llama-guard3 missed in every crafted prompt, while GPT-5-thinking recovered and acted on it in 17 of 18 trials. ESET reported UAC-0099 planting a fake nuclear-weapons request in a VBS script on Aug 31 so a model-based analysis tool stops reading. UK AISI's monitor flaws (Jul 23), the Aug 1 preprint cutting a chain-of-thought monitor from about 95% to under 11%, and Unit 42's refusal neurons are in dashboard-memory.md.",
+      "changed": "2026-11-23",
       "topic": "attacks-on-ai",
       "items": [
         "checkpoint-puzzlemask-gatekeeper-bypass",
@@ -9947,7 +10103,8 @@
         "adversa-skill-scanner-bypass",
         "aisi-control-red-team-monitor-vulnerabilities",
         "dreadnode-scopejudge-offensive-agent-gating",
-        "tracebit-context-bombs-decoy-defense"
+        "tracebit-context-bombs-decoy-defense",
+        "uk-aisi-attack-policy-monitor-miss-rate"
       ]
     },
     {
@@ -9994,8 +10151,8 @@
     },
     {
       "thread": "Vulnerability disclosure at machine speed",
-      "status": "A lab and a network vendor now ship a stopgap for the patch gap itself. OpenAI and Cisco's open-source Shirudo deploys operator-approved, signed eBPF shields that block vulnerable code paths on running Linux systems; a Codex-written shield blocked a Java4Shell attempt in a controlled test (November 23). The gap is now named as the cause of outages: the White House said on November 18 that the wave of US technology outages was not a cyberattack but patching, with DNI Clayton saying the ability to identify vulnerabilities \"has increased\". Germany's BSI puts time to exploitation at eight days in the second quarter; UK regulators write \"within hours or days\". curl's Daniel Stenberg says five of 45 reports from Anthropic's OSS Scanner were confirmed, all Low (November 18); Palo Alto Networks' chief executive says critical and severe flaws are being found at nearly 7x last year's monthly average. Anthropic gives high and critical bugs 30 days from January 1, 2027; Project Zero moves to 30 by 2028. Recent finds: pwn.ai's Ghostscript Upload2Shell, F5's NGINX pair, Calif's Java4Shell, Neodyme's Puppet flaw. The rest is in dashboard-memory.md.",
-      "changed": "2026-11-23",
+      "status": "An AI-found flaw has now been exploited within a day of its fix. Drupal says CVE-2026-132165 in its core installer, \"Discovered by Anthropic's OSS Scanner\" and fixed on November 18, was exploited on live sites from November 19, and CISA listed it as exploited on November 24 (via SecurityWeek). Google says its bug bounty now sees \"15x the number of duplicate reports\" it saw in 2023 and will publish qualifying reports automatically from December 1 (November 19). OpenAI and Cisco's open-source Shirudo deploys signed eBPF shields that block vulnerable code paths until a patch lands (November 23). The White House said on November 18 the wave of US outages was patching, not attack; Germany's BSI puts time to exploitation at eight days. curl's Daniel Stenberg says five of 45 OSS Scanner reports were confirmed, all Low; Palo Alto Networks' chief executive puts critical and severe finds at nearly 7x last year's monthly average. Anthropic gives high and critical bugs 30 days from January 1, 2027; Project Zero moves to 30 by 2028. Recent finds: pwn.ai's Ghostscript Upload2Shell, F5's NGINX pair, Calif's Java4Shell. The rest is in dashboard-memory.md.",
+      "changed": "2026-11-24",
       "topic": "ai-found-vulnerabilities",
       "items": [
         "anthropic-cyber-mission-critical-infrastructure-oss-scanner",
@@ -10081,7 +10238,9 @@
         "openai-cisco-shirudo-ebpf-runtime-shields",
         "white-house-outages-not-cyberattack-patching",
         "bsi-lagebericht-2026-tense-to-critical",
-        "pwn-ai-ghostscript-upload2shell-cve-2026-125396"
+        "pwn-ai-ghostscript-upload2shell-cve-2026-125396",
+        "drupal-cve-2026-132165-oss-scanner-exploited-cisa-kev",
+        "google-vrp-auto-disclosure-15x-duplicate-reports"
       ]
     },
     {
@@ -10151,6 +10310,12 @@
     }
   ],
   "archives": [
+    {
+      "date": "2026-11-25",
+      "file": "archive/machine-speed-2026-11-25.html",
+      "items": 743,
+      "note": "Grow mode. An unclassified CIA and ODNI intelligence analysis system is breached with ARTEX suspected; FinCEN takes systems offline after unauthorised access; a Drupal flaw found by Anthropic's OSS Scanner is exploited a day after its fix and CISA lists it; GreyNoise ties a Check Point management-server campaign to LLM-driven tooling; FINRA warns of ARTEX against two member firms; UK AISI shows monitor scores swing with attack method; and MPs send the UK cyber resilience bill back to the Lords."
+    },
     {
       "date": "2026-11-24",
       "file": "archive/machine-speed-2026-11-24.html",
@@ -10571,7 +10736,7 @@
     "Everything on the board is drawn entirely from public reporting and covers Capability, Policy, Defense, Attacks and Markets. All views here are the author's own. It's written for the people who regulate, buy, and build in this space, and functions as a companion to Machine Speed, the Substack newsletter."
   ],
   "coverageStart": "2026-07-01",
-  "coverageEnd": "2026-11-24",
+  "coverageEnd": "2026-11-25",
   "briefs": [
     {
       "slug": "openai-hugging-face-eval-breach",
@@ -11384,6 +11549,16 @@
     }
   ],
   "corrections": [
+    {
+      "date": "2026-11-25",
+      "item": "davies-nominated-cyber-director-clayton-acting",
+      "text": "Headline changed from \"is nominated\" to \"Trump intends to nominate\": a White House official told The Record and MeriTalk of the intent to nominate, and the official did not say when the nomination would be formally submitted to the Senate. Re-sourced from Cybersecurity Dive (via Yahoo News) to The Record and MeriTalk; the senior-adviser arrangement and Clayton's acting role are unchanged."
+    },
+    {
+      "date": "2026-11-25",
+      "item": "house-homeland-four-ai-cyber-bills-agents-investigations-board",
+      "text": "Bill numbers added from the congressional bill-status records (H.R. 11076, 11055, 11046, 11069), replacing \"No bill numbers are given\". The ROOT CAUSE Act was introduced on November 17, not November 18 with the others, and the BRIDGE AI and ROOT CAUSE Acts each have a Democratic original cosponsor, which the headline now says."
+    },
     {
       "date": "2026-11-02",
       "item": "upwind-series-c-300m",
